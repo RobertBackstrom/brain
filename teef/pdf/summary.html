@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<style>
+@page { size: A4; margin: 14mm 14mm; }
+*{box-sizing:border-box;}
+body{font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;color:#0d0d0f;font-size:10.5px;line-height:1.45;margin:0;}
+.mag{color:#e6186e;}
+h1{font-size:30px;letter-spacing:-0.5px;margin:0 0 2px;text-transform:uppercase;font-weight:900;}
+.kick{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#e6186e;font-weight:700;margin-bottom:10px;}
+.tag{font-family:monospace;font-size:8.5px;letter-spacing:1px;text-transform:uppercase;color:#5f5b56;}
+.snap{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid #0d0d0f;margin:10px 0 14px;}
+.snap div{padding:7px 10px;border-right:1.5px solid #0d0d0f;border-bottom:1.5px solid #0d0d0f;}
+.snap div:nth-child(3n){border-right:0;}
+.snap div:nth-last-child(-n+3){border-bottom:0;}
+.snap .k{font-family:monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#5f5b56;display:block;}
+.snap .v{font-weight:800;font-size:13px;text-transform:uppercase;}
+h2{font-size:11px;text-transform:uppercase;letter-spacing:1px;border-bottom:1.5px solid #0d0d0f;padding-bottom:3px;margin:13px 0 7px;}
+.price{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
+.pc{border:1.5px solid #0d0d0f;padding:10px 12px;}
+.pc .opt{font-family:monospace;font-size:9px;letter-spacing:.5px;text-transform:uppercase;color:#e6186e;font-weight:700;}
+.pc .big{font-size:26px;font-weight:900;margin:2px 0;}
+.pc .brk{font-size:9.5px;color:#5f5b56;}
+ul{margin:4px 0;padding-left:16px;}
+li{margin-bottom:2px;}
+.foot{margin-top:14px;border-top:1.5px solid #0d0d0f;padding-top:6px;font-family:monospace;font-size:8.5px;letter-spacing:.5px;text-transform:uppercase;color:#5f5b56;}
+a{color:#e6186e;text-decoration:none;}
+.lead{font-size:10.5px;}
+</style></head><body>
+  <div class="kick">Aurora Punks // Co-Development Proposal - Summary</div>
+  <h1>TE<span class="mag">EF</span></h1>
+  <div class="tag">Prepared for The Experimentation Group × Makosch VGDC · Confidential</div>
+
+  <div class="snap">
+    <div><span class="k">Platform</span><span class="v">Android</span></div>
+    <div><span class="k">Engine</span><span class="v">Unity</span></div>
+    <div><span class="k">Build</span><span class="v">5 weeks</span></div>
+    <div><span class="k">Scope</span><span class="v">First 60 min · M1-4</span></div>
+    <div><span class="k">Soft launch</span><span class="v">Argentina · Q4 2026</span></div>
+    <div><span class="k">Measures</span><span class="v">CPI · D3</span></div>
+  </div>
+
+  <h2>Commercials</h2>
+  <div class="price" style="grid-template-columns:1fr;">
+    <div class="pc"><div class="opt">Fixed price · Reads-as-London Soho</div><div class="big">€85k</div><div class="brk">Build €69k + QA (Northify) €8k + 10% contingency · senior team, five-week build</div></div>
+  </div>
+  <ul>
+    <li><strong>Repriced to the tighter brief:</strong> four missions in Soho (was six across Soho and Mayfair), ~60 min of play (was 90), no navigable Mayfair map. The systems work carries over largely unchanged, so the saving lands in content and environment art.</li>
+    <li><strong>One fidelity:</strong> stylised, reads-as-London Soho - inspired by the real streets rather than block-for-block, per your updated brief. No street-accurate option carried.</li>
+    <li><strong>Weighted to the work:</strong> gameplay code and UI are the heavy part of this build; art volume is carried efficiently by the AI-assisted pipeline under human direction.</li>
+    <li>Milestone-based fixed price. Payment 30% on signature / 40% on M1 slice + Soho map accepted / 20% content-complete (all four missions) / 10% store-live.</li>
+    <li>Pass-through billed at cost (geo data, AI tooling, music, QA hardware, Play Console). <strong>Unity engine license fees paid by the client.</strong></li>
+    <li>IP: client owns all code, art and audio on delivery; source repository transferred at end of project. 30-day post-launch support window.</li>
+  </ul>
+
+  <h2>Approach</h2>
+  <ul>
+    <li><strong>Soho map:</strong> built from open geo data (OpenStreetMap / Ordnance Survey) and baked into the build - fully offline, no per-load runtime map cost. Stylised, reads-as-London Soho, inspired by the real streets rather than street-accurate.</li>
+    <li><strong>Art direction:</strong> Brutalist or Casual - two of your style guide's three directions rendered to show build quality; we build to whichever you land on. You are running the art-style test your side.</li>
+    <li><strong>Tuning:</strong> your Google Sheet stays source of truth, pushed to Firebase Remote Config; crash reporting via Firebase Crashlytics.</li>
+  </ul>
+
+  <h2>Team &amp; QA</h2>
+  <ul>
+    <li>Senior team, ~4.5 FTE across a five-week build: Tech Lead Oskar Hansen, Gameplay Fredrik Laurent (the four missions, economy, UI, Magnetic SDK), Concept/art direction + character Hasan Chenari, Environment Prateek Karajgikar, plus a shared seat (production Robert Bäckström, design advisory Tim Browne, SFX Carolina). UI treated as a top production priority.</li>
+    <li>Development QA in-team throughout; independent functional &amp; compliance QA via specialist partner <strong>Northify</strong>.</li>
+  </ul>
+
+  <h2>Track record</h2>
+  <ul>
+    <li>Helldivers 2 (backend + UI art) · Warhammer 40,000: Darktide (senior gameplay + engine/render programming) · The Finals (release management, commerce, QA) · Ready or Not (co-dev, UE4→UE5 migration) · Ghost Signal: A Stellaris Game (full-dev VR, Fast Travel/Paradox/Meta) · Tears of Adria (full dev, 94% Very Positive) · Hooja (full dev) · BADASS (real-world-data to 3D) · Raw Fury (unannounced DLC).</li>
+  </ul>
+
+  <h2>Top risks</h2>
+  <ul>
+    <li>Geo-to-3D landing on-style and on-time - Week-1 spike proves the pipeline first.</li>
+    <li>Art volume, kept human - AI-assisted under human art direction, human-feel check on every asset.</li>
+    <li>Second-to-second gameplay not yet proven in the prototype - prove the Mission 1 loop feel first, playable on device every Friday.</li>
+  </ul>
+
+  <div class="foot">Full living-doc proposal: pitch.aurorapunks.com/teef (password sent separately) · Confidential - Teef / Makosch CI · Aurora Punks</div>
+</body></html>

@@ -1,0 +1,19 @@
+{
+  "_comment": "Publisher-level meetings with Kinda Brave / Windup, which covers GFF + DBL. Lands here by default; split later if DBL-specific syncs start.",
+
+  "attendees": [
+    "alexander@windupgames.com",
+    "norbert.litwinski@windupgames.com"
+  ],
+
+  "titleKeywords": [
+    "kinda brave",
+    "sale update",
+    "go fight fantastic",
+    "gff"
+  ],
+
+  "hasAiNoteTaker": true,
+
+  "downstreamAgent": "BizDev"
+}

@@ -1,0 +1,151 @@
+{
+  "generated_at": "2026-05-08T11:18:52Z",
+  "lane_a_flux": [
+    {
+      "slug": "angle1_composition_seed101",
+      "status": "ok",
+      "elapsed": 7.20061993598938,
+      "url": "https://v3b.fal.media/files/b/0a996097/1g0jMelfYm7IL7kX0ckBK.jpg"
+    },
+    {
+      "slug": "angle1_composition_seed202",
+      "status": "ok",
+      "elapsed": 6.504134893417358,
+      "url": "https://v3b.fal.media/files/b/0a996097/9uZsvyJn8SbFqJ8xPhdjq.jpg"
+    },
+    {
+      "slug": "angle1_composition_seed303",
+      "status": "ok",
+      "elapsed": 5.7330322265625,
+      "url": "https://v3b.fal.media/files/b/0a996098/w3dZQVpNELOAZNFGvDoGH.jpg"
+    },
+    {
+      "slug": "angle1_composition_seed404",
+      "status": "ok",
+      "elapsed": 5.494134902954102,
+      "url": "https://v3b.fal.media/files/b/0a996099/TzRXw4k8ij3Kn0mMkRj4U.jpg"
+    },
+    {
+      "slug": "angle2_detail_seed101",
+      "status": "ok",
+      "elapsed": 5.707780838012695,
+      "url": "https://v3b.fal.media/files/b/0a996099/VSycgq4mEfEQiwzyDoRDW.jpg"
+    },
+    {
+      "slug": "angle2_detail_seed202",
+      "status": "ok",
+      "elapsed": 7.494541883468628,
+      "url": "https://v3b.fal.media/files/b/0a99609a/XsVSlHKZ4V313QcKtGe5d.jpg"
+    },
+    {
+      "slug": "angle2_detail_seed303",
+      "status": "ok",
+      "elapsed": 20.511045694351196,
+      "url": "https://v3b.fal.media/files/b/0a99609a/ZyWrArxrl2yDorGgn0mkv.jpg"
+    },
+    {
+      "slug": "angle2_detail_seed404",
+      "status": "ok",
+      "elapsed": 6.826904058456421,
+      "url": "https://v3b.fal.media/files/b/0a99609c/aJL4ZoUOh-pw3gjC6RrBo.jpg"
+    },
+    {
+      "slug": "angle3_crudeness_seed101",
+      "status": "ok",
+      "elapsed": 14.068415641784668,
+      "url": "https://v3b.fal.media/files/b/0a99609d/YxhqPxRZ5XbZKMqXeAllU.jpg"
+    },
+    {
+      "slug": "angle3_crudeness_seed202",
+      "status": "ok",
+      "elapsed": 12.153094053268433,
+      "url": "https://v3b.fal.media/files/b/0a99609e/4w9Ja4TR-UHAuvAOJCCOW.jpg"
+    },
+    {
+      "slug": "angle3_crudeness_seed303",
+      "status": "ok",
+      "elapsed": 4.823999643325806,
+      "url": "https://v3b.fal.media/files/b/0a9960a0/2VrGRsgzeVaByePjPcqJc.jpg"
+    },
+    {
+      "slug": "angle3_crudeness_seed404",
+      "status": "ok",
+      "elapsed": 6.426840543746948,
+      "url": "https://v3b.fal.media/files/b/0a9960a0/_bCu8RHWcym0YfJghhks6.jpg"
+    }
+  ],
+  "lane_b_sdxl": [
+    {
+      "slug": "angle1_composition_seed101",
+      "status": "ok",
+      "elapsed": 6.686760187149048,
+      "url": "https://v3b.fal.media/files/b/0a9960a1/tEBzfFQVuDD7XJsS6AOt2.jpg"
+    },
+    {
+      "slug": "angle1_composition_seed202",
+      "status": "ok",
+      "elapsed": 7.80541205406189,
+      "url": "https://v3b.fal.media/files/b/0a9960a1/6DajhYcXY4J7RCD7LQB88.jpg"
+    },
+    {
+      "slug": "angle1_composition_seed303",
+      "status": "ok",
+      "elapsed": 9.44797396659851,
+      "url": "https://v3b.fal.media/files/b/0a9960a2/bA9JGZ24um5ObbsgegcqI.jpg"
+    },
+    {
+      "slug": "angle1_composition_seed404",
+      "status": "ok",
+      "elapsed": 5.900945425033569,
+      "url": "https://v3b.fal.media/files/b/0a9960a3/yNXl8ncM25B8YtNAgAEWi.jpg"
+    },
+    {
+      "slug": "angle2_detail_seed101",
+      "status": "ok",
+      "elapsed": 7.2739129066467285,
+      "url": "https://v3b.fal.media/files/b/0a9960a4/5D1aSK-eKPAtYrSi-sC_D.jpg"
+    },
+    {
+      "slug": "angle2_detail_seed202",
+      "status": "ok",
+      "elapsed": 6.176764965057373,
+      "url": "https://v3b.fal.media/files/b/0a9960a4/GmGSb54Dn98unqgmu2NQ2.jpg"
+    },
+    {
+      "slug": "angle2_detail_seed303",
+      "status": "ok",
+      "elapsed": 6.810048580169678,
+      "url": "https://v3b.fal.media/files/b/0a9960a5/Eljs6cEqEdv5A2QOgyCmT.jpg"
+    },
+    {
+      "slug": "angle2_detail_seed404",
+      "status": "ok",
+      "elapsed": 5.86528205871582,
+      "url": "https://v3b.fal.media/files/b/0a9960a6/HVWdjHvTU8yGUD1f07MMG.jpg"
+    },
+    {
+      "slug": "angle3_crudeness_seed101",
+      "status": "ok",
+      "elapsed": 7.0974109172821045,
+      "url": "https://v3b.fal.media/files/b/0a9960a6/fTfFHbdmGapx8ydxxfzVc.jpg"
+    },
+    {
+      "slug": "angle3_crudeness_seed202",
+      "status": "ok",
+      "elapsed": 6.814940929412842,
+      "url": "https://v3b.fal.media/files/b/0a9960a7/Grx_qwel1duNdTfiGLdfQ.jpg"
+    },
+    {
+      "slug": "angle3_crudeness_seed303",
+      "status": "ok",
+      "elapsed": 5.764986991882324,
+      "url": "https://v3b.fal.media/files/b/0a9960a8/jToEFQ26oXGc20sl8m5oI.jpg"
+    },
+    {
+      "slug": "angle3_crudeness_seed404",
+      "status": "ok",
+      "elapsed": 6.4715352058410645,
+      "url": "https://v3b.fal.media/files/b/0a9960a8/eFd9CpJ8LzTGkvgK66VTv.jpg"
+    }
+  ]
+}

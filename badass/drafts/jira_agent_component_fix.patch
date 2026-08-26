@@ -1,0 +1,37 @@
+From 1db39f8361ed78bb10450f5d7bbb304bc2eccce1 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Robert=20B=C3=A4ckstr=C3=B6m?= <robert@aurorapunks.com>
+Date: Wed, 17 Jun 2026 11:31:26 +0000
+Subject: [PATCH] Fill in Game Client + Mobile AR App component mappings
+
+The Outputs & Jira Components table left these two as "(confirm in
+Jira)". Set them to the live CUST component names so the agent
+suggests the right component for game and mobile tickets:
+
+- Game Client  -> Steam-Console
+- Mobile AR App -> AR App
+
+Verified against the live CUST project component list.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+---
+ AGENTS.md | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/AGENTS.md b/AGENTS.md
+index 7665228..01a5eab 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -16,8 +16,8 @@ The primary client is the **E1 Series** — an electric powerboat racing champio
+ |---|---|---|
+ | AR Broadcast — real-time 3D graphics composited over live broadcast via Mo-Sys camera tracking | `AR Live Broadcast` | Unreal Engine (C++) |
+ | VR Broadcast — fully immersive 3D spectator experience. **Primary home of all shared broadcast logic** — race mode, nameplates, overlays, session switching, VCAM plugin, StreamDeck integration. AR Broadcast inherits this code. | `VR Live Broadcast` | Unreal Engine (C++) |
+-| Game Client — interactive fan game using real telemetry | *(confirm in Jira)* | Unreal Engine (C++) |
+-| Mobile AR App — AR overlays for race attendees | *(confirm in Jira)* | Unity |
++| Game Client — interactive fan game using real telemetry | `Steam-Console` | Unreal Engine (C++) |
++| Mobile AR App — AR overlays for race attendees | `AR App` | Unity |
+ | Platform / Engine — shared digital twin, telemetry pipeline, reusable tools | `Environment Production` | Unreal Engine (C++) |
+ | E1 Series (general) — work not tied to a specific output | `E1 Series` | — |
+ | Course Explainers — pre-race and editorial graphics | `Course Explainers` | Unreal Engine |
+-- 
+2.43.0
+

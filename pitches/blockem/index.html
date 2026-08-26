@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Block'Em! - Aurora Punks</title>
+<meta name="description" content="A 2-4 player block-building party platformer. Live on Steam since 2022, now instant-play in the browser via Wavedash.">
+<meta property="og:title" content="Block'Em!">
+<meta property="og:description" content="A 2-4 player block-building party platformer. Now instant-play in the browser via Wavedash.">
+<meta property="og:image" content="./assets/steam-capsule-616x353.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fef8f1;
+  --bg-2: #fde9dd;
+  --panel: #ffffff;
+  --panel-soft: #fff4ec;
+  --line: #f0d9c5;
+  --line-soft: #f7e6d5;
+  --pink: #ff3a8c;
+  --pink-soft: #ffd1e3;
+  --magenta: #c8266c;
+  --yellow: #ffc234;
+  --cyan: #1ec0d9;
+  --purple: #8a4ad9;
+  --ink: #1c1224;
+  --muted: #6e5c70;
+  --muted-2: #9b8a9c;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255,58,140,0.10), transparent 38%),
+    radial-gradient(circle at 88% 12%, rgba(30,192,217,0.10), transparent 40%),
+    radial-gradient(circle at 75% 90%, rgba(255,194,52,0.10), transparent 40%),
+    linear-gradient(180deg, #fef8f1 0%, #fde9dd 100%);
+  min-height: 100vh;
+}
+
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 32px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 720px) {
+  main { padding: 32px 20px 60px; }
+}
+
+/* ---- Hero ---- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 72px;
+}
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.hero-art {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 616 / 353;
+  border: 3px solid var(--ink);
+  box-shadow:
+    0 18px 0 -10px var(--pink),
+    0 30px 60px rgba(28,18,36,0.18);
+}
+
+.hero-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-copy .kicker {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--magenta);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.hero-copy h1 {
+  font-family: 'Fredoka', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(46px, 7vw, 84px);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+
+.hero-copy h1 .pop {
+  color: var(--pink);
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+
+.hero-copy .tagline {
+  font-size: 19px;
+  color: var(--muted);
+  max-width: 44ch;
+  margin: 0 0 28px;
+  line-height: 1.5;
+}
+
+.hero-copy .meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.hero-copy .meta-row .pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+}
+
+.hero-copy .meta-row .pill.pink {
+  background: var(--pink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.hero-copy .meta-row .pill.cyan {
+  background: var(--cyan);
+  color: var(--ink);
+}
+
+.hero-copy .meta-row .pill.yellow {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+/* ---- Section header ---- */
+.section { margin-bottom: 64px; }
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  margin-bottom: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  background: var(--pink);
+  border-radius: 2px;
+}
+
+h2 {
+  font-family: 'Fredoka', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1.1;
+  margin: 0 0 22px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+/* ---- Story ---- */
+.story p {
+  font-size: 17px;
+  max-width: 68ch;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+
+.story p .drop {
+  background: linear-gradient(180deg, transparent 60%, var(--yellow) 60%);
+  font-weight: 600;
+  padding: 0 2px;
+}
+
+/* ---- Clips ---- */
+.clip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+@media (max-width: 780px) {
+  .clip-grid { grid-template-columns: 1fr; }
+}
+
+.clip {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 3px solid var(--ink);
+  aspect-ratio: 16/9;
+  background: #000;
+  box-shadow: 0 8px 0 -4px var(--pink);
+}
+
+.clip video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---- Screenshots ---- */
+.ss-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 22px;
+}
+
+@media (max-width: 780px) {
+  .ss-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+.ss-row img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--ink);
+  display: block;
+}
+
+/* ---- Spec / fit 2-col ---- */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 780px) {
+  .two-col { grid-template-columns: 1fr; gap: 18px; }
+}
+
+.spec-block {
+  background: var(--panel);
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  padding: 28px 28px 22px;
+  position: relative;
+  box-shadow: 0 8px 0 -4px var(--cyan);
+}
+
+.spec-block.pink-shadow { box-shadow: 0 8px 0 -4px var(--pink); }
+
+.spec-block h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  margin: 0 0 14px;
+  font-weight: 600;
+}
+
+.spec-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.spec-block li {
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.spec-block li:last-child { border-bottom: 0; }
+
+.spec-block li .k {
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.06em;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.spec-block li .v {
+  color: var(--ink);
+  text-align: right;
+  font-weight: 500;
+}
+
+.spec-block li .v strong {
+  color: var(--magenta);
+  font-weight: 700;
+}
+
+/* ---- Quote ---- */
+.quote-card {
+  background: var(--panel);
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  padding: 32px 36px 28px;
+  position: relative;
+  box-shadow: 0 8px 0 -4px var(--yellow);
+  max-width: 760px;
+}
+
+.quote-card .lead {
+  font-family: 'Fredoka', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 0 0 14px;
+}
+
+.quote-card p.body {
+  margin: 0 0 16px;
+  font-size: 16px;
+  color: var(--ink);
+  line-height: 1.55;
+  max-width: 60ch;
+}
+
+.quote-card cite {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.quote-card .score { color: var(--pink); }
+
+.stat-line {
+  margin-top: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.stat-line strong {
+  color: var(--magenta);
+  font-weight: 700;
+}
+
+/* ---- Wavedash callout ---- */
+.wavedash {
+  background:
+    radial-gradient(circle at 15% 100%, rgba(255,58,140,0.14), transparent 50%),
+    radial-gradient(circle at 90% 0%, rgba(30,192,217,0.14), transparent 50%),
+    var(--panel);
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  padding: 44px 44px 38px;
+  position: relative;
+  box-shadow: 0 10px 0 -4px var(--pink);
+}
+
+.wavedash h2 { margin-bottom: 18px; }
+
+.wavedash p {
+  font-size: 17px;
+  max-width: 64ch;
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+
+.wavedash p:last-child { margin-bottom: 0; }
+
+.wavedash .play-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 11px 20px;
+  border: 3px solid var(--ink);
+  background: var(--pink);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 5px 0 -1px var(--ink);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.wavedash .play-link:hover {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 -1px var(--ink);
+}
+
+/* ---- Footer ---- */
+footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 2px dashed var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.ap-mark img {
+  height: 56px;
+  width: auto;
+  display: block;
+  filter: invert(0.86) hue-rotate(180deg) saturate(0.6);
+}
+
+@media (max-width: 520px) {
+  .ap-mark img { height: 44px; }
+}
+
+footer .contact {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+footer .contact a {
+  color: var(--magenta);
+  text-decoration: none;
+}
+
+footer .contact a:hover { text-decoration: underline; }
+
+/* ---- Utility ---- */
+.hr-soft {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+  border: 0;
+  margin: 56px 0;
+}
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-art">
+      <img src="./assets/steam-capsule-616x353.jpg" alt="Block'Em! key art">
+    </div>
+    <div class="hero-copy">
+      <div class="kicker">Aurora Punks · Back Catalog</div>
+      <h1>Block<span class="pop">'Em!</span></h1>
+      <p class="tagline">A 2-to-4 player block-building party platformer. Be the first to the goal, or the last Blocky standing.</p>
+      <div class="meta-row">
+        <span class="pill pink">2-4 Players</span>
+        <span class="pill">Steam · Wavedash</span>
+        <span class="pill cyan">13 Languages</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="section story">
+    <div class="eyebrow">The story</div>
+    <h2>Old Aurora Punks IP, now instant-play in the browser.</h2>
+    <p>Block'Em! shipped on Steam in September 2022. Cat Shawl Games built it, Aurora Punks published with IndieArk on board. A party game built around one idea: simple controls, complex outcomes. Place a block, jump on it, push your opponent off it.</p>
+    <p>Three and a half years on, it found a second life. <span class="drop">The game is now live on Wavedash</span> - instant-play in the browser, no install, no download. Drop a link in Discord, four people click, you're in a match.</p>
+    <p>For a party platformer that lives or dies by friction-to-first-match, that's the unlock.</p>
+  </section>
+
+  <!-- GAMEPLAY -->
+  <section class="section">
+    <div class="eyebrow">Gameplay</div>
+    <h2>Race to the goal, or be the last block standing.</h2>
+    <div class="clip-grid">
+      <div class="clip"><video autoplay muted loop playsinline poster="./assets/ss-01.jpg"><source src="./assets/clip-5b8e2734.webm" type="video/webm"></video></div>
+      <div class="clip"><video autoplay muted loop playsinline poster="./assets/ss-03.jpg"><source src="./assets/clip-c754164e.webm" type="video/webm"></video></div>
+      <div class="clip"><video autoplay muted loop playsinline poster="./assets/ss-05.jpg"><source src="./assets/clip-1751985b.webm" type="video/webm"></video></div>
+    </div>
+    <div class="ss-row">
+      <img src="./assets/ss-01.jpg" alt="Block'Em! gameplay">
+      <img src="./assets/ss-02.jpg" alt="Block'Em! gameplay">
+      <img src="./assets/ss-04.jpg" alt="Block'Em! gameplay">
+      <img src="./assets/ss-05.jpg" alt="Block'Em! gameplay">
+    </div>
+  </section>
+
+  <!-- SPECS -->
+  <section class="section">
+    <div class="two-col">
+      <div class="spec-block">
+        <h3>// Content</h3>
+        <ul>
+          <li><span class="k">Players</span><span class="v"><strong>2-4</strong></span></li>
+          <li><span class="k">Modes</span><span class="v">Race · Survival · Boss · PvP</span></li>
+          <li><span class="k">Local</span><span class="v">Shared / Split Screen</span></li>
+          <li><span class="k">Online</span><span class="v">PvP · Remote Play Together</span></li>
+          <li><span class="k">Achievements</span><span class="v">10</span></li>
+          <li><span class="k">Genre</span><span class="v">Action · Casual · Party</span></li>
+        </ul>
+      </div>
+      <div class="spec-block pink-shadow">
+        <h3>// Platforms &amp; Team</h3>
+        <ul>
+          <li><span class="k">Wavedash</span><span class="v"><strong>Live</strong> · browser · 2026</span></li>
+          <li><span class="k">Steam</span><span class="v"><strong>Live</strong> · Win · 2022</span></li>
+          <li><span class="k">Languages</span><span class="v">13 (EN, JP, KR, CN, FR, IT, DE, ES, +5)</span></li>
+          <li><span class="k">RRP</span><span class="v"><strong>$6.99</strong></span></li>
+          <li><span class="k">Developer</span><span class="v">Cat Shawl Games</span></li>
+          <li><span class="k">Publisher</span><span class="v">Aurora Punks · IndieArk</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr-soft">
+
+  <!-- QUOTE -->
+  <section class="section">
+    <div class="eyebrow">Player reception</div>
+    <div class="quote-card">
+      <p class="lead">"Tense, laugh-out-loud moments during competitive play."</p>
+      <p class="body">"A compact, high-energy multiplayer game that focuses on immediacy, chaos, and social competition. Trash talk, alliances, betrayals, and last-second reversals all naturally emerge from its design."</p>
+      <cite>- Steam reviewer · <span class="score">8/10</span></cite>
+      <div class="stat-line"><strong>Very Positive</strong> on Steam · <strong>89%</strong> of <strong>122</strong> reviews · live since 2022</div>
+    </div>
+  </section>
+
+  <!-- WAVEDASH ANGLE -->
+  <section class="section">
+    <div class="wavedash">
+      <div class="eyebrow">What's new</div>
+      <h2>No install. No download. Click a link, drop into a match.</h2>
+      <p>The Wavedash launch is the reason this page exists. Block'Em! is a party game - its job is to get four people into the same lobby with as little friction as possible. Steam needs an account, an install, and a working controller setup. Wavedash needs a link.</p>
+      <p>That changes how the game gets shared. A Discord drop in a group chat now gets you a match in 30 seconds, on whatever laptop is open. Sit-down-on-someone's-couch multiplayer without anyone having bought it yet.</p>
+      <p>The game itself didn't change. The path to the first match did.</p>
+      <a href="https://wavedash.com/play/block-em" class="play-link" rel="noopener" target="_blank">Play in browser →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ap-mark">
+      <img src="./ap-logo.png" alt="Aurora Punks">
+    </div>
+    <div class="contact">
+      <a href="mailto:robert@aurorapunks.com">robert@aurorapunks.com</a>
+    </div>
+  </footer>
+
+</main>
+
+</body>
+</html>

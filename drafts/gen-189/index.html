@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1993 Space Machine — Aurora Punks</title>
+<meta name="description" content="An Amiga shmup lost for twenty years. Rediscovered and released. 100K+ sold on PC and Switch. PS4, iOS, Android ready.">
+<meta property="og:title" content="1993 Space Machine">
+<meta property="og:description" content="An Amiga shmup lost for twenty years. Rediscovered and released.">
+<meta property="og:image" content="./steam-media/capsule_616x353.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #05060f;
+  --bg-2: #0b0e1f;
+  --panel: #0f1328;
+  --line: #1c2345;
+  --gold: #ffb71c;
+  --gold-soft: #ffd96a;
+  --red: #ff4a2b;
+  --cosmic: #4a7fff;
+  --text: #e7e9f0;
+  --muted: #8a8fa8;
+  --muted-2: #5b607a;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(74,127,255,0.08), transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(255,183,28,0.05), transparent 50%),
+    linear-gradient(180deg, #05060f 0%, #0b0e1f 60%, #05060f 100%);
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 34% 70%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 60% 40%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.2px 1.2px at 82% 18%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1.2px 1.2px at 15% 50%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 70% 85%, rgba(255,255,255,0.5), transparent);
+  background-size: 100% 100%;
+  pointer-events: none;
+  opacity: 0.9;
+  z-index: 0;
+}
+
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 32px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 720px) {
+  main { padding: 32px 20px 60px; }
+}
+
+/* ---- Hero ---- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 72px;
+}
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.hero-art {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 616 / 353;
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,183,28,0.08);
+}
+
+.hero-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 2px,
+    rgba(0,0,0,0.08) 3px,
+    rgba(0,0,0,0.08) 4px
+  );
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.hero-copy .kicker {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--gold);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.hero-copy h1 {
+  font-family: 'VT323', monospace;
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  margin: 0 0 18px;
+  color: var(--text);
+  text-shadow: 0 0 28px rgba(74,127,255,0.25);
+}
+
+.hero-copy h1 .gold {
+  color: var(--gold);
+  text-shadow: 0 0 28px rgba(255,183,28,0.35);
+}
+
+.hero-copy .tagline {
+  font-size: 19px;
+  color: var(--muted);
+  max-width: 44ch;
+  margin: 0 0 28px;
+  line-height: 1.45;
+}
+
+.hero-copy .meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: var(--muted-2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero-copy .meta-row strong {
+  color: var(--gold-soft);
+  font-weight: 400;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* ---- Section header ---- */
+.section {
+  margin-bottom: 64px;
+}
+
+.eyebrow {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: var(--gold);
+}
+
+h2 {
+  font-family: 'VT323', monospace;
+  font-size: 40px;
+  line-height: 1.05;
+  margin: 0 0 22px;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+/* ---- Story ---- */
+.story p {
+  font-size: 17px;
+  max-width: 68ch;
+  margin: 0 0 18px;
+  color: var(--text);
+}
+
+.story p .drop {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ---- Gameplay clips ---- */
+.clip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 780px) {
+  .clip-grid { grid-template-columns: 1fr; }
+}
+
+.clip {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  aspect-ratio: 16/9;
+  background: #000;
+}
+
+.clip video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.clip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(0,0,0,0.12) 3px, rgba(0,0,0,0.12) 4px);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* ---- Spec / fit 2-col ---- */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+@media (max-width: 780px) {
+  .two-col { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.spec-block {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 28px 28px 22px;
+  position: relative;
+}
+
+.spec-block h3 {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 14px;
+  font-weight: 400;
+}
+
+.spec-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.spec-block li {
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.spec-block li:last-child { border-bottom: 0; }
+
+.spec-block li .k {
+  color: var(--muted);
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 0.06em;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.spec-block li .v {
+  color: var(--text);
+  text-align: right;
+}
+
+.spec-block li .v strong {
+  color: var(--gold-soft);
+  font-weight: 600;
+}
+
+/* ---- Quotes ---- */
+.quote-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 780px) {
+  .quote-row { grid-template-columns: 1fr; }
+}
+
+.quote {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  padding: 22px 22px 18px;
+  background: linear-gradient(180deg, rgba(74,127,255,0.05), rgba(74,127,255,0) 70%);
+  position: relative;
+}
+
+.quote p {
+  margin: 0 0 12px;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.quote cite {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-style: normal;
+}
+
+.quote .score {
+  color: var(--gold);
+}
+
+/* ---- Screenshots row ---- */
+.ss-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+@media (max-width: 780px) {
+  .ss-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+.ss-row img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  display: block;
+  filter: saturate(1.05);
+}
+
+/* ---- Ask ---- */
+.ask {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,183,28,0.12), transparent 60%),
+    var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 44px 40px 38px;
+  text-align: center;
+}
+
+.ask h2 {
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.ask p {
+  font-size: 17px;
+  max-width: 58ch;
+  margin: 0 auto 22px;
+  color: var(--text);
+}
+
+.ask a.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.ask a.cta:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+/* ---- Footer ---- */
+footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.ap-mark {
+  display: flex;
+  align-items: center;
+}
+
+.ap-mark img {
+  height: 64px;
+  width: auto;
+  display: block;
+}
+
+@media (max-width: 520px) {
+  .ap-mark img { height: 48px; }
+}
+
+footer .contact {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+footer .contact a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+footer .contact a:hover {
+  text-decoration: underline;
+}
+
+/* ---- JP coverage ---- */
+.jp-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 36px;
+  align-items: center;
+}
+
+@media (max-width: 780px) {
+  .jp-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.jp-thumb {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  aspect-ratio: 16/9;
+  background: #000;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,74,43,0.08);
+}
+
+.jp-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.jp-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(0,0,0,0.1) 3px, rgba(0,0,0,0.1) 4px);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.jp-copy p {
+  font-size: 16px;
+  margin: 0 0 14px;
+  color: var(--text);
+  max-width: 42ch;
+}
+
+.jp-copy .jp-meta {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--muted-2);
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+/* ---- Utility ---- */
+.hr-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border: 0;
+  margin: 64px 0;
+}
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-art">
+      <img src="./steam-media/capsule_616x353.jpg" alt="1993 Space Machine — key art">
+    </div>
+    <div class="hero-copy">
+      <div class="kicker">Aurora Punks · Back Catalog</div>
+      <h1><span class="gold">1993</span><br>Space Machine</h1>
+      <p class="tagline">An Amiga shmup lost for twenty years. Rediscovered and released.</p>
+      <div class="meta-row">
+        <span><strong>100K+</strong> sold</span>
+        <span><strong>PC · Switch · PS4</strong></span>
+        <span><strong>iOS/Android</strong> ready</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="section story">
+    <div class="eyebrow">The Story</div>
+    <h2>A demo found during a house renovation.</h2>
+    <p>In 1992, Krister Karlsson and three friends were building a shoot'em up for the Amiga 500 called <em>Shenandoah: Daughter of the Stars</em>. Life got in the way, the project was shelved, and the disks went into storage.</p>
+    <p><span class="drop">Decades later, Krister found them during a house renovation.</span></p>
+    <p>Instead of rebuilding in a modern engine, the team went back to the original Amiga code, calibrated it for widescreen, and shipped it. The result is period-authentic, not retro-styled. Bitmap Brothers art. Turrican-style MOD soundtrack. Xenon 2 weapon system. R-Type influences. Featured in <em>Amiga Format</em> and <em>Commodore User</em> back in the day.</p>
+    <p>Released on Steam as <strong>1993 Space Machine</strong> (2016). Ported to Switch as <strong>1993 Shenandoah</strong> (2020). Over <strong>100,000 copies sold</strong> across PC and Switch. PS4 released, iOS and Android builds ready for release.</p>
+  </section>
+
+  <!-- CLIPS -->
+  <section class="section">
+    <div class="eyebrow">Gameplay</div>
+    <h2>Dozens of enemies on screen. Zero framerate drops.</h2>
+    <div class="clip-grid">
+      <div class="clip"><video autoplay muted loop playsinline poster="./steam-media/ss_9b55e225528941ed97e41d4566ed0bd797b80219.1920x1080.jpg"><source src="./steam-media/clip-01.webm" type="video/webm"></video></div>
+      <div class="clip"><video autoplay muted loop playsinline poster="./steam-media/ss_b3d297447eafa1b0f93f8be97073b77f7b8c3e48.1920x1080.jpg"><source src="./steam-media/clip-03.webm" type="video/webm"></video></div>
+      <div class="clip"><video autoplay muted loop playsinline poster="./steam-media/ss_1d88ad76583b5d585dfc11fb15c2cb515a01ba46.1920x1080.jpg"><source src="./steam-media/clip-02.webm" type="video/webm"></video></div>
+    </div>
+    <div class="ss-row">
+      <img src="./steam-media/ss_d7abfdfacd15c87ec6b784802869c825c26a53e9.1920x1080.jpg" alt="gameplay screenshot">
+      <img src="./steam-media/ss_0d94e09505258a66db2b3e23dce984db5aef50d1.1920x1080.jpg" alt="gameplay screenshot">
+      <img src="./steam-media/ss_ae2d0a48682584c21a724f07a16bb43b587de742.1920x1080.jpg" alt="gameplay screenshot">
+      <img src="./steam-media/ss_a641c364474202a400d6ed057e236c1b2b787130.1920x1080.jpg" alt="gameplay screenshot">
+    </div>
+  </section>
+
+  <!-- SPECS + FIT -->
+  <section class="section">
+    <div class="two-col">
+      <div class="spec-block">
+        <h3>// Content</h3>
+        <ul>
+          <li><span class="k">Ships</span><span class="v"><strong>9</strong></span></li>
+          <li><span class="k">Weapons</span><span class="v"><strong>25</strong> × 3 power levels</span></li>
+          <li><span class="k">Levels</span><span class="v"><strong>14</strong></span></li>
+          <li><span class="k">Bosses</span><span class="v"><strong>10</strong></span></li>
+          <li><span class="k">Co-op</span><span class="v">Shared / split screen</span></li>
+          <li><span class="k">Genre</span><span class="v">2D shoot'em up</span></li>
+          <li><span class="k">Languages</span><span class="v">English · Japanese</span></li>
+        </ul>
+      </div>
+      <div class="spec-block">
+        <h3>// Platforms &amp; Team</h3>
+        <ul>
+          <li><span class="k">PC</span><span class="v">Steam · itch (Win / Mac / Linux)</span></li>
+          <li><span class="k">Console</span><span class="v">PS4 · Nintendo Switch</span></li>
+          <li><span class="k">Mobile</span><span class="v"><strong>Ready</strong> — iOS / Android</span></li>
+          <li><span class="k">Steam RRP</span><span class="v"><strong>$11.99</strong> / €9.99</span></li>
+          <li><span class="k">Original dev</span><span class="v">Krister Karlsson + team, 1992</span></li>
+          <li><span class="k">Current dev</span><span class="v">Exceed · Limit Break</span></li>
+          <li><span class="k">Publisher</span><span class="v">Aurora Punks</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr-gold">
+
+  <!-- QUOTES -->
+  <section class="section">
+    <div class="eyebrow">Press</div>
+    <h2>"One hell of a punch."</h2>
+    <div class="quote-row">
+      <div class="quote">
+        <p>"Brimming with charm and personality — packing one hell of a punch."</p>
+        <cite>— Gamereactor</cite>
+      </div>
+      <div class="quote">
+        <p>"A sight to behold. Dozens of enemies on screen without ever dropping framerate."</p>
+        <cite>— Gamereactor</cite>
+      </div>
+      <div class="quote">
+        <p>"A great game for fans of old Amiga shooters."</p>
+        <cite>— Gamesfreezer · <span class="score">7.5/10</span></cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- JP COVERAGE -->
+  <section class="section">
+    <div class="eyebrow">Reach · Japan</div>
+    <h2>Covered by Japanese retro-game press.</h2>
+    <div class="jp-grid">
+      <div class="jp-thumb">
+        <img src="./jp-coverage.png" alt="Japanese YouTube coverage of 1993 Shenandoah on PS4 and Switch">
+      </div>
+      <div class="jp-copy">
+        <p>Released in Japan as <strong>1993 Shenandoah</strong> with a full Japanese localization. Japanese retro-game YouTubers and outlets have featured the PS4 and Switch versions as a rediscovered Amiga shooter.</p>
+        <p class="jp-meta">復刻されたレトロSTG · PS4 · Nintendo Switch</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ap-mark">
+      <img src="./ap-logo.png" alt="Aurora Punks">
+    </div>
+    <div class="contact">
+      <a href="mailto:robert@aurorapunks.com">robert@aurorapunks.com</a>
+    </div>
+  </footer>
+
+</main>
+
+</body>
+</html>

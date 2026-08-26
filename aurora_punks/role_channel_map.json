@@ -1,0 +1,24 @@
+{
+  "_comment": "CM agent role -> private-channel access map for the AP guild (owned by agents/cm.md). This is the single source of truth for which Discord role gates which private channel. Other agents (and server.js) request access by role KEY via the bot's grantChannelAccess(userId, roleKey) method instead of making raw Discord API calls. The bot only assigns the role — the channel's permission overwrite on that role is what actually grants visibility, so each channel below must already deny @everyone ViewChannel and allow the mapped role.",
+  "guildId": "616345869490454593",
+  "roles": {
+    "board": {
+      "roleId": "1517102080655888394",
+      "roleName": "Board",
+      "channelId": "1511348246558019705",
+      "channelName": "board"
+    },
+    "ap-finance": {
+      "roleId": "1517103637887844413",
+      "roleName": "AP-Finance",
+      "channelId": "1517103667030003783",
+      "channelName": "ap-finance"
+    },
+    "irons2": {
+      "roleId": "1542112323177812038",
+      "roleName": "Project-Irons-2",
+      "channelId": "1542112324696146000",
+      "channelName": "project-irons-2"
+    }
+  }
+}

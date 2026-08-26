@@ -1,0 +1,4 @@
+intake/
+reports/
+__pycache__/
+*.pyc

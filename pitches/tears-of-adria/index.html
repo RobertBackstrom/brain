@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tears of Adria — Aurora Punks</title>
+<meta name="description" content="HoMM, an auto-battler, and Mount & Blade walk into a tavern. Real-time autobattle RPG, 94% Very Positive on Steam. Self-published by Ark Island Studio.">
+<meta property="og:title" content="Tears of Adria">
+<meta property="og:description" content="HoMM, an auto-battler, and Mount & Blade walk into a tavern. Real-time autobattle RPG, 94% Very Positive on Steam.">
+<meta property="og:image" content="./steam-media/capsule_616x353.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #1a0f08;
+  --bg-2: #2a1810;
+  --panel: #221710;
+  --line: #3d2818;
+  --gold: #d4a24c;
+  --gold-soft: #e8c478;
+  --crimson: #8a2c2c;
+  --magic: #6b4a8e;
+  --text: #efe4d2;
+  --muted: #b09a7c;
+  --muted-2: #7a6448;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(107,74,142,0.10), transparent 45%),
+    radial-gradient(circle at 82% 78%, rgba(212,162,76,0.08), transparent 50%),
+    linear-gradient(180deg, #1a0f08 0%, #2a1810 60%, #1a0f08 100%);
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 22%, rgba(212,162,76,0.5), transparent),
+    radial-gradient(1px 1px at 35% 70%, rgba(232,196,120,0.35), transparent),
+    radial-gradient(1.2px 1.2px at 60% 40%, rgba(212,162,76,0.4), transparent),
+    radial-gradient(1.5px 1.5px at 82% 18%, rgba(232,196,120,0.5), transparent),
+    radial-gradient(1px 1px at 45% 90%, rgba(212,162,76,0.3), transparent),
+    radial-gradient(1px 1px at 90% 60%, rgba(232,196,120,0.3), transparent),
+    radial-gradient(1.2px 1.2px at 15% 50%, rgba(107,74,142,0.4), transparent),
+    radial-gradient(1px 1px at 70% 85%, rgba(212,162,76,0.3), transparent);
+  background-size: 100% 100%;
+  pointer-events: none;
+  opacity: 0.85;
+  z-index: 0;
+}
+
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 32px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 720px) {
+  main { padding: 32px 20px 60px; }
+}
+
+/* ---- Hero ---- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 72px;
+}
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.hero-art {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 616 / 353;
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,162,76,0.12);
+}
+
+.hero-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 110%, rgba(0,0,0,0.45), transparent 60%);
+  pointer-events: none;
+}
+
+.hero-copy .kicker {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.hero-copy h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(40px, 5.4vw, 64px);
+  line-height: 1.0;
+  letter-spacing: 0.02em;
+  margin: 0 0 22px;
+  color: var(--text);
+  font-weight: 700;
+  text-shadow: 0 0 32px rgba(107,74,142,0.25);
+}
+
+.hero-copy h1 .gold {
+  color: var(--gold);
+  text-shadow: 0 0 28px rgba(212,162,76,0.4);
+}
+
+.hero-copy .tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--muted);
+  max-width: 44ch;
+  margin: 0 0 28px;
+  line-height: 1.4;
+}
+
+.hero-copy .meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: var(--muted-2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.hero-copy .meta-row strong {
+  color: var(--gold-soft);
+  font-weight: 600;
+}
+
+/* ---- Section header ---- */
+.section {
+  margin-bottom: 64px;
+}
+
+.eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: var(--gold);
+}
+
+h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 34px;
+  line-height: 1.15;
+  margin: 0 0 22px;
+  color: var(--text);
+  letter-spacing: 0.01em;
+  font-weight: 600;
+}
+
+/* ---- Story ---- */
+.story p {
+  font-size: 17px;
+  max-width: 68ch;
+  margin: 0 0 18px;
+  color: var(--text);
+}
+
+.story p .drop {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.story blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--gold-soft);
+  margin: 28px 0;
+  padding: 0 0 0 24px;
+  border-left: 3px solid var(--gold);
+  max-width: 60ch;
+}
+
+/* ---- Gameplay clips ---- */
+.clip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 780px) {
+  .clip-grid { grid-template-columns: 1fr; }
+}
+
+.clip {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  aspect-ratio: 16/9;
+  background: #000;
+}
+
+.clip video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.clip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 70%, rgba(0,0,0,0.18));
+  pointer-events: none;
+}
+
+/* ---- Spec / fit 2-col ---- */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+@media (max-width: 780px) {
+  .two-col { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.spec-block {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 28px 28px 22px;
+  position: relative;
+}
+
+.spec-block h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 14px;
+  font-weight: 600;
+}
+
+.spec-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.spec-block li {
+  padding: 7px 0;
+  border-bottom: 1px dashed rgba(212,162,76,0.12);
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.spec-block li:last-child { border-bottom: 0; }
+
+.spec-block li .k {
+  color: var(--muted);
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.spec-block li .v {
+  color: var(--text);
+  text-align: right;
+}
+
+.spec-block li .v strong {
+  color: var(--gold-soft);
+  font-weight: 600;
+}
+
+/* ---- Quotes ---- */
+.quote-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 780px) {
+  .quote-row { grid-template-columns: 1fr; }
+}
+
+.quote {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  padding: 22px 22px 18px;
+  background: linear-gradient(180deg, rgba(107,74,142,0.06), rgba(107,74,142,0) 70%);
+  position: relative;
+}
+
+.quote p {
+  margin: 0 0 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.quote cite {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.quote .score {
+  color: var(--gold);
+}
+
+/* ---- Screenshots row ---- */
+.ss-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+@media (max-width: 780px) {
+  .ss-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+.ss-row img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  display: block;
+  filter: saturate(1.05);
+}
+
+/* ---- Stat band ---- */
+.stat-band {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(212,162,76,0.10), transparent 60%),
+    var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 30px 28px;
+  margin-bottom: 64px;
+}
+
+@media (max-width: 720px) {
+  .stat-band { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat .num {
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.stat .lbl {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ---- Trailer button ---- */
+.btn-trailer {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 26px;
+  padding: 12px 22px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold-soft);
+  text-decoration: none;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(212,162,76,0.10), rgba(212,162,76,0));
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.btn-trailer:hover {
+  background: var(--gold);
+  color: #1a0f08;
+  box-shadow: 0 8px 28px rgba(212,162,76,0.3);
+}
+
+/* ---- Roadmap ---- */
+.roadmap-art {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,162,76,0.12);
+  margin: 26px 0 8px;
+  aspect-ratio: 1080 / 392;
+}
+
+.roadmap-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+.roadmap-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(26,15,8,0) 38%, rgba(26,15,8,0.88) 100%);
+  pointer-events: none;
+}
+
+.roadmap-caption {
+  position: absolute;
+  left: 26px;
+  right: 26px;
+  bottom: 18px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--gold-soft);
+  text-shadow: 0 2px 14px rgba(0,0,0,0.95);
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 36px;
+}
+
+@media (max-width: 880px) {
+  .timeline { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+  .timeline { grid-template-columns: 1fr; }
+}
+
+.beat {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--gold);
+  border-radius: 4px;
+  padding: 22px 20px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.beat .phase {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.beat .window {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.beat h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 17px;
+  line-height: 1.2;
+  margin: 0 0 14px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.beat ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.beat li {
+  font-size: 14px;
+  color: var(--text);
+  padding: 6px 0 6px 16px;
+  position: relative;
+  line-height: 1.4;
+  border-bottom: 1px dashed rgba(212,162,76,0.12);
+}
+
+.beat li:last-child { border-bottom: 0; }
+
+.beat li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.beat .moment {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  font-weight: 600;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  line-height: 1.4;
+}
+
+.beat .moment::before {
+  content: '\25B8';
+  color: var(--gold);
+}
+
+.roadmap-foot {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 21px;
+  line-height: 1.45;
+  color: var(--gold-soft);
+  text-align: center;
+  max-width: 62ch;
+  margin: 40px auto 0;
+}
+
+/* ---- Relaunch / Director's Cut ---- */
+.dc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 26px;
+}
+
+@media (max-width: 780px) {
+  .dc-grid { grid-template-columns: 1fr; }
+}
+
+.dc-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 4px;
+  padding: 22px 22px 20px;
+}
+
+.dc-card h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.dc-card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* ---- Footer ---- */
+footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.ap-mark {
+  display: flex;
+  align-items: center;
+}
+
+.ap-mark img {
+  height: 64px;
+  width: auto;
+  display: block;
+}
+
+@media (max-width: 520px) {
+  .ap-mark img { height: 48px; }
+}
+
+footer .contact {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+footer .contact a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+footer .contact a:hover {
+  text-decoration: underline;
+}
+
+/* ---- Utility ---- */
+.hr-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border: 0;
+  margin: 64px 0;
+}
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-art">
+      <img src="./steam-media/capsule_616x353.jpg" alt="Tears of Adria — key art">
+    </div>
+    <div class="hero-copy">
+      <div class="kicker">Aurora Punks · Back Catalog</div>
+      <h1>Tears of <span class="gold">Adria</span></h1>
+      <p class="tagline">Heroes of Might &amp; Magic, an auto-battler, and Mount &amp; Blade walk into a tavern. Somehow it works.</p>
+      <div class="meta-row">
+        <span><strong>94%</strong> Very Positive</span>
+        <span><strong>PC · Mac</strong></span>
+        <span><strong>Up to 4</strong> co-op</span>
+        <span>Released <strong>Nov 2023</strong></span>
+      </div>
+      <!-- TODO: dev's private-channel link below. Swap for the unlisted upload on the ToA YouTube channel once live. -->
+      <a class="btn-trailer" href="https://www.youtube.com/watch?v=2GZqVXG0PGU" target="_blank" rel="noopener">&#9654; Watch the trailer</a>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="section roadmap">
+    <div class="eyebrow">The Plan · Jun – Dec 2026</div>
+    <h2>Six months. Four drops. One relaunch.</h2>
+    <p style="font-size:17px; max-width:68ch; margin:0 0 18px; color:var(--text);">Tears of Adria is live, 94% Very Positive, and got there on close to zero marketing. The gap was never the game. It was the first 30 minutes and a store page that undersold it. Here is what ships between now and December, built so every drop lands on a Steam sale beat a publisher can push.</p>
+
+    <div class="roadmap-art">
+      <img src="./steam-media/page_bg.jpg" alt="Tears of Adria key art - the full faction roster on the world map">
+      <div class="roadmap-caption">Dwarves, BigUns and flying mounts, and a world that opens and closes around you - all arriving before the Winter Sale.</div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="beat">
+        <div class="phase">Beat 01 · Foundation</div>
+        <div class="window">Now → Summer Sale</div>
+        <h4>Fix the First 30 Minutes</h4>
+        <ul>
+          <li>Telemetry-driven onboarding rework, targeting the exact point players drop off</li>
+          <li>New main-menu art, replacing the placeholder AI art</li>
+          <li>General visual polish pass</li>
+        </ul>
+        <div class="moment">Steam Summer Sale · a clean first impression</div>
+      </div>
+
+      <div class="beat">
+        <div class="phase">Beat 02 · Expansion</div>
+        <div class="window">Aug → Sep</div>
+        <h4>A New Way In: the Dwarves</h4>
+        <ul>
+          <li>New starting campaign set in the Dungeon</li>
+          <li>Dwarves added as a playable start faction</li>
+          <li>New and improved sidequests across the map</li>
+        </ul>
+        <div class="moment">Content drop · rebuild wishlists into autumn</div>
+      </div>
+
+      <div class="beat">
+        <div class="phase">Beat 03 · Tentpole</div>
+        <div class="window">Autumn Sale</div>
+        <h4>Into the Land of the Giants</h4>
+        <ul>
+          <li>New questline into the land of the giants</li>
+          <li>BigUns added as playable characters</li>
+          <li>Flying mounts</li>
+        </ul>
+        <div class="moment">Steam Autumn Sale · headline trailer beat</div>
+      </div>
+
+      <div class="beat">
+        <div class="phase">Beat 04 · Relaunch</div>
+        <div class="window">Winter Sale · Dec</div>
+        <h4>A World That Changes</h4>
+        <ul>
+          <li>World-map quests that open and close new areas</li>
+          <li>Everything from the year bundled into a full relaunch</li>
+        </ul>
+        <div class="moment">Steam Winter Sale · the global relaunch</div>
+      </div>
+
+    </div>
+
+    <p class="roadmap-foot">Four marketing moments in six months, on part-time hours. The content cadence is built to be amplified - that is where a global publishing partner plugs in.</p>
+  </section>
+
+  <!-- RELAUNCH POSITIONING -->
+  <section class="section">
+    <div class="eyebrow">The Relaunch · Recommendation</div>
+    <h2>Relaunch as Tears of Adria: <span style="color:var(--gold);">Director's Cut</span>.</h2>
+    <p style="font-size:17px; max-width:68ch; margin:0 0 18px; color:var(--text);">Not a rebrand. The game keeps its name, its key art, and the 94% Very Positive history it already earned. A Director's Cut is a new product and a fresh marketing moment - new store beat, new trailer, new wishlists - without throwing away the brand and community already in place.</p>
+    <div class="dc-grid">
+      <div class="dc-card">
+        <h4>// Keep the brand</h4>
+        <p>Same name, same art, same review legacy. New buyers see a proven game, not an unknown. No equity is left on the table.</p>
+      </div>
+      <div class="dc-card">
+        <h4>// A real relaunch moment</h4>
+        <p>Director's Cut reads as a new release. Fresh trailer, store refresh, sale and festival eligibility, and a reason for press and creators to look again.</p>
+      </div>
+      <div class="dc-card">
+        <h4>// Reward the early owners</h4>
+        <p>Everyone who already owns Tears of Adria gets the Director's Cut at a reduced price. Keep the audience, no one feels left behind.</p>
+      </div>
+    </div>
+    <p style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.14em; color:var(--muted-2); text-transform:uppercase; margin-top:20px;">Mechanism: Steam "Complete the Bundle" - base-game owners pay only the difference to the Director's Cut, so the loyalty discount is automatic with no keys to manage.</p>
+  </section>
+
+  <hr class="hr-gold">
+
+  <!-- STAT BAND -->
+  <div class="stat-band">
+    <div class="stat"><span class="num">94%</span><span class="lbl">Very Positive</span></div>
+    <div class="stat"><span class="num">71</span><span class="lbl">Achievements</span></div>
+    <div class="stat"><span class="num">80</span><span class="lbl">Henchmen Cap</span></div>
+    <div class="stat"><span class="num">20×20</span><span class="lbl">Battle Grid</span></div>
+  </div>
+
+  <!-- STORY -->
+  <section class="section story">
+    <div class="eyebrow">The Game</div>
+    <h2>You start with one hero. Soon you have a dragon problem.</h2>
+    <p>Tears of Adria is a real-time strategy adventure with autobattles. <span class="drop">You begin with a single hero.</span> Soon you have a party, a few questionable artifacts, and far too much confidence. Somehow this is the correct way to resurrect a dead goddess.</p>
+    <p>Old-school RPG bones - orcs, dwarves, elves, undead, all with their own rivalries - wrapped around a 20×20 grid where positioning, gear, and skill interactions decide every fight. The game doesn't bother explaining most of it.</p>
+    <blockquote>"Tears of Adria doesn't care where you go, or why. What it can't stand is weaklings."</blockquote>
+    <p>Your main character is locked in. The rest are replaceable. Scale a party up to <strong>80 henchmen</strong> and bring chaos to the land. Or play it small and stealthy with six Rangers. Or be a lone Necromancer commanding an undead legion. Same map, different runs.</p>
+    <p>Hidden paths. Strange encounters. Rewards with no introduction. Some things only exist if you notice them.</p>
+  </section>
+
+  <!-- CLIPS -->
+  <section class="section">
+    <div class="eyebrow">Gameplay</div>
+    <h2>Real-time autobattle. Combat resolves in seconds, not turns.</h2>
+    <div class="clip-grid">
+      <div class="clip"><video autoplay muted loop playsinline poster="./steam-media/ss_01.jpg"><source src="./steam-media/clip-01.webm" type="video/webm"></video></div>
+      <div class="clip"><video autoplay muted loop playsinline poster="./steam-media/ss_03.jpg"><source src="./steam-media/clip-02.webm" type="video/webm"></video></div>
+      <div class="clip"><video autoplay muted loop playsinline poster="./steam-media/ss_05.jpg"><source src="./steam-media/clip-03.webm" type="video/webm"></video></div>
+    </div>
+    <div class="ss-row">
+      <img src="./steam-media/ss_02.jpg" alt="Tears of Adria gameplay screenshot">
+      <img src="./steam-media/ss_04.jpg" alt="Tears of Adria gameplay screenshot">
+      <img src="./steam-media/ss_06.jpg" alt="Tears of Adria gameplay screenshot">
+      <img src="./steam-media/ss_07.jpg" alt="Tears of Adria gameplay screenshot">
+    </div>
+  </section>
+
+  <!-- SPECS + TEAM -->
+  <section class="section">
+    <div class="two-col">
+      <div class="spec-block">
+        <h3>// Content</h3>
+        <ul>
+          <li><span class="k">Party</span><span class="v">1 main + companions, up to <strong>80</strong> henchmen</span></li>
+          <li><span class="k">Combat</span><span class="v">Real-time autobattle on a <strong>20×20</strong> grid</span></li>
+          <li><span class="k">Modes</span><span class="v">Single-player · Co-op · Online PvP</span></li>
+          <li><span class="k">Players</span><span class="v">Up to <strong>4</strong> co-op</span></li>
+          <li><span class="k">Achievements</span><span class="v"><strong>71</strong></span></li>
+          <li><span class="k">Genre</span><span class="v">Strategy · RPG · Action · Indie</span></li>
+          <li><span class="k">Languages</span><span class="v">English (full audio)</span></li>
+        </ul>
+      </div>
+      <div class="spec-block">
+        <h3>// Platforms &amp; Team</h3>
+        <ul>
+          <li><span class="k">PC</span><span class="v">Steam (Windows / macOS)</span></li>
+          <li><span class="k">Steam RRP</span><span class="v"><strong>$13.99</strong> / €13.79</span></li>
+          <li><span class="k">Reviews</span><span class="v"><strong>Very Positive</strong> · 94% of 53</span></li>
+          <li><span class="k">Released</span><span class="v">Nov 16, 2023</span></li>
+          <li><span class="k">Developer</span><span class="v">Ark Island Studio</span></li>
+          <li><span class="k">Publisher</span><span class="v">Ark Island Studio (self-pub)</span></li>
+          <li><span class="k">Account</span><span class="v">PlayFab (Steam-linked)</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr-gold">
+
+  <!-- QUOTES -->
+  <section class="section">
+    <div class="eyebrow">Reviews</div>
+    <h2>"An impending sensation in Steam gaming."</h2>
+    <div class="quote-row">
+      <div class="quote">
+        <p>"After devoting about 8 hours to Tears of Adria, I'm already confident in declaring it an impending sensation in Steam gaming."</p>
+        <cite>— Adult World Gamer · Steam Curator</cite>
+      </div>
+      <div class="quote">
+        <p>"Combines the best elements from various surprise hits — Battle Brothers, Wartales and Mount &amp; Blade."</p>
+        <cite>— Adult World Gamer · Steam Curator</cite>
+      </div>
+      <div class="quote">
+        <p>"A masterpiece. The gameplay is innovative and holistic."</p>
+        <cite>— Steam review · <span class="score">26,000+ hours played</span></cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="section">
+    <div class="eyebrow">Community</div>
+    <h2>Small dedicated player base. Some of them have logged thousands of hours.</h2>
+    <p style="font-size:17px; max-width:68ch; margin:0 0 18px; color:var(--text);">Self-published in November 2023 by <strong style="color:var(--gold-soft);">Ark Island Studio</strong>. <strong style="color:var(--gold-soft);">94% Very Positive</strong> on Steam, with multiple reviewers logging 1,000+ to 26,000+ hours. First-ever discount ran during Steam Spring Sale 2026. Active Discord community, ongoing live updates.</p>
+    <p style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.22em; color:var(--muted-2); text-transform:uppercase; margin-top:20px;">Steam · Discord · Ark Island Studio (Stockholm)</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ap-mark">
+      <img src="./ap-logo.png" alt="Aurora Punks">
+    </div>
+    <div class="contact">
+      <a href="mailto:robert@aurorapunks.com">robert@aurorapunks.com</a>
+    </div>
+  </footer>
+
+</main>
+
+</body>
+</html>

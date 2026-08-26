@@ -1,0 +1,56 @@
+# Curveball (The Gang Studio) — CLAUDE.md
+
+## Engagement
+- **Role:** Hybrid AP engagement on The Gang Studio's game *Curveball*. Two parts:
+  1. **Co-dev** (~1.5 months): get the game shippable with P2P multiplayer + a mobile port. Executed by subcontractor **Robin Hofström** ("Robin") via **Eternal Minds AB**.
+  2. **Publishing services**: AP / Robert takes the finished game to market. Remaining publishing costs structured as **recoupable**.
+- **DB prefix:** `cvb`
+- **Status:** active — pre-contract / pitch stage (build received, assessment + commercial pitch in progress)
+- **Agent owner:** BizDev (deal + client pitch), GameDev (co-dev execution oversight), CorpBot/Lawyer (Robin subcontract + client agreement)
+
+## Commercial Target (Robert, 2026-06-22)
+- AP wants **at least 100K SEK paid for development** (incl. the mobile port) up front from The Gang.
+- AP then **takes on remaining publishing costs as recoupable** against revenue.
+- Exact split still to be set in the pitch.
+
+## Key People
+**Client — The Gang Studio** (www.thegang.io, Slakthusplan 3, 121 62 Stockholm)
+- **Joel Edström** — CEO, joel.edstrom@thegangstudio.com, +46 793 5343 71
+- **Olle Brännström** — Producer, olle@thegangstudio.com (owns the build, low availability in June — big-project deadline)
+- **Gustav Linde** — gustav@thegangstudio.com
+
+**AP side**
+- **Robert Bäckström** — Founder / Exec Producer, robert@aurorapunks.com
+- **Oskar Hansen** — oskar@aurorapunks.com (looked at an earlier mobile version)
+- **Robin Hofström** — co-dev subcontractor, invoices via **Eternal Minds AB** (org.nr 559527-5719; Robin is sole director/VD). See [[project_eternal_minds]].
+
+## Infrastructure / Resources
+- **Build:** `BBA_dev.zip` — Google Drive `1uFgqh4vX3PgEqWBDdJZrAYfwPmQNmplT` (delivered 2026-06-04 by Olle). It is a **full UE project tree**, not a cooked build.
+- **Source on the VPS:** `code-corpus/repos/curveball-bba/` (Source, Config, Plugins, Saved/Logs; 466 MB). Indexed in RAG as `source=code`, `project=curveball`. Content's 5,469 `.uasset` + 304 `.umap` are **not** extracted — they are listed by name in `_ASSET_MANIFEST.txt`.
+- **Engine:** Unreal Engine **5.3**. Project `BladeBallArena.uproject`, C++ module **Mogadishu**.
+- **Internal name:** "bodybreakerabs" / **BBA** (the title is *Curveball*)
+- **Version control:** none currently — was on Perforce during production, never migrated to Git. AP would set up a repo.
+
+## Tech Stack (verified 2026-08-04 from the source, not from the deck)
+- **Networking today:** AWS **GameLift** dedicated servers. `GameLiftBlueprintPlugin` (AWSCore + GameLiftServerSDK + GameLiftClientLibrary), `GameLiftRegionLatency` enabled, `UGameLiftClientComponent`. `UMLCMatchmakingHandler` returns IP/Port/PlayerSessionId; runtime logs hit `169.254.169.254` (EC2 instance metadata).
+- **Matchmaking + party** go through The Gang's own service, `BackendBaseURL="https://mlc-backend-dev.thegang.io"` ([Config/DefaultGame.ini:131](../code-corpus/repos/curveball-bba/Config/DefaultGame.ini#L131)), via `MatchmakingSubsystem`, `BackendMessagePump`, `GamePartySubsystem`.
+- **Accounts / progression / store / inventory / friends:** **LootLocker**, game id `a86igukp`. **Server-authoritative** — `LootLockerServerGranter` and `LootLockerServerLoadoutValidator` run on the dedicated server. This is the core problem P2P has to solve.
+- **Anti-cheat:** `TGEAC` (Easy Anti-Cheat wrapper) enabled + `MLCAC` in `Source/Mogadishu/*/AntiCheat/`. EAC assumes a trusted server.
+- **Abilities:** GAS (`GameplayAbilities`, `AbilitiesV2/`, `MogadishuAbilitySystemComponent`), which also assumes an authoritative server. `ServerHeartbeatSubSystem` reaps disconnected players on a 5s tick.
+- **Also:** GameAnalytics (telemetry), Tolgee (localization; en, sv, zh-Hans, pt), CommonUI, UINavigation, CPathfinding.
+- **Steam:** `OnlineSubsystemSteam` is already enabled, but the NetDriver is plain `IpNetDriver`. Steam is used for identity, not transport.
+- **Cross-platform, half-started:** `EOSIntegrationKit` is in the project but `Enabled: false`, and `BladeBallArenaEpicClient.Target.cs` exists.
+- **Gameplay lives in Blueprints.** 94 `.h` + 88 `.cpp` (~1 MB) of C++ against 5,469 binary assets. The C++ is matchmaking, backend glue and GAS helpers. Any agent reasoning about gameplay logic must say so rather than guess; the fix is a one-time Blueprint-to-text export on a machine that can run the editor (see [[project_baremetal_migration]]).
+- **Discord:** The Gang server "bodybreakerabs"; Robin to be added, thread being set up
+- **Email thread:** Gmail thread `19e889144ac3e56a` ("Curveball")
+- **Pitch URL:** pitch.aurorapunks.com/curveball (to be created — nothing published yet). Public title is **Curveball**; "bodybreakerabs"/BBA is internal-only.
+
+## Why
+The Gang built Curveball but "never got it out the right way." Robert offered to assess what it takes to ship with P2P multiplayer. That assessment converts into a paid co-dev + AP publishing deal — recurring AP revenue on a near-finished asset, plus a deepened relationship with The Gang.
+
+## Conventions
+- Pipeline lives in the deal wiki: company [[the-gang-studio]], project pipeline `wiki/deals/projects/curveball.md`. Update via `/ingest-deal-email` after every touch.
+- **Scrub IP / keep generic in any contractor-facing material until an MNDA is in place** with Robin — see [[feedback_scrub_ip_until_mnda]] and [[feedback_no_specific_repo_in_contracts]].
+- Robert's voice on all drafts — [[writing_voice_robert]], no hype, no em-dashes.
+- Deliveries logged to `output_log.md`; local drafts (incl. the client pitch) to `drafts/`.
+- Pitch as styled HTML living-doc per [[feedback_html_pitch_living_doc]] at **pitch.aurorapunks.com/curveball**. **Built 2026-06-29** (audience = Light Up Games as marketing/funding partner). Source material: The Gang's "Curveball - NetEase" deck (Slides `1CrK-Fhk_cdaoOuaRDn0J6MzLGxSgFRGdIX2-V931Hy4`, shared by Joel 2026-06-25) + RankOne Blade Ball intel (`drafts/rankone_bladeball_intel.md`). Public Steam page exists: **Major League Curveball** (app 2805120, "Coming soon"; 4 arenas / 38 weapons / 11 skins / 14 abilities). Open item: RankOne pricing data favours $14.99-19.99 over the sub-$10 brief.

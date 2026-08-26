@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Equinox: Homecoming - Mobile Port: Technical Pre-Production · Aurora Punks</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Aurora Punks technical pre-production plan for the Equinox: Homecoming mobile port. Confidential.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171f;
+  --paper:#f5f2ec;
+  --paper-2:#ffffff;
+  --navy:#11131f;
+  --teal:#16938c;
+  --teal-2:#4cc6bf;
+  --gold:#c79a4b;
+  --muted:#5f5b56;
+  --muted-2:#9a948c;
+  --line:#15171f;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
+
+main{max-width:1080px;margin:0 auto;padding:0 32px 96px;position:relative;}
+@media(max-width:720px){main{padding:0 18px 64px;}}
+
+.mono{font-family:'Space Mono',monospace;letter-spacing:0.04em;}
+.eyebrow{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.eyebrow .tag{background:var(--ink);color:var(--paper);padding:2px 8px;font-size:11px;}
+.eyebrow::after{content:'';flex:1;height:2px;background:var(--ink);}
+
+h2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.04;letter-spacing:-0.01em;margin:0 0 22px;}
+h2 .ac{color:var(--teal);}
+
+.section{padding:64px 0;border-top:2px solid var(--ink);}
+.section p{font-size:16px;max-width:68ch;margin:0 0 16px;}
+p .ac{color:var(--teal);font-weight:700;}
+
+/* confidential bar */
+.confbar{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--paper);background:var(--ink);text-align:center;padding:9px 12px;}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:64px 0 56px;overflow:hidden;}
+.hero .glow{position:absolute;top:-80px;right:-60px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle at center,var(--teal-2) 0%,rgba(76,198,191,0) 70%);z-index:0;opacity:0.55;}
+@media(max-width:720px){.hero .glow{width:240px;height:240px;}}
+.hero-inner{position:relative;z-index:2;}
+.hero .kick{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);margin-bottom:18px;}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(48px,8.5vw,96px);line-height:0.96;letter-spacing:-0.02em;margin:0;color:var(--ink);}
+.hero h1 .ac{color:var(--teal);}
+.hero .sub{font-family:'Space Mono',monospace;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin:14px 0 0;}
+.hero .tagline{font-size:20px;font-weight:500;max-width:56ch;margin:22px 0 26px;}
+.metarow{display:flex;flex-wrap:wrap;gap:0;border:2px solid var(--ink);max-width:780px;}
+.metarow .cell{flex:1 1 0;min-width:130px;padding:12px 16px;border-right:2px solid var(--ink);}
+.metarow .cell:last-child{border-right:0;}
+.metarow .k{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);display:block;}
+.metarow .v{font-family:'Fraunces',serif;font-weight:700;font-size:18px;}
+@media(max-width:600px){.metarow .cell{flex:1 1 50%;border-bottom:2px solid var(--ink);}}
+
+/* ---------- DEVICE MOCK ---------- */
+.hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:40px;align-items:center;position:relative;z-index:2;}
+@media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:34px;}}
+.device-wrap{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.device-wrap .glow{position:absolute;top:50%;left:50%;right:auto;transform:translate(-50%,-50%);width:430px;height:430px;border-radius:50%;background:radial-gradient(circle at center,var(--teal-2) 0%,rgba(76,198,191,0) 68%);opacity:0.42;z-index:0;}
+.phone{position:relative;z-index:1;width:300px;padding:11px;border-radius:46px;background:linear-gradient(145deg,#3a3d47,#1c1e26 58%,#2a2c34);box-shadow:0 30px 60px rgba(17,19,31,0.45),inset 0 0 0 2px rgba(255,255,255,0.06);}
+.phone::before,.phone::after{content:'';position:absolute;left:-3px;width:3px;border-radius:2px 0 0 2px;background:#23252e;}
+.phone::before{top:128px;height:52px;}
+.phone::after{top:196px;height:34px;box-shadow:0 50px 0 #23252e;}
+.screen{position:relative;border-radius:36px;overflow:hidden;aspect-ratio:9/19.5;background-image:url('steam-media/device_plate.jpg');background-size:cover;background-position:center 38%;background-color:#0c0e16;}
+.screen::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,18,0.34) 0%,rgba(8,10,18,0) 20%,rgba(8,10,18,0) 68%,rgba(8,10,18,0.48) 100%);pointer-events:none;z-index:5;}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:82px;height:23px;background:#000;border-radius:14px;z-index:12;}
+.statusbar{position:absolute;top:14px;left:0;right:0;display:flex;justify-content:space-between;padding:0 21px;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#fff;z-index:11;text-shadow:0 1px 2px rgba(0,0,0,.5);}
+.statusbar .sb{display:flex;align-items:center;gap:4px;}
+.statusbar .batt{width:18px;height:9px;border:1.4px solid #fff;border-radius:2px;position:relative;}
+.statusbar .batt::before{content:'';position:absolute;inset:1.4px;right:5px;background:#fff;border-radius:1px;}
+.statusbar .batt::after{content:'';position:absolute;right:-3px;top:2.5px;width:2px;height:4px;background:#fff;border-radius:0 1px 1px 0;}
+/* HUD */
+.hud{position:absolute;z-index:6;color:#fff;}
+.glass{background:rgba(12,14,22,0.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);border:1px solid rgba(76,198,191,0.4);border-radius:12px;}
+.hud-tl{top:44px;left:11px;display:flex;align-items:center;gap:8px;padding:6px 11px 6px 6px;}
+.avatar{width:34px;height:34px;border-radius:50%;border:2px solid var(--teal-2);background:#11202a;display:flex;align-items:center;justify-content:center;color:var(--teal-2);flex:0 0 auto;}
+.avatar svg{width:19px;height:19px;}
+.hud-tl .meta{display:flex;flex-direction:column;gap:3px;min-width:92px;}
+.namerow{display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;}
+.lvl{background:var(--teal-2);color:#06231f;border-radius:5px;padding:0 4px;font-family:'Space Mono',monospace;font-size:8.5px;}
+.bar{height:5px;border-radius:3px;background:rgba(255,255,255,0.22);overflow:hidden;}
+.bar i{display:block;height:100%;border-radius:3px;}
+.bar.hp i{background:linear-gradient(90deg,#ff5a6e,#ff8a4c);width:82%;}
+.bar.st i{background:linear-gradient(90deg,#ffcf5a,#4cc6bf);width:56%;}
+.hud-tr{top:44px;right:11px;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.minimap{width:58px;height:58px;border-radius:50%;border:2px solid rgba(76,198,191,0.6);background:radial-gradient(circle at 40% 35%,#2c3b2f,#15201b);position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.35);}
+.minimap .n{position:absolute;top:2px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:8px;color:var(--teal-2);font-weight:700;}
+.minimap .path{position:absolute;left:8px;right:14px;top:34px;height:8px;background:rgba(255,207,90,0.55);transform:rotate(-18deg);border-radius:4px;}
+.minimap .blip{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--teal-2);top:50%;left:50%;transform:translate(-50%,-50%);box-shadow:0 0 6px var(--teal-2);}
+.minimap .dot{position:absolute;width:4px;height:4px;border-radius:50%;background:#ffcf5a;top:30%;left:64%;}
+.coins{display:flex;align-items:center;gap:5px;padding:4px 9px;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#ffe1a6;}
+.coins svg{width:13px;height:13px;color:#ffcf5a;}
+.gear{width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:#fff;}
+.gear svg{width:15px;height:15px;}
+.quest{top:110px;left:11px;display:flex;align-items:center;gap:8px;padding:6px 11px;max-width:168px;}
+.quest .qi{color:var(--teal-2);flex:0 0 auto;}
+.quest .qi svg{width:15px;height:15px;display:block;}
+.quest .qt{font-family:'Inter',sans-serif;font-size:10.5px;line-height:1.25;color:#fff;}
+.quest .qt b{display:block;font-weight:700;}
+.quest .qt em{color:var(--teal-2);font-style:normal;font-family:'Space Mono',monospace;font-size:9px;}
+/* controls */
+.joystick{position:absolute;z-index:6;left:18px;bottom:98px;width:82px;height:82px;border-radius:50%;border:2px solid rgba(255,255,255,0.5);background:rgba(255,255,255,0.08);backdrop-filter:blur(2px);}
+.joystick .ring{position:absolute;inset:13px;border-radius:50%;border:1px dashed rgba(255,255,255,0.3);}
+.joystick .knob{position:absolute;width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(255,255,255,0.95),rgba(255,255,255,0.5));top:44%;left:56%;transform:translate(-50%,-50%);box-shadow:0 2px 8px rgba(0,0,0,0.35);}
+.actions{position:absolute;z-index:6;right:15px;bottom:86px;width:120px;height:120px;}
+.abtn{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(12,14,22,0.48);border:1.5px solid rgba(255,255,255,0.36);backdrop-filter:blur(2px);}
+.abtn svg{width:52%;height:52%;}
+.abtn.primary{width:58px;height:58px;right:4px;bottom:4px;background:rgba(76,198,191,0.9);border-color:#cdfdf8;color:#06231f;box-shadow:0 4px 14px rgba(76,198,191,0.5);}
+.abtn.s1{width:40px;height:40px;right:62px;bottom:12px;}
+.abtn.s2{width:40px;height:40px;right:28px;bottom:60px;}
+.abtn.s3{width:35px;height:35px;right:72px;bottom:58px;}
+.abtn .lab{position:absolute;bottom:-13px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:.04em;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6);white-space:nowrap;}
+.hotbar{position:absolute;z-index:6;left:50%;transform:translateX(-50%);bottom:30px;display:flex;gap:7px;}
+.slot{width:34px;height:34px;border-radius:9px;background:rgba(12,14,22,0.48);border:1px solid rgba(255,255,255,0.26);display:flex;align-items:center;justify-content:center;color:#dfe7ee;position:relative;}
+.slot svg{width:17px;height:17px;}
+.slot .key{position:absolute;top:0;right:2px;font-family:'Space Mono',monospace;font-size:7px;color:var(--teal-2);}
+.gait{position:absolute;z-index:6;top:44px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:4px 11px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-2);}
+.device-cap{margin-top:18px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:center;max-width:300px;line-height:1.5;}
+@media(max-width:880px){.device-wrap{margin-top:8px;}}
+
+/* ---------- STAT BAND ---------- */
+.statband{background:var(--navy);color:var(--paper);display:grid;grid-template-columns:repeat(5,1fr);}
+.statband .stat{padding:30px 22px;border-right:1px solid #2a2c3a;}
+.statband .stat:last-child{border-right:0;}
+.statband .num{font-family:'Fraunces',serif;font-weight:900;font-size:38px;line-height:1;color:var(--teal-2);}
+.statband .lbl{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted-2);margin-top:8px;}
+@media(max-width:720px){.statband{grid-template-columns:repeat(2,1fr);}.statband .stat{border-bottom:1px solid #2a2c3a;}}
+
+/* lists */
+.blist{list-style:none;padding:0;margin:0;max-width:74ch;}
+.blist li{padding:12px 0 12px 26px;position:relative;border-bottom:1px solid rgba(21,23,31,0.12);font-size:15.5px;line-height:1.5;}
+.blist li:last-child{border-bottom:0;}
+.blist li::before{content:'//';position:absolute;left:0;top:12px;font-family:'Space Mono',monospace;font-weight:700;color:var(--teal);font-size:13px;}
+.blist li strong{font-weight:700;}
+
+/* panels */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid var(--ink);}
+.grid2 .pane{padding:28px;border-right:2px solid var(--ink);}
+.grid2 .pane:last-child{border-right:0;}
+@media(max-width:780px){.grid2{grid-template-columns:1fr;}.grid2 .pane{border-right:0;border-bottom:2px solid var(--ink);}.grid2 .pane:last-child{border-bottom:0;}}
+.pane h3{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--teal);margin:0 0 14px;}
+.pane p{font-size:15px;margin:0 0 12px;}
+
+/* three workstreams cards */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--ink);}
+.wcard{padding:24px 22px;border-right:2px solid var(--ink);}
+.wcard:last-child{border-right:0;}
+@media(max-width:780px){.cards3{grid-template-columns:1fr;}.wcard{border-right:0;border-bottom:2px solid var(--ink);}.wcard:last-child{border-bottom:0;}}
+.wcard .sev{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:3px 8px;display:inline-block;margin-bottom:12px;}
+.wcard .sev.hot{background:var(--gold);color:var(--ink);}
+.wcard h3{font-family:'Fraunces',serif;font-weight:700;font-size:19px;margin:0 0 10px;line-height:1.1;}
+.wcard p{font-size:14px;color:var(--muted);margin:0;line-height:1.55;}
+
+/* team */
+.team{list-style:none;padding:0;margin:0;border:2px solid var(--ink);}
+.team li{padding:18px 22px;border-bottom:2px solid var(--ink);display:grid;grid-template-columns:230px 1fr 90px;gap:20px;align-items:start;}
+.team li:last-child{border-bottom:0;}
+.team li.tot{background:var(--navy);color:var(--paper);}
+.team .role{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);}
+.team li.tot .role{color:var(--paper);}
+.team .role .nm{color:var(--teal);display:block;margin-top:5px;font-size:13px;}
+.team li.tot .role .nm{color:var(--teal-2);}
+.team .desc{font-size:14.5px;color:var(--muted);}
+.team li.tot .desc{color:var(--muted-2);}
+.team .mm{font-family:'Fraunces',serif;font-weight:900;font-size:24px;text-align:right;color:var(--ink);}
+.team li.tot .mm{color:var(--teal-2);}
+.team .mm small{display:block;font-family:'Space Mono',monospace;font-size:9px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);margin-top:2px;}
+@media(max-width:680px){.team li{grid-template-columns:1fr 70px;}.team .desc{grid-column:1 / -1;}}
+
+/* roadmap */
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--ink);}
+.beat{padding:22px 20px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);}
+.beat:nth-child(3n){border-right:0;}
+.timeline .beat:nth-last-child(-n+3){border-bottom:0;}
+@media(max-width:780px){.timeline{grid-template-columns:1fr;}.beat{border-right:0;}.timeline .beat:nth-last-child(-n+3){border-bottom:2px solid var(--ink);}.timeline .beat:last-child{border-bottom:0;}}
+.beat .wk{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:var(--teal);letter-spacing:0.04em;text-transform:uppercase;}
+.beat .wk .gate{background:var(--gold);color:var(--ink);padding:1px 6px;margin-left:6px;font-size:10px;}
+.beat .ttl{font-family:'Fraunces',serif;font-weight:700;font-size:18px;margin:8px 0 10px;line-height:1.05;}
+.beat p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.5;}
+
+/* commercials */
+.comm{display:grid;grid-template-columns:1fr 0.85fr;gap:28px;align-items:start;}
+@media(max-width:780px){.comm{grid-template-columns:1fr;}}
+.pricecard{background:var(--navy);color:var(--paper);padding:32px;position:relative;overflow:hidden;}
+.pricecard .pc-glow{position:absolute;right:-50px;bottom:-50px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at center,var(--teal-2) 0%,rgba(76,198,191,0) 70%);opacity:0.5;}
+.pricecard .lab{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-2);position:relative;z-index:2;}
+.pricecard .big{font-family:'Fraunces',serif;font-weight:900;font-size:56px;line-height:0.95;color:var(--paper);margin:6px 0 6px;position:relative;z-index:2;}
+.pricecard .sub{font-size:13.5px;color:var(--muted-2);position:relative;z-index:2;margin-bottom:18px;}
+.pay{list-style:none;padding:0;margin:0;position:relative;z-index:2;counter-reset:p;}
+.pay li{padding:9px 0 9px 34px;position:relative;font-size:14.5px;border-bottom:1px solid #2a2c3a;color:var(--paper);}
+.pay li:last-child{border-bottom:0;}
+.pay li::before{counter-increment:p;content:counter(p);position:absolute;left:0;top:8px;width:22px;height:22px;background:var(--teal-2);color:var(--ink);font-family:'Space Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.pricecard .rec{position:absolute;top:0;right:0;z-index:3;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--teal-2);color:var(--ink);padding:4px 10px;}
+.pricestack{display:flex;flex-direction:column;gap:18px;}
+.pricecard.lean{background:var(--paper-2);color:var(--ink);border:2px solid var(--ink);}
+.pricecard.lean .lab{color:var(--muted);}
+.pricecard.lean .big{color:var(--ink);font-size:42px;margin-bottom:8px;}
+.pricecard.lean .sub{color:var(--muted);margin-bottom:14px;}
+.pricecard.lean .tradeoff{font-size:13.5px;color:var(--muted);margin:0;position:relative;z-index:2;line-height:1.55;}
+.pricecard.lean .tradeoff strong{color:var(--teal);}
+
+/* callout */
+.callout{border-left:4px solid var(--teal);background:var(--paper-2);padding:20px 24px;margin:0 0 22px;}
+.callout p{margin:0;font-size:15.5px;}
+.callout strong{color:var(--teal);}
+
+/* risks */
+.risk{border-left:4px solid var(--teal);padding:14px 0 14px 18px;margin-bottom:16px;}
+.risk h4{font-family:'Fraunces',serif;font-weight:700;font-size:17px;margin:0 0 6px;}
+.risk h4 .n{font-family:'Space Mono',monospace;color:var(--teal);margin-right:8px;font-size:14px;}
+.risk p{font-size:14.5px;color:var(--muted);margin:0;}
+.risk p .m{font-family:'Space Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink);font-weight:700;}
+
+/* footer */
+footer{border-top:2px solid var(--ink);margin-top:8px;padding:30px 0 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+footer img{height:50px;display:block;}
+footer .c{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+footer .c a{color:var(--teal);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="confbar">Confidential // Prepared for Blue Scarab Entertainment</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-inner">
+        <div class="kick">Aurora Punks // Technical pre-production plan</div>
+        <h1>Equinox: Homecoming<br><span class="ac">Mobile port, phase one.</span></h1>
+        <div class="sub">iOS + Android // Technical pre-production</div>
+        <p class="tagline">How we would run the first phase of the port. Six months to get one full region of Equinox running on a real phone inside the memory budget, then turn those measurements into a costed plan for the rest of the port and a go / no-go point.</p>
+        <div class="metarow">
+          <div class="cell"><span class="k">Platform</span><span class="v">iOS + Android</span></div>
+          <div class="cell"><span class="k">Engine</span><span class="v">UE5</span></div>
+          <div class="cell"><span class="k">Phase</span><span class="v">Vertical slice</span></div>
+          <div class="cell"><span class="k">Duration</span><span class="v">6 months</span></div>
+        </div>
+      </div>
+
+      <!-- DEVICE MOCK: real in-game capture + touch-HUD concept -->
+      <div class="device-wrap">
+        <div class="glow"></div>
+        <div class="phone">
+          <div class="screen">
+            <div class="island"></div>
+            <div class="statusbar">
+              <span>9:41</span>
+              <span class="sb">5G<span class="batt"></span></span>
+            </div>
+
+            <!-- top-left: avatar + health/stamina -->
+            <div class="hud hud-tl glass">
+              <div class="avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7.5 20C5 18.4 4 15.6 4 12a8 8 0 0 1 16 0c0 3.6-1 6.4-3.5 8"/><circle cx="7.2" cy="20.2" r="0.9" fill="currentColor" stroke="none"/><circle cx="16.8" cy="20.2" r="0.9" fill="currentColor" stroke="none"/></svg>
+              </div>
+              <div class="meta">
+                <div class="namerow"><span>Rowan</span><span class="lvl">Lv 14</span></div>
+                <div class="bar hp"><i></i></div>
+                <div class="bar st"><i></i></div>
+              </div>
+            </div>
+
+            <!-- top-right: minimap + coins + gear -->
+            <div class="hud hud-tr">
+              <div class="minimap">
+                <span class="n">N</span>
+                <span class="path"></span>
+                <span class="dot"></span>
+                <span class="blip"></span>
+              </div>
+              <div class="hud coins glass" style="position:static;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg>
+                1,240
+              </div>
+              <div class="hud gear glass" style="position:static;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M4.2 7l2.1 1.2M17.7 15.8 19.8 17M4.2 17l2.1-1.2M17.7 8.2 19.8 7"/></svg>
+              </div>
+            </div>
+
+            <!-- quest tracker -->
+            <div class="hud quest glass">
+              <span class="qi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.7 6.3L21 11l-6.3 2.7L12 20l-2.7-6.3L3 11l6.3-2.7z"/></svg></span>
+              <span class="qt"><b>Find the Old Stable</b><em>320m // follow the ridge</em></span>
+            </div>
+
+            <!-- virtual joystick -->
+            <div class="joystick"><div class="ring"></div><div class="knob"></div></div>
+
+            <!-- action buttons -->
+            <div class="actions">
+              <div class="abtn primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7.5 20C5 18.4 4 15.6 4 12a8 8 0 0 1 16 0c0 3.6-1 6.4-3.5 8"/><circle cx="7.2" cy="20.2" r="0.9" fill="currentColor" stroke="none"/><circle cx="16.8" cy="20.2" r="0.9" fill="currentColor" stroke="none"/></svg>
+                <span class="lab">Gallop</span>
+              </div>
+              <div class="abtn s1">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11l6-6 6 6"/><path d="M12 5v9"/><path d="M5 19h14"/></svg>
+              </div>
+              <div class="abtn s2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg>
+              </div>
+              <div class="abtn s3">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5.5 6 5.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 16.5 12 21 12 21z"/></svg>
+              </div>
+            </div>
+
+            <!-- hotbar -->
+            <div class="hotbar">
+              <div class="slot"><span class="key">1</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></div>
+              <div class="slot"><span class="key">2</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2V4z"/><path d="M5 18a2 2 0 0 1 2-2h11"/></svg></div>
+              <div class="slot"><span class="key">3</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></div>
+              <div class="slot"><span class="key">4</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7.5 20C5 18.4 4 15.6 4 12a8 8 0 0 1 16 0c0 3.6-1 6.4-3.5 8"/></svg></div>
+            </div>
+          </div>
+        </div>
+        <div class="device-cap">Mockup // real in-game capture, mobile touch HUD concept laid over it</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAT BAND -->
+  <div class="statband">
+    <div class="stat"><div class="num">12</div><div class="lbl">Man-months</div></div>
+    <div class="stat"><div class="num">6</div><div class="lbl">Month calendar</div></div>
+    <div class="stat"><div class="num">1</div><div class="lbl">Full region on device</div></div>
+    <div class="stat"><div class="num">3</div><div class="lbl">Core risks tested</div></div>
+    <div class="stat"><div class="num">1.17M</div><div class="lbl">SEK, full slice</div></div>
+  </div>
+
+  <!-- 01 WHY A SLICE FIRST -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">01</span> Why a slice first /////</div>
+    <h2>The hard part is content and memory, <span class="ac">so we test that first.</span></h2>
+    <p>A full mobile port is a large commitment, and the risk is not in the code. It is in content and memory: roughly 156 GB of desktop-authored assets against a 2 to 3 GB device budget, a desktop renderer (Nanite, Lumen, VSM, TSR) that has no mobile equivalent, and at least one plugin whose runtime status on mobile is unconfirmed. These unknowns are what keep a full-port number a range rather than a fixed figure.</p>
+    <p>This phase resolves them. Over <span class="ac">12 man-months across a six-month calendar</span> we stand up the mobile pipeline, downshift the renderer, and bring one full region onto a real device inside the memory budget. We record what the optimisation costs per asset class and extrapolate that across the game. The phase delivers a working slice and a full-port plan costed from measured data.</p>
+    <div class="callout"><p>In short: a fixed, contained phase that tests the three things driving the full-port range, ending at month four with a working build on device and a go / no-go on the full port.</p></div>
+  </section>
+
+  <!-- 02 WHAT THE SLICE PROVES -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">02</span> What the slice proves /////</div>
+    <h2>Three streams of work, <span class="ac">measured on one region.</span></h2>
+    <p>We take the starting region end to end and treat it as the sample the full game is costed from. Each stream produces measured figures we can extrapolate to the rest of the content.</p>
+    <div class="cards3">
+      <div class="wcard">
+        <span class="sev hot">Severe</span>
+        <h3>Content &amp; memory</h3>
+        <p>The core of the phase. We process the heaviest assets on the slice: 8K MetaHuman faces to 512, Nanite hero meshes to LOD chains, project-wide texture and LODGroup caps, ASTC. We record the cost per asset class and the on-device memory we reach, which is what a full-game budget is built from.</p>
+      </div>
+      <div class="wcard">
+        <span class="sev">High</span>
+        <h3>Renderer downshift</h3>
+        <p>Moving the slice to the mobile feature level: baked lightmaps and reflection captures, CSM and static shadows, MSAA or FXAA. The existing Lumen-off scalability bucket is the starting point. Once it works on the slice, the same settings carry across the game.</p>
+      </div>
+      <div class="wcard">
+        <span class="sev">Moderate</span>
+        <h3>Pipeline &amp; blockers</h3>
+        <p>The automation needed to handle 156 GB at scale: CI, an automated cook, and on-demand asset delivery (ODR / PAD). Plus the spikes that clear unknowns early, the Narrative-plugin runtime recompile and a touch-control baseline, so blockers surface during this phase rather than mid-port.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 TEAM -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">03</span> The team /////</div>
+    <h2>Twelve man-months, <span class="ac">across four seats.</span></h2>
+    <p style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.03em;color:var(--muted);margin:0 0 18px;">A lead porting engineer runs the phase end to end, a build engineer front-loads the automation, a tech artist runs the content pipeline, and a contingency seat covers the spikes and overflow.</p>
+    <ul class="team">
+      <li>
+        <div class="role">Porting Engineer<span class="nm">AP Dev Team</span></div>
+        <div class="desc">Senior UE5 engineer, full phase. Owns the renderer downshift, device profiles, touch baseline, the Narrative-plugin recompile spike, and on-device profiling.</div>
+        <div class="mm">6.0<small>man-months</small></div>
+      </li>
+      <li>
+        <div class="role">Build / Pipeline Engineer<span class="nm">Basil</span></div>
+        <div class="desc">Front-loaded. Stands up CI, the automated cook, and ODR / PAD packaging - the automation that makes the content budget achievable at scale. Tapers to on-call once the pipeline is stable.</div>
+        <div class="mm">3.0<small>man-months</small></div>
+      </li>
+      <li>
+        <div class="role">Tech Artist<span class="nm">Robin Hofstrom</span></div>
+        <div class="desc">Content / memory lead on the slice. Drives the texture, LOD and material program on the biggest offenders and captures the per-asset cost the full-game budget is built from. Houdini and VFX background.</div>
+        <div class="mm">1.5<small>man-months</small></div>
+      </li>
+      <li>
+        <div class="role">Auxiliary / Contingency<span class="nm">Shared AP seat</span></div>
+        <div class="desc">Flex capacity held against the fixed end date: overflow on whichever stream runs hot, the EOS-identity and streaming spikes, and touch-UX support. If the schedule tightens, we adjust scope before quality.</div>
+        <div class="mm">1.5<small>man-months</small></div>
+      </li>
+      <li class="tot">
+        <div class="role">Total<span class="nm">Six-month calendar</span></div>
+        <div class="desc">Peak burn around month 2 to 3 while build and tech-art overlap the porting seat; tapering through the measurement and gate phase.</div>
+        <div class="mm">12.0<small>man-months</small></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 04 ROADMAP -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">04</span> Roadmap /////</div>
+    <h2>The six-month schedule, <span class="ac">month by month.</span></h2>
+    <div class="timeline">
+      <div class="beat"><div class="wk">Month 1 // Proof of life</div><div class="ttl">Boot on device</div><p>iOS + Android targets added, mobile device profiles, plugins stripped, Narrative recompile spike, CI standing up. One map plus a player MetaHuman booting on a real target device, baseline memory and FPS captured.</p></div>
+      <div class="beat"><div class="wk">Month 2 // Renderer</div><div class="ttl">Mobile feature level</div><p>Baked lighting, CSM, reflection captures, RVT decision. Content pipeline kickoff: texture and LODGroup caps, ASTC. Tech-art and build seats both on.</p></div>
+      <div class="beat"><div class="wk">Month 3 // Pipeline</div><div class="ttl">Automation &amp; offenders</div><p>Automated cook and ODR / PAD live; dev-junk culled via allowlist cook. Biggest offenders processed: faces to 512, Nanite to LOD chains. Per-asset cost captured. Build seat completes.</p></div>
+      <div class="beat"><div class="wk">Month 4 <span class="gate">Gate</span></div><div class="ttl">Region in budget</div><p>One full region inside the memory budget on a target device, touch controls and camera, ODR / PAD wired. The go / no-go checkpoint for the full port.</p></div>
+      <div class="beat"><div class="wk">Month 5 // Measure</div><div class="ttl">Profile &amp; extrapolate</div><p>Profile across the device matrix, re-tune world streaming on the slice, capture thermal and sustained-performance data. Turn slice numbers into a costed full-game plan.</p></div>
+      <div class="beat"><div class="wk">Month 6 // Package</div><div class="ttl">Decision package</div><p>Full-port estimate refreshed from measured data, slice build and technical report delivered, open items closed. The output is the decision package for the full port.</p></div>
+    </div>
+  </section>
+
+  <!-- 05 COMMERCIALS -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">05</span> Commercials /////</div>
+    <h2>Fixed scope, <span class="ac">milestone-based.</span></h2>
+    <div class="comm">
+      <div>
+        <p>A fixed-price phase with payment tied to accepted milestones and a gate at month four. All code, art and tooling produced in the phase transfer to Blue Scarab on delivery.</p>
+        <ul class="blist">
+          <li><strong>What it includes.</strong> The four seats below, the slice build, the standing pipeline (CI, automated cook, ODR / PAD), and the refreshed full-port estimate built on measured data. Development QA runs inside the team.</li>
+          <li><strong>The M4 gate.</strong> If the region does not hold inside the memory budget on target hardware, that is a result in itself, reached before the full-port spend is committed.</li>
+          <li><strong>Carries into the port.</strong> The pipeline, the renderer profile and the optimised slice become the first deliverables of the full port if you greenlight it; none of the phase work is discarded.</li>
+          <li><strong>Credited toward the port.</strong> The phase is the first tranche of the full port rather than a separate cost. If you greenlight, the spend counts toward the full-port budget and the slice deliverables are the port's first deliverables.</li>
+          <li><strong>Pass-through at cost.</strong> AI tooling, QA device hardware, Apple and Play developer fees. Unreal engine license fees are the client's.</li>
+          <li><strong>Assumptions.</strong> Premium device floor (iOS A15+, Android 8 GB / Snapdragon 8-series); Perforce and build access in place at kickoff, as today.</li>
+        </ul>
+      </div>
+      <div class="pricestack">
+        <div class="pricecard">
+          <div class="pc-glow"></div>
+          <div class="lab">Full slice // 12 man-months</div>
+          <div class="big">1,170,000 SEK</div>
+          <div class="sub">All four seats, at the SEK rates already in the full estimate: 100k per man-month for engineering and tech art, 90k for build and pipeline.</div>
+          <ul class="pay">
+            <li><strong>25%</strong> on signature</li>
+            <li><strong>25%</strong> on renderer + pipeline live (M3)</li>
+            <li><strong>30%</strong> on region-in-budget gate (M4)</li>
+            <li><strong>20%</strong> on decision package delivered (M6)</li>
+          </ul>
+        </div>
+        <div class="pricecard lean">
+          <div class="lab">Leaner option // Core slice, 9 man-months</div>
+          <div class="big">900,000 SEK</div>
+          <div class="sub">Lead porting engineer, tech artist and the contingency seat. It still tests content, memory and the renderer on one region and reaches the M4 go / no-go.</div>
+          <p class="tradeoff">The difference from the full slice: the production pipeline (CI, automated cook, ODR / PAD) is built later, during the port itself, rather than up front. The contingency seat stays, given the project's risk level. The core risks are still tested on the slice, but the at-scale automation moves into the port, which makes the full-port ramp slower. For a project of this risk we would run the full slice; the core slice is the lighter way in if budget is the constraint.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 RISKS -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">06</span> Risks &amp; open questions /////</div>
+    <h2>The things <span class="ac">we are watching.</span></h2>
+    <div class="risk">
+      <h4><span class="n">01</span>The slice region is representative of the whole game</h4>
+      <p><span class="m">Mitigation //</span> we pick the starting region together at kickoff so it carries the heavy asset classes (MetaHumans, hero meshes, open-world streaming). The per-asset costs we measure then extrapolate cleanly to the full content set.</p>
+    </div>
+    <div class="risk">
+      <h4><span class="n">02</span>The Narrative plugin runtime on mobile (potential hard blocker)</h4>
+      <p><span class="m">Mitigation //</span> a Month-1 recompile spike resolves it first, before any content work scales. If it needs a workaround, we know in week one of the phase, not month four of the port.</p>
+    </div>
+    <div class="risk">
+      <h4><span class="n">03</span>Content optimisation cost landing where we expect</h4>
+      <p><span class="m">Mitigation //</span> the whole point of the slice. Two senior seats on automation and tech art carry the offenders, and we report the achieved memory and per-class cost as the phase deliverable, so the full-port number is evidence-based.</p>
+    </div>
+    <p style="margin-top:22px;"><strong>Open questions //</strong> which region we take as the slice; UE upgrade target version; device matrix floor confirmation; whether EOS identity is in scope for the slice or deferred to the full port; kickoff date.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="./ap-logo.png" alt="Aurora Punks">
+    <div class="c"><a href="mailto:robert@aurorapunks.com">robert@aurorapunks.com</a> // Confidential - Equinox: Homecoming mobile</div>
+  </footer>
+
+</main>
+
+</body>
+</html>

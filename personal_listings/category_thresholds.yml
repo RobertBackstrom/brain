@@ -1,0 +1,78 @@
+# Category Thresholds — the key MVP knob for Lister
+#
+# auto_publish_ceiling_sek: Lister auto-publishes if asking_price <= this AND mandatory_review is false.
+# Otherwise, drafts are saved and a mkt-NNN ticket is opened for Robert.
+#
+# mandatory_review: true ALWAYS forces drafts + ticket, regardless of price (e.g. graded TCG cards).
+#
+# Categories are 3-letter codes used in SKUs and inventory.csv. Add new categories by editing this file
+# AND opening a ticket — adding a new category is an "ask" action per the agent's matrix.
+#
+# Pricing aggressiveness knob:
+#   sell_factor: multiplier on median sold comp price. 0.85 = sell-fast, 1.0 = neutral, 1.05 = sell-best.
+
+global_default:
+  auto_publish_ceiling_sek: 500       # conservative default until 10+ items calibrated; bump per category as confidence grows
+  mandatory_review: false
+  sell_factor: 1.0
+
+categories:
+
+  # PC builds and parts (CPUs, GPUs, RAM, motherboards, PSUs, cases)
+  pcb:
+    label: "PC build (complete tower)"
+    auto_publish_ceiling_sek: 0       # always ticket — high-value, multi-component, easy to misprice
+    mandatory_review: true
+    sell_factor: 0.95
+    notes: "Complete PCs go to drafts always. Per-component might auto."
+
+  pcc:
+    label: "PC component (single GPU/CPU/etc.)"
+    auto_publish_ceiling_sek: 1500
+    mandatory_review: false
+    sell_factor: 0.95
+
+  # Consumer electronics (monitors, peripherals, cables, accessories)
+  ele:
+    label: "Consumer electronics"
+    auto_publish_ceiling_sek: 800
+    mandatory_review: false
+    sell_factor: 0.90
+
+  # Board games and tabletop
+  bgm:
+    label: "Board game (boxed)"
+    auto_publish_ceiling_sek: 400
+    mandatory_review: false
+    sell_factor: 0.90
+
+  # Books / printed media
+  bks:
+    label: "Books"
+    auto_publish_ceiling_sek: 200
+    mandatory_review: false
+    sell_factor: 0.85
+
+  # Pokemon TCG (Step 2 — flagged mandatory_review until card-grading-aware logic ships)
+  tcg:
+    label: "Pokemon TCG single card (Step 2 — placeholder)"
+    auto_publish_ceiling_sek: 0
+    mandatory_review: true
+    sell_factor: 1.0
+    notes: "All TCG cards ticket until graded-vs-raw + set-code-aware comps land. Step 2 calibrates per rarity tier."
+
+  # Pewter / collectible miniatures (Step 4 — flagged mandatory_review until OOP logic ships)
+  min:
+    label: "Pewter / collectible miniature (Step 4 — placeholder)"
+    auto_publish_ceiling_sek: 0
+    mandatory_review: true
+    sell_factor: 1.0
+    notes: "All minis ticket until faction/sculpt OCR + OOP rarity premium calibrated."
+
+  # Misc / uncategorized — rare; Lister should normally have classified it
+  msc:
+    label: "Miscellaneous / unclassified"
+    auto_publish_ceiling_sek: 100
+    mandatory_review: false
+    sell_factor: 0.85
+    notes: "Vision intake should rarely land here. If it does, low ceiling protects from misprice."

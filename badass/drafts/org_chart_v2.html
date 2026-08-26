@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BADASS Studios — Org Chart v2 (2026-05-11)</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #14181f;
+    --muted: #5b6470;
+    --line: #2a2f38;
+    --grid: #d8dde4;
+    --filled: #ffffff;
+    --filled-border: #14181f;
+    --open: #f7f7f5;
+    --open-border: #5b6470;
+    --ceo: #14181f;
+    --ceo-ink: #ffffff;
+    --group-bg: #f3f4f6;
+    --group-border: #c8cdd4;
+    --group-label: #1f2933;
+    --accent-platform: #1f6fb2;
+    --accent-customisation: #b9533e;
+    --accent-mgmt: #1f1f1f;
+    --accent-marketing: #6b4a8a;
+    --accent-comms: #2f7d6e;
+    --accent-eng: #8a5a2b;
+    --accent-hr: #555b1f;
+    --accent-qa: #6b3a78;
+    --accent-advisor: #444a52;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+  }
+  .page {
+    width: 1800px;
+    padding: 36px 40px 40px 40px;
+    background: var(--bg);
+  }
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--grid);
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .meta {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.5;
+  }
+  .legend {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    margin-bottom: 22px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .swatch {
+    width: 24px; height: 14px;
+    background: var(--filled);
+    border: 1.5px solid var(--filled-border);
+    border-radius: 3px;
+  }
+  .swatch.open {
+    background: var(--open);
+    border: 1.5px dashed var(--open-border);
+  }
+  .ceo-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+  .ceo-box {
+    background: var(--ceo);
+    color: var(--ceo-ink);
+    padding: 12px 28px;
+    border-radius: 6px;
+    text-align: center;
+    min-width: 280px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+  }
+  .ceo-box .role {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.7;
+    margin-bottom: 4px;
+  }
+  .ceo-box .name {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .ceo-box .loc {
+    font-size: 11px;
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+  .connector {
+    height: 22px;
+    border-left: 1px solid var(--line);
+    width: 1px;
+    margin: 0 auto;
+  }
+  .groups {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .groups-row {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .groups-row.r1 { grid-template-columns: 1.4fr 1fr 1fr; }
+  .groups-row.r2 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .groups-row.r3 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .group {
+    background: var(--group-bg);
+    border: 1px solid var(--group-border);
+    border-top: 4px solid var(--accent-mgmt);
+    border-radius: 6px;
+    padding: 12px 12px 14px 12px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+  }
+  .group.platform-uk { border-top-color: var(--accent-platform); }
+  .group.platform-us { border-top-color: var(--accent-platform); }
+  .group.cust-uk     { border-top-color: var(--accent-customisation); }
+  .group.cust-us     { border-top-color: var(--accent-customisation); }
+  .group.mkt         { border-top-color: var(--accent-marketing); }
+  .group.comms       { border-top-color: var(--accent-comms); }
+  .group.geneng      { border-top-color: var(--accent-eng); }
+  .group.hr          { border-top-color: var(--accent-hr); }
+  .group.qa          { border-top-color: var(--accent-qa); }
+  .group.advisor     { border-top-color: var(--accent-advisor); }
+  .group h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0 0 4px 0;
+    color: var(--group-label);
+    font-weight: 700;
+  }
+  .group .sub {
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .cards.single { grid-template-columns: 1fr; }
+  .card {
+    background: var(--filled);
+    border: 1.5px solid var(--filled-border);
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  .card.open {
+    background: var(--open);
+    border: 1.5px dashed var(--open-border);
+  }
+  .card .role {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .card .name {
+    color: var(--ink);
+  }
+  .card .meta-line {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 2px;
+  }
+  .card .qflip {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    background: #e7ebef;
+    color: #3a4250;
+    border-radius: 2px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  footer {
+    margin-top: 28px;
+    border-top: 1px solid var(--grid);
+    padding-top: 10px;
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>BADASS Studios — Organisation Chart v2</h1>
+    <div class="meta">
+      Cost-center view (Platform vs Customisation)<br>
+      Reflects current staff + open hires per Apr 22 mapping
+    </div>
+  </header>
+
+  <div class="legend">
+    <div class="legend-item"><div class="swatch"></div>Named current staff</div>
+    <div class="legend-item"><div class="swatch open"></div>Open hire (with target quarter)</div>
+    <div class="legend-item"><span style="display:inline-block;width:24px;height:4px;background:var(--accent-platform);border-radius:2px;"></span>Platform (runway-funded)</div>
+    <div class="legend-item"><span style="display:inline-block;width:24px;height:4px;background:var(--accent-customisation);border-radius:2px;"></span>Customisation (client-funded)</div>
+  </div>
+
+  <div class="ceo-row">
+    <div class="ceo-box">
+      <div class="role">CEO</div>
+      <div class="name">Rosy Lokhorst</div>
+      <div class="loc">US</div>
+    </div>
+  </div>
+  <div class="connector"></div>
+
+  <!-- ROW 1: General Management | Marketing & Sales | Communications -->
+  <div class="groups-row r1">
+    <div class="group mgmt">
+      <h2>General Management</h2>
+      <div class="sub">Direct reports to CEO</div>
+      <div class="cards">
+        <div class="card">
+          <div class="role">CCO</div>
+          <div class="name">Alex Sangwin-Skillen</div>
+          <div class="meta-line">UK</div>
+        </div>
+        <div class="card">
+          <div class="role">COO</div>
+          <div class="name">Ben Douglas</div>
+          <div class="meta-line">UK</div>
+        </div>
+        <div class="card">
+          <div class="role">Head of Engineering</div>
+          <div class="name">Peter van Manen</div>
+          <div class="meta-line">UK · 60%</div>
+        </div>
+        <div class="card">
+          <div class="role">Head of Finance</div>
+          <div class="name">Dieter Launer</div>
+          <div class="meta-line">CH · 50%</div>
+        </div>
+        <div class="card">
+          <div class="role">Chief of Staff</div>
+          <div class="name">Nancy Imado</div>
+          <div class="meta-line">PT</div>
+        </div>
+        <div class="card">
+          <div class="role">Accounting &amp; Pricing</div>
+          <div class="name">Ian Dalton</div>
+          <div class="meta-line">UK · contractor</div>
+        </div>
+        <div class="card">
+          <div class="role">eSports Community &amp; Partner Manager</div>
+          <div class="name">Adam Binns</div>
+          <div class="meta-line">UK</div>
+        </div>
+        <div class="card open">
+          <div class="role">Legal</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">TBD</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group mkt">
+      <h2>Marketing &amp; Sales</h2>
+      <div class="sub">Revenue + business development</div>
+      <div class="cards single">
+        <div class="card">
+          <div class="role">Business &amp; Partner Development</div>
+          <div class="name">Michiel Sala</div>
+          <div class="meta-line">NL · 50%</div>
+        </div>
+        <div class="card open">
+          <div class="role">Sales &amp; Marketing Lead</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">TBD</div>
+        </div>
+        <div class="card open">
+          <div class="role">Brand / Marketing Manager</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">TBD</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group comms">
+      <h2>Communications</h2>
+      <div class="sub">Community + content</div>
+      <div class="cards single">
+        <div class="card open">
+          <div class="role">Community Manager</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">RSC / Gaming · TBD</div>
+        </div>
+        <div class="card open">
+          <div class="role">Social Media Manager</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">TBD</div>
+        </div>
+        <div class="card open">
+          <div class="role">PR Manager</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">TBD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Platform UK | Platform US | Customisation UK | Customisation US -->
+  <div class="groups-row r2">
+    <div class="group platform-uk">
+      <h2>Platform UK</h2>
+      <div class="sub">BadassXR core · runway-funded</div>
+      <div class="cards">
+        <div class="card">
+          <div class="role">Lead 3D Artist</div>
+          <div class="name">Jake Kay</div>
+          <div class="meta-line">UK</div>
+        </div>
+        <div class="card">
+          <div class="role">3D Artist</div>
+          <div class="name">Marco Tosoni</div>
+          <div class="meta-line">UK</div>
+        </div>
+        <div class="card">
+          <div class="role">UE Developer</div>
+          <div class="name">Sezar Kemleh</div>
+          <div class="meta-line">UK</div>
+        </div>
+        <div class="card">
+          <div class="role">Jr AR Designer &amp; Developer</div>
+          <div class="name">Ben Jeffreys</div>
+          <div class="meta-line">UK</div>
+        </div>
+        <div class="card open">
+          <div class="role">Technical Artist</div>
+          <div class="name">Open hire <span class="qflip">Q3-26</span></div>
+          <div class="meta-line">UK</div>
+        </div>
+        <div class="card open">
+          <div class="role">Senior AI Engineer</div>
+          <div class="name">Open hire <span class="qflip">Q4-26</span></div>
+          <div class="meta-line">UK</div>
+        </div>
+        <div class="card open">
+          <div class="role">Release Manager</div>
+          <div class="name">Open hire <span class="qflip">Q4-26</span></div>
+          <div class="meta-line">UK · CERT + QA lead</div>
+        </div>
+        <div class="card open">
+          <div class="role">DevOps Engineer</div>
+          <div class="name">Open hire <span class="qflip">Q4-26</span></div>
+          <div class="meta-line">UK</div>
+        </div>
+        <div class="card open">
+          <div class="role">Producer / Tech Lead</div>
+          <div class="name">Open hire <span class="qflip">Q4-26</span></div>
+          <div class="meta-line">UK</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group platform-us">
+      <h2>Platform US</h2>
+      <div class="sub">BadassXR core · runway-funded</div>
+      <div class="cards single">
+        <div class="card">
+          <div class="role">UE / XR / Real-Time Graphics Dev</div>
+          <div class="name">John Liou</div>
+          <div class="meta-line">US</div>
+        </div>
+        <div class="card open">
+          <div class="role">Team Lead</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">US · TBD</div>
+        </div>
+        <div class="card open">
+          <div class="role">Senior UE Developer</div>
+          <div class="name">Open hire <span class="qflip">Q4-26</span></div>
+          <div class="meta-line">US</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group cust-uk">
+      <h2>Customisation UK</h2>
+      <div class="sub">Per-client builds · client-funded</div>
+      <div class="cards single">
+        <div class="card open">
+          <div class="role">Customisation Team Lead</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">UK · AP cover (Robert) on E1</div>
+        </div>
+        <div class="card open">
+          <div class="role">Tech Producer AR/VR Broadcast</div>
+          <div class="name">Open hire <span class="qflip">Q3-26</span></div>
+          <div class="meta-line">UK</div>
+        </div>
+        <div class="card open">
+          <div class="role">Technical Artist</div>
+          <div class="name">Open hire <span class="qflip">Q3-26</span></div>
+          <div class="meta-line">UK</div>
+        </div>
+        <div class="card open">
+          <div class="role">Developer (Verse / UEFN)</div>
+          <div class="name">Open hire <span class="qflip">Q3-26</span></div>
+          <div class="meta-line">UK · urgent · Fortnite Monaco</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group cust-us">
+      <h2>Customisation US</h2>
+      <div class="sub">Per-client builds · client-funded</div>
+      <div class="cards single">
+        <div class="card open">
+          <div class="role">Team Lead</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">US · TBD</div>
+        </div>
+        <div class="card open">
+          <div class="role">Producer</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">US · TBD</div>
+        </div>
+        <div class="card open">
+          <div class="role">Developer</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">US · TBD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 3: General Engineering | HR | QA | Advisory Board -->
+  <div class="groups-row r3">
+    <div class="group geneng">
+      <h2>General Engineering</h2>
+      <div class="sub">Web, IT, analytics, support</div>
+      <div class="cards single">
+        <div class="card open">
+          <div class="role">Web Development</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">TBD</div>
+        </div>
+        <div class="card open">
+          <div class="role">UI / UX Design</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">TBD</div>
+        </div>
+        <div class="card open">
+          <div class="role">Analytics &amp; Data Engineering</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">TBD</div>
+        </div>
+        <div class="card open">
+          <div class="role">Dev IT Support</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">TBD</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group hr">
+      <h2>HR</h2>
+      <div class="sub">People &amp; recruiting</div>
+      <div class="cards single">
+        <div class="card open">
+          <div class="role">HR &amp; Employee Benefits</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">TBD</div>
+        </div>
+        <div class="card open">
+          <div class="role">HR Recruiter</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">TBD · could be outsourced</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group qa">
+      <h2>QA</h2>
+      <div class="sub">Internal QA wraps into Release Mgr</div>
+      <div class="cards single">
+        <div class="card open">
+          <div class="role">QA Lead</div>
+          <div class="name">Open hire</div>
+          <div class="meta-line">Only at QA &gt; 10 headcount</div>
+        </div>
+        <div class="card open">
+          <div class="role">External QA teams</div>
+          <div class="name">Per-client pass-through</div>
+          <div class="meta-line">Project-based</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group advisor">
+      <h2>Advisory Board</h2>
+      <div class="sub">External advisors</div>
+      <div class="cards single">
+        <div class="card">
+          <div class="role">Advisor</div>
+          <div class="name">Sol Rogers</div>
+          <div class="meta-line">10K / quarter + equity</div>
+        </div>
+        <div class="card">
+          <div class="role">Advisor</div>
+          <div class="name">Ryan Schmaltz</div>
+          <div class="meta-line">Equity only</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>Source: Badass_PnL_Merged_2026-05-11.xlsm (Staff tab) + staff_roles_mapping_v2.md (Apr 22)</div>
+    <div>Marco &amp; Jake remain on Platform UK per CEO direction (work becomes platform components, not customer projects)</div>
+  </footer>
+</div>
+</body>
+</html>

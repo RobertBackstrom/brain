@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Water Me &amp; You — Aurora Punks × Shosha Games</title>
+<meta name="description" content="A cozy co-op adventure for two. 100K+ wishlists, 10M+ organic TikTok views. Seeking a first-party platform partner for the Early Access and console reveal.">
+<meta property="og:title" content="Water Me & You">
+<meta property="og:description" content="A cozy co-op adventure for two. A water droplet and a seedling rebuild a world people left behind.">
+<meta property="og:image" content="./steam-media/header.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6efe0;
+  --bg-2: #efe6d2;
+  --panel: #fffdf7;
+  --panel-2: #f3ead6;
+  --line: #e2d4b6;
+  --line-soft: #ece1c8;
+  --ink: #2e3320;
+  --ink-soft: #55583f;
+  --moss: #5c8a3c;
+  --moss-deep: #3f6329;
+  --water: #2b93aa;
+  --water-deep: #1f7488;
+  --amber: #d9962c;
+  --amber-deep: #b9791d;
+  --muted: #8a856f;
+  --muted-2: #a89f84;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Nunito', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(circle at 15% 8%, rgba(92,138,60,0.10), transparent 42%),
+    radial-gradient(circle at 88% 14%, rgba(43,147,170,0.09), transparent 44%),
+    radial-gradient(circle at 78% 92%, rgba(217,150,44,0.08), transparent 46%),
+    linear-gradient(180deg, #f8f2e5 0%, #f4ecda 55%, #f0e7d3 100%);
+  min-height: 100vh;
+}
+
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 60px 32px 90px;
+  position: relative;
+}
+
+@media (max-width: 720px) {
+  main { padding: 34px 20px 64px; }
+}
+
+/* ---- Hero ---- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 0.98fr;
+  gap: 44px;
+  align-items: center;
+  margin-bottom: 78px;
+}
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 26px; }
+}
+
+.hero-art {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 460 / 215;
+  border: 1px solid var(--line);
+  box-shadow: 0 26px 60px rgba(63,99,41,0.18), 0 2px 0 rgba(255,255,255,0.6) inset;
+}
+
+.hero-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-copy .kicker {
+  font-family: 'Nunito', sans-serif;
+  color: var(--water-deep);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12.5px;
+  margin-bottom: 16px;
+}
+
+.hero-copy h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(42px, 5.6vw, 66px);
+  line-height: 1.0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 18px;
+  color: var(--moss-deep);
+}
+
+.hero-copy .tagline {
+  font-size: 19px;
+  color: var(--ink-soft);
+  max-width: 42ch;
+  margin: 0 0 26px;
+  line-height: 1.5;
+}
+
+.hero-copy .meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 10px;
+}
+
+.chip {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--moss-deep);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  letter-spacing: 0.01em;
+}
+
+.chip strong { color: var(--amber-deep); font-weight: 700; }
+
+/* ---- Section header ---- */
+.section { margin-bottom: 72px; }
+
+.eyebrow {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--water-deep);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--amber);
+}
+
+h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1.08;
+  font-weight: 600;
+  margin: 0 0 22px;
+  color: var(--moss-deep);
+  letter-spacing: -0.01em;
+}
+
+/* ---- Story ---- */
+.story p {
+  font-size: 17.5px;
+  max-width: 66ch;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+
+.story p .drop { color: var(--water-deep); font-weight: 700; }
+
+/* ---- Cinematic feature ---- */
+.feature {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px rgba(46,51,32,0.22);
+  aspect-ratio: 1920 / 940;
+}
+
+.feature img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.feature figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 30px 26px 18px;
+  background: linear-gradient(0deg, rgba(20,24,12,0.72), transparent);
+  color: #f3ecd8;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ---- Screenshots row ---- */
+.ss-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 640px) { .ss-row { grid-template-columns: 1fr; } }
+
+.ss-row img {
+  width: 100%;
+  aspect-ratio: 1920 / 940;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  display: block;
+  box-shadow: 0 12px 28px rgba(46,51,32,0.12);
+}
+
+.note {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-top: 14px;
+  font-weight: 600;
+}
+
+/* ---- Spec / fit 2-col ---- */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+
+.spec-block {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 26px 26px 20px;
+  box-shadow: 0 10px 26px rgba(46,51,32,0.06);
+}
+
+.spec-block h3 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--water-deep);
+  margin: 0 0 14px;
+  font-weight: 700;
+}
+
+.spec-block ul { list-style: none; padding: 0; margin: 0; }
+
+.spec-block li {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.spec-block li:last-child { border-bottom: 0; }
+
+.spec-block li .k {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 13.5px;
+  letter-spacing: 0.01em;
+}
+
+.spec-block li .v { color: var(--ink); text-align: right; font-weight: 600; }
+.spec-block li .v strong { color: var(--amber-deep); font-weight: 700; }
+
+/* ---- Stat cards ---- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 720px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.stat {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 16px;
+  text-align: center;
+  box-shadow: 0 10px 26px rgba(46,51,32,0.06);
+}
+
+.stat .n {
+  font-family: 'Fraunces', serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--moss-deep);
+  display: block;
+  line-height: 1.1;
+}
+
+.stat .l {
+  font-size: 11.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.market {
+  font-size: 16px;
+  color: var(--ink-soft);
+  max-width: 70ch;
+  margin: 0;
+}
+.market strong { color: var(--moss-deep); }
+
+/* ---- Comps table ---- */
+.comps {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 22px;
+  font-size: 15px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.comps th, .comps td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--line-soft); }
+.comps thead th {
+  background: var(--panel-2);
+  color: var(--moss-deep);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.comps tbody tr:last-child td { border-bottom: 0; }
+.comps td .title { font-weight: 700; color: var(--ink); }
+.comps td .units { color: var(--amber-deep); font-weight: 700; white-space: nowrap; }
+
+@media (max-width: 600px) {
+  .comps { display: block; overflow-x: auto; white-space: nowrap; }
+}
+
+/* ---- Bring list ---- */
+.bring {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 40px;
+}
+@media (max-width: 640px) { .bring { grid-template-columns: 1fr; } }
+
+.bring ul { list-style: none; margin: 0; padding: 0; }
+.bring li {
+  padding: 11px 0 11px 28px;
+  position: relative;
+  font-size: 16px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.bring li:last-child { border-bottom: 0; }
+.bring li::before {
+  content: '';
+  position: absolute;
+  left: 2px; top: 18px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--water);
+}
+.bring li strong { color: var(--moss-deep); }
+
+/* ---- Ask ---- */
+.ask {
+  background:
+    radial-gradient(circle at 50% -10%, rgba(92,138,60,0.14), transparent 60%),
+    var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 48px 40px 42px;
+  text-align: center;
+  box-shadow: 0 18px 44px rgba(46,51,32,0.10);
+}
+
+.ask h2 { color: var(--moss-deep); margin-bottom: 16px; }
+
+.ask p {
+  font-size: 17.5px;
+  max-width: 62ch;
+  margin: 0 auto 18px;
+  color: var(--ink);
+}
+
+.ask .soft {
+  font-size: 15px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 26px;
+}
+
+.ask a.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border: 0;
+  color: #fff;
+  background: var(--moss);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(63,99,41,0.28);
+  transition: transform 0.14s, background 0.14s;
+}
+.ask a.cta:hover { background: var(--moss-deep); transform: translateY(-1px); }
+
+/* ---- Roadmap ---- */
+.road { list-style: none; margin: 0; padding: 0; }
+.road li {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-soft);
+  align-items: baseline;
+}
+.road li:last-child { border-bottom: 0; }
+@media (max-width: 600px) { .road li { grid-template-columns: 1fr; gap: 4px; } }
+
+.road .when {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  color: var(--water-deep);
+  font-size: 18px;
+}
+.road .when.anchor { color: var(--amber-deep); }
+.road .what { color: var(--ink); font-size: 16px; }
+.road .what strong { color: var(--moss-deep); }
+
+/* ---- Footer ---- */
+footer {
+  margin-top: 84px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.ap-mark img { height: 58px; width: auto; display: block; }
+@media (max-width: 520px) { .ap-mark img { height: 46px; } }
+
+footer .contact { font-size: 14px; color: var(--muted); font-weight: 600; text-align: right; }
+footer .contact a { color: var(--moss-deep); text-decoration: none; font-weight: 700; }
+footer .contact a:hover { text-decoration: underline; }
+
+.hr { height: 1px; background: linear-gradient(90deg, transparent, var(--line), transparent); border: 0; margin: 6px 0 72px; }
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-art">
+      <img src="./steam-media/header.jpg" alt="Water Me & You key art">
+    </div>
+    <div class="hero-copy">
+      <div class="kicker">Aurora Punks × Shosha Games</div>
+      <h1>Water Me &amp; You</h1>
+      <p class="tagline">A cozy co-op adventure for two. A water droplet and a seedling rebuild a world people left behind.</p>
+      <div class="meta-row">
+        <span class="chip"><strong>100K+</strong> wishlists</span>
+        <span class="chip"><strong>10M+</strong> TikTok views</span>
+        <span class="chip">2-player co-op</span>
+        <span class="chip">Unreal Engine 5</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="section story">
+    <div class="eyebrow">The Game</div>
+    <h2>A cozy game built for two.</h2>
+    <p>There are plenty of cozy games. There are plenty of co-op games. Very few are both.</p>
+    <p><span class="drop">Water Me &amp; You puts two players in the same warm world</span> - one a water droplet, one a seedling - and asks them to bring a quiet place left behind by people back to life, together. Grow it, tend it, explore it, side by side.</p>
+    <p>The warmth of <em>Stardew Valley</em>. The togetherness of <em>It Takes Two</em>. Playable on the couch or online, start to finish.</p>
+  </section>
+
+  <!-- CINEMATIC FEATURE -->
+  <section class="section">
+    <figure class="feature" style="margin:0">
+      <img src="./steam-media/g_shrine.jpg" alt="A player character at a glowing water-drop shrine">
+      <figcaption>Hand-crafted, storybook worlds - each region rebuilt as you play.</figcaption>
+    </figure>
+  </section>
+
+  <!-- GAMEPLAY -->
+  <section class="section">
+    <div class="eyebrow">Gameplay</div>
+    <h2>Two players, one world.</h2>
+    <div class="ss-row">
+      <img src="./steam-media/g_meadow.jpg" alt="Split-screen co-op gameplay in a sunlit meadow">
+      <img src="./steam-media/g_golden.jpg" alt="Split-screen co-op gameplay across golden fields">
+      <img src="./steam-media/g_build.jpg" alt="Co-op building and restoring a farm plot">
+      <img src="./steam-media/g_night.jpg" alt="Co-op gameplay exploring a village at dusk">
+    </div>
+    <p class="note">Shared-screen and online co-op. Pre-release footage.</p>
+  </section>
+
+  <!-- SPECS + FIT -->
+  <section class="section">
+    <div class="two-col">
+      <div class="spec-block">
+        <h3>The Game</h3>
+        <ul>
+          <li><span class="k">Genre</span><span class="v">Cozy co-op adventure / life-sim</span></li>
+          <li><span class="k">Players</span><span class="v"><strong>2</strong> — couch &amp; online co-op</span></li>
+          <li><span class="k">Engine</span><span class="v">Unreal Engine 5</span></li>
+          <li><span class="k">Playtime</span><span class="v">8–10 hours</span></li>
+          <li><span class="k">Rating</span><span class="v">PEGI 7 / ESRB E</span></li>
+          <li><span class="k">Audience</span><span class="v">Couples, cozy &amp; co-op players</span></li>
+        </ul>
+      </div>
+      <div class="spec-block">
+        <h3>Platforms &amp; Team</h3>
+        <ul>
+          <li><span class="k">PC</span><span class="v">Steam</span></li>
+          <li><span class="k">Console</span><span class="v">Xbox · PS5/PS4 · Switch</span></li>
+          <li><span class="k">Price</span><span class="v"><strong>$19.99</strong> + Friend Pass</span></li>
+          <li><span class="k">Founder's Edition</span><span class="v">$29.99</span></li>
+          <li><span class="k">Studio</span><span class="v">Shosha Games, Belgrade (est. 2022)</span></li>
+          <li><span class="k">Publishing &amp; BD</span><span class="v">Aurora Punks</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- TRACTION -->
+  <section class="section">
+    <div class="eyebrow">Traction</div>
+    <h2>The audience is already here.</h2>
+    <div class="stat-grid">
+      <div class="stat"><span class="n">100K+</span><div class="l">Steam Wishlists</div></div>
+      <div class="stat"><span class="n">10M+</span><div class="l">Organic TikTok Views</div></div>
+      <div class="stat"><span class="n">Bilibili</span><div class="l">Covered in China</div></div>
+      <div class="stat"><span class="n">7</span><div class="l">Core Team</div></div>
+    </div>
+    <p class="market">Cozy and co-op are two of the fastest-growing corners of the market, and co-op titles did over <strong>$4B on Steam in H1 2025</strong>. Water Me &amp; You sits in both, and it got to 100K wishlists on organic reach alone.</p>
+  </section>
+
+  <!-- COMPS -->
+  <section class="section">
+    <div class="eyebrow">Where It Fits</div>
+    <h2>A gap in a proven shelf.</h2>
+    <table class="comps">
+      <thead>
+        <tr><th>Comparable</th><th>Sold</th><th>How Water Me &amp; You differs</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="title">It Takes Two</td><td class="units">23M+</td><td>Adds a cozy, life-sim layer to two-player adventure</td></tr>
+        <tr><td class="title">Split Fiction</td><td class="units">4M+</td><td>Gentler pace, built for casual and couple play</td></tr>
+        <tr><td class="title">Spiritfarer</td><td class="units">1.5M+</td><td>Brings true 2-player co-op to emotional cozy play</td></tr>
+        <tr><td class="title">Stardew Valley</td><td class="units">30M+</td><td>Adds shared adventure and narrative to the cozy sim</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- WHAT WE BRING -->
+  <section class="section">
+    <div class="eyebrow">Go-To-Market</div>
+    <h2>The marketing is already in motion.</h2>
+    <div class="bring">
+      <ul>
+        <li><strong>Committed influencer + paid UA</strong> across TikTok, Meta and Reddit</li>
+        <li><strong>Youtooz plush collaboration</strong> timed to the Early Access launch</li>
+        <li><strong>Dedicated marketing partner</strong> running creator and community outreach</li>
+      </ul>
+      <ul>
+        <li><strong>Steam Next Fest, Wholesome Direct, Day of the Devs</strong> showcase presence</li>
+        <li><strong>Friend Pass &amp; Founder's Edition</strong> to widen reach and reward early fans</li>
+        <li><strong>Active development</strong> on a clear Early Access to 1.0 content roadmap</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- THE ASK -->
+  <section class="section">
+    <div class="ask">
+      <h2>One platform partner for the reveal.</h2>
+      <p>We are looking for a first-party partner to anchor the moments that matter: the Early Access announcement, the 1.0 console reveal, and launch-window store featuring. In return, a title with a proven cozy-co-op audience, a studio shipping on schedule, and a publisher running the marketing.</p>
+      <p class="soft">Not an exclusivity request. Water Me &amp; You launches across PC and all three consoles. We are offering the announcement and reveal placement.</p>
+      <a class="cta" href="mailto:robert@aurorapunks.com?subject=Water%20Me%20%26%20You%20%E2%80%94%20platform%20partnership">Let's talk — robert@aurorapunks.com</a>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="section">
+    <div class="eyebrow">Roadmap</div>
+    <h2>Where it's headed.</h2>
+    <ul class="road">
+      <li><span class="when">Now</span><span class="what"><strong>Steam Next Fest demo</strong> — public build, creator push</span></li>
+      <li><span class="when anchor">Early Access · Target Feb 2027</span><span class="what"><strong>PC + Xbox</strong> — full game loop, first villages and adventures</span></li>
+      <li><span class="when">Post-EA</span><span class="what"><strong>Regular content updates</strong> — new villages, adventures and mechanics</span></li>
+      <li><span class="when">1.0</span><span class="what"><strong>Full launch across PC and console</strong> — complete game</span></li>
+    </ul>
+    <p class="note">Early Access anchored to February 2027. Later dates firm up as the demo lands.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ap-mark">
+      <img src="./ap-logo.png" alt="Aurora Punks">
+    </div>
+    <div class="contact">
+      Nikola Šoškić, Shosha Games · <a href="mailto:nikola@shoshagames.com">nikola@shoshagames.com</a><br>
+      Robert Bäckström, Aurora Punks · <a href="mailto:robert@aurorapunks.com">robert@aurorapunks.com</a>
+    </div>
+  </footer>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,1602 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Irons 2 · Aurora Punks × Starbreeze</title>
+<meta name="description" content="Aurora Punks co-development proposal for Project Irons 2. A phased team that starts with a senior core in September and peaks under 15 developers.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #08080a;
+  --bg-2: #101014;
+  --panel: #131318;
+  --panel-2: #1a1a21;
+  --line: #2b2b34;
+  --gold: #d9a441;
+  --gold-soft: #f2cf82;
+  --red: #c8452f;
+  --red-soft: #e8765f;
+  --green: #5aa87a;
+  --text: #eceae6;
+  --muted: #a5a19a;
+  --muted-2: #6f6b64;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px; line-height: 1.55;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(circle at 14% 6%, rgba(217,164,65,0.10), transparent 44%),
+    radial-gradient(circle at 88% 62%, rgba(200,69,47,0.08), transparent 48%),
+    linear-gradient(180deg, #08080a 0%, #101014 58%, #08080a 100%);
+  min-height: 100vh;
+}
+
+main { max-width: 1120px; margin: 0 auto; padding: 56px 32px 90px; position: relative; z-index: 1; }
+@media (max-width: 720px) { main { padding: 32px 20px 64px; } }
+
+a { color: var(--gold-soft); }
+
+.eyebrow {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  font-size: 12.5px; color: var(--gold);
+}
+
+h1, h2, h3 { font-family: 'Oswald', sans-serif; line-height: 1.12; }
+
+/* ---- Hero ---- */
+.hero { margin-bottom: 60px; }
+.hero .eyebrow { margin-bottom: 18px; }
+.hero h1 {
+  font-size: 62px; font-weight: 700; margin: 0 0 18px;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  background: linear-gradient(96deg, #fff 0%, var(--gold-soft) 52%, var(--red-soft) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+@media (max-width: 720px) { .hero h1 { font-size: 38px; } }
+.hero .lede {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+  font-size: 24px; color: var(--text); max-width: 780px; margin: 0 0 14px; line-height: 1.35;
+}
+.hero .sub { color: var(--muted); max-width: 760px; font-size: 16.5px; }
+.hero .tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.tag {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14.5px;
+  letter-spacing: 0.06em; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--line); background: rgba(26,26,33,0.7); color: var(--gold-soft);
+}
+
+.hero-art {
+  margin-top: 40px; border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(140deg, #0c0c10 0%, #16161d 55%, #0c0c10 100%);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.65), inset 0 0 0 1px rgba(217,164,65,0.07);
+  padding: 12px 8px 4px;
+}
+.hero-art svg { width: 100%; height: auto; display: block; }
+
+/* ---- Sections ---- */
+section { margin: 72px 0; }
+.section-head { margin-bottom: 26px; }
+.section-head h2 { font-size: 29px; font-weight: 600; margin: 10px 0 0; letter-spacing: 0.6px; text-transform: uppercase; }
+.section-head .eyebrow { display: block; }
+p.body { color: var(--muted); max-width: 830px; }
+p.body strong { color: var(--text); font-weight: 600; }
+
+/* ---- Stat band ---- */
+.stat-band {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+}
+@media (max-width: 720px) { .stat-band { grid-template-columns: repeat(2, 1fr); } }
+.stat { background: var(--panel); padding: 24px 20px; }
+.stat .num {
+  font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 30px;
+  color: var(--gold-soft); line-height: 1;
+}
+.stat .lbl { font-size: 13px; color: var(--muted-2); margin-top: 9px; line-height: 1.35; }
+
+/* ---- Cards ---- */
+.grid { display: grid; gap: 16px; }
+.grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 820px) { .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 22px 20px;
+}
+.card .ico { width: 34px; height: 34px; margin-bottom: 13px; display: block; stroke: var(--gold); }
+.card.accent-red .ico { stroke: var(--red-soft); }
+.card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 19px; font-weight: 700; letter-spacing: 0.05em; margin: 0 0 8px; color: var(--text); text-transform: uppercase; }
+.card p { margin: 0; color: var(--muted); font-size: 14.5px; }
+
+/* ---- Split panels ---- */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.split.thirds { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 820px) { .split, .split.thirds { grid-template-columns: 1fr; } }
+.panel-box {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 26px 24px;
+}
+.panel-box.hi { border-color: rgba(217,164,65,0.35); box-shadow: inset 0 0 0 1px rgba(217,164,65,0.06); }
+.panel-box h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 19px; font-weight: 700; letter-spacing: 0.06em; margin: 0 0 16px; text-transform: uppercase; }
+.panel-box .who { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); margin: -10px 0 16px; font-family: 'Barlow Condensed', sans-serif; }
+.panel-box ul { margin: 0; padding-left: 0; list-style: none; }
+.panel-box li { position: relative; padding-left: 22px; margin-bottom: 11px; color: var(--muted); font-size: 15px; }
+.panel-box li::before {
+  content: ''; position: absolute; left: 0; top: 9px; width: 8px; height: 8px;
+  border: 2px solid var(--gold); border-radius: 1px; transform: rotate(45deg);
+}
+.panel-box.red li::before { border-color: var(--red-soft); }
+.panel-box.grey li::before { border-color: var(--muted-2); }
+.panel-box li strong { color: var(--text); font-weight: 600; }
+
+/* ---- Tables ---- */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+table.k { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 780px; }
+table.k th, table.k td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); }
+table.k th {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--gold); text-transform: uppercase; font-size: 12px; white-space: nowrap;
+}
+table.k td { color: var(--muted); vertical-align: top; }
+table.k td strong { color: var(--text); font-weight: 600; }
+table.k tr:last-child td { border-bottom: none; }
+table.k td.n, table.k th.n { text-align: center; font-variant-numeric: tabular-nums; }
+table.k td.n { color: var(--text); font-weight: 500; }
+table.k th .mo {
+  display: block; font-family: 'Inter', sans-serif; font-weight: 400;
+  font-size: 10px; letter-spacing: 0.01em; text-transform: none;
+  color: var(--muted-2); margin-top: 4px;
+}
+table.k td.zero { color: #3d3a35; }
+table.k tr.total td { border-top: 1px solid var(--gold); background: rgba(217,164,65,0.06); color: var(--text); font-weight: 600; border-bottom: none; }
+table.k tr.total td.n { color: var(--gold-soft); font-family: 'Oswald', sans-serif; font-size: 16px; }
+table.k tr.sep td { padding-top: 20px; }
+table.k td.role { white-space: nowrap; padding-right: 6px; }
+.src-note { font-size: 12.5px; color: var(--muted-2); margin-top: 14px; max-width: 830px; }
+
+/* ---- Timeline ---- */
+.timeline { position: relative; margin-top: 8px; }
+.timeline::before { content: ''; position: absolute; left: 15px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--gold), var(--red)); }
+.tl-item { position: relative; padding: 0 0 26px 52px; }
+.tl-item::before {
+  content: ''; position: absolute; left: 9px; top: 4px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--gold); box-shadow: 0 0 0 4px rgba(217,164,65,0.10);
+}
+.tl-item .phase { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.1em; color: var(--gold-soft); font-size: 13px; text-transform: uppercase; }
+.tl-item h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 19px; font-weight: 700; margin: 3px 0 6px; letter-spacing: 0.03em; }
+.tl-item p { margin: 0; color: var(--muted); font-size: 14.5px; max-width: 740px; }
+
+/* ---- Week strip ---- */
+.weeks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+@media (max-width: 820px) { .weeks { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .weeks { grid-template-columns: 1fr; } }
+.week {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 20px 18px;
+  border-top: 2px solid var(--gold);
+}
+.week .wk { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; }
+.week h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; margin: 8px 0 9px; letter-spacing: 0.03em; }
+.week p { margin: 0; font-size: 14px; color: var(--muted); }
+
+/* ---- Gantt ---- */
+.gantt-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.gantt { min-width: 1040px; }
+.g-head, .g-row, .g-foot { display: grid; grid-template-columns: 268px 1fr; }
+.g-head { background: var(--panel-2); border-bottom: 1px solid var(--line); }
+.g-head .lbl {
+  padding: 12px 16px 10px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; font-size: 12px; color: var(--muted-2); align-self: end;
+}
+.grid13 { display: grid; grid-template-columns: repeat(13, 1fr); }
+.g-band { grid-row: 1; text-align: center; padding: 9px 3px 7px; border-left: 1px solid var(--line); }
+.g-band .ms { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+.g-band .fte { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 15px; color: var(--text); margin-top: 3px; }
+.g-band .fte::after { content: ' FTE'; font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 400; color: var(--muted-2); letter-spacing: 0.05em; }
+.g-mon { grid-row: 2; text-align: center; padding: 5px 2px 8px; border-left: 1px solid rgba(43,43,52,0.55); font-size: 10.5px; color: var(--muted-2); letter-spacing: 0.03em; }
+.g-mon.yr { color: var(--gold-soft); font-weight: 600; }
+.g-group {
+  padding: 17px 16px 6px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-2);
+}
+.g-row .lbl { padding: 5px 12px 5px 16px; font-size: 12px; color: var(--muted); align-self: center; line-height: 1.35; }
+.g-row .tick { grid-row: 1; border-left: 1px solid rgba(43,43,52,0.5); min-height: 28px; }
+.tick.ms-edge, .fcell.ms-edge { border-left-color: var(--line); }
+.g-row .bar {
+  grid-row: 1; align-self: center; height: 14px; border-radius: 3px; margin: 0 2px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.16);
+}
+.g-row .bar.gold  { background: linear-gradient(90deg, #d9a441, #b8862f); }
+.g-row .bar.red   { background: linear-gradient(90deg, #c8452f, #9c3524); }
+.g-row .bar.green { background: linear-gradient(90deg, #5aa87a, #43815d); }
+.g-row .bar.blue  { background: linear-gradient(90deg, #4a7ba8, #3a5f82); }
+.g-row .bar.grey  { background: repeating-linear-gradient(45deg, #5d5951, #5d5951 5px, #46433d 5px, #46433d 10px); }
+.g-foot { border-top: 1px solid var(--line); background: var(--panel-2); }
+.g-foot .lbl {
+  padding: 10px 14px 10px 16px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); align-self: center;
+}
+.g-foot .fcell {
+  grid-row: 1; border-left: 1px solid rgba(43,43,52,0.5); display: flex; flex-direction: column;
+  justify-content: flex-end; align-items: center; height: 72px; padding: 0 5px 8px;
+}
+.g-foot .fnum { font-family: 'Oswald', sans-serif; font-size: 11.5px; color: var(--muted); margin-bottom: 4px; }
+.g-foot .fbar { width: 62%; background: linear-gradient(180deg, #f2cf82, #b8862f); border-radius: 2px 2px 0 0; }
+.g-legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 16px; font-size: 13px; color: var(--muted); }
+.g-legend span { display: flex; align-items: center; gap: 8px; }
+.g-legend i { width: 14px; height: 10px; border-radius: 2px; display: inline-block; }
+
+/* ---- Callout ---- */
+.callout {
+  border: 1px solid rgba(217,164,65,0.4); background: linear-gradient(120deg, rgba(217,164,65,0.08), rgba(200,69,47,0.05));
+  border-radius: 10px; padding: 24px 26px; margin: 26px 0;
+}
+.callout .eyebrow { color: var(--gold); }
+.callout p { margin: 8px 0 0; color: var(--text); font-size: 17.5px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; line-height: 1.42; }
+
+/* ---- Footer ---- */
+footer { margin-top: 80px; border-top: 1px solid var(--line); padding-top: 28px; color: var(--muted-2); font-size: 13px; }
+footer .brand { font-family: 'Oswald', sans-serif; font-weight: 600; color: var(--gold-soft); letter-spacing: 0.12em; }
+.confid { font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-2); margin-top: 10px; }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow">Aurora Punks &middot; Co-development proposal for Starbreeze Studios</div>
+    <h1>Project Irons 2</h1>
+    <p class="lede">Staffing and delivery plan, read against the feature list and milestone structure you sent on 12 August.</p>
+    <p class="sub">A senior group starts in September and settles the technical picture. Production capacity comes on phase by phase as heists enter production. The lead group sits at your office, the rest of the team works between your office and ours, with the balance set per phase. QA sits outside the core team as a separate line.</p>
+    <div class="tag-row">
+      <span class="tag">13 months, Sep 2026 to Sep 2027</span>
+      <span class="tag">Peak 23, ramping from 7.5</span>
+      <span class="tag">Leads on-site at Starbreeze</span>
+      <span class="tag">Full discipline coverage</span>
+      <span class="tag">35,3 MSEK incl. contingency</span>
+    </div>
+
+    <div class="hero-art">
+      <svg viewBox="0 0 1120 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Staffing curve rising from 6.5 in September to a peak of 23 developers in Alpha 2 and back down to 4 in the support month">
+        <defs>
+          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#d9a441" stop-opacity="0.30"/>
+            <stop offset="100%" stop-color="#d9a441" stop-opacity="0.02"/>
+          </linearGradient>
+          <linearGradient id="lineStroke" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#f2cf82"/>
+            <stop offset="55%" stop-color="#d9a441"/>
+            <stop offset="100%" stop-color="#c8452f"/>
+          </linearGradient>
+        </defs>
+
+        <!-- gridlines -->
+        <line x1="70" y1="280" x2="1080" y2="280" stroke="#2b2b34" stroke-width="1"/>
+        <line x1="70" y1="188" x2="1080" y2="188" stroke="#1e1e25" stroke-width="1"/>
+        <line x1="70" y1="96" x2="1080" y2="96" stroke="#1e1e25" stroke-width="1"/>
+        <text x="58" y="285" fill="#6f6b64" font-family="Inter, sans-serif" font-size="11" text-anchor="end">0</text>
+        <text x="58" y="101" fill="#6f6b64" font-family="Inter, sans-serif" font-size="11" text-anchor="end">20</text>
+        <text x="58" y="170" fill="#6f6b64" font-family="Inter, sans-serif" font-size="11" text-anchor="end">10</text>
+
+        <!-- peak marker -->
+        <line x1="70" y1="68" x2="1080" y2="68" stroke="#c8452f" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.75"/>
+        <text x="1080" y="60" fill="#e8765f" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1.6" text-anchor="end">PEAK &middot; 23 DEVELOPERS</text>
+
+        <!-- area + line -->
+        <path d="M70,211 L214,110 L359,87 L503,78 L647,68 L791,105 L936,197 L1080,225 L1080,280 L70,280 Z" fill="url(#areaFill)"/>
+        <path d="M70,211 L214,110 L359,87 L503,78 L647,68 L791,105 L936,197 L1080,225" fill="none" stroke="url(#lineStroke)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+
+        <!-- points + values -->
+        <g fill="#08080a" stroke="#f2cf82" stroke-width="2.5">
+          <circle cx="70" cy="211" r="6"/><circle cx="214" cy="110" r="6"/><circle cx="359" cy="87" r="6"/><circle cx="503" cy="78" r="6"/><circle cx="647" cy="68" r="6"/><circle cx="791" cy="105" r="6"/><circle cx="936" cy="197" r="6"/><circle cx="1080" cy="225" r="6"/>
+        </g>
+        <g fill="#eceae6" font-family="Oswald, sans-serif" font-size="19" font-weight="600" text-anchor="middle">
+          <text x="70" y="194">7.5</text><text x="214" y="93">18.5</text><text x="359" y="70">21</text><text x="503" y="61">22</text><text x="647" y="51">23</text><text x="791" y="88">19</text><text x="936" y="180">9</text><text x="1080" y="208">6</text>
+        </g>
+
+        <!-- phase labels -->
+        <g fill="#a5a19a" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1.2" text-anchor="middle">
+          <text x="70" y="305">SEP</text><text x="214" y="305">FIRST PLAY.</text><text x="359" y="305">PRE-ALPHA</text>
+          <text x="503" y="305">ALPHA 1</text><text x="647" y="305">ALPHA 2</text><text x="791" y="305">BETA</text>
+          <text x="936" y="305">GOLD</text><text x="1080" y="305">SUPPORT</text>
+        </g>
+        <g fill="#6f6b64" font-family="Inter, sans-serif" font-size="11" text-anchor="middle">
+          <text x="70" y="325">1 mo</text><text x="214" y="325">2 mo</text><text x="359" y="325">2 mo</text>
+          <text x="503" y="325">2 mo</text><text x="647" y="325">2 mo</text><text x="791" y="325">2 mo</text>
+          <text x="936" y="325">1 mo</text><text x="1080" y="325">1 mo</text>
+        </g>
+      </svg>
+    </div>
+  </header>
+
+  <!-- HOW WE READ THE BRIEF -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Starting point</span>
+      <h2>How we read the brief</h2>
+    </div>
+    <p class="body">Two bodies of work with different risk profiles. The four new heists are content production with a known shape. The systems work carries the unknowns, because several items depend on the PUBG engine and on decisions still open on your side.</p>
+    <div class="split" style="margin-top:22px">
+      <div class="panel-box hi">
+        <h3>Content</h3>
+        <ul>
+          <li><strong>Four new heists</strong> - Turbid Station, 99 Boxes or Touch The Sky, Syntax Error, Under The Surphaze. Your read is that these run bigger and more complex than the first project, with re-design and complexity reduction assumed. Putting a number on that per level is part of the September evaluation</li>
+          <li><strong>Four existing stages upgraded</strong> - Road Rage, Nightclub, Bank and Diamond District brought up to the new systems baseline</li>
+          <li><strong>Five new weapons</strong> plus balance and feel work on the existing set</li>
+          <li><strong>Cosmetics</strong> ported from PAYDAY 3 as directly as the pipeline allows</li>
+        </ul>
+      </div>
+      <div class="panel-box red">
+        <h3>Systems</h3>
+        <ul>
+          <li><strong>Progression rework</strong> - EXP into virtual currency, free skill and weapon selection, loadout customization</li>
+          <li><strong>Stealth ingredients</strong> - lockpick and safecracker minigames, WIFI hacking, QR codes, motion and floor sensors, security drones, laser detection</li>
+          <li><strong>Restart and return system</strong> including partial escape</li>
+          <li><strong>New AI enemy</strong> (shield) and one additional difficulty level</li>
+          <li><strong>UI and UX pass</strong> across HUD, safehouse, level completion and in-game guidance</li>
+          <li><strong>Engine and 3C changes</strong> - our code lead carries this, with PUBG-side approval on anything that touches the engine</li>
+        </ul>
+      </div>
+    </div>
+    <p class="src-note">Read against the feature list and staffing outline shared 12 August 2026. Several items are still marked TBD on your side, and we have listed the ones that affect our plan under open decisions below.</p>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Groundwork</span>
+      <h2>Audience read</h2>
+    </div>
+    <p class="body">Our own read on the mode's audience, from RankOne Insights behavioural panel data and public performance data. It shaped how we would sequence the work. The data that settles the design questions sits on Krafton's side.</p>
+    <div class="stat-band" style="margin-top:24px">
+      <div class="stat"><div class="num">4.06x</div><div class="lbl">PAYDAY 2 affinity among PUBG players, against a 1.25x figure for PAYDAY 3</div></div>
+      <div class="stat"><div class="num">2.53x</div><div class="lbl">SWAT-style tactical team play, one of the strongest signals in the PUBG fingerprint</div></div>
+      <div class="stat"><div class="num">1.63x</div><div class="lbl">co-op PvE affinity, reaching 40% of the panel</div></div>
+      <div class="stat"><div class="num">1.00x</div><div class="lbl">stealth, sitting exactly at baseline for the same audience</div></div>
+    </div>
+    <p class="src-note">RankOne Insights behavioural panel, 3 109 measured PUBG: Battlegrounds profiles, August 2026. Over-index against the average player: 1.00x is baseline, 2.53x is two and a half times average. The ratios measure what pulls this audience toward a mode, not what they play once inside it. Absolute panel shares run higher than population shares, so we do not lean on them.</p>
+    <div class="split" style="margin-top:26px">
+      <div class="panel-box hi">
+        <h3>What we would raise early</h3>
+        <ul>
+          <li><strong>The crossover affinity runs through PAYDAY 2.</strong> It is strong in both directions, roughly 4x either way, but it is PAYDAY 2 players who overlap with PUBG, not PAYDAY 3 players. That matters for which community the cosmetics, masks and marketing are aimed at</li>
+          <li><strong>The reachable audience over-indexes on loud cooperative play and sits at baseline on stealth.</strong> Our proposal is to introduce the stealth ingredients per heist and measure them, not to cut them</li>
+          <li><strong>The stealth feedback we could find was about the reward, not the mechanics.</strong> One first-hand account, from a player who completed heists in stealth in the first mode, called the 10% completion bonus too small to be worth playing for. Single voice. If your telemetry points the same way, tuning the payout through the new currency economy is cheaper than building any new sensor type</li>
+          <li><strong>A complexity budget per heist, set against the first project as the baseline</strong>, defined up front rather than trimmed at Beta when the cuts are expensive</li>
+        </ul>
+      </div>
+      <div class="panel-box grey">
+        <h3>What would settle it</h3>
+        <ul>
+          <li><strong>Krafton telemetry:</strong> adoption share of the PC base, the stealth versus loud split, completion and retry rates, week-over-week fall-off, event pass attach</li>
+          <li>That dataset resolves several of the open scope questions in one meeting</li>
+          <li>Everything above is measured behaviour, not reported sentiment</li>
+          <li>Full analysis, sources and confidence levels, we bring to the meeting</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Approach</span>
+      <h2>How we want to run it</h2>
+    </div>
+    <p class="body"><strong>Capacity arrives when the work for it exists.</strong> A content team that lands before the technical picture is locked spends its first months producing work that gets revised. Seniority is front-loaded, the picture is locked in September, production follows it.</p>
+    <div class="grid cols-3" style="margin-top:24px">
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M3 20 L8 13 L13 16 L21 5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="21" cy="5" r="2" stroke-width="2"/></svg>
+        <h3>Senior core first</h3>
+        <p>Seven people in September, all leads or senior specialists. They land the technical evaluation and a locked First Playable plan before a single content role is added.</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M4 21 V9 L12 3 L20 9 V21" stroke-width="2" stroke-linejoin="round"/><path d="M9 21 V14 h6 v7" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3>Leads on-site</h3>
+        <p>The lead group sits at your office, on your build, in your standups and reviews. Production roles work between your office and ours, with the split set per phase.</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke-width="2"/><path d="M12 7 v5 l3 3" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>Ramp on the content</h3>
+        <p>Level design and art scale up as heists move into production and scale down as they close. Specialist disciplines come in for the phases that need them and step off after.</p>
+      </div>
+      <div class="card accent-red">
+        <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 3 v18" stroke-width="2" stroke-linecap="round"/><path d="M5 8 h14" stroke-width="2" stroke-linecap="round"/><circle cx="7" cy="14" r="3" stroke-width="2"/><circle cx="17" cy="14" r="3" stroke-width="2"/></svg>
+        <h3>One accountable team</h3>
+        <p>An executive producer accountable to you for the whole delivery, not a set of individually placed contractors. Single point of contact, single point of escalation.</p>
+      </div>
+      <div class="card accent-red">
+        <svg class="ico" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke-width="2"/><path d="M8 10 h8 M8 14 h5" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>QA outside the core</h3>
+        <p>QA runs as a dedicated external function that scales per milestone, so verification capacity is not competing with production capacity for the same headcount.</p>
+      </div>
+      <div class="card accent-red">
+        <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 2 l8 4 v6 c0 5 -3.5 8.5 -8 10 c-4.5 -1.5 -8 -5 -8 -10 V6 z" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3>Engine work on us</h3>
+        <p>We carry the engine and 3C work rather than routing it through the PUBG team. The code and tech art leads open that thread in week one, so the scope is known before content production starts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY THIS SIZE -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Headcount</span>
+      <h2>Why the team is this size</h2>
+    </div>
+    <p class="body">The team is roughly half the size of the plan you outlined. What keeps it down on the left, where it would grow on the right.</p>
+    <div class="split" style="margin-top:22px">
+      <div class="panel-box hi">
+        <h3>What keeps it down</h3>
+        <ul>
+          <li><strong>The evaluation month</strong> - most oversizing comes from producing before the technical picture is settled and then paying for the revisions. September settles it first</li>
+          <li><strong>Heists move through a pipeline</strong> - level design is staffed to the number of heists actually in concurrent production, which is what sets the Alpha 1 peak of four rather than a flat allocation across the project</li>
+          <li><strong>Continuous leads</strong> - every lead role runs from September through Gold. Ramping happens in the production layer and never in the leadership layer, which is where hand-over cost usually shows up</li>
+          <li><strong>Sequenced specialists</strong> - UI, lighting and systems design each get the phase where they are the focus, instead of a seat held for thirteen months</li>
+          <li><strong>QA outside the team</strong> - verification scales on its own and does not take production seats</li>
+        </ul>
+      </div>
+      <div class="panel-box grey">
+        <h3>Where it would go up</h3>
+        <ul>
+          <li>More heists in parallel than four, or a wider HR1 upgrade than the one scoped here</li>
+          <li>Engine and 3C scope landing heavier than the September evaluation indicates</li>
+          <li>A shorter schedule. This plan trades headcount for calendar, and that trade can be reversed</li>
+          <li>Live or seasonal content after Gold, which is outside this plan</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">On team size</span>
+      <p>This is the lean version and it is not a constraint we are attached to. If your agreement with Krafton is priced per head, we can staff deeper and run more heists in parallel. If it is a fixed price, a lean team protects your margin. Tell us which one you are working against.</p>
+    </div>
+  </section>
+
+  <!-- SEPTEMBER ONBOARDING -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">September 2026</span>
+      <h2>Onboarding and technical evaluation</h2>
+    </div>
+    <p class="body">September is a paid evaluation month. Seven senior people onboard at your office and answer three questions: what the PUBG engine will and will not give us, what the four new heists cost once mapped against it, and what the console baseline looks like. <strong>The deliverable is a technical evaluation, a scope recommendation on the open items, and a locked First Playable plan.</strong></p>
+    <div class="weeks" style="margin-top:26px">
+      <div class="week">
+        <div class="wk">Week 1</div>
+        <h3>Access and setup</h3>
+        <p>Desks, hardware, accounts, NDAs, trunk and build access. Code and tech art leads into the engine and the build pipeline. Design lead into the existing heist scripts and the HR1 stages.</p>
+      </div>
+      <div class="week">
+        <div class="wk">Week 2</div>
+        <h3>Technical mapping</h3>
+        <p>The four new heists mapped against engine capability, with the PUBG-side dependencies written down explicitly. Console lead establishes the PS5 and Xbox Series baseline on the current build.</p>
+      </div>
+      <div class="week">
+        <div class="wk">Week 3</div>
+        <h3>Level design evaluation</h3>
+        <p>A technical level design pass across the new heists and the four HR1 stages: what carries over, what needs re-design, where complexity has to come out, and what the stealth ingredients cost per level.</p>
+      </div>
+      <div class="week">
+        <div class="wk">Week 4</div>
+        <h3>Plan lock and hand-over</h3>
+        <p>Evaluation report, scope recommendation on the open decisions, pipeline and tooling requirements, and the First Playable plan with the exact roles that come on in October.</p>
+      </div>
+    </div>
+    <div class="split" style="margin-top:26px">
+      <div class="panel-box hi">
+        <h3>Who lands in September</h3>
+        <ul>
+          <li><strong>Executive Producer</strong> - one producer on the project, accountable for the delivery and your single point of contact</li>
+          <li><strong>Code Lead</strong> - engine, gameplay systems and the technical relationship with the PUBG team</li>
+          <li><strong>Design Lead</strong> - heist design direction, scope calls, systems definition</li>
+          <li><strong>Art Lead</strong> - visual target, art pipeline and the PAYDAY 3 asset path</li>
+          <li><strong>Tech Artist</strong> - heist ingredient scripting, tooling and the art-to-engine pipeline</li>
+          <li><strong>Console Programmer</strong> - PS5 and Xbox Series baseline, performance budget, certification path</li>
+          <li><strong>Level Design (technical evaluation)</strong> - the per-level cost and re-design assessment</li>
+        </ul>
+      </div>
+      <div class="panel-box grey">
+        <h3>What you get at the end of it</h3>
+        <ul>
+          <li>Technical evaluation of the four new heists against the PUBG engine, with the dependencies on your side listed</li>
+          <li>Re-design and complexity assessment per level, including the four HR1 stages</li>
+          <li>A recommendation on each open scope decision, with the production cost attached to each option</li>
+          <li>Console baseline: current performance, target budget, certification risks</li>
+          <li>A locked First Playable plan and the ramp schedule that follows from it</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAFFING -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Team</span>
+      <h2>Staffing by phase</h2>
+    </div>
+    <p class="body">Full-time equivalents per phase. Roles come on when the work exists and step off when it closes. QA is not in this table and is not counted against the headcount.</p>
+    <div class="table-wrap" style="margin-top:22px">
+      <table class="k">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th class="n">Sep<span class="mo">Sep 2026 &middot; 1 mo</span></th>
+            <th class="n">First Play.<span class="mo">Oct to Nov &middot; 2 mo</span></th>
+            <th class="n">Pre-Alpha<span class="mo">Dec to Jan &middot; 2 mo</span></th>
+            <th class="n">Alpha 1<span class="mo">Feb to Mar &middot; 2 mo</span></th>
+            <th class="n">Alpha 2<span class="mo">Apr to May &middot; 2 mo</span></th>
+            <th class="n">Beta<span class="mo">Jun to Jul &middot; 2 mo</span></th>
+            <th class="n">Gold<span class="mo">Aug 2027 &middot; 1 mo</span></th>
+            <th class="n">Support<span class="mo">Sep 2027 &middot; 1 mo</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="role"><strong>Executive Producer</strong></td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td></tr>
+          <tr><td class="role"><strong>Code Lead</strong></td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td></tr>
+          <tr><td class="role"><strong>Gameplay Programmer</strong></td><td class="n zero">&ndash;</td><td class="n">2</td><td class="n">3</td><td class="n">3</td><td class="n">3</td><td class="n">3</td><td class="n">2</td><td class="n">2</td></tr>
+          <tr><td class="role"><strong>Enemy Programmer</strong></td><td class="n zero">&ndash;</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td></tr>
+          <tr><td class="role"><strong>UI Programmer</strong></td><td class="n zero">&ndash;</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td></tr>
+          <tr><td class="role"><strong>Console Programmer</strong></td><td class="n">0.5</td><td class="n">0.5</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td></tr>
+          <tr><td class="role"><strong>Design Lead</strong></td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n zero">&ndash;</td></tr>
+          <tr><td class="role"><strong>Level Designer</strong></td><td class="n">1</td><td class="n">3</td><td class="n">3</td><td class="n">4</td><td class="n">3</td><td class="n">3</td><td class="n">1</td><td class="n zero">&ndash;</td></tr>
+          <tr><td class="role"><strong>Systems Designer</strong></td><td class="n zero">&ndash;</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td></tr>
+          <tr><td class="role"><strong>Technical Designer</strong></td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td></tr>
+          <tr><td class="role"><strong>Art Lead</strong></td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td></tr>
+          <tr><td class="role"><strong>Hard Surface Artist</strong></td><td class="n zero">&ndash;</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td></tr>
+          <tr><td class="role"><strong>Environment / Prop Artist</strong></td><td class="n zero">&ndash;</td><td class="n">1</td><td class="n">2</td><td class="n">2</td><td class="n">3</td><td class="n">1</td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td></tr>
+          <tr><td class="role"><strong>Lighting Artist</strong></td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td><td class="n">1</td><td class="n">1</td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td></tr>
+          <tr><td class="role"><strong>Tech Artist</strong></td><td class="n">1</td><td class="n">2</td><td class="n">2</td><td class="n">2</td><td class="n">2</td><td class="n">2</td><td class="n">1</td><td class="n zero">&ndash;</td></tr>
+          <tr><td class="role"><strong>UI / UX Designer</strong></td><td class="n zero">&ndash;</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td><td class="n zero">&ndash;</td></tr>
+          <tr class="total"><td class="role">Total on project</td><td class="n">7.5</td><td class="n">18.5</td><td class="n">21</td><td class="n">22</td><td class="n">23</td><td class="n">19</td><td class="n">9</td><td class="n">6</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-note">229.5 FTE-months across the 13-month engagement, peaking at 23 concurrent in Alpha 2. Half figures are deliberate: the console programmer runs at 50% through September and First Playable, when the console work is evaluation rather than production. QA sits outside these numbers.</p>
+
+    <div class="split thirds" style="margin-top:26px">
+      <div class="panel-box">
+        <h3>Where the people come from</h3>
+        <ul>
+          <li>Aurora Punks core team</li>
+          <li>Senior specialists from our partner studios in Stockholm</li>
+          <li>Named individuals proposed once scope and structure are agreed, with CVs for every lead role</li>
+        </ul>
+      </div>
+      <div class="panel-box">
+        <h3>Console coverage</h3>
+        <ul>
+          <li>Console programmer on the project from day one</li>
+          <li>PS5 and Xbox Series X/S performance held as a running budget through every milestone</li>
+          <li>Certification path owned end to end, including submission support</li>
+        </ul>
+      </div>
+      <div class="panel-box">
+        <h3>Continuity</h3>
+        <ul>
+          <li>Every lead role is continuous from September through Gold</li>
+          <li>Ramping happens in the production layer, never in the leadership layer</li>
+          <li>The support month keeps the code, console and production knowledge in place after Gold</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- QA -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Quality assurance</span>
+      <h2>QA as an external function</h2>
+    </div>
+    <p class="body">QA as a dedicated external contractor function rather than fixed seats inside the development team, priced as a separate line at <strong>500 SEK per hour</strong> and billed on hours used. A full-time QA month is 80 000 SEK. It scales to the milestone instead of sitting flat across the project, and it does not consume core team capacity.</p>
+    <div class="split" style="margin-top:22px">
+      <div class="panel-box hi">
+        <h3>How it works</h3>
+        <ul>
+          <li><strong>Scaled per milestone</strong> - light during production phases, heavy into each milestone build and through certification</li>
+          <li><strong>Functional and certification QA</strong> both covered, including console compliance passes</li>
+          <li><strong>Reporting into the project</strong> daily, with the producer owning triage and the bug budget</li>
+          <li><strong>500 SEK per hour</strong>, billed on actual hours, separate from the development retainer</li>
+        </ul>
+      </div>
+      <div class="panel-box grey">
+        <h3>Why outside the team</h3>
+        <ul>
+          <li>Verification capacity flexes independently of production capacity</li>
+          <li>You are not paying for peak QA during phases that do not need it</li>
+          <li>Verification stays independent from the people producing the work</li>
+          <li>Volume agreed per milestone once the build cadence is set, so the cost follows the actual need</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- MILESTONES -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Schedule</span>
+      <h2>Milestones</h2>
+    </div>
+    <p class="body">Thirteen months from onboarding to the end of the support window, on the milestone structure you outlined. Dates assume a September 2026 start.</p>
+    <div class="timeline" style="margin-top:24px">
+      <div class="tl-item">
+        <div class="phase">September 2026 &middot; 7.5 people</div>
+        <h3>Onboarding and technical evaluation</h3>
+        <p>Senior core on-site. Engine and console evaluation, level design assessment, scope recommendations, locked First Playable plan.</p>
+      </div>
+      <div class="tl-item">
+        <div class="phase">October to November 2026 &middot; 18.5 people</div>
+        <h3>First Playable</h3>
+        <p>First new heist playable end to end. Progression rework defined and prototyped, first new weapons in, stealth ingredients proven on one level.</p>
+      </div>
+      <div class="tl-item">
+        <div class="phase">December 2026 to January 2027 &middot; 21 people</div>
+        <h3>Pre-Alpha</h3>
+        <p>Two heists in production. Progression and loadout systems functional, UI and UX pass defined and the new HUD and safehouse flows built out.</p>
+      </div>
+      <div class="tl-item">
+        <div class="phase">February to March 2027 &middot; 22 people</div>
+        <h3>Alpha 1</h3>
+        <p>All four new heists in production, level design at peak. Shield enemy in, additional difficulty level in, restart and return system implemented.</p>
+      </div>
+      <div class="tl-item">
+        <div class="phase">April to May 2027 &middot; 23 people</div>
+        <h3>Alpha 2</h3>
+        <p>Feature complete. The four HR1 stages upgraded to the new systems baseline, art and lighting production at peak, weapon balance pass across the full set.</p>
+      </div>
+      <div class="tl-item">
+        <div class="phase">June to July 2027 &middot; 19 people</div>
+        <h3>Beta</h3>
+        <p>Content complete, polish and stabilization. Console performance to target, cosmetics integrated, tutorial and onboarding finished.</p>
+      </div>
+      <div class="tl-item">
+        <div class="phase">August 2027 &middot; 9 people</div>
+        <h3>Gold</h3>
+        <p>Certification, submission support and release candidate stabilization on all platforms.</p>
+      </div>
+      <div class="tl-item">
+        <div class="phase">September 2027 &middot; 6 people</div>
+        <h3>Support</h3>
+        <p>Post-release support with the code, console and production knowledge still in place. Extendable if you want a longer live window.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FEATURE PLAN -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Feature plan</span>
+      <h2>Your feature list against the milestone schedule</h2>
+    </div>
+    <p class="body">Your list, sequenced across the thirteen months at month resolution rather than by phase, so the durations are real rather than rounded to the nearest milestone. The developer count along the bottom is what the work stacked above it needs, month by month. Sequencing is our proposal and we expect you to move things around inside it.</p>
+    <div class="gantt-wrap" style="margin-top:24px">
+      <div class="gantt">
+        <div class="g-head">
+          <div class="lbl">Feature</div>
+          <div class="grid13">
+            <div class="g-band" style="grid-column:1/2"><div class="ms">Sep</div><div class="fte">7.5</div></div>
+            <div class="g-band" style="grid-column:2/4"><div class="ms">First Playable</div><div class="fte">18.5</div></div>
+            <div class="g-band" style="grid-column:4/6"><div class="ms">Pre-Alpha</div><div class="fte">21</div></div>
+            <div class="g-band" style="grid-column:6/8"><div class="ms">Alpha 1</div><div class="fte">22</div></div>
+            <div class="g-band" style="grid-column:8/10"><div class="ms">Alpha 2</div><div class="fte">23</div></div>
+            <div class="g-band" style="grid-column:10/12"><div class="ms">Beta</div><div class="fte">19</div></div>
+            <div class="g-band" style="grid-column:12/13"><div class="ms">Gold</div><div class="fte">9</div></div>
+            <div class="g-band" style="grid-column:13/14"><div class="ms">Support</div><div class="fte">6</div></div>
+            <div class="g-mon" style="grid-column:1">Sep</div>
+            <div class="g-mon" style="grid-column:2">Oct</div>
+            <div class="g-mon" style="grid-column:3">Nov</div>
+            <div class="g-mon" style="grid-column:4">Dec</div>
+            <div class="g-mon yr" style="grid-column:5">Jan</div>
+            <div class="g-mon" style="grid-column:6">Feb</div>
+            <div class="g-mon" style="grid-column:7">Mar</div>
+            <div class="g-mon" style="grid-column:8">Apr</div>
+            <div class="g-mon" style="grid-column:9">May</div>
+            <div class="g-mon" style="grid-column:10">Jun</div>
+            <div class="g-mon" style="grid-column:11">Jul</div>
+            <div class="g-mon" style="grid-column:12">Aug</div>
+            <div class="g-mon" style="grid-column:13">Sep</div>
+          </div>
+        </div>
+        <div class="g-group">Engine and platform</div>
+        <div class="g-row">
+          <div class="lbl">Engine and 3C evaluation</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar red" style="grid-column:1/2" title="Sep"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Engine and 3C modifications</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar red" style="grid-column:2/6" title="Oct to Jan"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Go / no-go against the movement fallback</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar red" style="grid-column:6/7" title="Feb"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Console baseline on the current build</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar red" style="grid-column:1/2" title="Sep"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Console performance to target budget</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar red" style="grid-column:8/12" title="Apr to Jul"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Certification and submission</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar red" style="grid-column:12/13" title="Aug"></div>
+          </div>
+        </div>
+        <div class="g-group">Heist content</div>
+        <div class="g-row">
+          <div class="lbl">Technical level design evaluation, all eight stages</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar gold" style="grid-column:1/2" title="Sep"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Heist 1, end to end, pipeline established</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar gold" style="grid-column:2/8" title="Oct to Mar"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Heist 2</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar gold" style="grid-column:4/9" title="Dec to Apr"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Heist 3</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar gold" style="grid-column:6/10" title="Feb to May"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Heist 4</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar gold" style="grid-column:7/11" title="Mar to Jun"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">The four HR1 stages, to the new systems baseline</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar gold" style="grid-column:8/12" title="Apr to Jul"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Five new weapons</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar gold" style="grid-column:4/10" title="Dec to May"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Weapon balance, stats and feel pass</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar gold" style="grid-column:8/12" title="Apr to Jul"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Lighting pass across all eight stages</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar gold" style="grid-column:8/13" title="Apr to Aug"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">PAYDAY 3 cosmetics and masks import</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar gold" style="grid-column:9/12" title="May to Jul"></div>
+          </div>
+        </div>
+        <div class="g-group">Systems</div>
+        <div class="g-row">
+          <div class="lbl">Progression design, EXP to currency, skills, loadout</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar green" style="grid-column:2/4" title="Oct to Nov"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Progression build and economy</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar green" style="grid-column:4/8" title="Dec to Mar"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Default loadout presets and balance</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar green" style="grid-column:7/10" title="Mar to May"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Stealth ingredients, first set</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar green" style="grid-column:3/6" title="Nov to Jan"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Stealth reward tuning through the economy</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar green" style="grid-column:5/8" title="Jan to Mar"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Stealth ingredients, second set, telemetry gated</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar green" style="grid-column:7/10" title="Mar to May"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Restart, return and partial escape</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar green" style="grid-column:4/8" title="Dec to Mar"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Shield enemy</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar green" style="grid-column:6/8" title="Feb to Mar"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Additional difficulty level</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar green" style="grid-column:7/10" title="Mar to May"></div>
+          </div>
+        </div>
+        <div class="g-group">UI, UX and onboarding</div>
+        <div class="g-row">
+          <div class="lbl">UX definition, HUD, safehouse, completion screen</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar blue" style="grid-column:4/6" title="Dec to Jan"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">UI implementation</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar blue" style="grid-column:4/8" title="Dec to Mar"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">In-game guidance and tutorial updates</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar blue" style="grid-column:8/12" title="Apr to Jul"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Marketing key art and splash screens</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar blue" style="grid-column:10/12" title="Jun to Jul"></div>
+          </div>
+        </div>
+        <div class="g-group">Release</div>
+        <div class="g-row">
+          <div class="lbl">Content lock, polish and stabilization</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar red" style="grid-column:10/12" title="Jun to Jul"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Post-release support</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar red" style="grid-column:13/14" title="Sep"></div>
+          </div>
+        </div>
+        <div class="g-group">QA, outside the core headcount</div>
+        <div class="g-row">
+          <div class="lbl">Functional QA, scaled to each milestone build</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar grey" style="grid-column:2/12" title="Oct to Jul"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="lbl">Certification and compliance passes</div>
+          <div class="grid13">
+            <div class="tick ms-edge" style="grid-column:1"></div>
+            <div class="tick ms-edge" style="grid-column:2"></div>
+            <div class="tick" style="grid-column:3"></div>
+            <div class="tick ms-edge" style="grid-column:4"></div>
+            <div class="tick" style="grid-column:5"></div>
+            <div class="tick ms-edge" style="grid-column:6"></div>
+            <div class="tick" style="grid-column:7"></div>
+            <div class="tick ms-edge" style="grid-column:8"></div>
+            <div class="tick" style="grid-column:9"></div>
+            <div class="tick ms-edge" style="grid-column:10"></div>
+            <div class="tick" style="grid-column:11"></div>
+            <div class="tick ms-edge" style="grid-column:12"></div>
+            <div class="tick ms-edge" style="grid-column:13"></div>
+            <div class="bar grey" style="grid-column:10/13" title="Jun to Aug"></div>
+          </div>
+        </div>
+        <div class="g-foot">
+          <div class="lbl">Developers on project</div>
+          <div class="grid13">
+            <div class="fcell ms-edge" style="grid-column:1"><div class="fnum">7.5</div><div class="fbar" style="height:13px"></div></div>
+            <div class="fcell ms-edge" style="grid-column:2"><div class="fnum">18.5</div><div class="fbar" style="height:32px"></div></div>
+            <div class="fcell" style="grid-column:3"><div class="fnum">18.5</div><div class="fbar" style="height:32px"></div></div>
+            <div class="fcell ms-edge" style="grid-column:4"><div class="fnum">21</div><div class="fbar" style="height:37px"></div></div>
+            <div class="fcell" style="grid-column:5"><div class="fnum">21</div><div class="fbar" style="height:37px"></div></div>
+            <div class="fcell ms-edge" style="grid-column:6"><div class="fnum">22</div><div class="fbar" style="height:38px"></div></div>
+            <div class="fcell" style="grid-column:7"><div class="fnum">22</div><div class="fbar" style="height:38px"></div></div>
+            <div class="fcell ms-edge" style="grid-column:8"><div class="fnum">23</div><div class="fbar" style="height:40px"></div></div>
+            <div class="fcell" style="grid-column:9"><div class="fnum">23</div><div class="fbar" style="height:40px"></div></div>
+            <div class="fcell ms-edge" style="grid-column:10"><div class="fnum">19</div><div class="fbar" style="height:33px"></div></div>
+            <div class="fcell" style="grid-column:11"><div class="fnum">19</div><div class="fbar" style="height:33px"></div></div>
+            <div class="fcell ms-edge" style="grid-column:12"><div class="fnum">9</div><div class="fbar" style="height:16px"></div></div>
+            <div class="fcell ms-edge" style="grid-column:13"><div class="fnum">6</div><div class="fbar" style="height:10px"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="g-legend">
+      <span><i style="background:#c8452f"></i> Engine, platform and release</span>
+      <span><i style="background:#d9a441"></i> Heist content</span>
+      <span><i style="background:#5aa87a"></i> Systems</span>
+      <span><i style="background:#4a7ba8"></i> UI, UX and onboarding</span>
+      <span><i style="background:repeating-linear-gradient(45deg,#5d5951,#5d5951 4px,#46433d 4px,#46433d 8px)"></i> QA, outside the headcount</span>
+    </div>
+    <div class="split" style="margin-top:26px">
+      <div class="panel-box hi">
+        <h3>The four decisions behind this ordering</h3>
+        <ul>
+          <li><strong>The HR1 upgrades sit late, at Alpha 2.</strong> The four existing stages are being brought up to a systems baseline that does not exist until the new systems are locked. Upgrading them earlier means upgrading them twice</li>
+          <li><strong>The heists are staggered, not parallel.</strong> One proves the pipeline at First Playable, the second follows it, and three and four run together once the pipeline is known. That is what lets level design peak at three people instead of five</li>
+          <li><strong>Stealth ships in two sets.</strong> The first set goes in early enough to be measured. The second is gated on what the first set and your telemetry show</li>
+          <li><strong>Engine work is front-loaded and fenced.</strong> It starts in September and finishes at Pre-Alpha, with a go or no-go against a movement fallback at Alpha 1. Nothing downstream is allowed to depend on it past that gate</li>
+        </ul>
+      </div>
+      <div class="panel-box grey">
+        <h3>Constraints in the schedule</h3>
+        <ul>
+          <li><strong>September produces decisions, not content.</strong> Seven and a half people cover it</li>
+          <li><strong>February to May is the peak at 23.</strong> Heist production, systems, art and UI overlap through those months</li>
+          <li><strong>Nothing new starts after May.</strong> June and July are convergence only: the HR1 upgrades finishing, balance, tutorial, cosmetics and stabilization</li>
+          <li><strong>August is certification and nothing else</strong></li>
+          <li><strong>QA runs as a band underneath</strong>, scaling to each milestone build and widening through certification, outside the developer count</li>
+        </ul>
+      </div>
+    </div>
+    <p class="src-note">September 2026 through September 2027. Built from the feature list you sent on 12 August. Items still marked TBD on your side are placed at the scope we would assume today, and the September evaluation is what turns those assumptions into costed decisions.</p>
+  </section>
+
+  <!-- SPLIT OF RESPONSIBILITIES -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Working model</span>
+      <h2>Split of responsibilities</h2>
+    </div>
+    <p class="body">Our team works inside your process. This is what we assume going in, and the first thing to confirm with you.</p>
+    <div class="split thirds" style="margin-top:22px">
+      <div class="panel-box hi">
+        <h3>Aurora Punks</h3>
+        <div class="who">Delivery</div>
+        <ul>
+          <li>Heist production, new and upgraded</li>
+          <li>Engine and 3C modifications</li>
+          <li>Progression, loadout and stealth systems</li>
+          <li>Weapon art, balance and integration</li>
+          <li>UI and UX implementation</li>
+          <li>Console delivery and certification</li>
+          <li>Production management and reporting</li>
+        </ul>
+      </div>
+      <div class="panel-box red">
+        <h3>Starbreeze</h3>
+        <div class="who">Direction and IP</div>
+        <ul>
+          <li>Creative direction and final approval</li>
+          <li>PAYDAY IP, brand and franchise decisions</li>
+          <li>VO and music, per your feature list</li>
+          <li>PAYDAY 3 source assets for the cosmetics path</li>
+          <li>Krafton relationship and approvals</li>
+          <li>Build, trunk and infrastructure access</li>
+        </ul>
+      </div>
+      <div class="panel-box grey">
+        <h3>PUBG team</h3>
+        <div class="who">Access and approval</div>
+        <ul>
+          <li>Engine access, and approval on changes that touch the engine</li>
+          <li>Technical constraints on the new heist designs</li>
+          <li>Review of engine-level work at the points you want it reviewed</li>
+          <li>A named technical counterpart so questions do not queue behind a general channel</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMERCIALS -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Commercials</span>
+      <h2>Indicative cost per phase</h2>
+    </div>
+    <p class="body">A flat retainer of <strong>140 000 SEK per developer per month</strong>, the same for a lead as for a content role, across every phase. One number rather than a per-role rate card and hourly reconciliation. A scope change costs a number of people for a number of months. Indicative and for planning only, final structure to be agreed.</p>
+    <div class="table-wrap" style="margin-top:22px">
+      <table class="k">
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Period</th>
+            <th class="n">Team</th>
+            <th class="n">Months</th>
+            <th class="n">FTE-months</th>
+            <th class="n">Per month (SEK)</th>
+            <th class="n">Phase total (SEK)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Onboarding &amp; evaluation</strong></td><td>Sep 2026</td><td class="n">7.5</td><td class="n">1</td><td class="n">7.5</td><td class="n">1 050 000</td><td class="n">1 050 000</td></tr>
+          <tr><td><strong>First Playable</strong></td><td>Oct to Nov 2026</td><td class="n">18.5</td><td class="n">2</td><td class="n">37</td><td class="n">2 590 000</td><td class="n">5 180 000</td></tr>
+          <tr><td><strong>Pre-Alpha</strong></td><td>Dec 2026 to Jan 2027</td><td class="n">21</td><td class="n">2</td><td class="n">42</td><td class="n">2 940 000</td><td class="n">5 880 000</td></tr>
+          <tr><td><strong>Alpha 1</strong></td><td>Feb to Mar 2027</td><td class="n">22</td><td class="n">2</td><td class="n">44</td><td class="n">3 080 000</td><td class="n">6 160 000</td></tr>
+          <tr><td><strong>Alpha 2</strong></td><td>Apr to May 2027</td><td class="n">23</td><td class="n">2</td><td class="n">46</td><td class="n">3 220 000</td><td class="n">6 440 000</td></tr>
+          <tr><td><strong>Beta</strong></td><td>Jun to Jul 2027</td><td class="n">19</td><td class="n">2</td><td class="n">38</td><td class="n">2 660 000</td><td class="n">5 320 000</td></tr>
+          <tr><td><strong>Gold</strong></td><td>Aug 2027</td><td class="n">9</td><td class="n">1</td><td class="n">9</td><td class="n">1 260 000</td><td class="n">1 260 000</td></tr>
+          <tr><td><strong>Support</strong></td><td>Sep 2027</td><td class="n">6</td><td class="n">1</td><td class="n">6</td><td class="n">840 000</td><td class="n">840 000</td></tr>
+          <tr class="total"><td>Delivery subtotal</td><td>13 months</td><td class="n">23 peak</td><td class="n">13</td><td class="n">229.5</td><td class="n">&ndash;</td><td class="n">32 130 000</td></tr>
+          <tr class="total"><td>Contingency, 10%</td><td>held against the risks named in this document</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td class="n">3 213 000</td></tr>
+          <tr class="total"><td>Total budget</td><td>Sep 2026 to Sep 2027</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td class="n">35 343 000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout" style="margin-top:24px">
+      <span class="eyebrow">On the contingency</span>
+      <p>The 10% sits on top of the delivery number rather than inside the phase rates. It is held against the risks this document names: the engine and 3C scope landing heavier than the September evaluation indicates, scope decisions still open on your side, and the certification tail. It is drawn on by agreement, and what is not drawn is not invoiced.</p>
+    </div>
+    <div class="split" style="margin-top:24px">
+      <div class="panel-box hi">
+        <h3>What is included</h3>
+        <ul>
+          <li>All roles in the staffing table, with the lead group on-site at your office in Stockholm</li>
+          <li>Engine and 3C work</li>
+          <li>Production management, reporting and milestone documentation</li>
+          <li>Console delivery and certification support</li>
+          <li>Hardware, tooling and our software licences, carried inside the retainer</li>
+        </ul>
+      </div>
+      <div class="panel-box grey">
+        <h3>Not included</h3>
+        <ul>
+          <li><strong>QA</strong> - a separate line at 500 SEK per hour, see below</li>
+          <li>VO, music and PAYDAY 3 source assets, provided by Starbreeze</li>
+          <li>Platform and submission fees</li>
+          <li>VAT</li>
+        </ul>
+      </div>
+    </div>
+    <p class="src-note">Indicative only, not a binding offer. Delivery subtotal 32 130 000 SEK plus a 10% contingency of 3 213 000 SEK gives a total budget of 35 343 000 SEK. QA is in neither figure and is quoted separately at 500 SEK per hour. The September phase can be contracted on its own.</p>
+  </section>
+
+  <!-- OPEN DECISIONS -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Before we start</span>
+      <h2>Open items and due diligence</h2>
+    </div>
+    <p class="body">The first group blocks the start and needs resolving before September. The second is the due diligence our lead team runs during the month, pitched at pipeline and structure rather than at individual features. The feature-level decisions still on your TBD list get costed as a by-product of it.</p>
+    <div class="split" style="margin-top:22px">
+      <div class="panel-box hi">
+        <h3>Needed to start</h3>
+        <ul>
+          <li><strong>Build and trunk access</strong>, plus the design documentation behind the first project</li>
+          <li><strong>Desk space</strong> for the on-site group, ramping from a handful in September to a peak in spring</li>
+          <li><strong>The 3C and movement scope, written down.</strong> We need to know what you intend to change before we can cost it. Our number here is an assumption, not a calculation, and it is the largest single variable in the plan</li>
+          <li><strong>A named technical counterpart on the PUBG side</strong> and an agreed way of working on engine changes</li>
+          <li><strong>Krafton guidance on the restart and escape system</strong>, which you flagged as likely needed</li>
+        </ul>
+      </div>
+      <div class="panel-box red">
+        <h3>What our leads assess in September</h3>
+        <ul>
+          <li><strong>Build and tools</strong> - build times, pipeline health, and how long it takes to get from a change to something playable. This number sets the pace of everything after it</li>
+          <li><strong>Art pipeline</strong> - what the PAYDAY 3 asset path actually gives us inside the PUBG engine, and the real cost per asset class rather than the assumed one</li>
+          <li><strong>Tech debt</strong> - what the first project left behind, how much of it we inherit, and the state of the engine fork we would be working in</li>
+          <li><strong>Console baseline</strong> - current performance against target budget, and the certification risks that follow from it</li>
+          <li><strong>Design challenges</strong> - the structural ones rather than the feature list: how far stealth can go for this particular audience, whether the progression rework holds up against how the mode is actually played, and where the difficulty curve lands</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUESTIONS -->
+  <section id="questions">
+    <div class="section-head">
+      <span class="eyebrow">Questions</span>
+      <h2>What we would want to talk through</h2>
+    </div>
+    <p class="body">Questions for a first working session. Some move the plan and the cost. Some are player-experience calls that are cheaper to settle now than after something is built.</p>
+    <div class="split" style="margin-top:24px">
+      <div class="panel-box red">
+        <h3>Scope, and what it costs</h3>
+        <ul>
+          <li><strong>3C and movement, in detail.</strong> This is the single biggest scope factor in the plan and the one we can estimate least well from outside. We would want it broken down: which specific changes to movement and feel are in, who signs off on each, what the acceptance test looks like, and how much of it runs on the PUBG team's calendar rather than ours. Until that list exists, our number for this workstream is an estimate</li>
+          <li><strong>Game mechanics and side objectives.</strong> Your own list says scope and complexity here still needs defining, and floats removing the high-complexity side objectives. We would like that conversation early and with player expectations on the table, because it costs a fraction in September of what it costs at Beta</li>
+        </ul>
+      </div>
+      <div class="panel-box hi">
+        <h3>Player experience, and what we are aiming at</h3>
+        <ul>
+          <li><strong>EXP into virtual currency.</strong> Worth deciding whether this is a genuinely spendable currency or a renamed unlock counter. A real one needs sinks, pricing and exploit review, which is systems work rather than a feature toggle. There is also the question of whether it connects to PUBG's own economy or lives only inside the mode. That reads as a franchise decision more than a design one, and it probably needs Krafton in the room</li>
+          <li><strong>Stealth mechanics against stealth systems.</strong> Your avoid-list tells us clearly what you do not want to build. What we would like to hear is the player experience you are aiming at, because that decides how many ingredient types are worth building and how they should be introduced. Our own view is that how well stealth pays through the new currency matters at least as much as how many tools it offers</li>
+          <li><strong>Extraction and escape.</strong> Partial escape is the feature we found the clearest player demand for, but the edge cases decide whether it lands: reward splits, leaver behaviour, spectate flow, and what stops three players extracting while the fourth holds the timer. What is the expectation, and how much of it is Krafton's ruling rather than a design call we can make?</li>
+          <li><strong>Menus and UI.</strong> If you have telemetry on where players stall in the menus, or a list of the friction you already know about from the first mode, that is what we would design against</li>
+        </ul>
+      </div>
+    </div>
+    <p class="src-note">None of these block a start. They are the things to decide in September rather than assume and correct later.</p>
+  </section>
+
+  <!-- NEXT STEPS -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Next</span>
+      <h2>Next steps</h2>
+    </div>
+    <div class="split thirds" style="margin-top:6px">
+      <div class="panel-box">
+        <h3>1. Walk through this</h3>
+        <ul>
+          <li>A session with you and Matt to align on the shape of the team and the split of responsibilities</li>
+        </ul>
+      </div>
+      <div class="panel-box">
+        <h3>2. Agree September</h3>
+        <ul>
+          <li>Contract the evaluation month on its own, with the deliverables listed above as the acceptance criteria</li>
+        </ul>
+      </div>
+      <div class="panel-box">
+        <h3>3. Commit on evidence</h3>
+        <ul>
+          <li>Lock scope, staffing and commercials for the full engagement on the back of the September evaluation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div><span class="brand">AURORA PUNKS</span> &times; Starbreeze Studios</div>
+    <div style="margin-top:6px">Project Irons 2 &middot; co-development proposal &middot; August 2026</div>
+    <div class="confid">Confidential &middot; Indicative, not a binding offer</div>
+  </footer>
+
+</main>
+</body>
+</html>

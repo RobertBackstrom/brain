@@ -1,0 +1,118 @@
+# GitHub Actions workflow for uploading Steam builds
+#
+# This workflow builds your game and uploads it to Steam using SteamCMD.
+# Triggered on tags (e.g., v1.2.3) to deploy releases.
+#
+# Setup:
+# 1. Add secrets in GitHub repo settings:
+#    - STEAM_USERNAME: Your Steam account username
+#    - STEAM_PASSWORD: Your Steam account password
+#    - STEAM_GUARD_CODE: Steam Guard code (optional, for first-time auth)
+#    - STEAMWORKS_API_KEY: Your Steamworks Publisher API key
+# 2. Update the env variables below with your app/depot IDs
+# 3. Customize the build steps for your game
+
+name: Deploy to Steam
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Triggers on version tags like v1.2.3
+  workflow_dispatch:  # Allow manual trigger
+
+env:
+  STEAM_APP_ID: 123456  # Replace with your Steam App ID
+  STEAM_DEPOT_ID: 123457  # Replace with your Depot ID
+  BUILD_OUTPUT_DIR: ${{ github.workspace }}/steam-build
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Build game
+        run: |
+          # Replace this with your actual build commands
+          # Examples:
+          # - Unity: /path/to/Unity -quit -batchmode -projectPath . -buildLinux64Player ./build/game
+          # - Unreal: RunUAT BuildCookRun -project=MyGame.uproject -platform=Win64
+          # - Godot: godot --export "Linux/X11" ./build/game.x86_64
+          echo "Building game..."
+          mkdir -p ${{ env.BUILD_OUTPUT_DIR }}
+          # Your build commands here
+
+      - name: Install SteamCMD
+        run: |
+          sudo add-apt-repository multiverse
+          sudo dpkg --add-architecture i386
+          sudo apt update
+          sudo apt install -y steamcmd
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Steamworks MCP
+        run: |
+          cd ${{ github.workspace }}
+          # Clone or download the Steamworks MCP server
+          # For now, assuming it's in a subdirectory
+          npm install --prefix ./steamworks-mcp
+
+      - name: Generate build script
+        run: |
+          cd ./steamworks-mcp
+          node -e "
+          const { prepareBuildUpload } = require('./dist/steamcmd.js');
+
+          prepareBuildUpload({
+            appId: ${{ env.STEAM_APP_ID }},
+            depotId: ${{ env.STEAM_DEPOT_ID }},
+            contentRoot: '${{ env.BUILD_OUTPUT_DIR }}',
+            outputPath: './steam-scripts',
+            buildDescription: 'Release ${{ steps.version.outputs.VERSION }} - Built by GitHub Actions',
+            setLive: 'default'  // Set to 'beta' for beta branch
+          }).then(scriptPath => {
+            console.log('Build script created:', scriptPath);
+          });
+          "
+
+      - name: Upload to Steam
+        env:
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+        run: |
+          steamcmd +login "$STEAM_USERNAME" "$STEAM_PASSWORD" \
+            +run_app_build ./steamworks-mcp/steam-scripts/app_build_${{ env.STEAM_APP_ID }}.vdf \
+            +quit
+
+      - name: Verify build via API
+        env:
+          STEAMWORKS_API_KEY: ${{ secrets.STEAMWORKS_API_KEY }}
+        run: |
+          # Use the MCP server to verify the build was uploaded
+          curl -X GET "https://partner.steam-api.com/ISteamApps/GetAppBuilds/v1?key=$STEAMWORKS_API_KEY&appid=${{ env.STEAM_APP_ID }}" \
+            | jq '.response.builds[0]'
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.version.outputs.VERSION }}
+          name: Release ${{ steps.version.outputs.VERSION }}
+          body: |
+            ## Steam Build Deployed
+            - App ID: ${{ env.STEAM_APP_ID }}
+            - Version: ${{ steps.version.outputs.VERSION }}
+            - Branch: default
+
+            Build uploaded to Steam successfully.
+          draft: false
+          prerelease: false

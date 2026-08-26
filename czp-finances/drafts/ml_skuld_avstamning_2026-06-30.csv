@@ -1,0 +1,78 @@
+﻿CZP -> Magnus Liljedahl AB - avstamning skuld och ranta;;;;;;
+Underlag: SIE4 konto 2890, rakenskapsar 2020-2026 (Fortnox). Avstamningsdag 2026-06-30;;;;;;
+Ranta 4,00% p.a., actual/365, pa utestaende kapital. Ha Bra Liv raknat INKL moms.;;;;;;
+;;;;;;
+DEL 1 - KAPITALRORELSER;;;;;;
+Datum;Ver;Typ;Rorelse;varav moms tillagd;Utestaende kapital;Text
+2020-11-30;A7;Utlåning/ökning;-1 300 000,00;0,00;1 300 000,00;Magnus Liljedahl AB
+2022-06-23;A29;Utlåning/ökning;-1 063 000,00;0,00;2 363 000,00; (INVESTERING)
+2022-10-11;D126;Amortering;63 000,00;0,00;2 300 000,00;Levfakt Magnus Liljedahl AB (286)
+2022-12-31;A78;Utlåning/ökning;-1 700 000,00;0,00;4 000 000,00;Omf lån 
+2023-03-31;D72;Amortering;150 000,00;0,00;3 850 000,00;Levfakt Magnus Liljedahl AB (344)
+2023-06-30;D79;Amortering;350 000,00;0,00;3 500 000,00;Levfakt Magnus Liljedahl AB (345)
+2023-08-22;D97;Amortering;100 000,00;0,00;3 400 000,00;Levfakt Magnus Liljedahl AB (423)
+2023-08-22;D109;Amortering;150 000,00;0,00;3 250 000,00;Levfakt Magnus Liljedahl AB (419)
+2023-08-22;D110;Amortering;100 000,00;0,00;3 150 000,00;Levfakt Magnus Liljedahl AB (420)
+2023-09-19;D118;Utlåning/ökning;-350 000,00;0,00;3 500 000,00;Levkreditfakt Magnus Liljedahl AB (443)
+2023-09-30;D93;Amortering;250 000,00;0,00;3 250 000,00;Levfakt Magnus Liljedahl AB (346)
+2023-12-31;D94;Amortering;250 000,00;0,00;3 000 000,00;Levfakt Magnus Liljedahl AB (347)
+2025-01-07;D4;Kvittning Ha Bra Liv;6 000,00;0,00;2 994 000,00;Levfakt Ha Bra Liv Stockholm AB (648)
+2025-02-13;D6;Kvittning Ha Bra Liv;7 696,00;0,00;2 986 304,00;Levfakt Ha Bra Liv Stockholm AB (653)
+2025-02-17;E17;Utlåning/ökning;-557 497,00;0,00;3 543 801,00;Levbet Magnus Liljedahl AB (622)
+2025-02-26;D9;Kvittning Ha Bra Liv;6 000,00;0,00;3 537 801,00;Levfakt Ha Bra Liv Stockholm AB (702)
+2025-02-26;D10;Kvittning Ha Bra Liv;7 696,00;0,00;3 530 105,00;Levfakt Ha Bra Liv Stockholm AB (711)
+2025-03-13;A60;Amortering;11 000,00;0,00;3 519 105,00;52661033513 211201492884
+2025-03-14;D7;Amortering;25 000,00;0,00;3 494 105,00;Levfakt Magnus Liljedahl AB (678)
+2025-03-31;D29;Kvittning Ha Bra Liv;7 500,00;0,00;3 486 605,00;Levfakt Ha Bra Liv Stockholm AB (713)
+2025-04-14;D22;Amortering;25 000,00;0,00;3 461 605,00;Levfakt Magnus Liljedahl AB (679)
+2025-04-30;D41;Kvittning Ha Bra Liv;1 500,00;0,00;3 460 105,00;Levfakt Ha Bra Liv Stockholm AB (727)
+2025-05-14;D46;Amortering;25 000,00;0,00;3 435 105,00;Levfakt Magnus Liljedahl AB (682)
+2025-05-31;D54;Kvittning Ha Bra Liv;3 000,00;0,00;3 432 105,00;Levfakt Ha Bra Liv Stockholm AB (737)
+2025-06-14;D58;Amortering;25 000,00;0,00;3 407 105,00;Levfakt Magnus Liljedahl AB (675)
+2025-07-04;D74;Kvittning Ha Bra Liv;1 500,00;0,00;3 405 605,00;Levfakt Ha Bra Liv Stockholm AB (749)
+2025-07-14;D68;Amortering;75 000,00;0,00;3 330 605,00;Levfakt Magnus Liljedahl AB (683)
+2025-07-31;D80;Kvittning Ha Bra Liv;1 500,00;0,00;3 329 105,00;Levfakt Ha Bra Liv Stockholm AB (754)
+2025-08-14;D77;Amortering;75 000,00;0,00;3 254 105,00;Levfakt Magnus Liljedahl AB (677)
+2025-08-30;D90;Kvittning Ha Bra Liv;1 500,00;0,00;3 252 605,00;Levfakt Ha Bra Liv Stockholm AB (762)
+2025-09-14;D85;Amortering;75 000,00;0,00;3 177 605,00;Levfakt Magnus Liljedahl AB (681)
+2025-10-01;D95;Kvittning Ha Bra Liv;4 500,00;0,00;3 173 105,00;Levfakt Ha Bra Liv Stockholm AB (767)
+2025-10-14;D86;Amortering;75 000,00;0,00;3 098 105,00;Levfakt Magnus Liljedahl AB (680)
+2025-11-03;D101;Kvittning Ha Bra Liv;3 000,00;0,00;3 095 105,00;Levfakt Ha Bra Liv Stockholm AB (772)
+2025-11-14;D87;Amortering;75 000,00;0,00;3 020 105,00;Levfakt Magnus Liljedahl AB (676)
+2025-11-26;A325;Amortering;25 000,00;0,00;2 995 105,00;52661033513
+2025-11-29;D110;Kvittning Ha Bra Liv;2 250,00;0,00;2 992 855,00;Levfakt Ha Bra Liv Stockholm AB (779)
+2025-12-14;D88;Amortering;75 000,00;0,00;2 917 855,00;Levfakt Magnus Liljedahl AB (674)
+2025-12-31;A322;Utlåning/ökning;-345 000,00;0,00;3 262 855,00;inget bet återfört
+2025-12-31;D112;Kvittning Ha Bra Liv;3 000,00;0,00;3 259 855,00;Levfakt Ha Bra Liv Stockholm AB (787)
+2026-01-19;A8;Amortering;25 000,00;0,00;3 234 855,00;Åter Lån liljedahl / CREATION ZERO POINT HOLDING AB
+2026-02-07;D9;Kvittning Ha Bra Liv;1 500,00;300,00;3 233 355,00;Levfakt Ha Bra Liv Stockholm AB (809)
+2026-02-24;A32;Amortering;10 000,00;0,00;3 223 355,00;Åter Lån liljedahl / CREATION ZERO POINT HOLDING AB
+2026-03-02;D22;Kvittning Ha Bra Liv;6 000,00;1 200,00;3 217 355,00;Levfakt Ha Bra Liv Stockholm AB (820)
+2026-03-09;A46;Amortering;15 000,00;0,00;3 202 355,00;Åter Lån liljedahl / CREATION ZERO POINT HOLDING AB
+2026-04-02;A78;Amortering;25 000,00;0,00;3 177 355,00;Åter Lån liljedahl / CREATION ZERO POINT HOLDING AB
+2026-04-08;D39;Kvittning Ha Bra Liv;7 500,00;1 500,00;3 169 855,00;Levfakt Ha Bra Liv Stockholm AB (843)
+2026-05-31;D60;Kvittning Ha Bra Liv;10 500,00;2 100,00;3 159 355,00;Levfakt Ha Bra Liv Stockholm AB (864)
+2026-06-08;A144;Amortering;25 000,00;0,00;3 134 355,00;Åter Lån liljedahl / CREATION ZERO POINT HOLDING AB
+2026-06-22;A166;Amortering;25 000,00;0,00;3 109 355,00;Åter Lån liljedahl / CREATION ZERO POINT HOLDING AB
+2026-06-30;D79;Kvittning Ha Bra Liv;6 000,00;1 200,00;3 103 355,00;Levfakt Ha Bra Liv Stockholm AB (886)
+;;KAPITAL PER 2026-06-30;;;3 103 355,00;
+;;;;;;
+DEL 2 - RANTA;;;;;;
+Ar;Upplupen ranta 4%;Redan fakturerad (konto 8420);Diff att erkanna;;;
+2020;4 558,90;0,00;4 558,90;;;
+2021;52 000,00;90 331,00;-38 331,00;;;
+2022;73 986,85;60 000,00;13 986,85;;;
+2023;144 717,81;185 994,00;-41 276,19;;;
+2024;120 328,77;0,00;120 328,77;;;
+2025;130 204,40;0,00;130 204,40;;;
+2026;63 005,14;0,00;63 005,14;;;
+SUMMA;588 801,87;336 325,00;252 476,87;;;
+;;;;;;
+DEL 3 - TOTALT ATT ERKANNA (CZP:s position, vald 2026-07-24);;;;;;
+Kapital per 2026-06-30;3 103 355,00;;;;;
+Obetald upplupen ranta;252 476,87;;;;;
+TOTALT;3 355 831,87;;;;;
+;;;;;;
+FALLBACK (forkastad) - ranta endast fran 2024-01-01, historiken orord;;;;;;
+Upplupen ranta 2024-2026H1;313 538,30;;;;;
+TOTALT enligt fallback;3 416 893,30;;;;;

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RankOne - The human taste graph for games</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#100D1B; --bg-2:#15112472; --card:#1B1732; --card-2:#211B3A;
+    --line:#2c2648; --ink:#F1EEFA; --slate:#A49FC5; --slate-2:#817ba0;
+    --purple:#7B6CF0; --purple-2:#9B8BFF; --brand:#5142CA; --purple-deep:#3A2E9E;
+    --pink:#E4386F; --green:#37C98D;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Lato',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.exo{font-family:'Exo','Lato',sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  a{color:var(--purple-2);text-decoration:none}
+  .eyebrow{font-family:'Exo';text-transform:uppercase;letter-spacing:.2em;font-size:12px;font-weight:700;color:var(--purple-2)}
+  section{padding:60px 0}
+  .divide{border:0;border-top:1px solid var(--line)}
+  .sec-h{font-size:clamp(24px,3.4vw,34px);font-weight:800;letter-spacing:-.01em;max-width:22ch}
+  .sec-sub{color:var(--slate);max-width:62ch;margin-top:12px;font-size:17px}
+
+  /* Top bar */
+  .bar{display:flex;align-items:center;gap:12px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .logo{display:flex;align-items:center;gap:10px}
+  .mark{width:30px;height:30px;flex:0 0 auto}
+  .word{font-family:'Exo';font-weight:800;font-size:20px;letter-spacing:-.01em;color:#fff}
+  .word b{color:var(--purple-2)}
+  .tag{font-size:11px;color:var(--slate-2);letter-spacing:.16em;text-transform:uppercase;font-family:'Exo';font-weight:600}
+  .bar .right{margin-left:auto;font-size:12px;color:var(--slate-2);letter-spacing:.12em;text-transform:uppercase;font-family:'Exo';font-weight:600}
+
+  /* Hero */
+  .hero{padding:82px 0 58px;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:
+    radial-gradient(680px 340px at 86% -12%, rgba(123,108,240,.30), transparent 62%),
+    radial-gradient(560px 300px at -8% 118%, rgba(228,56,111,.14), transparent 60%);z-index:0}
+  .hero>.wrap{position:relative;z-index:1}
+  h1{font-size:clamp(35px,5.6vw,60px);line-height:1.03;font-weight:800;letter-spacing:-.02em;max-width:15ch}
+  h1 .hl{color:var(--purple-2)}
+  .lede{font-size:clamp(17px,2vw,21px);color:var(--slate);max-width:56ch;margin-top:20px}
+  .thesis{margin-top:28px;display:inline-flex;gap:12px;align-items:flex-start;background:rgba(123,108,240,.08);border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:10px;padding:14px 18px;max-width:64ch;color:var(--slate)}
+  .thesis b{color:var(--ink)}
+
+  /* Stat strip */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:16px 0 8px}
+  .stat{background:var(--card);padding:22px 20px}
+  .stat .n{font-family:'Exo';font-weight:800;font-size:clamp(22px,3vw,30px);color:var(--purple-2);letter-spacing:-.01em}
+  .stat .l{font-size:13px;color:var(--slate);margin-top:4px}
+
+  /* Hero use cases - the emphasized centrepiece */
+  .heroes{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .heroes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+  .hcard{position:relative;background:linear-gradient(180deg,var(--card-2),var(--card));border:1px solid var(--line);border-radius:16px;padding:28px 24px 26px;overflow:hidden}
+  .hcard:before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:linear-gradient(90deg,var(--purple),var(--pink))}
+  .hcard .num{font-family:'Exo';font-weight:900;font-size:40px;line-height:1;color:transparent;-webkit-text-stroke:1.4px var(--purple);opacity:.75}
+  .hcard h3{font-size:21px;font-weight:800;margin:12px 0 6px}
+  .hcard .pnl{display:inline-block;font-family:'Exo';font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--green);background:rgba(55,201,141,.10);border:1px solid rgba(55,201,141,.25);padding:3px 9px;border-radius:20px;margin-bottom:12px}
+  .hcard p{color:var(--slate);font-size:15px}
+  .hcard .asset{margin-top:14px;font-size:12.5px;color:var(--slate-2);font-family:'Exo';font-weight:600}
+  .heroes .foot{margin-top:22px;color:var(--slate);font-size:15px}
+  .heroes .foot b{color:var(--ink)}
+
+  /* Moat cards */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px}
+  .card{border:1px solid var(--line);border-radius:14px;padding:24px;background:var(--card);transition:transform .15s ease, border-color .15s ease}
+  .card:hover{transform:translateY(-2px);border-color:var(--purple)}
+  .card .k{display:inline-flex;align-items:center;gap:8px;font-family:'Exo';font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--purple-2);margin-bottom:10px}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--purple)}
+  .card h3{font-size:20px;font-weight:700;margin-bottom:8px}
+  .card p{color:var(--slate);font-size:15.5px}
+  .kicker{margin-top:26px;font-family:'Exo';font-weight:600;color:var(--ink);font-size:17px;max-width:70ch}
+
+  /* Test case */
+  .demo{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .frame{margin-top:30px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#0b0913;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+  .frame .chrome{display:flex;align-items:center;gap:7px;padding:11px 15px;background:#0e0b18;border-bottom:1px solid var(--line)}
+  .frame .chrome i{width:10px;height:10px;border-radius:50%;background:#33304a;display:inline-block}
+  .frame .chrome .u{margin-left:12px;font-size:12px;color:var(--slate-2);font-family:'Exo'}
+  .frame img{display:block;width:100%;height:auto}
+  .demo .cap{margin-top:16px;color:var(--slate);font-size:14px;max-width:70ch}
+  .demo .cap b{color:var(--ink)}
+
+  /* Access */
+  .access{border-radius:16px;padding:0;margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .access .a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .access .a .k{font-family:'Exo';font-weight:800;color:var(--purple-2);font-size:15px;margin-bottom:6px}
+  .access .a p{color:var(--slate);font-size:15px}
+
+  /* CTA */
+  .cta{background:linear-gradient(120deg,var(--purple-deep),var(--brand) 52%,var(--purple));color:#fff;border-radius:20px;padding:50px 40px;margin:24px 0 60px;text-align:center;position:relative;overflow:hidden}
+  .cta:after{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at 80% 0%,rgba(255,255,255,.16),transparent 60%)}
+  .cta>*{position:relative}
+  .cta h2{font-size:clamp(24px,3.4vw,34px);font-weight:800;color:#fff}
+  .cta p{color:rgba(255,255,255,.88);margin-top:10px;font-size:17px}
+  .cta .btn{display:inline-block;margin-top:22px;background:#fff;color:var(--purple-deep);font-family:'Exo';font-weight:800;padding:13px 26px;border-radius:10px}
+  .cta .contact{margin-top:16px;font-size:14px;color:rgba(255,255,255,.82)}
+  .cta .contact a{color:#fff;font-weight:700}
+
+  footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--slate-2);font-size:13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  footer .right{margin-left:auto;text-transform:uppercase;letter-spacing:.12em;font-family:'Exo';font-weight:600;font-size:11px}
+
+  @media(max-width:820px){
+    .heroes-grid{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .grid{grid-template-columns:1fr}
+    .access{grid-template-columns:1fr}
+    .hero{padding:54px 0 42px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="bar">
+    <div class="logo">
+      <svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="37" height="37" rx="11" fill="#5142CA"/>
+        <path d="M12 27V19M20 27V13M28 27V22" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M11 16.5L20 10L29 16.5" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+      </svg>
+      <div class="word">rank<b>one</b></div>
+    </div>
+    <span class="tag">Your Life in Games</span>
+    <span class="right">Data brief</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">The data layer for games</div>
+    <h1 style="margin-top:14px">The human <span class="hl">taste graph</span> for games.</h1>
+    <p class="lede">Millions of real preference signals, curated by players, not crawled. The layer that tells you not just what an audience plays, but what they will play next, and how to reach them.</p>
+    <div class="thesis"><span>💡</span><span><b>Human-curated gaming data is one of AI's most underrated assets.</b> We have been building it, by hand, since 2018, and snapshotting the whole graph every day since 2024.</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n">100k+</div><div class="l">Curated player profiles</div></div>
+    <div class="stat"><div class="n">2.6M+</div><div class="l">Categorized game relations</div></div>
+    <div class="stat"><div class="n">413k+</div><div class="l">Written player reviews</div></div>
+    <div class="stat"><div class="n">2024→</div><div class="l">Daily whole-graph snapshots</div></div>
+  </div>
+</div>
+
+<!-- EMPHASIZED: the three hero use cases -->
+<section class="heroes">
+  <div class="wrap">
+    <div class="eyebrow">Where it pays for itself</div>
+    <h2 class="sec-h" style="margin-top:10px">Three jobs it does that nothing else can.</h2>
+    <p class="sec-sub">Dozens of analyses run on the graph. These are the three that hit a real budget line, are uniquely ours, and are worth building a product around.</p>
+    <div class="heroes-grid">
+      <div class="hcard">
+        <div class="num">01</div>
+        <div class="pnl">Lowers CAC</div>
+        <h3>Creator selection</h3>
+        <p>Not reach, conversion. Find the creators and proxy audiences that actually convert toward a niche, then activate the real players behind them. Spend the UA budget where it lands.</p>
+        <div class="asset">Taste graph + reachable profiles</div>
+      </div>
+      <div class="hcard">
+        <div class="num">02</div>
+        <div class="pnl">Recurring value</div>
+        <h3>Audience in motion</h3>
+        <p>The lifecycle, competitor trends and churn over time. Because we snapshot the whole graph daily, you read the trend, not a still frame. The reason to come back every month.</p>
+        <div class="asset">The timeline</div>
+      </div>
+      <div class="hcard">
+        <div class="num">03</div>
+        <div class="pnl">De-risks the spend</div>
+        <h3>Validate the bet</h3>
+        <p>Prove a niche exists, size the TAM from real overlap, and stress-test a business case with hard data before the money is committed. The analysis publishers and investors pay for.</p>
+        <div class="asset">Overlap + inflow</div>
+      </div>
+    </div>
+    <p class="foot"><b>Everything else</b> (lookalike UA, feature scoping, pricing, blue-ocean concepting, platform strategy) is a question you ask the AI agent. These three earn a place on the screen.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">What it is</div>
+    <h2 class="sec-h" style="margin-top:10px">Taste, entered by humans. Not inferred from clicks.</h2>
+    <p class="sec-sub">RankOne is a community where players log what they have played, are playing, and want to play, and categorize how those games relate. The aggregate is a taste graph: a living map of how real audiences connect across games, kept current every day. No crawler, store scrape or panel produces this.</p>
+    <div class="grid">
+      <div class="card"><div class="k"><span class="dot"></span>Taste graph</div><h3>Who and what</h3><p>Psychographic over-index and cross-game affinity, on an audience far broader than any single game's own players.</p></div>
+      <div class="card"><div class="k"><span class="dot"></span>Timeline</div><h3>Which way it is moving</h3><p>A daily snapshot of the entire games graph since 2024, so every signal reads as a trend, not a still frame.</p></div>
+      <div class="card"><div class="k"><span class="dot"></span>Reachable profiles</div><h3>Act on it</h3><p>Real, identified players you can activate: playtests, surveys, creator outreach. Not an anonymous aggregate.</p></div>
+      <div class="card"><div class="k"><span class="dot"></span>Inflow &amp; overlap</div><h3>Where it flows</h3><p>Where an audience comes from and where it heads next. Community-to-community flow, mapped over time.</p></div>
+    </div>
+    <p class="kicker">The taste graph tells you who and what, the timeline tells you which way it is moving, and the reachable profiles let you act on it. No one else has all three on the same audience.</p>
+  </div>
+</section>
+
+<!-- Test case -->
+<section class="demo">
+  <div class="wrap">
+    <div class="eyebrow">See it on a real audience</div>
+    <h2 class="sec-h" style="margin-top:10px">A Pulse timeline, start to finish.</h2>
+    <p class="sec-sub">One report on one game's launch audience: where they came from, what they are obsessed with right now, and what they will play next, each metric carrying its month-over-month move.</p>
+    <div class="frame">
+      <div class="chrome"><i></i><i></i><i></i><span class="u">rankone Pulse · audience timeline</span></div>
+      <img src="assets/pulse-pragmata.jpg" alt="RankOne Pulse report: a game's audience timeline with platform gravity, conversion, and current over-index">
+    </div>
+    <p class="cap"><b>Reading it:</b> platform gravity and distinctive affinity on the left, live conversion leaders and the current 6.7x over-index on the right, every row tagged with its trend (new, rising, falling). This is a reference audience run entirely off the curated graph.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Why it matters now</div>
+    <h2 class="sec-h" style="margin-top:10px">The semantic layer AI can't crawl.</h2>
+    <p class="sec-sub">Models and products that need to understand taste, to recommend, personalize, map a market, or reason about what people want, can't get that from clickstreams and store metadata. Human-curated preference data is scarce, and it is exactly what RankOne has spent years building, by hand. It is the semantic layer for games, refreshed daily.</p>
+  </div>
+</section>
+
+<hr class="divide">
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">How to access it</div>
+    <h2 class="sec-h" style="margin-top:10px">Infrastructure, not a tool.</h2>
+    <div class="access">
+      <div class="a"><div class="k">API</div><p>The taste graph as a service, for teams that plug it into their own stack.</p></div>
+      <div class="a"><div class="k">AI agent</div><p>Ask in plain language. Get the analysis and the sources behind it.</p></div>
+      <div class="a"><div class="k">Pulse reports</div><p>The timeline, visualized and ready to read for any audience.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="cta">
+    <h2>Let's talk about the data.</h2>
+    <p>Whether you are building with it, buying it, or backing it, we would value your read.</p>
+    <a class="btn" href="mailto:info@rankone.global?subject=RankOne%20data">Start a conversation</a>
+    <div class="contact">RankOne Global AB · <a href="mailto:info@rankone.global">info@rankone.global</a> · <a href="https://rankone.global">rankone.global</a></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <footer>
+    <div class="logo">
+      <svg class="mark" style="width:22px;height:22px" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="37" height="37" rx="11" fill="#5142CA"/><path d="M12 27V19M20 27V13M28 27V22" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg>
+      <span class="word" style="font-size:15px">rank<b>one</b></span>
+    </div>
+    <span>Your Life in Games</span>
+    <span class="right">Confidential</span>
+  </footer>
+</div>
+
+</body>
+</html>

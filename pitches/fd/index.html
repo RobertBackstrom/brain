@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurora Punks × Flightball - The studio building the game · For Formula Drone</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Aurora Punks as the development partner for Flightball. Team, track record and technology foundation. Confidential, prepared for Formula Drone.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@600;700;800;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e1a;
+  --bg-2:#111726;
+  --panel:#0e1422;
+  --ink:#eef2fb;
+  --cy:#19e3d0;
+  --cy-2:#5cf2e3;
+  --orange:#ff6a2b;
+  --muted:#8a93ad;
+  --muted-2:#5c6480;
+  --line:#23304a;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
+
+main{max-width:1080px;margin:0 auto;padding:0 32px 96px;position:relative;}
+@media(max-width:720px){main{padding:0 18px 64px;}}
+
+.mono{font-family:'Space Mono',monospace;letter-spacing:0.04em;}
+.eyebrow{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--cy);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.eyebrow .tag{background:var(--cy);color:var(--bg);padding:2px 8px;font-size:11px;font-weight:700;}
+.eyebrow::after{content:'';flex:1;height:1px;background:var(--line);}
+
+h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(28px,4vw,44px);line-height:1.04;letter-spacing:-0.01em;text-transform:uppercase;margin:0 0 22px;}
+h2 .cy{color:var(--cy);}
+
+.section{padding:64px 0;border-top:1px solid var(--line);}
+.section p{font-size:16px;max-width:68ch;margin:0 0 16px;color:#cfd6e6;}
+p .cy{color:var(--cy);font-weight:600;}
+
+/* confidential bar */
+.confbar{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bg);background:var(--cy);text-align:center;padding:9px 12px;font-weight:700;}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:74px 0 56px;overflow:hidden;}
+.hero .orb{position:absolute;top:-90px;right:-70px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(25,227,208,0.55),rgba(25,227,208,0.05) 60%,transparent 70%);z-index:0;filter:blur(2px);}
+.hero .orb2{position:absolute;bottom:-40px;left:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(255,106,43,0.35),transparent 68%);z-index:0;}
+@media(max-width:720px){.hero .orb{width:260px;height:260px;}}
+.hero-inner{position:relative;z-index:2;}
+.hero .kick{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--cy);margin-bottom:18px;}
+.hero h1{font-family:'Anton',sans-serif;font-size:clamp(54px,9vw,108px);line-height:0.92;letter-spacing:0.005em;margin:0;text-transform:uppercase;color:var(--ink);}
+.hero h1 .cy{color:var(--cy);}
+.hero .tagline{font-size:20px;font-weight:500;max-width:56ch;margin:24px 0 30px;color:#cfd6e6;}
+.metarow{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--line);max-width:820px;background:var(--panel);}
+.metarow .cell{flex:1 1 0;min-width:140px;padding:14px 18px;border-right:1px solid var(--line);}
+.metarow .cell:last-child{border-right:0;}
+.metarow .k{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;}
+.metarow .v{font-family:'Archivo',sans-serif;font-weight:800;font-size:17px;text-transform:uppercase;}
+@media(max-width:600px){.metarow .cell{flex:1 1 50%;border-bottom:1px solid var(--line);}}
+
+/* ---------- STAT BAND ---------- */
+.statband{background:var(--cy);color:var(--bg);display:grid;grid-template-columns:repeat(4,1fr);}
+.statband .stat{padding:28px 22px;border-right:1px solid rgba(10,14,26,0.18);}
+.statband .stat:last-child{border-right:0;}
+.statband .num{font-family:'Anton',sans-serif;font-size:38px;line-height:1;}
+.statband .lbl{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(10,14,26,0.7);margin-top:8px;}
+@media(max-width:720px){.statband{grid-template-columns:repeat(2,1fr);}.statband .stat{border-bottom:1px solid rgba(10,14,26,0.18);}}
+
+/* lists */
+.blist{list-style:none;padding:0;margin:0;max-width:76ch;}
+.blist li{padding:12px 0 12px 26px;position:relative;border-bottom:1px solid var(--line);font-size:15.5px;line-height:1.55;color:#cfd6e6;}
+.blist li:last-child{border-bottom:0;}
+.blist li::before{content:'//';position:absolute;left:0;top:12px;font-family:'Space Mono',monospace;font-weight:700;color:var(--cy);font-size:13px;}
+.blist li strong{font-weight:700;color:var(--ink);}
+
+/* panels */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);}
+.grid2 .pane{padding:28px;border-right:1px solid var(--line);background:var(--panel);}
+.grid2 .pane:last-child{border-right:0;}
+@media(max-width:780px){.grid2{grid-template-columns:1fr;}.grid2 .pane{border-right:0;border-bottom:1px solid var(--line);}.grid2 .pane:last-child{border-bottom:0;}}
+.pane h3{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--cy);margin:0 0 14px;}
+.pane p{font-size:15px;margin:0 0 12px;color:#cfd6e6;}
+.pane p:last-child{margin-bottom:0;}
+
+/* team */
+.team{list-style:none;padding:0;margin:0;}
+.team li{padding:16px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:230px 1fr;gap:20px;}
+.team li:last-child{border-bottom:0;}
+.team .role{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);}
+.team .role .nm{color:var(--cy);display:block;margin-top:4px;font-size:14px;}
+.team .desc{font-size:15px;color:#cfd6e6;}
+@media(max-width:680px){.team li{grid-template-columns:1fr;gap:6px;}}
+
+/* track record */
+.track{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--line);}
+.gamecard{border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel);}
+.gamecard:nth-child(2n){border-right:0;}
+.track .gamecard:nth-last-child(-n+2){border-bottom:0;}
+.gamecard img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line);}
+.gamecard .body{padding:16px 18px;}
+.gamecard .role-lbl{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cy);display:block;margin-bottom:7px;}
+.gamecard .gt{font-family:'Archivo',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;margin:0 0 8px;line-height:1.05;color:var(--ink);}
+.gamecard p{font-size:14px;color:var(--muted);margin:0;line-height:1.5;}
+@media(max-width:680px){.track{grid-template-columns:1fr;}.gamecard{border-right:0;}.track .gamecard:nth-last-child(2){border-bottom:1px solid var(--line);}}
+
+/* IP callout */
+.ipwrap{border:1px solid var(--cy);background:linear-gradient(180deg,rgba(25,227,208,0.06),transparent);padding:4px;}
+.ipinner{border:1px solid var(--line);background:var(--panel);padding:28px 30px;}
+.ipinner h3{font-family:'Archivo',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;margin:0 0 14px;color:var(--ink);}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);margin:18px 0 4px;}
+.split .col{padding:22px;border-right:1px solid var(--line);}
+.split .col:last-child{border-right:0;}
+.split .who{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cy);margin-bottom:10px;}
+.split .col.fd .who{color:var(--orange);}
+.split ul{margin:0;padding-left:18px;}
+.split li{font-size:14.5px;color:#cfd6e6;margin-bottom:7px;line-height:1.5;}
+@media(max-width:680px){.split{grid-template-columns:1fr;}.split .col{border-right:0;border-bottom:1px solid var(--line);}.split .col:last-child{border-bottom:0;}}
+
+/* footer */
+footer{border-top:1px solid var(--line);margin-top:8px;padding:30px 0 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+footer img{height:50px;display:block;}
+footer .c{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+footer .c a{color:var(--cy);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="confbar">Confidential // Prepared for Formula Drone - Flightball development partnership</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="orb"></div>
+    <div class="orb2"></div>
+    <div class="hero-inner">
+      <div class="kick">Aurora Punks // The studio building the game</div>
+      <h1>Building <span class="cy">Flightball.</span></h1>
+      <p class="tagline">Aurora Punks is the development partner for the Flightball video game. This page is for your investors: who we are, what we have shipped, and how the technology and IP behind the game are owned.</p>
+      <div class="metarow">
+        <div class="cell"><span class="k">Studio</span><span class="v">Aurora Punks AB</span></div>
+        <div class="cell"><span class="k">Founded</span><span class="v">2019 · Stockholm</span></div>
+        <div class="cell"><span class="k">Role</span><span class="v">Game dev &amp; tech</span></div>
+        <div class="cell"><span class="k">Game</span><span class="v">Flightball 5v5</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAT BAND -->
+  <div class="statband">
+    <div class="stat"><div class="num">2019</div><div class="lbl">Founded</div></div>
+    <div class="stat"><div class="num">20+</div><div class="lbl">FTE + partner studios</div></div>
+    <div class="stat"><div class="num">30+</div><div class="lbl">Titles shipped</div></div>
+    <div class="stat"><div class="num">PC·Console·VR</div><div class="lbl">Platforms shipped</div></div>
+  </div>
+
+  <!-- THE STUDIO -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">01</span> The studio /////</div>
+    <h2>A senior team that ships <span class="cy">competitive multiplayer at scale.</span></h2>
+    <p>Aurora Punks is a Stockholm-based co-development and co-publishing studio, founded in 2019. "Developers for developers." We are roughly 20 people in Stockholm plus partner studios across Belgrade, Copenhagen and London, and we work full cycle, from prototype through release, porting and live operations.</p>
+    <p>Flightball is a real-time, 5v5, physics-driven competitive sport. That is exactly the kind of game our people have shipped before: online multiplayer, networked physics, Unreal Engine delivery, cross-platform release and live service. We plug a senior team into a partner's project and deliver against a defined scope and date.</p>
+    <ul class="blist">
+      <li><strong>Networked multiplayer is core.</strong> Our people have built and shipped online multiplayer under live-service load, including Unreal titles like Ready or Not (online co-op, UE4) and The Finals (UE5). Real-time networked play is the discipline at the centre of Flightball.</li>
+      <li><strong>Deep Unreal Engine expertise.</strong> Shipped UE4 and UE5 gameplay, engine and porting work, with deep Unreal expertise across the engineering bench, so the build sits on an engine we run in production rather than one we are learning.</li>
+      <li><strong>An existing simulation and game-tech base.</strong> We bring a proven technology foundation to the build rather than starting from zero, which is the single biggest factor in de-risking the schedule.</li>
+      <li><strong>Console and cross-platform shipping.</strong> Including certification and porting across PC, console and VR.</li>
+      <li><strong>Live-ops and a tunable economy.</strong> We run free-to-play games on remote config, so match balance, progression and the in-game economy are tuned live with the community, no code release or new build for each change. The numbers stay in your hands while the live build stays protected.</li>
+      <li><strong>Data-driven, not opinion-driven.</strong> We instrument the build for the metrics that decide a free-to-play game (acquisition cost, early retention, conversion) and test visual and feature directions against real player data before the money goes behind them.</li>
+      <li><strong>Full-cycle delivery.</strong> Prototype, vertical slice, release and post-launch updates, staged so a first crude playable can be ready alongside the live showcase.</li>
+      <li><strong>Time zone.</strong> Central European, one hour ahead of the UK, with full working-day overlap.</li>
+    </ul>
+  </section>
+
+  <!-- TRACK RECORD -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">02</span> Track record /////</div>
+    <h2>Shipped across <span class="cy">AA co-dev, indie and our own IP.</span></h2>
+    <p>A spread of what the collective has shipped and is shipping, weighted toward the live multiplayer and networked-physics work most relevant to Flightball. The same people are on this project.</p>
+    <div class="track">
+      <div class="gamecard">
+        <img src="games/readyornot.jpg" alt="Ready or Not" loading="lazy">
+        <div class="body"><span class="role-lbl">// Unreal Engine co-development</span><h3 class="gt">Ready or Not</h3><p>Multi-year co-development with Void Interactive on this online tactical shooter: gameplay and UI programming, the UE4 to UE5 engine migration, console porting and optimisation, and QA. Online, networked, Unreal, at scale, the closest analogue to the Flightball build.</p></div>
+      </div>
+      <div class="gamecard">
+        <img src="games/thefinals.jpg" alt="The Finals" loading="lazy">
+        <div class="body"><span class="role-lbl">// Unreal · release mgmt + QA</span><h3 class="gt">The Finals</h3><p>Cross-platform release management, commerce guidelines and QA on Embark's UE5 free-to-play arena shooter. A live, competitive, physics-led online game.</p></div>
+      </div>
+      <div class="gamecard">
+        <img src="games/helldivers2.jpg" alt="Helldivers 2" loading="lazy">
+        <div class="body"><span class="role-lbl">// Backend + UI art</span><h3 class="gt">Helldivers 2</h3><p>Backend and UI art on Arrowhead's live co-op shooter, at AA scale and under live-service load.</p></div>
+      </div>
+      <div class="gamecard">
+        <img src="games/darktide.jpg" alt="Warhammer 40,000: Darktide" loading="lazy">
+        <div class="body"><span class="role-lbl">// Gameplay + engine programming</span><h3 class="gt">Warhammer 40,000: Darktide</h3><p>Senior gameplay and engine/render programming on Fatshark's four-player co-op shooter.</p></div>
+      </div>
+      <div class="gamecard">
+        <img src="games/ghostsignal.jpg" alt="Ghost Signal: A Stellaris Game" loading="lazy">
+        <div class="body"><span class="role-lbl">// Full development</span><h3 class="gt">Ghost Signal: A Stellaris Game</h3><p>Full development partner with Fast Travel Games on this Paradox VR title for Meta Quest. Cross-platform VR, shipped.</p></div>
+      </div>
+      <div class="gamecard">
+        <img src="games/tearsofadria.jpg" alt="Tears of Adria" loading="lazy">
+        <div class="body"><span class="role-lbl">// Full development, our own IP</span><h3 class="gt">Tears of Adria</h3><p>Our own Unity RPG, developed and self-published. Online multiplayer, 180 launch upgrades, 94% Very Positive on Steam.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY PEOPLE -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">03</span> Who is on it /////</div>
+    <h2>Senior people, <span class="cy">named.</span></h2>
+    <p>The Flightball game is led by people who have shipped at AA and run their own studios. A fuller team sheet, with CVs, is available to your investors on request.</p>
+    <ul class="team">
+      <li><div class="role">Founder / Executive Producer<span class="nm">Robert Bäckström</span></div><div class="desc">20 years shipping games. Core team member at Fatshark, then Raw Fury, before founding Aurora Punks. Owns production, partner cadence and delivery on Flightball.</div></li>
+      <li><div class="role">Game Director<span class="nm">Tim Browne</span></div><div class="desc">Creative and game direction across the studio's projects. Owns the Flightball game design: the 5v5 loop, controls, feel and competitive balance.</div></li>
+      <li><div class="role">Tech Director<span class="nm">Oskar Hansen</span></div><div class="desc">Systems and networking lead. Built the online multiplayer and core systems behind Tears of Adria, and leads the studio's cross-platform porting and performance work. Owns the Flightball technical architecture and the networked simulation layer.</div></li>
+      <li><div class="role">Plus the bench<span class="nm">Engineering · art · QA</span></div><div class="desc">A full senior engineering, art and QA bench drawn from the Aurora Punks roster and partner studios, scaled to each funded stage.</div></li>
+    </ul>
+  </section>
+
+  <!-- TECH & IP -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">04</span> Technology &amp; IP /////</div>
+    <h2>Clean ownership, <span class="cy">on both sides.</span></h2>
+    <p>The question your investors will ask is who owns what, and the answer here is clean on both sides. Formula Drone owns Flightball: the sport, the brand and all live-sport rights. Aurora Punks builds and owns the game itself and grants Formula Drone a clean lifetime licence to it, with full freedom to exploit the game and its IP. We arrange all of the underlying technology inside the project, so Formula Drone is never tied to any single toolset or supplier.</p>
+    <div class="ipwrap">
+      <div class="ipinner">
+        <h3>How Flightball is structured</h3>
+        <div class="split">
+          <div class="col fd">
+            <div class="who">Formula Drone owns</div>
+            <ul>
+              <li>Flightball itself: the sport, its rules and formats</li>
+              <li>Arena and drone designs</li>
+              <li>The Flightball brand and all live-sport rights</li>
+              <li>A clean lifetime licence to the game, with full freedom to exploit the IP</li>
+            </ul>
+          </div>
+          <div class="col">
+            <div class="who">Aurora Punks brings</div>
+            <ul>
+              <li>The game itself: built, owned and supported by Aurora Punks</li>
+              <li>All the underlying technology, arranged and licensed by us within the project</li>
+              <li>The senior team that builds and ships the game</li>
+            </ul>
+          </div>
+        </div>
+        <p style="font-size:14.5px;color:var(--muted);margin:14px 0 0;">The detailed IP and technology framework is being formalised in the partnership agreement between Formula Drone and Aurora Punks AB. The principle is settled: Formula Drone owns Flightball and holds a clean lifetime licence to the game with full freedom to exploit the IP; Aurora Punks builds and owns the game and arranges the underlying technology within the project, so Formula Drone is never locked to a particular toolset.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT DE-RISKS -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">05</span> Why this de-risks the build /////</div>
+    <h2>The reasons a <span class="cy">funder should be comfortable.</span></h2>
+    <div class="grid2">
+      <div class="pane">
+        <h3>// Proven, not speculative</h3>
+        <p>An existing simulation and game-tech base means the hardest parts are not invented from scratch. The team has shipped networked, physics-driven multiplayer before, at AA scale.</p>
+      </div>
+      <div class="pane">
+        <h3>// Staged to the rounds</h3>
+        <p>Development is phased so each stage is funded before it starts, from a first crude playable for the showcase through to a multi-platform release. Spend tracks the raise, not ahead of it.</p>
+      </div>
+      <div class="pane">
+        <h3>// One accountable partner</h3>
+        <p>A single senior studio owns delivery end to end, with a named producer and weekly cadence, rather than a loose group of contractors.</p>
+      </div>
+      <div class="pane">
+        <h3>// Clean structure, clean IP</h3>
+        <p>Formula Drone owns the sport and the brand and holds a lifetime licence to the game, with the IP boundaries clear on both sides. The structure is built to read cleanly for your investors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORM ROADMAP -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">06</span> Built to grow /////</div>
+    <h2>PC first, then <span class="cy">console and mobile.</span></h2>
+    <p>The build is planned PC-first, where the competitive drone-sport audience is most active and the eSport scene starts. Console and mobile are not a rewrite later, they are the natural next step at 1.0: the same networked codebase, ported and certified across platforms, widening the player base exactly when the marketing push behind 1.0 lands.</p>
+    <ul class="blist">
+      <li><strong>Console at 1.0.</strong> Certification and porting are work our team has shipped before, sequenced after a stable PC release so the game lands on console proven, not raw.</li>
+      <li><strong>Mobile as reach.</strong> A mobile client extends the free-to-play funnel to the largest audience and feeds the same live economy, the platform where casual fans meet the sport.</li>
+      <li><strong>One codebase, many storefronts.</strong> Cross-platform from the architecture up, so every new platform compounds the install base instead of fragmenting the team.</li>
+    </ul>
+  </section>
+
+  <!-- COMPANION DOC -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">07</span> The full plan /////</div>
+    <h2>Development plan &amp; <span class="cy">commercial proposal.</span></h2>
+    <p>The full milestone plan, the deliverables behind each funding round, the platform roadmap and a transparent view of how the commercial structure is built are set out in a companion document.</p>
+    <p style="margin-top:8px;"><a href="https://docs.google.com/document/d/1-6I2y2dwLc-eYt_oXjN4i3-vbkGwMDkX_ts82S0dS4k/edit" style="display:inline-block;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;letter-spacing:0.04em;color:var(--bg);background:var(--cy);text-decoration:none;padding:13px 22px;">Open the development plan &amp; commercial proposal &rarr;</a></p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="./ap-logo.png" alt="Aurora Punks">
+    <div class="c"><a href="mailto:robert@aurorapunks.com">robert@aurorapunks.com</a> // Confidential - prepared for Formula Drone</div>
+  </footer>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TEEF - Co-Development Proposal · Aurora Punks</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Aurora Punks co-development proposal for Teef. Confidential.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@600;700;800;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0d0d0f;
+  --paper:#f4f1ea;
+  --paper-2:#ffffff;
+  --mag:#e6186e;
+  --mag-2:#ff2d83;
+  --maroon:#2a191c;
+  --muted:#5f5b56;
+  --muted-2:#9a948c;
+  --line:#0d0d0f;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
+
+/* textures */
+.dots{background-image:radial-gradient(var(--ink) 1.1px,transparent 1.1px);background-size:9px 9px;}
+.slash{background-image:repeating-linear-gradient(135deg,var(--ink) 0 2px,transparent 2px 8px);}
+
+main{max-width:1080px;margin:0 auto;padding:0 32px 96px;position:relative;}
+@media(max-width:720px){main{padding:0 18px 64px;}}
+
+/* mono labels */
+.mono{font-family:'Space Mono',monospace;letter-spacing:0.04em;}
+.eyebrow{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--mag);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.eyebrow .tag{background:var(--ink);color:var(--paper);padding:2px 8px;font-size:11px;}
+.eyebrow::after{content:'';flex:1;height:2px;background:var(--ink);}
+
+h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(28px,4vw,44px);line-height:1.02;letter-spacing:-0.01em;text-transform:uppercase;margin:0 0 22px;}
+h2 .mag{color:var(--mag);}
+
+.section{padding:64px 0;border-top:2px solid var(--ink);}
+.section p{font-size:16px;max-width:68ch;margin:0 0 16px;}
+p .mag{color:var(--mag);font-weight:700;}
+
+/* confidential bar */
+.confbar{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--paper);background:var(--ink);text-align:center;padding:9px 12px;}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:64px 0 56px;overflow:hidden;}
+.hero .sun{position:absolute;top:-60px;right:-40px;width:340px;height:340px;border-radius:50%;background:var(--mag);z-index:0;}
+@media(max-width:720px){.hero .sun{width:200px;height:200px;top:-20px;right:-30px;}}
+.hero .kata{position:absolute;top:90px;right:18px;writing-mode:vertical-rl;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.3em;color:var(--paper);z-index:2;opacity:0.9;}
+.hero-inner{position:relative;z-index:2;}
+.hero .kick{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);margin-bottom:18px;}
+.hero h1{font-family:'Anton',sans-serif;font-size:clamp(96px,22vw,240px);line-height:0.82;letter-spacing:0.01em;margin:0;text-transform:uppercase;color:var(--ink);}
+.hero h1 .dotblk{color:var(--mag);}
+.hero .tagline{font-size:20px;font-weight:500;max-width:52ch;margin:22px 0 26px;}
+.metarow{display:flex;flex-wrap:wrap;gap:0;border:2px solid var(--ink);max-width:760px;}
+.metarow .cell{flex:1 1 0;min-width:130px;padding:12px 16px;border-right:2px solid var(--ink);}
+.metarow .cell:last-child{border-right:0;}
+.metarow .k{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);display:block;}
+.metarow .v{font-family:'Archivo',sans-serif;font-weight:800;font-size:17px;text-transform:uppercase;}
+@media(max-width:600px){.metarow .cell{flex:1 1 50%;border-bottom:2px solid var(--ink);}}
+
+/* ---------- STAT BAND ---------- */
+.statband{background:var(--ink);color:var(--paper);display:grid;grid-template-columns:repeat(3,1fr);}
+.statband .stat{padding:30px 24px;border-right:1px solid #2a2a2e;}
+.statband .stat:last-child{border-right:0;}
+.statband .num{font-family:'Anton',sans-serif;font-size:40px;line-height:1;color:var(--mag-2);}
+.statband .lbl{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted-2);margin-top:8px;}
+@media(max-width:720px){.statband{grid-template-columns:repeat(2,1fr);}.statband .stat{border-bottom:1px solid #2a2a2e;}}
+
+/* lists */
+.blist{list-style:none;padding:0;margin:0;max-width:74ch;}
+.blist li{padding:12px 0 12px 26px;position:relative;border-bottom:1px solid rgba(13,13,15,0.12);font-size:15.5px;line-height:1.5;}
+.blist li:last-child{border-bottom:0;}
+.blist li::before{content:'//';position:absolute;left:0;top:12px;font-family:'Space Mono',monospace;font-weight:700;color:var(--mag);font-size:13px;}
+.blist li strong{font-weight:700;}
+
+/* panels */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid var(--ink);}
+.grid2 .pane{padding:28px;border-right:2px solid var(--ink);}
+.grid2 .pane:last-child{border-right:0;}
+@media(max-width:780px){.grid2{grid-template-columns:1fr;}.grid2 .pane{border-right:0;border-bottom:2px solid var(--ink);}.grid2 .pane:last-child{border-bottom:0;}}
+.pane h3{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--mag);margin:0 0 14px;}
+.pane p{font-size:15px;margin:0 0 12px;}
+
+/* team */
+.team{list-style:none;padding:0;margin:0;}
+.team li{padding:16px 0;border-bottom:1px solid rgba(13,13,15,0.12);display:grid;grid-template-columns:200px 1fr;gap:20px;}
+.team li:last-child{border-bottom:0;}
+.team .role{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink);}
+.team .role .nm{color:var(--mag);display:block;margin-top:4px;}
+.team .desc{font-size:15px;color:var(--muted);}
+@media(max-width:680px){.team li{grid-template-columns:1fr;gap:6px;}}
+
+/* track record */
+.track{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:2px solid var(--ink);}
+.gamecard{border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);background:var(--paper-2);}
+.gamecard:nth-child(2n){border-right:0;}
+.track .gamecard:nth-last-child(-n+2){border-bottom:0;}
+.track .gamecard:last-child:nth-child(odd){grid-column:1 / -1;border-right:0;}
+.gvid{position:relative;padding-top:56.25%;border-bottom:2px solid var(--ink);background:#000;}
+.gvid iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.gamecard img{display:block;width:100%;height:auto;border-bottom:2px solid var(--ink);}
+.gamecard .body{padding:16px 18px;}
+.gamecard .role-lbl{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mag);display:block;margin-bottom:7px;}
+.gamecard .gt{font-family:'Archivo',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;margin:0 0 8px;line-height:1.05;}
+.gamecard p{font-size:14px;color:var(--muted);margin:0;line-height:1.5;}
+.gamecard.noimg{background:var(--ink);color:var(--paper);display:flex;flex-direction:column;justify-content:center;min-height:172px;}
+.gamecard.noimg .gt{color:var(--paper);}
+.gamecard.noimg p{color:var(--muted-2);}
+@media(max-width:680px){.track{grid-template-columns:1fr;}.gamecard{border-right:0;}.track .gamecard:nth-last-child(2){border-bottom:2px solid var(--ink);}}
+
+/* art direction tiles */
+.styles2{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid var(--ink);margin:0 0 22px;}
+.styletile{margin:0;border-right:2px solid var(--ink);background:var(--paper-2);}
+.styletile:last-child{border-right:0;}
+.styletile img{display:block;width:100%;height:auto;border-bottom:2px solid var(--ink);}
+.styletile figcaption{padding:14px 16px;font-size:14px;color:var(--muted);line-height:1.5;}
+.styletile figcaption strong{color:var(--ink);font-family:'Space Mono',monospace;text-transform:uppercase;font-size:12px;letter-spacing:.04em;display:block;margin-bottom:4px;}
+@media(max-width:680px){.styles2{grid-template-columns:1fr;}.styletile{border-right:0;border-bottom:2px solid var(--ink);}.styletile:last-child{border-bottom:0;}}
+.subh{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mag);margin:0 0 14px;}
+
+/* interludes - IP-promise beats between sections */
+.interlude{display:grid;grid-template-columns:1.05fr 1fr;gap:0;background:var(--ink);color:var(--paper);border:2px solid var(--ink);margin:0;overflow:hidden;}
+.interlude.flip .ipic{order:2;}
+.interlude .ipic{min-height:300px;background-size:cover;background-position:center;}
+.interlude .itext{padding:38px 34px;display:flex;flex-direction:column;justify-content:center;}
+.interlude .scene{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mag-2);margin-bottom:14px;}
+.interlude .itext p{font-size:15px;line-height:1.62;font-style:italic;color:#d8d4cd;margin:0 0 10px;max-width:50ch;}
+.interlude .itext p:last-child{margin-bottom:0;}
+@media(max-width:720px){.interlude,.interlude.flip{grid-template-columns:1fr;}.interlude.flip .ipic{order:0;}.interlude .ipic{min-height:220px;}}
+
+/* roadmap */
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--ink);}
+.beat{padding:22px 20px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);}
+.beat:nth-child(3n){border-right:0;}
+.beat:nth-child(n+4){}
+.timeline .beat:nth-last-child(-n+3){border-bottom:0;}
+@media(max-width:780px){.timeline{grid-template-columns:1fr;}.beat{border-right:0;}}
+.beat .wk{font-family:'Anton',sans-serif;font-size:13px;color:var(--mag);letter-spacing:0.04em;}
+.beat .ttl{font-family:'Archivo',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;margin:6px 0 10px;}
+.beat p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.5;}
+
+/* commercials */
+.comm{display:grid;grid-template-columns:1fr 0.85fr;gap:28px;align-items:start;}
+@media(max-width:780px){.comm{grid-template-columns:1fr;}}
+.pricecard{background:var(--ink);color:var(--paper);padding:32px;position:relative;overflow:hidden;}
+.pricecard .pc-sun{position:absolute;right:-40px;bottom:-40px;width:160px;height:160px;border-radius:50%;background:var(--mag);opacity:0.9;}
+.pricecard .lab{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-2);position:relative;z-index:2;}
+.pricecard .big{font-family:'Anton',sans-serif;font-size:72px;line-height:0.9;color:var(--paper);margin:6px 0 6px;position:relative;z-index:2;}
+.pricecard .sub{font-size:13.5px;color:var(--muted-2);position:relative;z-index:2;}
+.pay{list-style:none;padding:0;margin:18px 0 0;position:relative;z-index:2;counter-reset:p;}
+.pay li{padding:9px 0 9px 34px;position:relative;font-size:14.5px;border-bottom:1px solid #2a2a2e;color:var(--paper);}
+.pay li:last-child{border-bottom:0;}
+.pay li::before{counter-increment:p;content:counter(p);position:absolute;left:0;top:8px;width:22px;height:22px;background:var(--mag);color:var(--ink);font-family:'Space Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+
+/* voice / mood */
+.moodwrap{border:2px solid var(--ink);background:var(--paper-2);}
+.mood{padding:22px 24px;border-bottom:2px solid var(--ink);}
+.mood:last-child{border-bottom:0;}
+.mood .scene{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mag);display:block;margin-bottom:12px;}
+.mood p{font-size:15px;line-height:1.65;margin:0 0 10px;font-style:italic;color:var(--maroon);}
+.mood p:last-child{margin-bottom:0;}
+
+/* risks */
+.risk{border-left:4px solid var(--mag);padding:14px 0 14px 18px;margin-bottom:16px;}
+.risk h4{font-family:'Archivo',sans-serif;font-weight:800;font-size:16px;margin:0 0 6px;}
+.risk h4 .n{font-family:'Space Mono',monospace;color:var(--mag);margin-right:8px;}
+.risk p{font-size:14.5px;color:var(--muted);margin:0;}
+.risk p .m{font-family:'Space Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink);font-weight:700;}
+
+/* Q&A */
+.qa{border:2px solid var(--ink);background:var(--paper-2);}
+.qaitem{padding:22px 26px;border-bottom:2px solid var(--ink);}
+.qaitem:last-child{border-bottom:0;}
+.qaitem .q{font-family:'Archivo',sans-serif;font-weight:800;font-size:17px;line-height:1.25;margin:0 0 12px;color:var(--ink);}
+.qaitem .q .qn{font-family:'Space Mono',monospace;color:var(--mag);font-weight:700;margin-right:10px;}
+.qaitem .a{font-size:15px;line-height:1.6;color:var(--maroon);margin:0;max-width:76ch;}
+.qaitem .a p{margin:0 0 10px;}
+.qaitem .a p:last-child{margin-bottom:0;}
+.qaitem .a strong{color:var(--ink);font-weight:700;}
+.qaitem .a .blist{margin:10px 0;}
+@media(max-width:720px){.qaitem{padding:20px 16px;}}
+
+/* footer */
+footer{border-top:2px solid var(--ink);margin-top:8px;padding:30px 0 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+footer img{height:54px;display:block;}
+footer .c{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+footer .c a{color:var(--mag);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="confbar">Confidential // Prepared for The Experimentation Group × Makosch VGDC</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="sun"></div>
+    <div class="kata">サイバー // TEEF</div>
+    <div class="hero-inner">
+      <div class="kick">Aurora Punks // Co-Development Proposal</div>
+      <h1>TE<span class="dotblk">EF</span></h1>
+      <p class="tagline">An Android build of Teef's first 60 minutes, for soft launch in Argentina, built to give you clean CPI and D3 numbers by the end of Q4.</p>
+      <div class="metarow">
+        <div class="cell"><span class="k">Platform</span><span class="v">Android</span></div>
+        <div class="cell"><span class="k">Engine</span><span class="v">Unity</span></div>
+        <div class="cell"><span class="k">Build</span><span class="v">5 Weeks</span></div>
+        <div class="cell"><span class="k">Soft launch</span><span class="v">Argentina</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAT BAND -->
+  <div class="statband">
+    <div class="stat"><div class="num">60<span style="font-size:24px;">m</span></div><div class="lbl">First slice</div></div>
+    <div class="stat"><div class="num">4</div><div class="lbl">Missions</div></div>
+    <div class="stat"><div class="num">CPI·D3</div><div class="lbl">What we prove</div></div>
+  </div>
+
+  <!-- STUDIO FIT -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">01</span> Studio fit /////</div>
+    <h2>A senior team with extensive <span class="mag">RPG and real-world data in-game experience.</span></h2>
+    <figure style="float:right;width:300px;max-width:42%;margin:4px 0 18px 30px;border:2px solid var(--ink);background:var(--paper-2);">
+      <img src="hero_cyber.jpg" alt="Teef map screen, Brutalist direction, in-game view at our build quality with a full Teef HUD" style="display:block;width:100%;height:auto;border-bottom:2px solid var(--ink);" loading="lazy">
+      <figcaption style="font-family:'Space Mono',monospace;font-size:11px;line-height:1.5;letter-spacing:.02em;color:var(--muted);padding:10px 12px;">// Teef London map screen, Brutalist direction, at our build quality with a full in-game HUD.</figcaption>
+    </figure>
+    <p>Aurora Punks is a collective of independent game developers, 40+ members across several studios, built around co-development and self-publishing. We work full-cycle, from concept and prototype through live ops, porting and post-launch updates, and we have shipped across PC, console, mobile, Roblox and VR. Our model is to plug an experienced, senior team into a partner's project and hit a fixed date on a defined slice. That is exactly the shape of this brief.</p>
+    <ul class="blist">
+      <li><strong>Mobile and fast prototyping.</strong> We built Hooja the Game, a 16-bit mobile auto-runner for one of Sweden's biggest pop acts, taken from a music-video concept to a shipped, stylised mobile title at speed. The fast, art-led mobile turnaround Teef's first slice needs.</li>
+      <li><strong>RPG and Unity networking.</strong> We developed and self-published Tears of Adria, a Unity RPG with online multiplayer, 180 launch upgrades and a 94% Very Positive Steam rating. Its systems, networking and performance work was led by the engineer we would put on Teef.</li>
+      <li><strong>Real-world maps in 3D.</strong> On the BADASS XR platform our team helps reconstruct real locations as game-ready 3D environments from geo data, which is precisely the geo-to-3D approach Teef's London needs.</li>
+      <li><strong>Casual mobile, our own IP.</strong> BlockEm is live on Steam and shipped to browser via Wavedash in 2026, a casual title in our own hands end to end.</li>
+      <li><strong>Co-development to AA.</strong> Active, shipped, cross-platform co-dev with Raw Fury, Void Interactive (Ready or Not), Embark (The Finals) and many more across PC, console and VR, plugging senior teams into partner projects under their direction.</li>
+      <li><strong>AI-assisted production.</strong> We use AI in our tech-art pipeline to produce environment and asset volume at speed, matched to your art style. It is what lets a small, senior team deliver a stylised Soho and the full cast inside a five-week build.</li>
+      <li><strong>Unity and map APIs.</strong> Unity is our primary engine across co-dev and our own titles, and we have hands-on experience with the map-API route too (we have shipped on Cesium). For Teef we recommend baking from open geo data instead, for offline play and cost, with map SDKs kept as reference.</li>
+      <li><strong>Backend and live services.</strong> We build on industry-standard backends (PlayFab, AccelByte, Firebase) and smaller or proprietary ones (LootLocker), and roll our own when a project needs it. Directly relevant to Teef's remote config, event tracking and crash reporting.</li>
+      <li><strong>Time zone.</strong> Central European, one hour ahead of the UK, full working-day overlap and same-day turnaround on the Friday demos.</li>
+    </ul>
+  </section>
+
+  <!-- TRACK RECORD -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">02</span> Track record /////</div>
+    <h2>Shipped across <span class="mag">AA, indie and our own IP.</span></h2>
+    <p>A spread of what the collective has shipped and is shipping - from live AA co-op and arena shooters to full self-published titles and real-world-data tech. The same people are on Teef.</p>
+    <div class="track">
+      <!-- CONFIRM scope w/ Robert: Helldivers 2 = backend + UI art per your note -->
+      <div class="gamecard">
+        <img src="games/helldivers2.jpg" alt="Helldivers 2" loading="lazy">
+        <div class="body"><span class="role-lbl">// Backend + UI art</span><h3 class="gt">Helldivers 2</h3><p>Backend and UI art on Arrowhead's live co-op shooter, at AA scale and under live-service load.</p></div>
+      </div>
+      <div class="gamecard">
+        <img src="games/darktide.jpg" alt="Warhammer 40,000: Darktide" loading="lazy">
+        <div class="body"><span class="role-lbl">// Gameplay + engine programming</span><h3 class="gt">Warhammer 40,000: Darktide</h3><p>Senior gameplay and engine/render programming on Fatshark's four-player co-op shooter. Robert ran the first-party and engine team at Fatshark as Senior Producer.</p></div>
+      </div>
+      <div class="gamecard">
+        <img src="games/thefinals.jpg" alt="The Finals" loading="lazy">
+        <div class="body"><span class="role-lbl">// Release mgmt + QA</span><h3 class="gt">The Finals</h3><p>Cross-platform release management, commerce guidelines and QA analysts on Embark's free-to-play arena shooter.</p></div>
+      </div>
+      <div class="gamecard">
+        <img src="games/readyornot.jpg" alt="Ready or Not" loading="lazy">
+        <div class="body"><span class="role-lbl">// Co-development</span><h3 class="gt">Ready or Not</h3><p>Multi-year co-development with Void Interactive: UI programming, the UE4 to UE5 tech migration, console porting and optimisation, and QA.</p></div>
+      </div>
+      <div class="gamecard">
+        <img src="games/ghostsignal.jpg" alt="Ghost Signal: A Stellaris Game" loading="lazy">
+        <div class="body"><span class="role-lbl">// Full development</span><h3 class="gt">Ghost Signal: A Stellaris Game</h3><p>Full development partner with Fast Travel Games on this Paradox VR title for Meta Quest. Cross-platform VR, shipped.</p></div>
+      </div>
+      <div class="gamecard">
+        <img src="games/tearsofadria.jpg" alt="Tears of Adria" loading="lazy">
+        <div class="body"><span class="role-lbl">// Full development</span><h3 class="gt">Tears of Adria</h3><p>Our own Unity RPG, developed and self-published. Online multiplayer, 180 launch upgrades, 94% Very Positive on Steam.</p></div>
+      </div>
+      <div class="gamecard">
+        <div class="gvid"><iframe src="https://www.youtube-nocookie.com/embed/okRDng7mfJI" title="Hooja the Game" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="body"><span class="role-lbl">// Full development</span><h3 class="gt">Hooja the Game</h3><p>A 16-bit mobile auto-runner, taken from a music-video concept to a shipped, stylised title for one of Sweden's biggest pop acts.</p></div>
+      </div>
+      <div class="gamecard">
+        <div class="gvid"><iframe src="https://www.youtube-nocookie.com/embed/vCtfA1uyE-0?start=5" title="BADASS XR Platform" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="body"><span class="role-lbl">// Real-world data</span><h3 class="gt">BADASS XR Platform</h3><p>Reconstructing real locations as game-ready 3D environments from geo data - the same geo-to-3D approach Teef's London needs.</p></div>
+      </div>
+      <div class="gamecard">
+        <img src="games/rawfury.jpg" alt="Raw Fury" loading="lazy">
+        <div class="body"><span class="role-lbl">// Co-development</span><h3 class="gt">Raw Fury</h3><p>Co-developing an unannounced upcoming DLC for a major franchise. Active, cross-platform, under the partner's direction.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERLUDE: the guv'nor -->
+  <div class="interlude">
+    <div class="ipic" style="background-image:url('mood/honcho.jpg')"></div>
+    <div class="itext">
+      <span class="scene">// The guv'nor - top of the manor</span>
+      <p>That's him. The guv'nor. Owns this manor end to end, every corner, every fence, every little firm pays up to him. Struts about like the pavement's his, and right now, fair enough, it is.</p>
+      <p>Me, I'm nobody yet. Few quid in me pocket, a crew you could count on one hand, a name nobody's lost a wink of sleep over. I know it. It's a long old road from here to where he's standing.</p>
+      <p>But I'm watching. How he moves, who he leans on, where he's gone soft. Every wallet I lift, every kid I bring in, that's another brick out of his wall. He don't know me name yet. He will. One day the whole manor's mine, and he just don't know it.</p>
+    </div>
+  </div>
+
+  <!-- APPROACH -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">03</span> Approach /////</div>
+    <h2>Make London read as London. <span class="mag">Keep you in control of the numbers.</span></h2>
+
+    <h3 class="subh">// Art direction</h3>
+    <p>Your style guide proposes three directions. We have rendered two of them here to show our build quality; we can take any of the three to production, your call. You are testing the art direction your side - we build to whichever you land on, from your one-pagers.</p>
+    <div class="styles2">
+      <figure class="styletile">
+        <img src="styles/cyber.jpg" alt="Brutalist art direction" loading="lazy">
+        <figcaption><strong>Brutalist</strong>Desaturated London stone, a dramatic crimson zone-glow, green objective accents. Premium, gritty, high-contrast. Leans mid-core, and makes for a striking store creative.</figcaption>
+      </figure>
+      <figure class="styletile">
+        <img src="styles/casual.jpg" alt="Casual art direction" loading="lazy">
+        <figcaption><strong>Casual</strong>Vibrant, saturated, playful neon over warm London streets. Broad-appeal, soft and inviting. Leans casual, and widens the top of the install funnel.</figcaption>
+      </figure>
+    </div>
+    <p>We would lock the art direction with you early, from your style guide. Whichever of the three you pick, the same stylized character cast - the Teef crew and their marks - carries through, so it is one base re-skinned, not separate builds.</p>
+
+    <h3 class="subh" style="margin-top:34px;">// Mapping &amp; tuning</h3>
+    <div class="grid2">
+      <div class="pane">
+        <h3>// Mapping &amp; London render</h3>
+        <p>Rather than a runtime map SDK, we reconstruct Soho from open geo data and stylise it - offline, no per-load map cost, as the brief requires.</p>
+        <ul class="blist">
+          <li><strong>Source, then bake.</strong> Soho footprints, roads and heights from open data (OpenStreetMap / Ordnance Survey) reconstructed as 3D geometry, baked into the build. Fully offline, no per-load runtime map cost.</li>
+          <li><strong>Reads-as-London.</strong> Regent and Oxford Street as navigational spines, Georgian terraces, black cabs and red phone boxes, stylised Soho facades. Neighbourhood feel, inspired by Soho rather than street-accurate - the efficient route for a CPI/D3 test, and the fidelity your updated brief calls for.</li>
+          <li><strong>Stylise on top.</strong> Tech art, AI-assisted, in your chosen direction: real-feel massing and recognisable landmarks, not generic extrusions. Buildings communicate location and gameplay, not architectural accuracy.</li>
+          <li><strong>Transparency &amp; fade.</strong> Tall buildings that block the player fade out; bordering areas fade with distance.</li>
+          <li><strong>Licensing clean.</strong> Open data (OSM under ODbL, OS OpenData), no runtime mapping dependency. Mapbox kept only as a reference.</li>
+        </ul>
+      </div>
+      <div class="pane">
+        <h3>// Tuning workflow</h3>
+        <p>Your Google Sheet stays the single source of truth. We build a thin, safe push to the live game.</p>
+        <ul class="blist">
+          <li>A validated push: schema-checked with a dry-run diff, so a bad value never reaches the live build.</li>
+          <li>The game pulls config on launch, so you re-balance economy, progression and skill values live, with no new build.</li>
+        </ul>
+        <p>Live data is home turf: we have shipped LiveOps and remote-data backends on PlayFab, LootLocker and AccelByte.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERLUDE: new blood -->
+  <div class="interlude flip">
+    <div class="ipic" style="background-image:url('mood/recruit_b.jpg')"></div>
+    <div class="itext">
+      <span class="scene">// New blood - keep it on the low</span>
+      <p>Quick word on the blower to me newest earner. Kid's flying. Three clean lifts this week, brought a couple of his mates in, got a proper eye for a fat pocket. Reminds me of meself, not so long back.</p>
+      <p>But I tell him straight. Easy, son. Nothing burns a face quicker than flash. New garms, gold round the neck, flashing your takings about, that's how you get known, and known is how you get nicked.</p>
+      <p>Keep it quiet. Spend small, look skint, let the money sit. The ones who last ain't the loud ones, they're the ones nobody clocks. Stay low, keep earning, and one day you won't have to hide it. Not yet, though. Not yet.</p>
+    </div>
+  </div>
+
+  <!-- DELIVERY -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">04</span> Delivery /////</div>
+    <h2>Five weeks <span class="mag">with weekly iterations and playtests.</span></h2>
+
+    <p style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.04em;color:var(--muted);margin:0 0 18px;">// A senior team of five across a five-week build, with UI treated as a top production priority throughout.</p>
+    <ul class="team">
+      <li><div class="role">Tech Lead - gameplay &amp; network<span class="nm">Fredrik Laurent</span></div><div class="desc">Core systems and the four missions - the steal loop, economy, save and networking. Developed and self-published Tears of Adria, a Unity RPG with online multiplayer, 180 launch upgrades and a 94% Very Positive Steam rating. Owns the core gameplay, mobile performance and the geo-to-3D London map, and carries design capacity day-to-day with Tom as authority.</div></li>
+      <li><div class="role">Platform engineer &amp; UI<span class="nm">Oskar Hansen</span></div><div class="desc">The game UI, platform porting and performance, the Magnetic SDK and the remote-config pipeline. Unity systems and platform engineering.</div></li>
+      <li><div class="role">Concept &amp; art direction / character artist<span class="nm">Hasan Chenari</span></div><div class="desc">AI-assisted. Concept and art direction for the build, plus the full cast - 10 target characters and the named crew - the animation set and supporting art.</div></li>
+      <li><div class="role">Environment artist<span class="nm">Prateek Karajgikar</span></div><div class="desc">AI-assisted. The stylised geo-to-3D Soho map, the locations, UI art and app icon.</div></li>
+      <li><div class="role">Production · audio · design<span class="nm">Robert Bäckström · Tim Browne · Carolina</span></div><div class="desc">Shared half-seat. Robert on production: oversight, client cadence, weekly demos, sign-off (20 years shipping games, Fatshark and Raw Fury to founding Aurora Punks). Tim Browne (Creative Director / Lead Designer) advisory on design. Carolina on SFX and audio. QA and Play submission run inside the team.</div></li>
+    </ul>
+
+    <div class="timeline" style="margin-top:30px;">
+      <div class="beat"><div class="wk">Week 1 // Pre-prod</div><div class="ttl">Spikes &amp; setup</div><p>Geo-to-3D bake and Sheet-to-remote-config tech spikes; repo, CI and Play internal track up; art direction agreed; Mission 1 planned.</p></div>
+      <div class="beat"><div class="wk">Week 2 // Foundation</div><div class="ttl">Art lock &amp; M1 slice</div><p>Art style and direction locked from your one-pagers; Mission 1 vertical slice underway and de-risked on a real-feel Soho map, on device, with the first UI pass in.</p></div>
+      <div class="beat"><div class="wk">Week 3 // Soho</div><div class="ttl">Missions 2 to 4</div><p>Playable end to end, economy wired to remote config, Magnetic SDK producing clean install and in-game events.</p></div>
+      <div class="beat"><div class="wk">Week 4 // Content complete</div><div class="ttl">Cast, audio &amp; UI</div><p>Full character and animation set across the 10 targets and crew, audio in, app icon delivered, UI polished to the top-priority bar.</p></div>
+      <div class="beat"><div class="wk">Week 5 // Candidate</div><div class="ttl">Harden &amp; ship</div><p>Balance pass with you across all four missions, 30 fps stable on min spec, Northify QA device-matrix pass, then the Play Console internal track and Argentina release build.</p></div>
+    </div>
+
+    <div class="grid2" style="margin-top:30px;">
+      <div class="pane">
+        <h3>// Rhythm &amp; scope</h3>
+        <ul class="blist">
+          <li><strong>Cadence.</strong> A playable build and live demo every Friday, the heartbeat of the project and the surface for any change.</li>
+          <li><strong>Scope.</strong> Tweaks inside the brief scope absorbed in flow; anything beyond gets a short written change order, so the date stays protected.</li>
+          <li><strong>Slips.</strong> Raised early at the Friday demo. We protect the fixed date by triaging scope, not quality: Mission 1 and the first 30 seconds are non-negotiable; later-mission art depth is the planned flex.</li>
+        </ul>
+      </div>
+      <div class="pane">
+        <h3>// QA &amp; device matrix</h3>
+        <p>We carry development QA in the team throughout. For independent functional and compliance QA we bring in a specialist studio rather than self-certify - preferred partner <strong>Northify</strong>.</p>
+        <ul class="blist">
+          <li>Full mission flow, save integrity across sessions, 30 fps stability, and correctness of Magnetic SDK event reporting.</li>
+          <li>Android device matrix from min spec (Android 9+, 4 GB RAM) to current, agreed at kickoff.</li>
+          <li>Crash reporting via Firebase Crashlytics, same backend as remote config, so live crash and ANR visibility from the first build with no extra dependency.</li>
+          <li>Functional &amp; compliance QA via Northify: a structured functional pass plus the Google Play pre-submission compliance pass before the Argentina release build.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERLUDE: the haggle -->
+  <div class="interlude">
+    <div class="ipic" style="background-image:url('mood/fence_b.jpg')"></div>
+    <div class="itext">
+      <span class="scene">// The haggle - Harry the fence</span>
+      <p>Built like a brick outhouse, face like a smacked arse, a stare that'd curdle milk. First time you meet Harry you'd swear he's about to fold you in half. He plays it mean and all, grunts, glares, makes you sweat. It's an act. Mostly.</p>
+      <p>Cos here's the thing. Whatever you've lifted, whatever's gone warm in your pocket, Harry'll move it. Gold, watches, the odd dodgy phone, he's got a buyer for the lot. No questions, no grassing, fair coin in the end. Best fence in the manor, bar none.</p>
+      <p>So you let him do his big-man routine. "Hundred quid," he goes, not even looking up. Hundred? Harry, you having a laugh, this is eighteen carat. Back and forth we go, he sucks his teeth, I act wounded, we meet in the middle and both pretend we got done. Always do business in the end. Pleasure as always, you robbing old goat.</p>
+    </div>
+  </div>
+
+  <!-- COMMERCIALS -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">05</span> Commercials /////</div>
+    <h2>Milestone-based <span class="mag">fixed price.</span></h2>
+    <div class="comm">
+      <div>
+        <p>A fixed price over the five-week build fits the fixed launch date and the mandatory weekly cadence. It gives you budget certainty and ties every payment to an accepted milestone. The client owns all code, art and audio on delivery, with unrestricted rights to take the codebase forward; the source repository transfers at end of project.</p>
+        <ul class="blist">
+          <li><strong>One fixed quote.</strong> Stylised, reads-as-London Soho, the efficient route for a CPI/D3 test and the fidelity your updated brief calls for. No street-accurate option carried - you asked us to build it inspired by Soho, not block-for-block.</li>
+          <li><strong>Repriced to the tighter scope.</strong> Four missions in Soho instead of six across Soho and Mayfair, roughly 60 minutes of play instead of 90, no navigable Mayfair map. The systems work carries over largely unchanged, so the saving is in content and environment art, and the number comes down accordingly.</li>
+          <li><strong>Where the weight sits.</strong> Gameplay code and UI are the heavy part of this build; the art volume is carried efficiently by our AI-assisted pipeline under human direction. The quote is weighted to match.</li>
+          <li><strong>What the total includes.</strong> The senior build team, functional &amp; compliance QA via our specialist partner Northify (€8k), and a 10% contingency held against the fixed end-Q4 date. In-team development QA runs throughout, on top of the Northify pass.</li>
+          <li><strong>Most costs are on us.</strong> AI tooling and the QA device matrix are covered in our price, and Aurora Punks already holds the Play Console account. Original music from our composer is a small transparent add (4 tracks, €3,000); open geo data is near-zero, billed at cost. Full breakdown in the Q&amp;A below.</li>
+          <li><strong>Engine licensing.</strong> Our Unity build-seat licenses are covered in our price. Post-handover, the ongoing engine license for the shipped product sits with you as owner, standard for any engine.</li>
+          <li><strong>Post-launch support.</strong> 30 days for critical bug fixes and store re-submissions, capped hours, then time-and-materials.</li>
+          <li><strong>Assumptions.</strong> Android only; scope per the brief; polish concentrated on the CPI/D3-critical surface; GDD and art one-pagers build-ready at kickoff.</li>
+        </ul>
+      </div>
+      <div class="pricecard">
+        <div class="pc-sun"></div>
+        <div class="lab">Fixed price · Reads-as-London Soho</div>
+        <div class="big">€85k</div>
+        <div class="sub" style="margin-bottom:18px;">Build €69k + QA €8k + 10% contingency. Senior team, five-week build.</div>
+        <ul class="pay">
+          <li><strong>30%</strong> deposit on signature</li>
+          <li><strong>40%</strong> on Mission 1 slice + Soho map accepted</li>
+          <li><strong>20%</strong> on content-complete (all four missions)</li>
+          <li><strong>10%</strong> on store-live acceptance</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISKS -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">06</span> Risks &amp; open questions /////</div>
+    <h2>The three things <span class="mag">we are watching.</span></h2>
+    <div class="risk">
+      <h4><span class="n">01</span>Geo-to-3D landing on-style and on-time</h4>
+      <p><span class="m">Mitigation //</span> a Week-1 spike that proves the geo-to-3D-to-art-style pipeline on one Soho block before production scales; open-data licensing keeps the source clean.</p>
+    </div>
+    <div class="risk">
+      <h4><span class="n">02</span>Art volume against a five-week build, and keeping it human</h4>
+      <p><span class="m">Mitigation //</span> an AI-assisted pipeline carries the volume, but under human art direction (Hasan) with a human-feel check on every asset so it reads as crafted, not generated. Polish concentrated on the CPI/D3-critical surface, aggressive NPC-variant reuse.</p>
+    </div>
+    <div class="risk">
+      <h4><span class="n">03</span>Second-to-second gameplay not yet proven in the prototype</h4>
+      <p><span class="m">Mitigation //</span> the prototype proves the concept but not the moment-to-moment feel yet, and that is the thing we will watch hardest. We treat it as a logic reference, prove the Mission 1 loop feel first in weeks 1 to 2, and put a playable on device every Friday so feel is tuned with you early, not discovered late.</p>
+    </div>
+    <p style="margin-top:22px;"><strong>Open questions //</strong> target kickoff date; Magnetic SDK specifics and credential timing; art one-pager availability once your style test lands; expected soft-launch install volume; min-spec device list for the QA matrix.</p>
+  </section>
+
+  <!-- Q&A -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">07</span> Questions &amp; answers /////</div>
+    <h2>Your questions <span class="mag">for the final round.</span></h2>
+    <p>Straight answers to the questions you sent ahead of our call.</p>
+    <div class="qa">
+
+      <div class="qaitem">
+        <div class="q"><span class="qn">Q1</span>Is five weeks realistic, and does it leave enough time to play-test and refine?</div>
+        <div class="a">
+          <p>Yes. The five weeks is the <strong>build</strong>, not the runway to launch. With soft launch at the end of Q4, a build delivered in the autumn leaves a long tail for tuning, and because economy, progression and difficulty run off remote config, that tuning needs no new build from us.</p>
+          <p>Inside the build we put a playable on device every Friday, with Mission 1's core loop front-loaded so the feel is proven early, not discovered late. Where the moment-to-moment feel needs more hands-on iteration, we add optional hardening weeks (Q2).</p>
+        </div>
+      </div>
+
+      <div class="qaitem">
+        <div class="q"><span class="qn">Q2</span>What happens if it needs more iteration, or over-runs the fixed price?</div>
+        <div class="a">
+          <p>The fixed price means the overrun risk sits with <strong>us</strong>, not you. €85k covers the defined five-week build whatever our hours come to.</p>
+          <p>If you want more room to iterate on feel, we add it in weekly blocks: <strong>€4,870 per hardening week, up to four weeks</strong>, staffed by the same core team that built the game at reduced capacity, so there is no ramp-up:</p>
+          <ul class="blist">
+            <li><strong>Tech Lead, gameplay &amp; network</strong> (Fredrik Laurent) - 50%</li>
+            <li><strong>Platform engineer &amp; UI</strong> (Oskar Hansen) - 50%</li>
+            <li><strong>Concept &amp; tech art</strong> (Hasan Chenari) - 50%</li>
+            <li><strong>Production / EP</strong> (Robert Bäckström) - 25%</li>
+          </ul>
+          <p>Focused on core-loop feel and live-metric response. Anything needed <strong>beyond</strong> those four weeks is on us. Your cost is capped; the risk past that point is ours.</p>
+        </div>
+      </div>
+
+      <div class="qaitem">
+        <div class="q"><span class="qn">Q3</span>Is the team locked in for the full project?</div>
+        <div class="a">
+          <p>Yes. The named senior team is committed for the build and any hardening weeks. We would prefer an October kickoff, and can bring it forward to September if you want more room against your end-Q4 window.</p>
+        </div>
+      </div>
+
+      <div class="qaitem">
+        <div class="q"><span class="qn">Q4</span>What is the team's mobile and free-to-play experience?</div>
+        <div class="a">
+          <p>Strong on mobile and shipped-game craft, with real free-to-play exposure, and we will be straight about where the depth sits.</p>
+          <p><strong>Mobile:</strong> we built and shipped Hooja, a live, ads-monetised mobile title, and BlockEm across Steam and browser. <strong>Free-to-play:</strong> our team worked on The Finals, Embark's free-to-play arena shooter (release management, commerce guidelines and QA); our production lead has shipped F2P on console; and our design advisor brings additional F2P design depth. Our strongest suit is senior build craft and a fast, art-led mobile pipeline, backed by live soft-launch experience with Hooja, which is the shape this test needs.</p>
+        </div>
+      </div>
+
+      <div class="qaitem">
+        <div class="q"><span class="qn">Q5</span>What are the expected costs for geo data, AI tooling, music, QA hardware, Play Console and the Unity license?</div>
+        <div class="a">
+          <p>Most are either near-zero or already covered in our price. There is no stack of surprise line items on top of the €85k.</p>
+          <ul class="blist">
+            <li><strong>Geo data</strong> - open-licensed (OpenStreetMap / Ordnance Survey), effectively zero and clean to use.</li>
+            <li><strong>AI tooling</strong> - covered in our price, not a separate cost to you.</li>
+            <li><strong>Music</strong> - our recommendation is original music from our in-house composer: 4 tracks at <strong>€3,000</strong> added to the budget, rights-clean and yours outright on delivery. Licensing existing tracks instead would likely cost more, with rights clearance on top. Either way it is a transparent line, not buried in the build.</li>
+            <li><strong>QA device hardware</strong> - covered in the €85k (coverage in Q6).</li>
+            <li><strong>Google Play Console</strong> - Aurora Punks already holds a developer account, so nothing to set up.</li>
+            <li><strong>Unity engine license</strong> - our build-seat licenses are covered in our price. Post-handover, the ongoing engine license for the shipped product sits with you as the owner, standard for any engine.</li>
+          </ul>
+          <p>The only genuine third-party pass-throughs are billed at cost, with no markup.</p>
+        </div>
+      </div>
+
+      <div class="qaitem">
+        <div class="q"><span class="qn">Q6</span>Which devices do you cover for QA?</div>
+        <div class="a">
+          <p>We cover the hardware inside the €85k. Standard co-dev mobile coverage for a soft launch, weighted to your Argentina market:</p>
+          <ul class="blist">
+            <li><strong>Min-spec floor</strong> - budget devices (Samsung Galaxy A14, Motorola Moto G, Xiaomi Redmi 12; Android 12 to 13, 4 GB, MediaTek). The performance floor we protect.</li>
+            <li><strong>Mid-tier</strong> - where most soft-launch players sit (Samsung Galaxy A34 / A54, Redmi Note 13, Pixel 7a; Android 14).</li>
+            <li><strong>High-end</strong> - performance ceiling and newest OS (Samsung Galaxy S23 / S24, Pixel 8; Android 15).</li>
+          </ul>
+          <p>Across both Snapdragon and MediaTek chipsets, Android 9 (min) to 15, and a spread of screen sizes and aspect ratios. The final list is agreed with you at kickoff.</p>
+        </div>
+      </div>
+
+      <div class="qaitem">
+        <div class="q"><span class="qn">Q7</span>Do you have a start date in mind?</div>
+        <div class="a">
+          <p>We would prefer an October kickoff, which fits best around our current slate. If you would rather have more cushion against the end-Q4 soft launch, we can bring it forward to September. Both land your Q4 window - October is our preference, September if you want the extra schedule room.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="./ap-logo.png" alt="Aurora Punks">
+    <div class="c"><a href="mailto:robert@aurorapunks.com">robert@aurorapunks.com</a> // Confidential - Teef / Makosch CI</div>
+  </footer>
+
+</main>
+
+</body>
+</html>

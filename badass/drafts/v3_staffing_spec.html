@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BADASS — Staffing Plan v3 (Structural Spec)</title>
+<style>
+@page { size: A4; margin: 50mm; }
+body { font-family: Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #222; }
+h1 { font-size: 20pt; margin-top: 0; }
+h2 { font-size: 14pt; margin-top: 22pt; border-bottom: 1px solid #999; padding-bottom: 4pt; }
+h3 { font-size: 12pt; margin-top: 16pt; }
+table { border-collapse: collapse; width: 100%; margin: 10pt 0; }
+th, td { border: 1px solid #999; padding: 6pt 8pt; text-align: left; vertical-align: top; }
+th { background: #eee; font-weight: bold; }
+.callout { background: #fff8c5; border-left: 4px solid #d4a72c; padding: 10pt 14pt; margin: 14pt 0; }
+.disclaimer { background: #f4f4f4; border-left: 4px solid #888; padding: 10pt 14pt; margin: 14pt 0; font-style: italic; }
+.meta { background: #f0f4f8; padding: 10pt 14pt; margin-bottom: 18pt; }
+ul { margin: 6pt 0; }
+li { margin-bottom: 3pt; }
+code { background: #f4f4f4; padding: 1pt 4pt; border-radius: 2pt; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<h1>BADASS — Staffing Plan v3 (Structural Spec)</h1>
+
+<div class="meta">
+<strong>From:</strong> Robert (Aurora Punks)<br>
+<strong>To:</strong> Dieter Launer (Finance, BADASS Studios)<br>
+<strong>CC:</strong> Rosemary Lokhorst (CEO), Alex Sangwin-Skillen (CCO)<br>
+<strong>Date:</strong> 2026-05-08<br>
+<strong>Status:</strong> DRAFT — structural review only, numbers to follow<br>
+<strong>Related:</strong> May 4 P&L v2, Apr 22 Roles Mapping v2, May 5 12:30 CEST Dieter call
+</div>
+
+<div class="callout">
+<strong>What this doc is and isn't.</strong> This is a structural spec for the modular team-unit model you asked for on May 5. It locks the <em>shape</em> of the staffing model — project-type templates, scaling rules, group structure, role placement — so we agree on the framework before populating real numbers. We want your input on this shape. Once locked, we will build the full Staff Sheet + Scenario tab inside the existing P&L file (the May 4 v2), with yellow fill on every changed cell and a Changes Log tab. <strong>What this doc deliberately does NOT include yet:</strong> salary numbers, quarter-by-quarter ramps, scenario totals, Cloud/AI cost figures. Those come post your sign-off on shape.
+</div>
+
+<h2>1. The Model — at a glance</h2>
+
+<p>BADASS staffing decomposes into <strong>five top-level groups</strong>, with cost rolling up via:</p>
+
+<p><code>Total = Management + Marketing &amp; Comms + Platform + Σ(active_projects × Customisation_Core_template_cost) + Shared_Services_scaled_to_concurrent_count + Sub_overflow</code></p>
+
+<table>
+<tr><th>Group</th><th>What it is</th><th>Scaling</th></tr>
+<tr><td><strong>Management</strong></td><td>CEO, CCO, CFO/Finance, COO, Head of Eng, Chief of Staff, Legal, Team Assistant</td><td>Fixed</td></tr>
+<tr><td><strong>Marketing &amp; Comms</strong></td><td>Brand/Marketing Manager, Marketing Assistant, PR Manager, eSports Community &amp; Partner Manager (Adam)</td><td>Fixed (own bucket — distinct from per-project marketing in Shared Services)</td></tr>
+<tr><td><strong>Platform</strong></td><td>BadassXR core engineering, 1st-party game products, reusable infrastructure, shared CERT</td><td>Relatively fixed; step-up per new project type / new platform supported</td></tr>
+<tr><td><strong>Customisation Core</strong></td><td>Per-project Core teams instantiated from one of 5 templates. Each active client project gets a dedicated Core.</td><td>Linear: <code>active_projects × template_cost</code>; bigger projects scale via <strong>subcontractors added to the Core</strong> (not by adding more FTE).</td></tr>
+<tr><td><strong>Shared Services</strong></td><td>Specialist roles pooled across all active projects. Demand-driven for art / UX / SFX / lighting; fixed-then-step-up for Account Manager / Customer Support / Backend Engineer.</td><td>Demand-driven; sum of sub-50% allocations × concurrent count.</td></tr>
+</table>
+
+<h3>The 50% threshold rule</h3>
+<p>Roles allocated <strong>more than 50%</strong> on a single project sit in the Customisation Core team for that project. Roles at <strong>50% or less</strong> are pulled from Shared Services. This is the cleanest way to keep the per-project Core lean without losing access to specialist talent.</p>
+
+<h3>Surplus hours</h3>
+<p>FTEs in Customisation Core are dedicated to their project but rarely at 100% load. <strong>Surplus hours flow upstream to Platform work and internal assignments.</strong> This means every "Customisation" FTE also contributes to Platform — blunting the optic that BADASS is a services shop. Important talking point for investors.</p>
+
+<h2>2. Project Type Taxonomy — 5 Templates</h2>
+
+<table>
+<tr><th>#</th><th>Template</th><th>Use cases</th><th>Duration</th></tr>
+<tr><td>1</td><td><strong>AR Live Broadcast</strong></td><td>E1 racing, show jumping, other sports/events, concerts</td><td>4–6 months per instance, gated by event date</td></tr>
+<tr><td>2</td><td><strong>VR Live Broadcast</strong></td><td>VR experience layer for broadcast events</td><td>3–4 months</td></tr>
+<tr><td>3</td><td><strong>AR App</strong></td><td>Mobile AR app (Blackbook-style) re-skinned per client (e.g., horses, future verticals)</td><td>2–3 months for re-skin / 4–6 for new build</td></tr>
+<tr><td>4</td><td><strong>UEFN / Fortnite</strong></td><td>Brand activations, per-client custom UEFN content</td><td>15-day baseline pipeline; scales with timeline + subs</td></tr>
+<tr><td>5</td><td><strong>Steam / Console Game</strong></td><td>1st-party or licensed playable products</td><td>9–18 months</td></tr>
+</table>
+
+<p><em>Digital Twin Environment</em> (Como, Jeddah, Dubrovnik) is not a standalone template — it folds into AR Broadcast and VR Broadcast as input asset cost, since those venues are always built in service of a broadcast event.</p>
+
+<h2>3. Customisation Core — Template Composition</h2>
+
+<p>Each template specifies the minimum Core team that ships one instance. Roles below the 50% threshold are pulled from Shared Services and not listed here. Every template includes a <strong>Customisation Team Lead at 60%</strong> (region-agnostic — drop the UK/US suffix from prior drafts).</p>
+
+<table>
+<tr><th>Template</th><th>Core team (allocation)</th></tr>
+<tr><td><strong>AR Live Broadcast</strong></td><td>1× AR/VR Engineer (camera/tracking, 100%)<br>1× AR/VR Engineer (broadcast, last-third 100%)<br>1× Gameplay/Frontend Programmer (70%)<br>1× Customisation Team Lead (60%)</td></tr>
+<tr><td><strong>VR Live Broadcast</strong></td><td>1× AR/VR Engineer (100%)<br>1× UX Designer (70%)<br>1× Customisation Team Lead (60%)</td></tr>
+<tr><td><strong>AR App</strong></td><td>1× AR/VR Engineer (100%)<br>1× UI Artist (60%)<br>1× Customisation Team Lead (60%)</td></tr>
+<tr><td><strong>UEFN / Fortnite</strong></td><td>1× UEFN Developer (100%)<br>1× Customisation Team Lead (60%)</td></tr>
+<tr><td><strong>Steam / Console Game</strong></td><td>1× Gameplay/Frontend Programmer #1 (100%)<br>1× Gameplay/Frontend Programmer #2 (100%, was "Tech Engineer" in prior drafts)<br>1× MP/Backend Engineer (100%)<br>1× 3D Generalist (100%)<br>1× Technical Artist (100%)<br>1× Porting Engineer (per platform, sub-eligible)<br>1× Customisation Team Lead (60%)</td></tr>
+</table>
+
+<h3>Scaling rules per template</h3>
+<table>
+<tr><th>Template</th><th>What flexes when project gets bigger</th></tr>
+<tr><td>AR Broadcast</td><td>Subcontractors added to Core (date-locked by event)</td></tr>
+<tr><td>VR Broadcast</td><td>Subcontractors added to Core (date-locked by event)</td></tr>
+<tr><td>AR App</td><td>Subcontractors + duration (no hard ship date)</td></tr>
+<tr><td>UEFN / Fortnite</td><td>Timeline + subcontractors (15 days is baseline, not a cap)</td></tr>
+<tr><td>Steam / Console</td><td>Subcontractors added to Core; Porting Engineer per platform (sub-eligible)</td></tr>
+</table>
+
+<h3>Concurrent projects</h3>
+<p><strong>Each concurrent project gets a fully duplicated Core team — no role-sharing across instances of the same template.</strong> Client focus is the headline value-prop; one Customisation Team Lead per project, one set of engineers per project. Surplus capacity flows to Platform per the rule above.</p>
+
+<div class="callout">
+<strong>Parking lot:</strong> we may want to introduce T-shirt-sized Core variants (small / medium / large per template) in a future iteration. Out of scope for v3.
+</div>
+
+<h2>4. Platform Team</h2>
+
+<table>
+<tr><th>Role</th><th>Source</th><th>Status</th></tr>
+<tr><td>UE Developer (Intermediate)</td><td>Sezar</td><td>Current FTE</td></tr>
+<tr><td>UE/XR Real-Time Graphics Developer</td><td>John</td><td>Current FTE; primary work flows through E1 AR Broadcast Core but produces reusable platform artifacts</td></tr>
+<tr><td>3D Artist</td><td>Marco</td><td>Current FTE; same logic as John</td></tr>
+<tr><td>Lead 3D Artist</td><td>Jake</td><td>Current FTE; same logic as John</td></tr>
+<tr><td>Junior AR Designer &amp; Developer</td><td>Ben</td><td>Current FTE; AR App is a Platform module per architecture (re-skinnable for clients)</td></tr>
+<tr><td>Senior AI Engineer</td><td>Hybrid: AP-supplied Q4-26 → Q2-27, internal hire from Q3-27</td><td>Pending</td></tr>
+<tr><td>DevOps Engineer</td><td>New hire</td><td>Pending Gaizka continuity question</td></tr>
+<tr><td>Tech Artist (Platform)</td><td>New hire</td><td>Pending</td></tr>
+<tr><td>Release Manager (50%)</td><td>New hire (50% Platform / 50% Customisation)</td><td>Pending; QA folded in (external QA agency model for client work)</td></tr>
+<tr><td>IT Operations &amp; Support</td><td>New hire</td><td>Pending (per Nancy's May 4 batch)</td></tr>
+</table>
+
+<h3>Scaling rule</h3>
+<p>Platform is relatively fixed. Step-up resources when adding a <strong>new project type</strong> or <strong>new platform supported</strong> (not per project count).</p>
+
+<h2>5. Shared Services Pool</h2>
+
+<table>
+<tr><th>Role</th><th>Scaling shape</th><th>Notes</th></tr>
+<tr><td>3D Generalist</td><td>Demand-driven (sum of sub-50% allocations)</td><td>Heavy demand from AR/VR Broadcast + UEFN templates</td></tr>
+<tr><td>Technical Artist</td><td>Demand-driven</td><td>Pulled by AR Broadcast at 50% + Steam/Console at 100%</td></tr>
+<tr><td>UX Designer</td><td>Demand-driven</td><td>Pulled by AR App at 50%; VR Broadcast lives in Core at 70%</td></tr>
+<tr><td>UI Artist</td><td>Demand-driven</td><td>Pulled by UEFN + Steam/Console at 50%; AR App lives in Core at 60%</td></tr>
+<tr><td>SFX/VFX Designer</td><td>Demand-driven</td><td>Pulled mainly by Steam/Console template</td></tr>
+<tr><td>Lighting Artist</td><td>Demand-driven</td><td>Lives entirely in Shared Services; ad-hoc per project</td></tr>
+<tr><td>Animator / Character Artist</td><td>Demand-driven</td><td>Specialty role per Nancy's May 4 batch</td></tr>
+<tr><td>Backend Engineer</td><td>Fixed-then-step-up</td><td>Initially 30% on AR App; scales with concurrent project count</td></tr>
+<tr><td>Marketing Manager (per-project)</td><td>Fixed-then-step-up</td><td>Project-attached; distinct from M&amp;C group's corporate Brand/Marketing Manager</td></tr>
+<tr><td>Account Manager</td><td>Fixed-then-step-up</td><td>Client-comms role; potentially 1× EU + 1× US for time-zone coverage</td></tr>
+<tr><td>Customer Support</td><td>Fixed-then-step-up</td><td>Per Nancy's May 4 batch</td></tr>
+</table>
+
+<h3>Cost framing</h3>
+<p>Shared Services is modelled as <strong>BADASS FTEs</strong>, not contractor pass-through. These are key roles that BADASS owns. Aurora Punks may supply some of these in an FTE-equivalent setup over time — that is a parking-lot conversation outside this scope.</p>
+
+<h2>6. Marketing &amp; Comms</h2>
+
+<p>New top-level group — separated from Management for clarity, since Marketing &amp; Comms scales differently and signals investor focus on brand-building:</p>
+
+<ul>
+<li>Brand / Marketing Manager (corporate)</li>
+<li>Marketing Assistant</li>
+<li>PR Manager</li>
+<li>eSports Community &amp; Partner Manager (Adam)</li>
+</ul>
+
+<h2>7. Management</h2>
+
+<table>
+<tr><th>Person / Role</th><th>Status</th></tr>
+<tr><td>Rosemary Lokhorst — CEO</td><td>Current</td></tr>
+<tr><td>Alex Sangwin-Skillen — CCO</td><td>Current</td></tr>
+<tr><td>Ben Douglas — COO</td><td>Current</td></tr>
+<tr><td>Dieter Launer — Finance Manager</td><td>Current (50%)</td></tr>
+<tr><td>Peter van Manen — Head of Engineering</td><td>Current</td></tr>
+<tr><td>Nancy Imado — Chief of Staff</td><td>Current</td></tr>
+<tr><td>Sheida Shaker — Operations</td><td>Current</td></tr>
+<tr><td>Legal</td><td>Pending hire (per Nancy's May 4 batch)</td></tr>
+<tr><td>Team Assistant</td><td>Pending hire</td></tr>
+</table>
+
+<h2>8. Sub-Overflow Rules — hybrid per template</h2>
+
+<p>Default: Core engineering FTE-pure for lead roles; surge / specialty roles sub-eligible; all Shared Services roles sub-eligible by default.</p>
+
+<p><strong>Per-template sub-eligibility specifics will be locked when scenarios are built (post v3 sign-off).</strong> The structural commitment now is that scaling happens via subs, not by inflating Core FTE.</p>
+
+<h2>9. Scenarios — investor framing</h2>
+
+<div class="disclaimer">
+<strong>Disclaimer.</strong> Scenario projections are difficult for us to validate independently — Aurora Punks has limited insight into BADASS's ongoing client conversations and the live business case. The scenarios below are illustrative of how the model flexes with project count, not predictions of the actual mix BADASS will land. The project mix should be challenged and replaced with what Rosy / Alex / Ben Douglas are actually pitching to Dell Capital.
+</div>
+
+<h3>Default scaling unit</h3>
+<p>Two axes — <strong>concurrent active projects</strong> for cost rollup (since headcount is concurrent-shaped), and <strong>projects-per-year throughput</strong> for revenue rollup (since each project has a contract value × completion).</p>
+
+<h3>Illustrative project mixes</h3>
+<table>
+<tr><th>Scenario</th><th>Project mix (concurrent)</th><th>Implication</th></tr>
+<tr><td><strong>Base</strong></td><td>E1 AR Broadcast (continuous) + 1 AR App re-skin/yr</td><td>~2 concurrent on average. Headcount tracks current trajectory + small step-up for AR App.</td></tr>
+<tr><td><strong>Mid</strong></td><td>+ Show jumping AR Broadcast<br>+ UEFN per quarter</td><td>~3–4 concurrent. Step-up in Customisation Team Lead count, AR/VR Engineer FTEs, sub usage on art/3D.</td></tr>
+<tr><td><strong>High</strong></td><td>+ 1 Steam/Console game<br>+ Concert AR Broadcast<br>+ 2 AR Apps</td><td>~6–8 concurrent. Significant Shared Services scaling, multiple Porting Engineers (sub-eligible), platform team step-up for new types.</td></tr>
+</table>
+
+<h2>10. Cloud / AI cost — placeholder</h2>
+
+<p>Cloud / AI cost will be modelled across three buckets, parallel to the staffing structure:</p>
+
+<ul>
+<li><strong>Platform AI cost</strong> — shared infra (cross-project ML services, asset pipelines)</li>
+<li><strong>Per-template AI cost</strong> — e.g., AR Broadcast real-time ML for camera tracking, Steam game procedural gen</li>
+<li><strong>Shared Services Senior AI Engineer cost</strong> — already in Platform roster, FTE</li>
+</ul>
+
+<p>Numbers populated in next deliverable (badass-002 Cloud/AI cost workstream, due next week). Structural slot is reserved here.</p>
+
+<h2>11. Mapping current FTEs into the new structure</h2>
+
+<table>
+<tr><th>Person</th><th>Current title</th><th>v3 placement</th><th>Notes</th></tr>
+<tr><td>Sezar Kemleh</td><td>UE Developer (Intermediate)</td><td>Platform</td><td>C++ conversion, UI migration, leaderboard</td></tr>
+<tr><td>John Liou</td><td>UE/XR Real-Time Graphics Developer</td><td>Platform</td><td>VCam, camera tracks, Como — work flows into E1 Broadcast Core but produces reusable platform artifacts (per Rosy's investor optics)</td></tr>
+<tr><td>Marco Tosoni</td><td>3D Artist</td><td>Platform</td><td>Same logic as John — reusable env / asset work</td></tr>
+<tr><td>Jake Kay</td><td>Lead 3D Artist</td><td>Platform</td><td>Same logic</td></tr>
+<tr><td>Ben Jeffreys</td><td>Junior AR Designer &amp; Developer</td><td>Platform</td><td>AR App is a Platform module (re-skinnable for clients) per architecture</td></tr>
+<tr><td>Robert Bäckström (AP)</td><td>Customisation Team Lead</td><td>Customisation Core (E1)</td><td>AP-supplied retainer — €6k/mo from Q3-26</td></tr>
+<tr><td>Adam Binns</td><td>eSports Community &amp; Partner Manager</td><td>Marketing &amp; Comms</td><td>Per Rosy's Apr 27 reply</td></tr>
+<tr><td>All Groovy crew (Olivia, Jeroen, Xander, Daniela)</td><td>Onsite AR/VR broadcast producers</td><td>Modelled as future FTEs</td><td>AR/VR Broadcast Producer ramps 1→4 across 2026–2028 per Rosy's Apr 27 ask</td></tr>
+<tr><td>Gaizka Pueyo</td><td>Infrastructure / DevOps</td><td>Platform OR transition out</td><td>Continuity question pending</td></tr>
+</table>
+
+<h2>12. Open items / pending decisions</h2>
+
+<ol>
+<li><strong>Marco / Jake / Ben — Platform vs Customisation.</strong> Held on Platform per Rosy's Apr 27 investor-optics direction (every "Customisation" framing makes BADASS look like a services shop to investors; reusable infra/asset work belongs in Platform). From a project-plan POV moving them to Customisation would also be defensible (their day-to-day is client-facing E1) — but we agree with Rosy's notion that scalability optics matter more for the Dell Capital narrative. <strong>Pending Alex discussion this week.</strong></li>
+<li><strong>Customisation Team Lead — drop UK suffix.</strong> Role is region-agnostic. Robert covers E1; future client projects each need their own.</li>
+<li><strong>Per-template sub-eligibility specifics.</strong> Will be locked when we build scenarios post-sign-off.</li>
+<li><strong>Cloud / AI cost numbers.</strong> Slot reserved; populated via badass-002 next week.</li>
+<li><strong>Gaizka continuity</strong> in DevOps role.</li>
+<li><strong>Role descriptions in flight with Nancy</strong> (May 4 batch + 6 v3-driven additions sent today): Customisation Team Lead, Customer Support, Account Manager, Animator/Character Artist, Marketing Manager (per-project), UI Artist, Lighting Artist, SFX/VFX Designer, Backend Engineer, Porting Engineer.</li>
+<li><strong>Rename overlap checks with Nancy</strong> on existing descriptions: 3D Artist ↔ 3D Generalist, Tech Artist (Platform/VR Bcast) ↔ Technical Artist generic, UX/UI Designer ↔ UX Designer + UI Artist split.</li>
+</ol>
+
+<h2>13. What we'd like from you (Dieter)</h2>
+
+<p>For the 17:00 CEST call today, focus on:</p>
+
+<ol>
+<li><strong>Group structure</strong> — 5 groups (Mgmt / M&amp;C / Platform / Customisation Core / Shared Services). Right shape for the investor narrative? Anything you'd merge or split?</li>
+<li><strong>50% threshold rule</strong> — &gt;50% in Core, ≤50% in Shared Services. Does that line up with how you want the P&amp;L to read?</li>
+<li><strong>Scaling formula</strong> — bigger projects = subs added to Core (not FTE inflation). Concurrent = full duplication. Surplus → Platform. Buy / change / refine?</li>
+<li><strong>Marketing &amp; Comms as own group</strong> — better visibility for the brand/marketing line, or fold back into Management?</li>
+<li><strong>Cloud / AI placeholder lines</strong> — shape OK, populate next week?</li>
+</ol>
+
+<h2>14. Next steps after sign-off</h2>
+
+<ol>
+<li><strong>Build full Staff Sheet inside the May 4 v2 file</strong> — apply the new group structure, populate quarter-by-quarter ramps for all current FTEs + planned hires, salary bands per role, with yellow fill on every changed cell and a Changes Log tab.</li>
+<li><strong>Build Scenario tab</strong> — base / mid / high project mix totals, with disclaimer carried through.</li>
+<li><strong>Fold in Cloud / AI costs</strong> from badass-002 deliverable (due next week).</li>
+<li><strong>Loop Rosy / Alex on the populated v3</strong> for sign-off, then surface to Ben Douglas / Peter for final review pre-Dell.</li>
+<li><strong>Lock Marco / Jake / Ben placement</strong> after the Alex discussion (this week).</li>
+</ol>
+
+</body>
+</html>

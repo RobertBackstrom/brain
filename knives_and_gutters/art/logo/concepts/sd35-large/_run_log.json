@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-05-09T20:31:58Z",
+  "model": "fal-ai/stable-diffusion-v35-large",
+  "image_size": {
+    "width": 1536,
+    "height": 1024
+  },
+  "num_inference_steps": 40,
+  "guidance_scale": 8,
+  "seeds": [
+    1337,
+    4242,
+    9001,
+    7777
+  ],
+  "results": [
+    {
+      "slug": "merged_seed1337",
+      "status": "ok",
+      "elapsed": 202.62083506584167,
+      "url": "https://v3b.fal.media/files/b/0a998f59/S6NtnAeuxztcjCisAnxeN.jpg",
+      "seed": 1337
+    },
+    {
+      "slug": "merged_seed4242",
+      "status": "ok",
+      "elapsed": 18.532599449157715,
+      "url": "https://v3b.fal.media/files/b/0a998f5b/ldYhru8ROKaw-f0N2OcKC.jpg",
+      "seed": 4242
+    },
+    {
+      "slug": "merged_seed9001",
+      "status": "ok",
+      "elapsed": 15.469593286514282,
+      "url": "https://v3b.fal.media/files/b/0a998f5c/xtmCU0v43kOo8W0B4tHMc.jpg",
+      "seed": 9001
+    },
+    {
+      "slug": "merged_seed7777",
+      "status": "ok",
+      "elapsed": 14.964763402938843,
+      "url": "https://v3b.fal.media/files/b/0a998f5e/w8enM7wCDTpkA1gCinEw8.jpg",
+      "seed": 7777
+    }
+  ]
+}

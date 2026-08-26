@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "steamworks-partner": {
+      "command": "node",
+      "args": [
+        "/home/assistant/projects/mcp-servers/steamworks-partner/dist/index.js"
+      ],
+      "env": {
+        "STEAMWORKS_API_KEY": "YOUR_PUBLISHER_KEY_HERE",
+        "STEAMWORKS_FINANCIAL_KEY": "YOUR_FINANCIAL_KEY_HERE"
+      }
+    }
+  }
+}

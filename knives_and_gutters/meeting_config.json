@@ -1,0 +1,20 @@
+{
+  "_comment": "Knives & Gutters. Campaigns + community work alongside Jakob. Routes to BizDev.",
+
+  "attendees": [
+    "jakob_koster@hotmail.com"
+  ],
+
+  "titleKeywords": [
+    "knives & gutters",
+    "knives and gutters",
+    "gangs of forsaken"
+  ],
+
+  "hasAiNoteTaker": true,
+
+  "downstreamAgent": "BizDev",
+
+  "suppressNotePoll": true,
+  "_suppressReason": "Asset creation focus (2026-05-11) — standups paused, no Gemini summaries expected. Re-enable when standups resume."
+}

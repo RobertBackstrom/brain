@@ -1,0 +1,43 @@
+﻿Period;Datum;Summa;Exklusive moms;Varav moms;Nr;Momssats;Notis
+SUMMA Q2;;6 384,71;5 443,91;940,80;;;
+SUMMA JULI (t.o.m. 24/7);;4 376,14;3 883,91;492,23;;;
+TOTALT;;10 760,85;9 327,82;1 433,03;;;
+;;;;;;;
+Q2;2026-04-07;110,00;98,21;11,79;1;12%;Home Hotel Grand Sundsvall F&B - samma resa.
+Q2;2026-04-07;164,00;131,20;32,80;2;25%;Circle K Gavle (2 kop, drivmedel) - samma resa.
+Q2;2026-04-07;320,00;285,71;34,29;3;12%;Clarion Collection Hotel Sundsvall - tjansteresa.
+Q2;2026-05-05;1 659,00;1 327,20;331,80;4;25%;Telia mobil, marsfakturan (autogiro 5 maj). Moms beraknad 25% - ta beloppet fran fakturan.
+Q2;2026-05-08;188,93;188,93;0,00;5;0% omvand;fal.ai (Features & Labels Inc), faktura SCKQMD-00002, 20,00 USD. Omvand skattskyldighet.
+Q2;2026-05-08;305,00;287,73;17,27;6;6%;Thai Wok & Sushi - REPRESENTATION, konto 6072. Ej avdragsgill i inkomstslaget (IL 16:2), momsen avdragsgill (under 300 kr/person).
+Q2;2026-05-20;114,74;91,79;22,95;7;25%;PayPal Steam Games - research/referens.
+Q2;2026-05-28;174,00;155,36;18,64;8;12%;Hotell MJ Malmo - tjansteresa.
+Q2;2026-05-29;1 504,00;1 203,14;300,86;9;25%;Telia mobil, aprilfakturan (autogiro 29 maj).
+Q2;2026-06-03;993,04;993,04;0,00;10;0% omvand;Anthropic Claude Max 5x, kvitto 2850-7248-9729, 90,00 EUR. Omvand skattskyldighet.
+Q2;2026-06-26;24,00;19,20;4,80;11;25%;Speltrollet - andra kopet samma dag (tillbehor). TCG.
+Q2;2026-06-26;828,00;662,40;165,60;12;25%;Speltrollet - Pokemon booster + kortparm. Inkop TCG, kostnadsstalle TCG.
+;;;;;;;
+Juli;2026-07-02;1 422,00;1 137,57;284,43;13;25%;Telia mobil, majfakturan (autogiro 2 juli).
+Juli;2026-07-03;1 014,64;1 014,64;0,00;14;0% omvand;Anthropic Claude Max 5x, kvitto 2903-8641-6852, 90,00 EUR. Omvand skattskyldighet.
+Juli;2026-07-08;1 939,50;1 731,70;207,80;15;12%;Home Hotel Grand Sundsvall, rum. Faktura SE076B0064156. Betald med Mastercard 0579.
+;;;;;;;
+KVITTO SAKNAS - begar underlag innan bokforing;;;;;;;
+Juli;2026-07-08;284,00;;;;;Home Hotel Grand Sundsvall F&B. Momssats okand (12% mat / 25% alkohol).
+Juli;2026-07-08;110,00;;;;;Home Hotel Grand Sundsvall F&B. Momssats okand.
+;;;;;;;
+EJ MEDTAGET - redan bokfort via Pleo (avstamt mot SIE 2026);;;;;;;
+;2026-05-02;232,30;;;;;Google Workspace 1-7 apr, faktura 5557570033 - PLEO 67, konto 6090
+;2026-06-02;1 401,88;;;;;Google Workspace maj, faktura 5586032965 - A179, konto 5421
+;2026-04-04;1 011,86;;;;;Anthropic Claude Max apr - PLEO 38, konto 5410
+;2026-05-04;1 003,10;;;;;Anthropic Claude Max maj - PLEO 74, konto 5410
+;;;;;;;
+EJ MEDTAGET - privat (Roberts beslut 2026-07-24);;;;;;;
+;2026-06-07;115,00;;;;;Eriksdalsbadet familjebiljett
+;2026-06-08;840,00;;;;;Eriksdalsbadet bad 10 ggr
+;;;;;;;
+NOTERINGAR;;;;;;;
+;;;;;;;Rapporten ar pa KONTANTBASIS - vad som debiterats Roberts privatkonto (Skandia VISA 3081) i perioden. Samma metod som Q1.
+;;;;;;;Telias junifaktura 2 098,00 kr har forfallodag 31 juli och kommer i nasta period.
+;;;;;;;Marsfakturan fran Telia (1 659,00, betald 5 maj) har inte rapporterats tidigare. Q1 tog upp 630 kr for mars, vilket var februarifakturan.
+;;;;;;;Google Workspace jun 126,50 EUR nekades pa kort 8786 den 1 juli, sannolikt fortfarande obetald. Ej utlagg, men oppen skuld.
+;;;;;;;Glapp: ingen Google Workspace-faktura tacker 8-30 apr (gamla kontot slutade 7 apr, nya borjade 1 maj).
+;;;;;;;Obsidian Sync: finns inte pa nagot kort, dras inte langre.

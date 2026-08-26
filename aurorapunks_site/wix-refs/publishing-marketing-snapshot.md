@@ -1,0 +1,196 @@
+- generic [ref=e3]:
+  - region "top of page" [active]
+  - button "Skip to Main Content"
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e17]:
+        - generic:
+          - generic:
+            - link "Aurora Punks" [ref=e41] [cursor=pointer]:
+              - /url: https://www.aurorapunks.com
+              - img "Aurora Punks" [ref=e42]
+            - navigation "Site" [ref=e48]:
+              - list [ref=e49]:
+                - listitem [ref=e50]:
+                  - link "Game Publishing and Marketing" [ref=e52] [cursor=pointer]:
+                    - /url: https://www.aurorapunks.com/game-publishing-and-marketing
+                    - generic [ref=e54]: Game Publishing and Marketing
+                - listitem [ref=e55]:
+                  - generic [ref=e56]:
+                    - button "Game Development" [ref=e57] [cursor=pointer]:
+                      - generic [ref=e59]: Game Development
+                    - generic:
+                      - button "Toggle Game Development":
+                        - img
+                - listitem [ref=e61]:
+                  - generic [ref=e62]:
+                    - button "What We Also Do" [ref=e63] [cursor=pointer]:
+                      - generic [ref=e65]: What We Also Do
+                    - generic:
+                      - button "Toggle What We Also Do":
+                        - img
+                - listitem [ref=e67]:
+                  - link "About Us" [ref=e69] [cursor=pointer]:
+                    - /url: https://www.aurorapunks.com/about-us
+                    - generic [ref=e71]: About Us
+                - listitem [ref=e72]:
+                  - link "Blog" [ref=e74] [cursor=pointer]:
+                    - /url: https://www.aurorapunks.com/blog
+                    - generic [ref=e76]: Blog
+    - main [ref=e77]:
+      - generic [ref=e82]:
+        - generic:
+          - generic:
+            - generic:
+              - generic [ref=e83]:
+                - generic:
+                  - generic:
+                    - generic "3ec211_6f5caf4293c74f2db47a359156697f9f~mv2.png" [ref=e87]:
+                      - img "Go Fight Fantastic" [ref=e89]
+                    - paragraph [ref=e90]:
+                      - generic [ref=e93]: Go Fight Fantastic, published in partnership with Aurora Punks and Kinda Brave.
+              - generic [ref=e94]:
+                - generic:
+                  - generic:
+                    - heading "PUBLISHING SERVICES" [level=2] [ref=e98]:
+                      - generic [ref=e101]: PUBLISHING SERVICES
+                    - generic:
+                      - paragraph [ref=e102]:
+                        - generic [ref=e103]: Bringing a game to market takes strategy, focus, and the right support. At Aurora Punks, we offer tailored publishing services that fit your needs. From full-scale support to focused help with marketing, community, or platform strategy, we plug in where it matters most.
+                      - paragraph [ref=e104]
+                      - paragraph [ref=e105]:
+                        - generic [ref=e106]: We don’t fund projects outright; instead, we work on a service fee, revenue share, or a mix of both, depending on the collaboration.
+                    - heading "RELEASE MANAGEMENT" [level=2] [ref=e107]:
+                      - generic [ref=e110]: RELEASE MANAGEMENT
+                    - img [ref=e113]
+                    - paragraph [ref=e125]:
+                      - generic [ref=e127]: From submissions to last-minute tweaks, every part of your launch is covered to ensure a smooth and timely release.
+                    - heading "GAME MARKETING" [level=2] [ref=e128]:
+                      - generic [ref=e131]: GAME MARKETING
+                    - img [ref=e134]
+                    - paragraph [ref=e146]:
+                      - generic [ref=e148]: Smart launch strategies and compelling campaigns make sure your game reaches the right audience and gets the attention it deserves.
+                    - heading "COMMUNITY ENGAGEMENT" [level=2] [ref=e149]:
+                      - generic [ref=e152]: COMMUNITY ENGAGEMENT
+                    - img [ref=e155]
+                    - paragraph [ref=e167]:
+                      - generic [ref=e169]: Player excitement doesn’t build itself — through social media, forums, and events, we help foster a loyal, engaged community before and after launch.
+                    - heading "BUSINESS DEVELOPMENT" [level=2] [ref=e170]:
+                      - generic [ref=e173]: BUSINESS DEVELOPMENT
+                    - img [ref=e176]
+                    - paragraph [ref=e188]:
+                      - generic [ref=e190]: Spotting opportunities, staying on trend, and building the right partnerships — we set your game up for long-term success.
+                    - heading "PLATFORM RELATIONS" [level=2] [ref=e191]:
+                      - generic [ref=e194]: PLATFORM RELATIONS
+                    - img [ref=e197]
+                    - paragraph [ref=e209]:
+                      - generic [ref=e211]: Navigating platform relations across Steam, PlayStation, Xbox, and mobile, we ensure smooth distribution and full compliance.
+                    - heading "LOCALIZATION" [level=2] [ref=e212]:
+                      - generic [ref=e215]: LOCALIZATION
+                    - img [ref=e218]
+                    - paragraph [ref=e230]:
+                      - generic [ref=e232]: To reach a global audience, your game needs to speak their language — our localization ensures your content resonates everywhere.
+                    - heading "NEED ASSISTANCE?" [level=2] [ref=e233]:
+                      - link "NEED ASSISTANCE?" [ref=e234] [cursor=pointer]:
+                        - /url: https://bit.ly/aurora-punks-publishing
+                        - generic [ref=e237]: NEED ASSISTANCE?
+                    - paragraph [ref=e238]:
+                      - link "Let us know how we can support you with publishing or porting." [ref=e239] [cursor=pointer]:
+                        - /url: https://bit.ly/aurora-punks-publishing
+                        - generic [ref=e241]: Let us know how we can support you with publishing or porting.
+                    - link [ref=e243] [cursor=pointer]:
+                      - /url: https://bit.ly/aurora-punks-publishing
+                      - img [ref=e245]
+              - generic [ref=e248]:
+                - generic:
+                  - generic:
+                    - img "sir whoopass large main capsule.png" [ref=e254]
+                    - paragraph [ref=e255]:
+                      - generic [ref=e257]: Aurora Punks publishing partner on Sir Whoopass.
+              - generic [ref=e258]:
+                - generic:
+                  - generic:
+                    - heading "BRANDING & MARKETING FOR YOUR COMPANY?" [level=6] [ref=e262]
+                    - paragraph [ref=e263]:
+                      - link "In collaboration with our B2B branding and marketing partner, Cold Pixel, we provide tailored support to help companies in the games industry elevate their brand, amplify their messaging, and drive sales. Navigating the competitive landscape as a startup or established company in the games industry demands more than a great product - it requires strategic connections, a strong network, and the expertise to effectively communicate your value to key decision-makers. Whether you're targeting publishers, investors, or partners, we help you position your brand to stand out, craft compelling narratives, and connect with the stakeholders who drive purchasing decisions for your products or services. www.coldpx.com" [ref=e265] [cursor=pointer]:
+                        - /url: https://www.coldpx.com/
+                        - generic [ref=e266]:
+                          - text: In collaboration with our B2B branding and marketing partner, Cold Pixel, we provide tailored support to help companies in the games industry elevate their brand, amplify their messaging, and drive sales. Navigating the competitive landscape as a startup or established company in the games industry demands more than a great product - it requires strategic connections, a strong network, and the expertise to effectively communicate your value to key decision-makers. Whether you're targeting publishers, investors, or partners, we help you position your brand to stand out, craft compelling narratives, and connect with the stakeholders who drive purchasing decisions for your products or services.
+                          - generic [ref=e267]: www.coldpx.com
+                    - generic:
+                      - generic:
+                        - generic:
+                          - link "Cold Pixel" [ref=e269] [cursor=pointer]:
+                            - /url: https://www.coldpx.com/
+                            - img "Cold Pixel" [ref=e270]
+                          - generic [ref=e271]:
+                            - img
+                            - img "Cold Pixel" [ref=e273]
+              - generic [ref=e274]:
+                - generic:
+                  - generic:
+                    - heading "IN NEED OF A PUBLISHING OR BRANDING PARTNER?" [level=5] [ref=e278]:
+                      - generic [ref=e280]: IN NEED OF A PUBLISHING OR BRANDING PARTNER?
+                    - generic [ref=e282]:
+                      - generic:
+                        - generic:
+                          - generic [ref=e283]:
+                            - generic [ref=e284]: Your full name
+                            - textbox "Your full name" [ref=e286]:
+                              - /placeholder: Enter your name
+                          - generic [ref=e287]:
+                            - generic [ref=e288]: Email *
+                            - textbox "Email *" [ref=e290]:
+                              - /placeholder: Enter your email
+                          - generic [ref=e291]:
+                            - generic [ref=e292]: Who are you and what would you like to know?
+                            - textbox "Who are you and what would you like to know?" [ref=e293]:
+                              - /placeholder: About you and your game or company
+                          - button "Submit" [ref=e295] [cursor=pointer]:
+                            - generic [ref=e296]: Submit
+    - contentinfo [ref=e297]:
+      - generic [ref=e303]:
+        - generic:
+          - generic:
+            - paragraph [ref=e304]:
+              - link "hello@aurorapunks.com" [ref=e308] [cursor=pointer]:
+                - /url: mailto:hello@aurorapunks.com
+            - paragraph [ref=e309]:
+              - link "Work With Us" [ref=e310] [cursor=pointer]:
+                - /url: https://www.aurorapunks.com/career
+                - generic [ref=e314]: Work With Us
+            - generic:
+              - paragraph [ref=e315]:
+                - generic [ref=e316]:
+                  - generic [ref=e317]: Visit us at
+                  - generic [ref=e319]:
+                    - text: Timmermansgatan 43
+                    - text: 118 55 Stockholm, Sweden
+              - paragraph [ref=e320]:
+                - generic [ref=e323]:
+                  - text: "Contact:"
+                  - link "hello@aurorapunks.com" [ref=e324] [cursor=pointer]:
+                    - /url: mailto:hello@aurorapunks.com
+            - list "Social Bar" [ref=e326]:
+              - listitem [ref=e327]:
+                - link "Twitter" [ref=e328] [cursor=pointer]:
+                  - /url: https://x.com/AuroraPunks
+                  - img "Twitter" [ref=e329]
+              - listitem [ref=e330]:
+                - link "YouTube" [ref=e331] [cursor=pointer]:
+                  - /url: https://www.youtube.com/channel/UCN5MWCq05Yj47EELO6Pvo7w
+                  - img "YouTube" [ref=e332]
+              - listitem [ref=e333]:
+                - link "LinkedIn" [ref=e334] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/company/aurora-punks/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BjrocUUxDTtKarukUVTEyLA%3D%3D
+                  - img "LinkedIn" [ref=e335]
+              - listitem [ref=e336]:
+                - link [ref=e337] [cursor=pointer]:
+                  - /url: https://discord.gg/fgg9mfehVJ
+            - paragraph [ref=e338]:
+              - link "PRIVACY POLICY" [ref=e340] [cursor=pointer]:
+                - /url: https://www.aurorapunks.com/privacy
+                - generic [ref=e342]: PRIVACY POLICY
+            - paragraph [ref=e343]:
+              - generic [ref=e344]: ©2025 by Aurora Punks
+  - region "bottom of page"

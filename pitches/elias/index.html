@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elias Integration Sprint</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Elias Audio - integration sprint. Confidential.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0c11;
+  --panel:#15151c;
+  --panel-2:#1c1c25;
+  --ink:#f1eff2;
+  --muted:#bab7c3;
+  --muted-2:#847f8e;
+  --pink:#FB8874;
+  --pink-2:#ff9d8b;
+  --gray:#cccccc;
+  --line:#2b2b36;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Roboto',system-ui,sans-serif;font-weight:400;font-size:16px;line-height:1.65;overflow-x:hidden;}
+
+main{max-width:1060px;margin:0 auto;padding:0 32px 96px;position:relative;}
+@media(max-width:720px){main{padding:0 18px 64px;}}
+
+/* labels */
+.eyebrow{font-family:'Roboto',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.eyebrow .tag{background:var(--pink);color:var(--bg);padding:2px 9px;font-size:11px;font-weight:700;border-radius:2px;}
+.eyebrow::after{content:'';flex:1;height:1px;background:var(--line);}
+
+h2{font-family:'Asul',serif;font-weight:700;font-size:clamp(28px,4vw,42px);line-height:1.08;letter-spacing:0.01em;margin:0 0 22px;color:var(--ink);}
+h2 .pk{color:var(--pink);}
+
+.section{padding:60px 0;border-top:1px solid var(--line);}
+.section p{font-size:16px;font-weight:300;max-width:70ch;margin:0 0 16px;color:var(--muted);}
+.section p strong,.section p b{color:var(--ink);font-weight:500;}
+p .pk{color:var(--pink);font-weight:500;}
+
+/* confidential bar */
+.confbar{font-family:'Roboto',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--bg);background:var(--pink);text-align:center;padding:9px 12px;}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:70px 0 54px;overflow:hidden;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(12,12,17,0.55) 0%,rgba(12,12,17,0.82) 55%,var(--bg) 100%),url('assets/bg_dark.png');
+  background-size:cover;background-position:center;margin:0 -32px;padding-left:32px;padding-right:32px;}
+@media(max-width:720px){.hero{margin:0 -18px;padding-left:18px;padding-right:18px;}}
+.hero-inner{position:relative;z-index:2;max-width:1060px;margin:0 auto;}
+.hero .brandline{display:flex;align-items:center;gap:14px;margin-bottom:26px;}
+.hero .brandline img{height:30px;display:block;}
+.hero .brandline span{font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);}
+.hero .kick{font-size:13px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--pink);margin-bottom:16px;}
+.hero h1{font-family:'Asul',serif;font-weight:700;font-size:clamp(52px,10vw,104px);line-height:0.98;letter-spacing:0.01em;margin:0;color:var(--ink);}
+.hero h1 .pk{color:var(--pink);}
+.hero .tagline{font-size:20px;font-weight:300;max-width:60ch;margin:22px 0 30px;color:var(--ink);}
+.metarow{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--line);max-width:820px;background:rgba(21,21,28,0.6);backdrop-filter:blur(2px);}
+.metarow .cell{flex:1 1 0;min-width:150px;padding:14px 18px;border-right:1px solid var(--line);}
+.metarow .cell:last-child{border-right:0;}
+.metarow .k{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-2);display:block;margin-bottom:5px;}
+.metarow .v{font-family:'Asul',serif;font-weight:700;font-size:17px;color:var(--ink);}
+@media(max-width:600px){.metarow .cell{flex:1 1 50%;border-bottom:1px solid var(--line);}}
+
+/* ---------- STAT BAND ---------- */
+.statband{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-top:0;background:var(--panel);}
+.statband .stat{padding:28px 24px;border-right:1px solid var(--line);}
+.statband .stat:last-child{border-right:0;}
+.statband .num{font-family:'Asul',serif;font-size:34px;line-height:1.05;color:var(--pink-2);}
+.statband .lbl{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted-2);margin-top:8px;}
+@media(max-width:720px){.statband{grid-template-columns:1fr;}.statband .stat{border-right:0;border-bottom:1px solid var(--line);}.statband .stat:last-child{border-bottom:0;}}
+
+/* lists */
+.blist{list-style:none;padding:0;margin:0;max-width:76ch;}
+.blist li{padding:12px 0 12px 26px;position:relative;border-bottom:1px solid var(--line);font-size:15.5px;font-weight:300;line-height:1.55;color:var(--muted);}
+.blist li:last-child{border-bottom:0;}
+.blist li::before{content:'';position:absolute;left:0;top:19px;width:9px;height:9px;background:var(--pink);border-radius:50%;}
+.blist li strong{font-weight:500;color:var(--ink);}
+
+/* panels */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);}
+.grid2 .pane{padding:28px;border-right:1px solid var(--line);background:var(--panel);}
+.grid2 .pane:last-child{border-right:0;}
+@media(max-width:780px){.grid2{grid-template-columns:1fr;}.grid2 .pane{border-right:0;border-bottom:1px solid var(--line);}.grid2 .pane:last-child{border-bottom:0;}}
+.pane h3{font-family:'Roboto',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--pink);margin:0 0 14px;}
+.pane p{font-size:15px;font-weight:300;margin:0 0 12px;color:var(--muted);}
+.pane p strong{color:var(--ink);font-weight:500;}
+
+/* feature figure */
+.figc{border:1px solid var(--line);background:var(--panel-2);}
+.figc img{display:block;width:100%;height:auto;}
+.figc figcaption{padding:12px 16px;font-size:12px;font-weight:400;letter-spacing:.02em;color:var(--muted-2);border-top:1px solid var(--line);}
+
+/* interlude / feature band */
+.interlude{display:grid;grid-template-columns:1.05fr 1fr;gap:0;background:var(--panel);border:1px solid var(--line);overflow:hidden;}
+.interlude.flip .ipic{order:2;}
+.interlude .ipic{min-height:300px;background-size:cover;background-position:center;}
+.interlude .itext{padding:38px 34px;display:flex;flex-direction:column;justify-content:center;}
+.interlude .scene{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pink-2);margin-bottom:14px;}
+.interlude .itext p{font-size:16px;font-weight:300;line-height:1.62;color:var(--muted);margin:0 0 10px;max-width:52ch;}
+.interlude .itext p strong{color:var(--ink);font-weight:500;}
+.interlude .itext p:last-child{margin-bottom:0;}
+@media(max-width:720px){.interlude,.interlude.flip{grid-template-columns:1fr;}.interlude.flip .ipic{order:0;}.interlude .ipic{min-height:200px;}}
+
+/* tool gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);}
+.gtile{border-right:1px solid var(--line);background:var(--panel-2);}
+.gtile:last-child{border-right:0;}
+.gtile img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line);background:#0a0a0e;}
+.gtile .cap{padding:14px 16px;}
+.gtile .cap strong{display:block;font-family:'Asul',serif;font-size:15px;color:var(--ink);margin-bottom:5px;}
+.gtile .cap span{font-size:13px;font-weight:300;color:var(--muted);line-height:1.5;}
+@media(max-width:680px){.gallery{grid-template-columns:1fr;}.gtile{border-right:0;border-bottom:1px solid var(--line);}.gtile:last-child{border-bottom:0;}}
+
+/* pricing table */
+.ptable{width:100%;border-collapse:collapse;border:1px solid var(--line);margin:0 0 16px;font-weight:300;}
+.ptable th,.ptable td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);font-size:15px;color:var(--muted);}
+.ptable th{font-family:'Roboto',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted-2);background:var(--panel);}
+.ptable td.tier{font-family:'Asul',serif;font-weight:700;color:var(--ink);font-size:16px;}
+.ptable td.fee{color:var(--pink-2);font-weight:500;}
+.ptable tr:last-child td{border-bottom:0;}
+
+/* confirm flag */
+.flag{border-left:3px solid var(--pink);background:rgba(251,136,116,0.06);padding:12px 16px;margin:0 0 18px;font-size:13.5px;font-weight:300;color:var(--muted);}
+.flag strong{color:var(--pink);font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:11px;}
+
+/* note box */
+.note{border:1px solid var(--line);background:var(--panel);padding:24px 26px;margin-top:8px;}
+.note h3{font-family:'Roboto',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--pink);margin:0 0 14px;}
+
+/* footer */
+footer{border-top:1px solid var(--line);margin-top:8px;padding:30px 0 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+footer img{height:34px;display:block;}
+footer .c{font-size:12px;font-weight:400;letter-spacing:0.08em;color:var(--muted-2);}
+footer .c a{color:var(--pink);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="confbar">Confidential // Elias Audio × studios - internal working document</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="brandline"><img src="assets/elias-logo-white.svg" alt="Elias Audio"><span>Audio Middleware</span></div>
+    <div class="kick">Integration Sprint</div>
+    <h1>The Hack <span class="pk">Week</span></h1>
+    <p class="tagline">We send Elias developers into a studio for a week and integrate the stack hands-on, side by side with their audio and tech team. By the end of the week Elias is running in their game - not in a demo, in their actual build.</p>
+    <div class="metarow">
+      <div class="cell"><span class="k">Format</span><span class="v">1 week on-site</span></div>
+      <div class="cell"><span class="k">Engines</span><span class="v">Any, incl. proprietary</span></div>
+      <div class="cell"><span class="k">Result</span><span class="v">Stack in your build</span></div>
+      <div class="cell"><span class="k">Proof</span><span class="v">Fatshark</span></div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <div class="statband">
+    <div class="stat"><div class="num">1 week</div><div class="lbl">On-site, hands-on</div></div>
+    <div class="stat"><div class="num">Dev-to-dev</div><div class="lbl">No salesperson in the room</div></div>
+    <div class="stat"><div class="num">Any engine</div><div class="lbl">Unity, Godot, Unreal + proprietary in-house</div></div>
+  </div>
+
+  <!-- 01 THE OFFER -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">01</span> The offer</div>
+    <h2>A week on-site, <span class="pk">the stack running in your actual project.</span></h2>
+    <figure class="figc" style="float:right;width:300px;max-width:42%;margin:4px 0 18px 30px;">
+      <img src="assets/tool_engine.png" alt="Elias wired into the engine" loading="lazy">
+      <figcaption>The Elias workflow in-engine - visual scripting, real-time editing, no soundbank builds.</figcaption>
+    </figure>
+    <p>A studio invites a couple of Elias developers to its office for a week. We sit next to their audio and tech team and integrate the Elias stack into their project. No salesperson in the room - just developers solving the integration together.</p>
+    <p><strong>What the studio gets out of the week:</strong></p>
+    <ul class="blist">
+      <li>Elias running in their <strong>actual project</strong>, not in a sandbox.</li>
+      <li>The stack wired into their engine - <strong>Unity, Godot and Unreal</strong> out of the box, and <strong>proprietary in-house engines</strong> via the Python and C/C++ API. Both our deepest integrations, Elemental and Fatshark, are on proprietary engines.</li>
+      <li>Their sound designers testing the new workflow live on their own content - visual scripting, real-time editing, no soundbank builds.</li>
+      <li>A technical walkthrough of what it takes to carry it all the way to release.</li>
+      <li>Their team learns the stack from us while we build, so they are not left on their own after the week.</li>
+    </ul>
+    <p style="margin-top:20px;"><strong>What we need from the studio:</strong> a desk for 1-2 Elias developers for the week, access to a build and their audio pipeline, and their audio and tech people available to work alongside us - not just a kickoff.</p>
+    <p><strong>Format:</strong> a week on-site is the default. It can be shortened to a few days for smaller scope, or run partly remote (the Agate model) when travel is not an option.</p>
+  </section>
+
+  <!-- 02 WHY IT WORKS -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">02</span> Why it works</div>
+    <h2>Middleware switches die on one question. <span class="pk">We answer it by showing.</span></h2>
+    <p>Almost every middleware switch stalls on the same thing: "will it work in our pipeline?" No demo in the world answers that. A hack week does - by not answering, but showing.</p>
+    <p>And it works <span class="pk">where off-the-shelf middleware can't</span>. Our two deepest integrations - Elemental and Fatshark's proprietary Stingray-based engine - are both on in-house engines, done hands-on in exactly this format. Developers on-site plus the Python and C/C++ API is what plugs Elias into tech a plug-and-play middleware never reaches.</p>
+    <div class="grid2">
+      <div class="pane">
+        <h3>We don't sell, we integrate</h3>
+        <p>The studio sees the stack running in their own game before they sign anything. The risk moves from them to us.</p>
+      </div>
+      <div class="pane">
+        <h3>Dev-to-dev builds trust faster</h3>
+        <p>Their programmers trust our programmers in a way they never trust a sales deck.</p>
+      </div>
+      <div class="pane">
+        <h3>We learn the needs by working</h3>
+        <p>The whole motion is about Elias developers getting to sit down with the audio team and understand what the needs actually are. The week gives us that, and it makes the next version better.</p>
+      </div>
+      <div class="pane">
+        <h3>A natural path to a licence</h3>
+        <p>A good week ends with the stack in the build and a team that already knows the tool. The step to a licence is a small one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERLUDE -->
+  <div class="interlude">
+    <div class="ipic" style="background-image:url('assets/studio.png')"></div>
+    <div class="itext">
+      <span class="scene">What the week looks like</span>
+      <p>Two Elias developers, their audio team, a build and a week. We wire in the stack, their designers start building sound in it, we clear friction in real time.</p>
+      <p><strong>Monday:</strong> the stack running against their engine. <strong>Friday:</strong> sound running live in their actual game, and a team that knows the tool.</p>
+    </div>
+  </div>
+
+  <!-- 03 THE CASE FATSHARK -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">03</span> The case - Fatshark</div>
+    <h2>A studio with a heavy audio history <span class="pk">let us come in and work inside the pipeline.</span></h2>
+    <p><strong>The relationship.</strong> Robert Bäckström, running Elias biz-dev, co-founded Fatshark, so the way in was warm from the start. Fatshark is also close to Elias at the ownership level - both sit under KM Troedsson. The need has been there a long time: back in the Darktide production Fatshark wrestled with the audio side - no dedicated audio programmer, no audio director, designers loading in all the sound all the time and hitting the memory ceiling. Classic middleware pain.</p>
+    <p><strong>What we did in 2026.</strong> Elias and Fatshark met at Fatshark Studios on 9 April 2026, with <strong>Mikael Hansson</strong> on the Fatshark side. <strong>Erik Brattlöf</strong> (Tech Audio &amp; Product Owner at Elias) set up a shared Slack channel straight after and led the integration from the Elias side. The Elias team on-site was <strong>Erik, Anton and Andreas</strong>, working directly against Fatshark's build and audio pipeline. The integration ran against Fatshark's <strong>proprietary Stingray-based in-house engine</strong>, not an off-the-shelf Unity or Unreal project - the hard case, and the one that proves the most.</p>
+    <div class="flag"><strong>To confirm with Erik</strong> &nbsp;· The exact on-site dates, the title, and the concrete outcome to quote. People and engine (Fatshark's proprietary Stingray-based engine) are confirmed; the remaining specifics come from Erik.</div>
+    <p><strong>Why the case carries.</strong> It is not a logo on a slide - it is a studio with a known, hard audio history that let us come in and work inside their pipeline. Fatshark is now an active integration partner and a strong referral source into the Swedish studio scene. Exactly the objection the hack week is built to solve.</p>
+  </section>
+
+  <!-- 04 SUPPORTING PROOF -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">04</span> Supporting proof</div>
+    <h2>The model is already running, <span class="pk">in the Nordics and remotely.</span></h2>
+    <div class="grid2">
+      <div class="pane">
+        <h3>Elemental Games · Sweden</h3>
+        <p>A paying client and our closest collaboration - they share an office with Elias, so this way of working is everyday with them rather than a one-off week. Linus and the team run the stack on their project, on their own proprietary in-house engine. That ongoing, shoulder-to-shoulder integration on custom tech is the hack week in its most developed form.</p>
+      </div>
+      <div class="pane">
+        <h3>Agate · Indonesia (Bandung)</h3>
+        <p>A paying client, a B2B service studio with several projects. Proof that the model holds remotely and outside the Nordics, when travel is not an option.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOL GALLERY -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">05</span> What they get to work in</div>
+    <h2>A modern audio tool, <span class="pk">not a soundbank workflow.</span></h2>
+    <p>Real-time raytraced acoustics, GPU spatial audio, visual scripting and live editing in-engine. State-of-the-art audio tech in the post-Metasound landscape - not a music tool.</p>
+    <div class="gallery">
+      <div class="gtile"><img src="assets/tool_engine.png" alt="Engine integration" loading="lazy"><div class="cap"><strong>In-engine</strong><span>Wired into Unity, Godot, Unreal or a proprietary in-house engine.</span></div></div>
+      <div class="gtile"><img src="assets/tool_sound.png" alt="Sound design" loading="lazy"><div class="cap"><strong>Sound design</strong><span>Visual scripting, per-instrument rules, perfect loops.</span></div></div>
+      <div class="gtile"><img src="assets/tool_gpu.png" alt="GPU spatial audio" loading="lazy"><div class="cap"><strong>GPU spatial</strong><span>Real-time raytraced acoustics, full spatialisation.</span></div></div>
+    </div>
+  </section>
+
+  <!-- 06 COMMERCIALS -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">06</span> Commercials</div>
+    <h2>The week converts. <span class="pk">The licence is the revenue.</span></h2>
+    <p>The hack week is not the revenue in itself - it is the mechanism that converts interest into a licence. The licence model is fixed:</p>
+    <table class="ptable">
+      <thead><tr><th>Tier</th><th>Production budget</th><th>Licence fee</th></tr></thead>
+      <tbody>
+        <tr><td class="tier">Scout</td><td>Under €300k</td><td class="fee">€0 - €1,500</td></tr>
+        <tr><td class="tier">Explorer</td><td>€300k - €1.5M</td><td class="fee">€5,850</td></tr>
+        <tr><td class="tier">Colonizer</td><td>Over €1.5M</td><td class="fee">€15,000</td></tr>
+      </tbody>
+    </table>
+    <p>Console add-on €5,000 - €15,000 per platform. All tiers include every feature, no feature gating. Robert takes 15% commission on what he closes.</p>
+    <div class="flag"><strong>Open question</strong> &nbsp;· Should the hack week be free (an investment in conversion), priced as a paid integration, or folded into Premium support? Decision for Robert and Kristofer.</div>
+  </section>
+
+  <!-- 07 HOW WE PITCH IT -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">07</span> How we pitch it</div>
+    <h2>The hook, who it fits, <span class="pk">and what we ask for.</span></h2>
+    <ul class="blist">
+      <li><strong>The hook.</strong> "We come in for a week and integrate the stack into your game, side by side with your audio team. By the end of the week it runs in your build."</li>
+      <li><strong>Primary CTA.</strong> A referral ask, not a demo ask: "Who on your side is the right person to talk integration with?" - dramatically easier to say yes to.</li>
+      <li><strong>Who it fits.</strong> Studios in pre-production or early production with no hard-locked middleware - on any engine, including proprietary in-house tech, which is exactly where the on-site week earns its keep. Smaller, ambitious teams where a fresh project means free audio choices.</li>
+      <li><strong>Positioning.</strong> State-of-the-art audio tech - real-time raytraced acoustics, GPU spatial audio, post-Metasound - not a music tool.</li>
+    </ul>
+    <div class="note">
+      <h3>Proof-point rule - read before anything goes to a prospect</h3>
+      <ul class="blist">
+        <li><strong>No logo-drops in prospect material.</strong> The old names (Arrowhead, Avalanche, Iron Gate, Hazelight, Fatshark) were users of the old Elias (the music tool) and must not be claimed as proof-points for the new middleware externally.</li>
+        <li><strong>Elemental and Agate are not named in drafts.</strong> They are tracked in the wiki but not yet nameworthy enough to anchor a pitch.</li>
+        <li><strong>External defaults:</strong> tech framing (real-time raytraced acoustics, GPU spatial audio, post-Metasound) + investor framing (KM Troedsson, Linus Blomberg) for Swedish peer targets.</li>
+        <li><strong>External variant:</strong> run the case anonymised ("a Swedish action studio with a heavy audio history let us come in for a week and integrate inside their pipeline"). The names stay in this internal document.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="assets/elias-logo-white.svg" alt="Elias Audio">
+    <div class="c">Internal document · Elias Audio × Aurora Punks · <a href="mailto:robert@aurorapunks.com">robert@aurorapunks.com</a></div>
+  </footer>
+
+</main>
+
+</body>
+</html>

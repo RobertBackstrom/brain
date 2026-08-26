@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corporate Overview - Aurora Punks AB</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Aurora Punks AB - holdings, IP and revenue-share agreements. Confidential.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@600;700;800;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0d0d0f;
+  --paper:#f4f1ea;
+  --paper-2:#ffffff;
+  --mag:#e6186e;
+  --mag-2:#ff2d83;
+  --muted:#5f5b56;
+  --muted-2:#9a948c;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
+
+main{max-width:1080px;margin:0 auto;padding:0 32px 96px;position:relative;}
+@media(max-width:720px){main{padding:0 18px 64px;}}
+
+.mono{font-family:'Space Mono',monospace;letter-spacing:0.04em;}
+.eyebrow{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--mag);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.eyebrow .tag{background:var(--ink);color:var(--paper);padding:2px 8px;font-size:11px;}
+.eyebrow::after{content:'';flex:1;height:2px;background:var(--ink);}
+
+h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(28px,4vw,44px);line-height:1.02;letter-spacing:-0.01em;text-transform:uppercase;margin:0 0 22px;}
+h2 .mag{color:var(--mag);}
+h3.sub{font-family:'Archivo',sans-serif;font-weight:800;font-size:17px;text-transform:uppercase;letter-spacing:.01em;margin:34px 0 12px;}
+h3.sub:first-of-type{margin-top:8px;}
+
+.section{padding:64px 0;border-top:2px solid var(--ink);}
+.section p{font-size:16px;max-width:68ch;margin:0 0 16px;}
+p .mag{color:var(--mag);font-weight:700;}
+strong{font-weight:700;}
+
+/* confidential bar */
+.confbar{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--paper);background:var(--ink);text-align:center;padding:9px 12px;}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:64px 0 56px;overflow:hidden;}
+.hero .sun{position:absolute;top:-60px;right:-40px;width:340px;height:340px;border-radius:50%;background:var(--mag);z-index:0;}
+@media(max-width:720px){.hero .sun{width:150px;height:150px;top:-38px;right:-34px;}}
+@media(max-width:520px){.hero h1{font-size:54px;line-height:0.9;}.hero .sun{width:118px;height:118px;top:-30px;right:-28px;}}
+.hero-inner{position:relative;z-index:2;}
+.hero .kick{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);margin-bottom:18px;}
+.hero h1{font-family:'Anton',sans-serif;font-size:clamp(64px,12vw,140px);line-height:0.86;letter-spacing:0.01em;margin:0;text-transform:uppercase;color:var(--ink);}
+.hero h1 .mag{color:var(--mag);}
+.hero .tagline{font-size:20px;font-weight:500;max-width:58ch;margin:22px 0 26px;}
+
+/* ---------- STAT BAND ---------- */
+.statband{background:var(--ink);color:var(--paper);display:grid;grid-template-columns:repeat(5,1fr);}
+.statband .stat{padding:28px 20px;border-right:1px solid #2a2a2e;display:flex;flex-direction:column;}
+.statband .stat:last-child{border-right:0;}
+.statband .num{font-family:'Anton',sans-serif;font-size:clamp(24px,2.6vw,36px);line-height:1;color:var(--mag-2);}
+.statband .lbl{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted-2);margin-top:10px;line-height:1.45;}
+@media(max-width:980px){.statband{grid-template-columns:repeat(3,1fr);}.statband .stat{border-bottom:1px solid #2a2a2e;}.statband .num{font-size:30px;}}
+@media(max-width:620px){.statband{grid-template-columns:1fr;}.statband .stat{border-right:0;}.statband .num{font-size:34px;}}
+
+/* lists */
+.blist{list-style:none;padding:0;margin:0;max-width:78ch;}
+.blist li{padding:12px 0 12px 26px;position:relative;border-bottom:1px solid rgba(13,13,15,0.12);font-size:15.5px;line-height:1.5;}
+.blist li:last-child{border-bottom:0;}
+.blist li::before{content:'//';position:absolute;left:0;top:12px;font-family:'Space Mono',monospace;font-weight:700;color:var(--mag);font-size:13px;}
+
+/* ---------- TABLES ---------- */
+.tblwrap{overflow-x:auto;margin:8px 0 22px;}
+.ftable{width:100%;border-collapse:collapse;border:2px solid var(--ink);background:var(--paper-2);min-width:640px;}
+.ftable th{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-align:left;background:var(--ink);color:var(--paper);padding:11px 16px;vertical-align:bottom;}
+.ftable th.r{text-align:right;}
+.ftable td{padding:12px 16px;border-bottom:1px solid rgba(13,13,15,0.14);font-size:15px;vertical-align:top;}
+.ftable td.r{text-align:right;font-family:'Space Mono',monospace;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.ftable td.nm{font-weight:600;white-space:nowrap;}
+.ftable td small{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:3px;}
+.ftable tr.total td{border-top:2px solid var(--ink);border-bottom:0;font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;font-size:15px;}
+.ftable tr.total td.r{font-family:'Space Mono',monospace;font-weight:700;font-size:16px;}
+.ftable tr.result td{background:var(--ink);color:var(--paper);border-bottom:0;font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;}
+.ftable tr.result td.r{color:var(--mag-2);font-family:'Space Mono',monospace;font-size:17px;}
+@media(max-width:560px){.ftable td,.ftable th{padding:10px 12px;font-size:14px;}}
+
+/* status pills */
+.pill{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border:2px solid var(--ink);white-space:nowrap;display:inline-block;}
+.pill.on{background:var(--ink);color:var(--paper);}
+.pill.neg{background:var(--paper);color:var(--ink);}
+
+/* callout */
+.callout{border:2px solid var(--ink);background:var(--paper-2);padding:24px 26px;max-width:74ch;margin:8px 0 0;position:relative;}
+.callout::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--mag);}
+.callout p{margin:0;font-size:16.5px;}
+.callout p+p{margin-top:12px;}
+
+.note{font-size:14.5px;color:var(--muted);max-width:68ch;}
+
+/* footer */
+footer{border-top:2px solid var(--ink);margin-top:8px;padding:30px 0 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+footer img{height:54px;display:block;}
+footer .c{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+footer .c a{color:var(--mag);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="confbar">Confidential // Aurora Punks AB - Corporate Overview - 15 August 2026</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="sun"></div>
+    <div class="hero-inner">
+      <div class="kick">Aurora Punks // Corporate Overview</div>
+      <h1>WHAT THE<br>COMPANY<br><span class="mag">HOLDS</span></h1>
+      <p class="tagline">Aurora Punks AB is the operating and contracting company. This is the asset base sitting behind it: holdings in other companies, owned IP, and the revenue-share and publishing agreements.</p>
+    </div>
+  </section>
+
+  <!-- STAT BAND -->
+  <div class="statband">
+    <div class="stat"><div class="num">4</div><div class="lbl">Equity holdings in<br>other companies</div></div>
+    <div class="stat"><div class="num">10</div><div class="lbl">Owned titles and<br>codebases</div></div>
+    <div class="stat"><div class="num">6</div><div class="lbl">Signed revenue-share<br>and publishing deals</div></div>
+    <div class="stat"><div class="num">8,1 MSEK</div><div class="lbl">Production value 2026</div></div>
+    <div class="stat"><div class="num">0 kr</div><div class="lbl">Bank and institutional debt</div></div>
+  </div>
+
+  <!-- 00 SHORT VERSION -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">00</span> How to read this /////</div>
+    <h2>Three asset classes, <span class="mag">one operating company.</span></h2>
+    <p>Aurora Punks AB (org nr 559256-9718) is the live entity. Everything below either sits in it today or is being contributed into it as part of the current restructuring, and each line says which.</p>
+    <ul class="blist">
+      <li><strong>Equity holdings.</strong> Minority positions in four other companies: two UK development studios, a Swedish QA and release-management company, and a Danish studio. These are financial holdings, not consolidated subsidiaries. Aurora Punks does not control any of them.</li>
+      <li><strong>Owned IP.</strong> Ten titles and codebases. Part of this catalogue sits in the founder's holding company today and is being contributed into Aurora Punks with no cash consideration.</li>
+      <li><strong>Revenue-share and publishing agreements.</strong> Six signed, two in negotiation. These are income rights on titles that other studios own and operate.</li>
+    </ul>
+    <div class="callout">
+      <p>Two former subsidiaries, Aurora Punks Development Services AB and White Lines Black Spaces AB, went through bankruptcy and are wound down. Both are disclosed and ring-fenced from the live company. Nothing in this document sits in either estate.</p>
+    </div>
+  </section>
+
+  <!-- 01 HOLDINGS -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">01</span> Holdings in other companies /////</div>
+    <h2>Minority positions in <span class="mag">four companies.</span></h2>
+    <p>These are held directly by Aurora Punks AB.</p>
+
+    <div class="tblwrap">
+      <table class="ftable">
+        <thead>
+          <tr><th>Company</th><th>What it is</th><th class="r">AP stake</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="nm">Red Marmoset Studios Ltd</td>
+            <td>Development studio, Slough, UK. Co-development and AAA-experienced engineering and art. Works on Aurora Punks projects as a partner studio.<small>Related party: Robert Bäckström is also a co-Director. Contracts with Red Marmoset are handled under the related-party safeguards in the Swedish Companies Act, ch. 8 s. 23.</small></td>
+            <td class="r">15 %</td>
+          </tr>
+          <tr>
+            <td class="nm">Upstream Arcade</td>
+            <td>Development studio, Godalming, UK. Around 15 developers. Shipped work includes the Hellboy title with Good Shepherd.</td>
+            <td class="r">15 %</td>
+          </tr>
+          <tr>
+            <td class="nm">Northify</td>
+            <td>Games QA and release management, Boden, Sweden. Sweden's first dedicated games QA company, licensed for all major platforms. The stake comes from Northify's 2023 acquisition of Aurora Punks' Boden operations.</td>
+            <td class="r">~7 %</td>
+          </tr>
+          <tr>
+            <td class="nm">Eddaheim</td>
+            <td>Development studio, Copenhagen. Around 25 developers, Unreal Engine. Building Neon Knights: Humanity Erased, an Epic MegaGrant recipient.</td>
+            <td class="r">&lt;1 %</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note">Percentages for Red Marmoset and Upstream Arcade were confirmed on 1 June 2026. The Northify figure is carried at approximately 7 % pending a holdings audit and should be treated as indicative until that closes.</p>
+
+    <h3 class="sub">Held outside Aurora Punks</h3>
+    <p>For completeness, because the two are easy to confuse. The founder's holding company, Creation Zero Point Holding AB, carries a separate set of minority stakes: Dark Riviera 6 %, Malformation 10 %, 5 Fortress under 10 %, RankOne under 10 %, Bright Gambit under 10 %. <strong>None of these are Aurora Punks assets</strong> and none of them are included in the four above. Two of them, Malformation and 5 Fortress, are under discussion for a possible share swap into Aurora Punks, on terms that are not agreed.</p>
+  </section>
+
+  <!-- 02 IP -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">02</span> Owned intellectual property /////</div>
+    <h2>Ten titles <span class="mag">and codebases.</span></h2>
+
+    <h3 class="sub">In Aurora Punks today</h3>
+    <div class="tblwrap">
+      <table class="ftable">
+        <thead>
+          <tr><th>Asset</th><th>What it is</th><th class="r">Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="nm">Vessels of Decay</td><td>Original title. Carried by Aurora Punks and written down to a conservative residual value in the 2025 accounts. A buyout clause exists with Neon Artery, and the underlying 2022 transfer paperwork is being re-verified.<small>Presented with that caveat rather than as clean title.</small></td><td class="r"><span class="pill neg">Carried</span></td></tr>
+          <tr><td class="nm">Son of Dracula</td><td>Unreleased title. Source code held by Aurora Punks.</td><td class="r"><span class="pill neg">Unreleased</span></td></tr>
+          <tr><td class="nm">Windswept codebase</td><td>Full source code from Windswept Interactive, acquired when the studio wound down. Carries an attached revenue share on Ghost Signal.</td><td class="r"><span class="pill on">Owned</span></td></tr>
+          <tr><td class="nm">UEFN maps</td><td>In-house Fortnite Creative titles, including 99 Xmas Escape Room. Live and earning.</td><td class="r"><span class="pill on">Live</span></td></tr>
+          <tr><td class="nm">ARK: Sorcery Evolved</td><td>Premium user-generated content map on CurseForge for ARK: Survival Ascended. Live.</td><td class="r"><span class="pill on">Live</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Being contributed into Aurora Punks</h3>
+    <p>This part of the catalogue was acquired from the Development Services estate by the founder's holding company and is being contributed into Aurora Punks as part of the restructuring. <strong>Contribution in kind, no cash consideration to the founder.</strong></p>
+    <div class="tblwrap">
+      <table class="ftable">
+        <thead>
+          <tr><th>Asset</th><th>What it is</th><th class="r">Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="nm">Block'Em!</td><td>Released title, Aurora Punks origin. Steam, plus soundtrack, demo and playtest apps.</td><td class="r"><span class="pill neg">To contribute</span></td></tr>
+          <tr><td class="nm">Chenso Club</td><td>Released title. Steam, plus demo and playtest apps.</td><td class="r"><span class="pill neg">To contribute</span></td></tr>
+          <tr><td class="nm">Ooglians</td><td>Released title.</td><td class="r"><span class="pill neg">To contribute</span></td></tr>
+          <tr><td class="nm">1993 Space Machine</td><td>Released title with soundtrack. Largely depreciated.</td><td class="r"><span class="pill neg">To contribute</span></td></tr>
+          <tr><td class="nm">Beyond the Filter</td><td>XR title, development paused. Activated development cost carried at roughly 4,7 MSEK with impairment risk. Included deliberately rather than quietly left out.</td><td class="r"><span class="pill neg">Paused</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The Steamworks partner account holding the released back catalogue transferred to Creation Zero Point Holding AB effective 1 July 2026 and moves with the titles. Storefront ownership and IP ownership are separate questions and both are documented.</p>
+  </section>
+
+  <!-- 03 REV SHARE -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">03</span> Revenue-share and publishing /////</div>
+    <h2>Income rights on titles <span class="mag">other studios own.</span></h2>
+    <p>These are contractual income streams rather than owned IP. They cost nothing to hold and they carry no development obligation.</p>
+
+    <div class="tblwrap">
+      <table class="ftable">
+        <thead>
+          <tr><th>Title / counterparty</th><th>Aurora Punks' position</th><th class="r">Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="nm">Hooja</td><td>Free-to-play mobile title. Aurora Punks recoups 100 % of revenue up to 500 KSEK, then 50 % revenue share thereafter.</td><td class="r"><span class="pill on">Signed</span></td></tr>
+          <tr><td class="nm">Water Me &amp; You<br><small>Shosha Games</small></td><td>Publishing and go-to-market. Revenue share begins at Early Access, February 2027. No revenue in 2026 by design.</td><td class="r"><span class="pill on">Signed</span></td></tr>
+          <tr><td class="nm">Go Fight Fantastic<br><small>Kinda Brave</small></td><td>Publishing rights. Revenue share on net sales.</td><td class="r"><span class="pill on">Signed</span></td></tr>
+          <tr><td class="nm">Distant Bloom<br><small>Kinda Brave</small></td><td>Publishing rights. Revenue share on net sales.</td><td class="r"><span class="pill on">Signed</span></td></tr>
+          <tr><td class="nm">KreatureKind titles</td><td>Publishing rights. Revenue share on net sales.</td><td class="r"><span class="pill on">Signed</span></td></tr>
+          <tr><td class="nm">Ghost Signal</td><td>Revenue share attached to the Windswept codebase acquisition.</td><td class="r"><span class="pill on">Signed</span></td></tr>
+          <tr><td class="nm">Tears of Adria<br><small>Ark Island</small></td><td>Ark Island's IP, not Aurora Punks'. Publishing revenue share under 10 % is being negotiated in exchange for publishing and go-to-market work already delivered.</td><td class="r"><span class="pill neg">In negotiation</span></td></tr>
+          <tr><td class="nm">Knives &amp; Gutters<br><small>Ark Island</small></td><td>Also Ark Island's IP. Same structure as above.</td><td class="r"><span class="pill neg">In negotiation</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 04 CONTRACTS -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">04</span> Live contracts /////</div>
+    <h2>What the company <span class="mag">is earning on now.</span></h2>
+    <p>The asset base above is what the company holds. This is what it runs on.</p>
+
+    <div class="tblwrap">
+      <table class="ftable">
+        <thead>
+          <tr><th>Contract</th><th>Terms</th><th class="r">Runs to</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="nm">Raw Fury</td><td>Co-development of Kingdom Two Crowns: Pharaoh Lands, the final expansion to Raw Fury's own franchise. Aurora Punks owns design, art, programming and production. 5,6 MSEK across seven milestones. Every milestone delivered and paid so far.</td><td class="r">Gold,<br>Dec 2026</td></tr>
+          <tr><td class="nm">Netlight placement</td><td>Senior developer placed on a long-running client engagement. Roughly 150 KSEK a month, matched one to one against the contract it is paid for.</td><td class="r">Open-ended</td></tr>
+          <tr><td class="nm">BADASS Studios</td><td>Product management on an XR platform engagement.</td><td class="r">Ongoing</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <p>Together these carry a recurring floor of roughly <strong>290 KSEK a month</strong> against a fixed cost base of about <strong>92 KSEK a month</strong> on one person on payroll. 2026 runs to roughly <strong>8,1 MSEK of production value</strong> and a <strong>+1,25 MSEK result</strong>.</p>
+    </div>
+  </section>
+
+  <!-- 05 NOT IN PERIMETER -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">05</span> What is not in here /////</div>
+    <h2>The exclusions, <span class="mag">stated plainly.</span></h2>
+    <p>A list of assets is only useful if it is also honest about what is missing. These are deliberately excluded.</p>
+    <ul class="blist">
+      <li><strong>Robot Lord Rising.</strong> Legally owned by Runatyr AB, not by Aurora Punks. Aurora Punks holds a 5 MSEK interest-free receivable and a right to a future purchase, which is an agreement to sell rather than a transfer of title. It is a title to acquire, not an asset to count.</li>
+      <li><strong>Tears of Adria and Knives &amp; Gutters.</strong> Ark Island's IP. Aurora Punks' interest is the publishing revenue share under negotiation in section 03, nothing more.</li>
+      <li><strong>Gravity Circuit.</strong> No stake. The revenue share was sold back to the developer by the former subsidiary.</li>
+      <li><strong>The Elric of Melniboné option.</strong> Lapsed. No value.</li>
+      <li><strong>Runatyr AB.</strong> Held 50 % by the founder's holding company on paper, contested and unexecuted. Not an Aurora Punks asset and kept out of the perimeter.</li>
+      <li><strong>Aurora Punks Development Services AB and White Lines Black Spaces AB.</strong> Both bankrupt and wound down. Historical group revenue sat in these entities, which is why the consolidated history looks larger than the live company. The going-forward business is the operating company described here.</li>
+    </ul>
+  </section>
+
+  <!-- 06 STRUCTURE -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">06</span> Structure /////</div>
+    <h2>Who owns <span class="mag">the top.</span></h2>
+    <p>Aurora Punks AB has 396 173 shares outstanding in a single share class, with no liquidation preference, no anti-dilution ratchet and no employee option pool. Two holders sit above 30 %, two more between 11 and 13 %, and the remaining 14 % is spread across seven smaller holders who came in early.</p>
+    <p>The board is five people: Mattias Wiking as chair, Alexander Bergendahl, Andreea Chifu, Karl-Magnus Troedsson and Robert Bäckström. Signing authority is two in combination.</p>
+    <p>The full cap table, the last priced round and the capital history were sent separately.</p>
+    <p style="font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;font-size:18px;margin-top:28px;">Robert Bäckström<br><span style="font-family:'Space Mono',monospace;font-weight:400;font-size:12px;letter-spacing:.1em;color:var(--muted);">Founder and Executive Producer</span></p>
+  </section>
+
+  <footer>
+    <img src="ap-logo.png" alt="Aurora Punks">
+    <div class="c">Aurora Punks AB &middot; 559256-9718 &middot; Confidential &middot; <a href="mailto:robert@aurorapunks.com">robert@aurorapunks.com</a></div>
+  </footer>
+
+</main>
+</body>
+</html>

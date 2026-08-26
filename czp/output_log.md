@@ -1,0 +1,4 @@
+# Output Log — CZP
+
+## 2026-07-13 — Hooja republish entity + dev-account setup plan (CorpBot, hoj/czp)
+- Delivered scoped setup plan/checklist at `czp/hooja_republish_entity_setup.md`. Recommends two-phase entity choice (Phase-1 publish under CZP Holding AB for speed + consistency with Steam/PS swap apb-026/apb-015; Phase-2 spin out dedicated publishing subsidiary before MENA/multi-title). Covers Google Play org account (D-U-N-S, $25, ~5 bd verify), Apple org enrollment (D-U-N-S, $99/yr, 2-4 wk + Paid Apps Agreement banking as longest lead), new-app-listing consequences, MoR/VAT/MENA tax, PlayFab title reassignment, and dependency flags (IP chain-of-title + estate assets ON HOLD per Robert). Flagged fact to verify: Sept 2024 mail says Hooja was on AP AB's Play account, not APDS. Nothing filed, no accounts created.

@@ -1,0 +1,2 @@
+gated: credentials live in assistant/pitch-auth.json, keyed by this slug.
+If this marker is present and the credential row is missing, pitches-server.js returns 503 instead of serving.

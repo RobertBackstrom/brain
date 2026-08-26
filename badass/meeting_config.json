@@ -1,0 +1,30 @@
+{
+  "_comment": "BADASS Studios — daily and monday standups. Routes to PM agent.",
+
+  "attendees": [
+    "alex@badass-studios.com",
+    "benjeffreys@badass-studios.com",
+    "jake@badass-studios.com",
+    "john@badass-studios.com",
+    "marco@badass-studios.com",
+    "rosemary@badass-studios.com",
+    "sezar@badass-studios.com",
+    "nancy@badass-studios.com",
+    "adam@badass-studios.com",
+    "ben@badass-studios.com",
+    "michiel@badass-studios.com",
+    "peter@badass-studios.com",
+    "sheida@badass-studios.com"
+  ],
+
+  "titleKeywords": [
+    "badass",
+    "daily standup (tue-fri)",
+    "daily monday",
+    "teams meeting & daily monday"
+  ],
+
+  "hasAiNoteTaker": true,
+
+  "downstreamAgent": "PM"
+}

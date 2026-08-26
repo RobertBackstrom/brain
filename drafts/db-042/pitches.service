@@ -1,0 +1,16 @@
+[Unit]
+Description=pitch.runatyr.games static host
+After=network.target
+
+[Service]
+Type=simple
+User=assistant
+WorkingDirectory=/home/assistant/projects/assistant
+ExecStart=/usr/bin/node /home/assistant/projects/assistant/pitches-server.js
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/assistant/projects/assistant/logs/pitches.log
+StandardError=append:/home/assistant/projects/assistant/logs/pitches.log
+
+[Install]
+WantedBy=multi-user.target

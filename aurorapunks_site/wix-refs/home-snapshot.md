@@ -1,0 +1,209 @@
+- generic [ref=e3]:
+  - region "top of page" [active]
+  - button "Skip to Main Content"
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e17]:
+        - generic:
+          - generic:
+            - link "Aurora Punks" [ref=e41] [cursor=pointer]:
+              - /url: https://www.aurorapunks.com
+              - img "Aurora Punks" [ref=e42]
+            - navigation "Site" [ref=e48]:
+              - list [ref=e49]:
+                - listitem [ref=e50]:
+                  - link "Game Publishing and Marketing" [ref=e52] [cursor=pointer]:
+                    - /url: https://www.aurorapunks.com/game-publishing-and-marketing
+                    - generic [ref=e54]: Game Publishing and Marketing
+                - listitem [ref=e55]:
+                  - generic [ref=e56]:
+                    - button "Game Development" [ref=e57] [cursor=pointer]:
+                      - generic [ref=e59]: Game Development
+                    - generic:
+                      - button "Toggle Game Development":
+                        - img
+                - listitem [ref=e61]:
+                  - generic [ref=e62]:
+                    - button "What We Also Do" [ref=e63] [cursor=pointer]:
+                      - generic [ref=e65]: What We Also Do
+                    - generic:
+                      - button "Toggle What We Also Do":
+                        - img
+                - listitem [ref=e67]:
+                  - link "About Us" [ref=e69] [cursor=pointer]:
+                    - /url: https://www.aurorapunks.com/about-us
+                    - generic [ref=e71]: About Us
+                - listitem [ref=e72]:
+                  - link "Blog" [ref=e74] [cursor=pointer]:
+                    - /url: https://www.aurorapunks.com/blog
+                    - generic [ref=e76]: Blog
+    - main [ref=e77]:
+      - generic [ref=e82]:
+        - generic:
+          - generic:
+            - generic:
+              - generic [ref=e121]:
+                - generic:
+                  - generic:
+                    - heading "BUILD IT. SHIP IT. EVOLVE IT." [level=1] [ref=e125]:
+                      - generic [ref=e126]: BUILD IT. SHIP IT. EVOLVE IT.
+                    - heading "Your full-service partner in game publishing & development." [level=2] [ref=e127]:
+                      - generic [ref=e130]: Your full-service partner in game publishing & development.
+                    - generic:
+                      - paragraph [ref=e131]: Aurora Punks is a platform-agnostic publisher with strong co-development capabilities and a creative, problem-solving approach. We offer full-service publishing with cross-platform porting for PC, console, cloud and mobile, hands-on support throughout development, and smart go-to-market execution.
+                      - paragraph [ref=e132]
+                      - paragraph [ref=e133]: We help games break into new markets, build lasting communities, and stay relevant post-launch with content updates and platform expansion. Our trusted partners in Asia further extend your reach.
+                      - paragraph [ref=e134]
+                      - paragraph [ref=e135]: Whether you need publishing, post-launch momentum, or co-development help solving tough technical and design challenges, we’re here to get it done.
+                      - paragraph [ref=e136]
+                      - paragraph [ref=e137]:
+                        - generic [ref=e138]: This is why developers choose us for collaboration.
+              - generic [ref=e139]:
+                - generic:
+                  - generic:
+                    - heading "NEED PUBLISHING OR PORTING ASSISTANCE?" [level=2] [ref=e143]:
+                      - link "NEED PUBLISHING OR PORTING ASSISTANCE?" [ref=e144] [cursor=pointer]:
+                        - /url: https://docs.google.com/forms/d/e/1FAIpQLSd5o_NDYw9s-sGbVMYVOnY_rvcKUHqu4o1D2356-Dcz8EXdbw/viewform
+                        - generic [ref=e147]: NEED PUBLISHING OR PORTING ASSISTANCE?
+                    - paragraph [ref=e148]:
+                      - link "Please fill out this form and we will get back to you." [ref=e149] [cursor=pointer]:
+                        - /url: https://docs.google.com/forms/d/e/1FAIpQLSd5o_NDYw9s-sGbVMYVOnY_rvcKUHqu4o1D2356-Dcz8EXdbw/viewform
+                        - generic [ref=e152]: Please fill out this form and we will get back to you.
+                    - link [ref=e154] [cursor=pointer]:
+                      - /url: https://bit.ly/aurora-punks-publishing
+                      - img [ref=e156]
+              - generic [ref=e159]:
+                - img "Skärmavbild 2025-09-17 kl. 15.14.08.png" [ref=e164]
+                - generic [ref=e165]:
+                  - generic:
+                    - generic:
+                      - heading "WE ARE LOOKING FOR GAMES TO PORT TO CONSOLES" [level=1] [ref=e167]:
+                        - generic [ref=e168]: WE ARE LOOKING FOR GAMES TO PORT TO CONSOLES
+                      - paragraph [ref=e169]:
+                        - generic [ref=e171]: Porting games to consoles is usually costly and complex. We are changing that. With our upcoming Unity and Unreal plugins, achievements, trophies, and activities are handled in a single integration, cutting porting time and costs dramatically. To prove it, we are offering free porting to Xbox and PlayStation (and sometimes Switch) for select PC titles. We only take a 15% revenue share once your game is live.
+                      - link "Read more here" [ref=e173] [cursor=pointer]:
+                        - /url: https://www.canva.com/design/DAGyvzEWXIg/eIVbww39GeQDqfF59zK96A/view?utm_content=DAGyvzEWXIg&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h801c73be2a
+                        - generic [ref=e175]: Read more here
+              - generic [ref=e176]:
+                - generic:
+                  - generic:
+                    - heading "WHAT WE DO" [level=2] [ref=e180]:
+                      - generic [ref=e183]: WHAT WE DO
+                    - img [ref=e186]
+                    - heading "GAME PUBLISHING AND MARKETING" [level=2] [ref=e189]:
+                      - generic [ref=e192]: GAME PUBLISHING AND MARKETING
+                    - paragraph [ref=e193]:
+                      - link "Guiding your game to success with strategic marketing, platform management, and community engagement." [ref=e194] [cursor=pointer]:
+                        - /url: https://www.aurorapunks.com/game-publishing-and-marketing
+                        - generic [ref=e197]: Guiding your game to success with strategic marketing, platform management, and community engagement.
+                    - img [ref=e200]
+                    - heading "GAME DEVELOPMENT" [level=2] [ref=e210]:
+                      - generic [ref=e213]: GAME DEVELOPMENT
+                    - paragraph [ref=e214]:
+                      - link "Delivering co-development, full-cycle production, and post-launch updates to keep your game thriving at every stage." [ref=e215] [cursor=pointer]:
+                        - /url: https://www.aurorapunks.com/game-publishing-and-marketing
+                        - generic [ref=e218]: Delivering co-development, full-cycle production, and post-launch updates to keep your game thriving at every stage.
+                    - img [ref=e221]
+                    - heading "WHAT WE ALSO DO" [level=2] [ref=e227]:
+                      - generic [ref=e230]: WHAT WE ALSO DO
+                    - paragraph [ref=e231]:
+                      - link "Supporting UGC platforms, branded experiences, and gamification to enhance interaction and grow lasting player communities." [ref=e232] [cursor=pointer]:
+                        - /url: https://www.aurorapunks.com/game-publishing-and-marketing
+                        - generic [ref=e235]: Supporting UGC platforms, branded experiences, and gamification to enhance interaction and grow lasting player communities.
+              - generic [ref=e240] [cursor=pointer]:
+                - button "Play video" [pressed] [ref=e241]
+                - generic:
+                  - generic:
+                    - generic [ref=e247]:
+                      - img [ref=e249]
+                      - img [ref=e254]
+                    - button "Mute" [pressed] [ref=e257]:
+                      - img [ref=e259]
+                      - img [ref=e263]
+              - generic [ref=e266]:
+                - generic:
+                  - generic:
+                    - heading "OUR BUSINESS MODELS" [level=2] [ref=e270]:
+                      - generic [ref=e273]: OUR BUSINESS MODELS
+                    - heading "SERVICE FEE" [level=2] [ref=e274]:
+                      - generic [ref=e277]: SERVICE FEE
+                    - heading "SERVICE FEE & REVENUE SHARE" [level=2] [ref=e278]:
+                      - generic [ref=e281]: SERVICE FEE & REVENUE SHARE
+                    - generic:
+                      - paragraph [ref=e282]:
+                        - generic [ref=e284]: High quality development service for a predetermined cost.
+                      - paragraph [ref=e285]
+                      - paragraph [ref=e286]:
+                        - generic [ref=e288]: We work on agreed-upon timeline and deliverables, ensuring transparency with a clear understanding of costs upfront.
+                    - paragraph [ref=e289]:
+                      - generic [ref=e292]:
+                        - text: Long-term partnership for the entire lifespan of the game.
+                        - text: We provide the co-development process at a reduced fee in exchange for a share of the revenue generated by the game upon release.
+              - generic [ref=e310]:
+                - generic:
+                  - generic:
+                    - heading "WANT TO KNOW MORE?" [level=5] [ref=e314]:
+                      - generic [ref=e316]: WANT TO KNOW MORE?
+                    - generic [ref=e318]:
+                      - generic:
+                        - generic:
+                          - generic [ref=e319]:
+                            - generic [ref=e320]: Your full name
+                            - textbox "Your full name" [ref=e322]:
+                              - /placeholder: Enter your name
+                          - generic [ref=e323]:
+                            - generic [ref=e324]: Email *
+                            - textbox "Email *" [ref=e326]:
+                              - /placeholder: Enter your email
+                          - generic [ref=e327]:
+                            - generic [ref=e328]: Who are you and what would you like to know?
+                            - textbox "Who are you and what would you like to know?" [ref=e329]:
+                              - /placeholder: About you and your game or company
+                          - button "Submit" [ref=e331] [cursor=pointer]:
+                            - generic [ref=e332]: Submit
+    - contentinfo [ref=e333]:
+      - generic [ref=e339]:
+        - generic:
+          - generic:
+            - paragraph [ref=e340]:
+              - link "hello@aurorapunks.com" [ref=e344] [cursor=pointer]:
+                - /url: mailto:hello@aurorapunks.com
+            - paragraph [ref=e345]:
+              - link "Work With Us" [ref=e346] [cursor=pointer]:
+                - /url: https://www.aurorapunks.com/career
+                - generic [ref=e350]: Work With Us
+            - generic:
+              - paragraph [ref=e351]:
+                - generic [ref=e352]:
+                  - generic [ref=e353]: Visit us at
+                  - generic [ref=e355]:
+                    - text: Timmermansgatan 43
+                    - text: 118 55 Stockholm, Sweden
+              - paragraph [ref=e356]:
+                - generic [ref=e359]:
+                  - text: "Contact:"
+                  - link "hello@aurorapunks.com" [ref=e360] [cursor=pointer]:
+                    - /url: mailto:hello@aurorapunks.com
+            - list "Social Bar" [ref=e362]:
+              - listitem [ref=e363]:
+                - link "Twitter" [ref=e364] [cursor=pointer]:
+                  - /url: https://x.com/AuroraPunks
+                  - img "Twitter" [ref=e365]
+              - listitem [ref=e366]:
+                - link "YouTube" [ref=e367] [cursor=pointer]:
+                  - /url: https://www.youtube.com/channel/UCN5MWCq05Yj47EELO6Pvo7w
+                  - img "YouTube" [ref=e368]
+              - listitem [ref=e369]:
+                - link "LinkedIn" [ref=e370] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/company/aurora-punks/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BjrocUUxDTtKarukUVTEyLA%3D%3D
+                  - img "LinkedIn" [ref=e371]
+              - listitem [ref=e372]:
+                - link [ref=e373] [cursor=pointer]:
+                  - /url: https://discord.gg/fgg9mfehVJ
+            - paragraph [ref=e374]:
+              - link "PRIVACY POLICY" [ref=e376] [cursor=pointer]:
+                - /url: https://www.aurorapunks.com/privacy
+                - generic [ref=e378]: PRIVACY POLICY
+            - paragraph [ref=e379]:
+              - generic [ref=e380]: ©2025 by Aurora Punks
+  - region "bottom of page"

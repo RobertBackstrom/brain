@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shareholder Update - Aurora Punks AB</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Aurora Punks AB - shareholder update, July 2026. Confidential.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@600;700;800;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0d0d0f;
+  --paper:#f4f1ea;
+  --paper-2:#ffffff;
+  --mag:#e6186e;
+  --mag-2:#ff2d83;
+  --muted:#5f5b56;
+  --muted-2:#9a948c;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
+
+main{max-width:1080px;margin:0 auto;padding:0 32px 96px;position:relative;}
+@media(max-width:720px){main{padding:0 18px 64px;}}
+
+.mono{font-family:'Space Mono',monospace;letter-spacing:0.04em;}
+.eyebrow{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--mag);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.eyebrow .tag{background:var(--ink);color:var(--paper);padding:2px 8px;font-size:11px;}
+.eyebrow::after{content:'';flex:1;height:2px;background:var(--ink);}
+
+h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(28px,4vw,44px);line-height:1.02;letter-spacing:-0.01em;text-transform:uppercase;margin:0 0 22px;}
+h2 .mag{color:var(--mag);}
+
+.section{padding:64px 0;border-top:2px solid var(--ink);}
+.section p{font-size:16px;max-width:68ch;margin:0 0 16px;}
+p .mag{color:var(--mag);font-weight:700;}
+strong{font-weight:700;}
+
+/* confidential bar */
+.confbar{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--paper);background:var(--ink);text-align:center;padding:9px 12px;}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:64px 0 56px;overflow:hidden;}
+.hero .sun{position:absolute;top:-60px;right:-40px;width:340px;height:340px;border-radius:50%;background:var(--mag);z-index:0;}
+@media(max-width:720px){.hero .sun{width:150px;height:150px;top:-38px;right:-34px;}}
+@media(max-width:520px){.hero h1{font-size:54px;line-height:0.9;}.hero .sun{width:118px;height:118px;top:-30px;right:-28px;}}
+.hero-inner{position:relative;z-index:2;}
+.hero .kick{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);margin-bottom:18px;}
+.hero h1{font-family:'Anton',sans-serif;font-size:clamp(64px,12vw,140px);line-height:0.86;letter-spacing:0.01em;margin:0;text-transform:uppercase;color:var(--ink);}
+.hero h1 .mag{color:var(--mag);}
+.hero .tagline{font-size:20px;font-weight:500;max-width:58ch;margin:22px 0 26px;}
+
+/* ---------- STAT BAND ---------- */
+.statband{background:var(--ink);color:var(--paper);display:grid;grid-template-columns:repeat(5,1fr);}
+.statband .stat{padding:28px 20px;border-right:1px solid #2a2a2e;display:flex;flex-direction:column;}
+.statband .stat:last-child{border-right:0;}
+.statband .num{font-family:'Anton',sans-serif;font-size:clamp(24px,2.6vw,36px);line-height:1;color:var(--mag-2);}
+.statband .lbl{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted-2);margin-top:10px;line-height:1.45;}
+@media(max-width:980px){.statband{grid-template-columns:repeat(3,1fr);}.statband .stat{border-bottom:1px solid #2a2a2e;}.statband .num{font-size:30px;}}
+@media(max-width:620px){.statband{grid-template-columns:1fr;}.statband .stat{border-right:0;}.statband .num{font-size:34px;}}
+
+/* lists */
+.blist{list-style:none;padding:0;margin:0;max-width:78ch;}
+.blist li{padding:12px 0 12px 26px;position:relative;border-bottom:1px solid rgba(13,13,15,0.12);font-size:15.5px;line-height:1.5;}
+.blist li:last-child{border-bottom:0;}
+.blist li::before{content:'//';position:absolute;left:0;top:12px;font-family:'Space Mono',monospace;font-weight:700;color:var(--mag);font-size:13px;}
+
+/* milestone list */
+.msgrid{display:grid;grid-template-columns:repeat(2,1fr);border-top:2px solid var(--ink);border-left:2px solid var(--ink);max-width:860px;margin:8px 0 0;}
+.ms{border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);background:var(--paper-2);padding:18px 20px;}
+.ms .msk{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mag);display:block;margin-bottom:7px;}
+.ms .msn{font-family:'Archivo',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;margin:0 0 7px;line-height:1.05;}
+.ms p{font-size:14px;color:var(--muted);margin:0;line-height:1.5;max-width:none;}
+@media(max-width:620px){.msgrid{grid-template-columns:1fr;}}
+
+/* ---------- FIGURES TABLE ---------- */
+.ftable{width:100%;border-collapse:collapse;border:2px solid var(--ink);background:var(--paper-2);max-width:760px;margin:8px 0 22px;}
+.ftable th{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-align:left;background:var(--ink);color:var(--paper);padding:11px 16px;}
+.ftable th.r{text-align:right;}
+.ftable td{padding:12px 16px;border-bottom:1px solid rgba(13,13,15,0.14);font-size:15px;}
+.ftable td.r{text-align:right;font-family:'Space Mono',monospace;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.ftable tr.total td{border-top:2px solid var(--ink);border-bottom:0;font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;font-size:15px;}
+.ftable tr.total td.r{font-family:'Space Mono',monospace;font-weight:700;font-size:16px;}
+.ftable tr.result td{background:var(--ink);color:var(--paper);border-bottom:0;font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;}
+.ftable tr.result td.r{color:var(--mag-2);font-family:'Space Mono',monospace;font-size:17px;}
+@media(max-width:560px){.ftable td,.ftable th{padding:10px 12px;font-size:14px;}}
+
+/* callout */
+.callout{border:2px solid var(--ink);background:var(--paper-2);padding:24px 26px;max-width:74ch;margin:8px 0 0;position:relative;}
+.callout::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--mag);}
+.callout p{margin:0;font-size:16.5px;}
+.callout p+p{margin-top:12px;}
+
+.note{font-size:14.5px;color:var(--muted);max-width:68ch;}
+
+/* footer */
+footer{border-top:2px solid var(--ink);margin-top:8px;padding:30px 0 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+footer img{height:54px;display:block;}
+footer .c{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+footer .c a{color:var(--mag);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="confbar">Confidential // Aurora Punks AB - Shareholder Update - 27 July 2026</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="sun"></div>
+    <div class="hero-inner">
+      <div class="kick">Aurora Punks // Shareholder Update</div>
+      <h1>WHERE WE<br><span class="mag">STAND</span></h1>
+      <p class="tagline">Last time I wrote to you was in February, and it was not a fun letter. Five of you lent the company half a million on a week's notice. Here is where things stand.</p>
+    </div>
+  </section>
+
+  <!-- STAT BAND -->
+  <div class="statband">
+    <div class="stat"><div class="num">8,1 MSEK</div><div class="lbl">Production value 2026</div></div>
+    <div class="stat"><div class="num">+1,25 MSEK</div><div class="lbl">Result 2026</div></div>
+    <div class="stat"><div class="num">290 KSEK</div><div class="lbl">Monthly recurring revenue<br>36 % margin on own books</div></div>
+    <div class="stat"><div class="num">1</div><div class="lbl">Person on payroll</div></div>
+    <div class="stat"><div class="num">0 kr</div><div class="lbl">Bank and institutional debt</div></div>
+  </div>
+
+  <!-- SHORT VERSION -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">00</span> The short version /////</div>
+    <h2>What changed <span class="mag">since February.</span></h2>
+    <ul class="blist">
+      <li><strong>The ALMI debt is gone.</strong> We paid 500 KSEK, ALMI wrote off <strong>1 404 468 kr</strong>, and in April they confirmed the guarantee is released. Aurora Punks has no bank debt and no institutional debt.</li>
+      <li><strong>We signed Raw Fury</strong> to co-develop <strong>Kingdom Two Crowns: Pharaoh Lands</strong>, a 5,6 MSEK contract across seven milestones. Three are delivered, the last of them on Friday. Gold in December.</li>
+      <li><strong>2026 runs to roughly 8,1 MSEK of production value</strong> and a <strong>+1,25 MSEK result</strong>, on one employee.</li>
+      <li><strong>The shareholder loans start amortising 30 July.</strong></li>
+      <li><strong>The 2025 annual report will show negative equity</strong> from a write-down. The ALMI write-off falls in 2026 and covers it, so no shareholder contribution is needed.</li>
+    </ul>
+  </section>
+
+  <!-- RAW FURY -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">01</span> Raw Fury and Kingdom /////</div>
+    <h2>What we are building <span class="mag">for Raw Fury.</span></h2>
+    <p>The big thing that happened since February is Raw Fury.</p>
+    <p>On 29 April we signed a long-term co-development agreement with them to build the final expansion (DLC) for <strong>Kingdom Two Crowns</strong>, Raw Fury's own franchise. Aurora Punks owns design, art, programming and production. Raw Fury handles publishing, marketing and porting.</p>
+    <p>The contract is <strong>5,6 MSEK across seven milestones</strong>, running April to December 2026. In July Raw Fury named the DLC: <strong>Kingdom Two Crowns: Pharaoh Lands</strong>.</p>
+
+    <div class="msgrid">
+      <div class="ms">
+        <span class="msk">// Milestone 1 - delivered</span>
+        <h3 class="msn">15 May</h3>
+        <p>First delivery under the new contract, accepted and paid.</p>
+      </div>
+      <div class="ms">
+        <span class="msk">// Milestone 2 - Alpha, approved</span>
+        <h3 class="msn">2 July</h3>
+        <p>Approved with no feedback from Raw Fury.</p>
+      </div>
+      <div class="ms">
+        <span class="msk">// Milestone 3 - Vertical Slice, delivered</span>
+        <h3 class="msn">24 July</h3>
+        <p>Two full islands playable start to finish with the new systems in.</p>
+      </div>
+      <div class="ms">
+        <span class="msk">// Gold - the finished game</span>
+        <h3 class="msn">December</h3>
+        <p>Remaining milestones run through the autumn to release.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:26px;">Every milestone so far has been delivered and paid. Raw Fury has a broad catalogue and they keep going back to teams that deliver on time, so the realistic next step is more work with them, on this franchise or on another of their titles.</p>
+  </section>
+
+  <!-- ALMI -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">02</span> The ALMI settlement /////</div>
+    <h2>The debt is settled <span class="mag">and written off.</span></h2>
+    <p>The debt to ALMI was carried at roughly 1,9 MSEK, on an amortisation plan the company could not service. We negotiated it down to a <strong>single payment of 500 KSEK</strong> - which is what your loans funded in February.</p>
+    <p>ALMI wrote off the rest: <strong>1 404 468 kr</strong>. In April they confirmed in writing that the guarantee undertaking Aurora Punks had given is released.</p>
+    <p>So the balance sheet today: no bank debt, no institutional debt, no guarantees outstanding. The only debt left is <strong>1,2 MSEK to shareholders</strong>, on reverser running at the Riksbank policy rate plus 2 %, due May 2028. <strong>Amortisation starts 30 July</strong>, at a minimum of 35 200 kr a month across all lenders pro rata. The first one goes out this Thursday.</p>
+    <div class="callout">
+      <p>Five of you put up that half million on a week's notice, when it was far from a safe bet. Thank you.</p>
+    </div>
+  </section>
+
+  <!-- STRUCTURE -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">03</span> How the company is built now /////</div>
+    <h2>A small company with <span class="mag">a matched cost base.</span></h2>
+    <p>Aurora Punks is a small company now.</p>
+    <p><strong>One person on payroll.</strong> Everything else runs on contractors and partner studios, brought in per project and released when the project ends. The Pharaoh Lands team is six people, and not one of them is a fixed cost.</p>
+    <p>The fixed cost base - the one salary plus everything it takes to keep the lights on - runs about <strong>92 KSEK a month</strong>. And that salary is our developer placed with <strong>Mojang</strong> through Netlight, matched one to one against the contract it is paid for, so it is not exposed overhead either.</p>
+    <p>Against that we carry a recurring floor of roughly <strong>290 KSEK a month</strong>: the Mojang placement at about 150 KSEK, and the Kingdom co-development margin at about 140 KSEK.</p>
+    <div class="callout">
+      <p>The floor covers the fixed base three times over. We do not need a new contract to survive the month, and one client going quiet cannot take the company down - that is what happened to the subsidiary in December.</p>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">04</span> The numbers /////</div>
+    <h2>2026, on a <span class="mag">gross basis.</span></h2>
+    <table class="ftable">
+      <thead>
+        <tr><th>Line</th><th class="r">SEK</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Raw Fury / Pharaoh Lands</td><td class="r">5 600 000</td></tr>
+        <tr><td>Mojang placement (via Netlight)</td><td class="r">1 781 348</td></tr>
+        <tr><td>Water Me &amp; You (Shosha)</td><td class="r">567 544</td></tr>
+        <tr><td>Other</td><td class="r">175 172</td></tr>
+        <tr class="total"><td>Total production value</td><td class="r">8 124 065</td></tr>
+        <tr><td>Total costs</td><td class="r">2 223 600</td></tr>
+        <tr class="result"><td>Result</td><td class="r">+1 247 314</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Two notes so this reconciles against the annual report. The 5,6 MSEK is the full Raw Fury contract, and most of it flows straight out to the team building it, so in our books the Kingdom engagement appears as a single net line of about 947 KSEK. On that basis revenue on Aurora Punks' own books is <strong>3,47 MSEK</strong>. Same result either way - the 8,1 MSEK is what we are actually running, the 3,47 MSEK is what lands on our P&amp;L.</p>
+    <p class="note">Water Me &amp; You has not started earning yet. It goes into Early Access in February 2027, and the revenue share begins there.</p>
+  </section>
+
+  <!-- ANNUAL REPORT -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">05</span> The 2025 annual report /////</div>
+    <h2>The write-down, and <span class="mag">what covers it.</span></h2>
+    <p>Vessels of Decay is being written down to a conservative residual value in the 2025 accounts. That takes equity negative as of 31 December 2025, and it means the board has to draw up a control balance sheet (kontrollbalansräkning).</p>
+    <p>The ALMI write-off of 1,4 MSEK falls in 2026, so it does not repair the 2025 accounts. It does repair the control balance sheet, which is measured as of today. The board went through this with our accountant on 16 July and agreed the write-off covers it on its own, with margin. <strong>No shareholder contribution is needed.</strong> The annual report is due 31 July and you will get it.</p>
+    <div class="callout">
+      <p>Mattias has called the AGM for <strong>this Thursday, 30 July at 9.00</strong>, online. Happy to take any of this there as well.</p>
+    </div>
+  </section>
+
+  <!-- AIMING AT -->
+  <section class="section">
+    <div class="eyebrow"><span class="tag">06</span> What we are aiming at /////</div>
+    <h2>Three things for the <span class="mag">next twelve months.</span></h2>
+    <ul class="blist">
+      <li><strong>Line up the next co-development.</strong> Pharaoh Lands is done in December. The job is to have the next contract signed before then, at similar size or larger. Raw Fury is the first place we look, since we will have delivered a full DLC for them by that point.</li>
+      <li><strong>Hold the Mojang placement.</strong> It is open-ended, profitable, and covers the fixed base on its own.</li>
+      <li><strong>Get the catalogue earning.</strong> Water Me &amp; You hits Early Access in February 2027, which is the first revenue share we have had in a long time.</li>
+    </ul>
+    <p style="margin-top:26px;">Add it all up and it points to roughly <strong>4,5 MSEK on our own books in 2027</strong>, against 3,5 MSEK this year, with the upside sitting in what the next co-development turns out to be and how Water Me &amp; You performs. The 4,5 is a conservative number.</p>
+    <p>Happy to take questions, and happy to jump on a call with anyone who wants more detail.</p>
+    <p style="font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;font-size:18px;margin-top:28px;">Robert Bäckström<br><span style="font-family:'Space Mono',monospace;font-weight:400;font-size:12px;letter-spacing:.1em;color:var(--muted);">Founder and Executive Producer</span></p>
+  </section>
+
+  <footer>
+    <img src="ap-logo.png" alt="Aurora Punks">
+    <div class="c">Aurora Punks AB &middot; 559256-9718 &middot; Confidential &middot; <a href="mailto:robert@aurorapunks.com">robert@aurorapunks.com</a></div>
+  </footer>
+
+</main>
+</body>
+</html>

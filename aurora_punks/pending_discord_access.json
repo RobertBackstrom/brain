@@ -1,0 +1,22 @@
+{
+  "_comment": "CM agent pending Discord access list (owned by agents/cm.md). On guildMemberAdd in the AP guild, the bot matches the joining member's Discord user ID against `pending` and auto-assigns the listed role IDs, then posts a confirmation to #board and removes the entry (so a later rejoin does not silently re-grant). People without a known Discord ID yet go in `pending_no_id` as a human note — move them into `pending` keyed by ID once they have one.",
+  "guildId": "616345869490454593",
+  "pending": {
+    "363008257310064640": {
+      "name": "Daniel",
+      "roles": [
+        "1517102080655888394"
+      ],
+      "note": "Board role"
+    }
+  },
+  "pending_no_id": [
+    {
+      "name": "Alexander",
+      "roles": [
+        "1517102080655888394"
+      ],
+      "note": "Board role. No Discord ID yet — not in guild. Add ID as a key under `pending` when known."
+    }
+  ]
+}

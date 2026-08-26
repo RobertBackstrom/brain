@@ -1,0 +1,138 @@
+# Brain backup repo (db-327). Allowlist, not blocklist.
+#
+# The root of the workspace holds ~27 GB: a 19 GB vendored code corpus, an 8.3 GB
+# rag.db, node_modules, and secrets_registry.md in plaintext. A blocklist here would
+# be one forgotten line away from committing any of it, so everything is ignored by
+# default and only the directories below are let back in. Inside them, only text is
+# kept: binaries live in Drive/Perforce and are not what this repo exists to protect.
+#
+# Deliberately NOT here, and why:
+#   assistant/ skills/ cc-hive/ elias_bizdev/ shared/ umbrella/ water_me_and_you/
+#                        -> have their own remotes already
+#   code-corpus/ _research/  -> vendored, recoverable from GitHub/Perforce
+#   secrets_registry.md      -> plaintext secrets; encrypted Drive copy only
+#   rag.db                   -> derived index, rebuildable from its sources
+
+# 1. Ignore everything at the root.
+/*
+
+# 2. Let the irreplaceable directories back in.
+!/1993_space_machine/
+!/agents/
+!/aurora_punks/
+!/aurorapunks_site/
+!/badass/
+!/clients/
+!/curveball/
+!/czp/
+!/czp-finances/
+!/dark_riviera/
+!/disposable_corps/
+!/drafts/
+!/eternal_minds/
+!/followups/
+!/go_fight_fantastic/
+!/hooja/
+!/_inbox/
+!/k2c_sands_of_duat/
+!/knives_and_gutters/
+!/mcp-servers/
+!/nabohero/
+!/paradox_ironcrest_case/
+!/personal_listings/
+!/pitches/
+!/projects/
+!/rankone/
+!/research/
+!/robotlordrising_site/
+!/starbreeze_irons2/
+!/tcg_webshop/
+!/tears_of_adria/
+!/teef/
+!/ticker/
+!/upvote_starbreeze/
+!/wiki/
+!/_memory/
+!/.gitignore
+
+# 3. Never descend into these, wherever they appear.
+node_modules/
+.venv/
+venv/
+__pycache__/
+.next/
+dist/
+build/
+*.egg-info/
+
+# 4. Keep text only. Binaries are in Drive/Perforce.
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+*.ico
+*.psd
+*.ai
+*.mp4
+*.mov
+*.webm
+*.mp3
+*.wav
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.7z
+*.rar
+*.pdf
+*.xlsx
+*.xls
+*.docx
+*.doc
+*.pptx
+*.ttf
+*.otf
+*.woff
+*.woff2
+*.db
+*.sqlite
+*.sqlite3
+*.bin
+*.exe
+*.dll
+*.so
+*.dylib
+
+# 5. Secrets, belt and braces.
+.env
+.env.*
+!.env.example
+*credentials*.json
+*-credentials*
+*.pem
+*.key
+.fortnox-profile/
+
+# 6. Redundant once git has history: the agents' own rolling backups of learnings,
+#    and scratch backup copies scattered through project folders.
+.backup/
+*.bak
+*.bak-*
+*.bak[0-9]*
+*.pre-normalize.*
+*~
+
+# 7. Stragglers the extension list missed.
+*.xlsm
+*.xlsb
+*.numbers
+*.sketch
+
+# 8. Nested repo with its own history but no remote. A gitlink here would back up
+#    nothing (clones cannot resolve it), so it is excluded from this repo and
+#    captured whole, .git and all, by the encrypted Drive tarball instead.
+#    Proper fix is to give it its own remote. See db-327.
+/tcg_webshop/app/

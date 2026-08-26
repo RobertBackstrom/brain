@@ -1,0 +1,123 @@
+# GitLab CI/CD pipeline for uploading Steam builds
+#
+# This pipeline builds your game and uploads it to Steam using SteamCMD.
+# Triggered on tags (e.g., v1.2.3) to deploy releases.
+#
+# Setup:
+# 1. Add CI/CD variables in GitLab project settings:
+#    - STEAM_USERNAME: Your Steam account username
+#    - STEAM_PASSWORD: Your Steam account password (masked)
+#    - STEAMWORKS_API_KEY: Your Steamworks Publisher API key (masked)
+# 2. Update the variables section below with your app/depot IDs
+# 3. Customize the build job for your game engine
+
+variables:
+  STEAM_APP_ID: "123456"  # Replace with your Steam App ID
+  STEAM_DEPOT_ID: "123457"  # Replace with your Depot ID
+  BUILD_OUTPUT_DIR: "$CI_PROJECT_DIR/steam-build"
+
+stages:
+  - build
+  - deploy
+  - verify
+
+# Build your game
+build:
+  stage: build
+  image: ubuntu:22.04
+  script:
+    - echo "Building game for version $CI_COMMIT_TAG"
+    - mkdir -p $BUILD_OUTPUT_DIR
+    # Replace with your actual build commands
+    # Examples:
+    # - Unity build
+    # - Unreal Engine build
+    # - Godot export
+    # For now, a placeholder:
+    - echo "Game built successfully" > $BUILD_OUTPUT_DIR/game.txt
+  artifacts:
+    paths:
+      - $BUILD_OUTPUT_DIR
+    expire_in: 1 day
+  only:
+    - tags
+
+# Upload build to Steam
+deploy_steam:
+  stage: deploy
+  image: ubuntu:22.04
+  dependencies:
+    - build
+  before_script:
+    # Install SteamCMD
+    - apt-get update
+    - dpkg --add-architecture i386
+    - apt-get install -y software-properties-common curl jq
+    - add-apt-repository multiverse
+    - apt-get update
+    - echo steam steam/question select "I AGREE" | debconf-set-selections
+    - echo steam steam/license note '' | debconf-set-selections
+    - apt-get install -y steamcmd
+    # Install Node.js
+    - curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+    - apt-get install -y nodejs
+  script:
+    # Clone/setup Steamworks MCP
+    - cd $CI_PROJECT_DIR
+    - git clone https://github.com/YOUR_ORG/steamworks-partner-mcp.git || true
+    - cd steamworks-partner-mcp
+    - npm install
+    - npm run build
+
+    # Generate VDF build script
+    - |
+      node -e "
+      const { prepareBuildUpload } = require('./dist/steamcmd.js');
+
+      prepareBuildUpload({
+        appId: parseInt('$STEAM_APP_ID'),
+        depotId: parseInt('$STEAM_DEPOT_ID'),
+        contentRoot: '$BUILD_OUTPUT_DIR',
+        outputPath: './steam-scripts',
+        buildDescription: 'Release $CI_COMMIT_TAG - Built by GitLab CI',
+        setLive: 'default'
+      }).then(scriptPath => {
+        console.log('Build script created:', scriptPath);
+      });
+      "
+
+    # Upload to Steam
+    - |
+      steamcmd +login "$STEAM_USERNAME" "$STEAM_PASSWORD" \
+        +run_app_build ./steam-scripts/app_build_${STEAM_APP_ID}.vdf \
+        +quit
+
+    - echo "Build uploaded to Steam successfully"
+  only:
+    - tags
+  environment:
+    name: production/steam
+    url: https://partner.steamgames.com/apps/details/$STEAM_APP_ID
+
+# Verify the build was uploaded
+verify_build:
+  stage: verify
+  image: curlimages/curl:latest
+  script:
+    - |
+      echo "Verifying build on Steam..."
+      RESPONSE=$(curl -s "https://partner.steam-api.com/ISteamApps/GetAppBuilds/v1?key=$STEAMWORKS_API_KEY&appid=$STEAM_APP_ID")
+      echo "$RESPONSE" | jq '.response.builds[0]'
+
+      # Check if latest build exists
+      BUILD_ID=$(echo "$RESPONSE" | jq -r '.response.builds[0].buildid')
+      if [ "$BUILD_ID" == "null" ]; then
+        echo "ERROR: No builds found for app $STEAM_APP_ID"
+        exit 1
+      fi
+
+      echo "Latest build ID: $BUILD_ID"
+      echo "Verification successful!"
+  only:
+    - tags
+  dependencies: []

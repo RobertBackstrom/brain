@@ -1,0 +1,84 @@
+{
+  "comment": "Risk guardrails for Ticker execution - enforced in saxo.js place-order. v3 (tkr-009, 2026-06-17): BALANCE-RELATIVE. All SEK caps are now expressed as PERCENTAGES of live account equity (Saxo /port/v1/balances/me TotalValue, FX-converted to SEK, cached ~15min). At SIM scale (~1M EUR ~= 11M SEK) the SAME percentages let the SIM trade at full scale; going live (~25K SEK) auto-divides every cap down by the same ratio with NO rewrite. SIM-first; live stays hard-disabled.",
+  "version": "3.0",
+  "last_updated": "2026-06-17",
+
+  "account_value_sek": null,
+  "account_value_note": {
+    "comment": "OPTIONAL manual override for the account-equity basis (in SEK). If set to a NUMBER, every %-of-account cap is computed off it. If null/absent (the default), saxo.js uses LIVE Saxo equity: getBalance() reads /port/v1/balances/me TotalValue, FX-converts to SEK, and caches it in assistant/.ticker_balance_<env>.json (TTL ~15min) so the hot order path doesn't hit the network every order. FAIL-CLOSED: if balance is unavailable (no live fetch, no cache) AND no override is set, the order is BLOCKED (guardrail: balance-unavailable) - same posture as fx-rate-unavailable. For the full-scale SIM test this is null so the ~11M SEK balance drives sizing.",
+    "ttl_minutes": 15
+  },
+
+  "target": {
+    "goal_pct": 50,
+    "window_days": 30,
+    "comment": "North-star stretch (+50% in 30d) as a percentage so it's scale-free. Cash-only base case is far lower; see ticker/sim_strategy_2026-06.md."
+  },
+
+  "per_order": {
+    "max_pct_of_account": 40,
+    "comment": "No single order > 40% of account equity. ENFORCED in saxo.js: notional (FX->SEK) <= 0.40 * account_value. At ~11M SEK SIM that's ~4.4M; at 25K live that's 10K - same 40%."
+  },
+
+  "per_trade_risk": {
+    "max_pct_of_account": 4,
+    "comment": "Risk = (|entry - stop|) x qty (FX->SEK) must be <= 4% of account equity. ENFORCED in saxo.js (tkr-005): entry_price + stop_price thread from the card through /api/ticker/execute -> place-order. Skipped (not blocked) when entry or stop is absent."
+  },
+
+  "daily_limits": {
+    "max_notional_pct_of_account": 160,
+    "comment": "Daily turnover headroom as a RATIO of account equity (v3: was absolute 40000 SEK = 160% of the old 25000 basis). ENFORCED in saxo.js (sums today's placed notional, FX->SEK) <= 1.60 * account_value. Active rotation needs >100% so the book can churn."
+  },
+
+  "position_limits": {
+    "max_open_positions": 4,
+    "comment": "Concentrated book. ABSOLUTE count, not a ratio. ENFORCED in saxo.js."
+  },
+
+  "drawdown_brake": {
+    "floor_pct": 20,
+    "action": "halt",
+    "comment": "Percentage drawdown from a recorded BASELINE equity. ENFORCED in the 15-min Routine (checkDrawdownBrake): trips when current equity < baseline x (1 - floor_pct/100) i.e. -20%. Baseline equity (per env) lives in assistant/.ticker_baseline_<env>.json, captured automatically on first run if absent and (re)settable via `node assistant/saxo.js set-baseline`. This makes the brake fire IDENTICALLY in SIM (off ~11M baseline) and live (off ~25K). Creates ticker/HALT (idempotent) + Discord ping. Never auto-clears HALT (manual rm after review)."
+  },
+
+  "commission_note": {
+    "comment": "COURTAGE CAVEAT: SIM-at-scale UNDERSTATES the per-trade fee drag a small live account feels. Saxo charges a per-trade minimum/floor fee; on a ~4.4M SEK SIM order that floor is a rounding error, but on a small live order (a few thousand SEK) the minimum fee can be a meaningful % of the position. So live NET % returns will TRAIL SIM net % even with identical strategy and identical percentage sizing. No fee modelling is done in code - this is the documented expectation. When interpreting SIM results, discount net returns for the live fee floor; when going live, prefer fewer/larger trades to amortise the minimum fee.",
+    "modelled_in_code": false
+  },
+
+  "currency_note": {
+    "comment": "FX-correct sizing ENFORCED in saxo.js (tkr-005). The per-order cap, daily cap, per-trade-risk, drawdown baseline, and live-balance fetch all FX-convert non-SEK amounts to SEK before comparing. Rate source: Yahoo daily (<CCY>SEK=X; USD via SEK=X) via assistant/fx.js (curl), cached in assistant/.fx_cache.json (daily TTL). Currency is derived network-free from the symbol (.ST=SEK, else USD), overridable via order.currency. The money path FAILS CLOSED: an unfetchable, uncached rate blocks the order (guardrail: fx-rate-unavailable)."
+  },
+
+  "allowed_symbols": {
+    "source": "ticker/watchlist.json",
+    "comment": "Only watchlist symbols tradeable. ENFORCED in saxo.js."
+  },
+
+  "order_types": {
+    "allowed": ["Limit"],
+    "forbidden": ["Market", "Stop", "StopLimit"],
+    "comment": "Limit orders only. ENFORCED in saxo.js."
+  },
+
+  "kill_switch": {
+    "file": "ticker/HALT",
+    "comment": "If this file exists, ALL order placement is blocked. ENFORCED in saxo.js. Create with: touch ticker/HALT"
+  },
+
+  "idempotency": {
+    "client_order_id_prefix": "TKR",
+    "comment": "Deterministic client order ids prevent double-execution. ENFORCED in saxo.js."
+  },
+
+  "environments": {
+    "sim": {
+      "enabled": true,
+      "comment": "SIM is default and always allowed"
+    },
+    "live": {
+      "enabled": false,
+      "comment": "Live trading requires explicit enable step after the SIM sprint - flip to true only after Robert confirms"
+    }
+  }
+}

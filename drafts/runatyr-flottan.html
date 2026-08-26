@@ -1,0 +1,603 @@
+<title>Runatyr-flottan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ground:      #F1EDE4;
+    --surface:     #FBF9F4;
+    --surface-alt: #E9E3D6;
+    --ink:         #1B1922;
+    --ink-soft:    #56505F;
+    --ink-faint:   #837C8D;
+    --line:        #D5CEC0;
+    --line-strong: #B7AE9C;
+    --accent:      #96742A;
+    --accent-soft: #EFE3C4;
+    --live:        #2E6A56;
+    --blocked:     #9E2B4B;
+    --blocked-soft:#F4DDE3;
+
+    --f-display: "Libre Baskerville", Georgia, "Times New Roman", serif;
+    --f-body:    "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --f-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --shell: 68rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #121019;
+      --surface:     #1B1724;
+      --surface-alt: #241F30;
+      --ink:         #EDE6D8;
+      --ink-soft:    #A79FB2;
+      --ink-faint:   #7C7488;
+      --line:        #322B40;
+      --line-strong: #4A4159;
+      --accent:      #D9B44A;
+      --accent-soft: #33291A;
+      --live:        #5FBF9A;
+      --blocked:     #E4718F;
+      --blocked-soft:#3A1F2A;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #121019;
+    --surface:     #1B1724;
+    --surface-alt: #241F30;
+    --ink:         #EDE6D8;
+    --ink-soft:    #A79FB2;
+    --ink-faint:   #7C7488;
+    --line:        #322B40;
+    --line-strong: #4A4159;
+    --accent:      #D9B44A;
+    --accent-soft: #33291A;
+    --live:        #5FBF9A;
+    --blocked:     #E4718F;
+    --blocked-soft:#3A1F2A;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 1.5rem 6rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell { max-width: var(--shell); margin: 0 auto; }
+  .prose { max-width: 40rem; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+
+  /* ---------- masthead ---------- */
+
+  header.masthead {
+    padding: 4.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  header.masthead h1 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: clamp(2.1rem, 5vw, 3.1rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    margin: 0.7rem 0 0;
+  }
+  .thesis {
+    max-width: 38rem;
+    margin: 1.1rem 0 0;
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+  }
+  .thesis strong { color: var(--ink); font-weight: 600; }
+
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin: 2.5rem 0 0;
+  }
+  .tile { background: var(--surface); padding: 1.05rem 1.15rem; }
+  .tile .n {
+    font-family: var(--f-mono);
+    font-size: 1.7rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    display: block;
+  }
+  .tile .k {
+    font-size: 0.83rem;
+    color: var(--ink-soft);
+    display: block;
+    margin-top: 0.3rem;
+  }
+  .tile.is-bad .n { color: var(--blocked); }
+  .tile.is-good .n { color: var(--live); }
+
+  /* ---------- sections ---------- */
+
+  section { padding: 3.5rem 0 0; }
+  section > .eyebrow { margin-bottom: 0.45rem; }
+  h2 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 1rem;
+  }
+  h3 {
+    font-family: var(--f-body);
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 2rem 0 0.5rem;
+  }
+  p { margin: 0 0 1rem; }
+
+  /* ---------- figure ---------- */
+
+  figure { margin: 1.75rem 0 0; }
+  .scroller { overflow-x: auto; border: 1px solid var(--line); background: var(--surface); }
+  figure svg { display: block; width: 100%; min-width: 640px; height: auto; color: var(--ink); }
+  /* SVG accents theme through the same tokens as the page, never a literal */
+  .svg-bad-fill      { fill: var(--blocked); }
+  .svg-bad-stroke    { stroke: var(--blocked); }
+  .svg-accent-fill   { fill: var(--accent); }
+  .svg-accent-stroke { stroke: var(--accent); }
+  figcaption {
+    font-size: 0.87rem;
+    color: var(--ink-soft);
+    margin-top: 0.85rem;
+    max-width: 44rem;
+  }
+
+  /* ---------- roster ---------- */
+
+  .roster { overflow-x: auto; margin-top: 1.25rem; }
+  table { border-collapse: collapse; width: 100%; min-width: 40rem; font-size: 0.92rem; }
+  caption { text-align: left; color: var(--ink-soft); font-size: 0.87rem; padding-bottom: 0.6rem; }
+  th, td { text-align: left; padding: 0.72rem 0.9rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th {
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  td.node { font-family: var(--f-mono); font-weight: 500; white-space: nowrap; }
+  td.spec { font-family: var(--f-mono); font-size: 0.83rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  tbody tr:last-child td { border-bottom: none; }
+
+  .pill {
+    display: inline-block;
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.16rem 0.5rem;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .pill.live    { color: var(--live); }
+  .pill.wait    { color: var(--ink-faint); }
+  .pill.blocked { color: var(--blocked); }
+
+  /* ---------- phases ---------- */
+
+  ol.phases { list-style: none; counter-reset: ph; margin: 1.25rem 0 0; padding: 0; }
+  ol.phases > li {
+    counter-increment: ph;
+    display: grid;
+    grid-template-columns: 3.4rem 1fr;
+    gap: 1.15rem;
+    padding: 1.15rem 0;
+    border-top: 1px solid var(--line);
+  }
+  ol.phases > li::before {
+    content: counter(ph, decimal-leading-zero);
+    font-family: var(--f-mono);
+    font-size: 0.95rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-faint);
+    padding-top: 0.1rem;
+  }
+  ol.phases > li.now::before { color: var(--blocked); }
+  .ph-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; }
+  .ph-head h3 { margin: 0; font-size: 1.02rem; }
+  .ticket { font-family: var(--f-mono); font-size: 0.78rem; color: var(--ink-faint); }
+  .ph-body { margin: 0.35rem 0 0; color: var(--ink-soft); font-size: 0.94rem; max-width: 40rem; }
+
+  /* ---------- callouts ---------- */
+
+  .callout {
+    border-left: 3px solid var(--blocked);
+    background: var(--blocked-soft);
+    padding: 1.1rem 1.25rem;
+    margin: 1.5rem 0 0;
+  }
+  .callout .eyebrow { color: var(--blocked); }
+  .callout p { margin: 0.4rem 0 0; max-width: 38rem; }
+  .callout code, .cmd {
+    font-family: var(--f-mono);
+    font-size: 0.83rem;
+  }
+  pre.cmd {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+    margin: 0.9rem 0 0;
+    line-height: 1.55;
+  }
+
+  .risks { list-style: none; margin: 1.25rem 0 0; padding: 0; }
+  .risks li { padding: 0.9rem 0; border-top: 1px solid var(--line); max-width: 44rem; }
+  .risks b { font-weight: 600; }
+  .risks span { color: var(--ink-soft); }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.87rem;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
+  }
+  footer .k { font-family: var(--f-mono); font-size: 0.78rem; }
+</style>
+
+<div class="shell">
+
+  <header class="masthead">
+    <p class="eyebrow">Beslutad 2026-08-22 · uppdaterad 2026-08-24 · epic db-309</p>
+    <h1>Runatyr-flottan</h1>
+    <p class="thesis">Ett agentiskt nätverk i ett subnät bakom ett mobilt 5G-modem, nåbart på code.runatyr.games från vilken maskin som helst. Den <strong>24 augusti flyttades styrplanet</strong>: brain kör nu på Nitro, en enda masterbrain, och Hetzner är kvar som publik front och backup. Kvar är beräkningsplanet.</p>
+
+    <div class="tiles">
+      <div class="tile is-good">
+        <span class="n">1</span>
+        <span class="k">masterbrain kvar, konsoliderad (var 2 som drev isär)</span>
+      </div>
+      <div class="tile is-good">
+        <span class="n">1</span>
+        <span class="k">RAG-spår, Nitro auktoritativ (VPS fryst)</span>
+      </div>
+      <div class="tile">
+        <span class="n">16</span>
+        <span class="k">cron-jobb flyttade till Nitro, VPS trimmad till 4</span>
+      </div>
+      <div class="tile">
+        <span class="n">1 / 10</span>
+        <span class="k">faser klara: styrplanet till Nitro (db-310)</span>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <p class="eyebrow">Status 2026-08-24</p>
+    <h2>Styrplanet är flyttat, resten står kvar</h2>
+    <p class="prose">Dagens flytt gjorde brain till en Nitro-roll och stängde divergensfönstret. Beräkningsplanet — den elastiska halvan med byggen och art på forge via TeamCity, plus det andra LLM-nätverket — är fortfarande att bygga.</p>
+    <div class="roster">
+      <table>
+        <caption>Vad som ändrades idag, mot vad som återstår.</caption>
+        <thead>
+          <tr><th scope="col">Bit</th><th scope="col">Läge</th><th scope="col">Detalj</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Brain på Nitro</td><td><span class="pill live">klart</span></td><td>Death Board (:3777), RAG-watcher och 16 cron-jobb kör på Nitro. VPS-instansen stoppad + disablad.</td></tr>
+          <tr><td>CF-ompekning</td><td><span class="pill live">klart</span></td><td>board · hive · kanban · internal → Nitros tailscale-IP. Alla fyra verifierade 200 genom CF Access.</td></tr>
+          <tr><td>En masterbrain</td><td><span class="pill live">klart</span></td><td>25 followups + 8 artefakter reconcilade Hetzner→Nitro (newer-wins, additivt). 1093 followups i synk.</td></tr>
+          <tr><td>Ett RAG-spår</td><td><span class="pill live">klart</span></td><td>VPS-RAG fryst (watcher död, 0 query-procs). Nitro auktoritativ: 453 718 dokument.</td></tr>
+          <tr><td>SSH Nitro→VPS</td><td><span class="pill live">klart</span></td><td>Nyckeln på plats, den gamla blockeraren nedan är löst. Använd hela sessionen.</td></tr>
+          <tr><td>Hetzner = publik + backup</td><td><span class="pill live">klart</span></td><td>Hemsidor, pitchar, OpenSign och cloudflared kvar. Utökar edge-rollen, inte bara backup.</td></tr>
+          <tr><td>Beräkningsplan (forge via TeamCity)</td><td><span class="pill wait">kvar</span></td><td>db-313: koppla agent-router till TeamCity. Ej påbörjat, agenter körs fortfarande lokalt.</td></tr>
+          <tr><td>Andra LLM-nätverket</td><td><span class="pill wait">kvar</span></td><td>db-317: leverantörslager (OpenAI/Gemini + Ollama på forge). Beslutat, ej byggt.</td></tr>
+          <tr><td>Töm Death Board</td><td><span class="pill blocked">kvar</span></td><td>db-319: 433 avslutade tickets i aktiva lagret, 22 statusvärden mot 5 kanon.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Mekanismen</p>
+    <h2>Delad hjärna före, två plan efteråt</h2>
+    <p class="prose">Fram till 24 augusti arbetade du interaktivt på Nitro medan Death Board, cron-sviten och RAG-indexeraren körde kvar på Hetzner, och båda sidor skrev till varsin kopia av masterbrain. Nu kör styrplanet på Nitro; Hetzner behåller publik front, OpenSign, cloudflared och backup. Kartan visar före och mål.</p>
+
+    <figure>
+      <div class="scroller">
+        <svg viewBox="0 0 880 706" role="img" aria-label="Två diagram jämförs. Idag: Robert når Nitro via code.runatyr.games, Nitro och Hetzner har varsin masterbrain som driver isär, och forge, vcsboy, linus och anastasia gör inget agentarbete. Efter: Robert når brain som håller en enda masterbrain, brain säkerhetskopierar nattligen till edge som larmar vid avbrott, och brain köar jobb via TeamCity till forge och de opportunistiska maskinerna.">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="currentColor"></path>
+            </marker>
+            <marker id="ah-bad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" class="svg-bad-fill"></path>
+            </marker>
+          </defs>
+
+          <!-- ============ PANEL A : IDAG ============ -->
+          <text x="8" y="26" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.6" fill="currentColor" opacity="0.55">FÖRE</text>
+          <line x1="58" y1="21" x2="872" y2="21" stroke="currentColor" stroke-width="1" opacity="0.18"></line>
+
+          <!-- Robert -->
+          <rect x="8" y="76" width="104" height="42" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.75"></rect>
+          <text x="60" y="102" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="currentColor">Robert</text>
+
+          <line x1="112" y1="97" x2="222" y2="97" stroke="currentColor" stroke-width="1.3" marker-end="url(#ah)"></line>
+          <text x="167" y="89" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="currentColor" opacity="0.7">code.runatyr.games</text>
+
+          <!-- Nitro -->
+          <rect x="228" y="58" width="196" height="78" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+          <text x="326" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="500" fill="currentColor">Nitro</text>
+          <text x="326" y="101" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11.5" fill="currentColor" opacity="0.72">code-server</text>
+          <text x="326" y="118" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11.5" fill="currentColor" opacity="0.72">TeamCity</text>
+
+          <!-- Hetzner -->
+          <rect x="556" y="58" width="212" height="78" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+          <text x="662" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="500" fill="currentColor">Hetzner</text>
+          <text x="662" y="101" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11.5" fill="currentColor" opacity="0.72">Death Board · cron · RAG</text>
+          <text x="662" y="118" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11.5" fill="currentColor" opacity="0.72">säkerhet · static sites</text>
+
+          <!-- to stores -->
+          <line x1="326" y1="136" x2="326" y2="186" stroke="currentColor" stroke-width="1.3" marker-end="url(#ah)"></line>
+          <line x1="662" y1="136" x2="662" y2="186" stroke="currentColor" stroke-width="1.3" marker-end="url(#ah)"></line>
+
+          <rect x="248" y="188" width="156" height="46" fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="5 3"></rect>
+          <text x="326" y="207" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="currentColor">masterbrain A</text>
+          <text x="326" y="224" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.62">rag.db fryst 21 aug</text>
+
+          <rect x="584" y="188" width="156" height="46" fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="5 3"></rect>
+          <text x="662" y="207" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="currentColor">masterbrain B</text>
+          <text x="662" y="224" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.62">skriver vidare</text>
+
+          <!-- diverging -->
+          <line x1="410" y1="211" x2="578" y2="211" class="svg-bad-stroke" stroke-width="1.6" stroke-dasharray="6 4" marker-start="url(#ah-bad)" marker-end="url(#ah-bad)"></line>
+          <text x="494" y="203" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11.5" font-weight="600" class="svg-bad-fill">driver isär</text>
+
+          <!-- idle fleet -->
+          <rect x="228" y="264" width="540" height="38" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.34"></rect>
+          <text x="498" y="288" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11.5" fill="currentColor" opacity="0.5">forge · vcsboy · linus · anastasia — inget agentarbete</text>
+
+          <!-- ============ PANEL B : EFTER ============ -->
+          <text x="8" y="382" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.6" fill="currentColor" opacity="0.55">MÅL</text>
+          <line x1="66" y1="377" x2="872" y2="377" stroke="currentColor" stroke-width="1" opacity="0.18"></line>
+
+          <rect x="8" y="432" width="104" height="42" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.75"></rect>
+          <text x="60" y="458" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="currentColor">Robert</text>
+
+          <line x1="112" y1="453" x2="222" y2="453" stroke="currentColor" stroke-width="1.3" marker-end="url(#ah)"></line>
+          <text x="167" y="445" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="currentColor" opacity="0.7">code.runatyr.games</text>
+
+          <!-- brain -->
+          <rect x="228" y="414" width="212" height="80" fill="none" class="svg-accent-stroke" stroke-width="2.2"></rect>
+          <text x="334" y="440" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="500" fill="currentColor">brain  (Nitro)</text>
+          <text x="334" y="459" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11.5" fill="currentColor" opacity="0.72">Death Board · schemaläggare</text>
+          <text x="334" y="476" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11.5" fill="currentColor" opacity="0.72">RAG · hälsa</text>
+          <text x="334" y="406" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.2" class="svg-accent-fill">STYRPLAN</text>
+
+          <!-- edge -->
+          <line x1="440" y1="440" x2="614" y2="440" stroke="currentColor" stroke-width="1.3" marker-end="url(#ah)"></line>
+          <text x="527" y="432" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="currentColor" opacity="0.72">backup nattligen</text>
+
+          <rect x="620" y="414" width="200" height="52" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+          <text x="720" y="436" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="500" fill="currentColor">edge  (Hetzner)</text>
+          <text x="720" y="454" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11.5" fill="currentColor" opacity="0.72">enda noden utanför huset</text>
+          <text x="720" y="486" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="currentColor" opacity="0.62">larmar dig vid strömavbrott</text>
+
+          <!-- single store -->
+          <line x1="290" y1="494" x2="290" y2="540" stroke="currentColor" stroke-width="1.3" marker-end="url(#ah)"></line>
+          <rect x="212" y="542" width="156" height="42" fill="none" stroke="currentColor" stroke-width="1.4"></rect>
+          <text x="290" y="568" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="currentColor">en masterbrain</text>
+
+          <!-- queue -->
+          <path d="M 400 494 L 470 540" fill="none" stroke="currentColor" stroke-width="1.3" marker-end="url(#ah)"></path>
+          <text x="452" y="518" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="currentColor" opacity="0.72">köar jobb</text>
+
+          <rect x="420" y="542" width="176" height="42" fill="none" stroke="currentColor" stroke-width="1.4"></rect>
+          <text x="508" y="568" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="currentColor">TeamCity-kö</text>
+          <text x="508" y="534" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.2" fill="currentColor" opacity="0.5">BERÄKNINGSPLAN</text>
+
+          <line x1="470" y1="584" x2="470" y2="624" stroke="currentColor" stroke-width="1.3" marker-end="url(#ah)"></line>
+          <path d="M 560 584 L 660 624" fill="none" stroke="currentColor" stroke-width="1.3" marker-end="url(#ah)"></path>
+
+          <rect x="360" y="626" width="220" height="44" fill="none" stroke="currentColor" stroke-width="1.4"></rect>
+          <text x="470" y="646" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="currentColor">forge</text>
+          <text x="470" y="662" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.65">bygg + art, köade aldrig samtidigt</text>
+
+          <rect x="600" y="626" width="240" height="44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="5 3"></rect>
+          <text x="720" y="646" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="currentColor">linus · anastasia · david</text>
+          <text x="720" y="662" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.65">endast lediga timmar</text>
+        </svg>
+      </div>
+      <figcaption>Streckade ramar är opportunistiska eller osäkra resurser. Den röda dubbelpilen var hela problemet: två kopior av masterbrain som båda tog emot skrivningar. <strong>Sedan 24 augusti är den vänstra halvan av målbilden verklighet</strong>, en masterbrain, brain på Nitro, Hetzner som backup och publik front. Den högra halvan, beräkningsplanet via TeamCity ut till forge, är kvar. vcsboy syns inte i målbilden eftersom den förblir enbart versionshantering, aldrig en beräkningsnod.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <p class="eyebrow">Maskinparken</p>
+    <h2>Sju noder, tre roller att fylla</h2>
+    <div class="roster">
+      <table>
+        <caption><code class="cmd">brain</code> är en roll, inte en maskin. Den flyttar med en omdöpning i admin-konsolen, inte med en svep genom alla skript.</caption>
+        <thead>
+          <tr><th scope="col">Nod</th><th scope="col">Hårdvara</th><th scope="col">Roll efter planen</th><th scope="col">Läge</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="node">brain</td>
+            <td class="spec">i5-12400F · 16 GB · 228 GB</td>
+            <td>Styrplan. Death Board, agent-router, schemaläggare, RAG, hälsa. Plus code-server, reels och webb.</td>
+            <td><span class="pill live">uppe</span></td>
+          </tr>
+          <tr>
+            <td class="node">edge</td>
+            <td class="spec">CPX32 · 7,6 GB</td>
+            <td>Publik front, hemsidor, pitchar, OpenSign, plus off-site backup och cloudflared-router. Beslut 24 aug: krymps inte, det publika bor kvar.</td>
+            <td><span class="pill live">publik + backup</span></td>
+          </tr>
+          <tr>
+            <td class="node">forge</td>
+            <td class="spec">7950X3D · 64 GB · RTX 3060 12 GB</td>
+            <td>Bygg och art. Unreal, Unity, packaging, ComfyUI, Ollama.</td>
+            <td><span class="pill live">uppe</span></td>
+          </tr>
+          <tr>
+            <td class="node">vcsboy</td>
+            <td class="spec">HPE MicroServer · Windows</td>
+            <td>Endast versionshantering. Perforce, aldrig beräkning.</td>
+            <td><span class="pill wait">ssl nere</span></td>
+          </tr>
+          <tr>
+            <td class="node">linus · anastasia</td>
+            <td class="spec">2 × RTX 4060</td>
+            <td>Opportunistisk beräkning. Deras arbetsmaskiner, alltså lediga timmar och opt in.</td>
+            <td><span class="pill wait">ej enrollad</span></td>
+          </tr>
+          <tr>
+            <td class="node">david96gb</td>
+            <td class="spec">96 GB · RTX 3060 Ti · Windows</td>
+            <td>Reserverad för ARK: Survival Ascended-devkit (Necrotic Dominion), förblir Windows. Inte brain.</td>
+            <td><span class="pill wait">offline</span></td>
+          </tr>
+          <tr>
+            <td class="node">toms 5800X</td>
+            <td class="spec">Ryzen 7 5800X · 8c/16t · 32 GB · RTX 3070 Ti</td>
+            <td>Dedikerad byggexekutor (TeamCity-agent). Ren Windows-install, ej enrollad ännu.</td>
+            <td><span class="pill wait">planerad</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Grafikkortet som avgör art-routningen</h3>
+    <p class="prose">Forges RTX 3060 bär 12 GB VRAM mot desktop-4060:ns 8 GB. För diffusion slår VRAM-taket rå hastighet, så det äldre kortet är det bättre art-kortet och forge förblir primär. Detta vänder bara om Linus och Anastasias maskiner visar sig vara Ti-varianten med 16 GB, vilket är värt att bekräfta innan något art-jobb routas dit.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">Vägen dit</p>
+    <h2>Tio faser, en klar</h2>
+    <ol class="phases">
+      <li class="now">
+        <div>
+          <div class="ph-head"><h3>Töm Death Board</h3><span class="ticket">db-319</span></div>
+          <p class="ph-body">Blockerar allt trackande, inte en hygienpost. 433 avslutade tickets ligger kvar bland de aktiva, 546 icke-avslutade har inte rörts sedan juli, och statusvokabulären har drivit till 22 värden där kanon är fem. Avslutade ärenden ska rotera ut automatiskt efteråt, samma mönster som agentminnets rotation, annars är vi tillbaka här om ett halvår.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="ph-head"><h3>Konsolidera styrplanet till Nitro</h3><span class="ticket">db-310</span><span class="pill live">klart 24 aug</span></div>
+          <p class="ph-body">Gjort. Death Board, cron-sviten och RAG-indexeraren flyttade till Nitro, VPS-instansen stoppad + disablad så inget dubbelfyrar, CF ompekad och verifierad. Static sites och OpenSign stannade dock kvar på Hetzner som publik front, till skillnad från ursprungsplanen.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="ph-head"><h3>Hetzner: publik front + edge</h3><span class="ticket">db-311</span></div>
+          <p class="ph-body">Reviderad 24 aug: Hetzner behåller publik front (hemsidor, pitchar, OpenSign) OCH blir off-site backup + watchdog som larmar via en väg som inte beror på hemmanätet. Ingen nedskalning, eftersom det publika bor kvar.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="ph-head"><h3>Delad MCP-layer</h3><span class="ticket">db-312</span></div>
+          <p class="ph-body">Här försvinner OOM-frågan. Varje session startar i dag sin egen privata MCP-stack på cirka 900 MB över nio processer. Mer RAM skalar symtomet linjärt, en delad layer gör kostnaden konstant.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="ph-head"><h3>Beräkningsplan via TeamCity</h3><span class="ticket">db-313</span></div>
+          <p class="ph-body">TeamCity kör redan på port 8111. Vi bygger ingen jobbdispatcher, vi kopplar agent-routern till den som finns, och lägger byggets workspace och modellcachen på olika NVMe-diskar.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="ph-head"><h3>Headless Unreal och Unity</h3><span class="ticket">db-314</span></div>
+          <p class="ph-body">Varje Unreal-MCP kör inne i en levande editorprocess, alltså Windows, alltså forge. Plus en porteringsmatris över vad vi faktiskt kan bygga för.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="ph-head"><h3>Artpipeline på forge</h3><span class="ticket">db-315</span></div>
+          <p class="ph-body">Koncept till 2D, vidare till 3D, autorig, anim och in i motorn. Verktygsvalet tas med dig först, art tool selection är inte ett autonomt beslut.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="ph-head"><h3>Verktygshälsa</h3><span class="ticket">db-316</span></div>
+          <p class="ph-body">Svaret på 11-MCP-frågan. Varje verktyg deklarerar en probe som gör ett riktigt anrop i stället för att läsa en statusflagga, ett dött verktyg öppnar en enda ticket med dedup, och att parkera ett verktyg retirerar automatiskt dess probe.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="ph-head"><h3>LLM-leverantörslager</h3><span class="ticket">db-317</span></div>
+          <p class="ph-body">OpenAI, Gemini och lokal Ollama under tier-namnen, så en tier kan byta leverantör utan att en enda anropssajt ändras. Då blir The Reviewer en andra åsikt från en annan leverantör, inte bara från en starkare modell.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="ph-head"><h3>Tailscale: härdning och enrollment</h3><span class="ticket">db-318</span></div>
+          <p class="ph-body">Tailscale SSH så flottan slipper nycklar, key expiry av på varje obevakad nod, en återanvändbar pre-auth key för headless enrollment, och en boot-watchdog mot APIPA innan 5G-routern flyttas första gången.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <p class="eyebrow">Nästa upplåsning</p>
+    <h2>Styrplanet klart, beräkningsplanet är nästa</h2>
+    <p class="prose"><strong style="color:var(--live)">Löst 24 aug:</strong> Nitros nyckel ligger nu i VPS:ens <code>authorized_keys</code> och SSH Nitro→VPS används skarpt. Den gamla blockeraren mot fas 0 är borta.</p>
+    <div class="callout" style="border-left-color:var(--accent);background:var(--accent-soft)">
+      <p class="eyebrow" style="color:var(--accent)">Det som bygger beräkningsplanet</p>
+      <p>Ingen jobbdispatcher ska byggas. TeamCity kör redan på Nitro (port 8111). Nästa steg är att koppla <code>agent-router.js</code> till den (db-313), köra en TeamCity-agent på forge, och enrolla Toms 5800X som dedikerad byggnod. Tills dess körs alla agenter lokalt på brain.</p>
+      <p>Parallellt: slå på Tailscale SSH i admin-konsolen så resten av flottan (Linus, Anastasia, David, Toms box) slipper nyckelhantering helt (db-318).</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Risker</p>
+    <h2>Fyra saker som faktiskt kan gå fel</h2>
+    <ul class="risks">
+      <li><b>Flyttrisken.</b> <span>När 5G-routern flyttas byter alla LAN-adresser, och tailscaled kan fastna på en APIPA-adress utan att återhämta sig själv. Symtomet från peer-sidan är att noden syns som offline med skickad trafik men noll mottagen, trots fungerande internet. Watchdogen ska byggas före första flytten, inte efter.</span></li>
+      <li><b>Ensiterisken.</b> <span>Ett strömavbrott tar ner styrplanet, beräkningsplanet och ytterdörren samtidigt, eftersom allt hänger på samma router och samma eluttag. Edge-rollen är hela mitigeringen och ska inte strykas för att spara några euro.</span></li>
+      <li><b>Divergensfönstret.</b> <span>Varje timme före fas 2 är ännu en timme av två masterbrains som driver isär. Riktningen är dock bestämd: Nitro är vinnande sidan, allt som skrivits på Hetzner sedan repointen mergas in hit.</span></li>
+      <li><b>Opportunistiska noder tillhör människor.</b> <span>Linus och Anastasia arbetar på sina maskiner. Lediga timmar, opt in och synligt för dem, annars blir flottan ett politiskt problem i stället för ett tekniskt.</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <span class="k">epic db-309 · db-310 klart · db-311–319 kvar</span>
+    <span class="k">uppdaterad 2026-08-24</span>
+    <span class="k">arkitektur: drafts/agentic_fleet_architecture.md</span>
+    <span class="k">tailnet tail648605.ts.net</span>
+  </footer>
+
+</div>

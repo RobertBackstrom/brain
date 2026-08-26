@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurora Punks | Game Publishing and Co-Development</title>
+  <meta name="description" content="Aurora Punks is a platform-agnostic publisher with strong co-development capabilities. We offer full-service publishing, cross-platform porting, and smart go-to-market execution.">
+
+  <!-- Google Fonts: Barlow Condensed (heading substitute) + Chakra Petch (body/nav) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #0c0c1c;
+      color: #ffffff;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== CSS VARS ===== */
+    :root {
+      --teal-bright: #65ede8;
+      --teal-mid: #1ab1ab;
+      --teal-muted: #5bbeba;
+      --dark-bg: #0c0c1c;
+      --dark-bg2: #0e0e22;
+      --white: #ffffff;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body: 'Chakra Petch', sans-serif;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(12, 12, 28, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(101, 237, 232, 0.1);
+      height: 70px;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    .nav-inner {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links > li {
+      position: relative;
+    }
+
+    .nav-links a,
+    .nav-links button {
+      font-family: var(--font-body);
+      font-size: 14px;
+      letter-spacing: 0.75px;
+      color: var(--white);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links button:hover {
+      color: var(--teal-bright);
+    }
+
+    .nav-dropdown-arrow {
+      width: 10px;
+      height: 6px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid currentColor;
+      display: inline-block;
+      margin-left: 2px;
+      transition: transform 0.2s;
+    }
+
+    .nav-has-dropdown:hover .nav-dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ffffff;
+      min-width: 200px;
+      border-radius: 2px;
+      padding: 8px 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .nav-has-dropdown:hover .nav-dropdown {
+      display: block;
+    }
+
+    .nav-dropdown a {
+      display: block;
+      padding: 10px 20px;
+      color: #0c0c1c;
+      font-size: 14px;
+      letter-spacing: 0.75px;
+      transition: background 0.15s;
+    }
+
+    .nav-dropdown a:hover {
+      background: rgba(12, 12, 28, 0.08);
+      color: var(--teal-mid);
+    }
+
+    /* Mobile hamburger */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    /* ===== SPLIT HERO SECTION ===== */
+    .hero {
+      display: grid;
+      grid-template-columns: 65fr 35fr;
+      min-height: calc(100vh - 70px);
+      margin-top: 70px;
+      overflow: hidden;
+    }
+
+    /* Left: video panel */
+    .hero-video-panel {
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .hero-video-panel video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Right: text panel */
+    .hero-text-panel {
+      background: var(--dark-bg2);
+      display: flex;
+      align-items: center;
+      padding: 60px 60px;
+    }
+
+    .hero-content {
+      width: 100%;
+    }
+
+    .hero-content h1 {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--teal-bright);
+      line-height: 1.05;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .hero-content h2 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--teal-mid);
+      margin-bottom: 32px;
+    }
+
+    .hero-body p {
+      font-size: 17px;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .hero-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .hero-body strong {
+      font-weight: 700;
+    }
+
+    /* ===== CTA BANNER ===== */
+    .cta-banner {
+      background: var(--dark-bg);
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .cta-banner h2 {
+      font-family: var(--font-display);
+      font-size: 35px;
+      font-weight: 800;
+      color: var(--teal-mid);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .cta-banner h2:hover {
+      color: var(--teal-bright);
+    }
+
+    .cta-banner p {
+      font-size: 16px;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .cta-banner a {
+      color: var(--teal-mid);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .cta-banner a:hover {
+      color: var(--teal-bright);
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: #282626;
+      color: var(--white) !important;
+      text-decoration: none !important;
+      padding: 12px 32px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+
+    .cta-btn:hover {
+      background: var(--teal-mid);
+    }
+
+    /* ===== WHAT WE DO ===== */
+    .what-we-do {
+      padding: 80px 40px;
+      background: var(--dark-bg);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .what-we-do h2.section-title {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--teal-bright);
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      letter-spacing: 2px;
+    }
+
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .service-icon {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-icon svg {
+      width: 44px;
+      height: 44px;
+      fill: none;
+      stroke: var(--teal-mid);
+      stroke-width: 1.5;
+    }
+
+    .service-content h2 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--teal-mid);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .service-content p a {
+      color: var(--white);
+      font-size: 16px;
+      line-height: 1.6;
+      transition: color 0.2s;
+    }
+
+    .service-content p a:hover {
+      color: var(--teal-muted);
+    }
+
+    /* ===== BUSINESS MODELS ===== */
+    .business-models {
+      padding: 80px 40px;
+      background: var(--dark-bg);
+    }
+
+    .business-models-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .business-models h2.section-title {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--teal-bright);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    .models-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .model-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(101, 237, 232, 0.15);
+      border-radius: 4px;
+      padding: 40px;
+    }
+
+    .model-card h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--teal-mid);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .model-card p {
+      font-size: 16px;
+      color: var(--white);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .model-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== CONTACT FORM ===== */
+    .contact-section {
+      padding: 80px 40px;
+      background: var(--dark-bg2);
+    }
+
+    .contact-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .contact-inner h5 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--teal-bright);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      color: var(--white);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group label .req {
+      color: var(--teal-mid);
+      margin-left: 2px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(12, 12, 28, 0.5);
+      border: 1px solid rgba(101, 237, 232, 0.25);
+      border-radius: 2px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 15px;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.35);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--teal-mid);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      display: block;
+      width: auto;
+      margin-top: 24px;
+      background: var(--white);
+      color: #0c0c1c;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 12px 40px;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .form-submit:hover {
+      background: var(--teal-mid);
+      color: var(--white);
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background: var(--dark-bg);
+      border-top: 1px solid rgba(101, 237, 232, 0.1);
+      padding: 60px 40px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-col p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+
+    .footer-col a {
+      color: rgba(255,255,255,0.8);
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--teal-bright);
+    }
+
+    .footer-address {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    .footer-address .label {
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .social-bar {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      list-style: none;
+      margin-top: 16px;
+    }
+
+    .social-bar a {
+      display: block;
+      width: 28px;
+      height: 28px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .social-bar a:hover {
+      opacity: 1;
+    }
+
+    .social-bar img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-bottom a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--teal-muted);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .site-nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(12, 12, 28, 0.98);
+        z-index: 999;
+        overflow-y: auto;
+        padding: 24px 24px;
+      }
+
+      .mobile-menu.open {
+        display: block;
+      }
+
+      .mobile-menu ul {
+        list-style: none;
+      }
+
+      .mobile-menu > ul > li {
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .mobile-menu a,
+      .mobile-menu button {
+        display: block;
+        padding: 16px 0;
+        font-family: var(--font-body);
+        font-size: 16px;
+        color: var(--white);
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+        letter-spacing: 0.75px;
+      }
+
+      .mobile-submenu {
+        padding-left: 20px;
+        border-top: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .mobile-submenu a {
+        font-size: 14px;
+        color: rgba(255,255,255,0.7);
+        padding: 12px 0;
+      }
+
+      /* Split hero stacks on mobile: video top, text below */
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        margin-top: 70px;
+      }
+
+      .hero-video-panel {
+        height: 56vw;
+        min-height: 220px;
+        max-height: 360px;
+      }
+
+      .hero-text-panel {
+        padding: 40px 24px 56px;
+      }
+
+      .hero-content h1 {
+        font-size: 32px;
+      }
+
+      .hero-content h2 {
+        font-size: 16px;
+      }
+
+      .hero-body p {
+        font-size: 15px;
+      }
+
+      .cta-banner {
+        padding: 48px 24px;
+      }
+
+      .cta-banner h2 {
+        font-size: 24px;
+      }
+
+      .what-we-do {
+        padding: 60px 24px;
+      }
+
+      .business-models {
+        padding: 60px 24px;
+      }
+
+      .models-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-section {
+        padding: 60px 24px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .site-footer {
+        padding: 48px 24px 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="/" aria-label="Aurora Punks - Home">
+        <img src="assets/ap-logo.png" alt="Aurora Punks" width="148" height="84">
+      </a>
+
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li>
+            <a href="/game-publishing-and-marketing">Game Publishing and Marketing</a>
+          </li>
+          <li class="nav-has-dropdown">
+            <button type="button" aria-haspopup="true">
+              Game Development
+              <span class="nav-dropdown-arrow" aria-hidden="true"></span>
+            </button>
+            <ul class="nav-dropdown" role="menu">
+              <li><a href="/co-development" role="menuitem">Co-Development</a></li>
+              <li><a href="/post-launch-updates" role="menuitem">Post-Launch Updates</a></li>
+              <li><a href="/full-cycle-development" role="menuitem">Full Cycle Development</a></li>
+            </ul>
+          </li>
+          <li class="nav-has-dropdown">
+            <button type="button" aria-haspopup="true">
+              What We Also Do
+              <span class="nav-dropdown-arrow" aria-hidden="true"></span>
+            </button>
+            <ul class="nav-dropdown" role="menu">
+              <li><a href="/support-for-ugc-platforms" role="menuitem">Support for UGC Platforms</a></li>
+              <li><a href="/branded-experience" role="menuitem">Branded Experience</a></li>
+              <li><a href="/gamification" role="menuitem">Gamification</a></li>
+            </ul>
+          </li>
+          <li><a href="/about-us">About Us</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileMenu(this)">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile site navigation">
+    <ul>
+      <li>
+        <a href="/game-publishing-and-marketing">Game Publishing and Marketing</a>
+      </li>
+      <li>
+        <button onclick="toggleSubmenu('submenu-dev')">Game Development</button>
+        <ul class="mobile-submenu" id="submenu-dev" hidden>
+          <li><a href="/co-development">Co-Development</a></li>
+          <li><a href="/post-launch-updates">Post-Launch Updates</a></li>
+          <li><a href="/full-cycle-development">Full Cycle Development</a></li>
+        </ul>
+      </li>
+      <li>
+        <button onclick="toggleSubmenu('submenu-also')">What We Also Do</button>
+        <ul class="mobile-submenu" id="submenu-also" hidden>
+          <li><a href="/support-for-ugc-platforms">Support for UGC Platforms</a></li>
+          <li><a href="/branded-experience">Branded Experience</a></li>
+          <li><a href="/gamification">Gamification</a></li>
+        </ul>
+      </li>
+      <li><a href="/about-us">About Us</a></li>
+      <li><a href="/blog">Blog</a></li>
+    </ul>
+  </div>
+
+  <main>
+
+    <!-- ===== SPLIT HERO: video left, intro text right ===== -->
+    <section class="hero" aria-label="Hero">
+      <!-- Left: showreel video -->
+      <div class="hero-video-panel" aria-hidden="true">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="assets/hero-bg.jpg"
+          aria-label="Aurora Punks showreel"
+        >
+          <source src="assets/hero-bg.mp4" type="video/mp4">
+        </video>
+      </div>
+      <!-- Right: hero intro copy -->
+      <div class="hero-text-panel">
+        <div class="hero-content">
+          <h1>BUILD IT. SHIP IT. EVOLVE IT.</h1>
+          <h2>Your full-service partner in game publishing &amp; development.</h2>
+          <div class="hero-body">
+            <p>Aurora Punks is a platform-agnostic publisher with strong co-development capabilities and a creative, problem-solving approach. We offer full-service publishing with cross-platform porting for PC, console, cloud and mobile, hands-on support throughout development, and smart go-to-market execution.</p>
+            <p>We help games break into new markets, build lasting communities, and stay relevant post-launch with content updates and platform expansion. Our trusted partners in Asia further extend your reach.</p>
+            <p>Whether you need publishing, post-launch momentum, or co-development help solving tough technical and design challenges, we're here to get it done.</p>
+            <p><strong>This is why developers choose us for collaboration.</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA BANNER ===== -->
+    <section class="cta-banner" aria-label="Publishing assistance CTA">
+      <h2>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5o_NDYw9s-sGbVMYVOnY_rvcKUHqu4o1D2356-Dcz8EXdbw/viewform" target="_blank" rel="noopener noreferrer">
+          NEED PUBLISHING OR PORTING ASSISTANCE?
+        </a>
+      </h2>
+      <p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5o_NDYw9s-sGbVMYVOnY_rvcKUHqu4o1D2356-Dcz8EXdbw/viewform" target="_blank" rel="noopener noreferrer">
+          Please fill out this form and we will get back to you.
+        </a>
+      </p>
+      <a class="cta-btn" href="https://bit.ly/aurora-punks-publishing" target="_blank" rel="noopener noreferrer">
+        Learn More
+      </a>
+    </section>
+
+    <!-- ===== WHAT WE DO ===== -->
+    <section aria-label="What we do">
+      <div class="what-we-do">
+        <h2 class="section-title">WHAT WE DO</h2>
+        <div class="services-list">
+
+          <div class="service-item">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="8" width="36" height="24" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M16 32l-2 6M28 32l2 6M12 38h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="22" cy="20" r="5" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M8 12h4M8 20h4M8 28h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+              </svg>
+            </div>
+            <div class="service-content">
+              <h2>GAME PUBLISHING AND MARKETING</h2>
+              <p>
+                <a href="/game-publishing-and-marketing">
+                  Guiding your game to success with strategic marketing, platform management, and community engagement.
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 34L16 24l8 8 14-16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="4" y="4" width="36" height="36" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="22" cy="22" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M22 8v6M22 30v6M8 22h6M30 22h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+              </svg>
+            </div>
+            <div class="service-content">
+              <h2>GAME DEVELOPMENT</h2>
+              <p>
+                <a href="/game-publishing-and-marketing">
+                  Delivering co-development, full-cycle production, and post-launch updates to keep your game thriving at every stage.
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="22" r="16" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M22 6C22 6 14 14 14 22s8 16 8 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M22 6C22 6 30 14 30 22s-8 16-8 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M6 22h32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M8 14h28M8 30h28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+              </svg>
+            </div>
+            <div class="service-content">
+              <h2>WHAT WE ALSO DO</h2>
+              <p>
+                <a href="/game-publishing-and-marketing">
+                  Supporting UGC platforms, branded experiences, and gamification to enhance interaction and grow lasting player communities.
+                </a>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BUSINESS MODELS ===== -->
+    <section class="business-models" aria-label="Our business models">
+      <div class="business-models-inner">
+        <h2 class="section-title">OUR BUSINESS MODELS</h2>
+        <div class="models-grid">
+          <div class="model-card">
+            <h2>SERVICE FEE</h2>
+            <p>High quality development service for a predetermined cost.</p>
+            <p>We work on agreed-upon timeline and deliverables, ensuring transparency with a clear understanding of costs upfront.</p>
+          </div>
+          <div class="model-card">
+            <h2>SERVICE FEE &amp; REVENUE SHARE</h2>
+            <p>Long-term partnership for the entire lifespan of the game.</p>
+            <p>We provide the co-development process at a reduced fee in exchange for a share of the revenue generated by the game upon release.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT FORM ===== -->
+    <section class="contact-section" aria-label="Contact form">
+      <div class="contact-inner">
+        <h5>WANT TO KNOW MORE?</h5>
+        <form
+          method="POST"
+          action="mailto:hello@aurorapunks.com"
+          enctype="text/plain"
+          onsubmit="return handleFormSubmit(event)"
+          novalidate
+        >
+          <div class="form-group">
+            <label for="field-name">Your full name</label>
+            <input type="text" id="field-name" name="name" placeholder="Enter your name" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="field-email">Email <span class="req" aria-label="required">*</span></label>
+            <input type="email" id="field-email" name="email" placeholder="Enter your email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="field-message">Who are you and what would you like to know?</label>
+            <textarea id="field-message" name="message" placeholder="About you and your game or company"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Submit</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <p><a href="mailto:hello@aurorapunks.com">hello@aurorapunks.com</a></p>
+        <p><a href="/career">Work With Us</a></p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-address">
+          <p class="label">Visit us at</p>
+          <p>Timmermansgatan 43<br>118 55 Stockholm, Sweden</p>
+        </div>
+        <div class="footer-address" style="margin-top: 16px;">
+          <p class="label">Contact</p>
+          <p><a href="mailto:hello@aurorapunks.com">hello@aurorapunks.com</a></p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <ul class="social-bar" aria-label="Social media links">
+          <li>
+            <a href="https://x.com/AuroraPunks" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+              <img src="assets/icon-twitter.png" alt="Twitter" width="20" height="20">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/channel/UCN5MWCq05Yj47EELO6Pvo7w" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <img src="assets/icon-youtube.png" alt="YouTube" width="20" height="20">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/company/aurora-punks/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <img src="assets/icon-linkedin.png" alt="LinkedIn" width="20" height="20">
+            </a>
+          </li>
+          <li>
+            <a href="https://discord.gg/fgg9mfehVJ" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+              <img src="assets/icon-discord.png" alt="Discord" width="20" height="20">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <a href="/privacy">PRIVACY POLICY</a>
+      <p>&copy;2025 by Aurora Punks</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMobileMenu(btn) {
+      var menu = document.getElementById('mobileMenu');
+      var isOpen = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+
+    // Mobile submenu toggle
+    function toggleSubmenu(id) {
+      var sub = document.getElementById(id);
+      if (sub.hasAttribute('hidden')) {
+        sub.removeAttribute('hidden');
+      } else {
+        sub.setAttribute('hidden', '');
+      }
+    }
+
+    // Form: wire as mailto
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      var name = document.getElementById('field-name').value.trim();
+      var email = document.getElementById('field-email').value.trim();
+      var msg = document.getElementById('field-message').value.trim();
+
+      if (!email) {
+        alert('Please enter your email address.');
+        return false;
+      }
+
+      var subject = 'Aurora Punks enquiry' + (name ? ' from ' + name : '');
+      var body = (name ? 'Name: ' + name + '\n' : '') +
+                 'Email: ' + email + '\n\n' +
+                 msg;
+
+      window.location.href = 'mailto:hello@aurorapunks.com' +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+
+      return false;
+    }
+  </script>
+
+</body>
+</html>

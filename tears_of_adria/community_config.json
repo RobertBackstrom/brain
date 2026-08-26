@@ -1,0 +1,37 @@
+{
+  "discord": {
+    "guilds": [
+      {
+        "guildId": "1483101431111094464",
+        "channelIds": [],
+        "forumChannelIds": [],
+        "filters": ["tears of adria", "toa", "adria", "bug", "crash", "issue"]
+      }
+    ]
+  },
+  "reddit": {
+    "subreddits": ["indiegaming", "rpg_gamers"],
+    "filters": ["tears of adria", "tears adria"]
+  },
+  "steam": {
+    "appids": [2561500]
+  },
+  "youtube": {
+    "channel_ids": ["UCzwHHqvMoV4ZJto_CBcF1Jw"],
+    "video_ids": [
+      "1nxyzPfdMdA",
+      "JT0PWS4ks1o",
+      "0RsU4yo2gaQ",
+      "NKK5ltY9ECY",
+      "4Vdu-bU1vaE",
+      "i4updK3Qew8",
+      "PwnpE3Xa84Y",
+      "IFOpvncB-TQ",
+      "MgyyjYdl93I",
+      "Sx31T2n3Uv4",
+      "C-QPNJEixiQ",
+      "wL-BhncYLUQ",
+      "e_zFyhL6dxY"
+    ]
+  }
+}

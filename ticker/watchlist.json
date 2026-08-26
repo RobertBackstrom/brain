@@ -1,0 +1,8 @@
+{
+  "_comment": "Ticker agent watchlist. Yahoo Finance symbols. Stockholm names use the .ST suffix. Edit freely — ticker-data.js reads this file for the digest. NOTE: this file is also the guardrail allowlist (risk_limits.json allowed_symbols), so a delisted name left here can still be proposed and ordered.",
+  "_removed": "EA removed 2026-08-13: $55bn PIF/Silver Lake take-private CLOSED 2026-08-04 at $210/share, Nasdaq suspended the shares 08-05. The feed still returns a frozen 209.70 with 3.93% annualized vol, which scores like a pristine low-vol uptrend. MAXENT.ST removed 2026-08-13: returns 'No data found, symbol may be delisted'.",
+  "se_gaming": ["EMBRAC-B.ST", "PDX.ST", "EG7.ST", "STAR-B.ST", "SF.ST", "G5EN.ST", "MTG-B.ST"],
+  "se_tech": ["EVO.ST", "SINCH.ST", "HEXA-B.ST", "ERIC-B.ST", "NIBE-B.ST"],
+  "us_gaming": ["TTWO", "RBLX", "APP", "PLTK", "U"],
+  "us_tech_space": ["NVDA", "MSFT", "GOOGL", "AMZN", "META", "TSLA", "SPCX", "RKLB"]
+}
