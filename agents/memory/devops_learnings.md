@@ -74,6 +74,76 @@ dokument, doc-medveten vision-prompt och sidecar), `assistant/image-intake.json`
 ---
 
 
+## 2026-08-26 - db-327: the backup that wasn't, and why a migration breaks backups in threes
+
+**Source:** Brain backup design (devops, db-327). Robert asked what I'd suggest for backing up RAG
+and the Brain setup. The answer had to start with "the backup you think you have does not exist."
+
+**1. Check whether the existing backup RUNS before designing a better one.** The obvious move was
+to go straight to proposing restic/Drive/3-2-1. Instead I read the cron and the log first, and
+found nothing had been committed or pushed since 2026-08-20. Any proposal built on top of that
+would have been decoration on a corpse. **When asked to improve a safety mechanism, first verify
+the current one actually fires.**
+
+**2. A host migration breaks backups in threes, because backups depend on host identity.** Moving
+the brain to the Nitro broke, simultaneously and independently: (a) `known_hosts` had no
+`github.com` entry, so host key verification failed; (b) `user.name`/`user.email` were unset at
+every level, so `git commit` itself failed; (c) a fresh SSH key `assistant@nitro-brain` was
+generated and never registered on GitHub. Fixing any one of them would have left it still broken,
+which is exactly why it looked so mysterious. **After moving a host, explicitly re-test every
+outbound authenticated path — git push, API keys, SSH targets — rather than assuming the migration
+checklist covered it.**
+
+**3. A log nobody reads is not a monitor, and a script that reports success it did not achieve is
+worse than no script.** `auto-commit.sh` ran `git commit` without checking its exit code, then
+logged "Committed but push failed". Both had failed. Six days of daily "backup ran" messages, all
+false. This is the same class as db-324's silent embed degradation and db-325's unenforced
+`noEmbed` flag: **the third time in three tickets that the bug was a success report nobody
+verified. Whenever I write a step that can fail, check its exit code and make failure reach a
+human, not a logfile.**
+
+**4. Classify by REPLACEABILITY before choosing tooling, and the tooling question usually
+dissolves.** Robert asked "Google Drive?". The useful answer came from sizing the data by whether
+it can be regenerated: irreplaceable content (agents' learnings, wiki, memory, project folders) was
+**7.2 MB**; the 8.3 GB `rag.db` is a derived index rebuildable from its sources; the 19 GB code
+corpus is already in GitHub/Perforce. Once that was on the table, "back up 27 GB nightly to Drive"
+became obviously wrong and "put 7 MB of text in git" obviously right. **Measure the irreplaceable
+subset first; it is usually far smaller than the disk, and it changes which tool is correct.**
+
+**5. A mirror is not a backup.** The pre-existing Drive-for-Desktop mirror of the workspace
+propagates deletion: delete on the box, it disappears in Drive. It protects against disk failure,
+not against mistakes, and mistakes are the more common cause. Same for `umbrella/`, which looked
+like a backup of the project folders but is a stale April fork. **Ask of any candidate backup: does
+it survive me deleting the original by accident? If not it is replication, not backup.**
+
+**6. Allowlist, never blocklist, when the repo root holds something dangerous.** `git init` at a
+workspace root containing 19 GB of vendored code, an 8.3 GB SQLite DB and a plaintext secrets
+registry is one forgotten `.gitignore` line from disaster. Pattern that worked: ignore `/*` first,
+then `!/dir/` the ~35 wanted directories, then strip binaries by extension inside them. **Then
+measure what would actually be staged before committing** (`git add -A --dry-run`, sum the sizes,
+grep for key material). That check took a minute and caught 10 MB of redundant `.backup/` copies
+and a stray `.xlsm`.
+
+**7. Public-key encryption lets a machine write backups it cannot read.** GPG with only the public
+key in the box's keyring means a compromise of the brain does not expose the Drive backup history.
+Robert holds the private key. **Test the decrypt BEFORE handing the private key away and removing
+it** — I verified a full round trip (decrypt, untar, 968 files, sha256 match against originals,
+and the embedded `tcg_webshop/app` git history still functional) while I could still read it.
+
+**8. `git ls-files` as the shared definition of "what matters".** The tarball takes its file list
+from the git repo rather than a second hand-maintained path list, so the two backup legs cannot
+drift apart in what they consider worth keeping. **When two mechanisms protect the same set,
+derive one from the other instead of writing the set down twice.**
+
+**9. A nested repo with no remote is invisible to both legs.** `tcg_webshop/app` has real history
+and no remote; adding it to an outer repo produces an empty gitlink that clones cannot resolve, so
+git "backed it up" while storing nothing. tar keeps it whole, `.git` included. **After `git add`,
+watch for the "adding embedded git repository" warning; it means that path is NOT backed up.**
+
+**Tags:** backup-verification, host-migration-breaks-auth, silent-success-reporting, allowlist-gitignore,
+mirror-is-not-backup, replaceability-classification, public-key-backup, restore-test, nested-repo-gitlink,
+db-327
+
 ## 2026-08-25 - db-326: prove a deletion was safe by re-running a query from before it
 
 **Source:** RAG stub-vector strip (devops, db-326, closes the db-324/325/326 chain).
@@ -2928,3 +2998,50 @@ db-312 avslutad, alla sju MCP-servrar delade. De fyra första var lätta, vi äg
 **Mätresultatet är det som betyder något:** kostnaden går från ~900 MB *per session* till 630 MB *totalt*, alltså från linjär till konstant. Mer RAM hade bara skalat symtomet.
 **Två praktiska noteringar:** (1) lägg barnets credentials i en egen chmod 600-fil via `EnvironmentFile`, inte i unit-filen. (2) Kontrollera att bryggans barn hamnar i tjänstens cgroup, annars kan orphan-reapern döda dem, se learningen från 2026-08-25.
 **Tags:** MCP, stdio-bridge, db-312, OOM, JSON-RPC, initialize, samtidighet, systemd, vendorad-kod
+
+### 2026-08-26 — En maskin som står som "avstängd" i en ticket är en hypotes, svep subnätet innan du planerar runt den [project: db / apb]
+Letade efter David96GB på LAN och hittade i stället **VCSBOY**, den ex-ARK-box som db-301 beskrev som
+avstängd och på ett annat subnät (`192.168.50.0/24`). Den var igång på `192.168.32.5` med Perforce på
+1666 och Gitea på 80. Ticketen hade planerats i två veckor runt en premiss som gick att motbevisa på
+tre minuter.
+
+**Svepningsordningen som fungerar och är billig:**
+1. `ping`-svep ger bara Linux-noder. **Windows svarar normalt inte på ICMP**, forge syntes inte trots
+   att Tailscale rapporterade den som direktansluten. Använd ping för att hitta liv, aldrig för att
+   utesluta det.
+2. `ip -4 neigh` plus OUI-slagning mot `/usr/share/ieee-data/oui.txt` ger tillverkare, vilket räcker
+   för att skilja router, skrivare, konsol och PC-moderkort åt.
+3. `nmblookup -A <ip>` ger **hostnamnet** där NetBIOS är kvar. Det var det som gav `VCSBOY`. Moderna
+   Windows-installationer har det avstängt, så tomt svar betyder ingenting.
+4. TCP-knackning på 22/135/139/445/3389/5985 skiljer "brandvägg på" från "inte Windows".
+
+**Det viktigaste:** verifiera identitet med något kryptografiskt, inte med namnet. Perforce-serverns
+SSL-fingeravtryck matchade exakt det som redan stod i db-301, vilket gjorde skillnad på "en maskin som
+heter VCSBOY" och "samma `AuroraPunksPerforce`". Ett hostnamn är återanvändbart, ett fingeravtryck är
+det inte.
+
+**Operativ konsekvens att alltid dra:** om en ombyggnad eller ominstallation är planerad på en maskin
+vars innehåll är enkelexemplar, och maskinen visar sig vara nåbar, så flyttas kopieringen före
+ombyggnaden samma sekund. Ordningen i db-301 stod redan rätt, men prioriteringen hade hunnit vändas.
+**Tags:** nätverksupptäckt, OUI, NetBIOS, nmblookup, Perforce, Gitea, SSL-fingeravtryck, db-301, VCSBOY
+
+### 2026-08-26 — Mät hela boxen innan du optimerar din egen del av den [project: db]
+Efter db-312 (delad MCP-nivå, 630 MB konstant i stället för ~900 MB per session) mätte jag Nitro i
+stort och hittade två poster som var större än det jag just sparat in:
+- **TeamCity idlade på 963 MB RSS plus 712 MB swap med noll anmälda agenter** och inga byggen. Heapen
+  var korrekt satt (`-Xmx1024m`), problemet var att tjänsten var igång innan den hade något att göra.
+- **Ett fullt GNOME-skrivbord**, 60 processer och 774 MB RSS, med en inloggad X-session sedan sex dagar.
+  Beviset att ingen använde den: `update-manager`-dialogen från `Aug 20 11:07` väntade fortfarande på
+  en klick. `ps -o lstart=` på en GUI-dialog är ett förvånansvärt bra mått på när någon senast satt
+  vid en maskin.
+
+**Swap-läsningen som är lätt att övertolka:** swappen var 100 % full (4090/4095 MB), vilket ser
+alarmerande ut men inte var det. `journalctl -k | grep -i oom` gav noll träffar på 14 dagar och
+`available` låg på 9 GB. Full swap betyder att kalla sidor har evakuerats som avsett. Det som faktiskt
+är farligt är att det då inte finns någon marginal kvar vid nästa topp. Rapportera båda delarna, annars
+låter det antingen som kris eller som ingenting.
+
+**Metod:** `VmSwap` per process ur `/proc/*/status` sorterat fallande hittar det `free -m` döljer. Den
+största swapposten var TeamCity, den näst största en `claude --resume` med 2,7 MB RSS och 516 MB swap,
+alltså en session som helt evakuerats.
+**Tags:** OOM, minnesmätning, swap, VmSwap, TeamCity, GNOME, headless, Nitro
