@@ -112,6 +112,45 @@ Reference. Not legal advice. Real lawyer required for enforcement, infringement 
 - Watch for: derivative works rights, sequels/prequels rights, port/platform rights, marketing materials ownership, music separate licensing, voice-actor rights.
 - "All rights reserved to publisher" clauses — push back, dev should retain unless the deal is explicitly an IP buyout (rare, usually 7-figure).
 
+## Anställning på ett koncernbolag som INTE är uppströmsmotpart (kontrollerad 2026-08-26)
+
+Konstruktionen dyker upp så fort ett holdingbolag är arbetsgivare men ett annat koncernbolag bär
+leveransåtagandet mot kunden. Konkret fall: CZP anställer en pixelartist, medan **AP** är den som är
+skyldig Raw Fury leveransen enligt utvecklingsavtalet. Två fällor, båda tysta.
+
+**1. Anställningen i sig överlåter ingenting för bildkonst.** `URL 40 a §` täcker **endast
+datorprogram**. Pixelart, sprites, miljökonst, UI-grafik och animationer är konstnärliga verk, så
+rätten stannar hos upphovsmannen om avtalet inte innehåller en **uttrycklig överlåtelse**. Se
+bulletlistan under "Upphovsrätt" ovan. Ett anställningsavtal som bara lutar sig mot anställningen,
+eller som citerar 40 a § som om den vore generell, överlåter alltså inte konsten. Skriv en egen
+klausul som överlåter vid skapandet, för hela skyddstiden, i alla världens länder och alla nuvarande
+och framtida exploateringsformer, och **täck källfiler och arbetsfiler**, inte bara levererade assets.
+
+**2. Överlåtelsen stannar hos arbetsgivaren om ingen vidareöverlåtelse skrivs in.** Arbetsgivaren blir
+rättighetshavare, inte systerbolaget. Utan en uttrycklig vidareöverlåtelse når konsten aldrig den part
+som är bunden mot utgivaren, och bristen syns inte förrän någon granskar rättighetskedjan, typiskt vid
+due diligence eller när utgivaren begär garantier. Lös det på ett av två sätt:
+- **Lättast:** en klausul i anställningsavtalet där den anställde samtycker till, och i nödvändig mån
+  medverkar till, arbetsgivarens vidareöverlåtelse till systerbolaget och vidare till utgivaren, på
+  samma villkor som huvudöverlåtelsen. Ska överleva anställningens upphörande.
+- **Robustast:** ett separat koncerninternt IP-överlåtelseavtal mellan bolagen. Notera att ett
+  befintligt **paying agent-avtal inte duger** — det reglerar betalning, inte immaterialrätt.
+
+**3. Ideell rätt följer inte med.** `URL 3 §` namngivelse- och respekträtt kan inte överlåtas, bara
+efterges i angiven omfattning (se avsnittet nedan). Ta ett samtycke till normal bearbetning och
+användning för titeln, och lova inte credits som koncernen inte själv har säkrat uppströms — se
+"Credit / attribution in co-dev and outsourcing agreements".
+
+**4. Lönen får inte villkoras av att utgivaren betalat.** Detta är arbetsrätt, inte immaterialrätt,
+men det slår sönder just den här avtalsformen om man kopierar ett B2B-upplägg rakt av: en
+pass-through-klausul som gör utbetalningen beroende av att kunden betalat flyttar affärs- och
+kreditrisken till den anställde. Milstolpar får styra **intjänandet** (leverans plus godkännande),
+aldrig betalningsvillkoret. Se `sv_employment.md`.
+
+**Tillämpat i:** `k2c_sands_of_duat/contracts_2026_subcontractors/draft_12_simon_czp_employment.md`
+(§8.2 uttrycklig överlåtelse, §8.3 40 a §-avgränsningen utskriven, §8.7 vidareöverlåtelse CZP → AP,
+§6.2 arbetsrättsspärren).
+
 ## Ideell rätt — eftergift kan inte ske blankt (URL 3 § 3 st)
 
 **Verifierat 2026-05-03 (RLR/Scen & Film-ärendet).**

@@ -74,29 +74,20 @@ ersättning, Enclosure 1 anger *betalningsdagen*. Skriv aldrig in en betalningsk
 milstolparna om lönekörningen faktiskt sker en gång. Källa: K2C.
 
 
-## 2026-08-26 — Datumankringsfelet upprepades, och den här gången kostade det en hel felprocessad standup (k2c)
+## 2026-08-26 — Datumankringsfelet upprepades, och kostade en helt felprocessad standup (k2c)
 
-Exakt samma fel som loggades 2026-08-24, av samma orsak: sessionen ankrade på **den senaste
-Gemini-notisen i inkorgen** i stället för på **systemdatumet**, och antog att den var "dagens". Den var
-gårdagens. Följden blev tvådelad. Allt dagens arbete stämplades **2026-08-25** i output_log,
-projektminne, learnings, time_log och tre kontraktsdokument. Och när Robert bad om "dagens standup"
-processade jag **25 aug-notisen** medan **26 aug-notisen låg oläst i inkorgen**.
+Sessionen ankrade på den senaste Gemini-notisen i inkorgen i stället för på `currentDate` och antog
+att den var dagens. Den var gårdagens. Följden blev tvådelad: allt dagens arbete stämplades fel datum
+i output_log, projektminne, learnings, time_log och tre kontraktsdokument, **och** när Robert bad om
+"dagens standup" processade jag 25 aug-notisen medan 26 aug-notisen låg oläst. Det andra felet var det
+dyra: åtta tickets skapades mot fel dags åtgärdslista, och när jag läste rätt notis hade teamet redan
+hunnit skapa KAN-595 till KAN-605 som täckte merparten.
 
-Det andra felet är det dyra. Den felprocessade standupen skapade åtta tickets mot gårdagens
-åtgärdslista, och när jag sedan läste rätt notis hade **teamet själva hunnit skapa KAN-595 till
-KAN-605** under dagen, som täckte merparten av det jag annars hade skapat igen. Att söka boardet
-före skapande räddade fem dubbletter, men hela varvet hade varit onödigt med rätt ankring.
-
-**Varför en gång till, trots att felet redan var loggat:** learningen från 24 aug beskrev *vad* som
-hände men gav ingen mekanisk kontroll. Ett påstående i minnet stoppar inte ett antagande i stunden.
-
-**How to apply, som en faktisk kontroll och inte en påminnelse:** kör `date -u` eller läs `currentDate`
-**som första handling** i varje daglig körning, skriv ut datumet i svaret, och **matcha det mot
-notisens datum innan du processar den**. Är notisen äldre än dagens datum, sök explicit efter en
-nyare (`from:gemini-notes@google.com newer_than:2d`) innan du börjar. Den sökningen tar en sekund och
-hade fångat båda felen. Ankra aldrig på det senaste dokumentet i en inkorg: en inkorg säger vad som
-senast *anlände*, aldrig vilken dag det är. Källa: K2C.
-
+**Regeln bor i [[feedback_anchor_on_currentdate]], inte här.** Den har nu ett "GÖR DETTA FÖRST"-block
+överst med den mekaniska kontrollen, tillagt efter det här återfallet, som är det femte dokumenterade.
+Det PM-specifika att ta med sig: **en inkorg säger vad som senast anlände, aldrig vilken dag det är**,
+och i en daglig körning är `from:gemini-notes@google.com newer_than:2d` en sekunds arbete som fångar
+hela felklassen. Källa: K2C.
 
 ## 2026-08-26 — Death Board-botten kan skapa samma rapport två gånger inom samma minut (k2c)
 

@@ -226,11 +226,15 @@ Valt 2026-08-22: OpenAI, Google Gemini och lokal Ollama på forge.
 - [ ] Boot-watchdog mot APIPA. Gör detta före första flytten av 5G-routern, inte efter.
 - [ ] Enrolla Linus och Anastasia opportunistiskt. Opt in och synligt för dem, det är deras
       arbetsmaskiner.
-- [ ] Speca David96GB och Toms gamla maskin innan roller tilldelas. **Läge 2026-08-26:**
-      `david96gb` är offline på tailnet, senast sedd för 5 dagar sedan, trots att Robert säger att
-      maskinen är igång. Alltså kör Tailscale inte på den. På LAN svarar `.11` (Gigabyte) och
-      `.12` (ECS) på ARP men har alla portar stängda, så en av dem är sannolikt David. Behöver
-      antingen brandväggsöppning, Tailscale-omstart på maskinen, eller DHCP-listan från routern.
+- [~] Speca David96GB och Toms gamla maskin innan roller tilldelas. **PARKERAD 2026-08-26 på
+      Roberts beslut**, VCSBOY-räddningen går före. Läget när den parkerades:
+      `david96gb` är **redan enrollad som Windows-nod** på tailnet (`100.90.140.53`) och fungerade
+      för 5 dagar sedan, så det är tjänsten som stannat, inte plattformsstöd som saknas. forge och
+      vcsboy är också Windows och pratar med oss just nu. På LAN svarar `.11` (Gigabyte) och `.12`
+      (ECS) på ARP men har alla portar stängda; mDNS och NetBIOS ger inget svar, så namnet går inte
+      att få fram utifrån. Två vägar när det tas upp igen: starta Tailscale på maskinen (och slå av
+      key expiry, sannolikt därför den ramlade av), eller hämta DHCP-listan från routern
+      `192.168.32.1`, som kör dropbear-SSH plus webb-UI och kräver inloggning vi inte har.
 - [~] Subnet router för att nå devkitet utifrån flottan. **Hanteras 2026-08-26 i sessionen
       "K2C Switch build to Devkit", inte här.** Den måste sitta på subnätet, så Hetzner kan inte
       fylla rollen. forge och kitet ser redan varandra utan router.
@@ -241,8 +245,8 @@ Valt 2026-08-22: OpenAI, Google Gemini och lokal Ollama på forge.
 
 | Nod | Hårdvara | Roll efter planen |
 |---|---|---|
-| brain (Nitro) | i5-12400F, 16 GB, 228 GB NVMe | Styrplan: Death Board, agent-router, schemaläggare, RAG, hälsa. Plus code-server, reels, webb. |
-| edge (Hetzner) | CPX32, 7,6 GB | Off-site backup och watchdog. Enda noden utanför lägenheten. |
+| brain (Nitro) | i5-12400F, 16 GB, 228 GB NVMe | Styrplan: Death Board, agent-router, schemaläggare, RAG, hälsa. Plus code-server och reels. **Inte publikt vänt**, det bor på edge. |
+| edge (Hetzner) | CPX32, 7,6 GB | **Allt publikt vänt** plus off-site backup och watchdog. Enda noden utanför lägenheten, och det är hela poängen: OpenSign-signaturer, webbsidor och pitchar ska inte hänga på hemmabredband. Plane körs här men ska bort (db-328). |
 | forge | 7950X3D, 64 GB, 2x2 TB NVMe, RTX 3060 12 GB | Bygg och art. Unreal, Unity, packaging, ComfyUI, Ollama. |
 | vcsboy | HPE MicroServer, Windows | Endast versionshantering. **Perforce OCH Gitea, båda igång 2026-08-26 på 192.168.32.5.** Se db-301, checkpoint saknas fortfarande. |
 | linus, anastasia | 2x RTX 4060 | Opportunistisk beräkning, lediga timmar. |
