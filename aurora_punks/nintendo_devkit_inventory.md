@@ -296,3 +296,29 @@ verifierad efter nedladdning till Nitro.
 - **FTP:21 på kitet är öppet, anonymt och skrivbart** (`220/230 Operation successful` utan pass,
   STOR/DELE i rot funkar). Kitets egen filtjänst, men oautentiserat write på LAN. Rotlistning tom,
   undermappar ger 550. Inte kritiskt (LAN, devkit), men noterat.
+
+
+---
+
+## 8. 2026-08-27: firmware-gapet löst, K2C körbar, EDEV-topologi
+
+**SDEV XAL02100194870 firmware uppdaterad 21.0.1-1.0 → NX 22.5.0-1.1** (InitializeSdevWin på forge,
+bekräftat på kitets LCD-footer). Det löser `0x00015410` "application and firmware version not
+compatible" som stoppade Oskars K2C-bygge. Regel: kitets firmware måste vara ≥ byggets SDK, och
+senaste NDP-firmware täcker vilket dev-bygge som helst.
+
+**Reinitialize torkar allt.** Firmware-uppdateringen nollställer systemminnet: appar, save, parade
+kontroller och klocka försvinner, och NintendoSdkDaemon stoppas. K2C ominstallerades via
+TargetManager2 ("Install application" → `D:\builds\k2c.nsp`) och **startar nu** på nya firmwaren.
+LCD:n visade spelets riddjur bakom kontrollprompten, alltså firmware-fixen tog.
+
+**Joy-Con-parning efter reinit.** Parade kontroller rensas → "Controller Not Connecting". Joy-Con i
+handheld mode (fastklickad på en konsols skena) binds till den enheten och broadcastar inte
+trådlöst, så de kan inte para mot SDEV-lådan. Lossa dem, håll sync-knappen ~3s tills lamporna löper.
+Trådbunden debug-kontroller (USB) kringgår parning.
+
+**EDEV-kiten (Ember + namnlöst) är helt annan hårdvara än SDEV:t.** Ström via **grå dosa**
+(adapter → dosa → EDEV, inte direkt i USB-C), skärmen svart med flit när tjudrad till PC, och EDEV
+pratar med Target Manager över **USB** (inte ethernet som SDEV). Setup-referens: Drive-doc
+"Installera på Switch". Ett EDEV som "verkar dött" är ofta bara tjudrat med svart skärm, eller
+djupurladdat sedan 2024 (kräver 20-30 min laddning + 15s hård reset innan livstecken).

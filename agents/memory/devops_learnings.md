@@ -1,3 +1,52 @@
+## 2026-08-27 - En bot som svarar "utanför vad jag gör" beskriver oftast sin kodstruktur, inte sitt uppdrag [project: db, db-017]
+
+Oskar bad Death Board splitta KAN-628 i separata buggar. Boten svarade att det låg utanför vad den
+gör och att Discord-roller är community managerns. Den hade skapat KAN-628 själv en timme tidigare
+ur Oskars playtest-dump i samma kanal.
+
+**Diagnosen som är värd att ta med sig:** felet såg ut som en klassarmiss (fel intent vald) men var
+arkitektoniskt. `handleMention` hade sex fasta intents där varje intent gör exakt en sak, och den
+enda skrivningen var "skapa en ny ticket ur det här meddelandet". Det betyder att kapabilitetsytan
+var *ett steg*, inte *en domän*. Allt med två steg föll ur, oavsett hur centralt det låg i botens
+egen domän. När en agent säger "det där gör inte jag" om något mitt i sitt uppdrag, leta efter en
+switch-sats vars grenar är verb i stället för områden, innan du börjar peta i prompten.
+
+**Andra halvan av felet var värre än den första.** `out_of_scope`-svaret var en enda hårdkodad
+sträng som pekade allt mot CM. En felaktig hänvisning är dyrare än ett "jag vet inte": Oskar hade
+gått vidare till fel människa, och Robert fick sortera det manuellt. Fallback-texter ska förgrena
+sig på vad som faktiskt frågades. Regeln: en fallback som namnger en annan ägare måste först ha
+kontrollerat att frågan verkligen tillhör den ägaren.
+
+**Mönstret som ersatte det (plan-och-godkänn):** i stället för en ny intent per verb, en intent som
+låter en modell skriva en *plan* av vitlistade operationer, postar hela planen i kanalen och kör
+först när en människa trycker Approve. Det ger tre saker på en gång: godtycklig sammansättning av
+verb, en läsbar diff innan något skrivs, och CLAUDE.md-regeln om att aldrig ändra klientsystem utan
+godkännande uppfylld utan att Robert blir flaskhals (i stängda projektgillen godkänner teamet sin
+egen bräda). Vitlistan gör dessutom prompt-injektion strukturellt ofarlig: en modell som blir
+övertalad att emitta `delete_issue` har ingenstans att landa.
+
+**Tre konkreta fällor i genomförandet:**
+1. **Referenser mellan planens steg måste kunna misslyckas.** Steg 14 länkar issuet som steg 1
+   skapar. Om steg 1 failar får steg 14 INTE skickas med `$1` oupplöst; det blir ett Jira-anrop mot
+   en literal dollarsträng. Hoppa steget med angiven orsak. Samma sak i kommentartexter, där en
+   oupplöst `$4` annars blir en permanent lögn i revisionsspåret om vilken ticket som finns.
+2. **Ett tak som tyst kapar är en bugg på en split.** Mitt första stegtak låg på 40. Tretton buggar
+   kostade redan 27 steg (13 create + 13 link + 1 comment), så tjugo buggar hade kapats mitt i utan
+   ett ord. Tak ska rapportera vad de tappade, i planen där godkännaren ser det.
+3. **Discords 2000-teckengräns gäller även när du *lägger till* i ett meddelande.** Planen är redan
+   dimensionerad mot gränsen; att klistra på "Approved by X" ovanpå kastar, och då står planen kvar
+   som `running` med levande knappar. Trimma i stället för att kasta.
+
+**Verifieringsordningen som fungerade:** klassaren först (routar den exakta formuleringen rätt?),
+planeraren mot skarp data men utan skrivning (blir 13 rapporter 13 tickets?), sedan exekveringen mot
+mockad Jira med ett medvetet failande steg. Först därefter deploy. Torrkörningen mot riktiga KAN-628
+hittade tre defekter i mitt eget bygge som ingen syntaxkontroll hade sett.
+
+**Modellval:** Haiku klassar (billigt, hög volym), Sonnet planerar. Att välja var en bugglista går
+isär och tagga varje del är omdöme, och en för billig modell där syns som fjorton feltaggade tickets
+någon får rätta för hand, vilket kostar mer än modellen gjorde.
+**Tags:** discord-bot, jira, db-017, out_of_scope, plan-och-godkänn, vitlista, prompt-injektion, ADF, fallback-texter, referensupplösning
+
 ## 2026-08-26 — An unattended script must never run an operation that can leave a half-finished working tree
 
 **Source:** `assistant` repo divergence found at session close (devops, db-329, follow-on from db-327).
@@ -3429,3 +3478,22 @@ Att skilja på metadata (litet, DB-tillstånd) och arkivfiler (stort, filinnehå
 mellan ett jobb på 30 sekunder och ett på 2,5 TB. Arkivfilerna låg dessutom på en egen RAID-volym
 (D:) skild från OS-disken, så de skyddas genom att lämna D: orört, inte genom att kopieras.
 **Tags:** Perforce, p4d, checkpoint, journal, md5, gunzip, metadata, VCSBOY, backup, db-301
+
+### 2026-08-27 — `gitea dump` inkluderar LFS by default och kan bli enorm; en detached dump överlever ssh-avbrott på Windows [project: db]
+Startade `gitea dump` (v1.22.4) på en Gitea med 56 GB repon + 740 GB LFS. Två saker bet:
+1. **Dumpen inkluderar LFS om man inte säger `--skip-lfs-data`.** En "backup av repona" blev en
+   ~800 GB-operation. En mätning mitt i (70 GB) lurade mig att tro att den var klar och LFS-fri.
+   Kontrollera ALLTID om processen fortfarande kör (`Get-Process gitea`, jämför StartTime) och om
+   filen fortfarande växer innan du drar slutsatser om en dumps storlek eller innehåll.
+2. **En process startad via `ssh host 'cmd'` på Win32-OpenSSH kan överleva att ssh-kanalen dör.**
+   Bakgrundstasken "stoppades" (tappade sin completion-markör) men `gitea dump` fortsatte detached i
+   sju timmar och skrev 492 GB. Anta inte att en fjärrprocess dog för att din ssh-session gjorde det.
+   Verifiera med `Get-Process` och rensa medvetet.
+
+**Storleksläxan, generell:** för en self-hosted git-tjänst där repon innehåller binärer (Unreal),
+skilj på git-objekten (historik+innehåll ihop, kan vara tiotals GB) och LFS (kan vara hundratals GB).
+Det finns ingen liten "bara historik"-artefakt för git så som Perforce-checkpointen är för Perforce.
+Den lilla högvärdiga off-site-delen för Gitea är `gitea.db` (relationell metadata: users/issues/PRs),
+inte repona. Behandla LFS + stora repon som Perforce-arkivet: RAID-skyddade, inte kopierade via en
+liten host.
+**Tags:** gitea, gitea-dump, LFS, backup, Win32-OpenSSH, detached-process, storleksmätning, db-301
