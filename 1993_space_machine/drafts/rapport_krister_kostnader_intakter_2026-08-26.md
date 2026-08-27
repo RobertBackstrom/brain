@@ -7,21 +7,29 @@ Motpart om och när det går ut: Krister Karlsson, 740403-2513.
 
 ## 1. Kort svar
 
-1. **Ingen rev share är intjänad, och sannolikt inte i närheten.** Avtalet kräver att Service
-   Spend återvinns till hundra procent innan en enda krona delas, och den posten har ett tak på
-   27 000 USD. De intäkter jag kan belägga med källa uppgår till storleksordningen **85 000 SEK
-   totalt över hela livet**, före alla avdrag avtalet medger.
-2. **Avtalet saknar den paragraf som skulle gjort utvecklingsförskott recoupbara.** Sektion 12
-   "Developer Funding Repayment" refereras på fyra ställen men finns inte i det undertecknade
-   dokumentet. Det betyder att bolaget bara får dra av Service Spend och de uppräknade
-   nettointäktsavdragen, inte något förskott. Det är en brist som går emot oss och som Krister
-   kan använda om han läser noga. Se avsnitt 3.
-3. **Bokföringen går inte att nå.** WLBS har inga räkenskapsår kvar i Fortnox och APDS kräver
-   BankID-inloggning för att visa siffror. Kostnadssidan bygger därför på avtalets egna
-   takbelopp och på budgetdokument, inte på huvudbok. Se avsnitt 6.
-4. **En avtalspartsfråga behöver lösas innan något skickas.** Avtalet är tecknat av White Lines
-   Black Spaces AB, som är i konkurs. Beep-pengarna 2026 fakturerades av CZP. Vem som är
-   Publisher idag är oklart, och det avgör vem som är skyldig Krister något. Se avsnitt 7.
+1. **Ingen rev share är intjänad.** Avtalet kräver att Service Spend återvinns till hundra
+   procent innan en enda krona delas, och den posten har ett tak på 27 000 USD. Portningen till
+   Switch och PlayStation 4 plus devkits äter den summan med god marginal.
+2. **Vi har nu riktiga siffror för ett år.** WLBS bokföring för 2023 finns i mailen från Henrik
+   Franzén, med 1993 som eget projektobjekt. Det året gav titeln **28 185 kronor i intäkt och
+   65 986 i kostnad, alltså ett resultat på −37 748**. Räknar man bara det avtalet tillåter oss
+   dra av landar Net Revenue på 9 993 kronor för året. Se avsnitt 5.
+3. **Avtalet saknar den paragraf som skulle gjort utvecklingsförskott recoupbara.** Sektion 12
+   "Developer Funding Repayment" refereras på sju ställen men finns inte i det undertecknade
+   dokumentet. Vi får bara dra av Service Spend och de uppräknade nettointäktsavdragen. Se
+   avsnitt 3.
+4. **Förlagets egna löner är inte avdragsgilla enligt avtalet.** Sektion 14 räknar upp tolv
+   avdragsposter och intern personal är inte en av dem. Av 2023 års kostnader på 65 986 är
+   47 798 kronor lön som avtalet inte låter oss belasta Krister med. Det är en svaghet i vår
+   position och han kan hitta den själv.
+5. **De år som saknas är uppskattade, se avsnitt 10.** Gross Revenue som nått förlaget under hela
+   avtalstiden landar på storleksordningen **203 000 kronor**, varav cirka 153 000 är faktiska
+   siffror. Avdragen uppskattas till 271 000 i basfallet. Net Revenue blir negativ och Developer
+   Share noll i alla scenarier utom ett, som kräver att både intäkterna var trettio procent högre
+   och Service Spend hälften av taket.
+6. **En avtalspartsfråga måste lösas innan något skickas.** Avtalet är tecknat av White Lines
+   Black Spaces AB, som försattes i konkurs 2024-09-25. Beep-pengarna 2026 fakturerades av CZP.
+   Se avsnitt 7.
 
 ---
 
@@ -179,35 +187,114 @@ de år som saknas.
 
 ---
 
-## 5. Kostnader, det jag kan belägga
+## 5. Kostnader och resultat, det jag kan belägga
 
-**Ingenting ur huvudbok.** Skälen står i avsnitt 6. Det som finns är avtalets egna takbelopp och
-planeringsdokument:
+### 5.1 WLBS 2023, projektet "Internal - 1993"
 
-| Post | Belopp | Källa | Typ |
-|---|---:|---|---|
-| Service Spend, tak | 27 000 USD | avtalets definitionslista | avtalstak, inte utfall |
-| Minimum Marketing Guarantee | 2 000 USD | avtalets definitionslista | åtagande, inte utfall |
-| Intäktsplan 1993 per kanal | månadsvis 2020 till 2022 | `LimitBreak_MasterBudget` i Drive | budget, inte utfall |
+**Huvudboken finns.** Henrik Franzén skickade WLBS SIE-fil för räkenskapsåret 2023 den 2024-06-17,
+`WhiteLinesBlackSpacesAB20240617_111337.se`, sparad som
+`assistant/exports/sie/WLBS_2023_frmail.se`. Filen har 3 002 verifikat. Bolaget projektmärkte
+konsekvent på dimension 6 och 1993 har ett eget objekt, **"16 Internal - 1993"**, med 118
+transaktioner under året.
 
-Service Spend definieras som QA, lokalisering, voice over, åldersmärkning, plattformsverifiering,
-devkits, portning, resor till event och PR fram till releasedagen. Det är precis de poster som en
-Switch- och PS4-lansering drar. Att den faktiska summan skulle understiga taket är osannolikt,
-men det måste beläggas, inte antas.
+| Konto | Post | Belopp |
+|---|---|---:|
+| 3105 | Försäljning varor till land utanför EU | −16 153,86 |
+| 3305 | Försäljning tjänster till land utanför EU | −12 031,18 |
+| 3960 | Valutakursvinster | −52,92 |
+| | **Summa intäkt 2023** | **−28 237,96** |
+| 4600 | Legoarbeten och underentreprenader | 8 449,75 |
+| 5900 | Annonsering | 9 600,00 |
+| 7210 | Löner till tjänstemän | 31 381,22 |
+| 7510 | Arbetsgivaravgifter 31,42 % | 16 416,76 |
+| 7960 | Valutakursförluster | 141,84 |
+| 7690 | Övriga personalkostnader | −3,51 |
+| | **Summa kostnad 2023** | **65 986,06** |
+| | **Resultat 2023** | **−37 748,10** |
+
+Intäktssidan är Beep Japan (tre fakturor), Sony Interactive Entertainment Europe (tolv fakturor
+och två kreditfakturor) och Valve via kreditfakturaflödet. Kostnadssidan är Cold Pixel AB,
+RIOTLOC LTD för lokalisering, en internfaktura från APDS, 9 600 i annonsering och lön för tre
+anställda.
+
+### 5.2 Vad av kostnaderna avtalet faktiskt låter oss dra av
+
+Det här är den viktiga distinktionen, och den går delvis emot oss:
+
+| Post 2023 | Belopp | Avdragsgill enligt sektion 14? |
+|---|---:|---|
+| Annonsering, 5900 | 9 600,00 | **Ja**, punkt 9, "all amounts expended to advertise, market or promote" |
+| Legoarbeten, 4600, lokalisering och portningsarbete | 8 449,75 | **Ja**, punkt 10 och Service Spend |
+| Valutakursförluster, 7960 | 141,84 | **Ja**, punkt 8 |
+| Löner och arbetsgivaravgifter, 7210 och 7510 | 47 797,98 | **Nej.** Förlagets egen personal finns inte i uppräkningen |
+
+Sektion 14 räknar upp tolv avdragsposter och **förlagets egna lönekostnader är inte en av dem**.
+Läst strikt betyder det att de 47 798 kronorna i intern tid inte får belasta Kristers andel, hur
+mycket faktiskt arbete som än ligger bakom dem. Räknar man bara det avtalet medger blir 2023:
+
+| Post | Belopp |
+|---|---:|
+| Gross Revenue som nådde Publisher | 28 185,04 |
+| minus annonsering | −9 600,00 |
+| minus legoarbeten och lokalisering | −8 449,75 |
+| minus valutakursförluster | −141,84 |
+| **Net Revenue 2023** | **9 993,45** |
+| varav Developer Share 50 % | **4 996,73** |
+
+**Men det beloppet delas ändå inte ut**, av skälet i avsnitt 5.3.
+
+### 5.3 Service Spend har företräde
+
+Sektion 13 är kategorisk: *"No revenue is shared with Developer until Service Spend has been
+fully recovered by Publisher."* Service Spend är definierad som QA, lokalisering, voice over,
+åldersmärkning, plattformsverifiering, **devkits, portning** och PR fram till release, med tak
+27 000 USD.
+
+Portningen till Switch och PlayStation 4 skedde 2019 till 2021 och ligger i räkenskapsår jag
+ännu inte har. Att den och devkitsen tillsammans understiger 27 000 USD är osannolikt. I 2023
+års bok finns dessutom obundna plattformskostnader som pekar åt samma håll:
+
+| Ver | Datum | Leverantör | Belopp | Konto |
+|---|---|---|---:|---|
+| D 54 | 2023-02-24 | Nintendo of Europe GmbH | 9 791,73 | 4531 |
+| D 120 | 2023-04-20 | Sony Interactive Entertainment Ireland | 11 453,40 | 4515 |
+| D 150 | 2023-05-06 | Sony Interactive Entertainment Ireland | 34 112,35 | 5410 förbrukningsinventarier, alltså devkits |
+
+De tre är **inte** projektmärkta och kan avse flera titlar. De ska fördelas innan de används mot
+Krister, men de visar storleksordningen på plattformskostnaderna i ett enskilt år.
+
+### 5.4 Bolagsnivå som sanity check
+
+Ur koncernsammanställningen Henrik gjorde i januari 2025, i kUSD:
+
+| År | WLBS omsättning | WLBS rörelseresultat |
+|---|---:|---:|
+| 2020 | 231 | 2 |
+| 2021 | 725 | 10 |
+| 2022 | 1 967 | −916 |
+| 2023 | 2 175 | −138 |
+| 2024 | 776 | −1 |
+
+WLBS var ett förlag med många titlar. 1993 är en liten del av det, vilket 2023 års 28 tkr i
+intäkt mot bolagets dryga 2 MUSD i omsättning visar tydligt.
 
 ---
 
-## 6. Varför bokföringen inte går att nå
+## 6. Vad som finns och vad som saknas i bokföringen
 
-1. **White Lines Black Spaces AB:** Fortnox svarar `NO_YEARS`. Det finns inga räkenskapsår kvar
-   att exportera i bolaget. Bolaget är i konkurs och abonnemanget är avslutat.
-2. **Aurora Punks Development Services AB:** sju räkenskapsår listas, 2020 till 2026, men varje
-   exportförsök faller på att Fortnox svarar *"Bekräfta din identitet för att se dina siffror.
-   Logga in med e-legitimation."* Lösenordssessionen räcker inte. **Robert kan lösa det själv
-   genom att logga in i APDS med BankID och köra SIE-exporten.**
-3. **Creation Zero Point Holding AB:** full åtkomst, räkenskapsår 2019 till 2026 nedladdade.
-   1993 syns där först 2026, och bara som Beep-fakturan. Projekttaggning per titel infördes först
-   2026, så äldre år går inte att bryta ned per spel utan manuell genomgång.
+| Bolag | Läge |
+|---|---|
+| **White Lines Black Spaces AB** | Fortnox svarar `NO_YEARS`, inga räkenskapsår kvar efter konkursen. **Men SIE för 2023 finns i mailen från Henrik Franzén** och är nu sparad lokalt. Räkenskapsåren 2019 till 2022 och 2024 saknas fortfarande. |
+| **Aurora Punks Development Services AB** | Sju räkenskapsår listas i Fortnox men export kräver e-legitimation. Årsredovisning 2023 finns som PDF i mailen, liksom bouppteckningen från konkursen. |
+| **Creation Zero Point Holding AB** | Full åtkomst, 2019 till 2026. 1993 syns först 2026, som Beep-fakturan. |
+
+**WLBS försattes i konkurs 2024-09-25.** Henrik upprättade INK2 för 2024-01-01 till 2024-09-24
+utifrån bokförda summor i Fortnox per konkursdagen, mail 2025-08-20. Den deklarationen är den
+bästa källan till 2024 års siffror.
+
+Metoden är alltså bevisad: projektobjektet "16 Internal - 1993" ger en exakt titelnivå. Det som
+behövs är samma SIE-filer för de övriga åren, och de finns antingen hos Henrik eller hos
+konkursförvaltaren.
 
 ---
 
@@ -230,16 +317,20 @@ Det här är en fråga för Lawyer, inte för mig, och den bör avgöras före u
 
 ## 8. Slutsats om rev share
 
-1. Gross Revenue som nått Publisher, med de belägg som finns, ligger på cirka **85 000 SEK**
-   över hela livet.
-2. Innan delning ska Steams 30 procent, Beeps andel, all marknadsföring, all portning till Switch
-   och PS4 samt Service Spend upp till 27 000 USD dras av.
-3. Portningen till Switch ensam överstiger med bred marginal hela den belagda intäkten.
-4. **Breakeven är inte nådd och ingen Developer Share är intjänad.** Det är den position som
-   underlaget stödjer.
-5. Den bedömningen står och faller med de saknade Steam- och Nintendo-åren. Om de visar sig vara
-   mångdubbelt större än den observerade takten ändras bilden, men den observerade takten på
-   Steam är cirka 1 500 enheter och 694 USD på tolv månader. Det är inte i närheten.
+1. För **2023**, det enda år där vi har titelnivå ur huvudboken, gav 1993 en Gross Revenue på
+   **28 185 kronor** till förlaget. Avtalsenliga avdrag för annonsering, lokalisering och
+   valutakursförluster tar bort 18 192, vilket lämnar en Net Revenue på **9 993 kronor** och en
+   teoretisk Developer Share på **4 997**.
+2. **Det beloppet delas ändå inte ut**, eftersom sektion 13 ger Service Spend företräde och
+   ingenting tyder på att de 27 000 USD är återvunna.
+3. Faktiskt utfall för bolaget var **−37 748** på titeln under 2023, eftersom 47 798 i intern
+   lön inte får dras av mot Krister men självklart belastade WLBS.
+4. Beep-betalningen 2026 på **76 109 kronor** avser 26 månaders japansk försäljning och är den
+   enskilt största intäkten titeln haft. Även den ska in i samma avräkning, med samma
+   Service-Spend-spärr.
+5. **Slutsatsen står: breakeven är inte nådd och ingen Developer Share är förfallen till
+   betalning.** Det som skulle ändra bedömningen är om Service Spend faktiskt understeg taket,
+   och det avgörs av räkenskapsåren 2019 till 2021 som jag ännu inte har.
 
 ---
 
@@ -247,13 +338,119 @@ Det här är en fråga för Lawyer, inte för mig, och den bör avgöras före u
 
 | Nr | Post | Var den finns | Vem |
 |---|---|---|---|
-| 1 | Steam Partner-avräkningar för hela livet, per år, 1993-raderna | Steam Partner, WLBS-kontot | Robert, se [[reference_steam_partner_accounts]] |
-| 2 | Nintendo eShop-avräkningar för 1993 Shenandoah | Nintendo Developer Portal | Robert |
-| 3 | APDS huvudbok 2020 till 2026 | Fortnox, kräver BankID | Robert |
-| 4 | Faktiskt utlagd Service Spend: portning, QA, lokalisering, åldersmärkning, devkits | APDS/WLBS-underlag, mailhistorik | CorpBot när 3 är löst |
-| 5 | Faktisk marknadsföringskostnad | samma | CorpBot |
-| 6 | Vem som är Publisher efter WLBS-konkursen | konkursförvaltaren, avtalshandlingar | Lawyer |
-| 7 | Förklaring till diffen 76 813,76 mot fakturerade 76 109,00 | Beep-tråden, finance@ | CorpBot |
+| 1 | **WLBS SIE för 2019, 2020, 2021, 2022 och 2024** | Henrik Franzén, samma väg som 2023-filen. Alternativt konkursförvaltaren Carler | CorpBot begär, Robert godkänner |
+| 2 | INK2 WLBS 2024-01-01 till 2024-09-24 | finns som bilaga i mail från Henrik 2025-08-20 | CorpBot |
+| 3 | Faktiskt utlagd Service Spend 2019 till 2021: portning Switch och PS4, QA, lokalisering, åldersmärkning, devkits | följer av punkt 1 | CorpBot |
+| 4 | Fördelning av de omärkta plattformskostnaderna 2023, Nintendo 9 792 och Sony 11 453 + 34 112 | WLBS-underlagen | CorpBot |
+| 5 | Steam Partner-avräkningar för hela livet, 1993-raderna | Steam Partner, WLBS-kontot | Robert, se [[reference_steam_partner_accounts]] |
+| 6 | Nintendo eShop-avräkningar utanför Japan | Nintendo Developer Portal | Robert |
+| 7 | Vem som är Publisher efter WLBS-konkursen 2024-09-25 | konkursförvaltaren Carler, Nils Åberg | Lawyer |
+| 8 | Förklaring till diffen 76 813,76 mot fakturerade 76 109,00 hos Beep | Beep-tråden, finance@ | CorpBot |
 
-När punkt 1, 2 och 3 är på plats kan det här bli en royaltyredovisning enligt sektion 18 i
-avtalet i stället för ett underlag med hål i.
+När punkt 1 är löst kan det här bli en royaltyredovisning enligt sektion 18 i avtalet i stället
+för ett underlag med hål i. Metoden är redan bevisad på 2023.
+
+---
+
+## 10. Uppskattning av de år som saknas
+
+Robert har beslutat 2026-08-26 att huvudböckerna för WLBS 2019 till 2022 och 2024 inte kommer att
+gå att få fram. Det här avsnittet uppskattar dem i stället. **Alla siffror här är uppskattningar,
+inte bokförda belopp**, och de är märkta som sådana genomgående. Valutakurser hämtade 2026-08-27
+och korskontrollerade mot två källor: **USD/SEK 9,52** och **EUR/SEK 11,08**.
+
+### 10.1 Steam, den starkaste uppskattningen
+
+Steams månadsrapporter innehåller en sektion **"Life to date"**. Två sådana snapshots finns i
+Drive, och de gör Steam-sidan nästan exakt:
+
+| Snapshot | Produkt | Nettoenheter | Net Steam Sales | **Revenue till WLBS** |
+|---|---|---:|---:|---:|
+| 2021-10-31 | 1993 Space Machine (68760) | 1 201 | 2 571,74 USD | **1 800,21 USD** |
+| 2021-10-31 | Community Market-avgift (373480) | 7 497 | 106,87 USD | **74,79 USD** |
+| | **Summa life to date 2021-10-31** | | | **1 875,00 USD** |
+| 2023-03-31 | 1993 Space Machine (68760) | 3 704 | 9 683,92 USD | **6 778,74 USD** |
+| 2023-03-31 | Soundtrack (428890) | 200 | 560,73 USD | **392,50 USD** |
+| 2023-03-31 | Community Market-avgift | 28 706 | 220,46 USD | **154,20 USD** |
+| | **Summa life to date 2023-03-31** | | | **7 325,44 USD** |
+
+Perioden 2023-04 till konkursen 2024-09-25 täcks av transaktionsexporten, som ger 693,56 USD
+under tolv månader. Utsträckt över de arton månader som återstår blir det cirka 1 040 USD.
+
+| Post | USD | SEK |
+|---|---:|---:|
+| Life to date 2023-03-31, faktisk siffra | 7 325 | 69 734 |
+| 2023-04 till 2024-09, uppskattat | 1 040 | 9 901 |
+| **Steam totalt under avtalet, uppskattat** | **8 365** | **79 635** |
+
+**Rimlighetskontroll:** WLBS bokförde 8 918,64 kronor i Steam-intäkt på 1993 under 2023, alltså
+cirka 937 USD. Transaktionsexporten för augusti 2023 till juli 2024 ger 694 USD. De två stämmer
+i storleksordning, vilket gör att jag litar på modellen.
+
+### 10.2 Övriga kanaler
+
+Kanalfördelningen för 1993 i WLBS bokföring 2023, som är den enda bokförda fördelning som finns:
+
+| Kanal | 2023, bokfört | Andel |
+|---|---:|---:|
+| Sony, PlayStation | 12 094,55 | 43 % |
+| Valve, Steam | 8 918,64 | 32 % |
+| Beep Japan | 7 171,85 | 25 % |
+| **Summa** | **28 185,04** | |
+
+| Kanal | Uppskattning för hela avtalstiden | Grund |
+|---|---:|---|
+| Steam | 79 635 | avsnitt 10.1, nästan faktisk |
+| Sony, PlayStation | 30 000 | 2023 års 12 095 uppräknat till cirka 2,5 år av meningsfull försäljning |
+| Beep Japan | 83 281 | **faktiskt**: 7 172 bokfört 2023 plus fakturan 76 109 för aug 2023 till sep 2025 |
+| Nintendo direkt | 10 000 | tre betalningar från Nintendo CO., LTD. om 3 433 syns 2023, omärkta |
+| **Summa Gross Revenue till förlaget** | **cirka 203 000** | |
+
+Av de 203 000 är ungefär **153 000 faktiska siffror** och 50 000 uppskattning.
+
+### 10.3 Avdragen, uppskattade
+
+| Post | Låg | Bas | Hög | Grund |
+|---|---:|---:|---:|---|
+| Service Spend | 130 000 | 200 000 | 257 000 | Taket är 27 000 USD = 257 000 SEK. Portning till Switch och PS4, devkits, QA, lokalisering och åldersmärkning |
+| Marknadsföring | 30 000 | 45 000 | 60 000 | 9 600 bokfört enbart 2023, fem år under avtalet |
+| Portning utöver Service Spend | 15 000 | 25 000 | 40 000 | 8 450 bokfört 2023 i legoarbeten |
+| Valutakursförluster | 1 000 | 1 000 | 2 000 | 142 bokfört 2023 |
+| **Summa avdrag** | **176 000** | **271 000** | **359 000** | |
+
+Stöd för att Service Spend ligger högt i intervallet finns i 2023 års bok, där plattformsnära
+kostnader syns även utan projektmärkning:
+
+| Ver | Leverantör | Belopp | Konto |
+|---|---|---:|---|
+| D 150 | Sony Interactive Entertainment Ireland | 34 112,35 | 5410, förbrukningsinventarier, alltså devkits |
+| D 120 | Sony Interactive Entertainment Ireland | 11 453,40 | 4515 |
+| D 54 | Nintendo of Europe GmbH | 9 791,73 | 4531 |
+| | **Summa ett enskilt år, flera titlar** | **55 357,48** | |
+
+### 10.4 Utfallet
+
+| Scenario | Gross Revenue | Avdrag | Net Revenue | **Developer Share 50 %** |
+|---|---:|---:|---:|---:|
+| Bas | 203 000 | −271 000 | **−68 000** | **0** |
+| Lägsta avdrag | 203 000 | −176 000 | +27 000 | 13 500 |
+| Lägsta avdrag och 30 % högre intäkt | 264 000 | −176 000 | +88 000 | 44 000 |
+| Högsta avdrag | 203 000 | −359 000 | −156 000 | 0 |
+
+**Basfallet ger noll.** Det enda scenario som ger Krister något av betydelse förutsätter både att
+Service Spend stannade på hälften av taket och att intäkterna var trettio procent högre än vad de
+två Steam-snapshotarna och Beep-fakturan visar. Båda antagandena går emot det underlag som finns.
+
+**Det jag skulle skriva till Krister:** Gross Revenue som nått förlaget under avtalet uppgår till
+storleksordningen 200 000 kronor. Service Spend enligt sektion 13 har företräde och har inte
+återvunnits. Ingen Developer Share är därför förfallen. Bifoga 2023 års faktiska siffror och de
+två Steam-snapshotarna som underlag, och erbjud honom revisionsrätten enligt sektion 18 G.
+
+### 10.5 Osäkerheten, ärligt
+
+1. **Service Spend är den enda posten som verkligen avgör saken**, och den är helt uppskattad.
+   Går det att belägga att den faktiskt stannade under 130 000 kronor ändras slutsatsen.
+2. Sony-siffran är den svagaste intäktsuppskattningen. Den bygger på ett enda bokfört år.
+3. Steam-sidan är däremot nästan exakt, tack vare life to date-snapshotarna.
+4. Beep-sidan är faktisk.
+5. Perioden före september 2019, alltså innan avtalet, ingår inte och ska inte ingå.

@@ -29,7 +29,7 @@
 - **Source on the VPS:** `code-corpus/repos/curveball-bba/` (Source, Config, Plugins, Saved/Logs; 466 MB). Indexed in RAG as `source=code`, `project=curveball`. Content's 5,469 `.uasset` + 304 `.umap` are **not** extracted — they are listed by name in `_ASSET_MANIFEST.txt`.
 - **Engine:** Unreal Engine **5.3**. Project `BladeBallArena.uproject`, C++ module **Mogadishu**.
 - **Internal name:** "bodybreakerabs" / **BBA** (the title is *Curveball*)
-- **Version control:** none currently — was on Perforce during production, never migrated to Git. AP would set up a repo.
+- **Version control:** confirmed by Olle 2026-08-19 that **no Perforce remains** (The Gang moved to GitHub, MLC was never ported). The 4 June zip is the only copy outside Olle's own workspace. **AP owns version control**: private repo `Aurora-Punks/curveball-mlc` with Git LFS, vendor baseline tagged `vendor/bba-zip-2026-06-04` (Robert's call 2026-08-27). See `drafts/plan_update_2026-08-27.md`.
 
 ## Tech Stack (verified 2026-08-04 from the source, not from the deck)
 - **Networking today:** AWS **GameLift** dedicated servers. `GameLiftBlueprintPlugin` (AWSCore + GameLiftServerSDK + GameLiftClientLibrary), `GameLiftRegionLatency` enabled, `UGameLiftClientComponent`. `UMLCMatchmakingHandler` returns IP/Port/PlayerSessionId; runtime logs hit `169.254.169.254` (EC2 instance metadata).

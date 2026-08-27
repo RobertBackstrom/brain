@@ -1060,6 +1060,20 @@ Frågan var om alla Bright Gambit-fakturor var betalda. Snabbaste vägen var **i
 
 ## 2026-08-26 — Fortnox-åtkomst per bolag skiljer sig, och gamla förlagsavtal har hål
 
+**Sök i mailen efter SIE-bilagor INNAN du säger att bokföringen är otillgänglig.** Det var mitt
+misstag 2026-08-26: jag rapporterade WLBS som förlorat eftersom Fortnox svarade `NO_YEARS`, men
+redovisningskonsulten hade mailat hela SIE-filen till revisorn två år tidigare. Sökningen som
+fungerar är `from:<konsult> filename:se` och `(huvudbok OR SIE OR bokslut OR årsredovisning)
+filename:se` i Gmail. För konkursade bolag: sök också på konkursförvaltaren, bouppteckningen
+innehåller balansräkningen per konkursdagen. Regel: ett bolags bokföring är otillgänglig först
+när både Fortnox, mailen till och från redovisningskonsulten och förvaltarkorrespondensen är
+genomsökta.
+
+**WLBS och APDS projektmärkte på dimension 6, per titel.** Det gör titelnivå-P&L möjlig rakt ur
+SIE:n för bolag som inte längre finns. WLBS-objekt: 16 "Internal - 1993", 53 "INTERNAL - Vessels
+Of Decay", 115 "CO-DEV Sir Whoopass", 110 "Robot Lord Rising Ext IP Dev". Kolla alltid
+`#OBJEKT 6` innan du säger att en gammal titel inte går att räkna på.
+
 **Fortnox gatekeepar per bolag, inte per session.** Samma inloggade session kan ha full åtkomst i
 ett bolag och vara helt blockerad i ett annat. Aurora Punks Development Services AB listar sina
 sju räkenskapsår men svarar *"Bekräfta din identitet för att se dina siffror. Logga in med
@@ -1109,3 +1123,24 @@ Kostnaden är sekunder, alternativet är att revisorn hittar felet åt dig.
 
 **Följdregel för långivarbesked:** ett dokument som kräver *din* signatur är nästan alltid en beställning
 eller ett avtal, inte ett besked. Ett besked signeras av utfärdaren, inte av mottagaren.
+
+## 2026-08-26 — Steams "Life to date" gör historisk royalty räknebar utan huvudbok
+
+När ett bolag är i konkurs och huvudboken är borta finns royaltyhistoriken ändå, hos plattformen.
+**Steams månadsrapport i PDF har en sektion "Steam Sales Report: Life to date"** med ackumulerade
+enheter, Net Steam Sales och Revenue per produkt sedan kontot startade, plus en Payment
+History-tabell per månad. Två sparade månadsrapporter från olika tidpunkter ger periodens intäkt
+som en ren differens, utan att någon bokföring behövs. För 1993 gav 2021-10 och 2023-03 hela
+Steam-historiken på två tal.
+
+Metod: `gdrive_read_file` returnerar PDF:en base64-kodad efter en rubrikrad. Avkoda, skriv till
+fil, kör `pdftotext -layout` och läs sektionen mellan "Life to date" och "Payment History".
+Relationen mellan kolumnerna är Revenue = 0,70 × Net Steam Sales, alltså efter Valves 30 procent.
+
+Samma logik gäller andra plattformar: Sonys och Nintendos avräkningar och förläggarens
+kvartalsrapporter ligger hos motparten, inte hos det konkursade bolaget. **Innan du säger att en
+historisk royaltyfråga inte går att räkna på, fråga var pengarna kom ifrån och hämta det därifrån.**
+
+Vid uppskattning: särskilj alltid i tabellen vad som är bokfört och vad som är uppskattat, ange
+grunden per rad, och känslighetstesta slutsatsen i minst tre scenarier. Robert accepterar en
+uppskattning men inte en siffra utan ursprung.

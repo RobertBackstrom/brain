@@ -45,6 +45,43 @@
    bort understiger resterande 85 000 kr tioprocentsgränsen i `KL 4:10`, alltså brister
    avsevärdhetsrekvisitet. **Stäm alltid av förvaltarens beloppslista mot gäldenärens huvudbok per
    konto, inte bara mot datum och summa.**
+7. **Två Robert-korrigeringar på samma dokumentpaket, båda värda att internalisera.**
+   (a) **Avslöja inte för domstolen att en förlikning är på väg.** Utkastet till yttrande skrev att
+   parterna nått en principöverenskommelse. Robert invände. Han hade rätt på tre punkter:
+   föreläggandet efterfrågar **inställning**, inte förhandlingsstatus; uppgiften skadar om
+   uppgörelsen spricker, eftersom akten då visar att klienten var villig att göra upp innan någon
+   prövning börjat; och det är **inte borgenärens sak att ensidigt karakterisera förvaltarens
+   ståndpunkt** inför rätten dagar innan han ska underteckna. Uppgörelsen anmäls **gemensamt när
+   avtalet är påskrivet**. Ersättningstexten blev inställning plus fyra enradiga skäl och "avser att
+   utveckla sin talan vid sammanträdet", vilket möter kallelsens krav på att bifoga det som styrker
+   fordran utan att utveckla argumentationen.
+   (b) **Docera inte juridik för motpartens advokat och erbjud dig inte att skriva avtalet åt
+   honom.** Se `skills/voice/channel_mail.md`, avsnittet om mail till motpartens jurist. Lagrummen
+   hör hemma i vårt interna underlag; i mailet räcker önskemålet om vad avtalet ska innehålla.
+   **Generell regel: när mottagaren är en specialist i sitt eget fält, leverera kravet och utelämna
+   motiveringen.**
+
+7. **Ingivande till tingsrätt: e-tjänsten slår mejlad signerad PDF, och den signerar åt dig.**
+   `https://digitalhandling.etjanst.domstol.se/digitalhandling` tar handlingar i **pågående mål**,
+   kräver målnummer, och låter ingivaren **signera med BankID i tjänsten**. Endast PDF vid signering,
+   max 18 MB; utan signering tas fler format. Det gör OpenSign- eller scanna-steget onödigt för
+   domstolshandlingar och ger ett kvitto. **Detta kompletterar posten 2026-07-10 om att inlagor kan
+   ges in som mejlad signerad PDF: det stämmer fortfarande, men e-tjänsten är förstahandsvalet.**
+   Mejlvägen är kvar som fallback, och då till avdelningens adress ur kallelsen
+   (`umea.tingsratt.allmanna@dom.se`), inte domstolens allmänna växeladress. Verifierat 2026-08-27.
+
+7. **"Vi löser det med kvittning" är inte ett avslut, och det är den farligaste meningen i hela
+   ärendet.** När klienten och förvaltaren blivit överens i god ton är frestelsen att skriva en kort
+   uppgörelse som bara justerar bevakningen. Men förvaltarens "kvittning" är avräkning **inom**
+   bevakningsförfarandet, och den lämnar `KL 4:20` 1 st-fristen för en riktig återvinningstalan
+   orörd. **Regel: varje uppgörelse med ett konkursbo måste innehålla ett uttryckligt avstående från
+   det bakomliggande anspråket, inte bara en reglering av det processuella momentet.** Skriv
+   klausulen själv och var först med pennan. Lägg också in att avtalet inte innebär medgivande i
+   sak, annars kan en uppgörelsetext i ett ärende användas mot klienten i ett annat (här:
+   APDS-uppgörelsen mot kundförlustlinjen i Runatyrs moms). Och begränsa avtalet till rätt parter:
+   en "samtliga mellanhavanden"-klausul mot ett bolag får inte svepa in klientens **privata**
+   bevakning i samma konkurs.
+
 7. **Underrättelsen till GÄLDENÄREN är den billigaste vägen att räkna alla anmärkningar i en
    konkurs.** Rätten skickar en underrättelse till konkursgäldenären om förlikningssammanträdet och
    bifogar **samtliga** anmärkningsskrifter, eftersom gäldenären har rätt att yttra sig över varje

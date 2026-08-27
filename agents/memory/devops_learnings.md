@@ -1,8 +1,40 @@
+## 2026-08-27 - En stilregel som bara star i prompten ar inte hävdad, och tva filer med samma relativa sokvag ar en tyst fälla [project: db, db-017]
+
+Tva tooling-laxor fran samma kvall som byggde `jira_task`. Ingen av dem handlar om Jira.
+
+**1. Stilregler pa modellgenererad text maste ligga i kod, inte i prompten.** Planeraren skriver
+Jira-beskrivningar och kommentarer, alltsa text en manniska laser, sa Roberts em-dash-regel galler
+den. Jag la in regeln i planerarprompten och kande mig klar. Den holl inte: modellens `notes`-falt
+kom tillbaka med em-dashes anda. Fixen blev en `_noDashes()` i validatorn, dar all modelltext
+passerar pa vag ut. **Prompten ar rad modellen kan kora over, valideringen ar en gren som alltid
+kors.** Det ar exakt samma slutsats som `ignore-override`-fixen i samma fil i augusti, dar en
+prompthardning fran april inte holl och regeln fick flyttas till `default:`-grenen. Att laxan redan
+fanns nedskriven och anda inte tillampades ar sjalva poangen: nar du skriver en regel till en modell,
+fraga direkt var den havdas om modellen struntar i den. Galler lika mycket for taxonomier, langdtak
+och forbjudna verb som for typografi.
+
+**2. `agents/memory/devops_learnings.md` finns i tva exemplar med olika innehall.** Projektroten har
+den levande pa 335 KB. Under `assistant/` ligger en dod snapshot pa 8,5 KB, ensam i en annars tom
+`agents/memory/`-katalog, senast rord av en auto-commit. Ett skal som star i `assistant/` och kor
+`python3 ... 'agents/memory/devops_learnings.md'` skriver till fel fil, utan felmeddelande.
+
+Jag gick pa den i kvall at andra hallet: mina verifieringskommandon rakade kora fran `assistant/`,
+laste snapshoten och rapporterade att filen krympt fran 3431 till 147 rader. Jag holl pa att larma
+om en trunkerad minnesfil som var helt intakt. Det som avslojade det var `stat -c %y` pa bada
+sokvagarna, inte innehallet. Och nar jag skulle skriva in just den har laxan sprack skriptet pa
+`FileNotFoundError` av samma orsak, for skalet stod da i minneskatalogen.
+
+**Tva regler ur det:** anvand absoluta sokvagar i allt som ror `agents/memory/` och `memory/`, aldrig
+relativa, eftersom skalets cwd hoppar mellan `projects/`, `projects/assistant/` och minneskatalogen
+under en session. Och nar en fil ser overraskande liten eller trunkerad ut, kontrollera vilken fil du
+faktiskt oppnade innan du rapporterar dataforlust. Storleken var ratt, sokvagen var fel.
+**Tags:** promptregler-vs-kod, validering, em-dash, dubbletter, relativa-sokvagar, cwd, falsklarm, db-017
+
 ## 2026-08-27 - En bot som svarar "utanför vad jag gör" beskriver oftast sin kodstruktur, inte sitt uppdrag [project: db, db-017]
 
 Oskar bad Death Board splitta KAN-628 i separata buggar. Boten svarade att det låg utanför vad den
-gör och att Discord-roller är community managerns. Den hade skapat KAN-628 själv en timme tidigare
-ur Oskars playtest-dump i samma kanal.
+gör och att Discord-roller är community managerns. Den hade skapat KAN-628 själv ur Oskars
+playtest-dump i samma kanal, samma minut.
 
 **Diagnosen som är värd att ta med sig:** felet såg ut som en klassarmiss (fel intent vald) men var
 arkitektoniskt. `handleMention` hade sex fasta intents där varje intent gör exakt en sak, och den
@@ -3497,3 +3529,14 @@ Den lilla högvärdiga off-site-delen för Gitea är `gitea.db` (relationell met
 inte repona. Behandla LFS + stora repon som Perforce-arkivet: RAID-skyddade, inte kopierade via en
 liten host.
 **Tags:** gitea, gitea-dump, LFS, backup, Win32-OpenSSH, detached-process, storleksmätning, db-301
+
+### 2026-08-27 — assistant/ är eget git-repo; en fastnad rebase wipear osparat; `merge -s ours` försonar en bare-metal-divergens utan JSON-korruption [project: db]
+Tre sammanhängande fynd under VCSBOY-arbetet (db-301):
+1. **assistant/ har egen remote.** Projects-repots `.gitignore` är en whitelist (`/*` ignorerar allt, `!`-rader släpper in vissa dirs), och den utesluter `assistant/` med kommentaren "have their own remotes already". Followups, `*.sh`, `sudoers.d/` är alltså INTE i projects-repot, de ligger i assistant-subrepot. Att committa dem: `cd assistant && git add ... && git commit`. `git ls-files assistant/followups/` = 0 i projects-repot är väntat, inte ett fel.
+2. **En fastnad rebase ser ut som en wipe.** `auto-commit.sh` kör dagligen `git pull --rebase`. Konfliktar den stannar repot mitt i rebasen (`.git/rebase-merge` finns, `git status` = UU/AA). I det läget pekar arbetsträdet på 'onto' (remote-tillståndet), så osparade ändringar och untracked-filer syns inte på disk. De ser borta ut, men **committade** filer överlever i git-objekten (t.ex. föregående auto-commit). Refloggen är TYST för `checkout -- .`/`clean` (HEAD flyttas inte), så leta efter rebase-markören, inte i refloggen.
+3. **Försoning när en nod är den levande hjärnan:** `git merge -s ours origin/master`. Den levande noden (nyare) vinner HELT. Kritiskt: kör INTE `-X ours` eller en vanlig merge om tillståndsfiler (JSON) ändrats på båda sidor, radmergning ger korrupt JSON. `-s ours` bevarar origins historik i merge-commitens andra förälder (återställningsbart) och gör origin till förfader, så nästa `pull --rebase` fastnar inte. Ta alltid en backup-tag först. `rebase --abort` vägrar om untracked-filer krockar med ORIG_HEAD, ta bort dubbletterna (efter backup utanför repot) först.
+**Tags:** git, assistant-repo, rebase, merge-s-ours, bare-metal, JSON-korruption, auto-commit, db-301
+
+### 2026-08-27 — gdrive-upload.js: filer >5 MB kräver resumable upload, buffrad multipart dör tyst [project: db]
+`uploadFile()` gjorde `fs.readFileSync` på hela filen + `Buffer.concat` (två kopior, 734 MB för en 367 MB-fil) och sköt allt i EN `uploadType=multipart`-fetch utan resume. Filer >5 MB dör med "fetch failed" på minsta nätsvacka; små anrop (mappskapande) går, stora inte, exakt det mönstret. **Fix:** `uploadFileResumable()` (uploadType=resumable, 16 MB-chunkar, Content-Range, återupptar via `bytes */total`-fråga vid avbrott, läser från disk så minnet är en chunk). Routa filer >5 MB dit. Drabbade annars varje backup >5 MB, inklusive nattliga brain-backup om den växer. **Felsökningsfälla:** `node ... | tail` i ett bakgrundskommando maskerar nodes slutkod med tails (som lyckas), så verktyget SÅG ut att exit:a 0 vid fel fast det korrekt exit:ade 1. Rör inte pipe:n när du bedömer en slutkod.
+**Tags:** gdrive, resumable-upload, backup, node-fetch, slutkod-maskering, db-301

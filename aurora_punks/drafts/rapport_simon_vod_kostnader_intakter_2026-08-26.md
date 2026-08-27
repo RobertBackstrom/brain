@@ -12,14 +12,16 @@ Kompletterar `vod_revenue_forecast_2026-07-15.md`, som gällde nedskrivningsfrå
    till 50 procent först när AP recoupat sin investering. Den recoupen är inte i närheten av
    nådd. Det här är en **rättelse** mot det tidigare interna underlaget, som utgick från en rak
    30-procentsandel utan recouptrappa. Se avsnitt 3.
-2. **Det som är intjänat till Simon under 2026 är cirka 3 000 kronor.** CZP har bokfört
-   11 998,23 SEK i royalty från Headup och fått in 10 099,20 efter tysk källskatt. Trettio
-   procent av det som faktiskt inflöt är **3 029,76 SEK**. Se avsnitt 5.
+2. **Det som är intjänat till Simon under 2026 är 3 029,76 kronor**, räknat på faktiskt inflöde
+   efter tysk källskatt. Se avsnitt 5. **Därutöver uppskattas perioden juni 2025 till mars 2026
+   till cirka 10 400 kronor för hans del, men den fakturerades av APDS och är därmed en fordran i
+   ett konkursbo, inte ett krav mot CZP.** Se avsnitt 9.
 3. **Headup recoupar fortfarande.** Utvecklarsidan får 20 procent av Gross Revenue tills Headup
    fått tillbaka sina externa kostnader på cirka 156 000 EUR. Vid nuvarande takt sker det aldrig.
-4. **APDS bokföring går inte att nå.** De 108 000 EUR i milstolpsfinansiering från Headup och de
-   450 000 SEK som gick till Neon Artery ligger båda där. Fortnox kräver BankID för att visa
-   APDS siffror. Se avsnitt 6.
+4. **En del av kostnadshistoriken är nu belagd.** WLBS bokföring för 2023 finns i mailen från
+   Henrik Franzén, med VoD som eget projektobjekt: **225 431 kronor nedlagt under året, aktiverat
+   till 250 609**. APDS löpande huvudbok kräver fortfarande BankID, och där ligger de 108 000 EUR
+   från Headup och de 450 000 till Neon Artery. Se avsnitt 4.3 och 6.
 5. **Samma avtalspartsproblem som på 1993.** Avtalet med Simon är tecknat av Aurora Punks,
    Headup-avtalet av APDS, och det är CZP som fakturerar och tar emot pengarna idag.
 
@@ -116,8 +118,13 @@ occurred costs outside the received publisher funding"*. Läser man Option C i l
 **AP:s investering cirka 956 000 SEK**, alltså budgeten minus förlagsfinansieringen, plus de
 450 000 som sedan gick till Simon som licensavgift om den ska räknas in.
 
-Mot en inflödestakt på cirka 12 000 SEK per halvår är den tröskeln inte nådd på decennier. Simon
-står alltså på **30 procent**, och kommer att göra det.
+Den härledningen får nu stöd i bokföringen. **WLBS ensamt lade ned 225 431 kronor på VoD under
+2023 och aktiverade 250 609**, se avsnitt 4.3. Lägger man till CZP:s förvärv av titeln för
+175 000 år 2022, de 450 000 i licensavgift till Neon Artery och det APDS lade ned 2024 och 2025,
+passeras 956 000 utan svårighet. Att AP-sidan skulle ha recoupat sin investering är uteslutet.
+
+Mot en inflödestakt på cirka 12 000 SEK per halvår är tröskeln inte nådd på decennier. Simon står
+alltså på **30 procent**, och kommer att göra det.
 
 **Att verifiera:** om det signerade kontraktet från oktober 2024 sätter en siffra på "AP's
 investment" gäller den siffran, inte min härledning. Jag har termsheetet men inte det
@@ -155,14 +162,53 @@ i stället för 7 936,50. Det måste avgöras innan Simons netto räknas, efters
 utvecklingskostnader inte är avdragsgilla mot hans andel enligt Option C. Det är bara
 plattformsavgifter, skatter, bankavgifter och förläggarandel som får dras.
 
-### 4.3 APDS
+### 4.3 WLBS 2023, projektet "INTERNAL - Vessels Of Decay"
 
-**Inte tillgängligt.** Här ligger de tunga posterna:
+**Den här bokföringen finns.** Henrik Franzéns SIE-fil för WLBS räkenskapsår 2023,
+`assistant/exports/sie/WLBS_2023_frmail.se`, har VoD som eget projektobjekt, **"53 INTERNAL -
+Vessels Of Decay"**, med 99 transaktioner.
+
+| Konto | Post | Belopp |
+|---|---|---:|
+| 4535 | Inköp av tjänster från annat EU-land, 25 % | 116 458,12 |
+| 4600 | Legoarbeten och underentreprenader | 28 949,87 |
+| 7210 | Löner till tjänstemän | 42 454,31 |
+| 7510 | Arbetsgivaravgifter 31,42 % | 13 339,13 |
+| 5800 + 5810 | Resekostnader och biljetter | 17 929,71 |
+| 5900 + 5911 | Annonsering och annonsering EU | 6 299,49 |
+| | **Summa nedlagd kostnad 2023** | **225 430,63** |
+| 3800 | Aktiverat arbete för egen räkning | −250 609,00 |
+| 1010 | Utvecklingsutgifter, balanserat | 250 609,00 |
+
+Leverantörerna bakom 4535 och 4600 är Super Menno Monster, Kando Factory Ltd, Odd Magnus
+Glodeck, Lano Software GmbH, Remote Europe Holding BV, Cold Pixel AB och APDS internt. Sju
+anställda har tid på projektet under året.
+
+**Två saker att notera:**
+
+1. **WLBS aktiverade 250 609 men lade ned 225 431.** Differensen på 25 178 kronor är antingen
+   kostnader från tidigare år som aktiverades samtidigt, eller ett overheadpåslag. Den bör
+   förklaras, eftersom det aktiverade beloppet är det som följt med tillgången vidare.
+2. **De 250 609 hör till "AP:s investering"** i Option C-recoupen, oavsett att de bokades i
+   WLBS och inte i APDS. Bolaget var dotterbolag till Aurora Punks fram till konkursen
+   2024-09-25.
+
+### 4.4 APDS
+
+**Delvis tillgängligt.** Årsredovisningen för 2023 finns som PDF i mailen, liksom
+bouppteckningen från konkursen. Löpande huvudbok kräver fortfarande BankID. Här ligger:
 
 1. De 108 000 EUR i milstolpsfinansiering från Headup.
-2. De 450 000 SEK i licensavgift till Neon Artery, som enligt Roberts bekräftelse 2026-07-15
-   redan är utbetald.
-3. Portning, QA, musik och produktionskostnader enligt budgeten i avsnitt 3.
+2. De 450 000 SEK i licensavgift till Neon Artery, enligt Roberts bekräftelse 2026-07-15 redan
+   utbetald.
+3. Portning, QA, musik och produktionskostnader 2024 och 2025.
+4. Royaltyinflödet från Headup juni 2025 till mars 2026.
+
+Ur koncernsammanställningen framgår att APDS omsättning växte från 534 kUSD 2022 till 651 kUSD
+2023 och 1 107 kUSD 2024, med ett rörelseresultat på −231 kUSD 2024. Det säger något om
+storleksordningen men inget om VoD specifikt.
+
+---
 
 ---
 
@@ -208,28 +254,35 @@ kan läsas**, och det påverkar Simons ackumulerade fordran direkt.
 
 ---
 
-## 6. Varför APDS bokföring inte går att nå
+## 6. Vad som finns och vad som saknas i bokföringen
 
-Fortnox listar sju räkenskapsår för Aurora Punks Development Services AB, 2020 till 2026, men
-varje exportförsök landar på lobbyn med meddelandet *"Bekräfta din identitet för att se dina
-siffror. Logga in med e-legitimation."* Lösenordssessionen räcker inte för det bolaget.
+| Bolag | Läge |
+|---|---|
+| **Creation Zero Point Holding AB** | Full åtkomst 2019 till 2026, projekttagg 11 för VoD från och med 2026. |
+| **White Lines Black Spaces AB** | Fortnox svarar `NO_YEARS` efter konkursen 2024-09-25, men **SIE för 2023 finns i mailen från Henrik Franzén** och är nu sparad lokalt med VoD som eget projektobjekt. 2019 till 2022 och 2024 saknas. |
+| **Aurora Punks Development Services AB** | Sju räkenskapsår listas i Fortnox men export kräver e-legitimation. Årsredovisning 2023 och konkursbouppteckningen finns som PDF i mailen. |
 
-**Robert löser det genom att logga in i APDS i Fortnox med BankID och köra en SIE-export per år.**
-Då kan jag räkna färdigt utan schabloner.
+För APDS gäller att Fortnox landar på lobbyn med *"Bekräfta din identitet för att se dina siffror.
+Logga in med e-legitimation."* Lösenordssessionen räcker inte för det bolaget, medan CZP och
+Runatyr fungerar. **Robert löser det med BankID och en SIE-export per år.**
+
+För WLBS övriga år är vägen Henrik Franzén, samma väg som 2023-filen kom, alternativt
+konkursförvaltaren Carler.
 
 ---
 
 ## 7. Slutsats
 
-1. Simon står på **30 procent** och kommer att göra det, eftersom AP:s investering på
-   storleksordningen 956 000 SEK inte recoupas vid nuvarande intäktstakt.
+1. Simon står på **30 procent** och kommer att göra det. Bara WLBS 2023 och CZP:s förvärv 2022
+   summerar till över 425 000 kronor av AP-sidans investering, och tröskeln ligger runt 956 000.
 2. **3 029,76 SEK** är vad som är intjänat till honom på 2026 års två Headup-avräkningar, räknat
-   på faktiskt inflöde.
-3. Det som ligger i APDS sedan lanseringen i juni 2025 tillkommer och är okänt.
+   på faktiskt inflöde efter tysk källskatt.
+3. Det som ligger i APDS sedan lanseringen i juni 2025 tillkommer och är okänt tills huvudboken
+   går att läsa.
 4. Headup är långt från recoup, så utvecklarsidan stannar på 20 procent av Gross Revenue.
 5. Innan något skickas till Simon måste avtalspartsfrågan redas ut. Avtalet är Aurora Punks
-   avtal, Headup-avtalet är APDS avtal och APDS är i konkurs sedan 2025-12-12, och det är CZP som
-   fakturerar idag.
+   avtal, Headup-avtalet är APDS avtal, APDS är i konkurs sedan 2025-12-12, WLBS sedan
+   2024-09-25, och det är CZP som fakturerar idag.
 
 ---
 
@@ -238,10 +291,96 @@ Då kan jag räkna färdigt utan schabloner.
 | Nr | Post | Var den finns | Vem |
 |---|---|---|---|
 | 1 | APDS huvudbok 2020 till 2026 | Fortnox, kräver BankID | Robert |
-| 2 | Det **signerade** Neon Artery-kontraktet från oktober 2024, särskilt om "AP's investment" har ett belopp | Drive eller mailen 2024-10-18 | CorpBot när sökvägen är känd |
-| 3 | Headups kvartalsrapporter sedan 2025-06-19: Gross Revenue per plattform och aktuellt recoup-saldo mot 156 000 EUR | Headup, Dirk Gooding | Robert |
-| 4 | Exakt sammansättning av "Headup External Costs" | Annex 8 och milstolpsunderlagen | CorpBot |
-| 5 | Om PolyCrunch-fakturan D 78 på 8 150,63 avser VoD | fakturaunderlaget i Fortnox | CorpBot |
-| 6 | Förklaring till differensen 489 301 mot 439 301 i IP-affären 2022 | CZP-underlag, mailen | CorpBot |
-| 7 | Om Headups källskatteavdrag ska räknas på hela fakturan eller på 20 % av utvecklingskostnaden | Headup, Dirk Gooding | Robert |
-| 8 | Avtalspartsläget efter APDS-konkursen | konkursförvaltaren | Lawyer |
+| 2 | **WLBS SIE för 2022 och 2024**, för att stänga kostnadshistoriken före APDS tog över | Henrik Franzén, samma väg som 2023-filen | CorpBot begär, Robert godkänner |
+| 3 | Det **signerade** Neon Artery-kontraktet från oktober 2024, särskilt om "AP's investment" har ett belopp | Drive eller mailen kring 2024-10-18 | CorpBot |
+| 4 | Headups kvartalsrapporter sedan 2025-06-19: Gross Revenue per plattform och recoup-saldo mot 156 000 EUR | Headup, Dirk Gooding | Robert |
+| 5 | Förklaring till differensen 250 609 aktiverat mot 225 431 nedlagt i WLBS 2023 | WLBS-underlagen, Henrik | CorpBot |
+| 6 | Om PolyCrunch-fakturan D 78 på 8 150,63 avser VoD | fakturaunderlaget i Fortnox | CorpBot |
+| 7 | Förklaring till differensen 489 301 mot 439 301 i IP-affären 2022 | CZP-underlag, mailen | CorpBot |
+| 8 | Om Headups källskatteavdrag ska räknas på hela fakturan eller på 20 % av utvecklingskostnaden | Headup, Dirk Gooding | Robert |
+| 9 | Avtalspartsläget efter APDS- och WLBS-konkurserna | konkursförvaltaren Carler, Nils Åberg | Lawyer |
+
+---
+
+## 9. Uppskattning av APDS-perioden
+
+Robert har beslutat 2026-08-26 att APDS huvudbok inte kommer att gå att få fram. Det här avsnittet
+uppskattar den. **Alla siffror här är uppskattningar där inget annat anges.** Valutakurser hämtade
+2026-08-27 och korskontrollerade mot två källor: **EUR/SEK 11,08**, USD/SEK 9,52.
+
+### 9.1 AP-sidans investering, det som avgör om Simon står på 30 eller 50 procent
+
+| Post | Belopp | Status |
+|---|---:|---|
+| CZP förvärv av titeln 2022-02-08 | 175 000 | **bokfört**, ver A 7 |
+| WLBS utvecklingskostnad 2023, aktiverad | 250 609 | **bokfört**, ver A 148, projekt 53 |
+| CZP externa utvecklingskostnader 2026, PolyCrunch | 16 087 | **bokfört**, ver D 14 och D 78 |
+| APDS 2024 och 2025 | **cirka 514 000** | uppskattat, se nedan |
+| **Summa AP-sidans investering** | **cirka 956 000** | |
+
+Uppskattningen av APDS-delen är inte fri utan en restpost. Budgetunderlaget Andreea gav Simon
+2024-10-08 sätter totalbudgeten till 2 176 000 varav Headup finansierar cirka 1 220 000, vilket
+lämnar **956 000 på AP-sidan**. De 108 000 EUR Headup faktiskt betalade motsvarar 1 196 640 kronor
+till dagens kurs, vilket stämmer väl med de planerade 1 220 000. Restposten mot det som är bokfört
+i CZP och WLBS blir då cirka 514 000, och det är precis den period där APDS drev projektet: från
+Option C i oktober 2024 fram till lanseringen i juni 2025.
+
+Inom de 514 000 ligger bland annat licensavgiften på 450 000 till Neon Artery, som enligt Roberts
+bekräftelse 2026-07-15 redan är utbetald.
+
+**Slutsats:** recoupen ligger på cirka 956 000 kronor och AP-sidan har fått in i storleksordningen
+53 000, alltså knappt sex procent. **Simon står på 30 procent och gör det under överskådlig tid.**
+För att nå 50 skulle intäkterna behöva bli ungefär arton gånger så stora som hittills.
+
+### 9.2 Royaltyn från Headup, uppskattad för APDS-perioden
+
+Lansering 2025-06-19. Faktureringen flyttade till CZP i mars 2026. Det ger tre kvartal där
+royaltyn gick till APDS.
+
+| Period | Belopp | Status |
+|---|---:|---|
+| Q3 2025, lanseringskvartalet | 25 000 | uppskattat, lanseringskvartal ligger typiskt tre till fem gånger över den stabila nivån |
+| Q4 2025 | 8 000 | uppskattat |
+| Q1 2026, till bytet | 8 000 | uppskattat |
+| **Summa APDS-perioden** | **cirka 41 000** | uppskattat |
+| CZP faktura 58, 2026-02-26 | 5 437,75 | **bokfört** |
+| CZP faktura 80, 2026-05-05 | 6 560,48 | **bokfört** |
+| **Summa till AP-sidan sedan lansering** | **cirka 53 000** | |
+
+Den stabila nivån är hämtad ur CZP:s två faktiska avräkningar, som snittar cirka 6 000 kronor per
+kvartal.
+
+### 9.3 Vad Simon har att fordra, totalt
+
+| Period | Bas | Källskatt 15,8 % | Netto | **Simons 30 %** | Mot vem |
+|---|---:|---:|---:|---:|---|
+| APDS, juni 2025 till mars 2026 | 41 000 | −6 478 | 34 522 | **cirka 10 357** | konkursboet APDS |
+| CZP, 2026 | 11 998 | −1 890 | 10 108 | **3 030** | CZP |
+| **Summa** | **52 998** | **−8 368** | **44 630** | **cirka 13 387** | |
+
+**Den viktigaste raden är den översta.** Uppskattade 10 357 kronor avser en period där avtalsparten
+var Aurora Punks och betalaren APDS, och APDS är i konkurs sedan 2025-12-12. Det är en fordran i
+ett konkursbo, inte ett krav mot CZP. Simon behöver få veta det, och han behöver få veta det innan
+han räknar med pengarna.
+
+De 3 030 kronorna för 2026 är däremot en levande skuld hos CZP och kan betalas.
+
+### 9.4 Osäkerheten, ärligt
+
+1. **Lanseringskvartalet är den svagaste gissningen.** Kommer Headups faktiska kvartalsrapport in
+   ändras 10 357 direkt. Rapporterna finns hos Headup och Robert kan begära dem, det kräver inget
+   av APDS.
+2. De 514 000 för APDS är en restpost mot en budget från oktober 2024, inte ett bokfört belopp.
+   Blev det dyrare eller billigare än planerat förskjuts recoupen, men inte tillräckligt för att
+   trigga 50-procentsnivån.
+3. Om det **signerade** Neon Artery-kontraktet sätter en siffra på "AP's investment" gäller den
+   siffran före min härledning.
+4. Headup är fortfarande långt från sin egen recoup på 156 000 EUR, vilket motsvarar cirka
+   1 728 000 kronor. Utvecklarsidan stannar därför på 20 procent av Gross Revenue.
+
+### 9.5 Vad jag skulle skriva till Simon
+
+Redovisa de två faktiska CZP-avräkningarna och de 3 030 kronorna som är intjänade där. Var öppen
+med att perioden juni 2025 till mars 2026 fakturerades av APDS, att den uppskattas till cirka
+10 000 kronor för hans del, och att den frågan hanteras mot konkursboet. Erbjud att skicka Headups
+kvartalsrapporter så snart de kommit in, så att siffran blir exakt i stället för uppskattad.

@@ -310,3 +310,39 @@ Byggde `assistant/mcp-stdio-bridge.js`, en generell stdio-till-HTTP-brygga, och 
 - **Avtalsbannern:** Partner Center visar ett ogodkänt uppdaterat App Developer Agreement med passerad deadline 2026-04-16. Beslut att inte klicka: godkännandet signeras av kontots juridiska person, som fortfarande är White Lines Black Spaces AB. Testas empiriskt vid AE:s första submit.
 - **apb-055 eskalerad**, `high` -> `critical`. Xbox går före PlayStation i plattformskön; Nintendo ligger kvar först. Skäl: fem månaders tyst stoppad royalty plus en blockerad klient. Mailet till `idam@xbox.com` omskrivet med avtalsfrågan som femte punkt. **Det gamla utkastet `r-4088331379737235150` fanns inte kvar i Gmail**, innehållet räddades ur meddelandet. Nytt utkast `r-2743854592705768604`, ej skickat, CC till Reed och p2pvisup läggs till manuellt.
 - **apb-057 skapad:** GDPA- och PS Partners-onboarding för CZP, startad parallellt så den långa ledtiden börjar ticka. Ansökningsvägen lokaliserad genom autentiserad portalläsning: `register.playstation.net`, landval först. Full plan med datapaket, signaturbehörighet och färdig Help Center-text i `aurora_punks/drafts/ps_gdpa_onboarding_CZP_2026-08-27.md`. Ingenting registrerat hos Sony.
+
+### 2026-08-26 forts. — WLBS-bokföringen hittad i mailen, båda rapporterna uppdaterade
+
+Robert hade rätt: bokföringen låg i mailen, inte bara i Fortnox. Henrik Franzén skickade
+`WhiteLinesBlackSpacesAB20240617_111337.se` den 2024-06-17, sparad som
+`assistant/exports/sie/WLBS_2023_frmail.se`, 3 002 verifikat för räkenskapsåret 2023.
+
+WLBS projektmärkte på dimension 6. Objekt **53 "INTERNAL - Vessels Of Decay"**, 99 transaktioner:
+nedlagd kostnad **225 430,63**, aktiverat till 1010 med **250 609,00**. Differensen 25 178 är
+oförklarad. Objekt **16 "Internal - 1993"**, 118 transaktioner: intäkt 28 185,04, kostnad
+65 986,06, resultat **−37 748,10**.
+
+Även hämtat ur mailen: APDS årsredovisning 2023, APDS konkursbouppteckning `BPT_559320-7466.pdf`,
+WLBS bokslutsspecifikation 2023 och WLBS bokslutsbilagor som zip. **WLBS konkursutbrott
+2024-09-25**, enligt Henriks INK2-mail 2025-08-20.
+
+Koncernsammanställning i kUSD (Henrik, jan 2025, sheet `1ObjUMcG1vn2yeGKRkOZhlBfHGSqtxPgp4wJBIQIqsfE`):
+WLBS omsättning 231 / 725 / 1 967 / 2 175 / 776 för 2020 till 2024, APDS 48 / 48 / 534 / 651 / 1 107.
+
+### 2026-08-26 sent — uppskattning av APDS-perioden för VoD (CorpBot)
+
+Robert: APDS huvudbok går inte att få fram, uppskatta i stället. Avsnitt 9 tillagt i rapporten.
+
+AP-sidans investering härledd som restpost mot budgetunderlaget 2024-10-08: totalbudget 2 176 000
+minus Headups finansiering ca 1 220 000 ger **956 000**. Av det är 441 696 bokfört (CZP 175 000 +
+WLBS 250 609 + CZP 16 087) och cirka **514 000 uppskattat i APDS 2024 och 2025**, inklusive
+licensavgiften 450 000 till Neon Artery.
+
+Royalty till AP-sidan sedan lansering: 11 998 bokfört i CZP plus cirka **41 000 uppskattat i APDS**
+för juni 2025 till mars 2026. Simons 30 % på nettot blir cirka **13 400 totalt**, varav 3 030 är en
+levande skuld hos CZP och cirka 10 400 en fordran i APDS konkursbo.
+
+Recoup ligger på knappt sex procent. Simon står på 30 %, inte 50, och 50-nivån kräver ungefär arton
+gånger dagens intäkter.
+
+Valutakurser 2026-08-27, korskontrollerade: EUR/SEK 11,08, USD/SEK 9,52.

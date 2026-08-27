@@ -1,0 +1,21 @@
+# Curveball grant service (WP2.1). NOT INSTALLED YET.
+# Install:  cp grant-service.service ~/.config/systemd/user/ && systemctl --user daemon-reload
+#           systemctl --user enable --now grant-service
+[Unit]
+Description=Curveball grant service (server-authoritative LootLocker grants for P2P hosts)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/assistant/projects/curveball/grant-service
+ExecStart=/usr/bin/node src/server.js
+Restart=on-failure
+RestartSec=5
+# Secrets are read from the environment, never committed. LOOTLOCKER_SERVER_KEY absent
+# means the service runs against the in-memory mock.
+EnvironmentFile=-%h/projects/curveball/grant-service/.env
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

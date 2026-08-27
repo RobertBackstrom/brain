@@ -1,0 +1,12 @@
+{
+  "name": "curveball-grant-service",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Server-authoritative grant service for Curveball P2P (WP2.1)",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/"
+  },
+  "engines": { "node": ">=22" }
+}

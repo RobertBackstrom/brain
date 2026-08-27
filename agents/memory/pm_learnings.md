@@ -7,6 +7,97 @@ agent: pm
 
 # PM Agent Learnings
 
+
+## 2026-08-27 — En QA-ticket skapad strax efter ett möte är förmodligen samma fynd som mötet diskuterade (k2c)
+
+Vid avstämningen av playtestet 26 aug mot KAN stod jag i begrepp att skapa en ticket för
+"kvarglömd chimera-mask ger boxformad renderingsartefakt runt träd". Boardet hade redan **KAN-617,
+"Artifact renders behind tree on chimera landing site"**, skapad **kl. 15:54 samma dag** ur Discord
+#qa, alltså **54 minuter efter att playtestet slutade**. Rubrikerna liknar inte varandra ("artifact
+renders behind tree" mot "leftover mask"), och en dedup på sammanfattningstext hade missat paret helt.
+Det var **tidsstämpeln relativt mötet** som avgjorde: Robert rapporterade in i Discord det han just
+hade sett i playtestet.
+
+Rätt drag blev därför att **kommentera KAN-617 med rotorsaken** som playtestet hade tagit fram, i
+stället för att lägga en andra ticket bredvid. Ticketen var en symptombeskrivning; mötet hade svaret.
+
+Det här kompletterar dubblettmönstren från 19 och 26 aug. De handlade om att matcha på källänk och
+skapandeminut mellan bot-tickets. Det här är en tredje form: **samma person rapporterar samma fynd i
+två kanaler, mötet och QA-flödet, med olika ordval.** Fångas varken av textmatchning eller av
+källänk.
+
+**How to apply:** när du stämmer av ett mötesprotokoll mot boardet, filtrera först fram allt som
+skapades **inom ett par timmar efter mötets sluttid** och läs de tickets fullt ut, oavsett vad
+rubrikerna säger. Deltagarna rapporterar in direkt efteråt. Och när mötet bär rotorsaken till en
+befintlig symptomticket, är kommentaren leveransen, inte en ny ticket. Källa: K2C.
+
+
+
+## 2026-08-27 — Signeringskedjan saknade returledet, och ingen hade märkt det (k2c/apb)
+
+`opensign.js` skickar ut ett dokument för signering. `opensign-watcher.js` avancerar en ordnad
+kedja och meddelar Robert när allt är påskrivet. **Ingenting lämnade tillbaka den motsignerade
+PDF:en till motparten som bad om den.** Varje "please countersign and send it back"-tråd stannade
+alltså på ett manuellt steg som ingen hade skrivit ner att det fanns.
+
+Det här är **tredje gången samma form dyker upp på två dagar**: `--share` utan `--unshare` (26 aug),
+det sanktionerade skriptet som bara täckte lyckofallet (26 aug), och nu en signeringskedja som är
+komplett fram till sista hoppet. Lärdomen från 26 aug var "kolla om motsatsen finns". Den är för
+smal. Den rätta frågan är **"vart tar artefakten vägen när flödet är klart?"** Ett verktyg som
+producerar något åt en extern motpart är inte färdigt förrän leveransen tillbaka också är byggd.
+Inverser (dela/avdela) är ett specialfall av det.
+
+Byggde `assistant/opensign-return.js`: en kö av returjobb (docId, mottagare, Gmail-tråd), som pollar
+`getStatus`, hämtar den signerade PDF:en och svarar i den **ursprungliga mailtråden** med
+In-Reply-To/References plus `threadId`, idempotent via `sentAt`. Generiskt, inte bundet till de två
+avtalen det byggdes för.
+
+**How to apply:** när du kopplar in ett nytt utåtriktat flöde, rita hela vägen artefakten går, inklusive
+sista hoppet tillbaka till människan som väntar. Om sista hoppet är "någon minns att göra det manuellt"
+är flödet inte byggt. Källa: K2C + AP.
+
+
+## 2026-08-27 — En motparts signaturblock kodar deras signeringsrätt, inte vår (apb)
+
+Space Rock Games MNDA (Kindrik-mall, nyzeeländsk) har **en** signaturplats per part: signatur, linje,
+"Print full name of authorised signatory". Det är rätt för NZ och UK, där en behörig firmatecknare
+räcker. **AP AB tecknas två i förening.** Roberts signatur ensam i den rutan hade sett komplett ut
+och varit ogiltig som bindande för AP AB.
+
+Fel svar: klämma in två namn på en rad, eller signera ensam och hoppas. Rätt svar: **spegla mallens
+egen cellgeometri en gång till** och lägga till en rad som förklarar varför. Jag mätte offseterna i
+motpartens eget block (etikett, namn +20pt, "Print full name" +51/+61pt, hjälplinjer 19pt över
+etiketten och 12pt under namnet) och byggde en identisk andra cell för Mattias, plus en kursiv rad i
+vänsterkolumnen: "Aurora Punks AB is bound by two authorised signatories acting jointly." Motparten
+ser då direkt varför dokumentet har tre signaturer i stället för två.
+
+Två detaljer som gjorde jobbet: **rendera sidan till PNG och titta på den**, textextraktion visar inte
+att en pålagd rad krockar med en linje (min första not gjorde det). Och **mät mot motpartens egen
+befintliga cell** i stället för att gissa avstånd, då blir tillägget omöjligt att skilja från mallen.
+
+**How to apply:** innan du fyller i en utländsk avtalsmall, kontrollera om den svenska partens
+firmateckning får plats i blocket den erbjuder. "Två i förening" mot en enrads-mall är en
+layoutändring, inte en ifyllnad, och den ska göras synligt och förklarat i dokumentet, inte i
+följemailet där den försvinner. Källa: AP AB / Space Rock Games.
+
+
+## 2026-08-27 — Efter en servermigration ljuger både loggen och timerlistan om vad som kör (devops/k2c)
+
+`opensign-watcher.log` på Nitro slutade 21 aug, och `~/.config/systemd/user/` har ingen
+`opensign-watcher.timer`. Båda signalerna läser som "watchern är död", vilket hade varit en riktig
+blockerare: utan den avanceras aldrig ett ordnat signeringsflöde till andra undertecknaren.
+
+Den var inte död. `assistant/migrate-timers-to-nitro.sh` har en **explicit ej-flyttad-lista** med
+motivering: *"opensign-watcher — OpenSign container lives on edge."* Watchern kör kvar på
+Hetzner-boxen med flit, mot samma OpenSign-instans.
+
+**How to apply:** efter bare-metal-migrationen är "finns timern på den här maskinen" fel fråga. Den
+rätta är "vilken maskin äger den här tjänsten", och svaret står i migrationsskriptets MOVE-lista och
+dess kommenterade ej-flyttad-block, inte i lokala loggar eller `systemctl --user list-timers`. Kolla
+den listan **innan** du drar slutsatsen att en poller är borta, och innan du bygger om något som redan
+kör någon annanstans. Källa: K2C.
+
+
 ## 2026-08-26 — Skriv aldrig "verify against a fresh registreringsbevis" utan att först söka efter det (k2c)
 
 Jag lämnade CZP:s säte och firmatecknare som en öppen blankett i ett anställningsavtal, ärvd rakt av
