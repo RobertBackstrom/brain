@@ -2,7 +2,7 @@
 project: tkr
 status: open
 priority: high
-updated: 2026-08-26
+updated: 2026-08-27
 created: 2026-08-07
 type: blocker
 owner: Robert
@@ -66,6 +66,22 @@ otherwise. The re-mint above is what settles this. Until then the true equity an
 are both unconfirmed.
 
 **Activity:**
+- [2026-08-27] **Ticker**: Daily scan, zero cards - **setup-limited, not budget-limited**. Budget was a
+  genuine 1 (0 cards at `trade_status=awaiting_confirm`; worst case 1 open lot, 35,500 PDX.ST, whose
+  141 GTC target is now near-certainly filled with PDX at 144). Whole watchlist screened; the
+  active-resistance correction killed the field again (EMBRAC-B 2.32 vs 7.73 needed against the real
+  76 shelf rather than the single-bar 80.8 earnings spike; ERIC-B 3.3 vs 5.06 against the 99 shelf;
+  META, RBLX, SPCX, TSLA, APP all failing once the pre-crash high is replaced by the recovery band).
+  MTG-B, EG7, G5EN and SF fail the turnover screen at SIM scale (a 4.44m SEK order is 19% / 141% /
+  497% / 36% of ADV). EVO remains excluded - the Candle Lake tender is live, board recommends
+  REJECTING the 695 bid, acceptance runs to 09-15 and settlement from 09-23, with the stock at 832.6,
+  i.e. ~20% above the offer. **NVDA is the one to watch tomorrow:** it reported a large Q2 FY27 beat
+  after last night's close and is the only name whose geometry passes with no gap in the lookback, but
+  the feed's last bar (`asOf 2026-08-26T20:00:00Z`) predates the announcement, so it cannot be priced
+  today. It goes to the top of the 08-28 scan once a real post-earnings bar prints.
+  **Saxo SIM token still 0 bytes, mtime unmoved at Jul 4 23:06 - day 54.** Sizing still works off the
+  cached 11,095,039 SEK basis, so cards can be drafted, but nothing can place until:
+  `node assistant/saxo.js auth-url` -> approve in browser -> `node assistant/saxo.js exchange "<redirected-url>"`.
 - [2026-08-17] **Ticker**: Second clean-data scan; posted `tkr-015-evo-st-buy-entry` (EVO.ST, 6013
   @ 738, target 786, stop 719, R:R 2.53). `tkr-014` expired unconfirmed 08-14 18:03Z - price broke
   out rather than filling 730, so the entry is re-set on the breakout retest. **Saxo SIM token is

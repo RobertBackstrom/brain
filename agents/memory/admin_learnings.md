@@ -11,6 +11,157 @@
 
 <!-- Append new learnings with: learning, source project, date, category -->
 
+## 2026-08-27 — Registreringsstatus (F-skatt/moms) hämtas utan BankID via Skatteverkets öppna e-tjänst — allabolag ljuger [apb / apb-056]
+
+**Project:** Aurora Punks | **Category:** skatt, playwright, verifieringsmetod, öppna-källor
+
+**Lärdomen som sparar en BankID-runda:** Skatteverkets e-tjänst **"Hämta företagsinformation"**
+svarar på om ett bolag är godkänt för F-skatt, registrerat för moms och registrerat som
+arbetsgivare — **öppen för alla, ingen e-legitimation**. Svaret kommer per mail, alltså läsbart
+med Gmail-MCP direkt efteråt. Det gör hela frågan "har bolag X F-skatt?" autonom. Ingen anledning
+att be Robert logga in på verksamt för den frågan.
+
+**Sidan:** `https://skatteverket.se/privat/sjalvservice/allaetjanster/tjanster/hamtaforetagsinformation.4.3810a01c150939e893f3e69.html`.
+Formuläret ligger **inbäddat på sidan**, inte bakom någon "Starta tjänsten"-länk, och är byggt av
+**web components med shadow DOM** (`hamtaforetagsinformation-skv-wizard`). Konsekvenser för
+Playwright:
+1. `$$eval('input,button')` på light DOM hittar **ingenting** — bara sidans sök- och menyfält.
+   Man måste rekursera genom `el.shadowRoot`.
+2. Fälten har stabila id:n: `input#PERSONORGNUMMER_FIELD_NAME_ID`, `input#EPOST_FIELD_NAME_ID`.
+   `page.fill()` med de selektorerna funkar (Playwright piercar öppna shadow roots).
+   Obs: id:t sitter på **både** custom-elementet och inner-inputen, så prefixa med `input#`.
+3. Samtyckesrutan har genererat id (`skv-selection-control__XXXX`) — matcha på regex, inte exakt.
+4. **Knapparnas text ligger i en slot, så `innerText` är tom.** Klicka på klassen i stället:
+   `button[class*="--primary"]` som är `offsetParent != null`. Wizarden är tre steg
+   (Gör en beställning → Granska och skicka in → Kvittens) och samma primary-klick tar dig genom
+   alla. Kvittensen säger "Vi har tagit emot din förfrågan".
+5. Cookie-bannern måste bort först: `#accept-all_button`.
+6. `sjalvservice.skatteverket.se` finns inte som värdnamn (`ERR_NAME_NOT_RESOLVED`), och den
+   gamla `/foretag/etjansterochblanketter/...hamtaforetagsinformation`-URL:en är **404**. Rätt väg
+   är `/privat/sjalvservice/...`.
+7. Nod-tips: `require('playwright')` löses relativt **skriptets** katalog, inte cwd. Ett skript i
+   `/tmp` hittar inte modulen även om du `cd`:at till `assistant/`. Kör med
+   `NODE_PATH=/home/assistant/projects/assistant/node_modules`.
+
+**Fyndet i sak:** Aurora Punks AB, 559256-9718 — **Godkänd för F-skatt: NEJ. Registrerad för moms:
+NEJ** (svar 2026-08-27 13:40 från `foretagsuppgifter@skatteverket.se`). Det bekräftar premissen i
+Lawyer-PM:et 2026-07-17 ("CZP fakturerar bara för att AP nekats F-skatt") och att hela
+paying-agent-strukturen i K2C-memot 2026-05-04 fortfarande vilar på ett öppet ärende.
+
+**Varningen:** **allabolag.se listade AP som "Registrerad för: Moms, F-skatt, Arbetsgivaravgift"**
+och angav Skatteverket som källa. Det är fel. allabolags registreringsblock släpar eller speglar
+nyregistreringen från 2020 — använd det aldrig som underlag för om en motpart har F-skatt. Det
+ligger i linje med den äldre lärdomen att allabolag släpar efter Bolagsverket på styrelsedata.
+Gå alltid till Skatteverkets egen e-tjänst.
+
+**Kvar bakom BankID:** själva **ärendestatusen** för ansökan (avslagsdatum, motivering, ev.
+överklagandehänvisning) ligger på Skatteverket Mina sidor / verksamt.se och kräver
+e-legitimation. Playwright kan inte signera med BankID — den delen måste Robert hämta, eller så
+ringer man Skatteverkets företagsskattelinje.
+
+**Tags:** F-skatt, moms, Skatteverket, hämta-företagsinformation, shadow-DOM, web-components, Playwright, allabolag-opålitlig, BankID-gräns, konkurssmitta, APDS, paying-agent, apb-056
+
+**Tillägg samma dag — firmateckning i förening styr HELA kanalvalet mot Skatteverket, inte bara
+signaturen.** Robert påpekade att AP:s firma tecknas i förening. Det är rätt, och det har tre
+följder som är lätta att missa och som gäller varje bolag med föreningsteckning:
+1. **Samtliga som tecknar i förening måste underteckna ansökan.** En ledamot ensam kan inte skicka
+   in skatte- och avgiftsanmälan, oavsett om det sker via verksamt.se eller på papper.
+2. **Personer som tecknar i förening kan inte registreras för e-tjänsten** för moms- och
+   arbetsgivardeklarationer. De måste i stället utses till **deklarationsombud (SKV 4809)**.
+   Behörigheten firmatecknare/ombud i e-tjänsterna styrs av **SKV 4801**.
+3. **Pappersvägen är den rena vägen vid föreningsteckning:** **SKV 4620** (Företagsregistrering,
+   skatte- och avgiftsanmälan), undertecknad av två ledamöter. Ändringar går på **SKV 4639**.
+
+**Gränsdragningen som håller arbetet igång:** att *ringa* Skatteverket och fråga vad avslagsgrunden
+var är ingen rättshandling och kräver ingen medtecknare. Blockeringen träffar inlämnandet, inte
+informationsinhämtningen. Fråga alltid "är detta en rättshandling eller en fråga?" innan du parkerar
+ett ärende på firmateckning.
+
+**AP:s lydelse (registreringsbevis, senaste registrering 2026-04-21):** *"firman tecknas av
+styrelsen; firman tecknas två i förening av ledamöterna; dessutom har verkställande direktören rätt
+att teckna firman beträffande löpande förvaltningsåtgärder."* Robert är ledamot, varken VD eller
+ensam firmatecknare. Varning: registret listar Andreea Chifu som VD medan masterbrain säger att hon
+avgick som VD under 2025 — om avgången aldrig anmäldes till Bolagsverket står hon kvar. **Luta dig
+aldrig mot VD-spåret utan färskt registreringsbevis.**
+
+**Tags (tillägg):** firmateckning-i-förening, SKV-4620, SKV-4639, SKV-4801, SKV-4809,
+deklarationsombud, rättshandling-vs-fråga, VD-i-registret-vs-verkligheten
+
+
+## 2026-08-27 — Plattformens entitetsnamn bor i flera system som tystnar var för sig, och "statements kommer" betyder inte "pengar kommer" [apb / apb-055]
+
+**Project:** Aurora Punks (Xbox-entitetsflytten) | **Category:** plattformsadministration, payee, verifieringsmetod
+
+**Huvudlärdomen, generell för varje plattform:** ett bolagsnamn hos en plattform är inte **ett**
+fält, det är tre till fyra fält i tre olika system som uppdateras var för sig och tystnar var för
+sig. På Microsoft ligger de så här, och de var alla oense med varandra:
+
+| Lager | System | Vad som stod där |
+|---|---|---|
+| Company account | partner.microsoft.com | White Lines Black Spaces AB |
+| Avtalen | Adobe Sign (TLA, GDK-addendum) | WLBS AB dba Aurora Punks |
+| Supplier/payee | SupplierWeb + royalty.microsoft.com | APDS AB, vendor 0003066327 |
+| Legacy vendor | SupplierWeb | WLBS AB, vendor 0003039381 |
+
+**Att fråga "vilket bolag står kontot i" utan att säga vilket lager man menar ger fel svar.** Fråga
+per lager. Och notera att vendorposten aldrig döptes om: MS skapade en **ny** supplier-profil vid
+förra entitetsbytet och lät den gamla ligga kvar. Räkna alltså inte med att en namnändring är den
+mekanism plattformen använder, även när det är den man ber om.
+
+**Den dyra lärdomen: kontrollera betalningsflödet, inte rapportflödet.** Royalty-*statements* från
+Microsoft fortsatte komma varje månad hela vägen till 17 aug 2026, så allt såg friskt ut. Men
+`Microsoft Payment Advice` (avsändare `MSSADM@microsoft.com`) upphörde efter **13 mar 2026**. Fem
+månaders utbetalningsstopp, helt tyst, ingen avvisningsnotis. Nintendo skrek `RSN REGULATORY
+REASON`, Microsoft sa ingenting alls. **Metod som avslöjar det på en minut:** sök på
+`subject:"Microsoft Payment Advice"` (eller plattformens motsvarande betalningsavi) och jämför
+serien mot statement-serien. Två serier, inte en. Ett glapp mellan dem är ett betalningsstopp.
+Gör den kontrollen på varje plattform vid varje entitetsärende, den är gratis.
+
+**Plattformens egen förklaring låg i en två år gammal tråd.** Reed Hunt, 2024-08-14: *"Whenever
+there's a legal name or business address mismatch in those two places on our side [SupplierWeb
+och avtalen], the team is unable to send royalty payments."* Åtgärden Microsoft då accepterade var
+**ett signerat dokument på företagets brevpapper som anger gammalt och nytt värde explicit**, inte
+en kontoflytt och inte en produktmigrering. Det är ett billigt instrument som löser en dyr
+blockering, och det är värt att erbjuda proaktivt. **Generellt: sök i den egna mailhistoriken
+efter förra gången samma plattform löste samma klass av problem innan du ber dem beskriva
+processen.** Motparten har ofta redan skrivit ned svaret åt oss.
+
+**Tredje mönstret, och det är ett återfall:** RoyCare gav 2026-05-01 en rak hänvisning
+(`p2pvisup@microsoft.com` för byte av juridisk person, DUNS och bank) och stängde ärendet.
+Ingenting skickades dit på fyra månader. **En hänvisning till ett annat team är inte ett svar,
+det är en öppen åtgärd.** När en supportkedja slutar med "kontakta X", ticketisera X samma dag,
+annars dör spåret när ärendenumret stängs. Samma form som Reeds direkt-invite-förslag i `swa-002`
+som låg orört från 2026-06-25 till 2026-08-17.
+
+**Fjärde: utbetalningar som gick till ett konkursbolag efter konkursdagen ska återvinnas i en
+befintlig avstämning, inte i ett eget ärende.** Fyra MS-advices (15 dec 2025, 13 jan, 13 feb,
+13 mar 2026) landade hos APDS bo. Atomic Elbow körde redan en post-för-post-avstämning mot samma
+förvaltare för samma period för sin andel. Att öppna ett parallellt spår mot en förvaltare som
+redan sitter med underlaget är dubbelarbete och sämre position. **Kolla alltid om en annan part
+redan driver samma återvinning mot samma bo.**
+
+**Ordningsläxa:** planen hade satt "läs portalen först" och gjort allt annat beroende av
+inloggningen, som var blockerad på creds. Men payee-halvan krävde ingen inloggning alls. **När ett
+spår är gated på en credential, leta efter den del av spåret som inte är det innan du parkerar
+hela ärendet.** Här låg pengarna i den ogatade halvan.
+
+**Tags:** Microsoft, Xbox, Partner Center, SupplierWeb, RoyCare, p2pvisup, payee, vendor,
+entity-transfer, APDS, WLBS, CZP, konkurs, betalningsstopp, verifieringsmetod
+
+## 2026-08-27 - Att en bilaga finns är inte samma sak som att den håller, och en rutinbegäran har ett datum den inte får skickas före [apb / apb-054, apb-051]
+
+**Project:** Aurora Punks (Nintendo-entitetsflytten APDS till CZP) | **Category:** process, avtalsgranskning, motpartstaktik, verktygsfällor
+
+**Kärnan: sändchecklistan kontrollerade att avtalen fanns i Drive, inte vad de säger när motparten läser dem.** Ett mail till Nintendo licensing låg klart att skickas med två signerade avtal bifogade och en checklista som var avbockad på "handlingarna finns". Att extrahera båda PDF:erna och läsa dem som en granskare hos motparten tog tio minuter och hittade fyra saker, varav en hade kunnat skapa en ny fordran åt en pågående processmotpart. **Regel: innan en handling bifogas en extern begäran, läs den utskriven och kontrollera fyra saker.** (1) **Identifierare mot det mailet påstår.** Boavtalet skriver säljarens org.nr fel på två ställen i den operativa texten, preambeln och den punkt som definierar "Bolaget", medan rätt nummer förekommer en enda gång i en bilaga sammanställd av en utomstående. Vår motpart matchar mot kontots registrerade nummer. (2) **Hänvisningar till bilagor som inte ligger med.** Det andra avtalets punkt 1 överlåter "the assets mentioned in the enclosed addendum" och något addendum finns inte i handlingen, i just det led som ska belägga köparens fång. Motargumentet låg i punkt 2 i samma avtal, men det måste skrivas ut, annars är standardsvaret "please send the addendum" och tre veckor är borta. (3) **Villkor som inte är uppfyllda.** Äganderättsförbehåll plus "all rights are transferred once proof of payment is done", med en obetald slutrat. Volontera aldrig det, men vet att det står där. (4) **Adresser och datum som skiljer sig** från det mailet anger. Föregrip varje avvikelse i en mening. Att själv peka ut ett fel läses som noggrannhet, att bli påkommen med det läses som en diskrepans i anspråket.
+
+**En konkursköpares fordringar följde inte med, och det styr hur payee-frågan får formuleras mot varje plattform.** Rörelseöverlåtelseavtalet undantar uttryckligen "likvida medel och fordringar" och tillträdesdagen är en bestämd dag. Plattformsintäkt upplupen före tillträdet är därmed en fordran som stannade i konkursboet. Utkastet skrev "there is an outstanding balance on the account" som vi vill ha löst, alltså ett skriftligt anspråk, fyra dagar före ett förlikningssammanträde där samma bo driver återvinning mot köparbolaget. **Fråga aldrig efter "the outstanding balance" i ett entitetsbyte. Fråga från vilket datum utbetalningar går till den nya entiteten och låt plattformen sätta brytpunkten.** Samma svar löser payee-frågan, ger det datum vi faktiskt behöver, och skriver inte ihop en ny post åt motparten. Gäller varje plattform i en konkursköpt portfölj.
+
+**En rutinåtgärd som "kostar ett mail" kan ändå ha ett datum den inte får skickas före.** Åtgärdslistan bar "be förvaltaren om skriftlig rättelse av org.nr". Förvaltaren är motpart vid ett sammanträde fyra dagar senare. En begäran om ett intyg som stärker vårt fång, inkommen då, talar om för honom att hela plattformsspåret hänger på hans medverkan, alltså en hävstång han inte hade. **Stäm av varje begäran om intyg, bekräftelse eller rättelse mot processkalendern innan den går, även när den är ren administration.** Rättelsen behövdes dessutom inte för att kunna skicka.
+
+**Verktygsfälla: skapa aldrig om en Gmail-draft som bär headers verktyget inte kan skriva.** Draften hade `Cc` satt, och `gmail_create_draft` har inget CC-fält samtidigt som den raderar befintliga drafter på samma tråd. Att "förbättra" draften genom att skapa om den hade tyst tappat CC:n till den namngivna handläggaren. **Läs headern innan du rör en färdig draft. Leverera textändringar som klipp-och-klistra-block i memot i stället för att bygga om draften.** Samma sak gäller bilagor, inReplyTo och trådtillhörighet. Och en avbockad checklistpunkt är värd att verifiera mot verkligheten, inte mot listan: punkten "CC saknas" var redan åtgärdad och hade annars gett dubbel CC.
+
+---
+
 ## 2026-08-26 — En domstolskallelse kan ligga i Drive utan att någon vet om den, och "ingen anmärkning registrerad" har ett bäst-före-datum [apb / apb-051, apb-053]
 
 **Project:** Aurora Punks (APDS-konkursen K 4429-25) | **Category:** process, ärendebevakning, självrättelse

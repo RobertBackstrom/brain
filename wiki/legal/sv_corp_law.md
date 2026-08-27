@@ -141,6 +141,57 @@ Tillämpning på APDS/WLBS-ärendena: `aurora_punks/drafts/lawyer_preskription_o
 2. K 4429-25 (APDS): bevakning senast 2026-07-21; **anmärkning senast 2026-08-11** (gäller förvaltaren OCH borgenärer, och är boets fristlösa väg att göra återvinning gällande defensivt, KL 4:19-20); **förlikningssammanträde 2026-09-01 kl. 09.30** om anmärkningar framställts; beslutet ej överklagbart.
 3. KL 4:20 1 st (lydelse per SFS 2025:796, verifierad 2026-08-05): återvinningstalan väcks inom **ett år från konkursbeslutet** (APDS: 2025-12-12 → 2026-12-12, helgdagsförskjutning till nästa vardag), alternativt sex månader från kännedom. Anmärknings-/invändningsvägen har ingen egen frist men styrs i praktiken av anmärkningsfristen i förfarandet.
 
+## Vad ett konkursbo KAN och INTE KAN förlika bort (verifierat mot lagtext + KL 4:19-20, 2026-08-27)
+
+Återkommande klientfråga vid varje uppgörelse med en förvaltare: "kan vi köpa oss fria från allt?"
+Nej. Anspråken delar sig efter **vem som äger dem**, och förvaltaren kan bara efterge boets egna.
+
+**Boets, alltså förhandlingsbart med förvaltaren:**
+
+1. `KL 4 kap.` återvinning. Boet har exklusiv talerätt; enskild borgenär får väcka talan bara om
+   förvaltaren avstår (`KL 4:19` 2 st).
+2. `ABL 17:6` återbäring och `ABL 17:7` bristtäckning vid olovlig värdeöverföring. Bolagets anspråk,
+   förvaltas av boet.
+3. `ABL 29:1` skadestånd, **talan för bolagets räkning**. Boet får föra den även om ansvarsfrihet
+   beviljats (`ABL 29:12`).
+
+**Inte boets, alltså INTE förhandlingsbart oavsett vad klienten är beredd att betala:**
+
+4. `ABL 25:18` medansvar vid underlåten KBR. Görs gällande av **varje enskild borgenär vars egen
+   fordran uppkom i ansvarsfönstret**, inte av boet kollektivt. Överlever boavslutet inom `ABL 25:20 a`.
+5. `SFL 59:13` företrädaransvar. Statens anspråk, drivs av Skatteverket i förvaltningsdomstol.
+6. `ABL 29:1` borgenärs eller tredje mans **egen** talan för skada som drabbat denne direkt.
+
+**Praktisk konsekvens för uppgörelsetext:** en slutuppgörelse med boet ska räkna upp `KL 4 kap.`,
+`ABL 17 kap.` och `ABL 29 kap. för bolagets räkning` uttryckligen. Att bara skriva "anmärkningen
+återkallas" eller "samtliga mellanhavanden regleras" lämnar återvinningstalan öppen. Och lova aldrig
+klienten fred från 25:18 eller företrädaransvar via förvaltaren, hur generöst budet än är.
+
+## Anmärkningsvägen är fristlös men DEFENSIV (KL 4:19-20), och det avgör vad en uppgörelse är värd
+
+(APDS K 4429-25, anmärkning aktbil 58 mot CZP:s bevakning; lawyer 2026-08-27)
+
+1. `KL 4:19` 1 st räknar upp tre sätt att påkalla återvinning: **(1)** talan vid allmän domstol,
+   **(2)** anmärkning mot bevakning eller bestridande vid utdelningsförfarandet, **(3)** invändning
+   mot annat yrkande mot boet.
+2. `KL 4:20` 1 st: **ettårsfristen från konkursbeslutet gäller bara väg (1)** och borgenärstalan
+   enligt 19 § 2 st, som väcks genom stämning vid konkursdomstolen. Väg (2) och (3) är **fristlösa**
+   (`4:20` 2 st). Därför framställs anmärkningar ofta på anmärkningsfristens sista dag: det är boets
+   billiga, fristlösa väg in.
+3. **Men väg (2) är defensiv.** Bevakningsförfarandets föremål är borgenärens rätt till utdelning.
+   Utfallet är att bevakningen fastställs eller sätts ned, inte att borgenären åläggs betala. En
+   förvaltare som vill ha kontanter tillbaka måste stämma inom `4:20` 1 st. Kontrollera alltid
+   förvaltarens egen formulering: skriver han att återvinningsfordran "ska avräknas från
+   utdelningsfordran" har han valt det defensiva spåret.
+4. **Värderingskonsekvensen, som klienten nästan alltid missar.** Är boet insolvent i förhållande
+   till bevakat belopp (konkurskostnader går före) är borgenärens bevakning värd noll. Då kostar
+   anmärkningen ingenting att förlora, och den enda reella exponeringen är stämningsfristen. **Räkna
+   ut boets faktiska utdelningsprocent innan du rekommenderar ett förlikningsbud**, annars betalar
+   klienten för att skydda något värdelöst och lämnar det farliga öppet.
+5. Följd för uppgörelsen: den ska formuleras som avstående från **återvinningsanspråket**, inte som
+   återkallande av anmärkningen. Annars ger klienten upp bevakningen och står kvar med
+   stämningsrisken till fristens utgång.
+
 ## ABL 21 kap. låneförbud — närståendekretsen i korsägda strukturer
 
 `ABL 21:1` förbjuder penninglån till bl.a. (p 1) den som äger aktier i bolaget **eller i annat bolag i samma koncern**, och (p 5) juridisk person över vilken sådan person har bestämmande inflytande. Koncernundantaget i `21:2` kräver äkta koncern enligt `ABL 1:11` (majoritetskontroll i moder-dotter-kedja). **Ett holdingbolag med minoritetspost i moderbolaget (t.ex. 30 %) är INTE i samma koncern** — koncernundantaget är otillämpligt; kvar finns bara det kommersiella undantaget (lån för gäldenärens rörelse av affärsmässiga skäl). Sanktioner: ogiltighet/återbetalning + straff (`ABL 30:1`), åtalspreskription 2 år. (APDS→CZP-utlåningen 2025; lawyer 2026-08-05.)

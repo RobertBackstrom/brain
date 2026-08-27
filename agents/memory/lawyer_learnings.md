@@ -13,6 +13,100 @@
 <!-- Categories: swedish_corp | swedish_tax | swedish_employment | swedish_ip | gdpr | contract_review | process | tooling -->
 <!-- If Robert corrected a substantive legal point: tag `correction` and write the corrected position prominently. -->
 
+## 2026-08-27 - Räkna ut vad bevakningen faktiskt är värd innan du prissätter en förlikning, och kontrollera VEM som äger anspråket
+**Projekt:** apb/czp (APDS K 4429-25, anmärkning aktbil 58 mot CZP:s bevakning, apb-053) · **Kategori:** swedish_corp + process · **Taggar:** KL 4:10, KL 4:19, KL 4:20, KL 9:6, ABL 25:18, ABL 17:7, ABL 29:1, SFL 59:13, bevakningsförfarande, förlikningssammanträde, återvinning
+
+1. **Klienten var beredd att betala sig ur en process där han inte kunde förlora pengar.** Robert
+   läste anmärkningen mot CZP:s bevakning som ett kontantkrav på 192 000 kr. Det var det inte.
+   Förvaltaren hade valt anmärkningsvägen (`KL 4:19` 1 st p 2), som är fristlös men **defensiv**:
+   utfallet är att bevakningen sätts ned, inte att borgenären åläggs betala. Hans egen skrivning
+   avslöjade valet ordagrant, "ska avräknas från Borgenärens utdelningsfordran". Kontantkravet
+   kräver stämning enligt `KL 4:20` 1 st, här med frist 2026-12-14. **Regel: läs alltid vilken av
+   de tre vägarna i 4:19 förvaltaren valt, och citera hans egen yrkandeformulering som bevis.**
+2. **Och bevakningen som skulle "försvaras" var värd noll.** Boet hade 301 765 kr mot 6 076 746 kr
+   bevakat, konkurskostnaderna före. Utdelningsprocenten är den första siffran som ska räknas fram
+   i varje bevakningstvist, före varje juridisk analys. Utan den rekommenderar man klienten att
+   betala för att skydda något värdelöst och lämnar den riktiga risken, stämningsfristen, öppen.
+   **Följd för uppgörelsetexten:** den ska skrivas som avstående från *återvinningsanspråket*, inte
+   som återkallande av anmärkningen. Annars ger klienten upp bevakningen och behåller risken.
+3. **Ägarfrågan avgör vad förvaltaren överhuvudtaget kan sälja.** Boet kan efterge `KL 4 kap.`,
+   `ABL 17:6/17:7` och `ABL 29:1` för bolagets räkning. Boet kan **inte** efterge `ABL 25:18`
+   (varje enskild borgenärs eget anspråk), `SFL 59:13` (statens) eller borgenärs egen `ABL 29:1`.
+   Robert kom fram till detta själv innan jag hann svara, och han hade rätt. **Skriv aldrig in en
+   "köp bort allt"-ambition i ett bud till en förvaltare som inte äger anspråken.** Ny KB-sektion i
+   `wiki/legal/sv_corp_law.md`.
+4. **Taktisk följd som är lätt att missa:** ta inte upp 25:18 med förvaltaren. Han kan ändå inte
+   binda borgenärerna, och frågan signalerar bara att klienten ser exponeringen. Här låg den
+   verkliga 25:18-risken hos två helt andra parter, Skatteverket (53 % av massan) och WLBS
+   konkursbo.
+5. **Förvaltarskrifter innehåller sakfel som är värda att leta efter.** Här: "fem betalningar" följt
+   av sex uppräknade, och påståendet att underlag "inte påträffats" när de daterade lånemotposterna
+   låg i den huvudbok förvaltaren själv lämnat ut. Faller de 107 000 kr som var låneåterbetalning
+   bort understiger resterande 85 000 kr tioprocentsgränsen i `KL 4:10`, alltså brister
+   avsevärdhetsrekvisitet. **Stäm alltid av förvaltarens beloppslista mot gäldenärens huvudbok per
+   konto, inte bara mot datum och summa.**
+7. **Underrättelsen till GÄLDENÄREN är den billigaste vägen att räkna alla anmärkningar i en
+   konkurs.** Rätten skickar en underrättelse till konkursgäldenären om förlikningssammanträdet och
+   bifogar **samtliga** anmärkningsskrifter, eftersom gäldenären har rätt att yttra sig över varje
+   tvistig bevakning. Här bifogade aktbilaga 64 både 57 och 58, vilket bevisade att bara två
+   borgenärer var anmärkta och att klientens *privata* bevakning stod oanmärkt. **Regel: när en
+   klient är både borgenär och företrädare för gäldenären, läs gäldenärsexemplaret först. Det ger
+   hela tvistebilden, borgenärskallelsen ger bara den egna.**
+8. **Jämför förvaltarens anmärkningar mot varandra för att skilja standardtext från substans.**
+   Aktbilaga 57 (mot ABEX) och 58 (mot CZP) hade identisk `KL 9:6`-öppning ord för ord, men 57 var
+   *reservationsvis* och saknade andrahandsgrund. Slutsats: 9:6-grunden var förvaltarens rutinöppning
+   mot flera borgenärer, och den verkliga exponeringen låg i `KL 4:10`. Utan jämförelsen hade
+   klienten lagt förhandlingskrutet på fel grund.
+
+6. **En begäran om tidredovisning besvaras med avtalskonstruktionen, inte med rekonstruerade
+   tidsedlar.** Fast månadsarvode betyder att tidredovisning aldrig krävts och inte finns. Men
+   "den finns inte" räcker inte som ensamt svar: det förvaltaren egentligen vill ha är bevis för
+   utförd prestation, och det levereras med styrelsehandlingar, korrespondens, ingångna avtal och
+   leveranser.
+
+## 2026-08-27 — Samtycke är inte disposition: "räcker klausulen?"-frågor ska dekomponeras per rättshandling
+**Projekt:** k2c (Simon Jakobsson CZP-anställning, k2c-051) · **Kategori:** swedish_ip + swedish_employment + process · **Taggar:** URL 28 §, LAS 6 c §, SemL 5/16b/30 §§, AvtL 36/38 §§, koncernintern överlåtelse, SÄVA, uttagsbeskattning
+
+1. **Frågan "räcker §8.7 eller behövs ett separat koncerninternt avtal?" var fel ställd, och rätt
+   svar var att visa varför: klausulen och avtalet gör olika saker.** En vidareöverlåtelseklausul i
+   ett anställningsavtal är den anställdes SAMTYCKE (krävs pga `URL 28 §`: utan avtal får
+   förvärvaren varken ändra verket eller överlåta rätten vidare, verifierad ordagrant 2026-08-27).
+   Själva flytten mellan bolagen är en egen rättshandling som systerbolaget måste vara part i;
+   det kan aldrig förvärva genom ett anställningsavtal det inte är part i. **Metod: när någon
+   frågar "räcker klausul X eller behövs dokument Y", lista först vilka separata rättshandlingar
+   kedjan kräver och vem som är part i varje. Ofta är svaret "både och" för att alternativen löser
+   olika länkar.** Formen på det koncerninterna avtalet: automatisk överlåtelse i förvärvsögonblicket
+   (bolaget blir ren genomgångsstation), retroaktiv verkan för redan utfört arbete, back-to-back-
+   scope, och ett vederlag (självkostnadsrecharge av lönekostnaden; vederlagsfritt öppnar
+   uttagsbeskattning `IL 22 kap.` när bolagen inte är i äkta koncern).
+2. **LAS 6 c § gör "avtalet är inte utskickat än" till en löpande lagöverträdelse med datum.**
+   Skriftlig information om väsentliga villkor ska lämnas senast SJUNDE kalenderdagen efter
+   arbetsstart, och för särskild visstidsanställning ska visstidsinformationen lämnas i samband
+   med att anställningen ingås (båda verifierade ordagrant 2026-08-27). En anställd som börjat
+   jobba utan påskrivet avtal ger alltså följebrevet ett lagstadgat sista-datum (här 2026-08-31),
+   inte bara processlogik. **Säg det i deadline-termer till klienten; det flyttar prioritet.**
+3. **Inbakad semesterersättning ("lön inkl 12 %") håller bara därför att komponenterna är separat
+   specificerade.** `SemL 5 §` (anställning högst tre månader: får avtalas att ledighet inte läggs
+   ut, ersättning i stället) + `16 b §` (procentregeln 12 %) + `30 §` (utbetalning senast en månad
+   efter anställningens slut). Transparensen (grundlön X + semesterersättning Y = brutto Z, i
+   avtalet) är giltighetsvillkoret. **Varning till nästa avtalsbygge: när en klientversion "städas"
+   får komponentspecifikationen inte redigeras bort, den är det som bär konstruktionen.**
+4. **Kolla om det nya upplägget bryter en tidigare beslutad strukturprincip innan det byggs
+   vidare.** Maj-memots princip var "CZP never holds IP" (alla sub-överlåtelser AP-direkt).
+   Anställningen tvingade in CZP i kedjan; rätt reparation var minimal (konduit-design), inte att
+   tyst ge upp principen. Och kontrollen avslöjade en större lucka: paying-agent-avtalet som alla
+   refererar som "the existing agreement" var fortfarande OSIGNERAT enligt contracts-trackern.
+   **Verifiera alltid signaturstatus på det "befintliga" avtal ett nytt dokument ska luta sig mot.**
+5. **Tooling, Google Sheets-radinsättning utan formelhaveri:** läs arket med
+   `valueRenderOption=FORMULA` först, sätt in raden INUTI sum-rangen (insertDimension med
+   startIndex på näst sista konstituentraden) så expanderar `=SUM(F9:F16)` till `F9:F17` av sig
+   själv, och korsflikreferenser (`=k2c_pnl_2026!F25`) autojusteras i samma arbetsbok. Verifiera
+   efteråt genom att räkna delta på totalerna (här: exakt raden + 10 % contingency). Och läs
+   A1-cellen innan skrivning: legacy-banners ("MIGRATED, EDIT THERE") pekar om målet; underlaget
+   pekade på fel ark.
+
+---
+
 ## 2026-08-26 — Plattformsentitetsflyttar: beviskravet är uppfyllt långt innan flytten kan börja
 **Projekt:** apb (APDS -> CZP över Nintendo, PlayStation, Xbox) · **Kategori:** contract_review + process · **Taggar:** entitetsflytt, Sony Title Transfer, Nintendo NDP, Xbox MSA V2, payee, konkurs
 
@@ -55,7 +149,8 @@
 ---
 
 ## 2026-08-26 — Bilagan, inte överlåtelseklausulen, avgör vad ett konkursboförvärv faktiskt bär
-**Projekt:** apb/czp (APDS konkursbo -> Bright Gambit -> CZP, apb-051) · **Kategori:** swedish_ip + contract_review · **Taggar:** KL 7:10, konkursbo, rörelseöverlåtelse, äganderättsförbehåll, nemo dat, verksamhetsöverlåtelse-moms, entitetsflytt, Scrive
+**Projekt:** apb/czp (APDS konkursbo -> Bright Gambit -> CZP, apb-051) · **Kategori:** swedish_ip + contract_review
+> **Kanoniska fakta ur den här posten är promotade till [[project_apds_czp_rights_chain]]** (kedjan, bilaga 2:s ägarfördelning, formuleringsregeln). Läs det minnet för fakta, den här posten för metoden. · **Taggar:** KL 7:10, konkursbo, rörelseöverlåtelse, äganderättsförbehåll, nemo dat, verksamhetsöverlåtelse-moms, entitetsflytt, Scrive
 
 1. **Läs ägarkolumnen i bilagan innan du läser överlåtelseklausulen.** Boavtalet överlät "rätten
    till bolagets immateriella rättigheter, inklusive men inte begränsat till källkod och

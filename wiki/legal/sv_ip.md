@@ -129,12 +129,22 @@ och framtida exploateringsformer, och **täck källfiler och arbetsfiler**, inte
 **2. Överlåtelsen stannar hos arbetsgivaren om ingen vidareöverlåtelse skrivs in.** Arbetsgivaren blir
 rättighetshavare, inte systerbolaget. Utan en uttrycklig vidareöverlåtelse når konsten aldrig den part
 som är bunden mot utgivaren, och bristen syns inte förrän någon granskar rättighetskedjan, typiskt vid
-due diligence eller när utgivaren begär garantier. Lös det på ett av två sätt:
-- **Lättast:** en klausul i anställningsavtalet där den anställde samtycker till, och i nödvändig mån
-  medverkar till, arbetsgivarens vidareöverlåtelse till systerbolaget och vidare till utgivaren, på
-  samma villkor som huvudöverlåtelsen. Ska överleva anställningens upphörande.
-- **Robustast:** ett separat koncerninternt IP-överlåtelseavtal mellan bolagen. Notera att ett
-  befintligt **paying agent-avtal inte duger** — det reglerar betalning, inte immaterialrätt.
+due diligence eller när utgivaren begär garantier. **Avgjort 2026-08-27 (Simon-ärendet): de två
+"alternativen" nedan är i själva verket två olika rättsfrågor, och båda behövs.**
+- **Den anställdes samtycke** (klausul i anställningsavtalet där den anställde samtycker till, och i
+  nödvändig mån medverkar till, arbetsgivarens vidareöverlåtelse till systerbolaget och vidare till
+  utgivaren, på samma villkor som huvudöverlåtelsen; ska överleva anställningens upphörande). Krävs
+  på grund av `URL 28 §` (verifierad ordagrant mot lagen.nu 2026-08-27): *"Om ej annat avtalats,
+  äger den till vilken upphovsrätt överlåtits icke ändra verket samt ej heller överlåta rätten
+  vidare."* Utan klausulen får arbetsgivaren inte överlåta vidare alls.
+- **Själva dispositionen mellan bolagen**: ett koncerninternt IP-överlåtelseavtal. Samtyckesklausulen
+  kan inte ersätta den, eftersom systerbolaget inte är part i anställningsavtalet och inte kan
+  förvärva genom det. Bäst form: automatisk överlåtelse i samma ögonblick arbetsgivaren förvärvar
+  rättigheterna, med retroaktiv verkan för redan utfört arbete, back-to-back-scope mot
+  anställningsavtalets överlåtelseklausul, och vederlag (självkostnadsvidarefakturering av
+  lönekostnaden räcker; vederlagsfritt öppnar uttagsbeskattning `IL 22 kap.` när bolagen inte är i
+  äkta koncern). Notera att ett befintligt **paying agent-avtal inte duger** — det reglerar
+  betalning, inte immaterialrätt. Mall: `k2c_sands_of_duat/Legal/K2C_CZP_AP_IP_Assignment_2026-08-27_DRAFT.md`.
 
 **3. Ideell rätt följer inte med.** `URL 3 §` namngivelse- och respekträtt kan inte överlåtas, bara
 efterges i angiven omfattning (se avsnittet nedan). Ta ett samtycke till normal bearbetning och
@@ -149,7 +159,15 @@ aldrig betalningsvillkoret. Se `sv_employment.md`.
 
 **Tillämpat i:** `k2c_sands_of_duat/contracts_2026_subcontractors/draft_12_simon_czp_employment.md`
 (§8.2 uttrycklig överlåtelse, §8.3 40 a §-avgränsningen utskriven, §8.7 vidareöverlåtelse CZP → AP,
-§6.2 arbetsrättsspärren).
+§6.2 arbetsrättsspärren) samt `k2c_sands_of_duat/Legal/K2C_CZP_AP_IP_Assignment_2026-08-27_DRAFT.md`
+(den koncerninterna dispositionen) och `Legal/LEGAL_MEMO_K2C_Simon_IP_kedja_2026-08-27.md` (analysen).
+
+**Bonusfynd i samma ärende (arbetsrätt, inte IP):** `LAS 6 c §` sätter en lagstadgad frist på att få
+ut avtalet: skriftlig information om väsentliga villkor senast **sjunde kalenderdagen efter
+arbetsstart**, och för särskild visstidsanställning ska visstidsinformationen lämnas **i samband med
+att anställningen ingås** (verifierad ordagrant 2026-08-27). En anställd som redan börjat jobba utan
+påskrivet avtal är alltså inte bara en processrisk utan en löpande 6 c §-överträdelse med
+skadeståndsrisk (`LAS 38 §`).
 
 ## Ideell rätt — eftergift kan inte ske blankt (URL 3 § 3 st)
 

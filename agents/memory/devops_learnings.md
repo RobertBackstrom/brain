@@ -3401,3 +3401,31 @@ Scriptade mot `Nintendo.Tm.dll` (v1.7.6.1, net45-varianten för PS 5.1) på forg
 **Firmware-verktyget:** DevKitVersionUpdater-paketet (`nnpm envs edit -e <env> -p "NintendoSDK DevKitVersionUpdater for NX"`) lägger firmware-bilder i `NintendoSDK\Resources\Firmwares\NX` (`DevKitUpdaterSdevI1.nsp` för SDEV) + versionsfiler. **Aktuell firmware = NX 22.5.0-1.1** (läs `UpdateFirmwareVersion.txt`/`.xml`). CLI: `NintendoSDK\Tools\CommandLineTools\SystemUpdateSdev.exe --target <IP> --connect-ip-direct [--target-version <v>] [--display-available-version] [--keep-targetmanager-alive]` (Adev/Edev/Hdev/Sdev-varianter per kit-typ; vårt = SDEV). Kräver NINTENDO_SDK_ROOT satt och att TargetManager2-GUI:t är stängt (annars konflikt om kit-anslutningen — GUI höll den och `--display-available-version` gav "Retrieve firmware version failed / 0.0.0-0.0").
 **Klassar-gate:** firmware-flash-innehåll (kill-GUI + SystemUpdateSdev) blockeras av auto-lägets säkerhetsklassare **redan vid lokal scriptförfattning** (base64-encoding-mönstret ser ut som obfuskering och triggar hårdare) — rimligt för en brickningsrisk-åtgärd. En vanlig `.ps1`-fil utan base64 gick att skriva. Slutsats: **firmware-flash körs av människan** (headless-vägen är säkerhetsstängd), agenten förbereder + verifierar efteråt (Tm.dll GetFirmwareVersion, kit-skärmdump). Det är rätt ansvarsfördelning för en åtgärd som kan bricka hårdvaran.
 **Tags:** firmware-gap, 0x00015410, SystemUpdateSdev, DevKitVersionUpdater, NX-22.5.0, klassar-gate-firmware, brickningsrisk, db-314
+
+### 2026-08-26 — Perforce checkpoint-räddning: tre fällor i metadatakopiering [project: db]
+Räddade Perforce-metadatan från VCSBOY (`p4d`, Helix 2024.2) inför en ev. Rocky-ominstallation. Tre
+saker som alla ser triviala ut men inte är det:
+
+**1. Sök checkpoints i P4ROOT-TOPPEN, aldrig rekursivt.** En Perforce-depot innehåller tusentals
+spelfiler och källkodsarkiv vars namn matchar `checkpoint*`/`journal*`: en Unreal-nivå döpt
+`checkpoint`, arkivfilen `journaledcache.cpp,d` (Perforce lagrar RCS-arkiv med `,d`-suffix). Ett
+`Get-ChildItem -Include checkpoint*,journal* -Recurse` mot P4ROOT gick igenom hela 2,5 TB och
+matchade fel data, noll faktiska checkpoints. Metadatan (`checkpoint.N`, `checkpoint.N.gz`,
+`journal*`) ligger BARA i P4ROOT-toppen. Använd `Get-ChildItem P4ROOT\checkpoint*,P4ROOT\journal* -File`.
+
+**2. Perforce `.md5`-filen är inte en bar hexsumma, och den gäller den UPPACKADE checkpointen.**
+Innehållet är `Md5(checkpoint.4)=ad19c7...`. För en `checkpoint.4.gz` måste man `gunzip -c | md5sum`
+och jämföra mot den extraherade hexen. `md5sum checkpoint.4.gz` jämför fel byte och rapporterar
+falskt fel. Verifiera ALLTID mot md5:n, en trunkerad checkpoint återställer inte och trunkering är tyst.
+
+**3. En checkpoint är en full ögonblicksbild, inte inkrementell.** Den senaste `checkpoint.N.gz`
+innehåller hela DB-tillståndet vid den tidpunkten. Äldre checkpoints och gamla journaler (här en
+`journal.1` på 39,5 GB) behövs inte för att återställa nuläget, bara för point-in-time längre bak.
+Hämta senaste checkpoint + journalerna efter den, inte allt. Sparade 40 GB onödig överföring.
+
+**Storleksinsikten som styr allt:** kör alltid `probe` (storlek på P4ROOT + ledigt på målet) INNAN
+någon kopiering. P4ROOT var 2,56 TB, målet hade 117 GB. Metadatan (checkpoint) var däremot 374 MB.
+Att skilja på metadata (litet, DB-tillstånd) och arkivfiler (stort, filinnehåll) är hela skillnaden
+mellan ett jobb på 30 sekunder och ett på 2,5 TB. Arkivfilerna låg dessutom på en egen RAID-volym
+(D:) skild från OS-disken, så de skyddas genom att lämna D: orört, inte genom att kopieras.
+**Tags:** Perforce, p4d, checkpoint, journal, md5, gunzip, metadata, VCSBOY, backup, db-301

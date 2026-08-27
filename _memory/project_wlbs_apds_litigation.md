@@ -85,6 +85,6 @@ Handlingar: `umbrella/aurora_punks/legal/apds_underlag_2026-08-03/` (tredskodom,
 
 **53291070828 är APDS sparkonto.** Den gamla gen-248-noteringen "53291070828 = EJ CZP (Robert)" utesluter bara CZP och utpekar ingen; den har lästs som "Roberts privatkonto" av två analyspass och gav båda gångerna ett falskt huvudfynd. Verifierat: samtliga fem överföringar från CZP:s företagskonto till kontot under 2025 matchar kreditposter i APDS huvudbok 1675 på datum och belopp (27 000 den 9/1, 13 000 den 16/1, 20 000 den 26/3, 13 000 den 9/5, 400 000 den 24/6). **52661032177 är CZP:s företagskonto.** Följd: CZP:s finansiering av APDS maj-juni 2025 var minst 760 tkr, inte 360 tkr, och 1675-betalningarna hösten 2025 är äkta låneåterbetalningar.
 
-**Not:** en tredje, separat återvinningsrisk finns - **APDS eget konkursbo (Nils/Carler) som klandrar Steam-app-överföringarna APDS→CZP** (se `aurora_punks/drafts/steam_entity_transfer_APDS_to_CZP_2026-06-23.md`). Ej utredd. Blanda inte ihop den med Vaerens två mål.
+**Not:** en tredje, separat återvinningsrisk finns - **APDS eget konkursbo (Nils/Carler) som klandrar Steam-app-överföringarna APDS→CZP** (se `aurora_punks/legal/steam_entity_transfer_APDS_to_CZP_2026-06-23.md`). Ej utredd. Blanda inte ihop den med Vaerens två mål.
 
 Related: [[project_ap_ek_2025_almi_agarlan]], [[project_aurora_punks]], [[reference_company_structure]], [[project_rlr_ip_dispute]]
