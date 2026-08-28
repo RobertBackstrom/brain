@@ -1,3 +1,38 @@
+## 2026-08-28 - Nar en bot ber om information som star pa skarmen ar det inte en promptmiss, det ar en saknad lasning [project: db, db-017]
+
+Boten kravde en issue-nyckel i sjalva mentionen och fragade efter en annars. Roberts meddelande var
+en reply pa Oskars lista med fixar, sa referenten satt ett meddelande upp, i prosa. Fragan "vilken
+issue menar du?" ar tekniskt korrekt och praktiskt vardelos: bade Discord-klienten och Jira-token
+satt i samma process, och ingendera slogs upp.
+
+**Monstret ar samma familj som v5:s out_of_scope-fel, en niva ner.** Da var det en switch vars
+grenar var verb i stallet for omraden. Nu var det en indata-vag som bara accepterade ett format
+(nyckel i texten) fast den hade tva kallor till (kanalhistorik, Jira-sok). Nar en agent ber en
+manniska skriva om nagot som redan finns i dess eget rackhall, leta efter en gren som validerar
+indata i stallet for att hamta den.
+
+**Tre saker som gjorde matchningen trygg nog att skriva mot en klientbrada:**
+1. **Modellen far inte uppfinna nycklar.** Kandidatlistan hamtas ur Jira, och en nyckel som inte
+   finns dar slangs i stallet for att litas pa. Utan det ar prompt-injektion via ett Discord-inlagg
+   en direkt vag till att skriva pa fel ticket.
+2. **Bara "high" gar vidare.** Medium och low blir "not matched, so not touched" med skal, synligt i
+   samma meddelande som Approve-knappen. Ett tyst bortfall ar hur halva en begaran blir utford.
+3. **Mappningen renderas i planen.** Den som godkanner ska kunna lasa vilken mening som blev vilken
+   ticket. Annars godkanner hen pa fortroende, och da ar godkannandet inte en kontroll.
+
+**Bifynden var lika viktiga som funktionen.** En tom plan rapporterades som "couldn't turn that into
+concrete Jira steps". Men Roberts fraga var "move these to in review *of not already done*", och
+alla tre lag redan i In Review. Ratt svar var noll steg. Fallbacken beskrev alltsa ett korrekt
+utfall som ett fel, precis som v5:s out_of_scope-strang gjorde. **Regel: varje gren som producerar
+"jag kunde inte" maste kunna skilja pa "det fanns inget att gora" och "jag forstod inte".** De ser
+likadana ut i koden (tom lista) och betyder motsatta saker for den som laser.
+
+**Testordning som holl:** renderare med fabricerade data forst (gratis, fangar mallfel och
+em-dashes), sedan resolvern mot skarp Jira utan skrivning, sedan hela kedjan till renderad plan.
+Torrkorningen matchade 3 av 4 punkter mot KAN-627/630/631 och avbojde den fjarde med skal, vilket
+ocksa bevisade att avbojandet fungerar - en matchare som matchar allt ar varre an ingen matchare.
+**Tags:** discord-bot, jira, db-017, referensupplosning, indata-validering, fallback-texter, prompt-injektion, tom-plan, confidence
+
 ## 2026-08-28 - En deploy som aldrig committades overlevde bara i processminnet, och en reconcile stadade bort den [project: db, db-017]
 
 db-017 v5 (`jira_task`: plan-och-godkann for flerstegs-Jira fran Discord) byggdes 27 aug 21:44-21:55
