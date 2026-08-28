@@ -346,3 +346,38 @@ Recoup ligger på knappt sex procent. Simon står på 30 %, inte 50, och 50-niv�
 gånger dagens intäkter.
 
 Valutakurser 2026-08-27, korskontrollerade: EUR/SEK 11,08, USD/SEK 9,52.
+
+### 2026-08-28 draft — PS Partners-onboarding CZP: payee-spåret färdigställt (CorpBot, apb-057)
+
+`drafts/ps_gdpa_onboarding_CZP_2026-08-27.md` reviderad. Inget skickat till Sony.
+
+Avsnitt 7 gick från en hänvisning till ett datapaket. Instrumentet för payee-bytet är
+`SIE Company Setup Form`, och förra entitetsbytets ifyllda exemplar låg i Drive
+(`SIE_Company_Setup_Form_WLBS.pdf`). Det visar att Sony redan löst samma sak genom blankettens
+Payee Name-fält. Nya bilagor: A med alla fältvärden för CZP, B med W-8BEN-E avskriven från APDS
+signerade exemplar (Corporation, ownership and base erosion test, artikel 12 §1, 0 % på royalties),
+C med länkar.
+
+Två nya poster med extern ledtid ligger nu före payee-ärendet: kontobekräftelse på SEB:s brevpapper,
+och revisorns besked om CZP:s chapter 4-status (Active vs Passive NFFE, CZP är holdingbolag).
+
+Sonys rolländring i augusti gjorde vår öppna post fel ställd. Det vi behöver heta är Global Account
+Admin, inte Team Admin, och DevNet-användarhantering flyttade in i PlayStation Partners 26 aug,
+vilket träffar Collaborator-steget i `apb-015`. Help Center-utkastet har fått en tredje fråga som
+ställer GAA-frågan explicit.
+
+### 2026-08-28 — VoD-sidan rättad om konkursfordran, Discord-utkast till Simon (CorpBot)
+
+Robert 2026-08-28: Simons claim mot APDS konkursbo är borta. Bevakningsfristen i mål K 4429-25 gick
+ut 2026-07-21 och ingen bevakning gjordes för den fordran.
+
+**Rättat på den live-gatade sidan** `pitch.aurorapunks.com/royalty-vod`, som tidigare skrev att
+beloppet var "en fordran att bevaka i konkursboet" och att vi bistår med underlag. Nu står det att
+fristen löpt ut, att de cirka 10 357 kronorna inte går att göra gällande mot vare sig boet eller
+CZP, och att raden redovisas för fullständighetens skull och inte som utestående saldo. Samma
+rättelse i `drafts/rapport_simon_vod_kostnader_intakter_2026-08-26.md`. Synkat och verifierat.
+
+**Discord-utkast** till Simon i `drafts/discord_simon_royalty_2026-08-28.md`, ej skickat. Innehåller
+länk och inlogg, de tre beloppen, en rak formulering om att APDS-delen är förlorad, och Roberts
+erbjudande att kompensera på annat sätt med hårdvara som konkret ingång, bland annat Cintiq-plattan
+och skärmarna.

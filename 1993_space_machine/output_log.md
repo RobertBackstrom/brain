@@ -53,3 +53,38 @@ verkligen avgör saken.
 
 Valutakurser hämtade 2026-08-27 och korskontrollerade mot Frankfurter/ECB och exchangerate-api:
 USD/SEK 9,52 (9,5178 mot 9,5229), EUR/SEK 11,08.
+
+## 2026-08-28 — plattformsunderlagen hämtade ur mailen, enhetstabellen är nu faktisk (CorpBot)
+
+Robert: bättre nyanserade säljrapporter bör gå att få ur respektive plattforms backend, och mail
+och Drive bör innehålla utdrag. Mailen räckte långt.
+
+**Beep Japan.** Hela dataserien låg som en zip på 2,8 MB i tråden "[Q3 2023 - Q2 2025] - Sales
+Report", plus lösa månadsrapporter i den äldre tråden. 96 månadsrapporter parsade,
+**2022-05 till 2025-09**:
+
+| Kanal | Enheter | JPY |
+|---|---:|---:|
+| Digitalt PS4/PS5 | 467 | 161 868 |
+| Digitalt Switch | 426 | 157 593 |
+| Fysiskt PS4/PS5 | 455 | 1 070 160 |
+| Fysiskt Switch | 620 | 1 945 850 |
+| **Totalt Japan** | **1 968** | **3 335 471** |
+
+Per år: 2022 156 enheter, 2023 523, 2024 1 036, 2025 253. Beloppen är Beeps intäkt före vår split,
+inte det vi fick. Vår andel för aug 2023 till sep 2025 är de fakturerade 76 109 SEK.
+
+**Sony.** 44 månadsstatements från SIE Europe hämtade, plus SIE America och Japan/Asien. 1993
+Shenandoah har SKU **EP6444-CUSA40643_00-083866** och rapporteras per land och månad. Serien
+**2023-09 till 2026-07: 249 enheter, 907 EUR**. Februari 2026 sticker ut med 58 enheter över
+18 länder, sannolikt en rea. Sony skickar fortfarande statements till APDS trots konkursen.
+
+**Nintendo.** Developer Portal publicerar Switch Download Sales-rapporter men mailen är bara
+notiser utan bilaga. Game code för 1993 Shenandoah är **HAC-P-AX84C** under Aurora Punks
+Development Services AB, PID 291215956. Kräver portalinloggning, se czp-032.
+
+**Sidan uppdaterad.** Enhetstabellen på pitch.aurorapunks.com/royalty-1993 är nu byggd på
+plattformarnas egna avräkningar i stället för uppskattningar. Summan står på **cirka 8 140 sålda
+kopior**, varav cirka 5 610 intäktsgivande. Elva rader är nu märkta Bokfört mot tidigare fyra.
+
+Filer: `assistant/uploads/beep/` (110 PDF plus zip), `assistant/uploads/psn/` (158 mappar, 58 xlsx).

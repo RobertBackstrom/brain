@@ -11,6 +11,118 @@
 
 <!-- Append new learnings with: learning, source project, date, category -->
 
+## 2026-08-28 — Plattformens payee-byte har oftast en namngiven blankett med ett eget mottagarfält, och den ligger redan ifylld i vår egen Drive [apb / apb-057]
+
+**Project:** Aurora Punks (PS Partners-onboarding av CZP) | **Category:** plattformsadministration, payee, verifieringsmetod, entitetsbyte
+
+**Huvudlärdomen, och den generaliserar till varje plattform:** när en plan skriver "payee-bytet är
+ett eget ärende med egen ledtid", stanna och leta efter **instrumentet** innan du planerar runt
+ärendet. Hos Sony visade det sig vara en namngiven blankett, `SIE Company Setup Form` (v20210315,
+tre avsnitt, avsnitt 1 fylls internt av SIE), och **förra entitetsbytets ifyllda, DocuSign-signerade
+exemplar låg redan i vår Drive**. En `rag_search` på plattformsnamn plus "company setup form payee
+bank" tog två minuter och förvandlade ett formlöst supportärende till en transkribering.
+
+**Det som satt i det gamla exemplaret var själva lösningen på entitetsproblemet.** WLBS-blanketten
+angav `Company/Indiv. Name: White Lines Black Spaces AB` men
+`Payee Name (if different from above): Aurora Punks Development Services AB`, med APDS eget
+SEB-konto. Sony har alltså **ett eget fält för att skilja avtalspart från betalningsmottagare**, och
+förra entitetsbytet gick igenom den vägen, inte genom nytt avtal och inte genom kontoflytt.
+**Generell regel: innan du föreslår en kontoflytt eller en avtalsnovation hos en plattform, kontrollera
+om deras finansblankett redan har ett payee-fält.** Det är den billiga vägen och den har prejudikat.
+
+**Kontrollera vad blanketten gör obligatoriskt, för där ligger den enda riktiga ledtiden.** SIE:s
+kontoändring kräver fyra saker: telefonnummer till ekonomikontakt för uppringd verifiering, färsk
+W-9/W-8, uppdaterad setup-blankett, och **utanför USA och Kanada kontoinstruktioner på bankens
+brevpapper**. Den sista är en beställning hos banken och den enda posten vi inte kan producera
+själva. Den ska beställas först, inte sist. Övrigt att räkna med: **betalningsvillkor netto 60** och
+**en blankett per valuta**.
+
+**Namnkedjan Payee Name -> W-8 -> kontohavare måste vara identisk, annars tystnar utbetalningarna
+utan notis.** Det är samma mekanik som stoppade Microsofts royalty i fem månader (`apb-055`).
+Verifiera kontohavarens exakta lydelse mot ett kontoutdrag innan du skriver Payee Name, inte mot
+minnet. Här var den `CREATION ZERO POINT HOLDING AB`, alltså ska handelsnamnet "Aurora Punks" bara
+stå i DBA-fältet. **Handelsnamn i ett payee-fält är en tickande betalningsstopp.**
+
+**W-8BEN-E: skriv aldrig av den från grunden, kopiera den föregående entitetens.** APDS signerade
+exemplar gav hela uppsättningen: chapter 3 = **Corporation**, LOB-grund = **ownership and base
+erosion test**, artikel **12 §1**, **0 %** på **Royalties**, och Foreign TIN-fältet tar **momsnumret**
+(`SE` + org.nr utan bindestreck + `01`), inte org.nr. Noll procent är rätt för svenskt bolag enligt
+skatteavtalet med USA. AP fyllde en gång i 30 % mot Robot Cache och fick det påpekat av motparten.
+**Men kopiera inte chapter 4-statusen (FATCA) blint mellan entiteter av olika slag:** ett
+verksamhetsdrivande bolag är normalt Active NFFE, ett **holdingbolag kan vara Passive NFFE**, vilket
+dessutom utlöser ett ställningstagande om substantiella amerikanska ägare. Den posten ska revisorn
+avgöra. Och läs originalPDF:ens kryss som bild när textextraheringen placerar en markering i en
+del av blanketten som inte kan stämma, checkbox-glyfer extraheras som "4" och hamnar fel.
+
+**Tags:** Sony, SIE, PlayStation, payee, W-8BEN-E, Active-NFFE, Passive-NFFE, artikel-12,
+company-setup-form, kontobekräftelse-på-brevpapper, netto-60, namnmatchning, entitetsbyte, apb-057
+
+---
+
+## 2026-08-28 — Plattformarnas egna nyhetsbrev är driftinformation, inte reklam, och de kommer HTML-only så våra mailverktyg visar dem som tomma [apb / apb-057]
+
+**Project:** Aurora Punks | **Category:** verktygsfällor, ärendebevakning, plattformsadministration
+
+**Fällan:** `gmail_read` och `gmail_thread` returnerar `"(no plain text body)"` för
+plattformsutskick som saknar text/plain-del. Två utskick från
+`noreply-comms@partners.playstation.net` (26 och 27 aug) såg därför tomma ut i verktyget, och
+snippet-raden gav bara en marknadsföringsaktig ingress. **Innehållet var driftkritiskt.**
+Lösningen är fem rader: hämta `format:'full'` via `assistant/gmail-api.js`, rekursera genom
+`payload.parts` efter `text/html`, base64url-avkoda och strippa taggar med länkarna bevarade som
+`text [url]`. Skriptet ligger som mönster i den här ärendeloggen. **Läs aldrig av ett
+plattformsutskick på snippet-raden, och tolka aldrig "(no plain text body)" som "inget innehåll".**
+
+**Vad som faktiskt låg där, som exempel på varför det är värt besväret:** Sony flyttade
+DevNet-användarhantering in i PlayStation Partners 26 aug (träffar Collaborator-steget i en pågående
+title transfer), omdefinierade Team Admin till en delegerad roll under **Global Account Admin**
+(vår öppna post var ställd på fel roll och frågan till motparten hade blivit fel ställd), lanserade
+en ny dokumentationssajt med en onboardingsida som täcker exakt den sekvens vi höll på att
+rekonstruera själva, och annonserade två underhållsfönster i Content Pipeline. Fyra saker som alla
+påverkar ett kritiskt ärende, i två mail som såg ut som nyhetsbrev.
+
+**Generell regel:** när ett ärende hänger på en plattform, läs plattformens egna utskick från de
+senaste två veckorna som **primärkälla** innan du reviderar planen. Rollmodeller och portalgränser
+ändras mellan att en plan skrivs och att den utförs.
+
+**Tags:** gmail-html-only, format-full, multipart, PlayStation-Partners, GAA-vs-Team-Admin,
+DevNet-user-management, plattformsutskick-som-primärkälla, apb-057
+
+---
+
+## 2026-08-28 — En misslyckad obevakad inloggning ska inte köras om: utelåsningsrisken är dyrare än läsningen [apb / apb-057]
+
+**Project:** Aurora Punks | **Category:** autonomt omdöme, Playwright, säkerhet
+
+**Situationen:** `devnet-ip-allowlist.js --login` fyllde Sonys Okta-formulär korrekt (bekräftat på
+skärmdumpen `login-1b-filled.png`, e-post i mörk text alltså verkligt värde, lösenordsfältet fyllt),
+men efter Sign in visade `login-2-post-password.png` **samma inloggningsruta med tomt e-postfält**.
+Ingen MFA-kod skickades, och mailpollningen timeoutade på 180 s med diagnosen "no MFA mail" som
+pekar åt fel håll. Rätt diagnos: **submit avvisades och widgeten återrenderades**, sannolikt
+utgånget DEVNET_PASS.
+
+**Beslutet, som är själva lärdomen:** jag körde **inte** om den. Upprepade misslyckade
+inloggningar mot Okta låser kontot, och det var samma konto Robert behövde för att kunna skicka in
+en kritisk plattformsansökan inom dagar. **En läsning som kan vänta är aldrig värd en utelåsning av
+ett konto på den kritiska vägen.** Regel för obevakade körningar: en misslyckad inloggning mot ett
+MFA-skyddat konto är en rapportpunkt, inte något att försöka igen. Fortsätt med den del av ärendet
+som inte är gated på inloggningen, och det finns nästan alltid en sådan del (samma ordningsläxa som
+i `apb-055`, där pengarna låg i den ogatade halvan).
+
+**Två diagnostiska detaljer att återanvända.** (1) `login-2-post-password.png` skiljer på
+avvisad inloggning och trasig mailpollning på en sekund, jämför om e-postfältet är ifyllt eller
+tillbaka på platshållartext. Kolla den skärmdumpen **före** du felsöker mailpollaren.
+(2) `.check().catch(() => {})` på "do not challenge me"-rutan loggade "ticked" fast rutan förblev
+omarkerad på skärmdumpen. Tyst svald sidoeffekt, samma antimönster som redan är noterat för
+sentinels: **ett steg som inte kunde utföras ska larma lika högt som ett steg som utfördes fel.**
+(3) En sparad `storageState` som bara innehåller Akamai- och Adobe-cookies är **inte** en session.
+Kontrollera att det finns en identitetscookie från SSO-domänen innan du kallar en state-fil
+autentiserad.
+
+**Tags:** Okta, utelåsningsrisk, obevakad-körning, devnet-ip-allowlist, tyst-swallad-catch,
+storageState-utan-identitetscookie, apb-057
+
+---
+
 ## 2026-08-27 — Registreringsstatus (F-skatt/moms) hämtas utan BankID via Skatteverkets öppna e-tjänst — allabolag ljuger [apb / apb-056]
 
 **Project:** Aurora Punks | **Category:** skatt, playwright, verifieringsmetod, öppna-källor
@@ -1144,3 +1256,38 @@ historisk royaltyfråga inte går att räkna på, fråga var pengarna kom ifrån
 Vid uppskattning: särskilj alltid i tabellen vad som är bokfört och vad som är uppskattat, ange
 grunden per rad, och känslighetstesta slutsatsen i minst tre scenarier. Robert accepterar en
 uppskattning men inte en siffra utan ursprung.
+
+## 2026-08-28 — plattformarnas avräkningar ligger i mailen, i maskinläsbart skick
+
+Uppföljning på posten om Steams "Life to date". När ett bolag är i konkurs och huvudboken är borta
+går titelnivå ändå att rekonstruera, för plattformarna mailar sina avräkningar och gör det i
+strukturerade format.
+
+**Sony.** `NO-REPLY-BI@sony.com` skickar varje månad "Purchase Order ... SALES <månad>" med
+`Publisher Statement.XLSX` bifogad. Ark 2 har en rad per SKU, land och månad med **No Units Sold**,
+WSP i lokal valuta och Total WSP i settlement-valutan. Tre separata flöden: SIE Europe
+(Publisher Statement), SIE America ("Digital Third Party Royalty Report for UB<kod>") och
+Japan/Asien ("PlayStation Store ROYALTY_<MON>-<år>_<vendor>_EUR"). Sök `from:sony.com has:attachment`.
+Statements fortsätter komma till ett konkursat bolag.
+
+**Beep Japan.** Månatliga "REV REPORT"-PDF:er per plattform och format, med SRP, pris efter
+plattformsandel, **Units Sold** och Revenue i JPY. Hela historiken låg dessutom som en zip på 2,8 MB
+i en enda tråd. Leta efter zip-bilagor innan du parsar hundra lösa filer.
+
+**Nintendo.** Skickar bara notiser, ingen data. Rapporterna finns enbart i Developer Portal och
+kräver inloggning. Räkna inte med mailen där.
+
+**Verktygen.** `assistant/gmail-attachments.js search "<query>" --download --output-dir <dir>`
+gör bulkhämtning, men **filnamn krockar** eftersom Sony kallar varje bilaga "Publisher
+Statement.XLSX". Ladda ner per meddelande till en egen mapp döpt efter ämne plus message-id.
+CLI:ts `list` trunkerar attachment-id med "..." så det går inte att kedja, medan MCP-verktyget ger
+hela id:t. Gmail-sökningen returnerar högst tio meddelanden per anrop, så historik måste hämtas i
+månadsfönster med `after:`/`before:`.
+
+**XLSX utan bibliotek.** openpyxl finns inte på VPS:en. Packa upp med `zipfile`, läs
+`xl/sharedStrings.xml` och `xl/worksheets/sheet*.xml` med ElementTree, slå upp `t="s"`-celler i
+strängtabellen. Räcker gott för avräkningsfiler.
+
+**PDF-parsning:** `pdftotext -layout` finns installerat. Validera alltid utvunna enhetstal mot
+priset, `abs(revenue - units*price) < 5 %`, annars plockar regexen upp SRP-tal som antal och du får
+tolvtusen sålda exemplar av ett spel som sålt trettio.

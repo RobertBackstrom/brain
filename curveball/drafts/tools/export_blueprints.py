@@ -213,6 +213,7 @@ def main():
     with open(failures_path, "a") as failures_file:
         for index, (package, cls, object_path) in enumerate(assets, start=1):
             extensions = [".T3D"] if cls in T3D_CLASSES else [".csv", ".json"]
+            table_wrote_something = False
             for extension in extensions:
                 target = out_path_for(package, extension)
                 if RESUME and os.path.isfile(target) and os.path.getsize(target) > 0:
@@ -227,6 +228,7 @@ def main():
                         raise RuntimeError("load_asset returned None")
                     size = export_one(asset, target)
                     exported += 1
+                    table_wrote_something = True
                     rows.append(
                         (package, cls, extension, "ok", size, round(time.time() - asset_started, 2))
                     )
@@ -238,6 +240,32 @@ def main():
                     failures_file.write("\n")
                     failures_file.flush()
                     log_warn("FAILED {}{}".format(package, extension))
+
+            # 5.3 headless has no csv/json exporter registered for DataTable or
+            # CurveTable ("No csv exporter found for DataTable ..."), so a table
+            # would otherwise produce no text at all. The object T3D exporter works
+            # for any UObject, so fall back to it and keep the rows readable.
+            if cls in TABLE_CLASSES and not table_wrote_something:
+                target = out_path_for(package, ".T3D")
+                asset_started = time.time()
+                try:
+                    asset = unreal.load_asset(package)
+                    if asset is None:
+                        raise RuntimeError("load_asset returned None")
+                    size = export_one(asset, target)
+                    exported += 1
+                    rows.append((package, cls, ".T3D", "ok (table fallback)", size,
+                                 round(time.time() - asset_started, 2)))
+                    log("table fallback to T3D: {}".format(package))
+                except Exception:
+                    failures += 1
+                    rows.append((package, cls, ".T3D", "FAILED", 0,
+                                 round(time.time() - asset_started, 2)))
+                    failures_file.write("=== {} ({}.T3D fallback)\n".format(package, cls))
+                    failures_file.write(traceback.format_exc())
+                    failures_file.write("\n")
+                    failures_file.flush()
+                    log_warn("FAILED fallback {}".format(package))
 
             if index % 50 == 0 or index == len(assets):
                 log(

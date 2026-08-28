@@ -1,3 +1,38 @@
+## 2026-08-28 — Testing an unreleased ARK:SA mod build on console is a CurseForge permission, not a platform devkit flow [project: necrotic_dominion, nd]
+
+Robert asked "what are the steps to test Elias' internal PS5 build on a retail PS5". The instinct on a
+console project is to reach for the platform runbook (PlayStation Partner Center package, Package
+Distribution, activation codes, devkit). **For an ARK: Survival Ascended mod that is entirely wrong.**
+There is no Sony-side artifact at all. The whole flow lives inside CurseForge + the in-game mod browser:
+
+1. The mod is uploaded from the ARK Devkit with "Cross-Platform" ticked, and CurseForge cooks the
+   PC/Xbox/PS5 variants automatically. There is no separate PS5 build to distribute.
+2. The tester's **CurseForge account must be linked to PSN** under profile settings -> Connected
+   Accounts. This is the step that actually gates console visibility, and it is per-account, so it
+   decides *which* username is the right one to hand over.
+3. The project owner adds that **CurseForge username** in the project's Members tab with the
+   **"Cross Platform Testing"** permission. Cap is **5 team members**, which is a real constraint on a
+   project with many legacy staff accounts.
+4. On the console: MODS LIST -> My mods -> Install -> new session -> Mod settings -> Available mods ->
+   Activate. Single-player/non-dedicated is enough; a Nitrado dedicated server is only needed to test
+   server-side. Unpublished versions are addressed by project ID with a **`-dev` suffix** (ND = `1117983`,
+   so `1117983-dev`).
+
+**The transferable lesson:** when a platform question arrives on a project whose distribution is
+mediated by a storefront/mod platform (CurseForge, mod.io, Steam Workshop), check whose runbook actually
+governs before answering. "PS5 build" made this look like a cert/devkit question and it was an access
+permission on a web project page. Source: CurseForge support "Cross-platform testing" article, verified
+2026-08-28.
+
+**Second-order finding from the same pass:** the blocker is almost never the build, it is *which account*.
+Elias hit exactly this ("it says I need to purchase the mod") because his new `DevElias` account has no
+entitlement and no tester permission. Same trap waits for Robert, who has two personal-ish CurseForge
+identities (`AuroraPunksBoss` on robert@, `robert_aurorapunks` on the private Gmail) plus the map being
+owned by a third (`davidkruse`). Before asking anyone to grant access, establish which account is linked
+to the platform, otherwise the grant lands on the wrong identity and you burn one of the 5 slots.
+
+**Tags:** necrotic-dominion, curseforge, ark-survival-ascended, console-testing, ps5, cross-platform-testing, tester-permissions, account-identity, nd
+
 ---
 name: PM Agent Learnings
 description: Cross-project knowledge accumulated by the PM agent from estimation, planning, and tracking work
@@ -6,6 +41,35 @@ agent: pm
 ---
 
 # PM Agent Learnings
+
+
+## 2026-08-28 — Ett ticket-ID i projektminnet är en pekare till oavslutad analys, inte ett faktum (k2c)
+
+Jag lät Robert motsignera Fury Studios-avtalet utan att öppna **`k2c-047`**, en öppen ticket med
+rubriken *"DO NOT SIGN AS-IS — 4 defects"* på exakt det avtalet. Projektminnets statusrad sa
+*"Fury Studios contract: notice must be served by FRI 21 AUG ... (`k2c-047`)"*, och jag tog
+uppsägningsfristen därifrån, flaggade den korrekt, och gick vidare. **Bakom ID:t låg tre defekter
+till.** Två av dem, avsaknad av spendtak och avsaknad av RF:s no-AI-klausul, gick in i ett signerat
+avtal.
+
+Det som gör felet lärorikt är att jag **använde** ticketen. Jag citerade den. Det kändes som att
+jag hade täckt in den, och just därför ställde jag aldrig frågan om vad mer som stod i den.
+En sammanfattningsrad som nämner ett ID ser ut som ett faktum men är en **komprimering**, och
+komprimeringen behåller det som var akut när raden skrevs, inte det som är viktigast när du läser
+den.
+
+**How to apply:** när en minnesrad refererar ett ticket-ID i samma andetag som den artefakt du är
+på väg att agera på, **öppna ticketen innan du agerar**, även när du tycker att du redan vet vad
+den handlar om. Titta särskilt på `status` och `needs_input`: `status: backlog` plus
+`needs_input: true` är boardets sätt att säga att någon väntar på ett beslut som ingen har fattat.
+Kostnaden är tio sekunder. Kostnaden för att låta bli är en underskrift.
+
+Efterspel värt att ta med: när Robert fick utfallet svarade han att **Fury Studios är ett
+dotterbolag till Raw Fury**, vilket gör båda de osåtgärdade defekterna ofarliga. Beviset låg i
+mailen jag redan hade läst, Toms adress är `tom@rawfury.com`. **Att jag hade fel om allvaret gör
+inte att processfelet var okej**, och den motsatta slutsatsen, att det löste sig så det spelade
+ingen roll, är den farliga att dra. Källa: K2C.
+
 
 
 ## 2026-08-27 — En QA-ticket skapad strax efter ett möte är förmodligen samma fynd som mötet diskuterade (k2c)
@@ -75,10 +139,28 @@ Två detaljer som gjorde jobbet: **rendera sidan till PNG och titta på den**, t
 att en pålagd rad krockar med en linje (min första not gjorde det). Och **mät mot motpartens egen
 befintliga cell** i stället för att gissa avstånd, då blir tillägget omöjligt att skilja från mallen.
 
-**How to apply:** innan du fyller i en utländsk avtalsmall, kontrollera om den svenska partens
-firmateckning får plats i blocket den erbjuder. "Två i förening" mot en enrads-mall är en
-layoutändring, inte en ifyllnad, och den ska göras synligt och förklarat i dokumentet, inte i
-följemailet där den försvinner. Källa: AP AB / Space Rock Games.
+**RÄTTELSE samma dag:** för just **MNDA/NDA behövdes det inte**. Robert: *"Just MNDA har vi sagt
+är godkända utan två i signering, det är ett styrelsebeslut."* Roberts signatur ensam räcker alltså
+på NDA, och det utbyggda blocket var onödigt arbete.
+
+**Och en andra sväng på samma sak:** när jag skrev att beslutet inte gick att hitta i RAG svarade
+Robert *"kan vara så att det inte finns officiellt ännu, vi åtgärdar det på nästa styrelsemöte."*
+Undantaget är alltså **praxis, inte protokollförd handling**. Det är värt att skilja på: praxis
+räcker för att veta hur man ska agera operativt, men inte för att skriva i ett avtal eller mot en
+revisor att styrelsen har beslutat något. Ligger nu i [[reference_ap_mnda_single_signatory]] med den
+brasklappen, och formaliseringen är ticketad som `apb-061`.
+
+**Det generella:** en tom RAG-träff på ett påstått beslut betyder ibland att indexeringen missat
+det, men ibland att beslutet faktiskt inte finns. Fråga vidare i stället för att antingen anta det
+ena eller skriva ner det som fastställt. Skillnaden syns bara om man säger att sökningen kom upp
+tom.
+
+**How to apply:** innan du bygger ut ett signaturblock, kolla **först** om avtalsslaget har ett
+undantag från firmateckningsregeln, inte bara vad registreringsbeviset säger. Registrerad
+firmateckning är golvet; styrelsen kan ha lyft delar av den, och NDA är just ett sådant fall hos AP.
+Metoden nedan är fortfarande rätt när tvåsignaturregeln faktiskt gäller, alltså för allt utom NDA:
+"två i förening" mot en enrads-mall är en layoutändring, inte en ifyllnad, och den ska göras synligt
+och förklarat i dokumentet, inte i följemailet där den försvinner. Källa: AP AB / Space Rock Games.
 
 
 ## 2026-08-27 — Efter en servermigration ljuger både loggen och timerlistan om vad som kör (devops/k2c)

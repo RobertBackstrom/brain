@@ -358,10 +358,13 @@ kvartal.
 | CZP, 2026 | 11 998 | −1 890 | 10 108 | **3 030** | CZP |
 | **Summa** | **52 998** | **−8 368** | **44 630** | **cirka 13 387** | |
 
-**Den viktigaste raden är den översta.** Uppskattade 10 357 kronor avser en period där avtalsparten
-var Aurora Punks och betalaren APDS, och APDS är i konkurs sedan 2025-12-12. Det är en fordran i
-ett konkursbo, inte ett krav mot CZP. Simon behöver få veta det, och han behöver få veta det innan
-han räknar med pengarna.
+**Den viktigaste raden är den översta, och den har försämrats.** Uppskattade 10 357 kronor avser en
+period där avtalsparten var Aurora Punks och betalaren APDS. **Bevakningsfristen i APDS-konkursen,
+mål K 4429-25, löpte ut 2026-07-21 och ingen bevakning gjordes för den här fordran.** Beloppet går
+alltså varken att kräva av konkursboet eller av CZP. Robert bekräftade det 2026-08-28.
+
+Det är inte ett juridiskt problem för oss men det är ett förtroendeproblem. Robert vill kompensera
+Simon på annat sätt, se `drafts/discord_simon_royalty_2026-08-28.md`.
 
 De 3 030 kronorna för 2026 är däremot en levande skuld hos CZP och kan betalas.
 

@@ -760,3 +760,30 @@ nettoskuld till CZP 61 907,92 efter kvittning.
 - Nytt verktyg: `assistant/fx-levfaktura.js`, öppnar en levfaktura via listan, dumpar
   konteringen, kan sätta projekt och bokföra. Bokför-knappen är en split-action-span,
   `span.js-supplierinvoice-split-action-label`, inte en button-roll.
+
+### 2026-08-28 — royaltyredovisningar publicerade, kvartalsrutin uppsatt (CorpBot)
+
+Robert bad om att båda underlagen sammanställs som riktiga rapporter med AP-logga, brutalist enligt
+pitcharna, med Headups och IndieArks avräkningar som strukturell förlaga. Han valde gated sidor på
+pitch.aurorapunks.com, bara avtalets avdragsposter mot motparten, och **skarpa royaltyutdrag** i
+stället för preliminära. Han bad också om att sålda kopior ska ingå.
+
+| Sida | URL | Att betala |
+|---|---|---|
+| 1993 Space Machine | pitch.aurorapunks.com/royalty-1993 | 0,00 SEK |
+| Vessels of Decay | pitch.aurorapunks.com/royalty-vod | 3 029,76 SEK från CZP |
+
+Byggda på teef-designsystemet (Anton, Archivo, Space Mono, paper-magenta). Varje sifferrad är
+märkt **Bokfört** eller **Uppskattat** med grunden angiven. Gated, `.gated`-markör satt och
+credentials i `pitch-auth.json`. Synkade till edge, verifierat 401 utan auth och 200 med.
+
+**Sålda kopior.** Steams transaktionsexport låter oss dela upp: under det detaljmätta året
+2023-08 till 2024-07 distribuerades 1 514 kopior av 1993, varav **847 gav intäkt** och 674 var
+gratisnycklar från Humble Bundle, Humble Store och den ukrainska bundlen. Ackumulerat till
+konkursen uppskattas cirka 5 720 kopior, varav cirka 3 190 intäktsgivande. För VoD rapporterar
+Headup inte styckantal, så där redovisas ett härlett spann med metoden angiven.
+
+**Kvartalsrutin:** `assistant/royalty-statement-reminder.js`, cron 09:00 den 24:e i feb, maj, aug
+och nov. Skapar Death Board-följdsedel och DM:ar Robert. Rapporterar kvartalet som slutade två
+månader tidigare. Nästa körning **2026-11-24** för perioden till 2026-09-30. Rutinen dokumenterad
+i czp-031.
