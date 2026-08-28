@@ -65,6 +65,9 @@ sedan 20 aug) med patchfilerna och fyra testharnesses. Verifieringen blev darmed
 **Kontrollen som saknas och bor byggas:** en `git status --porcelain`-vakt som larmar pa Discord nar
 en korande tjansts kallfil har ocommittade andringar aldre an nagra timmar. Samma familj som
 backup-health (db-327): en tyst divergens mellan det som kor och det som ar sparat.
+**Promoterat till delat minne:** deploy-ordningen bor i [[feedback_restart_is_not_a_deploy]] och
+aterstallningsmetoden i [[reference_session_transcript_recovery]]. Bada galler varje agent som ror en
+VPS-tjanst, inte bara DevOps.
 **Tags:** deploy, git, ocommittad-deploy, processminne, transkript-recovery, reconcile, db-017, discord-bot, restart-always
 
 ## 2026-08-28 - Migrationsrevision: tre av fyra kvarstaende "fynd" holl inte, och orsaken var samma i alla tre [project: db, db-310]

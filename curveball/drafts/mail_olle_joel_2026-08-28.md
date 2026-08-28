@@ -43,7 +43,14 @@ Jag lutar åt A. Går ni med på det behöver vi två saker: användaraccess til
 API publisher key. Nyckeln är för att kunna verifiera spelarnas sessioner på serversidan när vi
 byter ut den delen, annars får vi bygga en svagare lösning.
 
-**5. En sak till på samma tema.**
+**5. En praktisk sak medan vi jobbar.**
+Eftersom projektet inte ligger under någon versionshantering hos er finns det ingen gemensam
+historik att slå ihop mot. Blir det ändringar hos er parallellt med våra får vi alltså sy ihop dem
+för hand, fil för fil. Enklast är att vi håller mainline så länge co-deven pågår, och att ni skickar
+över det ni vill ha in i stället för att jobba i en egen kopia. Zipen ni skickade ligger orörd som
+baseline hos oss, så vägen tillbaka finns kvar om ni vill ha den.
+
+**6. En sak till på samma tema.**
 Vi behöver också admin- eller serveraccess till LootLocker-spelet (`a86igukp`), för att kunna testa
 att belöningar och inventory hamnar rätt när serverdelen byts ut. Den frågan ligger kvar sedan
 förra mailet.

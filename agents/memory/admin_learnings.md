@@ -1291,3 +1291,56 @@ strängtabellen. Räcker gott för avräkningsfiler.
 **PDF-parsning:** `pdftotext -layout` finns installerat. Validera alltid utvunna enhetstal mot
 priset, `abs(revenue - units*price) < 5 %`, annars plockar regexen upp SRP-tal som antal och du får
 tolvtusen sålda exemplar av ett spel som sålt trettio.
+
+## 2026-08-28 (addendum 2) — Fråga om verktyget redan finns innan du lägger en uppgift på Robert [project: czp, 1993]
+
+**Kategori:** verktygsinventering, plattformsdata · **Taggar:** ndp, nintendo, playwright-session, followup-hygien, avstämning-som-bevis, czp-032, czp-033
+
+Jag skrev czp-032 och lade den på Robert med motiveringen att Nintendos säljrapporter "bara går
+att läsa inne i portalen". Det stämde. Slutsatsen att det därför var hans uppgift gjorde det inte.
+`assistant/ndp-session.js` fanns redan sedan devkit-arbetet tre dagar tidigare: lösenord ur `.env`,
+MFA-koden hämtad ur Gmail, 30 dagars enhetstrust i en persistent Playwright-profil. Robert behövde
+påminna mig om ett verktyg jag själv hade i repot.
+
+**Regeln:** innan en uppgift skrivs som "Robert måste logga in någonstans", `grep` efter tjänstens
+namn i `assistant/*.js` och i agent-learnings. En inloggning som någon annan agent redan har
+automatiserat är inte ett hinder. Det gäller särskilt portaler bakom MFA, eftersom det är precis
+dem någon redan har lagt en dags arbete på att komma in i.
+
+**Var Nintendos siffror ligger.** Admin > **Payments and Financial Reports**, inte under
+produkterna. Sidan renderar hela historiken som Liferay-dokumentlänkar (`/documents/23933/...`) i
+DOM:en. JSON-API:t `/o/payments/list/23933` syns i nätverksloggen men svarar **500 vid refetch** i
+sidkontexten, så DOM-länkarna är den hållbara vägen. Tre filtyper per månad:
+`DigitalSalesReport` (pdf, sammanställning och provisionsfaktura), `DigitalSalesDetail` (csv, en
+rad per titel, land och månad med `Sales Units` och `Final Payable Amount` i utbetalningsvalutan)
+och `DigitalSalesDetailByState` (csv, US och CA per delstat). Verktyg byggda:
+`assistant/ndp-sales-reports.js` och `assistant/ndp-aggregate.js`.
+
+**Praktiskt:** en Playwright-`launchPersistentContext` låser profilkatalogen, så två skript mot
+NDP kan inte köra samtidigt. Kör dem i serie. Nedladdning av 190 dokument tar drygt fem minuter,
+alltså längre än Bash-verktygets tvåminutersgräns; kör i bakgrunden och vänta på processen, inte
+på en `sleep`.
+
+**Avstämningen är det som gör siffran användbar.** Detaljraderna för alla titlar summerade till
+89 513,94 SEK. Utbetalningsbeskeden visade 89 138,70 remitterat plus 375,24 innehållet under
+minimibeloppet. Exakt samma summa. Sex månader saknade detalj-csv, och deras pdf visade
+Sales Amount 0,00, alltså inga sålda enheter och inte en lucka. **Innan ett plattformsvärde skrivs
+in i ett kundunderlag: hitta plattformens egen kontrollsumma och stäm av mot den.** Utan den kan
+man inte skilja "det såldes inget" från "filen saknas", och det är skillnaden mellan en korrekt
+rapport och en som underskattar utvecklarens andel.
+
+**Bifynd som var värt mer än siffrorna.** Utbetalningsbeskeden bär betalningsmottagare och
+bankkonto. Mottagaren byttes i januari 2024 från White Lines Black Spaces AB till "Stockholm Core
+Office", och bankkontot byttes i februari 2025, alltså fem månader efter WLBS-konkursen. Det syns
+bara om man läser pdf-huvudena, inte i csv-datan. **Läs metadata i avräkningar från en motpart,
+inte bara beloppen** — vid en konkurs är mottagarraden ofta det enda spåret av att någon har
+dirigerat om ett penningflöde. Ligger som czp-033.
+
+**Utfallseffekt på 1993:** Nintendo utanför Japan gav 2 091 enheter och 51 664 SEK netto, mot
+10 000 uppskattat. Mottagen Gross Revenue gick från 202 916 till 244 580 och återvinningen av
+Service Spend från 74,9 till 90,2 procent. Slutsatsen står sig men marginalen är tunn, och det
+är den sortens ändring som avgör om nästa kvartalsrapport utlöser en utvecklarandel.
+
+**Kanonisk hemvist:** rättighetskedjan för 1993 (Krister som ägare, Gunnars och Mattias 20 procent,
+Limit Breaks 8 procent, WLBS-avtalets saknade sektion 12) ligger nu i
+[[project_1993_space_machine]], inte bara i den här loggboken. Läs den innan nästa kvartalsrapport.

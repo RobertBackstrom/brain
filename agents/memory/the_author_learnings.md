@@ -9,6 +9,40 @@ correction he made, or an example he pasted. Simulated-context passes are flagge
 
 ---
 
+## 2026-08-28 - Rubrikregeln bekräftad en andra gång samma dag, nu på engelska och mot en publisher [k2c / Pharaoh Lands, mail register]
+
+Andra oberoende bekräftelsen på **samma dygn** av regeln i Curveball-entryn längre ned: *rubriken är
+en etikett som namnger ämnet, inte en mening som gör en poäng.* Den förra evidensen var svensk och
+mot ett utvecklarteam Robert känner väl. Den här är **engelsk och mot Raw Furys producenter**, alltså
+en formellare yta och en annan språkregister. Regeln överlever båda.
+
+Diffen: MS4-leveransmailet gick ut 28 aug 22:27 (tråd `1a04a098c9f6e01b`) med **exakt en ändring**
+mot det jag lämnade ifrån mig. Robert bytte
+
+> Everything is on one page:
+
+mot
+
+> Delivery notes.
+
+Notera vad som faktiskt togs bort. "Everything is on one page" är inte hype och inte en säljmening i
+vanlig mening, den låter saklig. Men dess nyttolast är **fullständighet som egenskap hos vårt arbete**
+("vi har samlat allt åt er"), inte information mottagaren behöver. "Delivery notes." är substantivet
+som namnger länken och inget mer. Jag hade redan kört ett antisäljpass över texten på Roberts brief
+och ändå lämnade jag den kvar, för den läste som ren funktion.
+
+**Lärdomen är alltså inte regeln, den fanns redan. Lärdomen är hur lågt tröskelvärdet ligger.**
+En ram som bara mycket svagt värderar vårt eget arbete åker ut. Testet är inte "låter det säljigt"
+utan **"vad är nyttolasten - ett faktum mottagaren behöver, eller en egenskap hos oss?"** Applicera
+det även på meningar som redan känns neutrala, och särskilt på ingressraden precis före en länk
+eller en lista, som är där ramen sätter sig oftast.
+
+Vad han INTE rörde: allt annat, ordagrant, inklusive `*asterisk*`-ankarna, de tre faktastyckena och
+avslutningen. Konsistent med hårdgränsen - registret arbetar på ramen runt fakta, aldrig på fakta.
+
+Folded into [[voice_channel_mail]] (kontexten "Statusmail till klientens team" gäller även
+leveransmail till publisher) och [[voice_anti_selling]]. Category: channel register (mail-evidenced).
+
 ## 2026-07-14 — Agent created
 - The Author is an editor/proofreader, not a from-scratch writer. Cheap models draft; Fable
   runs the short final voice-adaptation pass. This is the token-economy reason the agent exists
@@ -223,3 +257,36 @@ correction he made, or an example he pasted. Simulated-context passes are flagge
 - The evocative core-loop sentence ("you dig the trench, you fight in the trench you dug, and it is blown apart underneath you") was kept: it defines what stays in scope, so it acts on the plan. Its neighbours ("You are an officer spending men who are meant to be spent", "The thing nothing else does at this scale is already in the title") acted on the reader and went. One vivid sentence can be load-bearing while identical-sounding ones around it are decoration; test each separately. Category: register.
 - WhatsApp side: the Swedish draft was already near-register; the two cuts were an announcing-directness opener ("En ärlig grej som är värd att säga innan du visar den:") and a benefit-explainer clause ("så ingen behöver ta allt på en gång"). Kept "och den är nyttig för investerarna oavsett vem som kör sen" - it argues for the concrete phase-0 ask, so it is plan-acting, not selling. Category: register (DM, Swedish).
 - Consistency check finding, unresolved and NOT mine to fix: the WhatsApp message quotes 275k / 1,5M / 3,45-3,8M while the pitch page's gates read 235 000 / 1 175 000 / 2 820 000 SEK total (185 000 / 925 000 / 2 220 000 cash). Numbers are locked for The Author, so both left untouched and the mismatch flagged upward. Per the 2026-08-24 correction: an internal inconsistency is a question for Robert, never a silent fix. Category: process.
+
+## 2026-08-28 - Olle + Joel (The Gang) statusmail: Robert strök säljande rubriker, fakta i fred [cvb / Curveball, mail register]
+- Evidens av starkaste sorten: hans egen hand. Diff mellan utkastet
+  (`curveball/drafts/mail_olle_joel_2026-08-28.md`) och det skickade mailet 22:22 samma kväll
+  (gmail-tråd `19e889144ac3e56a`), sammanställd i `curveball/drafts/mail_diff_2026-08-28.md`.
+  Hans egen sammanfattning: "Överlag så tog jag bort säljande rubriker, fakta fakta fakta är
+  vad som är viktigt. Inte krångla till det." Alla regler nedan folded into
+  [[voice_channel_mail]] som ny kontext "Statusmail till klientens team", plus en
+  korsreferens i [[voice_register_documents]] regel 5 (rubrikregeln är nu mail-evidensbaserad,
+  inte bara dokument). Category: channel register (mail-evidenced).
+- **Rubriken är en etikett som namnger ämnet, oftast ett substantiv, inte en mening som gör en
+  poäng.** "LootLocker lever, er egen backend gör det inte" blev "LootLocker"; "En praktisk sak
+  medan vi jobbar" blev "Versionshantering". Rubrikregeln från dokumentregistret (2026-08-24)
+  gäller alltså även mailens fetade sektionsrubriker - rubriker är där registret läcker först,
+  på båda ytorna.
+- **Mottagarens nytta: en gång, kort, gärna i rubriken - aldrig som säljmening i brödtexten.**
+  Han la till "om Blast TV vill testa" i rubriken och strök samtidigt "Bra läge för
+  blast.tv-spåret ... om ni vill hålla den kontakten varm" (värdering + tolkning av deras
+  affär åt dem + upprepning, tre fel i en mening). Undantaget som bekräftar regeln: det är
+  inte förbjudet att nämna deras intresse, det är förbjudet att sälja det.
+- **Ingressen är faktumet, inte en agenda.** "Kort läge:" och "Det jag behöver från er är ett
+  beslut om var vi lägger testbyggen" ströks båda; frågan ställs där den ställs och behöver
+  ingen avisering. Nya mönster i samma familj som meta-signposting: den artiga inbjudan att
+  invända ("men säg till om det ligger något där som ni vill spara") och uppräkningssignalen
+  ("behöver vi två saker:") stryks när listan ändå står på raden efter.
+- **Struktur: besläktade punkter slås ihop hellre än numreras var för sig.** Punkt 6 ("En sak
+  till på samma tema") flyttade in i LootLocker-stycket, sex punkter blev fem. En rubrik som
+  säger "på samma tema" är själv beviset på var punkten hör hemma.
+- Vad han INTE rörde: app-id:n, branch-nummer, backend-URL:en, publisher key-resonemanget och
+  hela mainline-stycket, nästan ordagrant. Konsistent med hårdgränsen från dokumentpassen:
+  registret arbetar på ramverket runt fakta, aldrig på fakta. "Tja,"-öppningen och "/Robert"
+  överlevde också; ingen personprofil för Olle/Joel finns ännu i `voice/people/`, seeda vid
+  nästa pass om korpusen behövs. Category: register + process.

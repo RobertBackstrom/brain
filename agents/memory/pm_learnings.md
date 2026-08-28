@@ -1,3 +1,60 @@
+## 2026-08-28 — Platform notification mail is a membership LEDGER: reconstruct access state from it before declaring an access task blocked [project: necrotic_dominion, nd]
+
+Follow-on to the same day's console-testing entry. Robert asked me to add him and Elias as CurseForge
+testers on ND. Project memory said flatly "there is **no CurseForge session on the VPS**, so member
+changes are Robert-in-the-browser", and the 2026-08-02 learning had already filed the task as blocked
+three ways. Both true, and both would have led me to answer "blocked, ask Amichai" and stop.
+
+**What the mail archive actually showed.** `from:noreply@curseforge.com` does not only carry comment
+text (the 2026-08-02 finding). It carries **membership and ownership state-change events**, each
+addressed to the account it happened to:
+- "AuroraPunksBoss, ... April 13 **You were added to the following projects**: Necrotic Dominion" (to robert@, 2026-04-14)
+- "davidkruse, ... April 13 **Ownership** of the project Necrotic Dominion **has been transferred to you**" (to david.kruse@, same batch)
+- "robert_aurorapunks, ... December 17 New Owner in Necrotic Dominion: Armory" (to the private Gmail, 2025-12-18)
+
+So Robert was **already a member** of the very project he was asking to be added to. The real ask was
+never "add me", it was "raise my existing membership to include Cross Platform Testing" — which is
+exactly why Amichai's "you can also do it in the project page in the author console" was correct and
+not just a brush-off. Reporting "blocked, no session" would have been *technically accurate and
+practically wrong*: it would have parked a task Robert could finish himself in two minutes.
+
+**How to apply.** For any access/membership question on a gated platform where we hold no session,
+before answering "blocked": search the notification mail for the platform's **state-change events**
+(added to project / removed from / ownership transferred / role changed / invitation accepted) across
+**every** mailbox we index, and reconstruct the access graph from them. The events are per-account, so
+they also tell you *which identity* holds the access, which is the thing that actually decides the
+answer. A gated write surface does not imply gated *state*. Generalises the 2026-08-02 rule ("ask what
+the platform sends outward") from content to **permissions**.
+
+**Two caveats.** (1) Phrasing is not stable, so a single quoted-string search under-returns: searching
+`"added to the"` returned one mail while a broader semantic query surfaced two more of the same class.
+Query semantically (RAG) or with several phrasings before concluding a membership event doesn't exist.
+(2) The ledger is **append-only and one-sided** — it proves an add happened, never that it still holds,
+and it cannot give you the *role* attached. So it is good for "does this identity have a foothold" and
+useless for "what exactly can it do" or "how many of the 5 seats are used". State the difference rather
+than over-claiming from it.
+
+**Same-session correction, and it is the real lesson.** After writing the above I found the project's own
+`output_log.md` from 2026-08-12: *"`AuroraPunksBoss` owns nothing, which is why its author portal shows
+**'No projects yet'**"*. That is a **direct observation of the console** and it contradicts the mail ledger's
+"you were added to Necrotic Dominion". Either the author console surfaces only *owned* projects (so a
+member-only project is invisible there) or the April membership lapsed. Either way Robert probably **cannot**
+self-serve, which is the opposite of what I had just told him.
+
+**So the ledger rule needs a hard ceiling.** Notification mail is append-only and one-sided: it proves an add
+*happened*, never that it still holds, never the role attached, never the seat count. It is a lead, not a state
+read, and it **loses to any direct observation of the live surface**. Before reporting reconstructed access state,
+grep the project's own `output_log.md` and prior audits for someone having actually *looked* — a five-second check
+I skipped because the mail evidence felt conclusive. Reconstructed evidence that contradicts a logged observation
+means you have a question, not an answer. Ship it as "two sources conflict, here is the cheap thing that settles
+it" rather than picking the one you found second.
+
+**ND-specific residue:**
+
+**Tags:** necrotic-dominion, curseforge, access-management, notification-mail, identity, permissions, blocked-tasks, nd
+
+---
+
 ## 2026-08-28 — Testing an unreleased ARK:SA mod build on console is a CurseForge permission, not a platform devkit flow [project: necrotic_dominion, nd]
 
 Robert asked "what are the steps to test Elias' internal PS5 build on a retail PS5". The instinct on a
@@ -41,6 +98,65 @@ agent: pm
 ---
 
 # PM Agent Learnings
+
+
+## 2026-08-28 — Buggfixar mot en levererad feature är inte featurearbete (k2c)
+
+Jag satte in **Merchant** under "Updated features" i MS4-byggnoteringarna. Robert strök den:
+featuren är i levererat skick sedan MS3 och hörde inte hemma i dokumentet alls.
+
+Det som lurade mig var ticketstrafiken. **KAN-578** (merchant stuck, kunde inte betala mynt efter
+bygge) och **KAN-549** (merchant donkey flickers) stängdes båda inne i MS4-fönstret, och min
+Done-fråga plockade upp dem. Jag läste "tickets stängda den här milstolpen" som "den här featuren
+rörde sig den här milstolpen". **Ett levererat system fortsätter generera defekter för alltid.**
+Den trafiken säger ingenting om huruvida featuren gick framåt.
+
+Testet som hade fångat det tar tio sekunder: **titta på featurens egen epic, inte på tickets i
+datumfönstret.** `KAN-355 FEATURE: Merchant (NPC unit)` står Done, prod-design KAN-356 Done, konst
+och kod levererade vid MS3. En epic som redan är stängd kan per definition inte vara den här
+milstolpens nya eller uppdaterade feature.
+
+Regeln generellt, för alla milstolpedokument: en feature förtjänar en rad under New eller Updated
+bara om **featurearbetet** rörde sig, alltså ny mekanik, ny konst, eller ett medvetet balans- eller
+polishpass. Att stänga buggar mot något redan levererat kvalificerar inte. Det här är samma familj
+som fixVersion-fällan i entryn ovanför: **båda handlar om att en Jira-fråga som ser rimlig ut svarar
+på en annan fråga än den du ställde.**
+
+Kanonisk hemvist för sakuppgiften: [[project_k2c_merchant_delivered]].
+
+**Tags:** k2c, milestone-delivery, build-notes, jira, epics, feature-scope, delivered-state
+
+
+## 2026-08-28 — Bygg kända-problem-listan på status, aldrig på fixVersion (k2c)
+
+Robert bad om MS4-byggnoteringar med kända problem, "bara pending". Den självklara frågan är
+`fixVersion = "MS4 - Pre-Cert Build" AND issuetype = Bug AND status NOT IN (Done, "In Review")`.
+Den gav **13 buggar**. Den riktiga listan var **38**.
+
+Skillnaden är att **KAN-628 till KAN-661 saknar fixVersion helt**, och det är just de ticketsen som
+betyder något: hela playtestbatchen från 27-28 aug, skapad av Death Board-boten ur Discord #qa
+timmarna före grinden. Ju färskare fyndet, desto större chansen att ingen hunnit stämpla det. En
+fixVersion-scopad fråga är alltså **systematiskt partisk mot det som är äldst och minst relevant**
+för ett bygge som levereras i dag.
+
+Det förrädiska är att frågan inte ser trasig ut. Den returnerar 13 rimliga buggar med rimliga
+rubriker, och det finns ingenting i svaret som säger "här saknas 25 stycken". Hade jag levererat den
+listan hade RF fått en kända-problem-sektion som utelämnade Anubis-krigarnas alfa-blending,
+Lurkern som arkéerna inte kan träffa, och hålet i muren bakom bryggan, alltså precis det Tim och
+Oskar hittade under de sista två dagarna.
+
+**How to apply:** för en leveransartefakt, ställ frågan på **status** (`status NOT IN (Done,
+"In Review", Icebox)` plus ett datumfönster på `created`), inte på `fixVersion`. Använd fixVersion
+för att bygga *levererat*-listan, där stämplingen faktiskt har skett i efterhand, och status för att
+bygga *kvarstår*-listan. Kör alltid båda och jämför antalen: **om status-listan är väsentligt större
+än fixVersion-listan är differensen ostämplade tickets, inte brus.** Flagga gapet till Robert i
+samma pass, det är en boardhygienläcka och inte bara en frågedetalj.
+
+Samma mönster som bot-hygienläckan 24 aug (bot-skapade tickets utan sprint och fixVersion), men en
+våning upp: där handlade det om att städa boardet, här om att en ostädad board tyst förfalskar en
+klientleverans.
+
+**Tags:** k2c, jira, jql, fixversion, build-notes, known-issues, milestone-delivery, board-hygiene
 
 
 ## 2026-08-28 — Ett ticket-ID i projektminnet är en pekare till oavslutad analys, inte ett faktum (k2c)
