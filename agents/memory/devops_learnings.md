@@ -1,3 +1,154 @@
+## 2026-08-28 - En deploy som aldrig committades overlevde bara i processminnet, och en reconcile stadade bort den [project: db, db-017]
+
+db-017 v5 (`jira_task`: plan-och-godkann for flerstegs-Jira fran Discord) byggdes 27 aug 21:44-21:55
+och deployades genom en `systemctl --user restart deathboard`. Den committades aldrig. 22:16:50
+skrev nagon tillbaka HEAD:s version av `discord-bot.js` over arbetskopian, 47 sekunder innan commit
+9826c9c. Resultatet: boten korde funktionen vidare ur processminnet i nastan ett dygn medan filen pa
+disk inte kande till den. Roberts skarmdump 28 aug 15:11 visade `jira_task` svara i Discord, och
+`grep jira_task discord-bot.js` gav noll traffar. Bada var sanna samtidigt.
+
+**Det farliga var att inget larmade.** Tjansten har `Restart=always`. Vilken krasch, omstart eller
+reboot som helst hade tyst nedgraderat boten till augustiversionen, och den enda signalen hade varit
+att en funktion nagon anvande i gar slutade finnas. Ett fel som bara syns som franvaro.
+
+**Aterstallningen gick via sessionstranskriptet, inte via git.** `~/.claude/projects/<projekt>/*.jsonl`
+innehaller varje Bash-kommando ordagrant, inklusive heredocs. Bygget bestod av patch1/2/3 plus fyra
+python-redigeringar plus en 26 KB planner-block-insattning, allt aterfunnet och uppspelat mot en
+scratch-kopia i ratt ordning. `/tmp`-scratchpaden fran sessionen levde ocksa kvar (ingen reboot
+sedan 20 aug) med patchfilerna och fyra testharnesses. Verifieringen blev darmed gratis: `exectest`,
+`regress`, `refmt` och `dashtest` kordes mot rekonstruktionen och gav 9/9 intents, 27/27 steg,
+0 em-dashes. Byte-storleken matchade filens mtime-fonster (21:55:02) som processen laddade 21:55:17.
+
+**Tva konkreta lardomar:**
+1. **En restart ar inte en deploy.** Deploy = skriv fil, commit, *sedan* restart. Ett bygge som lever
+   som en ocommittad arbetskopia ar en deploy med en enda kopia, och den kopian ligger i RAM.
+2. **`node --check` i en scratch-katalog ljuger inte, men kan inte kora.** `require('discord.js')`
+   och `./jira-ops` loser bara ut fran modulens egen katalog. Lagg rekonstruktionen som
+   `<namn>.recovered.js` *bredvid* originalet i riktiga katalogen i stallet: node_modules och
+   syskonmoduler funkar, och inget i drift pekar pa filen.
+
+**Kontrollen som saknas och bor byggas:** en `git status --porcelain`-vakt som larmar pa Discord nar
+en korande tjansts kallfil har ocommittade andringar aldre an nagra timmar. Samma familj som
+backup-health (db-327): en tyst divergens mellan det som kor och det som ar sparat.
+**Tags:** deploy, git, ocommittad-deploy, processminne, transkript-recovery, reconcile, db-017, discord-bot, restart-always
+
+## 2026-08-28 - Migrationsrevision: tre av fyra kvarstaende "fynd" holl inte, och orsaken var samma i alla tre [project: db, db-310]
+
+
+## 2026-08-28 — OpenSign mailar ibland nästa signatär själv, tvärtemot vad opensign.js dokumenterar (k2c/apb)
+
+`opensign.js` header säger uttryckligen: *"The server does NOT auto-email the next signer on
+completion (DocumentAftersave does not dispatch). Email is fully client-driven."* Hela
+`opensign-watcher.js` vilar på det antagandet, och dess idempotens spårar därför bara **sina egna**
+utskick.
+
+I MNDA-flödet mot Space Rock Games fick Mattias Wiking **två** signeringsförfrågningar:
+**21:18 UTC** med OpenSigns egen mallrubrik (*"Robert Backstrom has requested you to sign ..."*),
+direkt efter att Robert signerat, och **22:19 UTC** watcherns egen (*"Signature requested: ..."*,
+avsändarnamn `Aurora Punks robert@aurorapunks.com`, vilket är `DEFAULTS.FROM`). Den första kom
+alltså utan att watchern hade något med saken att göra, antingen från servern eller från en knapp i
+signeringsgränssnittet som Robert tryckte på när han var klar.
+
+Konsekvensen är att **allt som skickas från OpenSigns eget UI är osynligt för watchern**, som därför
+mailar en gång till. På en motpart ser det ut som att vi tjatar, och i en ordnad kedja med flera
+externa parter blir det värre för varje steg.
+
+**How to apply:** behandla "servern skickar inget" som ett **obekräftat** antagande, inte som en
+dokumenterad sanning. Innan watchern mailar en signatär, kontrollera om ett utskick redan gått till
+den adressen för det dokumentet, förslagsvis via en `in:sent`-sökning på dokumentnamnet eller genom
+att läsa dokumentets AuditTrail, i stället för att lita enbart på det lokala `emailed`-state:et.
+Uppdatera samtidigt header-kommentaren i `opensign.js`, den är i dagsläget felaktig och det är den
+alla läser först. Källa: K2C / AP.
+
+
+Gick igenom de oppna punkterna i db-310 en och en i stallet for att lita pa vad ticketen sa.
+**Tre av fyra var fel, och alla tre pa samma satt: en observation fran migrationsdygnet hade
+skrivits ned som ett tillstand och sedan aldrig mats om.** Det ar den generella laxan. En
+migrationsticket samlar pa sig pastaenden i det ogonblick nagot ser konstigt ut, och de aldras
+samre an vanliga ticketrader eftersom hela poangen med migrationen ar att andra just det de
+beskriver. Mat om varje oppen punkt innan du agerar pa den, inte bara de du misstanker.
+
+**1. Ett rott watchdog-jobb ar tvetydigt: `exit 1` betyder bade "jag ar trasig" och "det jag
+vaktar ar trasigt".** `fortnox-probe` stod som "failar, foljer med i flytten som trasig". Den var
+inte trasig. Playwright korde, profilen fanns, den natt hela vagen till Fortnox och rapporterade
+`LAPSED: session lapsed - bounced to login/MFA`. Alltsa exakt vad en session-watchdog ska gora nar
+sessionen lopt ut. Samma LAPSED-rad om och om i loggen betyder dessutom *stabilt tillstand*, inte
+flakigt fel. Regeln: for ett watchdog-jobb, las alltid loggraden innan du bokfor `Result=exit-code`
+som ett verktygsfel. Och nar du bygger en watchdog, overvag skilda exitkoder for de tva fallen, for
+annars ar informationen borta redan i systemd.
+
+**2. "Skriver till `_legals`" sa ingenting om vilken maskin som ager datan.** Punkten var att
+`opensign-watch` skriver kontraktsarkiv till edge:s `_legals` och darfor maste pekas om innan nasta
+kontrakt. `_legals` visade sig vara ett **Google Drive-mapp-id** i registret
+(`legalsFolderId: 1LaDcBo8j...`), inte en katalog pa disk. Den durabla artefakten ar host-oberoende
+och landar ratt oavsett var jobbet kor. RAG-halvan laker ocksa sig sjalv, eftersom Nitros
+gdrive-indexering plockar upp filen anda. **Innan du planerar en flytt av ett jobb: grep pa vad
+skrivvagen faktiskt ar. Ett namn som later som en katalog ar ofta ett moln-id, och da ar hela
+"det ligger pa fel maskin"-problemet inbillat.** Det som verkligen var host-lokalt, `opensign-watch.json`,
+hade identisk md5 pa bada hostarna och noll dokument in flight.
+
+**3. Rakna om siffror ur en ticket innan du citerar dem.** "23 dubbletter av ticket-ID" var fem.
+Och de fem motbevisade ticketens egen forklaring: tvahost-teorin tacker de tre fran augusti, men
+`db-014` (maj) och `db-230` (juni) ar aldre an delningen, sa kollisionskallan fanns fore och finns
+kvar efter. Den ar att sex av sju allokeringsvagar i `server.js` gor las-hogsta-nummer och sedan
+`writeFileSync` utan reservation, medan den sjunde redan gor det ratt med `flag: 'wx'` i en
+retry-loop. **Nar en forklaring bara tacker den nya delen av ett problem ar den nastan alltid fel
+forklaring.** Utbrutet till db-330.
+
+**4. Den enda matning som svarar pa "har divergensen upphort" ar mtime, inte diff.** Tidigare
+korningar raknade *vilka* filer som skilde sig mellan hostarna. Det sager hur stor divergensen ar,
+inte om den vaxer. `find <tradet> -newermt <delningsdatum> -not -path "*/logs/*" | wc -l` = 0 pa
+edge svarar pa den riktiga fragan. Undanta loggar, de ar host-lokala och ska fortsatta roras.
+Anvand den formen som acceptanskriterium for varje "frys skrivningarna"-steg i framtiden.
+
+**5. Ett borttaget cronjobb som lamnar kvar sin kommentarsrubrik ser ut som ett slarvfel.** Edge:s
+crontab har rubriken "Steam payout verification (czp-023) ... STAYS on VPS: needs playwright" med
+*inget kommando under*. Jag holl pa att rapportera en tidskritisk migrationslucka innan jag
+kollade git och hittade beslutet i huvudet pa ersattningsskriptet. Ta bort rubriken samtidigt som
+raden, eller skriv "BORTTAGEN <datum>, se <fil>" i den. En foraldralos rubrik ar ett falsklarm som
+vantar pa nasta revision.
+
+**6. `--smoke`/dry-run pa en fardigbyggd watcher ar ratt satt att svara pa en oppen fraga
+obevakat.** Fragan var om czp-023:s utbetalning tappats nar watchern togs bort. I stallet for att
+gissa korde jag `steam-payout-watcher.js --smoke`, som per konstruktion inte notifierar, inte
+satter done-flaggan och inte skriver i ticketen. Utfall PAID_CZP, alltsa svaret pa en ticket som
+statt oppen sedan 15 augusti. **Nar en tidigare session har byggt ett verktyg med ett explicit
+read-only-lage ar det verktyget den billigaste vagen till ett svar, aven om fragan tillhor en
+annan ticket an den du kor.** Skriv resultatet till den agande ticketen, inte till din egen.
+
+**7. Praktisk fotangel som kostade tre korningar:** `ssh <host> '<kommando>'` landar i `$HOME`,
+inte i projektroten, aven nar din egen shell star i `projects/assistant`. `node foo.js` gav
+`Cannot find module '/home/assistant/foo.js'` tre ganger innan jag sag det. Det ar samma familj
+som laxan fran 08-27 om relativa sokvagar mot `agents/memory/`. **Anvand absoluta sokvagar eller
+ett explicit `cd ... &&` i varje ssh-kommando, undantagslost.** Felmeddelandet innehaller den
+felaktiga sokvagen, sa las den i stallet for att anta att skriptet saknas.
+
+**Tags:** migrationsrevision, stale-pastaenden, watchdog-exitkoder, fortnox-probe, opensign-watch,
+drive-mapp-id, ticket-id-kollisioner, wx-flaggan, mtime-som-acceptanskriterium, foraldralos-crontab-rubrik,
+dry-run-som-svar, ssh-cwd, db-310, db-330, czp-023
+
+## 2026-08-28 — En loggad FATAL utan omkörning är fortfarande ett öppet hål, även efter att buggen är fixad [project: db, db-327]
+
+4am-sweepen på db-327 hittade att `brain-backup.sh` FATAL:ade 2026-08-27 18:00 på precis den
+pipefail-bugg som redan var dokumenterad som fixad — fixen landade 22:16 samma kväll, men ingen
+körde om backupen efteråt. Cron kör en gång om dagen, så gapet hade legat kvar orört till nästa
+schemalagda 18:00 om inget hade kollat loggen mellan lagningen och nästa körning. **En bugfix
+stänger inte automatiskt det hål bugen redan hann gräva.** Efter att ha fixat ett skript som kör på
+cron, kolla om senaste faktiska körning (loggen, inte koden) redan misslyckades under den gamla
+koden, och kör om manuellt om så — annars sitter reparationen i git men inte i verkligheten till
+nästa schemaslot.
+
+**Andra fyndet i samma pass:** `git branch -vv` på `projects` och `assistant` visade ingen
+`[origin/master]`-tracking trots att `origin` var korrekt satt och `auto-commit.sh` fungerade
+perfekt. Skriptet är immunt (explicit refspec i både push och pull), men vilken människa eller
+ad-hoc-agent som helst som kör bart `git pull`/`git push` i de repona hade fått
+"no upstream configured" istället för att göra det de trodde. **Ett skript som fungerar utan
+tracking-branch bevisar inte att tracking-branchen är satt** — kolla `@{u}` explicit efter att ha
+verifierat att automationen går igenom, de kan divergera tyst. `git branch --set-upstream-to` är en
+ofarlig engångsfix.
+
+**Tags:** brain-backup, cron, pipefail, verifiera-efter-fix, upstream-tracking, db-327
+
 ## 2026-08-27 - En stilregel som bara star i prompten ar inte hävdad, och tva filer med samma relativa sokvag ar en tyst fälla [project: db, db-017]
 
 Tva tooling-laxor fran samma kvall som byggde `jira_task`. Ingen av dem handlar om Jira.
@@ -1599,7 +1750,61 @@ rad med färsk tidsstämpel om träffen uteblir. Backfillen är billig, gissning
 
 **Tags:** rag, chokidar, watcher, deathboard-service, indexering, close-ritual, gotcha
 
-## 2026-08-16 — PDF-byggande på VPS:en: reportlab är enda vägen, ingen pandoc/libreoffice finns (apb)
+## 2026-08-27 - Formaterad PDF på VPS:en går via md-to-docx och Drive, inte via reportlab [apb / apb-053]
+
+**Kategori:** tooling · **Taggar:** pdf, md-to-docx, gdrive-upload, drive-export, husstil, dokumentgenerering, domstolshandling
+
+**Kedjan, verifierad hela vägen på ett yttrande till Umeå tingsrätt:**
+
+1. `node assistant/md-to-docx.js in.md ut.docx --title "..."` ger husstilen (A4, EB Garamond 11,
+   Calibri-rubriker, marginaler enligt Roberts formatering 2026-04-15). Husstilen är låst inne i
+   scriptet, så detta är enda sättet att få den.
+2. `node assistant/gdrive-upload.js ut.docx <mapp-id> --convert` laddar upp och konverterar till
+   Google Doc.
+3. Exportera till PDF med en rå `GET drive/v3/files/<id>/export?mimeType=application/pdf` med token
+   från `gdrive-read.js` `getToken()`. `drive-lib.js` `api()` duger inte, den JSON-parsar svaret.
+4. Verifiera **alltid** med `pdftotext -layout` och läs igenom innan filen går till en människa.
+
+**Två fällor som kostade en runda var:**
+
+- **Enkla radbrytningar i markdown kollapsar.** Rubrikfält och signaturblock klumpade ihop sig till
+  löpande text i PDF:en. Lägg **blankrad** mellan varje fält som ska stå på egen rad, så blir de
+  egna stycken med 6pt efter.
+- **Itererar du måste du städa i Drive.** Varje ny uppladdning skapar en ny fil. Radera den gamla
+  med `gdrive-upload.js --delete <id>` innan du laddar upp nästa, annars ligger flera versioner i
+  ärendemappen och någon ger in fel.
+
+**Varför detta slår reportlab:** husstilen finns redan, Google Docs sköter typografin, och man får
+både en redigerbar GDoc och en PDF ur samma källa. reportlab bygger man från noll varje gång, och det
+är dessutom inte installerat i default-python (se rättelsen på 2026-08-16-posten).
+
+## 2026-08-27 - Followup-filer kan skrivas över av Death Board mitt i en session, och /response är inte alternativet [apb / apb-053]
+
+**Kategori:** tooling · **Taggar:** followups, death-board, appendActivity, api, race, agent-spawn
+
+1. **Direktredigeringar av `assistant/followups/*.md` kan försvinna.** apb-053 redigerades tidigt i
+   sessionen (status, besvarade frågor, aktivitetsposter). En stund senare hade filen **återställts
+   helt** till sitt tidigare läge. Serverns filbevakare plockar upp ändringar, men serverns egen
+   skrivare kan flusha in-memory-state ovanpå dem.
+2. **Motmedlet är billigt: verifiera efter skrivning**, och gör om ändringen i ett svep om den
+   försvunnit. `grep` på ett par ankare räcker. Skriv aldrig en rapport som påstår att ett kort är
+   uppdaterat utan att ha läst tillbaka filen.
+3. **`POST /api/followups/:id/response` är INTE den säkra vägen runt problemet.** Har kortet
+   `needs_input: true` **auto-spawnar den en agent** på svaret (`spawnResponseAgent`). Vill man bara
+   dokumentera något får man en oväntad agentkörning på köpet.
+4. `PUT /api/followups/:id/status` är däremot ofarlig och loggar dessutom statusbytet som aktivitet.
+   Använd den för status, och filredigering plus verifiering för aktivitetstext.
+5. Not: `GET /api/followups` returnerar `id` som **hela filnamnsslugen**, inte det korta
+   ticket-id:t. Matcha inte på `id === "apb-053"`.
+
+## 2026-08-16 — PDF-byggande på VPS:en: ingen pandoc/libreoffice finns (apb) [DELVIS RÄTTAD 2026-08-27]
+
+> **RÄTTELSE 2026-08-27 (apb, K 4429-25).** Två fel i posten nedan. **(1) reportlab är inte
+> importerbart** från default-`python3` (`import reportlab` failar). Verifiera innan du planerar
+> runt det. **(2) "reportlab är enda vägen" stämmer inte, och för formaterade dokument är det fel
+> väg.** Se den nya posten längre ned om md-to-docx-kedjan. Det som fortfarande gäller i posten:
+> pandoc, wkhtmltopdf, weasyprint, libreoffice/soffice och headless Chrome saknas alla, och
+> `pdftotext` (poppler) finns och ska alltid användas för att verifiera resultatet.
 
 **Learning:** när en agent behöver producera en PDF på VPS:en finns **inget** av det man reflexmässigt
 sträcker sig efter. `pandoc`, `wkhtmltopdf`, `weasyprint`, `libreoffice`/`soffice` och headless
