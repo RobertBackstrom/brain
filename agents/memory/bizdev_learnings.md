@@ -14,6 +14,32 @@ agent: bizdev
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-08-29 — A project can carry live tracked deals for days with zero deal-wiki presence [Dark Riviera, dr-000/001/002]
+
+**Source project:** dr-000 epic, 4am sweep | **Category:** process gap, pipeline hygiene
+
+- **A project scaffolded on 2026-08-25 with three live tickets (dr-001/002/003) had no deal-wiki
+  footprint at all as of 2026-08-29** — no `wiki/deals/projects/dark_riviera.md`, no deal page for
+  Boombox, no contact pages for Sylvain/Emilie/Philippe. The Gmail draft and followup tickets were
+  the only record. Per the Pipeline Ownership rule (`agents/bizdev.md`), the deal wiki is supposed
+  to be canonical from the moment a BD project starts — bootstrapping it isn't optional infra
+  work, it's the first thing that should happen alongside ticket creation. **Check for a
+  `wiki/deals/projects/<slug>.md` page whenever a new BD project shows up in the followups
+  folder** — a project with tickets but no wiki page is a bootstrap gap, not a sign there's nothing
+  to track yet.
+- **`gmail_thread` again showed a sent reply as a normal message**, this time correctly — but the
+  followup ticket (dr-001) still said "Draft is ready to send... Awaiting Robert to send" four days
+  after Robert had actually sent it (confirmed via `gmail_thread` returning two real messages with
+  distinct message IDs, not a draft). Extends the 2026-07-03 draft-vs-sent tooling trap: **always
+  re-check thread state before trusting a ticket's own "awaiting send" status** — the ticket can go
+  stale the moment Robert acts outside the session that wrote it.
+- **Multi-question internal validation emails to a close colleague still follow the no-bullets
+  voice rule.** Converted Dark Riviera's five open catalog questions (from `ip_catalog.md`) into
+  three flowing paragraphs instead of a numbered list for the mail to Emilie (DR's CEO, a board
+  colleague, not a cold prospect) — the "no numbered lists/bullets in outward messages" rule in
+  `skills/writing_voice_robert.md` doesn't carve out an exception for a long internal-style ask
+  just because the recipient is trusted.
+
 ## 2026-08-15 - Sanity-checking a counterparty's dev budget: the seat-month method [AP / Erik Reynolds, apb-029]
 
 **Source project:** apb-029, Unyverse scope analysis | **Category:** method, deal intel, tooling

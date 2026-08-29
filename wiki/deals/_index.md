@@ -1,6 +1,6 @@
 ---
 type: dashboard
-updated: 2026-08-24
+updated: 2026-08-29
 ---
 
 # Deal Wiki — Dashboard
@@ -16,13 +16,16 @@ updated: 2026-08-24
 | blue_scarab        |  1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
 | knives_and_gutters |  5 | 0 | 1 | 1 | 1 | 0 | 0 | 2 | 0 |
 | curveball          |  1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
-| **TOTAL**          | **57** | **20** | **13** | **6** | **2** | **3** | **6** | **4** | **3** |
+| dark_riviera       |  1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **TOTAL**          | **58** | **20** | **14** | **6** | **2** | **3** | **6** | **4** | **3** |
 
 _Count and status unchanged from 2026-08-17 cycle. No status changes. No new deals added. Fifth consecutive cycle with identical totals._
 
 ## Hot This Week
 
 _Window: 2026-08-17 – 2026-08-24. No deals have frontmatter `last_activity` in this window._
+
+**New project bootstrapped 2026-08-29: [[deals/boombox]] (dark\_riviera, Contacted — high).** Philippe Erwin wants a new IP to develop into a game by end of 2026; Robert narrowed the DR offer to Hybrid and Primus and proposed a call (2026-08-25). No reply yet, 4 days out — follow up if nothing lands by ~2026-09-02.
 
 _Nothing logged. **Critical: [[deals/starbreeze]] (elias, Interested — high) meeting target was 2026-08-17 — now 7 days overdue with no outcome recorded. If the meeting happened, log it immediately and move status to Evaluating (or hold at Interested if no concrete next step resulted). Kristofer check-in was due early August and remains unresolved.** Next expected signal outside Starbreeze: [[deals/formula-drone]] (aurora\_punks, Evaluating — medium) — James Waite to schedule Robert ↔ Tony Hardie-Bick (Xoomble) preliminary call._
 
@@ -90,3 +93,4 @@ _Updated 2026-08-24. No flags resolved since 2026-08-10 cycle. Day counts update
   - [[projects/blue_scarab]] — Blue Scarab Entertainment (single-deal porting engagement)
   - [[projects/curveball]] — Curveball / The Gang Studio (co-dev + publishing)
   - [[projects/knives_and_gutters]] — Knives & Gutters (festival/showcase placement)
+  - [[projects/dark_riviera]] — Dark Riviera IP placement with studios/publishers
