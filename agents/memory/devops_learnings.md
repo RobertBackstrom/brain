@@ -1,3 +1,149 @@
+## 2026-08-29 - A decision that was made but never encoded is indistinguishable from a decision that was never made [project: db, db-329]
+
+db-329 asked me to choose between three ownership models for a repo two boxes were
+writing to. I re-measured before deliberating, and the choice had already been made
+and executed three days earlier: Hetzner's crontab was trimmed on the 24th, the six
+foreign commits were merged on the 27th by `41cfa7b "Reconcile bare-metal divergence:
+Nitro line authoritative"`, and `git rev-list --left-right --count master...origin/master`
+returned `0 0`. The ticket's whole framing was stale. Three days of deliberation would
+have produced the answer that was already sitting in the git log.
+
+**But the ticket was still right to be open, for a reason it did not state.** The
+decision lived in exactly two places, both of them removable: a crontab line that
+someone had deleted, and a merge commit. The script that caused the damage was still
+on the losing box, byte-identical, one restored crontab away from doing it again. So
+the finding is not "already fixed, close it". It is: **an invariant enforced by the
+absence of a config line is not enforced. Put it in the artifact that would do the
+damage.** The guard is nine lines comparing `hostname` against an `OWNER_HOST`
+constant in `auto-commit.sh` itself, so it travels with the script, survives a crontab
+restore, and self-disables the script on any box that is not the writer. Verified by
+running it on Hetzner: `REFUSING: this box is 'ubuntu-8gb-hel1-1'`.
+
+**The design rule for the rest of the hardening, worth reusing:** every failure mode
+of an unattended script must be "nothing happened and someone was told". That is what
+picked merge over rebase. Both can conflict; only one can be undone in a single step.
+`git merge --abort` restores the tree exactly, `git rebase` stopped at patch 7 of 18
+leaves markers in files a live service parses. Same reasoning produced the guard that
+refuses to touch a repo that is already mid-rebase, which is the one that actually
+mattered: the danger on the 26th was not the failed rebase, it was that the *next*
+run would have `git add -A`'d the conflict markers straight into history.
+
+**Do not trust `git merge --abort` to have worked, check.** My first draft did
+`git merge --abort || git reset --hard HEAD`. The test bed caught it: a merge can fail
+*before* it starts (I had passed `--no-rebase`, which is a `git pull` flag; `git merge`
+exits 129 and never creates `MERGE_HEAD`), and then the `--abort` fails too and the
+`reset --hard` fires as a fallback in a situation nobody designed for. An unattended
+script must never be able to `reset --hard` work it did not create. Replaced with:
+abort, then assert `MERGE_HEAD` is gone and `git status --porcelain` is empty, and
+alarm differently depending on which.
+
+**Two smaller things from the same file.** `git pull --rebase ... 2>&1 >> "$LOG"` has
+the redirections backwards: stderr goes to the *old* stdout (cron mail, i.e. nowhere)
+and only stdout reaches the log, so every git error was invisible. And the return code
+was never checked. When you inherit a line like that, the bug is usually not the
+command, it is that nobody ever saw it fail.
+
+**Tags:** auto-commit, db-329, ownership-invariant, enforce-in-the-artifact,
+merge-not-rebase, abort-and-verify, unattended-scripts, redirection-order, stale-tickets
+
+## 2026-08-29 - A test harness that redirects paths but not credentials still reaches the outside world [project: db, db-329]
+
+The harness for the hardened `auto-commit.sh` was careful: `AUTOCOMMIT_PARENT`,
+`AUTOCOMMIT_ASSIST` and `AUTOCOMMIT_LOG` all pointed into a `mktemp -d`, and the
+scratch dir deliberately had no `.env`, so the script's `[ -f "$ASSIST/.env" ] && . ...`
+line found nothing. I thought that was enough. It was not: `DISCORD_HEALTHZ_WEBHOOK`
+was **already in my shell environment** (six DISCORD vars were), the script reads
+`${DISCORD_HEALTHZ_WEBHOOK:-}` rather than only what it sourced, and the run posted
+a real `4 problems` alert to the healthz channel about repos named A, C, D, E and F
+that exist only in `/tmp`.
+
+**The general shape:** sandboxing a script by overriding its *path* inputs leaves
+every *ambient* input untouched. Anything the script reads from the environment rather
+than from a file under the sandboxed root is still live: webhooks, API tokens,
+`SMTP_*`, MCP creds. Redirecting where a script writes files says nothing about where
+it sends packets.
+
+**How to apply:** in any harness for a script that can notify, explicitly `unset` the
+outbound-channel variables next to where you set the sandbox paths, rather than
+assuming the sandbox covers them. Cheaper still, and worth adding when building the
+script rather than when testing it: make the notify block a no-op whenever the parent
+path is not the production one, so the sandbox implies silence instead of the tester
+having to remember. `AUTOCOMMIT_DRY_RUN=1` already suppresses it; the real run did not.
+
+**Tags:** test-harness, ambient-env, sandbox-leak, discord-webhook, db-329, false-alarm
+
+## 2026-08-29 - Measuring "who may write where" is also a visibility audit, and nothing was checking visibility [project: ops, sec-026, sec-027]
+
+Working out which box was allowed to push to which remote meant asking GitHub about
+the remotes. Two things fell out that had nothing to do with the ticket.
+
+**`RobertBackstrom/brain` is public.** Unauthenticated `curl` returns
+`"private": false` and will list the whole contents tree: `clients/`, `czp-finances/`,
+`badass/`, `paradox_ironcrest_case/`, `_memory/`, the deal wiki, an Ark Island
+co-publishing draft, a cap-table mail. 862 files, current. `assistant` returns 404
+unauthenticated and is correctly private, which is what made the contrast visible at
+all. Raised as sec-026 and left untouched: flipping visibility is an outward-facing
+account change and the notification question is a Lawyer call.
+
+**The one-command test is worth memorising**, because it needs no token and cannot be
+fooled by your own credentials being present:
+`curl -s -o /dev/null -w "%{http_code}" https://api.github.com/repos/OWNER/REPO`
+gives 404 for private, 200 for public. Any check you run *with* auth answers a
+different question.
+
+**Why nobody caught it:** `backup-health.sh` already loops over every repo with a
+remote and checks reachability, unpushed commits and staged-but-uncommitted files.
+Reachability is not privacy, and the loop was one assertion short. A backup monitor
+that verifies your data left the building but not who can read it is checking
+durability while ignoring confidentiality. Worth adding a `private == true` assertion
+per remote once sec-026 is decided.
+
+**Second find, sec-027:** `.steam-czp/` is tracked in `assistant`. 2495 files, 129 MB,
+a whole Chromium profile for the CZP Steam Partner account, including `Cookies` (40
+steampowered/steamcommunity entries) and the `Local State` that the cookie values are
+encrypted against. Private repo, so not sec-026, but it is a live payout-account
+session in git history and in every encrypted Drive tarball. It is also the reason the
+Hetzner box shows a permanently dirty working tree, which I had written off as noise.
+**A directory that makes `git status` useless is worth opening rather than filtering
+out; that is where things hide.**
+
+**Tags:** sec-026, sec-027, repo-visibility, unauthenticated-probe, backup-health,
+confidentiality-vs-durability, steam-session, dirty-tree-as-signal, db-329
+
+## 2026-08-29 - NDID (Nintendo NDP) ger ett kombinerat MFA-fel; TOTP utan otplib gar bra hand-rullad; en misslyckad live-inloggning ar en giltig slutpunkt for en "verifiera"-checklistpunkt [project: db, db-327]
+
+Nintendo Developer Portal loggar in via `ndid.mng.nintendo.net`. Flodet: `loginid` + `password` pa
+en sida -> MFA-sida. Default-MFA ar e-postkod, men det finns en lank "Switch to multi-factor
+authentication using an authentication app" som byter till TOTP-inmatning - kontot hade redan en
+TOTP-secret liggande bredvid lösenordet i kalldokumentet, sa det laget testades. **Slutskarmen ger
+ETT kombinerat felmeddelande** ("The password or verification code or another credential is
+incorrect") oavsett om lösenordet, TOTP-koden, eller badadera ar fel. Att na fram till MFA-sidan
+efter lösenordssteget ar INTE bevis pa att lösenordet godkandes - NDID verkar skjuta upp all
+validering till sista steget, sannolikt for att inte lacka vilket falt som stammer
+(anti-enumerering). Anta inte delframgang av att komma vidare i ett flerstegsflode.
+
+**otplib/speakeasy finns inte pa boxen.** RFC 6238 TOTP ar ~15 rader (base32-decode + HMAC-SHA1 +
+dynamic truncation) och inte vart ett npm-beroende for en engangs/latfrekvent portalinloggning.
+Korsverifierad mot en oberoende Python-implementation (samma kod, samma sekund) for att utesluta
+en algoritmbugg innan lösenordet misstänktes - det ar rimligt forsta steg nar en TOTP-inloggning
+misslyckas: bevisa att koden i sig ar ratt innan man antar att secreten ar stale.
+
+**En misslyckad live-inloggning ar ett giltigt, fardigt svar pa "verifiera med Playwright innan
+tickets stangs" - det betyder inte att uppgiften ar ogjord.** db-327 bad om verifiering; verktyget
+byggdes, korde, och NDID sa nej. Det rätta draget dar var INTE att gissa om igen (upprepade
+misslyckade inloggningar mot ett skarpt partnerkonto riskerar en lockout - kontot var redan
+flaggat for en sen lotcheck-paminnelse, femte gangen), utan att stanna efter ett rent forsok, logga
+exakt vad som hande, och lamna over fragan ("ar det lösenordet eller TOTP-secreten som ar stale?")
+till Robert via `needs_input`. Se [[feedback_security_defaults]] - samma logik som "fail closed":
+en tveksam skarp-kontoaktion ska hellre stoppa och fraga an att fortsatta gissa.
+
+**Sekundart: en kalldokument-inventering hittar ofta mer an vad ursprungsstegen bad om.** Samma
+Drive-dokument (`IndieBI app.txt`) som barav Nintendo-creds hade redan Xbox WLBS/APDS Azure AD
+klient-ID+key (client-credentials-flode, inte en interaktiv portalinloggning) och PS IndieBI/Domo-
+nycklar. Om en nedstroms-ticket (apb-055 Xbox) bara behover API-lasning kan de befintliga
+API-nycklarna racka utan att over huvud taget behova den tyngre interaktiva
+Microsoft-Partner-Center-inloggningen. Vart att flagga separat i stallet for att tysta ga forbi.
+
 ## 2026-08-28 - Nar en bot ber om information som star pa skarmen ar det inte en promptmiss, det ar en saknad lasning [project: db, db-017]
 
 Boten kravde en issue-nyckel i sjalva mentionen och fragade efter en annars. Roberts meddelande var
