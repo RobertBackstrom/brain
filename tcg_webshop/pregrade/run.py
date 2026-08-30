@@ -15,13 +15,12 @@ Processed folders are moved to intake/_processed/<batch>/ unless --keep is set.
 """
 
 import argparse
-import json
 import shutil
 import sys
 import traceback
 from pathlib import Path
 
-from . import centering, psa, report, value, vision
+from . import centering, comps, psa, report, value, vision
 
 ROOT = Path(__file__).resolve().parent.parent
 INTAKE = ROOT / "intake"
@@ -53,17 +52,6 @@ def classify_shots(card_dir):
     return shots
 
 
-def load_comps(card_dir):
-    meta = card_dir / "card.json"
-    if not meta.exists():
-        return None
-    try:
-        return json.loads(meta.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as exc:
-        print(f"  ! card.json is not valid JSON, ignoring: {exc}", file=sys.stderr)
-        return None
-
-
 def process_card(card_dir, use_vision=True, backend=None):
     shots = classify_shots(card_dir)
     if not shots:
@@ -81,7 +69,17 @@ def process_card(card_dir, use_vision=True, backend=None):
     band = psa.synthesize(cf, cb, result or {})
     call, reason = psa.submit_call(band, result)
     warnings = psa.photo_quality_warnings(result, cf, cb)
-    ev = value.expected_value(band, result, load_comps(card_dir))
+
+    # Comp problems ride in the report's own warnings list rather than going to
+    # stderr. A malformed card.json used to be invisible: the EV box said
+    # "comps saknas", which is exactly what it says when there is no card.json
+    # at all, so a typo looked like a card nobody had priced yet.
+    card_comps, comp_warnings, comp_problem = comps.load(card_dir)
+    if comp_problem:
+        warnings = warnings + [comp_problem]
+    warnings = warnings + list(comp_warnings)
+
+    ev = value.expected_value(band, result, card_comps)
 
     return {
         "shots": shots,
@@ -93,6 +91,7 @@ def process_card(card_dir, use_vision=True, backend=None):
         "reason": reason,
         "warnings": warnings,
         "ev": ev,
+        "comps": card_comps,
     }
 
 

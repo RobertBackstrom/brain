@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from pregrade import psa, run as engine  # noqa: E402
+from pregrade import comps as comps_mod, psa, run as engine, value  # noqa: E402
 
 INTAKE = ROOT / "intake"
 REPORTS = ROOT / "reports"
@@ -95,12 +95,36 @@ def centering_line(measurement):
     return ratio
 
 
+def ev_block(ev):
+    """The EV box, with absent numbers absent rather than zeroed.
+
+    raw_net_sek, delta_sek and verdict only exist when the operator supplied a
+    raw_sek. Rounding those Nones to 0 put "Netto rå 0 kr, Skillnad 0 kr" on a
+    report priced only at PSA 10 — a fabricated number in the one box this
+    pipeline is most careful never to guess in. Omit the key instead and let the
+    app render the row it actually has.
+    """
+    if not ev or not ev.get("computable"):
+        return {"computable": False, "reason": (ev or {}).get("reason") or "comps saknas"}
+
+    out = {"computable": True, "graded_net_sek": round(ev.get("graded_net_sek") or 0)}
+    for key in ("raw_net_sek", "delta_sek"):
+        if ev.get(key) is not None:
+            out[key] = round(ev[key])
+    if ev.get("verdict"):
+        out["verdict"] = ev["verdict"]
+    if ev.get("coverage") is not None:
+        out["coverage"] = round(ev["coverage"], 2)
+    return out
+
+
 def to_api(card_id, batch, res):
     band = res.get("band") or {}
     vis = res.get("vision") or {}
     cf = res.get("centering_front") or {}
     cb = res.get("centering_back") or {}
     ev = res.get("ev") or {}
+    card_comps = res.get("comps")
 
     criteria = []
     for key, label in CRITERIA_LABELS:
@@ -137,20 +161,35 @@ def to_api(card_id, batch, res):
         "notes": vis.get("notes") or "",
     }
 
-    if ev.get("computable"):
-        out["ev"] = {
-            "computable": True,
-            "graded_net_sek": round(ev.get("graded_net_sek") or 0),
-            "raw_net_sek": round(ev.get("raw_net_sek") or 0),
-            "delta_sek": round(ev.get("delta_sek") or 0),
-            "verdict": ev.get("verdict"),
-        }
-    else:
-        # Never invent a price. If comps are missing the app shows nothing here
-        # rather than a zero that reads like a real number.
-        out["ev"] = {"computable": False, "reason": ev.get("reason") or "comps saknas"}
+    out["ev"] = ev_block(ev)
+    out["comps"] = card_comps or None
 
     return out
+
+
+# Fields of the engine result that are JSON-safe and that EV needs to be
+# recalculated. `shots` is deliberately excluded: it holds Path objects, and the
+# photos it points at are the one thing this file must not outlive.
+RAW_KEEP = ("centering_front", "centering_back", "vision", "band", "call", "reason", "warnings")
+
+
+def raw_path(batch, card):
+    return REPORTS / batch / f"{card}.raw.json"
+
+
+def write_raw(batch, card, res):
+    """Persist the parts of the engine result that EV is a pure function of.
+
+    Without this, adding comps to an already-analysed card meant re-running the
+    vision pass: 60 seconds and a paid call to recompute arithmetic over numbers
+    we already had. The grade band does not change when a price arrives.
+    """
+    out_dir = REPORTS / batch
+    out_dir.mkdir(parents=True, exist_ok=True)
+    raw_path(batch, card).write_text(
+        json.dumps({k: res.get(k) for k in RAW_KEEP}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
 
 def run_analysis(batch, card):
@@ -160,6 +199,7 @@ def run_analysis(batch, card):
         payload = to_api(card, batch, res)
         out_dir = REPORTS / batch
         out_dir.mkdir(parents=True, exist_ok=True)
+        write_raw(batch, card, res)
         (out_dir / f"{card}.json").write_text(
             json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
         )
@@ -169,6 +209,39 @@ def run_analysis(batch, card):
         traceback.print_exc(file=sys.stderr)
         with _jobs_lock:
             _jobs[key] = {"state": "error", "error": str(exc)}
+
+
+def recompute_ev(batch, card, card_comps):
+    """Recalculate EV for an already-analysed card and rewrite its report.
+
+    Returns the updated report payload, or None when the card has never been
+    analysed (nothing to price) or predates raw persistence.
+    """
+    raw_file = raw_path(batch, card)
+    report_file = REPORTS / batch / f"{card}.json"
+    if not raw_file.exists() or not report_file.exists():
+        return None
+
+    raw = json.loads(raw_file.read_text(encoding="utf-8"))
+    payload = json.loads(report_file.read_text(encoding="utf-8"))
+
+    band = raw.get("band") or {}
+    vision = raw.get("vision") or {}
+    payload["ev"] = ev_block(value.expected_value(band, vision, card_comps))
+    payload["comps"] = card_comps or None
+
+    report_file.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+    # A cached in-memory job would otherwise keep serving the pre-comps report
+    # to the next poll, and the app polls /report after every write.
+    with _jobs_lock:
+        job = _jobs.get(job_key(batch, card))
+        if job and job["state"] == "done":
+            job["result"] = payload
+
+    return payload
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -253,6 +326,18 @@ class Handler(BaseHTTPRequestHandler):
         if not self.authorised():
             return self.fail(401, "unauthorised")
 
+        m = re.fullmatch(r"/api/cards/([^/]+)/([^/]+)/comps", path)
+        if m:
+            try:
+                batch = safe_segment(m.group(1))
+                card = safe_segment(m.group(2))
+            except ValueError as exc:
+                return self.fail(400, str(exc))
+            stored, warnings, problem = comps_mod.load(card_dir(batch, card))
+            if problem:
+                return self.send_json(200, {"comps": None, "problem": problem})
+            return self.send_json(200, {"comps": stored, "warnings": warnings})
+
         m = re.fullmatch(r"/api/cards/([^/]+)/([^/]+)/report", path)
         if m:
             batch, card = m.group(1), m.group(2)
@@ -278,6 +363,56 @@ class Handler(BaseHTTPRequestHandler):
             return self.fail(404, "ingen rapport för det kortet")
 
         return self.fail(404, "no such route")
+
+    def do_PUT(self):
+        """Attach comp prices to a card and reprice it.
+
+        PUT rather than POST because it replaces the card's whole comps
+        document: sending {"raw_sek": 1200} after {"raw_sek": 1200,
+        "psa10_sek": 9000} leaves one price, not two. Merging would make it
+        impossible to remove a price you had decided was wrong.
+        """
+        path = self.path.split("?", 1)[0].rstrip("/")
+
+        if not self.authorised():
+            return self.fail(401, "unauthorised")
+
+        m = re.fullmatch(r"/api/cards/([^/]+)/([^/]+)/comps", path)
+        if not m:
+            return self.fail(404, "no such route")
+
+        try:
+            batch = safe_segment(m.group(1))
+            card = safe_segment(m.group(2))
+        except ValueError as exc:
+            return self.fail(400, str(exc))
+
+        body = self.read_body(MAX_JSON)
+        if body is None:
+            return self.fail(413, "body saknas eller för stor")
+        try:
+            data = json.loads(body)
+        except json.JSONDecodeError as exc:
+            return self.fail(400, f"ogiltig JSON: {exc}")
+
+        d = card_dir(batch, card)
+        # Comps are allowed before the photos. Pricing a card you are about to
+        # scan is a reasonable order to work in, and the alternative is telling
+        # the operator to come back later.
+        try:
+            stored, warnings = comps_mod.store(d, data)
+        except comps_mod.CompsError as exc:
+            return self.fail(400, str(exc))
+
+        report = recompute_ev(batch, card, stored)
+        return self.send_json(200, {
+            "comps": stored,
+            "warnings": warnings,
+            # null means the card has not been analysed yet, so there was no
+            # band to price against. The comps are stored either way and the
+            # next analyse picks them up.
+            "report": report,
+        })
 
     def do_POST(self):
         path = self.path.split("?", 1)[0].rstrip("/")
