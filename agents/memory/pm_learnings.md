@@ -1,3 +1,22 @@
+## 2026-08-30 — Event submission pipeline evolved into permanent operational infrastructure, not a project milestone (evt)
+
+The Events Epic (evt-000) arrived in June as a "deadline tracking and event participation" project, routed to PM with a score of 7 (autonomy 3 = pure research/data). By August it had evolved into permanent operational infrastructure—three linked scripts running on cron, an autonomous portfolio registry, a submission ledger, and daily event intake from HTMAG alerts.
+
+**The pattern:** A deadline-driven project that starts with manual tracking (6 tickets with past deadlines, 15 needing research) is a sign that the work is *systematic*, not *one-off*. The moment you've solved "which games fit which festivals" (portfolio.json) and "how do we auto-close dead forms" (evt-window-sweeper.js), the next step isn't "wrap up," it's "make it permanent." This is because new events arrive continuously (87 tickets created since June), deadlines are recurring, and the decision rules (autonomy envelope: auto-submit, but escalate money/travel/exclusivity) are stable.
+
+**The three-script architecture:**
+1. **Sweeper** (daily 06:15) — Probes submission forms for closed markers, auto-closes when windows end. Safe because it only closes, never opens.
+2. **Applicator** (hourly :25) — Evaluates new HTMAG alerts, fills forms headlessly, and either submits (for AP titles) or parks (for client titles needing approval). Ledger-backed and idempotent (write before submit, verify after).
+3. **Reporter** (daily 06:20 + monthly) — Generates status report of submissions + rejections. Tracks outcomes so quarterly health checks can happen without a human trawling tickets.
+
+**How to apply:** When a deadline-driven project reaches steady state (autonomous decision rules are stable, intake is continuous, workflow is repeatable), move it from a "project ticket needing your 4am sweep" to operational infrastructure. Create a monitoring task (quarterly standing check) instead of a project that eats 4am-sweep cycles every day. The three scripts will keep it healthy; the standing task just verifies the logs and escalates if something breaks. This frees the 4am agent to work on actual projects, and it prevents infrastructure from rotting on a backlog.
+
+**Same-session learning:** This epic was marked `pending_close: true` since June, but closure was never the right outcome. It's not "done," it's "in service." The first PR after this finding should retag epics more carefully: a deadline-driven project that's in steady-state automation should not live in a "pending close" state — it should live in a "monitoring" state, which is a different board condition. Nothing to change operationally; just a classification fix so future 4am agents know what they're looking at.
+
+**Tags:** evt, event-submission, automation, ops-infrastructure, epic-classification, deadline-pipeline
+
+---
+
 ## 2026-08-28 — Platform notification mail is a membership LEDGER: reconstruct access state from it before declaring an access task blocked [project: necrotic_dominion, nd]
 
 Follow-on to the same day's console-testing entry. Robert asked me to add him and Elias as CurseForge

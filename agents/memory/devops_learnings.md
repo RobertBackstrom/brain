@@ -1,3 +1,64 @@
+## 2026-08-30 - Two ways a value goes missing silently, and the same fix for both [project: tcg, tcg-002]
+
+Shipped bundled fonts and a comps path in the same session and hit the same shape
+of bug twice, from opposite directions. Worth writing down as one learning because
+the fix is identical and neither is guessable from the code.
+
+**Native fonts resolve by different names on the two platforms.** iOS matches
+`fontFamily` against the font's **PostScript name**; Android matches it against the
+**bare filename**. One `fontFamily` string can only work on both if the file is
+named after its PostScript name. These often differ: Archivo's Black instance has
+display family "Archivo Black" and PostScript name `Archivo-Black`. Get it wrong and
+there is no error anywhere - the platform that cannot resolve it falls back to the
+system face and the app just looks slightly off on one device. Rename the files,
+and check with a name-table read rather than by eye (`app/scripts/font-psname.py`,
+stdlib, ~40 lines).
+
+**The companion rule: every weight is its own file.** React Native does not
+synthesise a bold for a single-weight embedded family. `fontWeight: '700'` next to
+`fontFamily: 'SpaceMono-Regular'` is a no-op on iOS and a smeared fake bold on
+Android. Nine call sites in this app were doing it. Adding fonts is therefore never
+just "drop in the files" - it is a pass over every place that reached for a weight
+prop. Budget for that, not for the download.
+
+**Also: Google Fonts is variable-only upstream for many families now.** Archivo and
+Inter have no `static/` directory in `google/fonts`, and RN renders a variable TTF at
+its default instance - so a variable Archivo ships as Regular, not Black. The static
+instances live in the `@expo-google-fonts/*` packages on unpkg
+(`/900Black/Archivo_900Black.ttf`, note the subfolder). The gstatic `/l/font?kit=`
+URLs from the CSS API serve subsetted non-TTF payloads; `file` reports them as EOT
+and a name-table parse blows up. Verify the magic bytes before trusting a download.
+
+**The mirror image, in the comps code.** `value.py` read exactly `raw_sek` and
+`psa<N>_sek`. Anything else - `psa10_price`, or a price written as the string
+`"9000"` - missed every lookup and produced "comps saknas", which is the identical
+message you get from having entered nothing at all. A typo was indistinguishable
+from an empty field. The fix is validation at the boundary that **names the
+offending key**, not a schema doc.
+
+**The general rule both cases point at:** when a lookup can miss silently, the
+failure is invisible exactly where it is most expensive to discover - a font on one
+platform in a shipped build, a price after you have already decided not to submit
+the card. Any code path where a wrong name degrades gracefully instead of erroring
+needs an explicit check, and the check belongs where the value is written, not where
+it is read.
+
+**Third instance of the same shape, same session:** the EV block did
+`round(ev.get("raw_net_sek") or 0)`. When the operator supplied only graded prices
+that None became `0`, and the report rendered "Netto ra 0 kr, Skillnad 0 kr" in red
+- a fabricated number in the one box the whole pipeline is built to avoid guessing
+in. `or 0` on a value that is legitimately absent is the same bug wearing a third
+hat. Omit the key and let the renderer show the rows it has.
+
+**Testing around an unavailable dependency.** The engine needs OpenCV and only the
+API host has it; the code is edited on the brain box. Stubbing `cv2` and `numpy`
+into `sys.modules` before importing made the whole HTTP layer testable on the edit
+box - 26 tests against a real server on an ephemeral loopback port. Nothing under
+test reaches the measurement or the vision pass, so the stub costs no coverage.
+Worth reaching for whenever the heavy dependency is orthogonal to what you changed.
+
+---
+
 ## 2026-08-29 - A decision that was made but never encoded is indistinguishable from a decision that was never made [project: db, db-329]
 
 db-329 asked me to choose between three ownership models for a repo two boxes were

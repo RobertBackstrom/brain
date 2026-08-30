@@ -85,3 +85,37 @@ ett Expo-konto med access token. Utan dem kan EAS varken signera eller ladda upp
 **Öppen fråga:** `grade.runatyr.games` kräver att tunnelns ingress skrivs om.
 CLOUDFLARE_API_TOKEN kan läsa configen (16 regler). Skrivningen ersätter hela
 ingress-arrayen, alltså 15 andra hostnames i samma anrop. Inte gjord utan godkännande.
+
+## 2026-08-30 — Typsnitt, comps-väg in, och auth-underlag (tcg-002, 4am-svep)
+
+**Levererat (kod, inte deployat):**
+- `app/assets/fonts/` — Anton, Archivo Black, Space Mono 400+700, Inter, inbäddade
+  nativt av `expo-font`-pluginet. Filnamn = PostScript-namn, för iOS och Android slår
+  upp `fontFamily` mot olika saker. `app/scripts/font-psname.py` verifierar det.
+  Verifierat med `expo prebuild`: alla fem i `UIAppFonts` och i Xcode-resurssteget.
+- Nio anropsställen som satte `fontWeight` bredvid en inbäddad enviktsfamilj rättade.
+  React Native syntetiserar ingen fetstil där — `Mono` fick en `bold`-prop och
+  hjältesiffrorna en `Display`-komponent.
+- `pregrade/comps.py` — schema, validering och lagring för `card.json`. Okänd nyckel
+  är ett fel som namnger nyckeln i stället för att tyst ge "comps saknas".
+- `PUT`/`GET /api/cards/:batch/:card/comps` — priser in, kortet prissatt om mot det
+  sparade betygsbandet. Motorresultatet persisteras nu, så omprissättning kostar
+  ingen ny vision-körning.
+- `app/app/report.js` — formulär för comp-priser där rapporten säger att de saknas.
+- `api/test_api.py` — 26 tester mot en riktig server på loopback. Stubbar OpenCV, så
+  de går att köra på lådan koden redigeras på.
+- `tcg_webshop/AUTH.md` — beslutsunderlag för app-auth. Tre alternativ, kostnad och
+  vad vart och ett faktiskt löser. Väntar på Robert.
+
+**Buggfix:** EV avrundade frånvarande tal till noll, så ett kort med bara ett
+PSA 10-pris visade "Netto rå 0 kr, Skillnad 0 kr". Ett påhittat tal i den ruta
+pipelinen är noggrannast med. Saknade nycklar utelämnas nu.
+
+**Bredvid:** `pregrade.api-token` införd i `secrets_registry.md` (metadata, inga
+värden) efter tre veckor oregistrerad.
+
+**Nästa handling är `eas build --profile testflight`, inte `eas update`.** `version`
+gick till 0.2.0 och `runtimeVersion`-policyn är `appVersion`, så den nya JS-koden
+kan inte landa på 0.1.0-bygget som saknar fontfilerna.
+
+Loggat till tcg-002. Inte fakturerbart.
