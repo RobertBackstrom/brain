@@ -24,7 +24,7 @@ Arbetet utförs av AP. Anlitar AP underleverantör svarar AP för den fullt ut.
 ## 3. The Gangs åtagande
 
 1. Upplåta de rättigheter till Curveball som krävs för att AP ska kunna utföra punkt 2, för PC världen över, under avtalets löptid.
-2. Ge AP användaraccess till Steam-app 2805120 samt en Steam Web API publisher key.
+2. Överföra Steam-app **2805120** till AP:s Steamworks-konto enligt punkt 4. Fram till att överföringen är genomförd ger The Gang AP användaraccess till appen samt en Steam Web API publisher key.
 3. Ge AP admin- eller serveraccess till LootLocker-spelet `a86igukp`.
 4. Svara på tekniska frågor om koden i rimlig omfattning. Något löpande utvecklingsåtagande ingår inte.
 
@@ -32,9 +32,19 @@ The Gang behåller äganderätten till Curveball och allt underliggande material
 
 ## 4. Utgivning och pengaflöde
 
-Spelet säljs på The Gangs befintliga Steam-app **2805120**, som redan bär butikssida, önskelistor och historiken från demot och NextFest. Valve betalar därmed till The Gang.
+**AP är utgivare och säljande part.** Steam-app **2805120** överförs från The Gangs Steamworks-konto till AP:s med Steamworks inbyggda överföringsverktyg, i samband med undertecknandet.
 
-Nettointäkt definieras som vad The Gang faktiskt får från Valve för Curveball, alltså efter Valves andel, återbetalningar, chargebacks och plattformsskatter. Varken The Gangs eller AP:s interna kostnader dras av innan delning, med undantag för det som anges i alternativ 2 nedan.
+Skälet är praktiskt. Reor, rabattaktioner, festivaler och Steam-events måste initieras av den som äger appen och ligger ofta med kort varsel. Ligger appen kvar hos The Gang blir varje sådant beslut ett ärende mellan bolagen i stället för något AP bara genomför.
+
+Överföringen behåller det som är värt att behålla:
+
+1. Önskelistor och följare är knutna till appen och följer med.
+2. Butikssidan, demot och historiken från NextFest följer med.
+3. Finansiell historik gör det inte. The Gang behåller insyn i sina egna intäkter från tiden före överföringen, och AP ser bara tiden efter. Det är Valves konstruktion och går inte att ändra.
+
+Överföringen kräver att båda parter har ett fullt verifierat Steamworks-konto och att den som initierar har Actual Authority i sitt konto. Ingen tredje part behöver godkänna den.
+
+Valve betalar därmed till AP. Nettointäkt definieras som vad AP faktiskt får från Valve för Curveball, alltså efter Valves andel, återbetalningar, chargebacks och plattformsskatter. Varken AP:s eller The Gangs interna kostnader dras av innan delning, med undantag för det som anges i alternativ 2 nedan.
 
 ## 5. Intäktsdelning, utan LUG
 
@@ -53,7 +63,7 @@ The Gang får betalt från dag ett och har ingen kostnad, ingen risk och inget b
 
 | | |
 |---|---|
-| Recoup | AP återtar **100 000 SEK** ur nettointäkten innan delning påbörjas |
+| Recoup | AP behåller de första **100 000 SEK** av nettointäkten innan delning påbörjas |
 | Delning därefter | **30 % AP, 70 % The Gang, i perpetuitet** |
 
 Det här är den struktur parterna diskuterade den 30 juni, då med LUG i bilden. Beloppet 100 000 SEK är samma siffra som kommunicerades då.
@@ -84,9 +94,9 @@ AP behåller rätten till de generella verktyg och tjänster AP byggt och som in
 
 ## 8. Rapportering och betalning
 
-1. The Gang rapporterar nettointäkten kvartalsvis och betalar AP:s andel inom 30 dagar från kvartalets slut.
-2. AP har via sin Steamworks-access rätt att se försäljningsdata direkt och stämma av mot rapporten.
-3. AP har rätt att en gång per år på egen bekostnad låta granska underlaget. Visar granskningen en avvikelse till AP:s nackdel över 5 % står The Gang för kostnaden.
+1. AP rapporterar nettointäkten kvartalsvis och betalar The Gangs andel inom 30 dagar från kvartalets slut.
+2. AP ger The Gang användaraccess till appen i AP:s Steamworks-konto, så att The Gang kan se försäljningsdata direkt och stämma av mot rapporten i stället för att förlita sig på den.
+3. The Gang har rätt att en gång per år på egen bekostnad låta granska underlaget. Visar granskningen en avvikelse till The Gangs nackdel över 5 % står AP för kostnaden.
 
 ## 9. Konsol och mobil
 
@@ -97,7 +107,8 @@ Det här avtalet gäller PC via Steam. Andra plattformar ingår inte. AP har rä
 1. Avtalet gäller från undertecknande. Intäktsdelningen gäller i perpetuitet för de intäkter spelet genererar.
 2. Har AP inte lanserat spelet inom **tolv månader** från undertecknande har The Gang rätt att säga upp avtalet skriftligt. Sker det upphör AP:s rätt att publicera, källkoden lämnas över enligt punkt 7, och AP har ingen kvarvarande intäktsandel.
 3. Väsentligt avtalsbrott som inte rättas inom 30 dagar från skriftlig anmodan ger den andra parten rätt att säga upp avtalet.
-4. Punkterna 7, 8 och 12 gäller även efter att avtalet upphört.
+4. **Upphör avtalet av något skäl överför AP tillbaka Steam-app 2805120 till The Gang inom 30 dagar**, med önskelistor och följare intakta. AP behåller sin insyn i den finansiella historiken från sin egen period, på samma sätt som The Gang behåller sin från tiden dessförinnan.
+5. Punkterna 7, 8 och 12 gäller även efter att avtalet upphört, i den mån AP fortfarande har rätt till intäktsandel.
 
 ## 11. Kredd och marknadsföring
 
@@ -114,6 +125,7 @@ Spelet krediteras The Gang som utvecklare och AP som utgivare. Båda parter får
 ## Att ta ställning till innan detta går ut
 
 1. **Tolvmånadersfristen i punkt 10.2.** Den är satt av mig som en rimlig utgångspunkt, inte utifrån en tidplan. Vi har ingen estimering av färdigställandet som vilar på den lästa Blueprint-logiken än, så siffran bör stämmas av mot en verklig plan innan den blir bindande.
-2. **Granskningsrätten i punkt 8.3** är standard men kan uppfattas som misstroende mot en motpart ni känner väl. Den är också AP:s enda skydd mot felrapportering, givet att pengarna landar hos dem först.
-3. **Perpetuitet i båda alternativen.** Det är vad du bad om. Värt att veta är att en motpart som senare vill sälja bolaget eller IP:t ofta vill kunna köpa ut en evig intäktsandel. En utköpsklausul finns inte med här, och det är avsiktligt.
-4. **Juridisk granskning.** Det här är ett term sheet, inte ett avtal. Fullavtalet bör gå via Lawyer och en riktig advokat innan signering.
+2. **Överföringen av Steam-appen är dokumentets största begäran, inte splitten.** The Gang lämnar ifrån sig butikssidan till sitt eget spel, och de tappar samtidigt insyn i sin egen framtida försäljning annat än genom den access vi ger dem. Räkna med att det är här diskussionen fastnar, inte på 50 mot 30 procent. Motargumentet som håller är det praktiska: reor och festivaler måste kunna beslutas av den som gör jobbet. Faller frågan ändå är alternativet att appen ligger kvar hos dem och att de i stället ger AP behörighet att sätta reor, vilket fungerar sämre men inte är omöjligt.
+3. **Granskningsrätten i punkt 8.3 pekar nu mot oss.** Det följer av att AP tar emot pengarna. Den är rimlig och bör ligga kvar, men det är värt att veta att vi bytt sida i den frågan sedan förra versionen.
+4. **Perpetuitet i båda alternativen.** Det är vad du bad om. Värt att veta är att en motpart som senare vill sälja bolaget eller IP:t ofta vill kunna köpa ut en evig intäktsandel. En utköpsklausul finns inte med här, och det är avsiktligt.
+5. **Juridisk granskning.** Det här är ett term sheet, inte ett avtal. Fullavtalet bör gå via Lawyer och en riktig advokat innan signering.

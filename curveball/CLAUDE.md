@@ -1,17 +1,21 @@
 # Curveball (The Gang Studio) — CLAUDE.md
 
 ## Engagement
-- **Role:** Hybrid AP engagement on The Gang Studio's game *Curveball*. Two parts:
-  1. **Co-dev** (~1.5 months): get the game shippable with P2P multiplayer + a mobile port. Executed by subcontractor **Robin Hofström** ("Robin") via **Eternal Minds AB**.
-  2. **Publishing services**: AP / Robert takes the finished game to market. Remaining publishing costs structured as **recoupable**.
+- **Role (omarbetad 2026-08-31):** AP finishes and publishes The Gang's game *Curveball* on its own dime, in exchange for a revenue share. No cash changes hands from The Gang.
+  1. **Färdigställande**: P2P instead of dedicated servers, the server-authoritative LootLocker calls moved to an AP-run service, launch polish. **Utförs av Robert + GameDev-agenten**, inte längre av Robin/Eternal Minds.
+  2. **Utgivning**: AP is publisher of record. Steam app 2805120 transfers to AP's Steamworks account. Zero paid media.
+  3. **Mobilporten ligger utanför** det här avtalet, liksom konsol. AP har förhandlingsföreträde.
 - **DB prefix:** `cvb`
 - **Status:** active — pre-contract / pitch stage (build received, assessment + commercial pitch in progress)
 - **Agent owner:** BizDev (deal + client pitch), GameDev (co-dev execution oversight), CorpBot/Lawyer (Robin subcontract + client agreement)
 
-## Commercial Target (Robert, 2026-06-22)
-- AP wants **at least 100K SEK paid for development** (incl. the mobile port) up front from The Gang.
-- AP then **takes on remaining publishing costs as recoupable** against revenue.
-- Exact split still to be set in the pitch.
+## Commercial Target (Robert, 2026-08-31 — ersätter 2026-06-22)
+Term sheet: `drafts/term_sheet_2026-08-31.md`. Den gamla målbilden (≥100K SEK kontant upfront) gäller inte längre.
+- **Alternativ 1, AP:s förstahandsval:** ingen recoup, **50/50 i perpetuitet**. Motiv mot The Gang: samma incitament över hela livslängden, mindre administration.
+- **Alternativ 2:** **100 000 SEK recoup**, därefter **30 % AP / 70 % The Gang** i perpetuitet. Det är strukturen Joel bekräftade 30 juni ("blir vår rev-share 70%?" / "låter rimligt"), då med LUG i bilden.
+- **Brytpunkt 350 000 SEK nettointäkt.** Därunder tjänar The Gang på alt 1, däröver på alt 2. AP:s kurva är spegelvänd, samma brytpunkt. Båda alternativen visas öppet för dem.
+- **Med LUG:** AP + LUG recoupar faktiska kostnader 100 %, därefter 70 % The Gang / 30 % AP+LUG. Magnus (LUG) tyst sedan 16 juli.
+- **Steam:** app 2805120 överförs till AP. Önskelistor och följare följer med, finansiell historik gör det inte. Vid avtalets slut går appen tillbaka inom 30 dagar.
 
 ## Key People
 **Client — The Gang Studio** (www.thegang.io, Slakthusplan 3, 121 62 Stockholm)
