@@ -967,7 +967,7 @@ utgående moms hos säljaren, läs motpartens ingående moms — den speglar bel
 - **Sync every artifact, not just the client doc:** contract Doc + budget Sheet + local `drafts/*.md` (source) + project memory + project CLAUDE.md + output_log. A rate lives in ~6 places here.
 - **Data-quality flag surfaced:** the live contract Doc heading had a garbled/concatenated Employee address (two addresses run together) that the local draft did not — a stray manual edit on the Doc. Flagged to Robert rather than guessing which is current. Lesson: diff the live signature-bound Doc against the local source draft when editing; they can drift.
 
-- **Sending this timavtal via OpenSign needs MANUAL placement — the built-ins don't fit.** `--placement nda` anchors to NDA-only text ("For and on behalf of", "Name: Robert/Octavio") the timavtal lacks → returns null → falls back to `last`, which drops signature widgets on the **last page**. But this contract's signature block sits on **page 2, before Annex A** (Annex is the last pages), so `last`/`nda` would put fields inside the Annex tables. Fix: export the Doc to PDF, run `node opensign.js anchors <pdf>`, then call `os.createSignatureRequest({ placement: 'manual', signerWidgets })` programmatically (the CLI can't pass manual coords). For the ND timavtal the block is page 2 (w=596 h=842): Company col x≈72, Employee col x≈268, "Place and date" line yTop≈493, printed party name yTop≈513 — put the signature widget (W140 H16) at yPosition≈498 (on the line, just above the name) and a `type:'date'` widget (auto-fills 'today') at yPosition≈489 on the "Place and date" underscores. Signers: idx0 = Robert for CZP `robert@aurorapunks.com`, idx1 = Elias `elias.h.strandberg@gmail.com` (his personal Gmail — NOT the defunct `elias.strandberg@aurorapunks.com` APDS address). Sent unordered, both emailed. Doc `ZiR26oSoI2`, 2026-07-15.
+- **Sending this timavtal via OpenSign needs MANUAL placement — the built-ins don't fit.** `--placement nda` anchors to NDA-only text ("For and on behalf of", "Name: Robert/Octavio") the timavtal lacks → returns null → falls back to `last`, which drops signature widgets on the **last page**. But this contract's signature block sits on **page 2, before Annex A** (Annex is the last pages), so `last`/`nda` would put fields inside the Annex tables. Fix: export the Doc to PDF, run `node opensign.js anchors <pdf>`, then call `os.createSignatureRequest({ placement: 'manual', signerWidgets })` programmatically (the CLI can't pass manual coords). For the ND timavtal the block is page 2 (w=596 h=842): Company col x≈72, Employee col x≈268, "Place and date" line yTop≈493, printed party name yTop≈513 — put the signature widget (W140 H16) at yPosition≈498 (on the line, just above the name) and a `type:'date'` widget (auto-fills 'today') at yPosition≈489 on the "Place and date" underscores. Signers: idx0 = Robert for CZP `robert@aurorapunks.com`, idx1 = Elias `elias.h.strandberg@gmail.com` (his personal Gmail. **CORRECTED 2026-08-31 (sbz-001): `elias.strandberg@aurorapunks.com` is NO LONGER defunct** — it was recreated as a Google Group forwarding to that same personal Gmail. Either address reaches him; see [[reference_ap_contractor_mail]]). Sent unordered, both emailed. Doc `ZiR26oSoI2`, 2026-07-15.
 - **Always `parseQuery('contracts_Document', …)` before creating a signature request** (admin.md rule) — there's no `list` CLI subcommand, but `os.parseQuery` is exported. Filter Name client-side for the counterparty. Confirmed 0 prior Elias/timavtal docs before sending.
 - **Verify the exported PDF text before an external send** — grep for the new values present AND the stale ones absent (here: 220/45/07-17/Bandhagen present; 188/60/07-01/Lovisedalsvägen absent). Cheap insurance against a Doc edit that didn't land or a stale export.
 
@@ -1344,3 +1344,28 @@ Service Spend från 74,9 till 90,2 procent. Slutsatsen står sig men marginalen 
 **Kanonisk hemvist:** rättighetskedjan för 1993 (Krister som ägare, Gunnars och Mattias 20 procent,
 Limit Breaks 8 procent, WLBS-avtalets saknade sektion 12) ligger nu i
 [[project_1993_space_machine]], inte bara i den här loggboken. Läs den innan nästa kvartalsrapport.
+
+## 2026-08-31 - Ett "empiriskt test" av en plattformsbanner måste köras till submit (swa/apb, Xbox)
+
+Beslutet 2026-08-27 var att låta Partner Centers ogodkända App Developer Agreement stå och i
+stället testa empiriskt om den faktiskt blockerar. Testet definierades som "låt partnern skapa en
+add-on". **Det var för kort.** Skapandet gick igenom, och i två dagar såg det ut som att bannern
+var kosmetisk. Först vid submit slog den till. **Definiera plattformstest efter den handling som
+faktiskt är i fråga**, alltså publicering, inte det närmaste steget som råkar vara lätt att prova.
+Ett halvt test ger falskt lugn och kostade här fyra dagar av en blockerad klient.
+
+**Kolla vilken entitetssträng som sitter på vilket lager innan du bygger ett argument på den.**
+Robert utgick från att Xbox-avtalet skulle godkännas "för APDS AB". Partner Center-kontot står i
+White Lines Black Spaces AB:s namn; APDS är SupplierWeb- och payee-profilen (vendor 0003066327).
+Fyra entitetssträngar i tre Microsoft-system, och de är inte överens. Samma fråga ("vilket lager
+menar vi") gäller Nintendo och PlayStation.
+
+**Rättighetsägande är inte firmateckningsrätt.** CZP förvärvade rörelsen med publicerings- och
+distributionsrättigheter, inte bolagen. Det ger ingen behörighet att godkänna nya avtal i APDS
+eller WLBS namn; konkursbona företräds av sina förvaltare. När Robert ändå väljer den vägen är
+det hans beslut att fatta, men det ska ligga i klartext i ticketen med skälen emot, inte
+tystas ner. Se [[project_apds_czp_rights_chain]] för den stående formuleringsregeln.
+
+**Faktapost:** `finance@aurorapunks.com` är ett **ägarkonto** på AP:s Partner Center, inte bara
+Manager. Hektors `andreassonhektor@gmail.com` är alltså inte enda vägen till Account settings och
+Legal Info, och ett ägarbyte behöver inte vara första draget vid entitetsändringen.

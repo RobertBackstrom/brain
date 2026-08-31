@@ -381,3 +381,52 @@ rättelse i `drafts/rapport_simon_vod_kostnader_intakter_2026-08-26.md`. Synkat 
 länk och inlogg, de tre beloppen, en rak formulering om att APDS-delen är förlorad, och Roberts
 erbjudande att kompensera på annat sätt med hårdvara som konkret ingång, bland annat Cintiq-plattan
 och skärmarna.
+
+### 2026-08-31 - Xbox: avtalsbannern blockerar på riktigt, Robert kastar om ordningen
+
+Niklas testade 2026-08-29 hela vägen till submit. Bundle-skapandet fungerar med de nya
+behörigheterna, men **publiceringen stoppas av det ogodkända App Developer Agreement** på
+kontonivå. Det empiriska testet från 2026-08-27 är därmed avgjort, och åt fel håll: bannern är
+inte kosmetisk och Atomic Elbow kan inte godkänna den själva.
+
+**Beslut (Robert 2026-08-31): godkänn avtalet som kontot står, byt juridisk person till CZP
+efteråt.** Underlaget mot den ordningen lades fram först: kontot står i White Lines Black Spaces
+AB:s namn och inte APDS AB, ägande av distributionsrättigheterna ger inte firmateckningsrätt i
+ett konkursbo, APDS-boets sammanträde om anmärkningen mot CZP:s bevakning hålls 1 sep, och det
+motsäger Roberts eget mail till Reed 2026-08-27 där han vägrade godkänna i ett upplöst bolags
+namn. Rekommendationen var motsatt ordning, byt entitet först och godkänn i CZP:s namn, vilket
+Reed öppnade för samma dag. Robert valde att släppa fram klienten först.
+
+Faktarättelse från Robert: `finance@aurorapunks.com` är **ett ägarkonto** på Partner Center, inte
+bara Manager. Hektors gamla Owner-MSA är alltså inte enda vägen till Legal Info-sidan.
+
+Uppdaterat: `apb-055` (Lana A rättad till skickad och besvarad, Reeds fem besked inlagda, risken
+med två parallella CZP-konton flaggad), `swa-002` (testutfallet, beslutet, tre punkter som ligger
+på Robert), memory `project_sir_whoopass`. Inga mail skickade, ingenting klickat i Partner Center.
+
+### 2026-08-31 - Xbox: det fanns aldrig något betalningsstopp, hela royaltyhistoriken hemtagen
+
+Statementen är hämtade ur Microsofts royaltyportal, alla 30, båda vendorerna, 720 dagar bakåt.
+De motbevisar analysen från 27 augusti.
+
+**Utbetalningarna stannade för att intäkten stannade.** Kontrakt 7781010 gick från 1 584 sålda
+enheter i januari 2026 till 42 i februari, 27 i april och noll därefter. Saldot ligger på 140,16
+USD mot kontraktets minimibelopp på 200 USD, så Payment Due skrivs 0,00 och rullas vidare. Orsaken
+är vår egen: Sir Whoopass TLA gick över till Atomic Elbow den 1 februari 2026, och den titeln var
+intäkten på kontraktet. Namnglappet mellan SupplierWeb och avtalen ska fortfarande rättas, men det
+har aldrig hållit tillbaka en krona.
+
+Därmed faller eskaleringsgrunden för `apb-055`. Xbox flyttades före PlayStation på två skäl,
+blödande pengar och en blockerad klient. Pengarna blödde aldrig, och Atomic Elbow är upplåsta sedan
+ADA 8.11 godkändes samma dag. Rekommendationen är priority `high` och Xbox tillbaka efter
+PlayStation.
+
+**Ny liten post:** 140,16 USD på vendor 0003066327 och 16,85 USD på vendor 0003039381, båda under
+minimibeloppet och därmed omöjliga att få utbetalda av sig själva. Ska flyttas till CZP:s nya
+supplier-profil eller släppas. Frågan ligger i utkastet till Reed.
+
+**Byggt:** `assistant/ms-session.js` (Microsoft-inloggning med TOTP-MFA, profil per konto,
+hanterar kontoväljaren när en adress finns som både work och personal),
+`assistant/msrsm-royalty-reports.js` (read-only hämtare, `--recon`/`--list`),
+`assistant/ms-totp.js` och `assistant/msrsm-statements-to-md.py`. Statementen ligger som markdown i
+`aurora_punks/royalty/xbox/` och är indexerade i RAG, per den stående regeln om plattformsrapporter.

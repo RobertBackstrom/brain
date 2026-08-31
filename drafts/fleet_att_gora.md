@@ -226,7 +226,9 @@ Valt 2026-08-22: OpenAI, Google Gemini och lokal Ollama på forge.
 - [ ] Boot-watchdog mot APIPA. Gör detta före första flytten av 5G-routern, inte efter.
 - [ ] Enrolla Linus och Anastasia opportunistiskt. Opt in och synligt för dem, det är deras
       arbetsmaskiner.
-- [~] Speca David96GB och Toms gamla maskin innan roller tilldelas. **PARKERAD 2026-08-26 på
+- [~] Speca David96GB och Toms gamla maskin innan roller tilldelas. **David96GB IDENTIFIERAD
+      2026-08-31: `192.168.32.3`, MAC `1C:69:7A:F4:3B:E9`** (ur ZTE-routerns enhetslista). Tailnet
+      `100.90.140.53`. PARKERAD 2026-08-26 på
       Roberts beslut**, VCSBOY-räddningen går före. Läget när den parkerades:
       `david96gb` är **redan enrollad som Windows-nod** på tailnet (`100.90.140.53`) och fungerade
       för 5 dagar sedan, så det är tjänsten som stannat, inte plattformsstöd som saknas. forge och
@@ -251,6 +253,11 @@ Valt 2026-08-22: OpenAI, Google Gemini och lokal Ollama på forge.
 | vcsboy | HPE MicroServer, Windows | Endast versionshantering. **Perforce OCH Gitea, båda igång 2026-08-26 på 192.168.32.5.** Se db-301, checkpoint saknas fortfarande. |
 | linus, anastasia | 2x RTX 4060 | Opportunistisk beräkning, lediga timmar. |
 | david96gb | Okänd | Opportunistisk, när den är specad. |
+
+**DHCP-reservationer (ZTE 5G-router, 192.168.32.1, verkställda 2026-08-31):**
+- VCSBOY `5C:ED:8C:EA:65:1A` → **192.168.32.8** (var .5, vandrade vid hård reset; reserverad till nuvarande .8 eftersom .5 nu är upptaget). Nås ändå primärt via MagicDNS `vcsboy`.
+- SDEV-devkit `70:48:F7:F2:5D:96` → **192.168.32.4** (hade vandrat .14→.4; kan INTE köra Tailscale, så LAN-IP:t är enda handtaget — därför viktigast av alla att pinna).
+- Referens, ej reserverade: Nitro .9, forge .6, David96GB .3, TL-SG105E-switch .2, Brother-skrivare .7. Routern i **bryggläge** mot Telia men kör LAN-DHCP. Login = lösenords-only webb-UI (ingen SSH för root/admin), DHCP-reservation under Local Network → DHCP-reservation.
 | Toms gamla | Okänd | Roll bestäms efter specning. |
 
 **GPU-noteringen som avgör art-routningen:** forges RTX 3060 har 12 GB VRAM mot desktop-4060:ns 8 GB.

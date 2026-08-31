@@ -61,6 +61,10 @@ metadata:
 ### Current Status (August 2026)
 - **Xbox access solved 2026-08-17** via direct directory invite of `support@atomicelbow.com` scoped to the SW product group. Handover mail to Niklas + Per sent 2026-08-18. Pending: AE accepts the invite, confirms they can update the title, and that AP's other titles stayed hidden. Then close the loop with Reed Hunt (v-reedhunt@microsoft.com, ID@Xbox). Thread 19ddfcc812e25c3a.
 - **Dead routes:** MSA Transfer (whole-account move would drag AP's other titles; SW-only LOI signed 2026-06-10 now obsolete) and the `auroraelbow.onmicrosoft.com` tenant (stalled on MS billing verification at step 7/10).
-- **Watch item:** when MS unfreezes V2 reparenting, revisit the real ownership move of SW to AE's own Partner Center.
-- Robert has Partner Center access: `finance@aurorapunks.com` = Manager(Windows), `robert@aurorapunks.com` = Developer-only.
+- **App Developer Agreement (löst 2026-08-31):** AE kunde skapa bundles och add-ons men **publiceringen** blockerades av det ogodkända uppdaterade utvecklaravtalet på kontonivå. Robert godkände **version 8.11** den 31/08/2026 i eget namn via Account settings -> Agreements, efter beslutet att godkänna först och byta entitet efteråt (kontot står i White Lines Black Spaces AB:s namn, inte APDS). Spärren är borta. Avtalshistoriken visar 8.9 (2024-11-07) och 8.10 (2025-09-30) accepterade av Hektor Andreasson, båda efter WLBS konkurs. Se apb-055 / swa-002.
+
+**Xbox-royaltyn: inget betalningsstopp (utrett 2026-08-31).** Utbetalningarna upphörde efter 13 mars 2026 för att intäkten upphörde, inte för ett entitetsglapp. Kontrakt 7781010 gick från 1 584 enheter i januari till noll från maj, och saldot 140,16 USD ligger under kontraktets minimibelopp på 200 USD. Orsaken är att SW:s TLA gick till Atomic Elbow 1 februari 2026, alltså precis som avsett. Hela historiken finns i `aurora_punks/royalty/xbox/_index.md` och i RAG.
+
+**Watch item:** when MS unfreezes V2 reparenting, revisit the real ownership move of SW to AE's own Partner Center.
+- Robert has Partner Center access: `finance@aurorapunks.com` = **owner account** on the AP Partner Center (also carries Manager/Windows), `robert@aurorapunks.com` = Developer-only. Hektor's `andreassonhektor@gmail.com` is the legacy Owner MSA, but finance@ is an owner too, so Legal Info changes should be attempted from finance@ before anyone escalates to Hektor (Robert, 2026-08-31).
 - Konkurs context: gen-248. CZP Holding AB acquired the APDS assets incl. Sir Whoopass from the bankruptcy estate.

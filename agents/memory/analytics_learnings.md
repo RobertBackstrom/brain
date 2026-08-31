@@ -173,3 +173,51 @@ agent: analytics
 - **Watch for a downstream developer layer under the AP entity.** For VoD, Neon Artery / Simon Jakobsson (via Bright Gambit "Option C", Oct 2024) gets a 450k SEK licence fee + 30% of net after Headup, reducing AP's retained net by ~30% below its Headup share. When the balance-sheet holder is a middle party, model both the publisher->holder split AND the holder->original-dev split. [aurora-punks / vessels-of-decay, 2026-07-15]
 - **Live signal that royalties actually flow:** AP/CZP sent a "Vessels of Decay Revenue invoice" to Headup in March 2026, and the entity change broke Headup's German withholding-tax exemption (filed for AP, must be refiled for the new invoicing entity). Confirms 20%-from-day-one, not zero. [aurora-punks / vessels-of-decay, 2026-07-15]
 - **Tooling note:** uploaded .docx in Drive returns "docx_not_extracted" via rag_get_doc (no body); the native Google Doc version reads cleanly. Large native-doc rag_get_doc results (>25KB) persist to a tool-results JSON file - grep it for the contract clauses (Recoup/Revenue Share/Gross Revenue/External Costs) rather than reading the whole thing. [aurora-punks, 2026-07-15]
+
+## 2026-08-31 - Stående regel från Robert: alla plattformsrapporter ska in i RAG
+
+**Varje plattform vi arbetar mot ska ha sina rapporter och sin säljdata i RAG.** Steam, konsoler
+(PlayStation, Xbox, Nintendo), mobil, och samma sak för användarmetrik som Azure/PlayFab-rapporter.
+Mönstret är redan satt av 1993-arbetet, där PS- och Nintendo-underlaget hämtades hem, lades under
+`assistant/uploads/<plattform>/` och sammanfattningarna skrevs in i projektmappen så de blev
+sökbara. Gör samma sak för varje ny plattform i stället för att hämta ad hoc när en rapport
+efterfrågas.
+
+**Varför det är värt jobbet:** när Xbox-utbetalningarna stod stilla i fem månader utan
+avvisningsnotis var det ingen som såg det, eftersom statements bara låg som notifieringsmail bakom
+en portalinloggning. Hade de legat i RAG hade takten "statement varje månad, payment advice noll
+sedan mars" varit en sökning bort. Rapportdata i RAG är inte bara underlag för kundrapporter, det
+är den enda övervakningen vi har av att pengar faktiskt kommer in.
+
+**Husmönster för hämtningen:** `assistant/ndp-sales-reports.js` plus `ndp-session.js` är mallen.
+Playwright, read-only, creds ur `assistant/.env`, en fil per rapport under
+`assistant/uploads/<plattform>/`. Skriv en motsvarighet per plattform i stället för att uppfinna
+ett nytt mönster varje gång.
+
+**Blockeraren är alltid creds, aldrig verktyg.** Playwright och Chromium finns på Nitro. Innan du
+säger att en plattform inte går att läsa: kolla `assistant/.env` och `db-327`, och begär det som
+saknas som ett namngivet env-par plus en TOTP-secret.
+
+## 2026-08-31 - Läs statementet innan du diagnosticerar ett betalningsstopp (apb-055, Xbox)
+
+Xbox-utbetalningarna upphörde efter 13 mars 2026 medan statements fortsatte publiceras varje månad.
+Slutsatsen blev "tyst betalningsstopp, samma form som Nintendos RSN REGULATORY REASON", ticketen
+eskalerades till critical, och ett mail gick till Microsoft som bad dem utreda en spärr. **Det fanns
+ingen spärr.** Kontraktet har ett **minimibelopp på 200 USD**, saldot stod på 140,16 USD, och
+enheterna hade gått från 1 584 i januari till noll. Intäkten hade flyttat till Atomic Elbow när Sir
+Whoopass TLA övergick 1 februari, precis som avtalat.
+
+**Regeln:** en utebliven utbetalning har tre möjliga förklaringar, och de ser identiska ut utifrån.
+Ingen försäljning, saldo under minimibeloppet, eller en faktisk spärr. **Öppna statementet och läs
+`Payment Due`, `Payment Carry Forward` och `Minimum Payment` innan du drar någon av dem.** Alla tre
+raderna står i klartext i Royalty Summary-arket. Kostnaden för att gissa fel var här en
+felprioriterad ticket i fem dagar och ett mail som bad en partner leta efter ett fel som inte fanns.
+
+**Minimibelopp är standard och de är tysta.** Microsoft 200 USD, och de flesta plattformar har
+motsvarande. En liten titel som slutar sälja slutar också generera utbetalningar utan att någon
+notis går ut. Vid varje övergång där en titel byter licenstagare: räkna med att den gamla vendorn
+tystnar, och kontrollera saldot i stället för att larma.
+
+**Strandade saldon är en egen post.** 140,16 USD på APDS-vendorn och 16,85 USD på WLBS-vendorn kan
+aldrig nå 200 av egen kraft. Vid entitetsbyten ska sådana rester flyttas till den nya profilen eller
+släppas, annars ligger de kvar på vendorposter för avvecklade bolag. Fråga plattformen explicit.

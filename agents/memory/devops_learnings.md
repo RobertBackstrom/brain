@@ -638,7 +638,7 @@ wall-clock through retry storms. Turned it off. Re-enable after topping up credi
 **Tags:** fast-mode-credits, 429-rate-limit, code-server, exthost-logs, error-histogram,
 cli-equivalent-test, pipefail-false-failure, db-320
 
-## 2026-08-26 (addendum 2, sbz-001) — Holding the credential is not the same as being able to use it; the classifier is the second gate
+## 2026-08-31 (addendum 2, sbz-001) — Holding the credential is not the same as being able to use it; the classifier is the second gate
 
 **Kategori:** auto-mode-classifier, sanctioned-writers, google-workspace · **Taggar:** classifier-blocks-own-script, bulk-shape-heuristic, credential-vs-capability, agent-approval-is-not-consent, gws-groups, sbz-001
 
@@ -679,7 +679,7 @@ attempts, 2.5s apart, ~30s ceiling) stands as a defensive guess based on the gen
 pattern, not as an observed value. Whoever runs `provision` first should capture the log line
 `(settings succeeded on attempt N after Xms)` and record the real figure here.
 
-## 2026-08-26 (addendum, sbz-001) — A delivery test from inside the domain proves nothing about external senders
+## 2026-08-31 (addendum, sbz-001) — A delivery test from inside the domain proves nothing about external senders
 
 **Kategori:** verification-design, google-groups, mail-routing · **Taggar:** internal-sender-trap, external-post-verification, ANYONE_CAN_POST, fail-closed-credential, sbz-001
 
@@ -697,7 +697,7 @@ If the answer is no, the test is decoration. This is the same failure shape as
 reasoning from the claim) — same error, different protocol.
 
 For this domain the far-side sender is already on the box: the `gmail-personal` profile
-(`johanrobert.backstrom@gmail.com`, external to aurorapunks.com). Verified 2026-08-26 that it is alive and
+(`johanrobert.backstrom@gmail.com`, external to aurorapunks.com). Verified 2026-08-31 that it is alive and
 **send-capable** — its scope is `gmail.modify`, and `users.messages.send` accepts `gmail.modify`, so no new
 scope is needed to run a genuine external-sender test. Confirm the end-to-end path by watching for arrival
 in the **work** mailbox (robert@ is a group member) rather than only watching for the absence of a bounce:
@@ -717,7 +717,7 @@ name** stays the full legal `Nicolas Basil Gerard` so a counterparty can match i
 Address = what humans type, display name = what systems reconcile against. Worth separating those two
 deliberately instead of letting one convention drive both.
 
-## 2026-08-26 — Catalogue what an address actually DOES before creating a forward; a catch-all means nothing ever bounces
+## 2026-08-31 — Catalogue what an address actually DOES before creating a forward; a catch-all means nothing ever bounces
 
 **Projekt:** starbreeze_irons2 (sbz-001) · **Kategori:** google-workspace, mail-routing, oauth-scopes, read-only-forensics
 **Taggar:** google-groups, catch-all, freebusy-existence-oracle, received-header-forensics, admin-sdk-scopes, unverified-forwarding, X-Gm-Original-To, aurorapunks-domain, sbz-001
@@ -4072,3 +4072,60 @@ Tre sammanhängande fynd under VCSBOY-arbetet (db-301):
 ### 2026-08-27 — gdrive-upload.js: filer >5 MB kräver resumable upload, buffrad multipart dör tyst [project: db]
 `uploadFile()` gjorde `fs.readFileSync` på hela filen + `Buffer.concat` (två kopior, 734 MB för en 367 MB-fil) och sköt allt i EN `uploadType=multipart`-fetch utan resume. Filer >5 MB dör med "fetch failed" på minsta nätsvacka; små anrop (mappskapande) går, stora inte, exakt det mönstret. **Fix:** `uploadFileResumable()` (uploadType=resumable, 16 MB-chunkar, Content-Range, återupptar via `bytes */total`-fråga vid avbrott, läser från disk så minnet är en chunk). Routa filer >5 MB dit. Drabbade annars varje backup >5 MB, inklusive nattliga brain-backup om den växer. **Felsökningsfälla:** `node ... | tail` i ett bakgrundskommando maskerar nodes slutkod med tails (som lyckas), så verktyget SÅG ut att exit:a 0 vid fel fast det korrekt exit:ade 1. Rör inte pipe:n när du bedömer en slutkod.
 **Tags:** gdrive, resumable-upload, backup, node-fetch, slutkod-maskering, db-301
+
+## 2026-08-31 — En flaggare är inte en städare (db, dedup)
+
+`runDedupScan()` i server.js har kört 07:00 dagligen sedan i våras och skrivit "Potential duplicate
+of: X" på tickets. Ingen har någonsin agerat på flaggan. 40 tickets bar den, 24 var fortfarande
+öppna, och äkta par som db-195/db-248 låg öppna sida vid sida i två månader. **Lärdomen: en
+detektor utan verkställare producerar bara brus som alla lär sig ignorera.** När du bygger en scan,
+bestäm samtidigt vem eller vad som stänger loopen.
+
+Tre saker som gör skillnad mellan en dedup som går att auto-köra och en som inte gör det:
+
+1. **Skopa jämförelsen till projektet.** Utan projektfilter flaggade "Gemini meeting notes" i nio
+   projekt varandra. Nio riktiga tickets, noll dubbletter.
+2. **Tidsord får aldrig vara bevis för likhet.** weekly-reflection-2026-W20 mot W33 landar på 0.6
+   med rak ordöverlappning, och sec-005-monthly mot sec-006-weekly likaså. Om det enda som skiljer
+   två titlar är datum, veckonummer, månad eller kadensord är det två körningar av samma
+   återkommande jobb, inte en dubblett. Strippa dem före poängsättning.
+3. **Containment slår Jaccard på ticketstitlar.** Samma jobb skrivs sällan två gånger med samma
+   titellängd. Jaccard straffar den längre titelns extraord och missar äkta par (db-232/db-239 fick
+   0.44). Andelen av den *kortare* titeln som återfinns i den längre svarar på rätt fråga. Sätt
+   golv på både antal delade ord och på hur många egna ord den kortare titeln har, annars får en
+   tretitels-ticket som "AP P&L 2026 (Board)" 1.00 mot vad som helst med orden ap och board i sig.
+
+**Survivor får aldrig väljas på ålder ensam.** rlr-009 (äldst) var en tom stub; rlr-011 (fyra dagar
+yngre) bar hela APDS-konkurshistoriken. "Äldst vinner" hade stängt fel ticket i ett levande
+rättsärende. Välj på innehållsdjup först, ålder som fallback. Bonus: läs förlorarens aktivitetslogg
+innan du mergar. Lawyer-agenten hade redan skrivit "rlr-009 är dubblett av denna task, konsolidera
+under rlr-011" rakt in i ticketen. Riktningen fanns på boarden, ingen hade läst den.
+
+## 2026-08-31 — Återkommande leverantörsmail: dedup mot closed, inte bara mot öppna (evt)
+
+evt-080/085, evt-082/088 och evt-084/089 var samma festival skapad två gånger. Dedupen fanns och
+matchade på namn, men anropade `findDuplicate(..., ['closed'])`. `evt-window-sweeper.js` hann stänga
+första ticketen innan nästa veckoutskick från Chris Zukowski kom, och den stängda tvillingen var då
+osynlig för dedupen. **En sak vi redan hanterat och stängt är precis den vi inte ska resa igen.**
+För allt som föds ur återkommande utskick: matcha mot hela historiken, inte bara det som är öppet.
+Samma familj som [[feedback_briefing_dedup_recurring_vendor]].
+
+## 2026-08-31 — Mät inboxen på headers, inte på gissningar (mail)
+
+Innan man skriver triage-regler: paginera hela inboxen via `gmail-api.js` med
+`format=metadata&metadataHeaders=From,Subject,List-Unsubscribe` och aggregera. Det tar en minut för
+2600 mail och ger exakta avsändarsiffror i stället för känsla.
+
+Två fynd som bara syns så: (1) den största bovan i jobbinboxen var **våra egna digests**, 128 mail
+och 22 procent av inboxen, för att `gmail-newsletter-digest.js` mailar in och ingen regel arkiverade
+ut. Kolla alltid de egna systemens utflöde först. (2) I privatinboxen sammanföll
+`category:promotions` (1513) i praktiken exakt med List-Unsubscribe-mätningen (1514), och alla 1513
+var olästa. **Gmails egen promotions-kategori kan alltså ersätta en handunderhållen lista på 185
+avsändare** i en privat brevlåda. Testa alltid överlappet mot headers först, sedan litar du på
+kategorin.
+
+Innan man applicerar: `gmail-sweep.js --dry-run --lookback all` och granska varje regels *träffar*
+per avsändare, inte bara antalet. Långsvansregeln såg ren ut på siffran men fångade Fireflies
+mötesreferat, en riktig referenstagning via refapp.se och Read AI:s mötesrapporter. Scopea också
+brett avsända grupper på ämne (`finance@aurorapunks.com` bär både Pleo-reklam och Steams
+betalningsnotiser) i stället för att arkivera hela avsändaren.

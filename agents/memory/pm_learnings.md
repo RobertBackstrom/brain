@@ -1,3 +1,22 @@
+## 2026-08-31 — Splitting an island's "Level Art" into features: source it from the island's GDD "Art Assets Needed" (k2c)
+
+Robert asked to split the vague per-island "Level Art" tickets into specific art features for the 3 remaining islands (D Sphinx / E Osiris / G Set), Confluence as reference. The clean source is each island's own GDD page (Campaign > Islands > Island X): it has an **"Art Assets Needed"** bullet list that IS the feature breakdown, verbatim. Sphinx = 4 sphinx sculptures + riddle altar; Osiris = 2 statues + altar + reunion FX; Set = Set mask, crypt, windbreak, sarcophagus item + ritual FX, tome puzzle, Duat skybox. Created them as **Subtasks under the Level Art task** (issuetype id 10002), keeping the board's Epic > Task > Subtask model rather than restructuring to "main task + subtasks" (the existing model already gives design/art/code as sibling Tasks under the island epic).
+
+**Dedup is the judgment part, not the listing.** Two Set items on the GDD art list (Anubis jackal warriors, Book of the Dead + pages) are cross-cutting and already tracked elsewhere (KAN-576 Anubis art; Book of the Dead = a Divine Favor under Abilities KAN-13). Splitting the GDD list mechanically would have duplicated them. Cross-check each island-art bullet against existing FEATURE/ABILITIES tickets before creating, link the shared ones, only create island-unique art. Same family as the "go broad" art decision (shared Egyptian assets tracked broadly, not per-island).
+
+**KAN board mechanics worth caching:**
+- Board id **1**, team-managed, board type reports "simple" but it DOES have sprints via the agile API. Sprints map to milestones: **S9 = MS5 Production (id 9)**, S10 MS5 CC Hardening ... S15 MS7 Launch. fixVersions = MS1..MS7.
+- The new `/rest/api/3/search/jql` endpoint returns **null fields unless you pass an explicit `fields` param** (old `/search` returned them by default). Always set `fields`.
+- Add to sprint: POST `/rest/agile/1.0/sprint/{id}/issue` `{issues:[...]}` (works on a future sprint). Subtasks inherit the parent's sprint, so only the parent needs adding.
+- Transition ids on this board: To Do=11, In Progress=21, In Review=31, Done=41, Icebox=42, BACKLOG=2.
+- The Atlassian wrapper MCP authenticates as Robert, so every write is attributed to him.
+
+Source: K2C, s9/MS5 grooming.
+
+**Tags:** k2c, jira, kan-board, island-epics, level-art-split, gdd-art-assets, subtasks, sprint-api, search-jql-fields, dedup, go-broad
+
+---
+
 ## 2026-08-30 — Event submission pipeline evolved into permanent operational infrastructure, not a project milestone (evt)
 
 The Events Epic (evt-000) arrived in June as a "deadline tracking and event participation" project, routed to PM with a score of 7 (autonomy 3 = pure research/data). By August it had evolved into permanent operational infrastructure—three linked scripts running on cron, an autonomous portfolio registry, a submission ledger, and daily event intake from HTMAG alerts.

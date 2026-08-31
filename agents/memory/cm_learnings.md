@@ -1,5 +1,43 @@
 # CM Agent — Cross-Project Learnings
 
+## 2026-08-31 — A gated channel the owner "can't find" is a findability problem, not a permissions one [project: sbz-001]
+
+Robert reported he could not find `#project-irons-2` after I provisioned it, and my first instinct was
+that the gate had locked him out. It had not. He is the Discord **server owner with Administrator**, so
+he could always see it: permission overwrites never hide a channel from the owner. The real cause was
+that `cm-channel-admin.js provision` creates a channel with **no category**, which drops it at the
+bottom of a 60-channel server (position 59).
+
+**Do not "fix" that by moving it.** `#board` (57) and `#ap-finance` (58) are also uncategorised and sit
+immediately above it — uncategorised-at-the-bottom IS the AP convention for gated internal channels.
+Moving it would have broken a pattern Robert built.
+
+**How to apply:** when someone says a gated channel is missing, check three things in order before
+touching permissions — (1) does the person have Administrator or own the guild, in which case
+visibility was never the issue, (2) what is the channel's `parent` and `rawPosition`, (3) what do the
+comparable existing channels do. `ch.permissionsFor(member).has('ViewChannel')` answers (1)
+definitively in one call. Report the position, don't re-gate.
+
+Also worth granting the role to the owner anyway: it changes nothing about visibility, but a later
+`@Role` mention would otherwise silently skip them.
+
+## 2026-08-31 — The Death Board bot and the Death Board chat assistant are different surfaces [project: sbz-001]
+
+Robert tried to add the bot to a new channel by DMing a **server invite link** to the Death Board chat
+assistant, which replied "Can't join Discord channels directly from here - I'd need manual auth." That
+answer was about the chat surface's own capability and was read as "the bot is not in the server".
+
+The bot was already there: `Death Board#3897` (`1483100011905552475`), a member since 2026-05-05, and
+`cm-channel-admin.js gate` had already written it its own per-user permission overwrite on the channel
+(ViewChannel + SendMessages). **A bot that just created a channel is by definition already in the
+guild** — an invite link is meaningless for it.
+
+**How to apply:** when asked to "invite the bot" somewhere, verify presence first with
+`guild.members.fetch(client.user.id)` and `channel.permissionsFor(botMember)` rather than acting on the
+invite. Then prove it by having the bot post, which is far more convincing than asserting it. And when
+Robert reports the chat assistant refusing something, check whether the capability actually lives in
+the bot process instead — the two get conflated because they share a name.
+
 ## 2026-08-19 — Discord cannot force-add a user by ID, and a failing invite is usually not the invite (k2c)
 
 Robert supplied an external contractor's Discord user ID and asked for him to be invited.

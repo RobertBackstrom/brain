@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-08-31T02:18:04Z",
+  "branches": [
+    {
+      "dir": "gnarl",
+      "model": "fal-ai/stable-diffusion-v35-large",
+      "seeds": [
+        7777,
+        7781,
+        7793,
+        7807
+      ]
+    },
+    {
+      "dir": "clean",
+      "model": "fal-ai/stable-diffusion-v35-large",
+      "seeds": [
+        9001,
+        9013,
+        9027,
+        9041
+      ]
+    },
+    {
+      "dir": "fluxpro",
+      "model": "fal-ai/flux-pro/v1.1",
+      "seeds": [
+        7777,
+        9001,
+        4242,
+        5150
+      ]
+    }
+  ],
+  "results": [
+    {
+      "branch": "gnarl",
+      "seed": 7777,
+      "status": "ok",
+      "elapsed": 197.0
+    },
+    {
+      "branch": "gnarl",
+      "seed": 7781,
+      "status": "ok",
+      "elapsed": 16.2
+    },
+    {
+      "branch": "gnarl",
+      "seed": 7793,
+      "status": "ok",
+      "elapsed": 15.3
+    },
+    {
+      "branch": "gnarl",
+      "seed": 7807,
+      "status": "ok",
+      "elapsed": 15.3
+    },
+    {
+      "branch": "clean",
+      "seed": 9001,
+      "status": "ok",
+      "elapsed": 15.9
+    },
+    {
+      "branch": "clean",
+      "seed": 9013,
+      "status": "ok",
+      "elapsed": 15.2
+    },
+    {
+      "branch": "clean",
+      "seed": 9027,
+      "status": "ok",
+      "elapsed": 16.1
+    },
+    {
+      "branch": "clean",
+      "seed": 9041,
+      "status": "ok",
+      "elapsed": 15.3
+    },
+    {
+      "branch": "fluxpro",
+      "seed": 7777,
+      "status": "ok",
+      "elapsed": 6.8
+    },
+    {
+      "branch": "fluxpro",
+      "seed": 9001,
+      "status": "ok",
+      "elapsed": 6.3
+    },
+    {
+      "branch": "fluxpro",
+      "seed": 4242,
+      "status": "ok",
+      "elapsed": 9.1
+    },
+    {
+      "branch": "fluxpro",
+      "seed": 5150,
+      "status": "ok",
+      "elapsed": 5.6
+    }
+  ]
+}
