@@ -1,3 +1,85 @@
+## 2026-08-31 - A decommission ticket's own container count was stale, and the "nothing points to this" check found a live one [project: db, db-328]
+
+db-328 said "avveckla Plane, fyra containrar" — `plane-app-api-1`, `-worker-1`, `-beat-worker-1`,
+`plane-db-1`. `docker ps -a --filter name=plane` on edge showed **eleven**: the ticket's four plus
+`web`, `space`, `admin`, `live`, `proxy`, `migrator` (exited), `plane-mq` (rabbitmq), `plane-minio`.
+The ticket was written from a partial `docker ps` grep at some earlier point, not the compose file.
+**A container count in a ticket is a snapshot, not a spec — always re-run `docker ps -a` against the
+live host and diff, don't decommission to the list in the text.**
+
+**The checklist's own "check nothing points to Plane (... config)" step found a real hit, and it
+was the interesting part of the ticket.** Nitro's live `assistant/.env` — the box actually running
+`server.js` now, per the [[project_baremetal_migration]] split — had `PLANE_WEBHOOK_ENABLED=true`,
+wired to a Phase-2 Death Board ↔ Plane sync built in May (`/webhook/plane` in server.js, HMAC-verified,
+fails closed without a secret). Superficially this looked like exactly the kind of active dependency
+that should block a shutdown. It wasn't, but confirming that took three separate checks, and any one
+of them failing would have changed the answer: `plane.runatyr.games` has never had a DNS record
+(so nobody could ever open Plane's UI to *cause* a webhook), `plane-sync-log.jsonl`'s last write was
+2026-06-18 (2.5 months idle), and Cloudflare's tunnel `config.yml` entry for the hostname is
+dashboard-managed and the local file's copy is documented as ignored. **A feature flag reading
+`true` is not evidence of an active dependency — check whether the trigger path can physically fire
+before treating "true" as "in use."** Flipped the flag to `false` with a dated comment once confirmed
+dead; left `PLANE_BASE_URL`/`PLANE_API_TOKEN`/`PLANE_WEBHOOK_SECRET` alone since they're inert without
+the flag and touching secrets isn't what the ticket asked for.
+
+**`pg_dump` from the host side needs `PGPASSWORD` explicitly even when `docker exec`ing into the
+container** — the container's own `POSTGRES_PASSWORD` env var doesn't get inherited by a plain
+`docker exec ... pg_dump`, it errors `fe_sendauth: no password supplied`. Fix: `docker exec <c> sh -c
+'PGPASSWORD="$POSTGRES_PASSWORD" pg_dump ...'`, letting the container's own shell resolve its own
+env var, since we didn't have the plaintext password to hand ourselves.
+
+**Verify a dump by reading its TOC, not by checking file size.** `pg_restore --list <file>` printed
+1471 TOC entries in under a second and is the real "is this readable" check — a truncated or corrupt
+custom-format dump still produces a plausible byte count. Ran it against the copy that landed
+off-site (Nitro), not just the original on edge, and diffed SHA-256 across both hosts before treating
+the edge copy as redundant.
+
+**Tags:** db-328, plane, decommission, stale-ticket-snapshot, feature-flag-not-evidence-of-use,
+pg-dump-pgpassword, pg-restore-list-verify, dashboard-managed-tunnel, nitro-edge
+
+## 2026-08-31 - A git status check against the wrong repo root doesn't error, it lies clean [project: db, db-333]
+
+Built a cron watcher (`divergence-watch.sh`) modeled directly on `backup-health.sh`'s pattern:
+`git -C "$PROJECTS" status --porcelain -- "$file"` where `$PROJECTS` is
+`/home/assistant/projects`. Every monitored file lives under `assistant/`. The check reported
+clean for all four files before I'd written a single line of the actual watcher logic — which
+should have been a red flag, not a green light.
+
+`assistant/` is its own git repository with its own GitHub remote (`RobertBackstrom/assistant`),
+and `/home/assistant/projects/.gitignore` deliberately excludes it (`/*` then an allowlist of
+directories that *don't* have their own remote — the comment at the top of that file says so
+explicitly). Running `git status` from the outer repo against a path inside a nested `.git`
+boundary doesn't descend into it and doesn't error either — it just returns nothing, which is
+byte-for-byte indistinguishable from "this file has no changes." A monitor built this way would
+have run forever, alerted never, and looked exactly as healthy as a working one.
+
+**The check that would have caught it earlier:** before trusting any git status/diff result,
+confirm `git -C "$(dirname "$file")" rev-parse --show-toplevel` actually equals the root you
+assumed. If it doesn't (or is empty), you're not checking what you think you're checking. The
+fix that survives repo-layout changes: resolve the repo root *per file* rather than hardcoding
+one for the whole script — `assistant/`, the outer brain repo, and any future nested checkout
+all resolve correctly with no per-path special-casing.
+
+**Same session, a second silent-lie: literal `\n` is not a newline.** `backup-health.sh` (and
+my copy of its pattern) builds its Discord message with `MSG="...\n"` inside a plain
+double-quoted bash string. Bash only treats backslash as an escape before `$ \` " \` and newline
+inside double quotes — before `n` it's literal. The string ends up containing the two characters
+`\` and `n`, not a line break, and Discord renders exactly that: the text "\n" between every
+bullet instead of a line break. Caught by capturing the actual outbound JSON payload against a
+local one-shot HTTP listener instead of trusting that "the code looks like the working script it
+was copied from." Fixed with `$'\n'` (ANSI-C quoting) in the new script; `backup-health.sh` still
+has the same bug, filed separately as db-335 rather than fixed inline — it's a different ticket's
+shipped script, and the fix is one line whenever someone's next in there.
+
+**The general shape connecting both:** a pattern copied from a script that "already works" is only
+as trustworthy as whether anyone ever looked at its actual output. Neither bug threw an error;
+both produced a plausible-looking success (clean status, a message that printed fine to a log).
+Verify the artifact a monitor actually produces — the real git root, the real outbound payload —
+not just that the code resembles code that's presumed to work.
+
+**Tags:** db-333, git-nested-repo, gitignore-exclusion, false-clean, ansi-c-quoting,
+literal-backslash-n, discord-webhook, backup-health, copy-the-bug-not-just-the-pattern
+
 ## 2026-08-30 - Two ways a value goes missing silently, and the same fix for both [project: tcg, tcg-002]
 
 Shipped bundled fonts and a comps path in the same session and hit the same shape
