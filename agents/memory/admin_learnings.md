@@ -1369,3 +1369,8 @@ tystas ner. Se [[project_apds_czp_rights_chain]] för den stående formuleringsr
 **Faktapost:** `finance@aurorapunks.com` är ett **ägarkonto** på AP:s Partner Center, inte bara
 Manager. Hektors `andreassonhektor@gmail.com` är alltså inte enda vägen till Account settings och
 Legal Info, och ett ägarbyte behöver inte vara första draget vid entitetsändringen.
+
+**Kanonisk hemvist:** Microsoft-kontotopologin (vilket konto som fungerar mot Partner Center,
+royaltyportalen och SupplierWeb, vendornumren, de fem entitetssträngarna) ligger nu i
+[[reference_microsoft_accounts]], inte utspridd i den här loggboken och i `secrets_registry.md`.
+Läs den innan nästa Microsoft-ärende.

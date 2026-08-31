@@ -1,3 +1,17 @@
+## 2026-08-31 — Embedding a Drive video in a K2C Confluence delivery page (k2c)
+
+Milestone playthrough videos: upload to the K2C shared `_deliverables/ms<N>` Drive folder, then embed in that milestone's Confluence delivery Legend page. The embed is a plain Confluence macro pointing at the Drive file URL, copied verbatim from the MS3 page (125566978):
+`<ac:structured-macro ac:name="embed" ac:schema-version="1" data-layout="default"><ac:parameter ac:name="url">UrlResourceIdentifier[url=https://drive.google.com/file/d/<FILE_ID>/view]</ac:parameter></ac:structured-macro>`
+RF views it via shared-drive access ("Streams from Drive, so you need Drive access to view"). Match the video to the milestone it demonstrates, not the folder it landed in: an "PL MS4 Demonstration" file uploaded into an ms5 folder still belongs on the **MS4** page (150274049), where the playthrough was flagged "coming Monday".
+
+**Writing the page:** the aurorapunks Confluence is NOT reachable by the Rovo MCP (that only reaches badass-studios). Use `assistant/confluence-set.js` (Basic auth via `~/.claude/.atlassian-credentials.json`; `update <pageId> <page.json>` reads the current version and increments it). A delivery-page body is ~37 KB of storage XHTML, so never hand-transcribe it: fetch the live storage, do targeted string replacements in a script, **assert each target matches exactly once (abort otherwise)**, sanity-check that the video id + embed macro are present and the stale placeholder is gone, dry-run, then `--commit`. Also fix any now-false framing (a "coming Monday / not part of this delivery" bullet) so the page doesn't contradict the embed.
+
+**Read gotcha:** `mcp__atlassian-confluence__conf_get` uses JMESPath, not jq, so jq expressions error out — but the tool still dumps `_originalData` with the full body, so you get it anyway. For scans/verification, curl the v2 API directly with the token.
+
+Source: K2C MS4 playthrough embed.
+
+**Tags:** k2c, confluence, video-embed, drive, confluence-set.js, atlassian-credentials, read-modify-write, delivery-page, rovo-mcp-scope
+
 ## 2026-08-31 — Splitting an island's "Level Art" into features: source it from the island's GDD "Art Assets Needed" (k2c)
 
 Robert asked to split the vague per-island "Level Art" tickets into specific art features for the 3 remaining islands (D Sphinx / E Osiris / G Set), Confluence as reference. The clean source is each island's own GDD page (Campaign > Islands > Island X): it has an **"Art Assets Needed"** bullet list that IS the feature breakdown, verbatim. Sphinx = 4 sphinx sculptures + riddle altar; Osiris = 2 statues + altar + reunion FX; Set = Set mask, crypt, windbreak, sarcophagus item + ritual FX, tome puzzle, Duat skybox. Created them as **Subtasks under the Level Art task** (issuetype id 10002), keeping the board's Epic > Task > Subtask model rather than restructuring to "main task + subtasks" (the existing model already gives design/art/code as sibling Tasks under the island epic).

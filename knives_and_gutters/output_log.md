@@ -13,7 +13,9 @@ Track significant deliveries, drafts, and external posts here. Each entry: date,
 | 2026-05-21 | DevGAMM Gdańsk Public Pitch slot declined — reply to Valeria Reznikova | Gmail draft (thread 19e4562fa3900be8) | Awaiting Robert send |
 | 2026-08-30 | Fiverr scout attempt — blocked by PerimeterX captcha on VPS IP; handed to DevOps | art/logo/fiverr/_scout_status.md + db-334 | Blocked; scout script re-runnable once network path exists |
 | 2026-08-31 | Logo round 3: gnarl/clean/fluxpro branches × 4 seeds each (12 img) + contact sheets + QA notes | art/logo/concepts/round3/ | Cost ~$0.48; Flux Pro spells wordmark 3/4 vs SD3.5 0/8; 4-image shortlist for Robert's curation |
-| 2026-08-31 | Drive: created `04_Art_Direction/` (intake + paintovers + reference) in `Ark Island - K&G`, granted Prateek writer | Drive `1VEkHW5eZtSVSOMXoY9C9Ah5U7F97eXg9` | Live; Prateek NOT yet notified |
+| 2026-08-31 | Drive: created `04_Art_Direction/` (intake + paintovers + reference) in `Ark Island - K&G`, granted Prateek writer | Drive `1VEkHW5eZtSVSOMXoY9C9Ah5U7F97eXg9` | Live; intake link mailed to Prateek 2026-08-31, sent |
 | 2026-08-31 | Source map: full Drive sweep across Mordheim/Mortburg/Gangs of Forsaken/K&G aliases | `source_map.md` + Drive `03_Brand Guidelines/` | Delivered |
 | 2026-08-31 | Brand Guidelines v1 (merged GW-lineage + current K&G deck, with IP delta register) | `brand/brand_guidelines_v1.md` + Drive | Draft, awaiting Robert + Ark Island review |
 | 2026-08-31 | New skill: art direction critique + paint-over method + grimdark corpus | `skills/art_direction_critique.md` | Registered in skills index |
+| 2026-08-31 | Deck image provenance sheet (36 images, numbered) + Robert confirmed plates are sourced GW art | `brand/deck_image_provenance_sheet.png`; kng-001 resolved, kng-003 opened | Critical: original art package now gates all public surfaces |
+| 2026-08-31 | GTM / community monetization plan v1 (tiers, revenue maths, sequencing, mod-forum risk carved out) | `gtm_plan_v1.md` (VPS only, NOT uploaded to the shared Drive folder) | Draft for Robert |

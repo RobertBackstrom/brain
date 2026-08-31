@@ -32,8 +32,11 @@ Full inventory: `source_map.md`. Brand + IP delta register: `brand/brand_guideli
 4. **Character AI art + tech art pipeline** - gen-AI base meshes, human-made final rigs (disclosed in festival submissions).
 
 ## Open blockers
-- `kng-001` - GW art provenance in the investor deck. **Critical.**
+- `kng-003` - **Original art package. CRITICAL, gates every public surface.** Robert confirmed
+  2026-08-31 that the deck's illustration plates are sourced GW art. We own none of the artwork
+  the brand rests on. Steam, Patreon, social and festivals all wait on this.
 - `kng-002` - Dropbox connector for the Fatshark art-direction archive (DevOps).
+- `kng-001` - RESOLVED 2026-08-31 (provenance confirmed: sourced GW art).
 
 ## Why
 Retitled from "Gangs of Forsaken" on 2026-04-23.

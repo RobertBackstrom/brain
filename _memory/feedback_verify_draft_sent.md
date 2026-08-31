@@ -50,3 +50,26 @@ say so immediately; a silently-missing recipient degrades quietly and is usually
 through a downstream confusion like the one above.
 
 Applies to all projects and all agents. Related: [[feedback_gmail_draft_dedup]], [[feedback_compare_draft_vs_sent]], [[feedback_inbox_convention]], [[output_log]].
+
+## Kolla `in:sent` INNAN du skapar utkastet, inte bara innan du rapporterar (2026-08-31)
+
+Regeln ovan handlar om att rapportera status. Den täcker inte det dyraste felet, som är att
+**skapa ett utkast av ett mail som redan är skickat.**
+
+2026-08-31, Xbox: Robert skickade RoyCare-mailet om portalkontakten kl 10:04, fick ärende
+TKT-9772264-P4X2J och ett svar kl 14:21. Claude skrev under tiden om samma mail genom The Author,
+skapade det som ett nytt utkast i en ny tråd och rapporterade att det "ligger och väntar". Två
+utkast till samma disk, ett av dem för ett ärende som redan var löst. Samma dag hade Claude redan
+rapporterat Niklas-mailet som osänt när Robert skickat det, och blivit rättad: *"kolla alltid Sent
+när du stämmer av status på mailmappar."*
+
+**How to apply:**
+- Innan `gmail_create_draft`: sök `in:sent to:<mottagare>` eller på ämnesraden. Träff betyder att
+  du inte ska skapa utkastet utan läsa vad som faktiskt gick ut och vad som kom tillbaka.
+- Det gäller särskilt vid omskrivningar. En röstpass-runda eller en ny version av ett tidigare
+  utkast är precis det tillfälle då originalet hunnit skickas medan du arbetade.
+- Ett utkast i en **ny tråd** dedupas inte av verktyget. `gmail_create_draft` rensar bara tidigare
+  utkast på samma `threadId`, så en omskrivning utan `threadId` lämnar originalet kvar och du får
+  två. Radera det gamla explicit med `gmail_delete_draft`.
+- Svarsmail från supportdiskar kommer ofta med ett nytt ärendenummer i ämnesraden, alltså i en egen
+  tråd. Sök på vendornummer eller nyckelord, inte bara på `threadId`.

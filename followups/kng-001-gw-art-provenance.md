@@ -1,14 +1,26 @@
 ---
 project: kng
-status: open
+status: resolved
 priority: critical
+resolved: 2026-08-31
 updated: 2026-08-31
 created: 2026-08-31
 type: blocker
 owner: Robert
 ---
 
-## Confirm the provenance of every illustration in the K&G investor deck
+## RESOLVED 2026-08-31: deck illustrations are sourced GW art
+
+**Robert confirmed on 2026-08-31:** plates 01, 02, 03, 04, 05, 06, 14, 27 are **sourced GW /
+reference art**, not commissioned. The rulebook spread (11) and the painted-miniature photos
+(07, 08, 09, 30) also need replacing before anything public.
+
+No mail to Jakob and Fredrik was needed. Replacement work moves to `kng-003`.
+The text-level GW residue listed below still needs fixing in the deck itself.
+
+---
+
+## Original question (kept for the record)
 
 While sampling the brand palette out of `K&GPitch.pptx` (2026-06-11) I looked at the embedded
 key art. The illustrations are pen-and-ink Warhammer plates in the unmistakable **John Blanche**

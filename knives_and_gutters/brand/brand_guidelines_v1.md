@@ -109,7 +109,9 @@ carrying the read.
 4. Faces are characterful and ugly. No heroic idealisation.
 5. Render lighting low-key, one warm source, deep falloff.
 
-**This is also where the biggest risk sits. See 6.1.**
+**Every current example of this style in our material is sourced GW art (confirmed
+2026-08-31, see 6.1). The rules above are therefore a commissioning brief, not a description
+of assets we hold.** An artist can be pointed at this section directly.
 
 ---
 
@@ -119,17 +121,33 @@ Robert's stated reason for holding Steam back is IP and trade-dress caution. Thi
 is that concern made concrete. Severity: **A** = blocks any public use, **B** = fix before
 launch, **C** = tidy-up.
 
-### 6.1 The deck art appears to be Games Workshop artwork - severity A
-The illustrations in the current 2026-06-11 investor deck are pen-and-ink Warhammer plates
-in the unmistakable **John Blanche** lineage, and at least one (`image2.png`) reads as a
-scanned Games Workshop illustration rather than commissioned pastiche. If that is right,
-the current investor deck, and any brand built from its art, sits on GW copyright.
+### 6.1 The deck art IS sourced Games Workshop material - CONFIRMED, severity A
+**Confirmed by Robert, 2026-08-31.** Plates 01, 02, 03, 04, 05, 06, 14 and 27 in
+`brand/deck_image_provenance_sheet.png` are **sourced GW / reference art**, not commissioned.
+Item 11 (a photographed spread of the Mordheim rulebook) and items 07, 08, 09, 30 (painted
+miniature photos) are in the same category and **must also be replaced before anything public**.
 
-**Action:** Jakob and Fredrik must confirm, per image, the provenance of every plate in the
-deck. Anything scanned or traced gets replaced before it goes near a storefront. This is
-the single highest-value question in this document and I cannot answer it from Drive alone.
+**Consequence: we currently own none of the artwork the brand is built on.**
 
-**Note:** John Blanche died in June 2026. His estate does not make the position looser.
+What this does NOT mean: a visual *style* is not copyrightable. We can legally commission
+original art that targets the same grimdark pen-and-ink register. Sections 4 and 5 of this
+document stay valid as a *target*, and are in fact the brief for that commission.
+
+What it DOES mean:
+1. Every plate in the current deck is a **placeholder**. The deck is usable for private
+   investor conversations at Robert's discretion, and for nothing else.
+2. **No public surface can launch until an original art package exists.** That includes the
+   Steam page, a Patreon or equivalent, social, and any festival or showcase submission.
+   This is now the critical path for the whole go-to-market track, not a side task.
+3. The logo work is less exposed: the round-3 concepts are original generations, and using
+   Realm of Chaos (1988) as a *stylistic* anchor is legitimate. Do not trace it.
+
+**Open exposure question, needs checking:** the teaser videos (`Knives&Gutters_Teaser1_*`,
+2026-07-17) and the festival submissions already made (DevGAMM Gdańsk, Second Wind showcase
+which aired 2026-04-23, TactiCon, CobraTekku) may already contain this sourced art. That is
+material that is already public. Audit before assuming the exposure is only forward-looking.
+
+Tracked as `kng-003`.
 
 ### 6.2 "Possessed" - severity A
 Slide 7 of the current deck labels a 3D render "Possessed". That is a Games Workshop unit

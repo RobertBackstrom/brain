@@ -4129,3 +4129,35 @@ per avsändare, inte bara antalet. Långsvansregeln såg ren ut på siffran men 
 mötesreferat, en riktig referenstagning via refapp.se och Read AI:s mötesrapporter. Scopea också
 brett avsända grupper på ämne (`finance@aurorapunks.com` bär både Pleo-reklam och Steams
 betalningsnotiser) i stället för att arkivera hela avsändaren.
+
+## 2026-08-31 - Tre fällor när Playwright möter en Microsoft-portal (apb-055, Xbox)
+
+Byggde `assistant/ms-session.js` + `msrsm-royalty-reports.js` + `msrsm-user-admin.js` mot
+royalty.microsoft.com. Tre fel kostade en runda var, och alla tre är generella.
+
+**En landningssida som inte autoredirectar ser inloggad ut.** Portalen serverar sitt eget innehåll
+med en Sign In-knapp uppe till höger i stället för att kasta besökaren till
+login.microsoftonline.com. Kontrollen "är vi på en login-URL" svarade nej, skriptet trodde att
+sessionen levde och sparade en recon av en utloggad sida. **Leta efter en Sign In-kontroll i
+sidan, inte bara på URL:en.** `open()` har nu en `signIn`-parameter för just det.
+
+**En adress kan vara två Microsoft-konton.** `robert@aurorapunks.com` finns både som work/school i
+Entra och som personligt konto. Inloggningen visar då "It looks like this email is used with more
+than one account from Microsoft" mitt i flödet, efter e-posten och före lösenordet. Utan ett klick
+där dör inloggningen tyst på ett steg som inte finns i den tänkta sekvensen. Portalen ville ha
+work-kontot. Parametern heter `accountKind`.
+
+**Vänta på innehåll, inte på element.** Portalens tabeller renderar en laddningsrad med klassen
+`um-loading-cell`. Väntan "det finns minst en `tbody tr`" träffar spinnern och rapporterar tom
+lista, vilket fick ett `--remove` att svara "hittade ingen rad" mot en lista som hade tre.
+**Vänta på att en rad faktiskt bär den data du är ute efter**, här ett `@`.
+
+**Och verifiera skrivningar med en färsk sidladdning.** Efter att en användare lagts till visade
+portalens egen tabell oförändrad lista. Skrivningen hade gått igenom, vyn hade bara inte
+uppdaterats. Två gånger var jag nära att rapportera fel utfall. **En skrivning är inte verifierad
+förrän den lästs tillbaka i en ny session eller efter en omladdning**, aldrig från samma
+DOM-instans som utförde den.
+
+**Metaregeln:** kör alltid `--recon` först mot en okänd portal (spara HTML, skärmdump och
+kontrollista), läs den, och skriv selektorerna efter vad som faktiskt står. Att gissa selektorer
+mot en portal man aldrig sett kostar fler rundor än reconen.

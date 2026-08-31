@@ -51,6 +51,14 @@ human. This keeps Fable (the expensive voice model) touching only the short fina
 long drafting. The Author owns the `skills/voice/` corpus (per-channel + per-person registers).
 Skip the pass only for trivial internal text or where Robert asks to send as-is.
 
+**MAIL IS NOT OPTIONAL (Robert, 2026-08-31).** Every Gmail draft, without exception, goes through
+The Author before it lands in Drafts. Not "should", not "when it feels consequential". A one-line
+reply counts. The trivial-text exemption above applies to Discord one-liners and internal notes,
+never to mail. Robert reviews drafts in Gmail and sends them himself, often within minutes, so a
+draft that skipped the pass is a draft that goes out in the wrong voice. Order of operations:
+draft cheap, hand the near-final text to The Author, create the Gmail draft from what comes back.
+See [[feedback_author_pass_all_mail]].
+
 ## Agent Types
 
 - **On-demand**: Invoked during Claude Code sessions when Robert needs the expertise
