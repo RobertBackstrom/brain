@@ -359,3 +359,44 @@ WP0.3 körd på riktigt mot en källkodsbyggd UE 5.3. Fem saker att bära med si
 - **Embedda inte T3D.** Innehållet är till största delen `K2Node_*`, pin-id:n och länklistor. Som nyckelordssökning är det guld ("vilken Blueprint anropar X"), som vektorer är det brus som konkurrerar ut riktiga svar i resten av hjärnan. Låt dem ligga FTS-only.
 - **Kolla klassificeraren innan du tror att indexeringen misslyckades.** `code-corpus/classify.js` har en `SRC_EXT`-lista, och en filändelse som saknas där sållas bort **tyst**: dry-run rapporterade 825 filer i bucketen `ap` men 0 indexerade, utan ett enda felmeddelande.
 **Tags:** UE5.3, Blueprint-export, T3D, EnablePlugins-på-kommandoraden, DataTable-exportfälla, headless-commandlet, RAG-chunkvolym, classify.js-SRC_EXT, FTS-vs-embeddings
+
+## 2026-08-31 — Röktesta artefakten, inte en granne (Curveball)
+
+**Editorbygget och det paketerade bygget kan ligga på var sin sida av samma `if`.** Curveballs
+gästinloggning mot LootLocker var gatead på `UHelperLibrary::IsWithEditor()`. Mitt röktest körde
+`UnrealEditor.exe -game`, alltså den sanna grenen, och rapporterade "spelbart". Robert körde den
+paketerade exe:n, hamnade i plattformsinloggning och möttes av en blockerande dialog. Regeln:
+**verifiera i exakt den artefakt som ska levereras.** Ett editor-standalone-test är ett test av
+editorn, inte av bygget, i varje fråga som rör `WITH_EDITOR`, plattformsidentitet eller paketering.
+
+**Sök efter gaten, inte bara efter felmeddelandet.** Felet sa "failed to start epic games session"
+och pekade utåt mot Epic och LootLocker. Orsaken låg i en villkorsrad flera steg tidigare som valde
+fel inloggningsväg. När ett tredjeparts-SDK avvisar dig, fråga först vilken kodväg som valde det
+anropet.
+
+**Utvecklarflaggor slår `#if`-ändringar i kundkod.** `FParse::Param(FCommandLine::Get(), TEXT("x"))`
+lägger till en väg utan att ta bort någon. Diffen mot leverantörens baseline blir en rad plus en
+kommentar om varför, default-beteendet är bevisligen orört, och den behöver aldrig backas ur inför
+en leverans. Det är den formen en fix ska ha när man jobbar i någon annans träd.
+
+## 2026-08-31 — Ompaketering ljuger tyst när bygget kör (Curveball)
+
+**En körande spelprocess låser både paken och exe:n.** UAT:s `SafeCopyFile` loopar för alltid på
+`global.ucas` (syns i loggen), men det tysta fallet är värre: `.pdb` kopierades, `.exe` blev kvar
+från förra bygget, och paketeringen slutade ändå med **BUILD SUCCESSFUL exit 0**. Verifieringen
+körde alltså gammal kod och såg ut som att fixen inte bet. **Kontrollera alltid tidsstämpeln på
+`Packaged\...\Binaries\Win64\*.exe` mot `repo\Binaries\Win64\*.exe` innan du tolkar ett testresultat
+efter en ompaketering.** Döda spelprocesser före `BuildCookRun`.
+
+**Grafik startar inte över SSH.** Utan skrivbordssession faller D3D11 på
+`DXGI_ERROR_NOT_CURRENTLY_AVAILABLE` vid swapchain, spelet kraschar innan någon spellogik körts, och
+loggen ser ut som ett kodfel. Headless-verifiering körs med `-nullrhi -unattended -nosplash`, och
+allt utom rendering går att bevisa den vägen: inloggning, valutor, wallet, botspawn, gameplay cues.
+
+**`timeout /t` fungerar inte i en SSH-startad cmd** ("Input redirection is not supported"), så bat-
+filen dödar spelet direkt och loggen blir tom. Använd `ping -n <sek+1> 127.0.0.1 >nul` i stället.
+Samma familj som PowerShell-fällan från 27 aug: konsollösa sessioner bryter kommandon som förutsätter
+en konsol.
+
+**Perforce-arv:** trädet bar skrivskyddsattributet på 11 524 filer, vilket blockerar varje
+filredigering tills det rensas. Gör det direkt när ett p4-träd flyttas till git.
