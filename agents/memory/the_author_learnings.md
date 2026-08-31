@@ -290,3 +290,67 @@ leveransmail till publisher) och [[voice_anti_selling]]. Category: channel regis
   registret arbetar på ramverket runt fakta, aldrig på fakta. "Tja,"-öppningen och "/Robert"
   överlevde också; ingen personprofil för Olle/Joel finns ännu i `voice/people/`, seeda vid
   nästa pass om korpusen behövs. Category: register + process.
+
+## 2026-08-31 - Reed Hunt / ID@Xbox correction mail: positional frames are the mail-body slop [apb / Xbox, mail register]
+- Robert's verdict on the draft, verbatim: "wall of text, massor av onödiga AI slop fraser." The named
+  slop shares one shape: **sentences that locate a fact relative to the mail's own structure instead of
+  stating it** - "Worth noting alongside it", "One thing does follow from it", "For completeness on the
+  developer agreement", "The rest of my last mail still stands, and those are the ones I would like to
+  get moving", "That is the contract working as written, not a block". This is the mail-body flavour of
+  meta-signposting ([[voice_anti_selling]] cut 8) and of the Curveball ingress rule (2026-08-28): the
+  fix is deletion, never a different connective. A fact that needs a home gets a noun-label lead-in
+  ("Still open from my last mail:") or just starts; it never gets an escort sentence. Category: register
+  (mail, his critique this pass).
+- Self-correction retraction register, applied: when Robert corrects his own earlier claim to a partner,
+  the retraction is the opener and one plain line ("Scratch the payment part of my last mail, I had the
+  cause wrong."), then straight to the mechanism. No "let me correct before anything else", no restating
+  the wrong theory ("The payments did not stop because of X. They stopped because Y") - state only the
+  true cause. Consistent with the no-self-flagellation rule (shareholder register) on a new surface:
+  admitting an error to a platform contact. Rewrite is a simulation on top of core voice + status-mail
+  register (no `voice/people/` profile for Reed; corpus around him is mostly his mails, not Robert's) -
+  verify against Robert's edits on send. Category: register (partial simulation).
+- Compression datapoint: a 6-row unit-sales table whose story is "start high, then zero" carries in one
+  clause ("sales went from 1,584 units in January to zero from May"); the table earns its place only
+  when the reader must act on individual rows. ~400 words → ~250 with zero facts lost. Category: register.
+
+## 2026-08-31 - Reed Hunt profile seeded: what a long platform-partner thread teaches that single mails cannot [apb / Xbox, person register]
+- Seeded `voice/people/reed-hunt.md` from four real threads spanning Sep 2022 to Aug 2026
+  (`18347e49c2f76550`, `19d804ae3666ef5f`, `19ddfcc812e25c3a` 21 msgs, `1a042aaf152a5ddf`).
+  Three things about mining a multi-year platform thread that a per-mail read misses:
+  (1) **The From header is register data.** Reed's mail arrives from the team alias
+  `idam@xbox.com` carrying his personal signature, and his personal sends from `v-reedhunt@`;
+  the alias is read by Matt Hanson, IDSetup and RoyCare and auto-replies "3 business days".
+  Which address Robert writes to decides continuity (alias survives Reed's month-long OOO) and
+  audience (alias mail must be self-contained). A profile built from bodies alone loses this.
+  (2) **Date gaps assign the stalls, so read them before writing "he is slow".** The brief said
+  threads died from Reed's slowness; the timeline shows the Jun-Aug 2026 stall was roughly half
+  Robert's (Entra billing + vacation) and Reed chased Robert through the spring. The honest
+  version went in the profile - it changes the warranted tone (no apology theatre needed, Reed
+  apologises more than Robert does).
+  (3) **The counterparty's reply shape validates the register.** Reed answers numbered mails
+  point by point same-day and demonstrably misses status updates with no question in them
+  ("apologies I missed your previous email" after Robert's questionless Jun 18 note). That is
+  corpus proof for two profile rules: numbered admin lists are the right form for Xbox mail,
+  and every mail must end in a question or a go/no-go. Category: process (profile mining).
+
+## 2026-08-31 - Joel/Gustav/Olle LootLocker-svaret: passet efter en färsk hand-diff [cvb / Curveball, mail register]
+- Första passet med `curveball/drafts/mail_diff_2026-08-28.md` som facit i samma tråd, till samma
+  mottagare, tre dagar senare. Mina edits är MINA (application pass, inte hans hand) - verifiera mot
+  vad Robert faktiskt skickar och diffa igen. Tre observationer värda att spara:
+- **Styckeantalet ägs av innehållsbriefen, inte av "kortare är bättre".** Min misstanke var sex
+  stycken där fyra räcker; vid genomläsning bar varje stycke ett eget innehållsmoment som briefen
+  räknade upp (nej-svaret, Gustavs förslag, Cloud-justeringen, Inventory Service + DLC-skillnaden,
+  sömmen/konsol, accessbegäran). Rätt kompression var inom styckena (~15 % bort), inte att slå ihop
+  dem. Slå bara ihop stycken när ett stycke saknar eget innehållsmoment (jfr hans egen 6-till-5-
+  sammanslagning 2026-08-28, där punkt 6 var "samma tema" som punkt 3). Category: process.
+- **Smickrande tolkning av motpartens kod är också en ram.** "Er egen kod har en
+  LootLockerServerLoadoutValidator, så ni landade i samma slutsats när ni byggde det" - biten efter
+  kommat narrerar deras resonemang åt dem för att validera vår poäng. Fakta-halvan gör hela jobbet
+  ensam; läsaren drar slutsatsen själv. Samma släkte som dokumentregistrets
+  capability-judgement-regel, fast i berömmande riktning. Category: register (my edit, unverified).
+- **"Begäran får inte drunkna" implementeras genom att mailet SLUTAR på begäran, inte genom att
+  annonsera den.** Draftens sista mening hade en benefit-svans ("så slipper vi sätta om det från
+  grunden") efter själva asken - samma mönster som WhatsApp-cutten 2026-08-26 ("så ingen behöver ta
+  allt på en gång"). Svansen ströks; sista raden före /Robert är nu själva handlingen. En "hör av
+  er"-dörr (invariant 4) läggs INTE efter en skarp ask - den är då en reservationsdörr som späder ut
+  den enda handling mottagaren ska utföra. Category: register (my edit, unverified).

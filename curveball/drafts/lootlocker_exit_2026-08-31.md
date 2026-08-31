@@ -119,8 +119,19 @@ Kostnaden för "bygga eget" är alltså mycket lägre än den såg ut när fråg
 
 ## 9. Rekommendation
 
-1. **Ta bort LootLocker.** Steam Cloud för inställningar och progression, **Steam Inventory Service
-   för vad spelaren äger**, Steams vänlista för det sociala. Kostar inget löpande.
+1. **Ta bort LootLocker.** **Steam Inventory Service för vad spelaren äger, grant-tjänsten för
+   progression, Steam Cloud enbart för lokala inställningar.** Steams vänlista för det sociala.
+   Kostar inget löpande.
+
+   Rättelse 2026-08-31 (Roberts invändning): jag skrev först att Steam Cloud räcker för
+   inställningar *och progression*. Det är fel. **Progression är mekanismen som delar ut föremål**,
+   inte ett visningsvärde. Körloggen visar `awarded_tiers` med `asset_rewards` och
+   `currency_rewards`, alltså ger en nivå automatiskt saker. Ligger progressionen klientsidan
+   behöver ingen förfalska inventariet: man förfalskar nivån och låter servern dela ut belöningarna
+   fullt lagligt. Serverauktoriteten i Inventory Service blir då verkningslös.
+
+   Grant-tjänsten har redan `/v1/grant/progression` med tak per match och per rullande timme, så
+   implementationen var rätt från början. Det var sammanfattningen som var fel.
 2. **Dela ut föremål via grant-tjänsten**, inte från klienten. Den finns, den är testad, och Valves
    krav på en säker server med publisher key är samma krav den redan byggdes för.
 3. **Behåll sömmen.** Ersätt LootLocker *bakom* The Gangs befintliga C++-wrapper i stället för att
