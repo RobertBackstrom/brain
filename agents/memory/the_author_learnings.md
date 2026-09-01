@@ -380,3 +380,35 @@ leveransmail till publisher) och [[voice_anti_selling]]. Category: channel regis
   practical questions inline ("Is it possible to add Dmitry from Rift Gaming?"). Tobias mirrors with
   "Hello Robert," and numbered practical asks; Matt signs "Best, Matt" with full block. Seed a
   `voice/people/` profile if mail volume grows. Category: person register (partial, mail-evidenced).
+
+## 2026-09-01 - Irons 2 pitch v2, round 2 (rebuilt draft, same day): second-pass notes [sbz / Starbreeze, document register]
+- **A second round on a rebuilt draft is a new pass, not a patch of the old output.** The draft was
+  rebuilt from Robert's own slide-structure PDF plus Rift's level-design memo, and most of round 1's
+  problems did not recur: the content was already facts (deliverable lists, level reads, mechanics
+  lists), so the pass shrank to tails and frames. When the source material is a practitioner memo,
+  the register work concentrates in the drafter's connective tissue, not the substance. Category: process.
+- **The brief-restatement hook survives where the tagline hook died.** Round 1's invented hook was
+  replaced from Robert's sent mail; round 2's hook restated the client's own brief ("An accessible,
+  fast-paced PAYDAY built for PUBG players. That is the brief.") and only its commitment tail ("and
+  it is the part we would hold on to hardest") needed cutting. The client's brief in their own terms
+  is as legitimate a hook source as Robert's sent mail - both are found language, not coined language.
+  Category: register (pitch documents, my edit, unverified).
+- **When a structure-doc bullet has no supporting content, the honest fix is a [PLACEHOLDER], not a
+  drafted fact.** "Test driven game development" and "Trusted by studios" came from Robert's structure
+  doc with nothing under them; the corpus had no citable practice, and propping "Trusted by studios"
+  with client names would break the no-client-cross-reference rule. Gave the first the one supportable
+  fact already on the page (QA lead + three testers inside the price) plus a placeholder, left the
+  second as a bare placeholder. Adding a placeholder is inside The Author's mandate when the
+  alternative is inventing evidence; deleting a bullet from Robert's own structure doc is not.
+  Category: process.
+- **A section marked as the client's or a colleague's hand gets constraint checks only.** Slide 8
+  (Robert wrote the "READY TO DELIVER" block) passed the dash/banned-word/hype checks and shipped
+  verbatim, selling beats intact - same footing as the untouchable positioning line. The anti-selling
+  override applies to a drafter's sentences, never to Robert's own; the brief saying "his hand" is
+  what flips the mode. Category: process.
+- Recurring cut shapes this pass, all from earlier taxonomy, none new: drum-roll opener before the
+  audience fact ("The audience is the constraint everything else follows from"), diligence tails
+  ("rather than hoped around it", "rather than added when it hurts"), a claimed-understanding opener
+  ("We understand the creative and technical goals... and" → keep only the ownership commitment), and
+  a soft relational clause ("build relationships face to face" - "on site" already carries it).
+  Confirms the taxonomy is stabilising; the marginal value is now in what NOT to touch. Category: register.

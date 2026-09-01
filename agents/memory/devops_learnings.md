@@ -7,6 +7,75 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-01 - "Can we add a Slack bot" was really "the Slack layer has been dead for four months" [db-338, AP]
+
+**Learned:** 2026-09-01 | **Project:** Death Board / Slack support bot (db-338) | **Category:** slack, socket-mode, bot-identity, scope-check, security-boundary
+
+**The framing check that mattered.** Robert asked whether we could proceed with Slack access for
+the support bot. Answering that question required checking the state of what it would sit on, and
+the answer was: nothing. All seven MCPs failed to connect this session, all six cookie workspaces
+still return `invalid_auth`, and db-322 had shipped the durable-token fix on 2026-08-24 without
+anyone ever running the pilot. **A "can we add X" question is also a "does the thing X attaches to
+still work" question.** Two commands (the deferred-tool list, then `slack-auth-probe.js
+--no-alert`) reframed the whole task before any code was written.
+
+**A shipped fix that was never applied is indistinguishable from no fix.** db-322 built
+`slack-xoxp-set.sh`, the probe, the skill walkthrough, and the launcher precedence. Every piece was
+correct and on disk. Not one workspace had a token. The ticket closed on the build, not on the
+outcome. Where a fix needs a human action to take effect, the ticket stays open until that action
+happens, or the probe's weekly re-nag is the only thing standing between "fixed" and "still dead"
+(and a re-nag on something known-broken is exactly what people mute).
+
+**The workspace under a credential can change without the credential noticing.** The `aurora` entry
+carries team `T0319D16A23`, which maps to `aurorapunksworkspace.slack.com` (2023). Live AP traffic
+is on `aurorapunks-workspace.slack.com`. Whether that is a URL change or a second workspace, a
+token installed against the wrong team reads an **empty** workspace and presents as a scope or
+permissions problem, which is a long debugging detour. Cheap habit: when re-authing any
+workspace-scoped integration, re-read the workspace identifier from the live URL rather than
+trusting the one on file. Mail is a good corroborator here; the RAG index had the invite and
+"X joined your workspace" mails with the current URL in them.
+
+**Read and write are different identities, and conflating them is the trap.** One Slack app hands
+out three tokens: `xoxp` (acts as Robert), `xoxb` (the bot's own name and avatar), `xapp` (opens
+the Socket Mode socket, nothing else). The MCP send tool posts with the *entry's* auth, so enabling
+it makes agent messages appear as **Robert personally**, not as a bot. That is a very different
+thing from what "let the bot post" sounds like, and it is worth saying out loud before someone
+discovers it from a channel. Generalise: before enabling a write path on a read integration, ask
+whose name the write lands under.
+
+**Socket Mode beats a webhook for anything single-tenant on this VPS.** The Events API needs a
+public HTTPS endpoint, another Cloudflare Access bypass rule, and request-signature verification
+(the `/webhook/atlassian` shape, all of which we know how to get wrong). Socket Mode dials out:
+no inbound port, no bypass rule, no public URL, and the app-level token is the only key. Same
+behaviour, strictly less attack surface. Reach for the outbound-connection variant of any
+integration when one exists. Two protocol gotchas: ack the envelope by echoing `envelope_id`
+**before** doing slow work (a late ack means redelivery, and redelivery means the bot answers
+twice), and on a `disconnect` frame reconnect *first* and close the old socket after, so no events
+fall in the gap.
+
+**When a chat surface can spawn an agent, the tool list is the security boundary.** Anyone who can
+type in a channel the bot is in can cause a Claude CLI run on the VPS. So the bot gets `Read`,
+`Grep`, `Glob` and RAG search under `--strict-mcp-config`, and nothing else: no Bash, no Write, no
+Gmail, no Drive, no Jira. `--permission-mode bypassPermissions` is only safe *because* the allowlist
+is narrow; the two settings have to be read together.
+
+**Fail closed on the check that protects an outsider.** Robert chose "post in any channel it is
+invited to", which puts Slack Connect channels (readable by the partner org) in reach. Rather than
+re-litigating a decision he made twice, the guard became: an `is_ext_shared` channel is refused
+unless explicitly overridden, **and a channel whose `conversations.info` call fails also counts as
+external**. A quiet bot is recoverable; a message in a partner's channel is not. That is the shape
+for any "mostly open, one catastrophic case" permission: make the catastrophic case require a flag,
+and make uncertainty resolve toward the safe side.
+
+**Two identities on one credential need two health rows.** The user token and the bot token die
+independently: an app uninstall kills the bot while the cookies stay valid, a logout does the
+reverse. The probe got a `<key>:bot` pseudo-workspace row, which reuses the existing
+transition/re-nag state machine instead of growing a second one. Cheap pattern whenever one entry
+carries multiple credentials.
+
+**Tags:** slack, socket-mode, xoxb, xapp, bot-identity, send-gate, slack-connect, fail-closed,
+tool-allowlist, probe-per-identity, db-338, db-322, unapplied-fix
+
 ## 2026-09-01 — When a bot's LLM classifier keeps choosing the wrong intent, add a BRANCH, not more prompt (Death Board)  [Tooling]
 Adding a `drive_folder` intent to Death Board's Haiku mention-classifier looked done: enum updated, a full guide section written, the conflicting "Drive is out of scope" bullet corrected. It returned **`ignore` on all five test phrasings** — and the `reason` field proved it had understood perfectly (*"User asking where to upload art assets"*). It read the request, then picked the wrong intent anyway, because a newly added section carries almost no weight against a ~120-line prompt that is overwhelmingly about Jira. `ignore` means **silence**, so the failure was worse than the "check the wiki" answer it was meant to replace. Two red herrings on the way: I first blamed a `// only if drive_folder` comment I had appended inside the prompt's JSON shape block (real inconsistency, worth removing, **not** the cause — the JSON parsed fine), and the fallback path made it look like a parse failure because `_parseMentionCommand` returns `{intent:'ignore'}` for `no-json`, `parse-error` **and** `spawn-error` alike. **Print the `reason` field before theorising** — it distinguishes "the model decided this" from "the plumbing broke", and those have opposite fixes. **How to apply:** `discord-bot.js` had already learned this twice and says so in its own comments — *"a prompt is advice the model can overrule while this branch is code that always runs"* (db-017, where "what can you do?" classified as `ignore` and the bot went silent behind a 👂). The fix is a deterministic matcher ahead of the classifier, with the prompt section kept as backup for phrasings the regex misses. Build the matcher with an explicit **question signal** and an explicit **exclusion set**, both of which earn their place immediately: without a question signal *"the art in that folder looks great"* matches on subject-plus-place and gets answered with a folder link; without excluding `channel|role|server|invite`, *"make sure @Dubi has access to all channels"* is stolen from the community manager, which is the *exact* misrouting a previous fix had just corrected. Unit-test positives and negatives together in one table — 24 cases here, and the negatives caught both bugs. Source: Death Board.
 

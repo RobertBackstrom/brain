@@ -11,6 +11,55 @@
 
 <!-- Append new learnings with: learning, source project, date, category -->
 
+## 2026-09-01, ett "enkelt" avtal blir enkelt genom att ta bort penningflöden, inte genom att korta meningar [cvb]
+
+**Project:** Curveball (The Gang Studio) | **Category:** avtalsskrivning, mallhantering, firmateckning
+
+**Uppgiften:** Joel Edström bad om "något enklare avtal på plats oss emellan iaf". Förlagan,
+AP:s publishing-mall, är 28 sidor. Resultatet blev fyra. **Det som gjorde skillnaden var inte
+språket utan att räkna penningflöden.** Förlagan har fem separata flöden (QA-tak, lokaliseringstak,
+portingtak på 50 000 USD, 15 procents påslag på marknadsföring, plus vinstdelningen), och varje
+flöde drar med sig en definition, en rapporteringsplikt och en tvistyta. Vår affär har **ett**
+flöde, en recoup-siffra och en split, eftersom AP inte tar någon köpt media. Då försvinner
+Exhibit A och Exhibit B av sig själva. **Generell regel: när en motpart ber om något enkelt, räkna
+antalet belopp som kan diskuteras i efterhand och kapa dem, i stället för att korta klausulerna.**
+
+**Mallar som är märkta "tomställda" är det ofta inte.** `Publishing_Agreement_Client_AuroraPunk_Template`
+(`1SCNUNc9jf2eXC7-kaaJhes0iQP2i4H96Xal6lrsYPt4`) har rubriken "Aurora Punks and Kinda Brave",
+Distant Bloom i preambeln, **Sir Whoopass i Exhibit A**, och signaturblock med Niklas Karlsson,
+Atomic Elbow AB samt Scrive-transaktionsstämplar på var femte sida. Tre olika kunder i ett
+dokument som beskrivs som en blank mall. **Greppa alltid efter motpartsnamn, org.nr och
+signaturstämplar i en mall innan text ur den går till en klient**, annars bryts
+[[feedback_no_client_cross_reference]] av mallen och inte av skribenten.
+
+**Riktningen på pengaflödet vänder halva avtalet, inte bara betalningsklausulen.** När AP gick från
+att få en andel av utvecklarens intäkt till att ta emot pengarna från plattformen flyttade
+rapporteringsplikten, betalningsplikten **och granskningsrätten** över till AP. Förlagornas
+dubbelriktade audit-klausul, som är skriven för att båda parter säljer på olika butiker, blir då
+fel i båda riktningarna och ska ersättas av en enkelriktad. **Kolla vilken part som är säljande
+part innan du återanvänder rapporterings- och auditsektioner. Det är den frågan som avgör deras
+riktning, inte vem som är utgivare.**
+
+**Klausulmönstret som är värt att återanvända: co-publisher ur egen andel.** WMAY-mallen säger bara
+att part får anlita partner och ska notifiera motparten. Det räcker inte när AP vill kunna ta in en
+finansiär senare. Formuleringen som löser det säger fyra saker på en gång: partnern betalas **ur
+AP:s egen andel**, motpartens andel påverkas inte, **recoup-beloppet höjs inte**, och ingen
+omförhandling krävs. Den tredje punkten är den som brukar glömmas och är precis där en motpart
+annars kan tappa pengar. Finansiären namnges inte i avtalet, vilket dessutom håller
+[[feedback_no_client_cross_reference]].
+
+**Faktapost med bred räckvidd: AP:s firma tecknas två i förening, alltså har varje AP-avtal två
+signaturrader.** Signaturblocket ska bygga för Robert plus ytterligare en ledamot, och en
+OpenSign-flow för ett AP-avtal med en motpart har därmed **tre** undertecknare, inte två. Det är
+lätt att skicka ut ett avtal som inte kan bli giltigt undertecknat. Samma sak gäller motparten:
+fråga efter firmateckningssätt samtidigt som du frågar efter org.nr, inte efteråt.
+
+**Tags:** publishing-avtal, mallhygien, tomställd-mall-som-inte-är-tom, penningflöden,
+audit-riktning, co-publisher-ur-egen-andel, firmateckning-i-förening, OpenSign-tre-signatärer,
+the-gang-studio, cvb
+
+---
+
 ## 2026-07-15 — Necrotic Dominion: Elias Strandberg timavtal — rate/volume/start bump before signature
 
 **Task:** update Elias' hourly contract 188→220 kr/h, 60→45 h/mån. Executed end-to-end.
