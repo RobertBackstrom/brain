@@ -354,3 +354,29 @@ leveransmail till publisher) och [[voice_anti_selling]]. Category: channel regis
   allt på en gång"). Svansen ströks; sista raden före /Robert är nu själva handlingen. En "hör av
   er"-dörr (invariant 4) läggs INTE efter en skarp ask - den är då en reservationsdörr som späder ut
   den enda handling mottagaren ska utföra. Category: register (my edit, unverified).
+
+## 2026-09-01 - Irons 2 pitch v2 (AP × Rift repositioning): sales-doc pass notes [sbz / Starbreeze, document register]
+- **Hook lines on a pitch page: build them from Robert's own sent mail on the same thread, not from
+  invented taglines.** The draft's hook ("Here is the team that has already run this once") was both a
+  credential claim and factually thin; the replacement ("How we would staff and run it, as one
+  integrated team") is lifted near-verbatim from his real 18 Aug pitch mail to Tobias/Matt ("Here is
+  our take on how we would staff and run it", gmail:msg:1a011f8a296a0bf2). When the counterparty has a
+  live thread, the register anchor for the document's framing sentences is already written. My edits
+  this pass are application, not his hand - verify against what survives his review. Category:
+  register (pitch documents, partial simulation).
+- **A number can carry an argument; a frame explaining the number cannot.** The 50/50 cost split and
+  the 119 216-vs-140 000 comparison stayed untouched as facts, while their interpretive escorts
+  ("which is what an integrated team looks like", "shipping against a number rather than discovering
+  one") went. When a brief says an argument must survive, the surviving form is the number plus at
+  most a flat contrast ("not a prime and a subcontractor"); the reader does the concluding. Same
+  family as the diagnostic-verdict inversion (2026-08-26 dsc). Category: register (pitch documents).
+- **Consistency check extension: what can the reader derive by subtraction.** The page states the
+  price (28 325 700) AND the internal cost split (10 904 000 + 10 885 000 = 21 789 000), which hands a
+  CGO the margin by arithmetic. Numbers are locked for The Author so both stand, flagged upward. Add
+  "derivable facts" to the document-pass consistency check alongside sums and counts - a page can leak
+  by juxtaposition without any single line being wrong. Category: process.
+- Starbreeze counterparty register (thread-evidenced, no voice/people profile yet): Robert to
+  Tobias/Matt is "Hello Tobias," / "Hi Tobias, Matt,", short plain sentences, "Best" close, asks
+  practical questions inline ("Is it possible to add Dmitry from Rift Gaming?"). Tobias mirrors with
+  "Hello Robert," and numbered practical asks; Matt signs "Best, Matt" with full block. Seed a
+  `voice/people/` profile if mail volume grows. Category: person register (partial, mail-evidenced).

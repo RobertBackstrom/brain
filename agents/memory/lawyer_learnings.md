@@ -13,6 +13,49 @@
 <!-- Categories: swedish_corp | swedish_tax | swedish_employment | swedish_ip | gdpr | contract_review | process | tooling -->
 <!-- If Robert corrected a substantive legal point: tag `correction` and write the corrected position prominently. -->
 
+## 2026-08-27 — Samtycke är inte disposition: "räcker klausulen?"-frågor ska dekomponeras per rättshandling
+**Projekt:** k2c (Simon Jakobsson CZP-anställning, k2c-051) · **Kategori:** swedish_ip + swedish_employment + process · **Taggar:** URL 28 §, LAS 6 c §, SemL 5/16b/30 §§, AvtL 36/38 §§, koncernintern överlåtelse, SÄVA, uttagsbeskattning
+
+1. **Frågan "räcker §8.7 eller behövs ett separat koncerninternt avtal?" var fel ställd, och rätt
+   svar var att visa varför: klausulen och avtalet gör olika saker.** En vidareöverlåtelseklausul i
+   ett anställningsavtal är den anställdes SAMTYCKE (krävs pga `URL 28 §`: utan avtal får
+   förvärvaren varken ändra verket eller överlåta rätten vidare, verifierad ordagrant 2026-08-27).
+   Själva flytten mellan bolagen är en egen rättshandling som systerbolaget måste vara part i;
+   det kan aldrig förvärva genom ett anställningsavtal det inte är part i. **Metod: när någon
+   frågar "räcker klausul X eller behövs dokument Y", lista först vilka separata rättshandlingar
+   kedjan kräver och vem som är part i varje. Ofta är svaret "både och" för att alternativen löser
+   olika länkar.** Formen på det koncerninterna avtalet: automatisk överlåtelse i förvärvsögonblicket
+   (bolaget blir ren genomgångsstation), retroaktiv verkan för redan utfört arbete, back-to-back-
+   scope, och ett vederlag (självkostnadsrecharge av lönekostnaden; vederlagsfritt öppnar
+   uttagsbeskattning `IL 22 kap.` när bolagen inte är i äkta koncern).
+2. **LAS 6 c § gör "avtalet är inte utskickat än" till en löpande lagöverträdelse med datum.**
+   Skriftlig information om väsentliga villkor ska lämnas senast SJUNDE kalenderdagen efter
+   arbetsstart, och för särskild visstidsanställning ska visstidsinformationen lämnas i samband
+   med att anställningen ingås (båda verifierade ordagrant 2026-08-27). En anställd som börjat
+   jobba utan påskrivet avtal ger alltså följebrevet ett lagstadgat sista-datum (här 2026-08-31),
+   inte bara processlogik. **Säg det i deadline-termer till klienten; det flyttar prioritet.**
+3. **Inbakad semesterersättning ("lön inkl 12 %") håller bara därför att komponenterna är separat
+   specificerade.** `SemL 5 §` (anställning högst tre månader: får avtalas att ledighet inte läggs
+   ut, ersättning i stället) + `16 b §` (procentregeln 12 %) + `30 §` (utbetalning senast en månad
+   efter anställningens slut). Transparensen (grundlön X + semesterersättning Y = brutto Z, i
+   avtalet) är giltighetsvillkoret. **Varning till nästa avtalsbygge: när en klientversion "städas"
+   får komponentspecifikationen inte redigeras bort, den är det som bär konstruktionen.**
+4. **Kolla om det nya upplägget bryter en tidigare beslutad strukturprincip innan det byggs
+   vidare.** Maj-memots princip var "CZP never holds IP" (alla sub-överlåtelser AP-direkt).
+   Anställningen tvingade in CZP i kedjan; rätt reparation var minimal (konduit-design), inte att
+   tyst ge upp principen. Och kontrollen avslöjade en större lucka: paying-agent-avtalet som alla
+   refererar som "the existing agreement" var fortfarande OSIGNERAT enligt contracts-trackern.
+   **Verifiera alltid signaturstatus på det "befintliga" avtal ett nytt dokument ska luta sig mot.**
+5. **Tooling, Google Sheets-radinsättning utan formelhaveri:** läs arket med
+   `valueRenderOption=FORMULA` först, sätt in raden INUTI sum-rangen (insertDimension med
+   startIndex på näst sista konstituentraden) så expanderar `=SUM(F9:F16)` till `F9:F17` av sig
+   själv, och korsflikreferenser (`=k2c_pnl_2026!F25`) autojusteras i samma arbetsbok. Verifiera
+   efteråt genom att räkna delta på totalerna (här: exakt raden + 10 % contingency). Och läs
+   A1-cellen innan skrivning: legacy-banners ("MIGRATED, EDIT THERE") pekar om målet; underlaget
+   pekade på fel ark.
+
+---
+
 ## 2026-08-27 - Räkna ut vad bevakningen faktiskt är värd innan du prissätter en förlikning, och kontrollera VEM som äger anspråket
 **Projekt:** apb/czp (APDS K 4429-25, anmärkning aktbil 58 mot CZP:s bevakning, apb-053) · **Kategori:** swedish_corp + process · **Taggar:** KL 4:10, KL 4:19, KL 4:20, KL 9:6, ABL 25:18, ABL 17:7, ABL 29:1, SFL 59:13, bevakningsförfarande, förlikningssammanträde, återvinning
 
@@ -100,49 +143,6 @@
    "den finns inte" räcker inte som ensamt svar: det förvaltaren egentligen vill ha är bevis för
    utförd prestation, och det levereras med styrelsehandlingar, korrespondens, ingångna avtal och
    leveranser.
-
-## 2026-08-27 — Samtycke är inte disposition: "räcker klausulen?"-frågor ska dekomponeras per rättshandling
-**Projekt:** k2c (Simon Jakobsson CZP-anställning, k2c-051) · **Kategori:** swedish_ip + swedish_employment + process · **Taggar:** URL 28 §, LAS 6 c §, SemL 5/16b/30 §§, AvtL 36/38 §§, koncernintern överlåtelse, SÄVA, uttagsbeskattning
-
-1. **Frågan "räcker §8.7 eller behövs ett separat koncerninternt avtal?" var fel ställd, och rätt
-   svar var att visa varför: klausulen och avtalet gör olika saker.** En vidareöverlåtelseklausul i
-   ett anställningsavtal är den anställdes SAMTYCKE (krävs pga `URL 28 §`: utan avtal får
-   förvärvaren varken ändra verket eller överlåta rätten vidare, verifierad ordagrant 2026-08-27).
-   Själva flytten mellan bolagen är en egen rättshandling som systerbolaget måste vara part i;
-   det kan aldrig förvärva genom ett anställningsavtal det inte är part i. **Metod: när någon
-   frågar "räcker klausul X eller behövs dokument Y", lista först vilka separata rättshandlingar
-   kedjan kräver och vem som är part i varje. Ofta är svaret "både och" för att alternativen löser
-   olika länkar.** Formen på det koncerninterna avtalet: automatisk överlåtelse i förvärvsögonblicket
-   (bolaget blir ren genomgångsstation), retroaktiv verkan för redan utfört arbete, back-to-back-
-   scope, och ett vederlag (självkostnadsrecharge av lönekostnaden; vederlagsfritt öppnar
-   uttagsbeskattning `IL 22 kap.` när bolagen inte är i äkta koncern).
-2. **LAS 6 c § gör "avtalet är inte utskickat än" till en löpande lagöverträdelse med datum.**
-   Skriftlig information om väsentliga villkor ska lämnas senast SJUNDE kalenderdagen efter
-   arbetsstart, och för särskild visstidsanställning ska visstidsinformationen lämnas i samband
-   med att anställningen ingås (båda verifierade ordagrant 2026-08-27). En anställd som börjat
-   jobba utan påskrivet avtal ger alltså följebrevet ett lagstadgat sista-datum (här 2026-08-31),
-   inte bara processlogik. **Säg det i deadline-termer till klienten; det flyttar prioritet.**
-3. **Inbakad semesterersättning ("lön inkl 12 %") håller bara därför att komponenterna är separat
-   specificerade.** `SemL 5 §` (anställning högst tre månader: får avtalas att ledighet inte läggs
-   ut, ersättning i stället) + `16 b §` (procentregeln 12 %) + `30 §` (utbetalning senast en månad
-   efter anställningens slut). Transparensen (grundlön X + semesterersättning Y = brutto Z, i
-   avtalet) är giltighetsvillkoret. **Varning till nästa avtalsbygge: när en klientversion "städas"
-   får komponentspecifikationen inte redigeras bort, den är det som bär konstruktionen.**
-4. **Kolla om det nya upplägget bryter en tidigare beslutad strukturprincip innan det byggs
-   vidare.** Maj-memots princip var "CZP never holds IP" (alla sub-överlåtelser AP-direkt).
-   Anställningen tvingade in CZP i kedjan; rätt reparation var minimal (konduit-design), inte att
-   tyst ge upp principen. Och kontrollen avslöjade en större lucka: paying-agent-avtalet som alla
-   refererar som "the existing agreement" var fortfarande OSIGNERAT enligt contracts-trackern.
-   **Verifiera alltid signaturstatus på det "befintliga" avtal ett nytt dokument ska luta sig mot.**
-5. **Tooling, Google Sheets-radinsättning utan formelhaveri:** läs arket med
-   `valueRenderOption=FORMULA` först, sätt in raden INUTI sum-rangen (insertDimension med
-   startIndex på näst sista konstituentraden) så expanderar `=SUM(F9:F16)` till `F9:F17` av sig
-   själv, och korsflikreferenser (`=k2c_pnl_2026!F25`) autojusteras i samma arbetsbok. Verifiera
-   efteråt genom att räkna delta på totalerna (här: exakt raden + 10 % contingency). Och läs
-   A1-cellen innan skrivning: legacy-banners ("MIGRATED, EDIT THERE") pekar om målet; underlaget
-   pekade på fel ark.
-
----
 
 ## 2026-08-26 — Plattformsentitetsflyttar: beviskravet är uppfyllt långt innan flytten kan börja
 **Projekt:** apb (APDS -> CZP över Nintendo, PlayStation, Xbox) · **Kategori:** contract_review + process · **Taggar:** entitetsflytt, Sony Title Transfer, Nintendo NDP, Xbox MSA V2, payee, konkurs
@@ -635,277 +635,22 @@ Swedish vehicles for the ladder: **teckningsoptioner (ABL 14 kap.)** for "right 
 
 **How to apply:** First question on any change-of-control into a Swedish AB with outside holders — "what's the largest single block, and is it above 10%?" If yes, that holder has a veto on every directed issue/warrant/apport/kvittning. Read the aktieägaravtal (hembud/förköp/samtycke/drag/anti-dilution) before designing anything; the AA can bind even where the ABL default would allow the move.
 
-## 2026-07-07 — Negative equity + kapitalskydd-blocked loan repayment is affirmative evidence a kontrollbalansräkning duty may already be live (ABL 25:13-18)
-
-**Källa:** Erik/Afrime analysis — AP parent equity ~ -1.58M USD, owner loans blocked until Jul 2026
-**Kategori:** swedish_corp
-**Taggar:** ABL 25:13, ABL 25:14, ABL 25:15-18, kontrollbalansräkning, kapitalbrist, personligt_medansvar, kapitalskydd, KBR
-
-When a company shows materially negative equity AND its own advisers have **blocked owner-loan repayment on kapitalskydd grounds**, that blocking is itself evidence the board already had "reason to assume" equity is below half the registered share capital — the `ABL 25 kap. 13 §` trigger for preparing a **kontrollbalansräkning genast**. Failing to prepare one starts the `25:18` **personligt medansvar** clock for the board (and de facto directors) for obligations incurred during the neglect period. A recap (new issue + owner-loan-to-equity kvittningsemission + apport of real-value IP) is exactly what *cures* it — but the KBR must be prepared **now, on a real-value/justerat-eget-kapital basis** (which lets övervärden and true IP value in), not deferred until the raise closes.
-
-**How to apply:** Any AP/CZP-type engagement showing negative equity — check immediately whether a KBR was triggered by the last accounts, and whether medansvar has begun to run, before advising on any capital move. Do the KBR ahead of the raise, not after. Flag to revisor + Sifferrådet. Cross-ref the recap sequencing so equity is restored at/before the investor's cash rung.
-
-## 2026-06-24 — "For clarity" carve-outs must anchor to a defined date, not a borrowed "Effective Date"
-
-**Källa:** K2C Sands of Duat — Tim Browne (Bright Gambit) sub §3.8 new-obligations carve-out (CorpBot-drafted to a truncated/unrecoverable Tim suggestion)
-**Kategori:** contract_review + K2C
-**Taggar:** back_to_back, flow_down, defined_terms, effective_date, ambiguity, anti_drafting_trap, ABL_neutral
-
-CorpBot drafted a Contractor-protective carve-out in §3.8 limiting flow-down of NEW AP→RF upstream scope (from post-signature annexes) to Amendments agreed in writing under §2.2. Legally sound and correctly captures Tim's intent. **The one real defect: it anchored the cut-off to "the Effective Date" — a term this sub never defines.** Two live candidate dates made that genuinely ambiguous, and the ambiguity landed exactly on the clause's load-bearing point (which upstream annexes flow down):
-- This sub: "entered into as of April 20, 2026"; Term commences on "the date which first appears above" (§14.1). No "Effective Date" label.
-- The RF master (Upstream Agreement) labels its OWN April 24, 2026 date "(the Effective Date)". A clause entirely about AP↔RF obligations invites a reader to anchor to the master's Effective Date, not the sub's date.
-
-**Fix:** replaced "after the Effective Date" with "after the date of this Agreement" and added a lead-in pinning the baseline ("this Section 3.8 applies to the Upstream Agreement as it stands at the date of this Agreement"). Anchoring to the sub's own date is correct because Tim's protection is against scope AP takes on upstream *after he signed his deal*. Also tightened "any new obligations … entered into" (annexes don't enter into obligations) to "obligations … arising from annexes … that AP enters into with Raw Fury."
-
-**How to apply:** Whenever a sub/flow-down clause references "Effective Date," "Commencement Date," or any date-anchored cut-off, grep the draft for that exact term first. If it isn't a defined term in *that* document, replace with "the date of this Agreement" (or the document's actual defined Term commencement) — never let a back-to-back clause borrow an undefined date that also exists as a defined term in the upstream master. Back-to-back drafts are the highest-risk place for this because the same date-words live in two stacked contracts with different values. Internal-consistency check passed: clause leaves the existing "notified in writing → comply" sentence (current agreed scope) intact, doesn't touch §5.7/§6.3 upstream pass-throughs or §14.2 termination, and routes new scope through the already-defined §2.2 Amendment + Exhibit A baseline — no contradiction with the existing back-to-back mechanics.
-
-**Real-lawyer line:** substance is standard and low-risk; no advokat sign-off needed for this carve-out specifically. If RF later issues a genuinely new annex that AP wants Tim bound to, that Amendment is where counsel (if any) looks.
-
-## 2026-06-22 — PIVOT 5: decoupling the music-licensing leg from a composer's employment contract (reserved-streaming model)
-
-**Källa:** K2C Sands of Duat / Carolina Foghammar CZP employment (draft_08), Robert + RF producer Niclas Lagerlöf
-**Kategori:** swedish_employment + swedish_ip + contract_review
-**Taggar:** URL 40a, URL 3, music, no-WFH, reservation, decouple, employment_vs_licence, STIM/SAMI, moral_rights, K2C, RawFury, vinyl_OST
-
-Robert agreed a music-rights split directly with Raw Fury's producer ("same setup as a previous Kingdom DLC"): the composer (Carolina) RETAINS the music for consumer streaming/DSP (explicitly YouTube + Spotify) + publishing/authorship; AP/RF get only the DLC-use rights (in-game on platforms, marketing, OST incl. limited vinyl). The deal flipped draft_08 from a full Carolina→AP assignment (PIVOT 4) to a clean DECOUPLE (PIVOT 5).
-
-**The structural move and why it is clean:**
-1. **The employment contract should handle the employment relationship ONLY.** When the rights split is "creator keeps streaming, licensee gets specific uses," do NOT try to express the licensing leg inside the employment contract. Strip §8 down to (a) employer work-product assignment for NON-music implementation only (engine integration, trigger/loop wiring, build-side technical assets, documentation), and (b) an express RESERVATION of the musical works to the creator. The actual use-grant lives in a SEPARATE music-rights agreement (here, on Raw Fury's own template).
-2. **Carve the music out of the general employer-IP assignment cleanly.** The standard "all IP arising in employment → employer" clause (Petter-template §8.1/§8.2) and the 40a § URL software clause (§8.3) must be expressly limited to non-music work-product. Add a "does NOT extend to the Audio Works" carve-out to each, plus a note that 40a § URL applies to computer programs only (so it cannot sweep in music/recordings).
-3. **Swedish law already leaves the music with the creator — but state it for certainty.** No work-for-hire for music; 40a § URL is software-only; copyright in music/recordings/performances does NOT pass to an employer by implication. So silence = music stays with her. Best practice is still an EXPRESS RESERVATION clause (not silence), because it (a) rebuts any later argument that the broad general-IP clause swept the music in, and (b) names the retained streaming/DSP + publishing rights explicitly so there is no ambiguity vs the separate licence.
-4. **Warranties follow the grant, not the employment.** STIM/NCB/SAMI non-encumbrance warranty, composer originality/non-infringement/sample-clearance warranties, the indemnity, and the moral-rights consent/waiver all pertain to the RIGHTS GRANT. When the grant moves to the separate music agreement, these MUST move with it. Leaving them in the employment contract creates warranties about rights the contract no longer grants. KEEP only a minimal no-AI / originality rep attached to the employment deliverables themselves.
-5. **Drop the non-employer assignee entirely from the employment contract.** Under PIVOT 4, AP had a definition (§1.1.2a) and an acknowledgement-as-assignee signature block. Once AP's rights come via the separate music agreement, AP is no longer a party to the employment contract: delete the AP definition, the AP signature block, and all Carolina→AP warranty/waiver language. Employment contract = Employer (CZP) + Employee (Carolina) only.
-
-**INTERFACE NOTE discipline (two-document consistency).** When you strip a leg out of one contract into another, leave an explicit interface note specifying exactly what the other document must carry, so the two cannot contradict. Here the RF-template music agreement must cover: (1) AP/RF grant scope (in-game/platforms + marketing + OST/vinyl); (2) creator's retained streaming/DSP (YouTube, Spotify) + publishing, carved so the grant does not swallow it; (3) STIM/SAMI/NCB handling (warrant non-encumbrance of sync/repro/master rights AP/RF need, AND preserve society-collected DSP royalties for the creator); (4) use-scoped moral-rights consent (3 § URL, limited/clearly-defined) + credit mechanic; (5) composer warranties + indemnity back-to-back to RF. Also flag that the AP/RF grant must itself be irrevocable and NOT conditional on the creator remaining employed — because the employment contract's §8 reservation/survival no longer secures the licensee's continuity (early-leaver risk now sits entirely in the music agreement).
-
-**Residual flag — the 80k envelope ambiguity.** Under PIVOT 4 the 80,000 SEK doubled as both the loaded employment cost (CZP→Carolina) AND "what RF pays AP for the audio rights" (draft_10). After decoupling, those are two different things: the employment salary is funded by CZP under the employment contract; the music-rights consideration (if any) is defined in the RF music agreement. Must confirm with Robert whether 80k is purely the employment envelope or still the single budget figure covering both. Left as a blank (item 12) in the draft.
-
-**How to apply:** When a creator-retains-streaming / licensee-gets-specific-uses split appears (common for game music, "same as previous DLC" patterns), DECOUPLE by default: employment/engagement contract handles the work relationship + non-creative implementation IP; a separate licence/rights agreement handles the creative-work grant + all rights warranties + moral-rights consent. Reserve the creative work expressly to the creator in the employment contract (don't rely on silence), name the retained channels (DSP/streaming/publishing), and leave an interface note tying the two documents together. This is structurally cleaner than the carve-out-inside-the-assignment approach (PIVOT 2) and far cleaner than forcing a full assignment then re-licensing back (PIVOT 4).
-
-**Real lawyer should review:** the express-reservation wording + the carve-out of music from the general §8 employer-IP assignment (to confirm no residual sweep), and — separately and more importantly — the forthcoming RF-template music-rights agreement once received (grant scope vs retained streaming, STIM/SAMI interaction, moral-rights consent scope, irrevocability/early-leaver). The employment-form (visstid, LAS 5 §) and milestone-pay mechanics are unchanged and previously reviewed.
-
-## 2026-06-18 — Contractor counter-redline on back-to-back subs: gating termination-for-convenience on upstream trigger is legitimate and balances risk symmetry
-
-**Källa:** K2C Sands of Duat — Tim Browne feedback review (k2c-023), termination clause feedback from 2026-06-15/16, approved 2026-06-17, implemented 2026-06-18
-**Kategori:** contract_review + K2C + swedish_corp
-**Taggar:** back_to_back, convenience_termination, contractor_counter_redline, risk_allocation, K2C, RF_master
-
-When a back-to-back subcontractor (here Tim/Bright Gambit) receives a convenience-termination clause in the form "Client may terminate for any or no reason," a sophisticated counterparty will legitimately object: this exposes the contractor to termination risk independent of the upstream master's status. If Raw Fury doesn't cancel but AP does (e.g., to cut costs), the sub loses income while AP keeps RF milestone payments. The risk allocation is one-way.
-
-**The approved solution:** Gate the termination right to the actual upstream event. AP can terminate Tim only if RF terminates, descopes, or cancels the master. This:
-- Preserves AP's legitimate need: quick unwinding capability if RF pulls (30d notice window remains)
-- Aligns contractor risk with upstream risk: Tim's exposure mirrors AP's exposure
-- Is concrete and verifiable (not vague like "material change")
-- Remains Client-only (contractor has no reciprocal right)
-
-**Legal basis (back-to-back principle):**
-If RF's master allows RF to terminate for convenience, and AP can flow that right to subs, then AP's termination right against subs should be **conditional** on RF exercising its own right — a pure pass-through, not an incremental power grab. The old "for any or no reason" language created a power imbalance AP wouldn't accept from RF.
-
-**The wording (approved 2026-06-17, applied uniformly to all 6 K2C subs):**
-> "By Client on cancellation or descoping of the Upstream Agreement. Client may terminate this Agreement and/or any Schedule hereto, in whole or in part, by providing thirty (30) days written notice to Contractor, in any of the following circumstances: (a) Raw Fury AB terminates the Upstream Agreement, or terminates the corresponding milestone, scope or work package thereunder, such that Client no longer requires the Services or the affected part of the Services; (b) Raw Fury AB materially reduces, descopes or suspends the milestone, scope or work package under the Upstream Agreement to which the Services relate; or (c) the title is cancelled, shelved or indefinitely suspended by Raw Fury AB. In such cases, Client will pay Contractor for work completed and accepted up to the termination date on a pro-rata basis. Contractor has no corresponding right of termination for convenience."
-
-**Three invariants to preserve in this clause:** (1) notice period (30d here), (2) pro-rata payment for work completed AND accepted to termination date, (3) Client-only — no reciprocal contractor right.
-
-**How to apply:** When a contractor objects to bare convenience termination in a back-to-back sub, this is a legitimate reframing, not a dealbreaker. Propose gating to upstream trigger events instead. This satisfies the contractor's risk concern AND is legally more accurate (the only reason to terminate a sub for "convenience" is upstream cancellation). Confirm with Robert/the board that the trade-off (AP loses unilateral cost-cutting) is acceptable.
-
-**Cross-project applicability:** Any back-to-back sub (customer contract → AP → contractor) should gate convenience termination to upstream termination. This pattern works for Raw Fury, publishers, platform partners, anyone. Worth promoting to a skill template.
-
-## 2026-06-18 — Swedish bankruptcy claims verification (bevakningsförfarande): strict absolute deadlines, 21 July for claim filing
-
-**Källa:** K 4429-25, Umeå tingsrätt (2026-06-16), Aurora Punks Development Services AB (559320-7466)
-**Kategori:** swedish_corp
-**Taggar:** bankruptcy, konkurs, claims_verification, bevakningsförfarande, deadlines, APDS
-
-When a related entity enters formal bankruptcy in Sweden and a claims verification procedure is ordered (bevakningsförfarande), three absolute deadlines apply:
-
-1. **21 July 2026 — CLAIM FILING (Bevakning):** Last date for any creditor, including related group companies, to file a claim against the bankrupt estate. Claims filed after this date are **absolutely excluded** from participation in distribution (konkursutdelning). There is no late-filing exception, no cure period. 
-
-   - **Who must act:** AP AB if it holds any intercompany loans, advances, or unpaid receivables against APDS; Robert personally if he has personal claims (e.g., salary advances from APDS).
-   - **What counts as a claim:** intercompany loans, advances, salary, rent/lease advances, damages, restitution.
-   - **How to file:** Contact the appointed bankruptcy trustee (konkursförvaltare) with: (a) claim amount, (b) basis (type of claim), (c) supporting documents (contracts, invoices, bank records, board minutes), (d) proof of creditor status. The trustee for APDS is Advokat Nils Åberg, Advokatfirman Carler AB, Stockholm.
-   - **Cost of missing:** zero recovery, full loss of principal + accrued interest.
-
-2. **11 August 2026 — OBJECTION DEADLINE (Anmärkning mot bevakning):** Last date for creditors or the trustee to challenge:
-   - The validity of another creditor's claim
-   - The amount claimed
-   - The priority of the claim
-
-3. **1 September 2026 at 09:30 — SETTLEMENT MEETING (Förlikningssammanträde):** Held at Umeå tingsrätt **only if objections were filed** between 22 July and 11 August. Purpose: resolve claim disputes before distribution.
-
-**Key legal references:**
-- **Konkurslagen (SFS 1987:672)** — §§ 4-7 (claim procedure), § 92 (verification), § 106 (settlement).
-- **Tvistemål (RB 1942:740)** — procedural rules apply via konkurslagen § 4.
-- **Decision is final:** "Beslutet får inte överklagas" — Umeå tingsrätt's protocol order is not appealable.
-
-**Practical implication for group companies:**
-Swedish bankruptcy courts do NOT automatically discover all intercompany liabilities. The trustee will identify trade creditors and employees, but related-company loans or advances live in accounting records not visible to the bankruptcy process unless the group company **proactively files**. 
-
-**Example failure mode:** CZP advanced funds to APDS to cover payroll shortfalls, but the transfer was booked as an intercompany payable on AP's balance sheet, not formally documented as a secured claim. When APDS filed for bankruptcy, those funds were never recovered because (a) CZP did not proactively file the claim before 21 July, and (b) the bankruptcy trustee had no way to discover the transfer from public filings. The result: APDS distributed its liquidation proceeds to registered trade creditors only, and CZP received zero.
-
-**How to apply:** When any group-related entity enters bankruptcy:
-1. Immediately pull the accounting records for that entity's books (if available) and AP/CZP's intercompany-account entries — loans, advances, payables.
-2. Identify documentary proof (board minutes, bank statements, emails, contracts).
-3. Calculate the claim amount (principal + accrued interest, if applicable).
-4. Contact the trustee ASAP but **well before 21 July** — don't wait to file until July 20.
-5. Confirm receipt of the filed claim in writing with a claim reference number.
-6. If objections are filed by other parties (11 Aug deadline), monitor the settlement meeting (1 Sept) for any impact on the claim amount.
-
-The APDS case exemplifies the consequence: the 21 July deadline is **absolute and mechanical**. No judicial discretion, no equity exception, no notice-and-cure for late filers.
-
-**Further information:**
-- Konkursförvaltare appointment + contact: check Kronofogden (the supervisory authority) or the court protocol.
-- Court office contact: Umeå tingsrätt, Allmänna avdelningen, Box 138, 901 04 Umeå, Tel 090-17 21 00, umea.tingsratt.allmanna@dom.se.
-
-**Related learning:** See [[project_aurora_punks.md]] and [[reference_company_structure.md]] for AP/CZP group structure and APDS relationship.
-
-## 2026-06-17 — Employer-employee + direct composer↔publisher music licence: the URL no-WFH "bug" used as a feature
-
-**Källa:** K2C Sands of Duat — Carolina Foghammar restructure (draft_09 Carolina↔Raw Fury music licence; supersedes the AP-sub drafts 07/07b)
-**Kategori:** swedish_ip + contract_review + K2C
-**Taggar:** music, work_for_hire, URL_40a, STIM, NCB, SAMI, sync_licence, exclusive_licence, OST, employee_IP_carveout, direct_licence
-
-Robert restructured a composer engagement from "AP subcontractor" into two clean documents: (1) CZP **employs** Carolina (salary), and (2) Carolina **licenses her music directly to Raw Fury** — the publisher — bypassing AP/CZP in the IP chain. The structure deliberately exploits the fact that Swedish copyright (URL 1960:729) has **no work-for-hire for music** (the URL 40 a § employer presumption covers *computer programs*, not musical works). So even as a salaried employee, Carolina retains her music copyright and is the only party who can grant the publisher a clean licence. This is a genuinely elegant pattern for game-audio when the composer is a group employee: no double IP hop (composer→studio→AP→publisher), no studio-side assignment gap to diligence, publisher gets title direct from the author.
-
-**The cross-document dependency that MUST be policed (flag to CorpBot every time):** the employment contract must **NOT** carry a generic "all work product belongs to the employer" assignment, or it silently relocates the music copyright to CZP and **breaks the direct publisher licence** (CZP would then be the only party able to license, defeating the whole structure). The employment draft must be **silent on the music IP** or **expressly carve out** the licensed works. This is the one place the two parallel drafts can collide — check it.
-
-**Grant structure that worked for "broad exclusive (in-game + marketing + OST)":** exclusive, worldwide, perpetual, royalty-free, fully paid-up, transferable, **sublicensable** licence of copyright + related rights incl. **Sync Right + Master-Use Right**, with three named use-buckets (In-Game / Marketing / Soundtrack-OST) each defined once. Sublicence chain made explicit: publisher→co-developer (integrate/build/port/deliver), publisher→platforms/storefronts/OST distributors, publisher→marketing partners. The co-developer (AP) integration right is best stated as an **express confirmation** (a "for the avoidance of doubt, AP is authorised to integrate and deliver without a separate licence" clause) rather than left implied in the sublicence list — it's the operational question everyone actually has.
-
-**STIM/NCB/SAMI under an EXCLUSIVE/OST scope (the hard part):** an exclusive sync+master licence + a CMO **non-registration warranty** covers the in-game/marketing/OST **sync + reproduction** uses cleanly. But the composer's **third-party public-performance remuneration share** (what STIM/SAMI collect from broadcasters, public venues, public-performance by streaming) **cannot be contractually waived while she holds a STIM membership** — the society's administration mandate is independent of any bilateral contract. So the honest construction is: exclusive direct licence (Section 2) + non-registration warranty for these cues (Section 4.3) + an explicit **carve-out** (Section 4.4) that society-collected third-party public-performance remuneration is a composer↔society matter, outside the publisher's payment obligation and not a claim against the publisher, + a sync-licence **backstop** (Section 4.5) for any right that can't be granted exclusively. Do not write "no payment to any society ever" — it's legally false for a STIM member and a publisher's counsel will catch it.
-
-**Buyout-vs-STIM:** if the publisher wants a *true* full buyout ("no society anywhere, ever"), that conflicts with the composer keeping (or joining) a STIM membership — STIM membership assigns the relevant rights to STIM for administration, so a member literally can't also grant them bilaterally for all uses. Achievable middle ground = keep STIM membership but warrant **non-registration of these specific cues** for the sync/repro mandate (what draft_09 does). A clean full buyout would require she **not register the works with STIM at all** (or resign the relevant mandate for them) — a composer-livelihood decision, not just a drafting one. Flag it as a commercial choice, not a clause to force.
-
-**Moral rights (URL 3 §):** same rule as always — blanket waiver is void; waiver must be limited "till art och omfattning." Drafted as a **scoped** waiver tied to the specific editing/looping/excerpting/credit-omission uses, with the right-to-be-named preserved. Don't let anyone "strengthen" it into a blanket waiver; that weakens it.
-
-**Consideration on a direct composer↔publisher deal where pay runs elsewhere:** when the composer's real compensation is her **employer salary** (here CZP, loaded 80k SEK), the licence's own consideration is separable. Offer two clean options — (A) nominal/included (SEK 1) with a recital that salary is the real compensation, or (B) a stated token figure — but **never leave it blank at signature**; a licence with no visible consideration invites a challenge. RF counsel may prefer a token SEK figure on the face of the doc.
-
-**External counsel rec:** an entertainment/IP advokat (STIM-literate) should eyeball the STIM-vs-exclusivity construction before signature — it's the one spot where "broad exclusive perpetual" rubs against Swedish collective-management reality, and the publisher's counsel will probe it. Not blocking the draft.
-
-**How to apply:** For any group-employed composer whose music a publisher must own/exploit, prefer the **employee + direct composer→publisher licence** split over routing IP through the employer — it uses URL's no-WFH default instead of fighting it. Always police the employment contract for a stray work-product assignment that would break the licence. Use the assignment-isn't-available-so-license triad (exclusive sync+master licence + CMO non-registration warranty + honest third-party-performance carve-out + sync backstop) whenever a STIM/SAMI member is the licensor. Draft file: `umbrella/k2c_sands_of_duat/contracts_2026_subcontractors/draft_09_carolina_rawfury_music_license.md`.
-
-## 2026-06-17 — Game-audio IP can route either composer→publisher direct OR composer→employer→publisher; the 3-hop needs back-to-back warranties at each link
-
-**Källa:** K2C Sands of Duat — Carolina Foghammar 3rd restructure (draft_10 CZP↔RF music-rights agreement; supersedes the direct draft_09 Carolina↔RF licence). Paired with CorpBot's draft_08 §8 flip carve-out→assignment.
-**Kategori:** swedish_ip + contract_review
-**Taggar:** music, audio, assignment, exclusive_licence, STIM, NCB, SAMI, back_to_back, moral_rights, URL_3, URL_40a, buyout, OST, K2C, correction
-
-Robert pivoted a composer's game-audio engagement THREE times in 48h: (1) AP subcontractor; (2) CZP-employee + **direct** composer→RF licence (uses URL's no-WFH-for-music so the author licenses the publisher directly, bypassing the employer); (3) FINAL = composer **assigns** her audio IP to her employer (CZP) via the employment contract, then **CZP sells the rights to the publisher (RF) for a stated 80,000 SEK**. So Carolina → CZP → RF.
-
-**Both shapes are valid; they trade off differently:**
-- **Direct composer→publisher (pivot 2):** one IP hop, publisher gets title from the author, no employer-side assignment gap to diligence. Best when the composer is happy to be a named party to the publisher contract.
-- **composer→employer→publisher (pivot 3):** lets the GROUP (CZP) be the commercial counterparty to the publisher and book the rights-fee as group revenue, and keeps the composer out of the publisher contract. Cost: TWICE the places title + the society carve-out can break — you now need **back-to-back** warranties at BOTH links (Carolina→CZP and CZP→RF).
-
-**The express-assignment requirement is load-bearing (URL no-WFH-for-music):** because URL 1960:729 has no work-for-hire for music (40a § is computer-programs-only), the employment contract CANNOT rely on a generic "all work product belongs to employer" clause OR silence to move music — it needs an **express present written assignment** of the Audio Works (compositions + masters + stems + SFX + neighbouring/performer/producer rights), worldwide/perpetual, with an explicit onward-to-publisher right. Silence or a carve-out leaves CZP with NOTHING to on-sell. (In pivot 2 the employment doc had to carve OUT the music; in pivot 3 it has to assign it IN — the exact opposite §8, same file. Always re-read the live file, not the tracker description: CorpBot flipped draft_08 §8 mid-session and the on-disk version is the only truth.)
-
-**Back-to-back warranties at the CZP→RF link:** CZP "can only grant what it holds," so its warranties to RF must be drafted **"in reliance on the Composer's corresponding warranty under the Composer Assignment"** — title, originality, no-uncleared-third-party-material, no-AI, and the CMO non-registration warranty all flow through from the employment-contract assignment. If the employment assignment doesn't carry those Composer warranties, the employer's warranties to the publisher are naked risk it can't pass back to the author. Check the employment doc carries: (a) express assignment, (b) CMO non-registration warranty, (c) scoped moral-rights consent, (d) originality/no-AI/no-uncleared-material Composer warranties, (e) the third-party-performance carve-out preserved.
-
-**STIM/SAMI in the 3-hop is the same honest construction, one link up:** the society third-party public-performance remuneration share STILL cannot be contractually waived while the composer holds a STIM/SAMI mandate — that's true at the Carolina→CZP link, so it's equally true CZP→RF. Don't write "no society payment ever" at either link. The non-registration warranty (covers the sync/repro/master mandate) + the honest third-party-performance carve-out + the sync backstop is the correct triad at BOTH links.
-
-**Moral rights (ideell rätt) never assign — even on an "outright assignment":** URL 3 § moral rights are inalienable; only a SCOPED consent/waiver (limited "to art and scope," URL 3 § 3 st) passes. So an "assignment" to the employer + an onward "assignment" to the publisher both still leave attribution/integrity with the composer; the only thing that travels is the scoped consent, which must actually be obtained from the composer IN the employment contract for the publisher to get its benefit.
-
-**Consideration / double-counting (Robert "Option B" — stated figure, not nominal):** when the rights-fee is drawn from an existing dev-deal envelope (here 80k inside the 5.6M RF↔AP K2C budget) rather than new money, STATE the figure but add a recital + a "relationship to the development-agreement budget" clause recording that it's drawn-from/accounted-within that envelope and not additional — so RF counsel / an auditor / a DD reader can't read it as 80k on top of 5.6M. Leave the exact settlement mechanic (netted against an AP milestone vs separately-funded-within-scope) as a finance decision to confirm at sign-time.
-
-**Assignment-toggle drafting trick:** when the publisher might want either a broad exclusive licence OR outright ownership, draft the body as the exclusive licence (market norm, keeps a group reversion) and include a one-clause **assignment toggle** that swaps Section 2.1 for an assignment of the economic rights — consideration, warranties, STIM handling and moral-rights consent all carry across unchanged. Lets you ask the publisher "licence or ownership?" without redrafting.
-
-**How to apply:** For group-employed composers, both the direct (composer→publisher) and the routed (composer→employer→publisher) shapes work — pick by whether the GROUP wants to be the commercial counterparty and book the rights-fee. If routed, require an express present music assignment in the employment contract (URL no-WFH) and draft the employer→publisher warranties strictly back-to-back. STIM third-party-performance carve-out + non-registration warranty + sync backstop at every link. Moral rights stay with the author; only the scoped consent travels, and it must originate in the document the author signs. Recommend a STIM-literate entertainment/IP advokat for the society-vs-exclusivity construction. Draft files: `umbrella/k2c_sands_of_duat/contracts_2026_subcontractors/draft_10_czp_rawfury_music_rights.md` (CZP↔RF live) + `draft_08` §8 (Carolina→CZP assignment, CorpBot); `draft_09` superseded.
-
-## 2026-06-17 — Splitting the employer from the IP-assignee in a group: assign work-product directly to the Client company, not the paying employer
-
-**Källa:** K2C Sands of Duat — Carolina Foghammar audio (PIVOT 4: "make AP, not CZP, the party RF interacts with, as per the other 5 subs")
-**Kategori:** swedish_ip + swedish_employment + contract_review + K2C
-**Taggar:** URL 40a, work-for-hire, assignment, group_company, employer_vs_assignee, paying-agent, back-to-back, draft_08, draft_10
-
-When a Swedish group hires a creator as an **employee of company B (the payer)** but wants the IP to vest in **company A (the Client / commercial counterparty)** — because A is the entity that signs the upstream publisher (here AP↔RF, matching the other 5 K2C subs where IP→AP and CZP is only paying agent) — the clean structure is:
-
-1. **The employment contract (with employer B) assigns the work-product IP DIRECTLY to A**, not to B. An employment relationship with B does not force the assignment to run to B — Sweden has no work-for-hire for music (URL 40a § is software-only), so the music passes only by **express written assignment** anyway, and that express assignment can name **A as assignee** while B remains employer/payer. Word §8.4 as a present, outright assignment Carolina→A. Define A as a term in §1 (here §1.1.2a "AP"). Keep employer/payer references (salary, payroll, acceptance, RF-timing risk) as B; only the IP-beneficiary references move to A.
-2. **A acknowledges as Assignee in the signature block.** Because A is a non-employer third party to the employment contract, add an "Acknowledged and accepted as assignee under §8.4" sig line for A. Alternative = Carolina→B then B→A onward assignment, but direct-to-A with A's acknowledgement is cleaner and matches "IP runs to A" across the package. Flag the structure choice.
-3. **Carry the warranties + moral-rights consent to A and A's licensees.** STIM/NCB/SAMI non-registration warranty (§8.4.4), Composer warranties (originality/no-AI/no-uncleared-samples, §8.4.5), and the scoped moral-rights waiver (§8.5) must all run **to A and A's licensees/RF** — otherwise A's back-to-back warranties to the publisher are unsupported. The scoped moral-rights consent (URL 3 § 3 st, can't be blanket) must originate in the document the author signs (the employment contract) and name A + RF as beneficiaries.
-4. **The upstream rights agreement is A↔publisher**, and **B becomes A's paying agent** (the Section 2.4 paying-agent clause — disclosed agency, B invoices/receives on A's behalf until A's VAT/banking are live, holds inflow as IC payable, no transfer of A's obligations). Convenient when B also funds the creator's salary, but B is NOT the rights-holder. Add the fee to the A↔B Paying-Agent Agreement's schedule of covered sums.
-5. **Filename misnomer:** if a draft was built under an earlier pivot with B's name in the filename (here `draft_10_czp_rawfury...`), Robert's instruction was to fix the party names INSIDE but NOT rename the file — note the misnomer at the head ("read czp as ap").
-
-**How to apply:** Whenever a brief says "make [Client co] the party the publisher deals with, as per the other subs," check the chain end-to-end: (a) does the employment/contractor doc assign IP to the Client co or to the payer? Re-point to the Client co. (b) do the warranties + moral-rights consent run to the Client co + publisher? (c) is the upstream agreement Client↔publisher with the payer demoted to paying agent (Section 2.4)? (d) is the IP-assignee added as an acknowledging signatory? Keep the employment FORM + COMPENSATION untouched — only the IP beneficiary + consequential "the Company/AP" wording move. Renumber after inserting the paying-agent clause (it pushed sublicensing 2.4→2.5, AP-integration→2.6, toggle 2.6→2.7 in draft_10 — duplicate-number scan confirmed clean). Self-dealing note: an A↔publisher deal with an independent publisher needs no two-signer safeguard, but the intra-group A-as-assignee + B-as-paying-agent roles belong in the A board minute as a related-party disclosure.
-
-**Cross-ref:** prior K2C learning 2026-06-17 (composer→employer→publisher routed structure) is now superseded on the assignee point — the assignee is the Client co (AP), not the employer (CZP). Draft files: `umbrella/k2c_sands_of_duat/contracts_2026_subcontractors/draft_10_czp_rawfury_music_rights.md` (now AP↔RF) + `draft_08` §8 (now Carolina→AP). `draft_09` stays retired. Advokat (STIM-literate entertainment/IP) pass reaffirmed for the society-vs-exclusivity construction + the employer/assignee split.
-
 ## <!-- ARCHIVE-INDEX -->Archived learnings index
 
-72 older entries were rotated into `archive/lawyer/` to keep this file loadable in one pass.
+8 older entries were rotated into `archive/lawyer/` to keep this file loadable in one pass.
 Nothing was deleted. They are still indexed by RAG — `rag_search(query, source="agents")` finds them,
 or open the archive file below (each has its own Contents block, so you can offset-read a single entry).
 
-### 2026-06 — 20 entries → [`2026-06.md`](archive/lawyer/2026-06.md)
+### 2026-Q3 — 1 entries → [`2026-Q3.md`](archive/lawyer/2026-Q3.md)
 
-- 2026-06-17 — Licensing user-tied consumer data to AI buyers: purpose-limitation is the maste…
-- 2026-06-17 — Harmonising a clause across a sub package: copy the gold-standard wording byte-…
-- 2026-06-17 — "Substitute vs add" is the right shape for a fixed-fee named-resource clause
-- 2026-06-17 — Don't bake a temporary operational rationale into a long-lived contract
-- 2026-06-17 — perl in-place exact-string replace is the clean tool for a repeated-string fix…
-- 2026-06-17 — Convenience termination in a back-to-back sub: replace bare "for any or no reas…
-- 2026-06-15 — Game-audio buy-out: "no payment to any collecting society" overclaims; use a ST…
-- 2026-06-15 — Route-B "Exhibit to existing master" beats a standalone sub when the resource i…
-- 2026-06-15 — Junior/intern contractor without F-skatt = AP withholding + reclassification ex…
-- 2026-06-15 — Fixed-price deliverables sub needs a deemed-acceptance backstop the FTE templat…
-- 2026-06-15 — Change-of-scope trigger must be anchored to upstream-agreed scope, not "days ad…
-- 2026-06-15 — "Only change if unsigned" gate: confirm sign status from the live tracker befor…
-- 2026-06-15 — Entity address on contracts: Robert's stated value beats a stale registreringsb…
-- 2026-06-10 — Förvaltarberättelse-svar: gäldenär-kanal är smal, bevara den hedgade tonen
-- 2026-06-09 — Förvaltarberättelse-utkast: gäldenärens synpunktsfönster ≠ partsprocess, och du…
-- 2026-06-09 — Förvaltarberättelse, forts: fyra återanvändbara substanspoänger (APDS)
-- 2026-06-09 — gmail_create_draft (MCP) stödjer inte bilagor (workaround tills db-204)
-- 2026-06-08 — K2C board minute reconciliation: minute does NOT exist; drafted cited clause, c…
-- 2026-06-05 — GDoc surgical edits blocked by OAuth scope; full re-import unsafe for clause-nu…
-- 2026-06-05 — ABL 8:23 on K2C subs: Andreea's disqualifier is Bright Gambit, NOT CZP (Robert…
+- 2026-07-07 — Negative equity + kapitalskydd-blocked loan repayment is affirmative evidence a…
 
-### 2026-05 — 52 entries → [`2026-05.md`](archive/lawyer/2026-05.md)
+### 2026-Q2 — 7 entries → [`2026-Q2.md`](archive/lawyer/2026-Q2.md)
 
-- 2026-05-29 — A board reviewer's feedback sheet may pre-date the current draft; diff against…
-- 2026-05-29 — UK counterparty: SCC arbitration clause shape (Expedited threshold + confidenti…
-- 2026-05-29 — Converting a flat retainer to pure hourly: three coupled edits, not one
-- 2026-05-29 — v3 review-copy pipeline: awk-strip changelog, upload --convert --html, rename v…
-- 2026-05-29 — Harmonise a contract package to one uniform term with a single named exception,…
-- 2026-05-29 — A paying-agent group entity can't invoice itself; its own fee is settled by set…
-- 2026-05-21 — K2C subcontract package: back-to-back flow-down gaps in six-contractor review
-- 2026-05-21 — Autonomous review "verification" claims need cross-checking against accessible…
-- 2026-05-20 — Holdingbolag som tjänstekontraktspart: kolla verksamhetsföremålet först
-- 2026-05-20 — A bankrupt entity's contract cannot be mirror-swapped; the new one must stand a…
-- 2026-05-20 — Producing a revised Google Doc working copy: upload-convert-rename pipeline
-- 2026-05-20 — Multi-payer time-allocation clause: cap the contracting client, route the rest…
-- 2026-05-20 — Verify the contracting entity against the signed precedent, not an autonomous r…
-- 2026-05-20 — Google Docs CAN be edited in place via the Docs API batchUpdate (supersedes "MC…
-- 2026-05-15 — Google Docs suggestions are not accessible to autonomous agents
-- 2026-05-13 — Insolvency termination clauses create hidden revenue-forfeiture exposure in pub…
-- 2026-05-13 — AI prohibition reps in publishing are increasingly standard for climate/ESG-foc…
-- 2026-05-13 — Approval/consultation rights without tiers create operational gridlock in publi…
-- 2026-05-07 — Deferred-pay-after-release contractor structure (review needed before signing)
-- 2026-05-06 — UK SME inbound mutual NDA: three-tell pattern for re-skinned one-way templates
-- 2026-05-06 — Signatory title in subcontract sig block must be firmateckning-bearing, not pro…
-- 2026-05-06 — Mid-document clause insertion creates duplicate section numbers — always renumb…
-- 2026-05-06 — Offset arrangements in a self-dealing sub belong in the paying-agent agreement,…
-- 2026-05-06 — Sweden has no work-for-hire; "no licence granted" clauses in NDAs are protectiv…
-- 2026-05-06 — Back-to-back sub flow-down: four-clause systematic check against the master
-- 2026-05-06 — Reading PDFs on the VPS (pdf-parse PDFParse class API)
-- 2026-05-06 — allabolag.se and ratsit.se block automated registry pulls; route firmateckning…
-- 2026-05-06 — Side-finding from Companies House: Robert is co-director of Red Marmoset Studio…
-- 2026-05-06 — Cross-border VAT clauses don't belong in service contracts (cross-link)
-- 2026-05-06 — Mid-document clause insertion creates duplicate section numbers (cross-link / r…
-- 2026-05-06 — Redrafting from a similar template: watch for cross-contractor copy-paste artif…
-- 2026-05-06 — Live Gsheet beats local CSV for financial reconciliation in contract review
-- 2026-05-06 — K2C-style P&L recognises sub cost MS-weighted, not equal-distributed
-- 2026-05-06 — Contract amount can legitimately differ from P&L planning forecast; document th…
-- 2026-05-04 — Paying-agent (betalningsombud) is the lightest of three intra-Swedish IC bridge…
-- 2026-05-04 — Three "options" framing in a contract-structure ticket usually conceals the fou…
-- 2026-05-04 — Tax-adviser routing for AP/CZP is Henrik Franzén at Sifferrådet, not Ameer
-- 2026-05-04 — "Inspired by" vs "based on" — semantik vs substans i URL 4 §
-- 2026-05-04 — Personlig borgen för dotterbolag — varken sysslomansregress eller arbetsrätt ge…
-- 2026-05-04 — Privat avdrag för regressfordran efter infriad borgen — IL 48:24, 70 %, RÅ 2001…
-- 2026-05-04 — Konkursfodran kan överlåtas men prissättning till närstående är 3:12-fälla
-- 2026-05-04 — Dokumenterad pre-print compliance försvagar yrkanden i efterhand
-- 2026-05-04 — När substantiv compliance är verifierad får datum-utfästelser för tredje part t…
-- 2026-05-04 — Styrelseordförande svarar i sak, VD driver operativ åtgärd — normal arbetsförde…
-- 2026-05-03 — Ideell rätt går inte att överlåta blankt — URL 3 § 3 st
-- 2026-05-03 — Robert har en tendens att önska "vattentät" position på frågor där den inte fin…
-- 2026-05-03 — Gmail-bilagor måste hanteras via gmail-attachments.js på VPS:en
-- 2026-05-03 — Obestånd hos minoritetsbolag kan föregripa upphovsrätt-anspråk
-- 2026-05-03 — Koncernintern IP-överföring kräver dokumentation, inte bara påstående
-- 2026-05-03 — Skyldighet enligt URL 3 § ligger hos den som framställer/tillgängliggör — inte…
-- 2026-05-03 — Proportionalitet under "god sed" är ett legitimt försvar mot allt-eller-inget-y…
-- 2026-05-03 — När klienten är styrelseordförande i mottagarbolaget är "tredje part råder över…
+- 2026-06-24 — "For clarity" carve-outs must anchor to a defined date, not a borrowed "Effecti…
+- 2026-06-22 — PIVOT 5: decoupling the music-licensing leg from a composer's employment contra…
+- 2026-06-18 — Contractor counter-redline on back-to-back subs: gating termination-for-conveni…
+- 2026-06-18 — Swedish bankruptcy claims verification (bevakningsförfarande): strict absolute…
+- 2026-06-17 — Employer-employee + direct composer↔publisher music licence: the URL no-WFH "bu…
+- 2026-06-17 — Game-audio IP can route either composer→publisher direct OR composer→employer→p…
+- 2026-06-17 — Splitting the employer from the IP-assignee in a group: assign work-product dir…

@@ -14,6 +14,11 @@ agent: bizdev
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## LinkedIn
+
+- Personal, enthusiastic tone; name people; don't over-polish [feedback, 2026-03]
+- Lead with connection, not pitch [feedback, 2026-03]
+
 ## 2026-08-29 — A project can carry live tracked deals for days with zero deal-wiki presence [Dark Riviera, dr-000/001/002]
 
 **Source project:** dr-000 epic, 4am sweep | **Category:** process gap, pipeline hygiene
@@ -40,21 +45,237 @@ agent: bizdev
   `skills/writing_voice_robert.md` doesn't carve out an exception for a long internal-style ask
   just because the recipient is trusted.
 
-## 2026-08-15 - Sanity-checking a counterparty's dev budget: the seat-month method [AP / Erik Reynolds, apb-029]
+## 2026-08-26 - When the publisher hands you the fault list, the deal is a mandate deal (Disposable Corps / LUG)
 
-**Source project:** apb-029, Unyverse scope analysis | **Category:** method, deal intel, tooling
+- **A publisher-side problem list that contains no content or tech items is a tell.** On Disposable Corps every item Anthony Wong (LUG) named (UI/UX, map too big, players unsure what to do, bots too lethal, bot commanding, "not fun") was a **design decision**, not a missing feature or a code defect. That means hours-for-hire cannot fix it, and the proposal has to be about **decision rights**, not seats. Write the working-model section into the plan explicitly, and price a cheap first phase that starts without settling it. [dsc, 2026-08-26, deal shape]
+- **Name the mandate problem on the page, but never the person.** The blocker was the technical co-founder who told the publisher that support may only take his direction. The external page says "the plan only delivers if the decisions can actually be made" and offers a review phase that needs no agreement; it never mentions a person or repeats the publisher's private assessment of the team's skill. That framing survives being forwarded to the developer, which a pitch of this kind always eventually is. [dsc, 2026-08-26, deal hygiene]
+- **Three priced gates beat one number when the partner is cash-poor and shopping investors.** The middle gate is the one that matters: it maps onto the funding scale the partner already moves in, and it is the point where an investor sees a product instead of a plan. Same "buy the answer before you buy the port" pattern as Blue Scarab, now with the gate prices on the page. **Note on the numbers:** the DC gates were repriced twice inside one session (275k/1,5M/3,45-3,8M, then a locked 2,5-person team at 235k/mån, then both sides in one budget at 180k/mån = 155k cash/mån, 1,86 MSEK over twelve months). Do not reuse the intermediate figures; the live model is in [[project_disposable_corps]]. The gate *structure* is what carries over, never the amounts. [dsc, 2026-08-26, commercials]
+- **Steam's public trail dates a stall precisely, for free.** `ISteamNews/GetNewsForApp` gave the whole cadence: playtest 1 Sep 2025, playtest 2 "The Refactoring Update" Dec 2025, then nothing after 2026-01-10. Seven months of silence, and a second playtest that rebuilt the foundation rather than closing the product. `appdetails` gave release state, categories and languages. Both are unauthenticated and worked from the VPS. Run them before writing any plan about a live-but-unreleased title, they are stronger evidence than what the counterparty tells you. [dsc, 2026-08-26, research tooling]
+- **Read the Steam categories for the technical answer you are about to quote.** The store page listed LAN PvP and LAN Co-op and the Dec build added a server browser with a host-region filter, which means player-hosted networking is partly built. That turned "get rid of the dedicated servers" from a scary rewrite into a verification task in phase 0. Check the store metadata before estimating a networking change. [dsc, 2026-08-26, estimation]
 
-- **Convert every "is this budget enough" question into seat-months before touching currency.** Team size x duration = seat-months on both sides of the comparison, then apply a rate. It survives an FX change, a rate-card change and an offshore-blend argument without redoing the scope conclusion, and it makes the shortfall a clean multiple ("$1M buys 93 seat-months, this needs 500-750, so 5-8x short") instead of a rhetorical claim. Reusable for any counterparty scope check and for our own quotes.
-- **AP's anchor: ~104 000 SEK per seat-month, about $10 700.** Two independent derivations agree, which is why it is quotable: the rate card retainer anchor is 100 000 SEK/mo for a mixed-discipline seat, and K2C is 5,6 MSEK gross / 9 months / team of 6 = 103 704 SEK. Use this as the default unit cost in any bottom-up build. AAA column roughly 160 000 SEK/seat-month.
-- **Always convert a counterparty's "contracted labour stability" into AP-retained margin, never gross contract value.** The network model passes ~83 % straight to subcontractors (K2C actual: 965 KSEK net on 5,6 MSEK gross, 17 %). So a headline "$1M of 18-month stability" is worth ~1,65 MSEK of retained margin, about 92 KSEK/mo, roughly $9 400/mo to AP itself. Gross overstates the strategic value of a co-dev by about 6x and it is the number counterparties will quote at you.
-- **When a proposed contract is pitched as replacing an ending one, compute the exact level at which it restores the current recurring floor.** Here: AP's floor is ~290 KSEK/mo (Netlight 150 + co-dev margin 140), so an 18-month Unyverse deal needs **$1,53M** to hold the floor. One number, and it reframes a vague "is this enough" into a negotiating target. Do this on every capacity-replacement deal.
-- **Read the counterparty's founder interviews, not just their deck.** The two most load-bearing findings on Afrime came from public press, not the memo. Crandon in PocketGamer: *"the timeline is tied to quality. We're not interested in putting something out that undersells the experience"* = scope is publicly declared unlockable to budget. And the studio's own team description, *"a lean core team and a flexible network of collaborators"*, with no named technical director or production lead anywhere = the production-leadership gap, stated by them. Founder interviews leak execution risk that decks are written to hide. Make this a standard step in counterparty DD.
-- **The informal channel carried a more specific number than the formal memo.** The memo says "$1.0M-2.0M for Unyverse development"; WhatsApp says "$1m in cash to develop **one of my games (most likely Unyverse)**" plus $100k reserve plus $100k OIP. So the working number is $1M and the *title is not even locked*. Reinforces the 2026-07-28 rule: pull the counterparty's latest message thread before writing anything that describes the deal, and prefer the informal number over the memo's range.
-- **Check whether the money is allocated to us or to the project.** The memo allocates $1-2M to "Unyverse development", not to Aurora Punks, and Afrime has ~15 of its own people across three countries paid from the same pot. If they take half, AP's share over 18 months drops from 5,2 to 2,6 seats. Nobody prices this by default. Ask it explicitly on any deal where a counterparty funds a project we deliver into.
-- **Substantiated RPG cost comparable worth reusing: Clair Obscur: Expedition 33.** Creative director Guillaume Broche stated publicly the budget was **under $10M**; ~20 in-house, 30-40 with freelancers; UE5; battle animation outsourced to Korea; publisher-funded; 8M copies. They got there by **cutting the open world, cutting the character creator and choosing turn-based combat**. That trio is the cheapest available argument for de-scoping any ambitious RPG, because it is a success story rather than a cautionary tale. Sifu is the outcome comp for combat-first premium (1M in three weeks, 4M+ by May 2025) but **its budget has never been disclosed - do not quote one.** Nearest African-studio precedent is Aurion (Kiro'o, Cameroon): Kickstarter target EUR 40k, raised ~EUR 50k, $305k total crowdfunding 2013-2018.
-- **Steam `appdetails` is the fastest test of a counterparty's real public commitments.** App 2834630 says Windows PC only, 2027, no demo, while their press says "every platform, including mobile". A one-call check that surfaces the gap between what they tell investors and what they have actually committed to publicly. Run it on any counterparty with a Steam page.
-- **Character creators: the cost is in building one at all, not in making it diverse.** Published craft writing on the subject argues diverse options are largely a reallocation of art time rather than an added cost, but that darker skin tones commonly render washed out or muddy and that lighting melanated skin is a real technical problem. So the honest read on a bespoke Black-representation creator is: normal (large) combinatorial creator cost, plus a dedicated skin and hair shading pipeline, plus a permanent multiplier on every future outfit and hairstyle. Do not let a scope critique read as a critique of the representation goal - it is the studio's strongest differentiator.
-- **Tooling: the `Write` tool's PreToolUse hook timed out twice in this session** ("host client may be unreachable"), leaving no file. `cat > file <<'EOF'` via Bash went through immediately. If Write fails with a hook timeout, fall back to a quoted heredoc rather than retrying Write, and check with `ls` first so you do not double-write.
+## 2026-08-26 - Pitch publishing broke in the migration (tooling)
+
+- **`assistant/sync-pitches.sh` pointed at the ssh alias `brain`, which no longer resolves.** After the 2026-08-24 split, authoring happens on the Nitro and pitch pages are served from the Hetzner box whose ssh alias is **`edge`**. The script silently failed for every slug, so editing `pitches/` on the Nitro did not change the live site at all. Fixed the DST and the verify line. **Editing `pitches/<slug>/` is not publishing: run `./assistant/sync-pitches.sh --apply <slug>` and then curl the public URL.** `assistant/pitch-auth.json` is NOT covered by the sync, so a gated slug needs its entry added on `edge` separately or the page 404s or serves ungated. [dsc, 2026-08-26, tooling]
+
+## 2026-08-26 - Steam's review count is locale-filtered by default, and it understates our own titles (bem / Block'Em!)
+
+**Learning: always query `appreviews` with `language=all`, and quote Steam's own tier rather than computing it.**
+The Block'Em! one-pager went live in May claiming "85% Positive, 40 reviews". Both numbers were wrong,
+not because the game changed but because of how they were pulled. Steam's store page HTML and the
+default `appreviews` call return a **locale-filtered subset**. On 2026-08-26 that subset read 43 to 63
+reviews at 86% while the true all-time total was **122 reviews, 108 positive, 89%**. Roughly a third of
+the real count.
+
+```
+https://store.steampowered.com/appreviews/<appid>?json=1&language=all&purchase_type=all&num_per_page=0
+```
+
+Two consequences that matter commercially:
+
+- **We were understating our own portfolio to prospects.** The May scan looked at 85% and concluded
+  "Mostly Positive rather than Very Positive" in writing. Steam's API returns
+  `review_score_desc: "Very Positive"` at both filter levels. **Read the tier off the API, never derive
+  it from a percentage** - the thresholds are not what you would guess, and a wrong tier on a pitch page
+  is a claim a partner can check in one click.
+- **The same bug is probably sitting in other pitch pages and decks.** Tears of Adria was written up as
+  "Very Positive (94%)" in the gen-189 DM draft; it is really 87% of 78. Anywhere a percentage was
+  hand-copied from a store page, re-pull it.
+
+Pairs with the existing Steam research tooling notes (`ISteamNews/GetNewsForApp` for cadence,
+`appdetails` for categories and languages). `appdetails` is also the authority on supported-language
+count: the Block'Em! page claimed 14, the store lists 13.
+
+## 2026-08-26 - A shipped pitch page is a claim with an expiry date, not a delivered artifact (bem / Block'Em!)
+
+**Learning: pitch pages need a re-verification pass, and "it returns 200" is not that pass.**
+bem-001 read as done in May. Four months later the page was still live and still pretty, and three of
+its factual claims had rotted: review count, review percentage, language count. Nothing broke and
+nothing alerted, because a stale number renders exactly like a fresh one. The failure mode is silent
+and it points outward, at prospects.
+
+Cheap checks worth running on any live one-pager before it gets linked in outreach:
+
+- Diff local against the live edge. Expect **only** Cloudflare's injected email obfuscation; anything
+  else means a sync was missed. Re-pull every store-sourced number.
+- Screenshot at 1280 and 390 and assert `scrollWidth == clientWidth`. This turns "mobile-friendly" from
+  an assertion in a ticket into evidence. **Playwright is available at `assistant/node_modules`** even
+  when the MCP is not surfaced, but the script must live inside `assistant/` or node will not resolve
+  the module.
+- Grep for em-dashes. The 1993 template seeds them, so every page descended from it carries the AI tell
+  into client-facing copy: `1993` 7, `wmay` 7, `tears-of-adria` 6, `curveball` 2, `tcg-shop` 1. Newer
+  pages are clean. Worth a sweep ticket.
+
+**Related process note: when correcting a draft file, strike through the superseded figure instead of
+deleting it, and never rewrite a block recording what was actually sent.** The gen-189 file keeps
+Robert's real sent text verbatim, em-dash and all, because that is evidence rather than a reusable
+draft. Corrections go in a new dated section. Same instinct as
+[[feedback_compare_draft_vs_sent]].
+
+## 2026-08-26 - Three misses worth naming (Disposable Corps / LUG)
+
+- **Verify the counterparty's existing feature set from their own material before you call anything a change.** I wrote "make the bots the player's own squad instead of the thing that kills you" into a pitch and a WhatsApp message. The developer's own playtest post lists `M` to recruit AI soldiers and `T` to command your AI squad: it was already the game, and it is on the publisher's fault list precisely because it works badly. Robert caught it with "ligg lågt med detta. Hur funkar spelet nu?" A counterparty who has played their own game spots that instantly and it costs you the room. **Patch notes and control lists are the cheapest ground truth there is.** Reframe as "retune and fix what is there", which is also a smaller, more credible ask. [dsc, 2026-08-26, pitch craft]
+- **When the counterparty's own team should sit inside your budget, just ask the publisher what they cost.** Robert asked Anthony "What is their costs? Or should I just include them outside the budget?" and got "Can put 30k sec/month for the both of them" back within half an hour. That converted a one-sided AP quote into a package covering the whole project, which is what a publisher needs to take to financiers. Asking is faster than modelling, and the number comes back pre-endorsed by the person who has to defend it. [dsc, 2026-08-26, deal craft]
+- **A developer who refuses co-dev is refusing a takeover, not a partner.** The formulation that unlocked it is now a reference memory of its own: [[reference_codev_mandate_pattern]]. Split ownership so AP holds product decisions, scope and schedule while the developer keeps implementation, and write the plan's working-model section as a role split rather than a mandate demand. [dsc, 2026-08-26, deal shape]
+- **Named-people rates and who invoices for them now live in [[reference_ark_island]]**, promoted out of the K2C budget files so any project can price Fredrik Laurent or Prateek without re-deriving it. [dsc, 2026-08-26, pointer]
+
+## 2026-08-25 - An IP slate is three lists, and only one of them is ownership (dr / Dark Riviera)
+
+**Learning: never take a slate document as an ownership list.** Dark Riviera had three overlapping
+IP lists in the mail history and they disagreed. Schedule 3 of the 2021 Founders' Agreement (14 IPs)
+looked authoritative because it was an executed contract annex, but it is labelled *"proposed"* and
+*"non-binding"*: it is what the founders offered to bring in, not what the company acquired. The
+CEO's 2023 game-priority list (17 IPs) was a working slate. The thing that actually settles
+ownership was a **board meeting summary in a mail thread** (8 Jun 2026), and it was materially
+shorter than both: eight IPs had quietly vanished and two more were being transferred out to another
+company. Offering any of the missing ones to a partner would have been the expensive mistake.
+
+Rule: for any IP-licensing conversation, find **the most recent board minute or board summary** and
+anchor on that. A contract annex from the founding year is a snapshot of intent, not a register.
+The same caution as [[feedback_verify_live_sheet_vs_memo]], applied to IP.
+
+**Learning: the counterparty's own mail history dates the asset better than any deck.** Sylvain's own
+mails gave publication state per IP for free, and far more current than the slate: Hybrid's graphic
+novel green-lit with Urban Comics for 2026/27 (Nov 2025), Primus volume 1 fully inked with volumes 2
+and 3 scheduled (Dec 2025). Those two facts are what turned a generic "here are three IPs" into a
+reason to pick two, because a game that lands next to a comics release has a marketing beat and a
+visual target already paid for. Pull the last 12 months of the originator's own mail before writing
+any IP pitch.
+
+**Learning: when the principal wears three hats at the counterparty, say so in the project CLAUDE.md
+and keep them apart in writing.** Robert is DR's board chair, runs a studio that could *develop* a DR
+IP, and controls a company that both holds the DR shares and owes DR money. The reply to a partner
+deliberately did not offer Aurora Punks as the developer, because the CEO was copied and mixing a
+board seat with a commercial interest in a partner thread is how a relationship gets expensive. If
+the studio should build it, that is a board conversation with the conflict declared. Related:
+[[feedback_no_client_cross_reference]].
+
+**Learning: "reach out in the thread" is often really "the thread has gone cold, fix that."** The
+mail had sat four days unanswered with a new senior contact copied. The value was not in the words,
+it was in noticing the silence, identifying who the unknown third party actually was, and giving him
+a reason to take the call. Check the age of the thread first.
+
+**Tooling note: `rag-indexer.js` does nothing without `--backfill`.** Running `node
+assistant/rag-indexer.js` bare only truncates the WAL and exits, which reads like a successful
+index. New project folders also need adding to the **`PROJECT_DIRS` allowlist in
+`assistant/rag-config.js`**, which is separate from `config.json`'s `project_folders`. Correct
+sequence for a new project: add to the allowlist, `--backfill --source=project`, then `--embed`, then
+verify with an actual `rag_search`. Followups get picked up by a watcher, project folders do not.
+
+## Studio-application forms: verify every portfolio claim before it leaves the building (2026-08-24, apb / Polden)
+
+AP's own decks disagree with each other on the two things an application form asks for first: headcount
+(15+, 20+, 40, 45 and 50 all appear across live pitch decks) and who did what on a title. Two claims in the
+old Portfolio Master would have gone out wrong if copied straight across:
+
+- **Chenso Club** is credited as "full development" in the decks. The Steam page lists **Pixadome** as
+  developer and **Curve Games** as publisher. The honest and still-strong framing is "developed inside the
+  collective", which is verifiable against the store page.
+- **Ground Zero** (Malformation Games / Kwalee, released 16 Apr 2026, 89% Very Positive) is a *release
+  management and console certification* credit, not a development one. It is the freshest credential AP has
+  and the only one that demonstrates PS5 and Xbox Series X|S cert, so it is worth leading with, correctly
+  labelled. Source: Hektor Andreasson's CV in the AP Drive, not any deck.
+
+Rule: for a portfolio field, source contributions from CVs and the live store page, not from the pitch
+decks. Use the capacity master for the "when are you free" field rather than a guess. Grounding for AP
+studio claims: `aurora_punks/ap_history_dossier.md` plus `assistant/capacity/CAPACITY.md`.
+
+**Also learned about the PlayWay-style publisher archetype** (Polden, Kirill Oreshkin, polden.gg): publisher
+writes the concept and trailer script, funds the trailer, tests wishlists, then greenlights the build, with
+10-20% of sales to the studio. Two clauses belong in any application to this archetype, and they read as
+professional rather than defensive: no unpaid spec trailers or slices, and a defined greenlight decision
+point before kickoff. Our genuine edge against this model is that we can produce the trailer *and* build the
+game it promises, so there is no handover risk between the marketing test and production.
+
+## Festival pipelines rot silently; verify the window and the eligibility, not the ticket (2026-08-24, apb / evt)
+
+The HTMAG festival alerts auto-create `evt-` tickets but nothing ever re-checks them. By the time
+anyone looked, **51 of 62 open tickets were dead** - forms closed, or events already run - while the
+handful of live ones were buried in the same list. A ticket's existence says nothing about whether
+the window is open.
+
+Three things that made the audit fast, all reusable:
+
+- **The apply URL is recoverable without touching the tracker.** HTMAG mails wrap every link in
+  `kit-mail3.com/...` where the last path segment is base64 of the real destination. Decode it
+  locally rather than clicking through, which also avoids firing their click telemetry.
+- **A form's own page states whether it is closed.** `curl` it and grep for "no longer accepting
+  responses" / "submissions are now closed" (and the Swedish "går inte längre att ange svar", since
+  the VPS locale renders Google's UI in Swedish). This is now automated in
+  `assistant/evt-window-sweeper.js`, daily 06:15 cron, close-only.
+- **Steam's news API settles eligibility questions.** `ISteamNews/GetNewsForApp` with a real
+  `maxlength` gives release dates and full patch notes, which is what "released 18+ months ago and a
+  major content update in the last 12 months" actually turns on.
+
+**Read the patch notes, not the patch title.** Tears of Adria's "Crafting & Save System Update"
+sounded like the qualifying update for Not Built in a Day; the notes are mostly QoL, balance and bug
+fixes, which that fest explicitly excludes. The update that actually qualified was five months
+earlier: patch 1.1.0.4 added a challenge mode, a post-game challenge, a new world event and a level
+cap raise. Same conclusion, different evidence, different date on the form - and the form asks for
+the date.
+
+**Check who may submit before promising a title.** Festival forms ask for developer and publisher
+separately and often require an "I am authorised" tick. The Steam page is not the authority: Chenso
+Club and Block'Em! read as Curve Games' while the rights had reverted to AP. Canonical list now in
+[[reference_ap_publishing_rights]].
+
+## 2026-08-20 — Incremental additions need re-totalling before you build them (Starbreeze / Project Irons 2)
+
+**Learning: when a principal or client adds line items one at a time, re-sum and surface the delta before implementing.**
+Robert sent eight staffing changes in one message and a ninth in a follow-up. Each looked small in isolation
+("add a level designer", "add a character artist", "extend systems designer"). Together they moved the peak
+from 14 to 19, FTE-months from 148 to 180.5, and the budget from 24,9 to 30,3 MSEK, a 22% increase. Worse,
+peak 14 was already stated in a mail sent to the client two days earlier. The right move is to compute the
+new total first, show the before-and-after in one line, and only then do the work. Doing the work first and
+reporting the delta afterwards leaves the principal committed to a number he has not consciously chosen.
+
+**Learning: the living-doc pitch has a specific failure mode, and it is the headline number.**
+Telling a client "this is a live page, we update it in place instead of sending versions" is a strong
+pattern ([[feedback_html_pitch_living_doc]]) right up to the moment a figure they were explicitly told in
+writing changes underneath them. Silence then reads as either sloppiness or a quiet price rise. When a
+headline number on a living pitch moves after the client has been given it, the change needs a proactive
+heads-up from us, ideally before they next open the page. Track which numbers have been stated in a mail,
+because those are the ones that carry this obligation. The body of the page can drift freely; the numbers
+in the covering mail cannot.
+
+Canonical deal facts for this engagement live in [[project_starbreeze_irons2]]; ticket is `sbz-001`.
+
+## 2026-08-17 — Pricing and structure when a cheaper competitor is in the room (Starbreeze / Project Irons 2)
+
+**Learning: quote a flat per-head monthly retainer, not an hourly rate, when you know a cheaper studio is also bidding.**
+Starbreeze is choosing between AP, a Czech studio and their own internal team, and they have a margin
+problem. An hourly rate invites a direct per-hour comparison we lose. A flat retainer of 140 000 SEK per
+developer per month reframes the question as "how many people for how long", which is a plan discussion
+we win, rather than a rate discussion we do not. Same total, different battlefield. Robert's call, and it
+overrode the rate card's AAA hourly column mid-draft.
+
+**Learning: show contingency as its own visible line.**
+20% sat on top of the delivery subtotal as a separate row plus a short callout naming exactly which risks
+it covers, with "what is not drawn is not invoiced". A long project with a dependency on a third party
+carries a contingency whether or not you show it, and the visible version reads as competence while a
+hidden one reads as padding if anyone ever back-solves the rates. Note the tradeoff: the not-invoiced
+promise is what makes a 20% uplift sellable to a margin-pressed client, but it gives up the upside. Flag
+it as a choice rather than assuming it.
+
+**Learning: derive the headcount, never assert it.**
+The strongest artifact in the pitch was the client's own feature list sequenced across 13 months at month
+resolution, with a developers-per-month row along the bottom. It turns "we propose 14 people" from a claim
+into an output of the work stacked above it. When you are proposing dramatically fewer people than the
+client's own plan, this is what makes the number defensible, and it also surfaces gaps in your own staffing
+table (a lighting artist with no lighting work against them, in this case).
+
+**Learning: when arguing against a client's plan, lead with what their evidence supports.**
+The due-diligence memo confirmed Tobias on three of his bets and challenged one. That ratio is what makes
+the challenge land, and it was worth briefing the research agent explicitly to confirm what the evidence
+supported rather than hunt for things to attack. Related: check whether the client already privately
+doubts their own inputs, because then your critique becomes support. See [[project_starbreeze_irons2]] for
+the specific case and for what must never be put in writing.
+
+**Learning: audience data with the over-index explained beats audience data alone.**
+A 1.00x affinity reads as "they hate it" to anyone who has not seen the metric before. One plain-language
+"how to read these" callout next to the stat band prevents a client misreading a neutral signal as a
+negative one and killing a feature over it. Always ship the reading instructions with the ratios.
+
+Canonical deal facts, numbers and the audience findings live in [[project_starbreeze_irons2]], not here.
 
 ## 2026-08-16 — The invite's end time is the real brief, not the sentence in the mail [bg-001 / Exel accelerator]
 
@@ -77,6 +298,22 @@ harmlessly. The event was labelled `Asia/Riyadh` but carried a `+02:00` offset, 
 10:30 CEST as written. **The UTC offset on the dateTime is authoritative; the timezone label is
 display metadata.** Do not "correct" a time by shifting it to the labelled zone.
 
+## 2026-08-15 - Sanity-checking a counterparty's dev budget: the seat-month method [AP / Erik Reynolds, apb-029]
+
+**Source project:** apb-029, Unyverse scope analysis | **Category:** method, deal intel, tooling
+
+- **Convert every "is this budget enough" question into seat-months before touching currency.** Team size x duration = seat-months on both sides of the comparison, then apply a rate. It survives an FX change, a rate-card change and an offshore-blend argument without redoing the scope conclusion, and it makes the shortfall a clean multiple ("$1M buys 93 seat-months, this needs 500-750, so 5-8x short") instead of a rhetorical claim. Reusable for any counterparty scope check and for our own quotes.
+- **AP's anchor: ~104 000 SEK per seat-month, about $10 700.** Two independent derivations agree, which is why it is quotable: the rate card retainer anchor is 100 000 SEK/mo for a mixed-discipline seat, and K2C is 5,6 MSEK gross / 9 months / team of 6 = 103 704 SEK. Use this as the default unit cost in any bottom-up build. AAA column roughly 160 000 SEK/seat-month.
+- **Always convert a counterparty's "contracted labour stability" into AP-retained margin, never gross contract value.** The network model passes ~83 % straight to subcontractors (K2C actual: 965 KSEK net on 5,6 MSEK gross, 17 %). So a headline "$1M of 18-month stability" is worth ~1,65 MSEK of retained margin, about 92 KSEK/mo, roughly $9 400/mo to AP itself. Gross overstates the strategic value of a co-dev by about 6x and it is the number counterparties will quote at you.
+- **When a proposed contract is pitched as replacing an ending one, compute the exact level at which it restores the current recurring floor.** Here: AP's floor is ~290 KSEK/mo (Netlight 150 + co-dev margin 140), so an 18-month Unyverse deal needs **$1,53M** to hold the floor. One number, and it reframes a vague "is this enough" into a negotiating target. Do this on every capacity-replacement deal.
+- **Read the counterparty's founder interviews, not just their deck.** The two most load-bearing findings on Afrime came from public press, not the memo. Crandon in PocketGamer: *"the timeline is tied to quality. We're not interested in putting something out that undersells the experience"* = scope is publicly declared unlockable to budget. And the studio's own team description, *"a lean core team and a flexible network of collaborators"*, with no named technical director or production lead anywhere = the production-leadership gap, stated by them. Founder interviews leak execution risk that decks are written to hide. Make this a standard step in counterparty DD.
+- **The informal channel carried a more specific number than the formal memo.** The memo says "$1.0M-2.0M for Unyverse development"; WhatsApp says "$1m in cash to develop **one of my games (most likely Unyverse)**" plus $100k reserve plus $100k OIP. So the working number is $1M and the *title is not even locked*. Reinforces the 2026-07-28 rule: pull the counterparty's latest message thread before writing anything that describes the deal, and prefer the informal number over the memo's range.
+- **Check whether the money is allocated to us or to the project.** The memo allocates $1-2M to "Unyverse development", not to Aurora Punks, and Afrime has ~15 of its own people across three countries paid from the same pot. If they take half, AP's share over 18 months drops from 5,2 to 2,6 seats. Nobody prices this by default. Ask it explicitly on any deal where a counterparty funds a project we deliver into.
+- **Substantiated RPG cost comparable worth reusing: Clair Obscur: Expedition 33.** Creative director Guillaume Broche stated publicly the budget was **under $10M**; ~20 in-house, 30-40 with freelancers; UE5; battle animation outsourced to Korea; publisher-funded; 8M copies. They got there by **cutting the open world, cutting the character creator and choosing turn-based combat**. That trio is the cheapest available argument for de-scoping any ambitious RPG, because it is a success story rather than a cautionary tale. Sifu is the outcome comp for combat-first premium (1M in three weeks, 4M+ by May 2025) but **its budget has never been disclosed - do not quote one.** Nearest African-studio precedent is Aurion (Kiro'o, Cameroon): Kickstarter target EUR 40k, raised ~EUR 50k, $305k total crowdfunding 2013-2018.
+- **Steam `appdetails` is the fastest test of a counterparty's real public commitments.** App 2834630 says Windows PC only, 2027, no demo, while their press says "every platform, including mobile". A one-call check that surfaces the gap between what they tell investors and what they have actually committed to publicly. Run it on any counterparty with a Steam page.
+- **Character creators: the cost is in building one at all, not in making it diverse.** Published craft writing on the subject argues diverse options are largely a reallocation of art time rather than an added cost, but that darker skin tones commonly render washed out or muddy and that lighting melanated skin is a real technical problem. So the honest read on a bespoke Black-representation creator is: normal (large) combinatorial creator cost, plus a dedicated skin and hair shading pipeline, plus a permanent multiplier on every future outfit and hairstyle. Do not let a scope critique read as a critique of the representation goal - it is the studio's strongest differentiator.
+- **Tooling: the `Write` tool's PreToolUse hook timed out twice in this session** ("host client may be unreachable"), leaving no file. `cat > file <<'EOF'` via Bash went through immediately. If Write fails with a hook timeout, fall back to a quoted heredoc rather than retrying Write, and check with `ls` first so you do not double-write.
+
 ## 2026-07-28 — A live deal outruns its own data room. Re-read the latest mail before relaying "where this stands." [AP / Erik Reynolds, apb-029]
 
 - **The deal shape had escalated between the data-room build and the board post, and only the mail showed it.** The apb-029 artifacts (built 6-7 Jul) all frame Erik Reynolds as **$1.5-2M infused as a minority stake, staged Tencent-style at 20-30%**. What Robert actually described to KM on 20 Jul was **up to 5 M USD, bank financed, requiring controlling majority.** That is a different deal category - growth financing became a control acquisition - and an agent grounding only on the drafts folder would have relayed a stale, materially wrong picture to the board. **Rule: on any deal older than ~2 weeks, the RAG/drafts pass is background, not state. Always pull the counterparty's most recent mail thread before writing anything that claims to describe where the deal stands.**
@@ -92,11 +329,6 @@ display metadata.** Do not "correct" a time by shifting it to the labelled zone.
 - **Find the one live audience and build the funnel on it.** AP's back catalogue (BlockEm!, Chenso Club, Ooglians, 1993) is dormant, but the ARK: Survival Ascended mods have ~26K CurseForge downloads and an actively complaining player base. The live community wins; dormant IP gets a room in the Discord, not a content pillar. Corollary: **a bug-fix backlog is content** - fixing the console/PS5 crash publicly is the most credible thing a re-emerging studio can post.
 - **A studio's own channels are usually the ones nobody inventoried.** `skills/client_channels.md` had a section for every client and none for Aurora Punks. Check for that gap on any own-brand comms work before planning a calendar.
 - **linkedin-sd MCP was down again** (third recorded occurrence: db-112, 2026-07-03, now 2026-07-28 - "No valid LinkedIn session in Docker"). It is chronic, not incidental. Assume it is unavailable when scoping any LinkedIn work and route a durable fix to DevOps rather than re-diagnosing each time.
-
-## LinkedIn
-
-- Personal, enthusiastic tone; name people; don't over-polish [feedback, 2026-03]
-- Lead with connection, not pitch [feedback, 2026-03]
 
 ## Counterparty NDAs — signing via OpenSign
 
@@ -315,408 +547,26 @@ This is now the default register for every pitch page (Teef template, Equinox, f
 - **Discord community-health check: hit the invite API, not the invite page.** `https://discord.com/api/v9/invites/<code>?with_counts=true` returns clean JSON - valid invites give `approximate_member_count` + `approximate_presence_count` + guild name; dead ones return HTTP 404 / code 10006 "Unknown Invite". Far more reliable than fetching `discord.gg/<code>` (which 301-redirects to discord.com/invite and renders JS). A dead public invite in a company's shareholder-email signature (RankOne's was 404) is a small but real "the public-facing community is neglected" signal. [RankOne rko, 2026-06-17, tooling + diligence]
 - **The vanity-vs-underwritten-metric reframe is a reusable BD/strategy deliverable.** For any portfolio co reporting top-of-funnel numbers (cumulative users, reach, impressions) while a buyer/investor would diligence rate-of-growth + retention cohorts + activation + ARR, the high-value artifact is a one-page "the dashboard a buyer actually looks at" ask: group the metrics (Growth / Engagement-Retention / Monetization / Data-asset), give each a why + format, and include a "first-cut 5" so it doesn't stall on scope. Template lives at `projects/rankone/drafts/rankone_kpi_dashboard_ask_johan.md`. Reusable shape for any "they're measuring the wrong thing" strategy engagement. [RankOne rko, 2026-06-17, deliverable pattern]
 
-## Web Research Gotchas
-
-- **`psacard.com` returns HTTP 403 to WebFetch** (likely bot-blocked). Don't burn calls trying to fetch PSA's own pages directly — pull PSA facts from WebSearch result summaries or third-party dealer/news sites instead (Black Label Grading, CardPulse, cllct, RubyGator all fetch fine and carry PSA pricing/policy detail). [tcg_webshop, 2026-06-17, tooling]
-
-## Meeting-Notes Capture & Strategy Reframes
-
-- **Gemini transcribes "Johan" as "Yoan."** In the RankOne Jun-17 sync notes, the action item "Contact Yoan" = Johan Tjäder (CEO). Gemini mangles Swedish names phonetically; when a notes action names a person not in the project's people list, check for a phonetic match to a known contact before treating it as a new name. [RankOne rko, 2026-06-17, tooling]
-- **Gemini summaries conflate multiple entities in one call — confirmed live.** The RankOne notes said "reviewed operational structures for multiple entities" and reported "8-9 developers / contractor model" when the ÅR lists ~5 employees. I flagged it as confirm-before-banking; Robert confirmed that whole thread was actually about **Aurora Punks**, not RankOne. Lesson validated: when one auto-note covers a multi-topic call, org/headcount/financial specifics that don't match the project's known shape are usually a different entity bleeding in — flag and hold, never write to project memory as fact. [RankOne rko / Aurora Punks, 2026-06-17, process]
-- **Portfolio-company engagements live in `wiki/company/`, not `wiki/deals/`.** RankOne is a CZP portfolio co biz-dev/strategy engagement, not a sales prospect — capture meeting outcomes + strategy to the company wiki page + project memory + output_log, not the deal pipeline. Deal wiki is for prospects you're selling *to*. [RankOne rko, 2026-06-17, pipeline ownership]
-- **Data-for-AI pivot reframes the KPI scoreboard.** When a consumer product (weak MAU/retention, strong unique corpus) pivots to licensing its data to AI, the diligence scoreboard flips: corpus size/uniqueness/growth + **data-rights/consent (GDPR lawful basis + ToS coverage)** become the headline; consumer growth/retention demote to inputs. The rights question is a hard gate invisible until checked — route to Lawyer before any buyer talk gets concrete. The pattern is the Reddit/Stack Overflow data-licensing playbook. Also watch "reduces near-term revenue pressure" as a tell for deferring the revenue question — pin a concrete near-term proof point (one paid pilot/LOI in ~6mo). [RankOne rko, 2026-06-17, strategy]
-- **The AI-data-licensing thesis is a reusable one-pager shape.** For a portfolio co with a strong unique corpus but weak consumer growth, the high-value artifact is a one-page licensing thesis: thesis-in-one-line → the asset (what's sellable + why differentiated: authentic/human/intent-labelled/longitudinal) → buyers tiered by fit (don't lead with the headline AI-lab buyer that underpays for a niche vertical; lead with the domain buyer who already prices this data) → model (recurring licence/API, anonymised-aggregate default) → defensibility → honest risks → validation plan. Pairs with the data-rights gate (Lawyer) since anonymised-aggregate is both the smart commercial default and the clean legal path. Template: `rankone/drafts/rankone_ai_data_thesis_onepager.md`. Companion to the KPI-dashboard "buyer's scoreboard" deliverable pattern above. [RankOne rko, 2026-06-17, deliverable pattern]
-
-## New Portfolio-Company Engagement — RankOne (2026-06-15)
-
-- **Getting PDF/web content "into RAG" = write a `.md` doc under a WATCHED root, not feed the binary.** The RAG indexer (`assistant/rag-indexer.js` + `rag-config.js`) only ingests `**/*.md` under skills / memory / agents / followups / **wiki** (the `project` and `vault` roots are commented out). It does NOT parse PDFs/xlsx, and does NOT watch `projects/<slug>/`. So when Robert says "read these PDFs and add to RAG": download the PDFs to the project's `source_pdfs/`, extract the substance, and write it into **`wiki/company/<slug>.md`** (or `wiki/deals/projects/<slug>.md` for a BD prospect). Then `node assistant/rag-indexer.js --backfill` (~1s) and confirm with a `rag_search` (the new wiki doc should top the results). Backfill prints `embedded: 0` when the embeddings already exist / FTS-only — that's fine, the doc is still queryable. [RankOne rko, 2026-06-16, tooling]
-- **RankOne Global AB (org 559168-5325, Umeå)** — CZP/Robert ~5% portfolio co. Gaming-profile platform "Your Life in Games"; manually-curated player data → developer Insights. CEO **Johan Tjäder**. 101k users, 77.8M Twitch reach, runway to 2027-06-24; 2025 deliberately low revenue (89 Tkr) to chase growth, -3,062 Tkr result, spring-2026 raise +4.8 MSEK equity + 2.5 MSEK convertible. Robert engaged 2026-06-15 to assist Johan on biz-dev/strategy alongside board member **Peter Warman**. Project home `projects/rankone/`, prefix `rko`, knowledge doc `wiki/company/rankone.md`. [RankOne rko, 2026-06-16]
-- **Peter Warman (peter@authentics.gg)** = Newzoo co-founder/ex-CEO (the games-market-data reference name), now co-founder of Authentics.gg. On a games-data company like RankOne he's the natural board mind for monetizing the curated-data/Insights asset — align with him before pushing commercial strategy. Note he's NOT on RankOne's 2025 ÅR board-signatory list (Fredrik Jonsson chair, Olov Forsgren, Mark Huijmans, Matti Larsson, Johan Tjäder), consistent with a recent appointment — confirm his exact role. [RankOne rko, 2026-06-16, prospect/contact research]
-
-## TCG / Card-Grading Market Intel (2026-06-16)
-
-- **Grading's moat is brand trust + slab liquidity, not the grading act itself.** A PSA/CGC "10" resells for multiples of an unknown-label "10". Any de-novo grading brand slabs low-liquidity labels for years. So whenever Robert floats "start a grading service", the default recommendation is **submission hub / authorized group-submitter** (low capital, immediate value, rides incumbent trust), NOT a new grading lab — unless there's an existing creator/community audience behind it (the Ace Grading template: UK Pokémon grader launched 2021 on creator Randolph's audience). [tcg_webshop, 2026-06-16, market strategy]
-- **EU card-grading "gap" is largely closing in 2026.** PSA opens a full grading facility in **Frankfurt summer 2026** (GM Matthias Peuckert), killing the US-shipping/customs pain for the #1 brand. EU/UK graders already exist: Ace Grading (UK), PCA (France), CCC, and **Cardmarket Grading** (the most dangerous competitor — owns the EU marketplace). The live wedges are speed (PSA bulk ~95 business days) and shop-integrated service, not "be first in the EU". [tcg_webshop, 2026-06-16, market intel]
-- **EU→US grading round-trip VAT trap:** return shipment gets import VAT (20%+) assessed on the *graded* value, so a €1,000 card can trigger a ~€200 surprise bill; landed cost for one PSA Value card hit €70-90. Workarounds: temporary-admission customs regime + consolidator group submissions (30-50% cheaper). [tcg_webshop, 2026-06-16]
-- **No manufacturer licence is needed to grade Pokémon (or any) cards.** The entire industry grades unlicensed — first-sale/exhaustion (you grade a card the owner owns, no reproduction) + nominative fair use of the trademark. Guardrails are trademark-only: don't put the IP's marks in your brand name/logo/slab or imply affiliation/endorsement. Pokémon is litigious but only vs counterfeiters/knock-off games — never graders. The real legal exposure is **authentication liability** (slabbing a fake / mis-grading), an insurance/ops problem not an IP one. Reusable answer pattern for any "do we need a licence to build a service around X publisher's IP cards/merch" question. [tcg_webshop, 2026-06-16, legal]
-- **Market size for context:** card-grading ~$4.1B in 2025 → ~$10.8B by 2034 (~11% CAGR); 26.6M cards graded in 2025 (PSA 19.26M of it); **Pokémon is the single biggest category at 16.1M graded** — validates Pokémon-first scoping. Collectors (PSA's parent) bought Beckett Dec 2025, so PSA+BGS+SGC are one company; Jan 2026 monopoly-investigation call. [tcg_webshop, 2026-06-16, market intel]
-
-## 2026-06-16 — PSA Frankfurt dealer path + batch-submission model ( deep-dive)  [TCG / Card-Grading Market Intel]
-- **PSA Europe (Frankfurt) opens the DEALER channel first:** dealer/partner submissions July 2026, grading Aug 2026, public launch later in year. Coverage = continental EU + Ireland. Being an EU dealer at launch is a real first-mover slot. BUT PSA *paused its cheap Value tiers in the US (May 2026) on a demand spike* — bulk capacity is constrained, so a dealer can't reliably promise the cheapest/fastest lane. [tcg_webshop, 2026-06-16]
-- **PSA Authorized Dealer gate blocks a brand-new shop on day one:** requires 2 years full-time dealing, $10k+ capitalization, 3 credit + 3 PSA-dealer references, prior PSA endorsement history. So authorized-dealer status is a ~12-24mo destination, not a launch move. Workaround sequencing: (a) reseller/concierge under an existing dealer's account first, (b) revenue-split partner with an existing authorized dealer, (c) build toward direct status over 2yrs. [tcg_webshop, 2026-06-16, market strategy]
-- **The batch-submission middleman model already exists in the UK — copy its revenue structure.** Black Label Grading (Official PSA UK/EU dealer since 2024) + The Sub Center (Herne Bay; multi-grader, physical drop-off, £1M goods-in-trust insurance, API tracking). Revenue layers: per-card markup over dealer rates + batch-consolidation savings charged at fixed per-card fees + FX spread (charge SEK/EUR, pay USD) + value-charge handling + shop attach (sell raw → grade → resell slab). Black Label per-card GBP: Value Bulk £23 / Regular £70 / Express £135 / Super Express £395; cheap tiers ship monthly to batch; no minimum order. [tcg_webshop, 2026-06-16]
-- **The structural EU wedge = intra-EU, no customs.** All the existing batch middlemen are UK-based; post-Brexit they cross a customs border both to PSA and to EU customers. A Sweden/EU-native sub center feeding PSA Frankfurt is fully intra-EU (no customs either way) — a cost/speed edge no UK incumbent can match. The real gap isn't "no EU grader exists"; it's "no EU-native, Frankfurt-fed batch hub serving the Nordic/EU Pokémon market". [tcg_webshop, 2026-06-16, market strategy]
-
-## 2026-06-16 — Cardmarket Grading comp — the decisive cautionary tale (; CORRECTS earlier "most dangerous competitor" note)  [TCG / Card-Grading Market Intel]
-- **Cardmarket Grading is DEFUNCT, not a live competitor.** Launched late 2021 (Cardmarket, the dominant EU marketplace, + DGuSV-certified German grader Guard & Grading Solutions); 1-10 slabs with QR→pop-report, integrated into the marketplace — i.e. the EXACT marketplace+in-house-grading bolt-on being contemplated. Cardmarket killed the partnership in 2024; GGS reverted to mostly recasing; the facility is now **Beckett's European grading op**. [tcg_webshop, 2026-06-16, market intel]
-- **This is the strongest evidence against ever launching a house grading brand.** The best-resourced possible version (marketplace audience + brand + certified grader) failed because of the liquidity/trust moat — even on its OWN marketplace, buyers wanted PSA not Cardmarket slabs. Reusable heuristic: a house slab with no resale premium is a product nobody buys twice; brokering trusted slabs (PSA/Beckett) + retail attach is the only durable shape. [tcg_webshop, 2026-06-16, market strategy]
-- **Cardmarket pivoted to the model we recommend** — neutral marketplace listing third-party grading via partner apps (TCG PowerTools, TCG Home, GGS). So Cardmarket is a potential CHANNEL/integration partner for a submission hub, not a competitor. [tcg_webshop, 2026-06-16]
-- **Corrected EU landscape:** the trusted US brands are setting up IN Germany — **Beckett grading in NW Germany since Jan 2025** (~€20 Base/€36 Standard, Pokémon + all TCG), **PSA Frankfurt** dealer-first July 2026. By late 2026 both top slabs are produced intra-EU, so "EU grading access" is closing as a wedge. What's left is the service + retail-attach layer; for a Sweden-based operator the concrete play is a **Nordic-consolidating drop-off/mail-in hub** batching to Germany. [tcg_webshop, 2026-06-16, market strategy]
-
-## Event Deadline Extraction — Direct Confirmation Emails (2026-06-12)
-
-- **"N days left" language in confirmation emails = hard deadline.** Courage.Events email "Only 3 days left to submit" sent 2026-06-11 21:30 UTC = deadline ~2026-06-14. Treat "days left" phrasing as a precise deadline indicator, not an estimate. [Events evt-042, 2026-06-12]
-- **Gmail scan for recent deadlines = reliable signal source.** When a 4am sweep detects past-deadline rejections (Digital Vikings Awards rejections for K&G + ToA on 2026-06-10), run a full-week Gmail scan for `subject:(deadline OR submission OR festival OR showcase) after:2026-06-X` to surface any urgent upcoming windows. Discovered 3 urgent June 14-15 deadlines in one scan (Courage, Fantasy Job Faire, GodotCon). [Events, 2026-06-12]
-- **Portfolio fit triage for 3-day deadline windows:** When deadline < 4 days and submission is free, do rapid (1 line) portfolio fit assessment: engine mismatch (Godot = no), genre mismatch (fantasy + job mechanics = K&G maybe), or strong fit (inclusive showcase = K&G likely). Put the assessment in the ticket activity log, not a separate research brief — Robert needs the answer in the ticket, not a separate doc when timeline is tight. [Events evt-040/041/042, 2026-06-12]
-- **Separate "tight deadline" from "research needed" buckets:** evt-040 (Fantasy Job Faire, 4 days) warrants a "K&G might fit" quick-check in the ticket. evt-024 (Unread Day, likely past deadline, date unknown) warrants a "research brief needed" note with a research-blocked status. Don't mix them — tight deadline = minimal research + decision urgency; unknown deadline = research before deciding. [Events, 2026-06-12]
-
-## Event Submission Deadline Handling (2026-06-11)
-
-- **Past-deadline closures: add a single activity note, don't delete or force-close the ticket.** evt-038 (The Indie Premier) deadline was 2026-06-10; discovered on re-spawn 2026-06-11. Added activity note: "Deadline-passed closure. No Robert submission made despite 200+ HTMAG alerts. Event archive recommended." Ticket remains in backlog status with `needs_input: true` to let Robert decide if closing or keeping for reference. Pattern matches prior past-deadline handling (evt-015–019, evt-026–027). [Events, 2026-06-11]
-- **Deadline estimation from "about to close" HTMAG alerts:** When HTMAG alert says "2 festivals are about to close" without explicit deadline in frontmatter, estimate by alert date + 5–7 days. Example: 2026-06-08 alert saying "about to close" → estimate June 15 (7 days later). This is consistent with prior HTMAG spam pattern learning. Use the estimation in the `due` field and add a note explaining the source. [Events evt-040/041, 2026-06-11]
-- **Quick portfolio fit assessment when extracting deadline:** When updating an event ticket with a new deadline, add a single sentence assessing portfolio fit in the activity note (e.g., "Unlikely fit for Robert portfolio (none are Godot-native)" for GodotCon, or "K&G might fit fantasy criteria" for Fantasy Job Faire). This primes Robert's decision-making without requiring separate research. [Events, 2026-06-11]
-
-## Urgent Event Deadlines — Real Signals vs. Spam Patterns (2026-06-10)
-
-- **HTMAG alert spam intensifies as deadline approaches — 100+ duplicates in 24-48h before submission close.** When a festival deadline is imminent (TODAY or tomorrow), HTMAG's bot fires 100+ identical alerts every 15 minutes, creating an overwhelming noise signal. evt-038 (The Indie Premier) received 100+ "today" alerts from 2026-06-09 05:03 through 2026-06-10 04:16 UTC, all repeating "closes in 1 day". The spam is real. The deadline is real. Don't confuse the two. **How to apply:** (1) On any festival ticket created from HTMAG, extract the deadline from the alert message immediately (calculate from "closes in N days" if exact date not stated), (2) set `due:` frontmatter + `needs_input: true` if deadline ≤5 days out, (3) consolidate 100+ duplicate activity lines into ONE summary entry ("HTMAG spam 2026-06-09 through [date]"), (4) flag the epic if deadline is TODAY or TOMORROW, (5) don't treat alert volume as progress — it's intake noise. [evt-038, 2026-06-10]
-- **Today/Tomorrow deadlines require immediate Robert escalation, not async-queue work.** evt-038 deadline on 2026-06-10 (TODAY at 4am sweep time) means Robert needs to decide within hours whether to submit any titles. Set the ticket to `priority: urgent`, `needs_input: true`, and update the epic with an immediate note. This is not "research and wait for next session" — this is "block Robert's inbox until he responds." [evt-038, 2026-06-10, escalation]
-- **Upcoming deadlines found during 4am sweep (June 15 for Fantasy Job Faire + GodotCon) are also relevant signals.** Fantasy Job Faire requires fantasy setting + job mechanics (ToA doesn't fit well, K&G might). GodotCon is Godot-specific (requires Godot engine or attendance, physical Boston event in July). Both due June 15 (5 days out from now). Neither are urgent-escalation level but should be captured in the research brief alongside evt-038. [events research, 2026-06-10]
-
-## Pitching a Dev Roadmap to a Publisher (ToA / Light Up Games, 2026-06-10)
-
-- **Light Up Games (LUG / "Lineup Games" in transcripts) = ex-Paradox team, founded 2023, Asia-focused publisher.** Key people: Magnus Lysell (founder, ex-Paradox — managed Cities: Skylines etc.), Anthony Wong (anthony@lightup.games / thetonywong@gmail.com). Model is **publishing-services / advisory**: no project funding, small retainer + small revshare, flexible. They publish-of-record. Strong in China, decent across Japan/Korea/rest of Asia; weaker on global/Western reach (their own framing). For any Robert-portfolio title, LUG is the **Asia distribution + co-publish** angle, not a Western lead publisher. They asked for another playtest round. [ToA, 2026-06-10]
-- **The June 2 2026 Ark Island ↔ LUG call flagged the exact blockers: broken onboarding + weak graphical polish + tutorial accessibility = why sales stalled.** When pitching a roadmap to a publisher who has already named the problems, lead the roadmap with "we're fixing exactly what you flagged" (here: first-30-min telemetry rework + replacing the AI menu art = Beat 01) before the new-content upside. Makes the plan read as responsive, not wishlist. [ToA, 2026-06-10]
-- **Anchor a content roadmap to Steam seasonal sale beats (Summer / Autumn / Winter) — it's the single strongest publisher hook.** Each content drop becomes a marketing moment a publisher can amplify. Structure that worked: 4 beats over 6 months part-time — Foundation (fix funnel → Summer Sale) → Expansion (new faction/sidequests) → Tentpole (biggest new content → Autumn Sale) → Relaunch (everything bundled → Winter Sale). Close with one line: "the content cadence is built to be amplified - that is where a global publishing partner plugs in" (lets the publisher see themselves in it without naming them). [ToA, 2026-06-10, deck/roadmap structure]
-- **When Robert says "aspirational - sell the vision," distribute pillars optimistically and tie to marketing dates; don't pad with risk/capacity caveats.** Per [[feedback_design_proposals_focused]] — features + content + why/how, drop risks/comparisons. The roadmap is a sales artifact, not a sprint plan. [ToA, 2026-06-10]
-- **Extending an existing pitch web page beats a new artifact.** ToA already had a polished AP-branded pitch page (`pitches/tears-of-adria/index.html`, Cinzel/Cormorant fantasy theme, served via pitch.runatyr.games). Adding a roadmap `<section>` in the same design system (reuse `.eyebrow`/`.section`/`.hr-gold`, the panel/gold tokens, the dashed-list pattern) keeps it where the publisher already has the link and looks native. The "Steam background" key art Robert means = `steam-media/page_bg.jpg` (full faction roster on the world map) — use it as the roadmap banner with a dark-gradient overlay + italic Cormorant caption. [ToA, 2026-06-10, tooling]
-- **Headless-render check when the Playwright MCP browser is locked by another session.** Use the bundled chrome directly: `/home/assistant/.cache/ms-playwright/chromium-1226/chrome-linux64/chrome --headless=new --no-sandbox --hide-scrollbars --window-size=W,H --screenshot=/tmp/x.png file://...`, then crop/upscale the region with PIL to verify legibility. Faster than fighting the MCP lock. [ToA, 2026-06-10, tooling]
-- **HTML living-doc pages are Robert's PREFERRED format for pitching projects to new clients — default to this over a deck/PDF.** Confirmed by Robert on the ToA pitch (2026-06-10): "This is the preferred way to pitch projects to new clients. A html is a living doc and super nice to look at." Served at `pitch.runatyr.games/<slug>` (= `pitches/<slug>/index.html`, fully public, static, edits go live instantly with no deploy). Reuse the ToA page (`pitches/tears-of-adria/index.html`) as the house style and adapt theme tokens per title. The living-doc property is the point: one durable link you keep refining as the deal evolves, partner always sees current version. See [[feedback_html_pitch_living_doc]]. This now outranks "Publish to web" decks ([[feedback_deck_format_publish_web]]) as the default for new-client project pitches. [ToA, 2026-06-10, client preference]
-- **Steam "Complete the Bundle" is the clean owner-upgrade mechanism for a Director's Cut / relaunch.** Base-game owners pay only the difference toward the new bundle — automatic loyalty discount, no key handling. Good answer when a relaunch pitch needs to show "existing owners get it cheaper" is actually deliverable, not hand-wavy. Pairs with the "relaunch as Director's Cut, not a rebrand" positioning (keep name/art/94% review legacy + fresh release moment). [ToA, 2026-06-10, market intel]
-- **Check the project's Gemini meeting-notes ticket for already-agreed timeline anchors BEFORE building a roadmap.** I anchored the ToA roadmap to Steam seasonal sales (Summer/Autumn/Winter) off Robert's "6 months to Dec" brief, then found at session close that toa-026's Jun-2 notes already specified the relaunch beats as **the October event + Steam Next Fest + a closed beta**. Per [[feedback_pm_check_gemini_email]], read the full `<project>-gemini-meeting-notes` ticket first — the team's agreed dates/beats beat a generic sale calendar, and re-anchoring after the fact is rework. [ToA, 2026-06-10, process]
-
-## Client-Doc Delivery — gdrive-update-doc.js takes MARKDOWN, not HTML
-
-- **`assistant/gdrive-update-doc.js <file> <fileId>` reads its input as MARKDOWN and runs it through `md-to-html` before PATCHing.** If you feed it an already-rendered `.html` file (e.g. a UIbot-styled doc), it re-processes the HTML as markdown and the live Google Doc ends up with escaped/garbled tags. Nearly shipped this to Colin on the Blue Scarab Equinox estimate (2026-06-10). **Rule:** for pre-styled HTML, push with a **raw HTML media PATCH** instead — `PATCH https://www.googleapis.com/upload/drive/v3/files/<fileId>?uploadType=media&supportsAllDrives=true` with `Content-Type: text/html` and the HTML as the body (same OAuth token flow as gdrive-update-doc.js). Use gdrive-update-doc.js ONLY when the source artifact is markdown. The `feedback_no_md_to_clients` memory's "update in place via gdrive-update-doc.js" guidance assumes a markdown source — it does NOT apply to hand-styled HTML.
-- **Always verify a client-doc push by exporting it back** (`/export?mimeType=text/plain`) and grepping for `<table`/`<th` literals (should be 0) + key figures present, before telling Robert it's live. A media PATCH replaces the whole doc body, so a corrected re-push fully overwrites a bad one. [Blue Scarab bsc, 2026-06-10, tooling]
-
-## AP-Branded Client Docs (editable Google Doc, not a deck)
-
-- **AP brand for an EDITABLE client Doc:** dark navy title band `#1A1A2E` (built as a single-cell `<table bgcolor>` — cell shading survives Drive import, divs less so) holding the AP logo + teal title; body stays white/editable; accent teal `#4CC6BF` (sampled from the logo) on H2/H3, table headers, callout left-borders, total rows. Logo must be embedded as a **base64 data URI** (downscaled ~180px) — relative/external `src` paths don't survive Drive import. AP logo asset: `pitches/tears-of-adria/ap-logo.png` (white+teal wordmark, navy drip; designed for DARK backgrounds, washes out on white — hence the dark band). Brand reference deck: "K2C Sands of Duat Overview" (`1T2yTUxa...`), which also has a chevron Timeline+Burn slide worth reusing if Robert ever wants a real pitch DECK (vs an editable doc). [Blue Scarab bsc, 2026-06-10, design/tooling]
-
-## Co-Delivery Budget Structuring — when the client provides resources in-kind
-
-- **When a client supplies part of the team, split the budget into two blocks: your-side (billed) and client-side (in-kind, no charge).** On the Blue Scarab Equinox mobile estimate (2026-06-10) BSE provided a senior tech artist 50% + in-house QA. Structure that worked: (1) two separate tables - "Aurora Punks (billed)" with SEK rates + cost, and "Blue Scarab (provided in-house, no AP charge)" with a `Source` column instead of cost; (2) **trim/replace overlapping roles on your side** so capacity isn't double-counted (AP TA2 100%→50% so the shared AP+BSE crunch seat holds content-art at 2.0 FTE; dropped AP QA entirely since BSE owns it); (3) bill ONLY your block; show the client block at zero cost so the total is unambiguous; (4) **keep the combined-capacity headline constant** (still 38.5 MM total = AP 33.5 + BSE 5.0) so de-scoping your COST doesn't read as de-scoping the WORK. The retainer/FTE-per-month table should then sum your-side only (that's what the client pays you), while a one-line note reminds that the client's in-kind seats fold into the relevant phases. [Blue Scarab bsc, 2026-06-10, estimation]
-
-## Single-Deal Supplier Engagements (Blue Scarab Pattern, 2026-06-07)
-
-- **Single-deal supplier = different shape than outbound pipelines.** Blue Scarab is Aurora Punks *selling dev-services TO* Blue Scarab Entertainment (not prospecting for publishers). Deal page structure works, but pipeline shape is inverted: one focal contact (Colin Cragg), no prospect list, no publisher outreach (they're self-published by choice). Don't force-fit publisher-prospecting workflow onto supplier engagements. [blue_scarab, 2026-06-07]
-- **Operational blockers block forward momentum harder than technical blockers.** BSE deal: code review done (May 4+), estimates ready (May 17 all-platform + June 5 mobile-only), but deliverable is stuck waiting on a single operational decision gate (Oskar's document-sharing choice on the estimate doc). When you see momentum + clear deliverable + single known decision gate, surface the gate explicitly as a Robert-decision item in Open Questions rather than letting it sit. Future similar engagements: identify the blocker early, name it clearly, separate from the work. [blue_scarab, 2026-06-07]
-- **When estimates are consolidated but internal review pending, clarify which version goes out.** Two porting estimates exist: all-platform (May 17, delivered to Colin) and mobile-only (June 5, consolidated, awaiting AP review). If both reach review-ready state, the *more current* one with tighter scope (premium devices, lower MM) might be the better send. Partner with tech-side to agree: send the latest or wait for both signed-off? This applies to any project where multiple estimate versions exist. [blue_scarab, 2026-06-07]
-
-## Event Submission Pipeline Hygiene
-
-- **Festival submission deadlines from HTMAG alerts often live only in email subject/body, not in ticket frontmatter.** Discovered during 2026-06-06 event epic audit: 8 past-deadline events (evt-015–019, evt-026–027) had deadlines in their `due:` frontmatter field, but 15 events had `due: null` or `undefined` despite being created from HTMAG emails that said "closes in 7 days" or "closes TODAY" (timestamps from May 8-25). The deadline dates were calculable from alert timing but never extracted. **Why:** HTMAG emails arrive as alert notifications, tickets are auto-created by system, but the actual submission deadline must be manually calculated or looked up from the festival website. Without deadline extraction at intake time, months later there's no way to know if the event is past submission window. **How to apply:** when creating a festival submission ticket from an HTMAG alert, **extract the exact submission deadline date from the alert message and populate `due:` in frontmatter**. If the alert only says "closes in N days", calculate the date (`alert_date + N days`) and add explicit **[DEADLINE CALCULATED FROM ALERT, VERIFY WITH FESTIVAL WEBSITE]** note in the ticket body. Fallback: search the festival website or Google for the actual deadline before creating the ticket. [all events, 2026-06-06, intake-process]
-
-- **HTMAG alert spam patterns don't indicate event urgency — calculate deadlines independently.** During dedup work on evt-019/020, the duplicate alert counts (75+ for BIG Summer Showcase, 500+ for DevGAMM over 5 days) were pure system noise (HTMAG Discord bot re-polling the same events hourly with no dedup). The alert frequency told us "the bot is broken," not "the deadline is imminent." Real deadline calculation requires the original email timestamp + the alert's "closes in X days" language, or a direct festival-website lookup. **How to apply:** on every event-intake ticket, add a `deadline_source:` field (options: `email_calculated`, `festival_website_verified`, `estimate`). Never treat HTMAG replication frequency as deadline signal. [all events, 2026-06-06, intake-process]
-
-- **Past-deadline event tickets should be closed with an activity note, not deleted.** Created a pattern (2026-06-06): when an event's submission window has closed, append a closure note to the ticket's activity log explaining the deadline and reason for skip. Don't delete the ticket — it remains findable in RAG if someone re-researches the event in future years, and the closure note serves as documentation for "why wasn't this pursued." Example: evt-019 BIG Summer Showcase (2026-04-29 deadline, $197 fee, no submission made) — closed with note "Submission window closed. Deadline passed. Cost barrier + no active portfolio game positioned for summer showcase." **How to apply:** past-deadline event tickets get: (1) activity log entry with date + closure rationale, (2) status field change is optional (leave in backlog with a closure note, don't force to "done" or new status), (3) reference in the epic so Robert can see the decision trail. [all events, 2026-06-06, ticket-hygiene]
-
-- **Multi-event HTMAG alerts create N tickets from 1 email — watch for cross-alert duplicates.** The 2026-05-14 alert titled "4 festivals are about to close" spawned evt-023 (Southeast Asia RPG), evt-024 (Unread Day), evt-025 (Game Pavilion), and likely others from the same email (email_msg_id: 19e05cbfd42b03cf). When consolidating duplicate alerts, verify that multiple tickets with the same email_msg_id are genuinely distinct festivals (not duplicates of the same event). **How to apply:** when deduping HTMAG alerts, group by `email_msg_id` first, then validate that each ticket within the group references a different festival. If two tickets share the same event name + email, it's a duplicate and should be closed. If they share the email but have distinct event names, each is real. Use the alert email body to cross-reference. [all events, 2026-06-06, intake-process]
-
 ## <!-- ARCHIVE-INDEX -->Archived learnings index
 
-61 older entries were rotated into `archive/bizdev/` to keep this file loadable in one pass.
+15 older entries were rotated into `archive/bizdev/` to keep this file loadable in one pass.
 Nothing was deleted. They are still indexed by RAG — `rag_search(query, source="agents")` finds them,
 or open the archive file below (each has its own Contents block, so you can offset-read a single entry).
 
-### 2026-06 — 3 entries → [`2026-06.md`](archive/bizdev/2026-06.md)
+### 2026-Q2 — 15 entries → [`2026-Q2.md`](archive/bizdev/2026-Q2.md)
 
-- 2026-06-05 — HTMAG Alert Spam and Festival Pipeline Management
-- 2026-06-05 — Post-Event Follow-Up (Mixer → Demo Conversion)
-- 2026-06-05 — Robert's Live Voice — Casual Peer Referral DM (Elias, 2026-06-05)
-
-### 2026-05 — 32 entries → [`2026-05.md`](archive/bizdev/2026-05.md)
-
-- 2026-05-26 — Tooling & Blockers
-- 2026-05-26 — GIN (Games Industry Network) Platform
-- 2026-05-25 — Wiki Backfill Heuristics
-- 2026-05-25 — Formal Event RSVPs (Government / Embassy)
-- 2026-05-24 — Cross-Project Research Fallbacks
-- 2026-05-22 — Copy-Paste Outreach Templates
-- 2026-05-22 — GIN blocks MUST be in the event scope (X-Selected-Event), not the global gin sc…
-- 2026-05-21 — Declining Event / Showcase Spots
-- 2026-05-21 — Status Briefings & Channel Coverage
-- 2026-05-20 — Draft Envelope Checks
-- 2026-05-20 — Prospect Research
-- 2026-05-20 — Deal Wiki — Status-Refresh Heuristics
-- 2026-05-20 — Conduit Contacts — Multi-Deal Warm Paths
-- 2026-05-20 — Engine-Exclusion Exception — R&D Teams
-- 2026-05-20 — New-Lead Disambiguation
-- 2026-05-20 — Peer Audio-Service Shops — Demute
-- 2026-05-20 — LinkedIn Contact Resolution When linkedin-sd Is Down
-- 2026-05-19 — Partner Sync Tracker Enrichment
-- 2026-05-19 — Gmail Tooling
-- 2026-05-19 — Event Asset Generators
-- 2026-05-15 — Event RSVP Completion
-- 2026-05-12 — Re-Spawn Hygiene
-- 2026-05-11 — Voice
-- 2026-05-09 — Event Submission Deadlines — Timing & Escalation
-- 2026-05-07 — Indie Marketing Playbooks (cross-project)
-- 2026-05-06 — Canonical template — peer Swedish founder/CEO warm re-open  [Email Outreach]
-- 2026-05-06 — Template adaptation across relationship shapes  [Email Outreach]
-- 2026-05-06 — Pitch One-Pager Pipeline (pitch.runatyr.games)
-- 2026-05-06 — Event Matchmaking Profiles (GIN / NG)
-- 2026-05-06 — Tracker reconciliation against LinkedIn
-- 2026-05-06 — Wiki Backfill Workflow
-- 2026-05-01 — Reopening Previously-Skipped Studios
-
-### 2026-04 — 26 entries → [`2026-04.md`](archive/bizdev/2026-04.md)
-
-- 2026-04-30 — Contract Structure — WMAY/Oskar pattern
-- 2026-04-27 — Awareness-Only Contacts
-- 2026-04-27 — Ticket Hygiene
-- 2026-04-27 — Rolodex Building
-- 2026-04-27 — Robert-Handled vs BizDev-Drafted
-- 2026-04-27 — Pipeline Hygiene
-- 2026-04-27 — Event Logistics — Venue Booking
-- 2026-04-27 — PGC / MeetToMatch Disambiguation
-- 2026-04-27 — Draft Delivery
-- 2026-04-27 — Shareable Event/Side-Event Lists
-- 2026-04-26 — Festival Submissions
-- 2026-04-24 — Portfolio Screening Heuristics
-- 2026-04-24 — Event Logistics
-- 2026-04-21 — Inbox Handoff
-- 2026-04-21 — Portfolio Framing
-- 2026-04-21 — Reply Drafting Heuristics
-- 2026-04-20 — Email Outreach
-- 2026-04-20 — Prospect Research
-- 2026-04-20 — Events
-- 2026-04-20 — Client-Specific
-- 2026-04-20 — Pipeline Management
-- 2026-04-20 — Tooling
-- 2026-04-18 — Event Deadlines
-- 2026-04-16 — Market Intel — Audio Middleware
-- 2026-04-16 — Event Planning Heuristics
-- 2026-04-16 — Message Drafting
-
-## 2026-08-17 — Pricing and structure when a cheaper competitor is in the room (Starbreeze / Project Irons 2)
-
-**Learning: quote a flat per-head monthly retainer, not an hourly rate, when you know a cheaper studio is also bidding.**
-Starbreeze is choosing between AP, a Czech studio and their own internal team, and they have a margin
-problem. An hourly rate invites a direct per-hour comparison we lose. A flat retainer of 140 000 SEK per
-developer per month reframes the question as "how many people for how long", which is a plan discussion
-we win, rather than a rate discussion we do not. Same total, different battlefield. Robert's call, and it
-overrode the rate card's AAA hourly column mid-draft.
-
-**Learning: show contingency as its own visible line.**
-20% sat on top of the delivery subtotal as a separate row plus a short callout naming exactly which risks
-it covers, with "what is not drawn is not invoiced". A long project with a dependency on a third party
-carries a contingency whether or not you show it, and the visible version reads as competence while a
-hidden one reads as padding if anyone ever back-solves the rates. Note the tradeoff: the not-invoiced
-promise is what makes a 20% uplift sellable to a margin-pressed client, but it gives up the upside. Flag
-it as a choice rather than assuming it.
-
-**Learning: derive the headcount, never assert it.**
-The strongest artifact in the pitch was the client's own feature list sequenced across 13 months at month
-resolution, with a developers-per-month row along the bottom. It turns "we propose 14 people" from a claim
-into an output of the work stacked above it. When you are proposing dramatically fewer people than the
-client's own plan, this is what makes the number defensible, and it also surfaces gaps in your own staffing
-table (a lighting artist with no lighting work against them, in this case).
-
-**Learning: when arguing against a client's plan, lead with what their evidence supports.**
-The due-diligence memo confirmed Tobias on three of his bets and challenged one. That ratio is what makes
-the challenge land, and it was worth briefing the research agent explicitly to confirm what the evidence
-supported rather than hunt for things to attack. Related: check whether the client already privately
-doubts their own inputs, because then your critique becomes support. See [[project_starbreeze_irons2]] for
-the specific case and for what must never be put in writing.
-
-**Learning: audience data with the over-index explained beats audience data alone.**
-A 1.00x affinity reads as "they hate it" to anyone who has not seen the metric before. One plain-language
-"how to read these" callout next to the stat band prevents a client misreading a neutral signal as a
-negative one and killing a feature over it. Always ship the reading instructions with the ratios.
-
-Canonical deal facts, numbers and the audience findings live in [[project_starbreeze_irons2]], not here.
-
-## 2026-08-20 — Incremental additions need re-totalling before you build them (Starbreeze / Project Irons 2)
-
-**Learning: when a principal or client adds line items one at a time, re-sum and surface the delta before implementing.**
-Robert sent eight staffing changes in one message and a ninth in a follow-up. Each looked small in isolation
-("add a level designer", "add a character artist", "extend systems designer"). Together they moved the peak
-from 14 to 19, FTE-months from 148 to 180.5, and the budget from 24,9 to 30,3 MSEK, a 22% increase. Worse,
-peak 14 was already stated in a mail sent to the client two days earlier. The right move is to compute the
-new total first, show the before-and-after in one line, and only then do the work. Doing the work first and
-reporting the delta afterwards leaves the principal committed to a number he has not consciously chosen.
-
-**Learning: the living-doc pitch has a specific failure mode, and it is the headline number.**
-Telling a client "this is a live page, we update it in place instead of sending versions" is a strong
-pattern ([[feedback_html_pitch_living_doc]]) right up to the moment a figure they were explicitly told in
-writing changes underneath them. Silence then reads as either sloppiness or a quiet price rise. When a
-headline number on a living pitch moves after the client has been given it, the change needs a proactive
-heads-up from us, ideally before they next open the page. Track which numbers have been stated in a mail,
-because those are the ones that carry this obligation. The body of the page can drift freely; the numbers
-in the covering mail cannot.
-
-Canonical deal facts for this engagement live in [[project_starbreeze_irons2]]; ticket is `sbz-001`.
-
-## Studio-application forms: verify every portfolio claim before it leaves the building (2026-08-24, apb / Polden)
-
-AP's own decks disagree with each other on the two things an application form asks for first: headcount
-(15+, 20+, 40, 45 and 50 all appear across live pitch decks) and who did what on a title. Two claims in the
-old Portfolio Master would have gone out wrong if copied straight across:
-
-- **Chenso Club** is credited as "full development" in the decks. The Steam page lists **Pixadome** as
-  developer and **Curve Games** as publisher. The honest and still-strong framing is "developed inside the
-  collective", which is verifiable against the store page.
-- **Ground Zero** (Malformation Games / Kwalee, released 16 Apr 2026, 89% Very Positive) is a *release
-  management and console certification* credit, not a development one. It is the freshest credential AP has
-  and the only one that demonstrates PS5 and Xbox Series X|S cert, so it is worth leading with, correctly
-  labelled. Source: Hektor Andreasson's CV in the AP Drive, not any deck.
-
-Rule: for a portfolio field, source contributions from CVs and the live store page, not from the pitch
-decks. Use the capacity master for the "when are you free" field rather than a guess. Grounding for AP
-studio claims: `aurora_punks/ap_history_dossier.md` plus `assistant/capacity/CAPACITY.md`.
-
-**Also learned about the PlayWay-style publisher archetype** (Polden, Kirill Oreshkin, polden.gg): publisher
-writes the concept and trailer script, funds the trailer, tests wishlists, then greenlights the build, with
-10-20% of sales to the studio. Two clauses belong in any application to this archetype, and they read as
-professional rather than defensive: no unpaid spec trailers or slices, and a defined greenlight decision
-point before kickoff. Our genuine edge against this model is that we can produce the trailer *and* build the
-game it promises, so there is no handover risk between the marketing test and production.
-
-## Festival pipelines rot silently; verify the window and the eligibility, not the ticket (2026-08-24, apb / evt)
-
-The HTMAG festival alerts auto-create `evt-` tickets but nothing ever re-checks them. By the time
-anyone looked, **51 of 62 open tickets were dead** - forms closed, or events already run - while the
-handful of live ones were buried in the same list. A ticket's existence says nothing about whether
-the window is open.
-
-Three things that made the audit fast, all reusable:
-
-- **The apply URL is recoverable without touching the tracker.** HTMAG mails wrap every link in
-  `kit-mail3.com/...` where the last path segment is base64 of the real destination. Decode it
-  locally rather than clicking through, which also avoids firing their click telemetry.
-- **A form's own page states whether it is closed.** `curl` it and grep for "no longer accepting
-  responses" / "submissions are now closed" (and the Swedish "går inte längre att ange svar", since
-  the VPS locale renders Google's UI in Swedish). This is now automated in
-  `assistant/evt-window-sweeper.js`, daily 06:15 cron, close-only.
-- **Steam's news API settles eligibility questions.** `ISteamNews/GetNewsForApp` with a real
-  `maxlength` gives release dates and full patch notes, which is what "released 18+ months ago and a
-  major content update in the last 12 months" actually turns on.
-
-**Read the patch notes, not the patch title.** Tears of Adria's "Crafting & Save System Update"
-sounded like the qualifying update for Not Built in a Day; the notes are mostly QoL, balance and bug
-fixes, which that fest explicitly excludes. The update that actually qualified was five months
-earlier: patch 1.1.0.4 added a challenge mode, a post-game challenge, a new world event and a level
-cap raise. Same conclusion, different evidence, different date on the form - and the form asks for
-the date.
-
-**Check who may submit before promising a title.** Festival forms ask for developer and publisher
-separately and often require an "I am authorised" tick. The Steam page is not the authority: Chenso
-Club and Block'Em! read as Curve Games' while the rights had reverted to AP. Canonical list now in
-[[reference_ap_publishing_rights]].
-
-## 2026-08-26 - When the publisher hands you the fault list, the deal is a mandate deal (Disposable Corps / LUG)
-
-- **A publisher-side problem list that contains no content or tech items is a tell.** On Disposable Corps every item Anthony Wong (LUG) named (UI/UX, map too big, players unsure what to do, bots too lethal, bot commanding, "not fun") was a **design decision**, not a missing feature or a code defect. That means hours-for-hire cannot fix it, and the proposal has to be about **decision rights**, not seats. Write the working-model section into the plan explicitly, and price a cheap first phase that starts without settling it. [dsc, 2026-08-26, deal shape]
-- **Name the mandate problem on the page, but never the person.** The blocker was the technical co-founder who told the publisher that support may only take his direction. The external page says "the plan only delivers if the decisions can actually be made" and offers a review phase that needs no agreement; it never mentions a person or repeats the publisher's private assessment of the team's skill. That framing survives being forwarded to the developer, which a pitch of this kind always eventually is. [dsc, 2026-08-26, deal hygiene]
-- **Three priced gates beat one number when the partner is cash-poor and shopping investors.** The middle gate is the one that matters: it maps onto the funding scale the partner already moves in, and it is the point where an investor sees a product instead of a plan. Same "buy the answer before you buy the port" pattern as Blue Scarab, now with the gate prices on the page. **Note on the numbers:** the DC gates were repriced twice inside one session (275k/1,5M/3,45-3,8M, then a locked 2,5-person team at 235k/mån, then both sides in one budget at 180k/mån = 155k cash/mån, 1,86 MSEK over twelve months). Do not reuse the intermediate figures; the live model is in [[project_disposable_corps]]. The gate *structure* is what carries over, never the amounts. [dsc, 2026-08-26, commercials]
-- **Steam's public trail dates a stall precisely, for free.** `ISteamNews/GetNewsForApp` gave the whole cadence: playtest 1 Sep 2025, playtest 2 "The Refactoring Update" Dec 2025, then nothing after 2026-01-10. Seven months of silence, and a second playtest that rebuilt the foundation rather than closing the product. `appdetails` gave release state, categories and languages. Both are unauthenticated and worked from the VPS. Run them before writing any plan about a live-but-unreleased title, they are stronger evidence than what the counterparty tells you. [dsc, 2026-08-26, research tooling]
-- **Read the Steam categories for the technical answer you are about to quote.** The store page listed LAN PvP and LAN Co-op and the Dec build added a server browser with a host-region filter, which means player-hosted networking is partly built. That turned "get rid of the dedicated servers" from a scary rewrite into a verification task in phase 0. Check the store metadata before estimating a networking change. [dsc, 2026-08-26, estimation]
-
-## 2026-08-26 - Pitch publishing broke in the migration (tooling)
-
-- **`assistant/sync-pitches.sh` pointed at the ssh alias `brain`, which no longer resolves.** After the 2026-08-24 split, authoring happens on the Nitro and pitch pages are served from the Hetzner box whose ssh alias is **`edge`**. The script silently failed for every slug, so editing `pitches/` on the Nitro did not change the live site at all. Fixed the DST and the verify line. **Editing `pitches/<slug>/` is not publishing: run `./assistant/sync-pitches.sh --apply <slug>` and then curl the public URL.** `assistant/pitch-auth.json` is NOT covered by the sync, so a gated slug needs its entry added on `edge` separately or the page 404s or serves ungated. [dsc, 2026-08-26, tooling]
-
-## 2026-08-25 - An IP slate is three lists, and only one of them is ownership (dr / Dark Riviera)
-
-**Learning: never take a slate document as an ownership list.** Dark Riviera had three overlapping
-IP lists in the mail history and they disagreed. Schedule 3 of the 2021 Founders' Agreement (14 IPs)
-looked authoritative because it was an executed contract annex, but it is labelled *"proposed"* and
-*"non-binding"*: it is what the founders offered to bring in, not what the company acquired. The
-CEO's 2023 game-priority list (17 IPs) was a working slate. The thing that actually settles
-ownership was a **board meeting summary in a mail thread** (8 Jun 2026), and it was materially
-shorter than both: eight IPs had quietly vanished and two more were being transferred out to another
-company. Offering any of the missing ones to a partner would have been the expensive mistake.
-
-Rule: for any IP-licensing conversation, find **the most recent board minute or board summary** and
-anchor on that. A contract annex from the founding year is a snapshot of intent, not a register.
-The same caution as [[feedback_verify_live_sheet_vs_memo]], applied to IP.
-
-**Learning: the counterparty's own mail history dates the asset better than any deck.** Sylvain's own
-mails gave publication state per IP for free, and far more current than the slate: Hybrid's graphic
-novel green-lit with Urban Comics for 2026/27 (Nov 2025), Primus volume 1 fully inked with volumes 2
-and 3 scheduled (Dec 2025). Those two facts are what turned a generic "here are three IPs" into a
-reason to pick two, because a game that lands next to a comics release has a marketing beat and a
-visual target already paid for. Pull the last 12 months of the originator's own mail before writing
-any IP pitch.
-
-**Learning: when the principal wears three hats at the counterparty, say so in the project CLAUDE.md
-and keep them apart in writing.** Robert is DR's board chair, runs a studio that could *develop* a DR
-IP, and controls a company that both holds the DR shares and owes DR money. The reply to a partner
-deliberately did not offer Aurora Punks as the developer, because the CEO was copied and mixing a
-board seat with a commercial interest in a partner thread is how a relationship gets expensive. If
-the studio should build it, that is a board conversation with the conflict declared. Related:
-[[feedback_no_client_cross_reference]].
-
-**Learning: "reach out in the thread" is often really "the thread has gone cold, fix that."** The
-mail had sat four days unanswered with a new senior contact copied. The value was not in the words,
-it was in noticing the silence, identifying who the unknown third party actually was, and giving him
-a reason to take the call. Check the age of the thread first.
-
-**Tooling note: `rag-indexer.js` does nothing without `--backfill`.** Running `node
-assistant/rag-indexer.js` bare only truncates the WAL and exits, which reads like a successful
-index. New project folders also need adding to the **`PROJECT_DIRS` allowlist in
-`assistant/rag-config.js`**, which is separate from `config.json`'s `project_folders`. Correct
-sequence for a new project: add to the allowlist, `--backfill --source=project`, then `--embed`, then
-verify with an actual `rag_search`. Followups get picked up by a watcher, project folders do not.
-
-## 2026-08-26 - Steam's review count is locale-filtered by default, and it understates our own titles (bem / Block'Em!)
-
-**Learning: always query `appreviews` with `language=all`, and quote Steam's own tier rather than computing it.**
-The Block'Em! one-pager went live in May claiming "85% Positive, 40 reviews". Both numbers were wrong,
-not because the game changed but because of how they were pulled. Steam's store page HTML and the
-default `appreviews` call return a **locale-filtered subset**. On 2026-08-26 that subset read 43 to 63
-reviews at 86% while the true all-time total was **122 reviews, 108 positive, 89%**. Roughly a third of
-the real count.
-
-```
-https://store.steampowered.com/appreviews/<appid>?json=1&language=all&purchase_type=all&num_per_page=0
-```
-
-Two consequences that matter commercially:
-
-- **We were understating our own portfolio to prospects.** The May scan looked at 85% and concluded
-  "Mostly Positive rather than Very Positive" in writing. Steam's API returns
-  `review_score_desc: "Very Positive"` at both filter levels. **Read the tier off the API, never derive
-  it from a percentage** - the thresholds are not what you would guess, and a wrong tier on a pitch page
-  is a claim a partner can check in one click.
-- **The same bug is probably sitting in other pitch pages and decks.** Tears of Adria was written up as
-  "Very Positive (94%)" in the gen-189 DM draft; it is really 87% of 78. Anywhere a percentage was
-  hand-copied from a store page, re-pull it.
-
-Pairs with the existing Steam research tooling notes (`ISteamNews/GetNewsForApp` for cadence,
-`appdetails` for categories and languages). `appdetails` is also the authority on supported-language
-count: the Block'Em! page claimed 14, the store lists 13.
-
-## 2026-08-26 - A shipped pitch page is a claim with an expiry date, not a delivered artifact (bem / Block'Em!)
-
-**Learning: pitch pages need a re-verification pass, and "it returns 200" is not that pass.**
-bem-001 read as done in May. Four months later the page was still live and still pretty, and three of
-its factual claims had rotted: review count, review percentage, language count. Nothing broke and
-nothing alerted, because a stale number renders exactly like a fresh one. The failure mode is silent
-and it points outward, at prospects.
-
-Cheap checks worth running on any live one-pager before it gets linked in outreach:
-
-- Diff local against the live edge. Expect **only** Cloudflare's injected email obfuscation; anything
-  else means a sync was missed. Re-pull every store-sourced number.
-- Screenshot at 1280 and 390 and assert `scrollWidth == clientWidth`. This turns "mobile-friendly" from
-  an assertion in a ticket into evidence. **Playwright is available at `assistant/node_modules`** even
-  when the MCP is not surfaced, but the script must live inside `assistant/` or node will not resolve
-  the module.
-- Grep for em-dashes. The 1993 template seeds them, so every page descended from it carries the AI tell
-  into client-facing copy: `1993` 7, `wmay` 7, `tears-of-adria` 6, `curveball` 2, `tcg-shop` 1. Newer
-  pages are clean. Worth a sweep ticket.
-
-**Related process note: when correcting a draft file, strike through the superseded figure instead of
-deleting it, and never rewrite a block recording what was actually sent.** The gen-189 file keeps
-Robert's real sent text verbatim, em-dash and all, because that is evidence rather than a reusable
-draft. Corrections go in a new dated section. Same instinct as
-[[feedback_compare_draft_vs_sent]].
-
-## 2026-08-26 - Three misses worth naming (Disposable Corps / LUG)
-
-- **Verify the counterparty's existing feature set from their own material before you call anything a change.** I wrote "make the bots the player's own squad instead of the thing that kills you" into a pitch and a WhatsApp message. The developer's own playtest post lists `M` to recruit AI soldiers and `T` to command your AI squad: it was already the game, and it is on the publisher's fault list precisely because it works badly. Robert caught it with "ligg lågt med detta. Hur funkar spelet nu?" A counterparty who has played their own game spots that instantly and it costs you the room. **Patch notes and control lists are the cheapest ground truth there is.** Reframe as "retune and fix what is there", which is also a smaller, more credible ask. [dsc, 2026-08-26, pitch craft]
-- **When the counterparty's own team should sit inside your budget, just ask the publisher what they cost.** Robert asked Anthony "What is their costs? Or should I just include them outside the budget?" and got "Can put 30k sec/month for the both of them" back within half an hour. That converted a one-sided AP quote into a package covering the whole project, which is what a publisher needs to take to financiers. Asking is faster than modelling, and the number comes back pre-endorsed by the person who has to defend it. [dsc, 2026-08-26, deal craft]
-- **A developer who refuses co-dev is refusing a takeover, not a partner.** The formulation that unlocked it is now a reference memory of its own: [[reference_codev_mandate_pattern]]. Split ownership so AP holds product decisions, scope and schedule while the developer keeps implementation, and write the plan's working-model section as a role split rather than a mandate demand. [dsc, 2026-08-26, deal shape]
-- **Named-people rates and who invoices for them now live in [[reference_ark_island]]**, promoted out of the K2C budget files so any project can price Fredrik Laurent or Prateek without re-deriving it. [dsc, 2026-08-26, pointer]
+- 2026-06-17 — Web Research Gotchas
+- 2026-06-17 — Meeting-Notes Capture & Strategy Reframes
+- 2026-06-16 — New Portfolio-Company Engagement — RankOne (2026-06-15)
+- 2026-06-16 — TCG / Card-Grading Market Intel (2026-06-16)
+- 2026-06-16 — PSA Frankfurt dealer path + batch-submission model ( deep-dive)  [TCG / Card-Gr…
+- 2026-06-16 — Cardmarket Grading comp — the decisive cautionary tale (; CORRECTS earlier "mos…
+- 2026-06-14 — Event Deadline Extraction — Direct Confirmation Emails (2026-06-12)
+- 2026-06-11 — Event Submission Deadline Handling (2026-06-11)
+- 2026-06-10 — Urgent Event Deadlines — Real Signals vs. Spam Patterns (2026-06-10)
+- 2026-06-10 — Pitching a Dev Roadmap to a Publisher (ToA / Light Up Games, 2026-06-10)
+- 2026-06-10 — Client-Doc Delivery — gdrive-update-doc.js takes MARKDOWN, not HTML
+- 2026-06-10 — AP-Branded Client Docs (editable Google Doc, not a deck)
+- 2026-06-10 — Co-Delivery Budget Structuring — when the client provides resources in-kind
+- 2026-06-07 — Single-Deal Supplier Engagements (Blue Scarab Pattern, 2026-06-07)
+- 2026-06-06 — Event Submission Pipeline Hygiene
