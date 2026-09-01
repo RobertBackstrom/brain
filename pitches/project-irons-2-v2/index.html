@@ -11,11 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Aurora Punks */
-  --ap-bg:#0c0c1c; --ap-bg2:#0e0e22; --ap-teal:#65ede8; --ap-teal-mid:#1ab1ab; --ap-teal-dim:#5bbeba;
-  /* Rift */
+  --ap-bg:#0c0c1c; --ap-bg2:#0e0e22; --ap-teal:#65ede8; --ap-teal-mid:#1ab1ab;
   --rf-green:#1e251c; --rf-neon:#ebfb1d; --rf-grey:#c5b6af;
-  /* system */
   --panel:#12122a; --panel-2:#161630; --line:#26264a; --line-2:#33335e;
   --text:#ffffff; --muted:#c5b6af; --muted-2:#8a8aa8;
   --disp:'Barlow Condensed',system-ui,sans-serif;
@@ -23,131 +20,114 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--ap-bg);color:var(--text);
-  font-family:var(--body);font-size:16px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
-body::before{
-  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(circle at 12% 8%, rgba(101,237,232,.10), transparent 42%),
-    radial-gradient(circle at 88% 78%, rgba(235,251,29,.07), transparent 46%),
-    linear-gradient(180deg,#0c0c1c 0%,#0e0e22 50%,#0c0c1c 100%);
-}
+body{margin:0;background:var(--ap-bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(circle at 12% 8%, rgba(101,237,232,.10), transparent 42%),
+             radial-gradient(circle at 88% 78%, rgba(235,251,29,.07), transparent 46%),
+             linear-gradient(180deg,#0c0c1c 0%,#0e0e22 50%,#0c0c1c 100%)}
 
-/* ---------- slide frame ---------- */
 .deck{position:relative;z-index:1}
-.slide{
-  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-  padding:76px 56px 84px;max-width:1280px;margin:0 auto;
-  border-bottom:1px solid var(--line);
-}
+.slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:76px 56px 84px;max-width:1280px;margin:0 auto;border-bottom:1px solid var(--line)}
 .slide:last-child{border-bottom:0}
 @media(max-width:820px){.slide{padding:56px 22px 64px;min-height:auto}}
 
-.eyebrow{
-  font-family:var(--disp);font-weight:700;letter-spacing:.3em;text-transform:uppercase;
-  font-size:12px;color:var(--ap-teal);margin-bottom:18px;
-}
+.eyebrow{font-family:var(--disp);font-weight:700;letter-spacing:.3em;text-transform:uppercase;font-size:12px;color:var(--ap-teal);margin-bottom:18px}
 .eyebrow .n{color:var(--rf-neon);margin-right:10px}
 h1,h2,h3,h4{font-family:var(--disp);line-height:1.08;margin:0 0 18px}
 h1{font-size:clamp(38px,6vw,76px);font-weight:800;letter-spacing:-.01em;text-transform:uppercase}
-h2{font-size:clamp(30px,4vw,50px);font-weight:800;text-transform:uppercase;letter-spacing:.01em}
-h3{font-size:20px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ap-teal)}
+h2{font-size:clamp(28px,3.7vw,46px);font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+h3{font-size:19px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ap-teal)}
 h4{font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
 p{margin:0 0 16px;max-width:74ch}
-.lede{font-size:clamp(17px,2vw,21px);color:#e7e7f5;max-width:70ch}
+.lede{font-size:clamp(16px,1.8vw,20px);color:#e7e7f5;max-width:74ch}
 .muted{color:var(--muted)}
 strong{color:#fff;font-weight:700}
 ul{margin:0 0 16px;padding-left:20px}
 li{margin-bottom:7px}
 li::marker{color:var(--ap-teal-mid)}
+.ph{color:var(--rf-grey);font-style:italic}
 
-/* ---------- cover ---------- */
 .cover{justify-content:center}
-.lockup{display:flex;align-items:center;gap:30px;margin-bottom:46px;flex-wrap:wrap}
+.lockup{display:flex;align-items:center;gap:30px;margin-bottom:44px;flex-wrap:wrap}
 .lockup img.ap{height:78px;width:auto}
 .lockup img.rf{height:34px;width:auto}
 .lockup .x{font-family:var(--disp);font-size:30px;font-weight:600;color:var(--muted-2)}
-.hook{
-  font-family:var(--disp);font-weight:600;text-transform:none;
-  font-size:clamp(20px,2.6vw,30px);line-height:1.25;color:var(--rf-neon);
-  max-width:22ch;margin:22px 0 34px;
-}
-.position-line{
-  border-left:3px solid var(--ap-teal);padding:6px 0 6px 20px;margin:0 0 38px;
-  font-size:clamp(16px,1.9vw,20px);color:#e7e7f5;max-width:62ch;
-}
-.statrow{display:flex;gap:52px;flex-wrap:wrap;padding-top:30px;border-top:1px solid var(--line)}
-.stat .k{font-family:var(--disp);font-size:clamp(28px,3.4vw,42px);font-weight:800;line-height:1;color:#fff}
+.hook{font-family:var(--disp);font-weight:600;font-size:clamp(20px,2.5vw,29px);line-height:1.25;color:var(--rf-neon);max-width:26ch;margin:20px 0 30px}
+.position-line{border-left:3px solid var(--ap-teal);padding:6px 0 6px 20px;margin:0 0 34px;font-size:clamp(16px,1.8vw,19px);color:#e7e7f5;max-width:62ch}
+.statrow{display:flex;gap:44px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--line)}
+.stat .k{font-family:var(--disp);font-size:clamp(26px,3vw,38px);font-weight:800;line-height:1;color:#fff}
 .stat .k.teal{color:var(--ap-teal)}
 .stat .k.neon{color:var(--rf-neon)}
 .stat .l{font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--muted-2);margin-top:9px}
 
-/* ---------- cards ---------- */
 .grid{display:grid;gap:18px}
 .g2{grid-template-columns:repeat(2,1fr)}
 .g3{grid-template-columns:repeat(3,1fr)}
-.g4{grid-template-columns:repeat(4,1fr)}
-@media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
-.card{
-  background:linear-gradient(160deg,var(--panel) 0%,var(--panel-2) 100%);
-  border:1px solid var(--line);border-radius:3px;padding:24px 22px;
-}
+@media(max-width:900px){.g2,.g3{grid-template-columns:1fr}}
+.card{background:linear-gradient(160deg,var(--panel) 0%,var(--panel-2) 100%);border:1px solid var(--line);border-radius:3px;padding:22px 20px}
 .card.ap{border-top:2px solid var(--ap-teal)}
 .card.rf{border-top:2px solid var(--rf-neon);background:linear-gradient(160deg,#161c15 0%,#1e251c 100%)}
+.card .num{font-family:var(--disp);font-weight:800;font-size:30px;color:var(--rf-neon);line-height:1;margin-bottom:8px}
 .card p:last-child,.card ul:last-child{margin-bottom:0}
 
-/* ---------- split bar ---------- */
-.splitbar{display:flex;height:44px;border:1px solid var(--line);border-radius:2px;overflow:hidden;margin:8px 0 12px}
-.splitbar div{display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;letter-spacing:.08em;font-size:14px}
+.splitbar{display:flex;height:42px;border:1px solid var(--line);border-radius:2px;overflow:hidden;margin:8px 0 12px}
+.splitbar div{display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;letter-spacing:.08em;font-size:13.5px}
 .splitbar .ap{background:rgba(101,237,232,.17);color:var(--ap-teal);border-right:1px solid var(--line)}
 .splitbar .rf{background:rgba(235,251,29,.13);color:var(--rf-neon)}
+.splitbar .ex{background:rgba(197,182,175,.13);color:var(--rf-grey);border-left:1px solid var(--line)}
 
-/* ---------- team chart ---------- */
-.disc{margin-bottom:15px}
+.disc{margin-bottom:14px}
 .disc-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
 .disc-head .nm{font-family:var(--disp);font-weight:700;letter-spacing:.13em;text-transform:uppercase;font-size:13px}
 .disc-head .ct{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--muted-2)}
 .pips{display:flex;gap:5px;flex-wrap:wrap}
-.pip{width:26px;height:26px;border-radius:2px;display:block}
+.pip{width:25px;height:25px;border-radius:2px;display:block}
 .pip.ap{background:rgba(101,237,232,.24);border:1px solid var(--ap-teal)}
 .pip.rf{background:rgba(235,251,29,.18);border:1px solid var(--rf-neon)}
-.legend{display:flex;gap:22px;font-size:12.5px;letter-spacing:.06em;color:var(--muted);margin-top:16px;flex-wrap:wrap}
+.pip.ex{background:rgba(197,182,175,.16);border:1px solid var(--rf-grey)}
+.legend{display:flex;gap:20px;font-size:12.5px;letter-spacing:.05em;color:var(--muted);margin-top:16px;flex-wrap:wrap}
 .legend span{display:flex;align-items:center;gap:8px}
 .sw{width:13px;height:13px;border-radius:2px;display:inline-block}
 .sw.ap{background:rgba(101,237,232,.24);border:1px solid var(--ap-teal)}
 .sw.rf{background:rgba(235,251,29,.18);border:1px solid var(--rf-neon)}
+.sw.ex{background:rgba(197,182,175,.16);border:1px solid var(--rf-grey)}
 
-/* people */
 .person{border-left:2px solid var(--line-2);padding:2px 0 2px 16px}
 .person .nm{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:.02em}
-.person .ro{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;margin:3px 0 7px}
+.person .ro{font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin:3px 0 7px}
 .person.ap{border-left-color:var(--ap-teal)}.person.ap .ro{color:var(--ap-teal)}
 .person.rf{border-left-color:var(--rf-neon)}.person.rf .ro{color:var(--rf-neon)}
-.person p{font-size:14.5px;color:var(--muted);margin:0}
+.person p{font-size:14px;color:var(--muted);margin:0}
 
-/* ---------- tables ---------- */
+.evid{border-top:1px solid var(--line);padding:15px 0}
+.evid .et{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:16px;color:var(--ap-teal);margin-bottom:5px}
+.evid p{font-size:14.5px;color:var(--muted);margin:0;max-width:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.chip{border:1px solid var(--line-2);border-radius:2px;padding:5px 11px;font-size:12.5px;letter-spacing:.05em;color:var(--muted)}
+.chip.game{border-color:rgba(235,251,29,.4);color:var(--rf-neon)}
+
+.gatecard{border-left:2px solid var(--ap-teal);padding:0 0 0 18px;margin-bottom:20px}
+.gatecard .gh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:3px}
+.gatecard .gn{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:21px;letter-spacing:.03em}
+.gatecard .gm{font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--rf-neon)}
+.gatecard .gs{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2)}
+.gatecard ul{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.gatecard.sup{border-left-color:var(--rf-grey)}
+
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px}
-th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line)}
 th{font-family:var(--disp);font-weight:700;letter-spacing:.13em;text-transform:uppercase;font-size:11.5px;color:var(--muted-2)}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 tr.tot td{border-top:2px solid var(--ap-teal);border-bottom:0;font-weight:700;color:#fff;font-size:16px}
+tr.sig td{background:rgba(235,251,29,.05)}
 tbody tr:hover td{background:rgba(255,255,255,.02)}
 
-/* ---------- big number ---------- */
-.bignum{font-family:var(--disp);font-weight:800;font-size:clamp(46px,8vw,104px);line-height:.95;color:var(--ap-teal);letter-spacing:-.015em}
+.bignum{font-family:var(--disp);font-weight:800;font-size:clamp(44px,7.5vw,96px);line-height:.95;color:var(--ap-teal);letter-spacing:-.015em}
 .bignum .cur{font-size:.34em;color:var(--muted);letter-spacing:.06em;margin-left:12px;vertical-align:super}
 
-/* ---------- expandable detail ---------- */
-details.deep{margin-top:26px;border-top:1px solid var(--line);padding-top:0}
-details.deep>summary{
-  list-style:none;cursor:pointer;padding:15px 0 0;
-  font-family:var(--disp);font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  font-size:12px;color:var(--rf-neon);display:flex;align-items:center;gap:10px;
-}
+details.deep{margin-top:24px;border-top:1px solid var(--line)}
+details.deep>summary{list-style:none;cursor:pointer;padding:15px 0 0;font-family:var(--disp);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:12px;color:var(--rf-neon);display:flex;align-items:center;gap:10px}
 details.deep>summary::-webkit-details-marker{display:none}
 details.deep>summary::after{content:"+";font-size:17px;line-height:1;color:var(--rf-neon)}
 details.deep[open]>summary::after{content:"-"}
@@ -155,33 +135,25 @@ details.deep>summary:hover{color:#fff}
 details.deep .body{padding:20px 0 4px;animation:fade .25s ease}
 @keyframes fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 
-/* ---------- risk rows ---------- */
-.risk{display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:0;border-top:1px solid var(--line)}
-.risk>div{padding:15px 0}
-.risk .r{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.07em;font-size:14.5px;color:var(--rf-neon);padding-right:26px}
+.risk{display:grid;grid-template-columns:minmax(190px,1fr) 2fr;border-top:1px solid var(--line)}
+.risk>div{padding:14px 0}
+.risk .r{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:14.5px;color:var(--rf-neon);padding-right:26px}
 .risk .m{color:var(--muted);font-size:14.5px}
-@media(max-width:820px){.risk{grid-template-columns:1fr}.risk .m{padding-top:0}}
+@media(max-width:820px){.risk{grid-template-columns:1fr}}
 
-/* ---------- nav ---------- */
 .rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;gap:11px}
-.rail a{width:9px;height:9px;border-radius:50%;border:1px solid var(--line-2);background:transparent;transition:.18s}
+.rail a{width:9px;height:9px;border-radius:50%;border:1px solid var(--line-2);transition:.18s}
 .rail a:hover{border-color:var(--ap-teal);transform:scale(1.35)}
 .rail a.on{background:var(--ap-teal);border-color:var(--ap-teal)}
 @media(max-width:900px){.rail{display:none}}
 .foot{padding:30px 56px 46px;max-width:1280px;margin:0 auto;color:var(--muted-2);font-size:12.5px;letter-spacing:.05em;border-top:1px solid var(--line);position:relative;z-index:1}
-.draftflag{
-  position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:14px 56px;
-  background:rgba(235,251,29,.07);border-bottom:1px solid var(--line);
-  font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--rf-neon);
-  font-family:var(--disp);font-weight:700;
-}
+.draftflag{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:14px 56px;background:rgba(235,251,29,.07);border-bottom:1px solid var(--line);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--rf-neon);font-family:var(--disp);font-weight:700}
 @media(max-width:820px){.foot,.draftflag{padding-left:22px;padding-right:22px}}
 
 @media print{
-  body::before{display:none}
-  .rail{display:none}
+  body::before{display:none}.rail{display:none}
   .slide{min-height:auto;page-break-after:always;border:0;padding:26px 0}
-  details.deep{display:block}details.deep .body{display:block!important}
+  details.deep .body{display:block!important}
 }
 </style>
 </head>
@@ -193,12 +165,12 @@ details.deep .body{padding:20px 0 4px;animation:fade .25s ease}
   <a href="#s1" title="Front"></a><a href="#s2" title="The Mission"></a>
   <a href="#s3" title="Why Aurora Punks × Rift"></a><a href="#s4" title="The Team"></a>
   <a href="#s5" title="Delivery plan"></a><a href="#s6" title="Commercials"></a>
-  <a href="#s7" title="Ways of working"></a><a href="#s8" title="Ready to build"></a>
+  <a href="#s7" title="Ways of working"></a><a href="#s8" title="Ready to deliver"></a>
 </nav>
 
 <div class="deck">
 
-<!-- ============ 1 · FRONT ============ -->
+<!-- 1 FRONT -->
 <section class="slide cover" id="s1">
   <div class="lockup">
     <img class="ap" src="ap-logo.png" alt="Aurora Punks">
@@ -206,118 +178,123 @@ details.deep .body{padding:20px 0 4px;animation:fade .25s ease}
     <img class="rf" src="rift-logo.png" alt="Rift Gaming">
   </div>
   <h1>PAYDAY × PUBG<br>Co-dev proposal</h1>
-  <p class="hook">How we would staff and run it, as one integrated team.</p>
+  <p class="hook">An accessible, fast-paced PAYDAY built for PUBG players. That is the brief.</p>
   <p class="position-line">An experienced co-development team built to take the project from concept to shipped experience.</p>
   <div class="statrow">
-    <div class="stat"><div class="k teal">23</div><div class="l">Roles, peaking at 23</div></div>
+    <div class="stat"><div class="k teal">27</div><div class="l">Roles, peaking at 24</div></div>
     <div class="stat"><div class="k">Stockholm</div><div class="l">Both studios</div></div>
     <div class="stat"><div class="k">12 months</div><div class="l">To Gold, support after</div></div>
-    <div class="stat"><div class="k neon">28,3 MSEK</div><div class="l">Ex VAT, ex external QA</div></div>
+    <div class="stat"><div class="k neon">29,6 MSEK</div><div class="l">Ex VAT</div></div>
   </div>
 </section>
 
-<!-- ============ 2 · THE MISSION ============ -->
+<!-- 2 MISSION -->
 <section class="slide" id="s2">
   <div class="eyebrow"><span class="n">01</span>The Mission</div>
   <h2>What the job actually is</h2>
-  <p class="lede">Read from your 12 August feature list. Three problems sit inside it, and they are not the same problem.</p>
+  <p class="lede">The players will mostly be active PUBG players who do not know PAYDAY, so anything that needs prior PAYDAY knowledge to enjoy is a cost, not a feature. Irons 1 also showed that recreating levels in the PUBG engine takes a lot of manual scripting and implementation, and we have staffed for that.</p>
 
-  <div class="grid g3" style="margin-top:26px">
-    <div class="card">
-      <h3>Creative</h3>
-      <p class="muted">Two IPs whose players want different things. Our own audience work puts the crossover affinity in PAYDAY&nbsp;2, not PAYDAY&nbsp;3: PD2 runs roughly 30k concurrents against PD3's ~900, at a 4x affinity index against 1,25x. The PUBG base is exactly neutral on stealth and strong on loud co-op PvE and SWAT-style tactical play.</p>
-      <p class="muted" style="margin-top:12px">We read that as a sequencing and positioning argument, not a case for cutting stealth.</p>
-    </div>
-    <div class="card">
-      <h3>Technical</h3>
-      <p class="muted">Engine and 3C work inside PUBG, in Unreal, under multiplayer and live-service constraints. A cert candidate has to be in Krafton's hands at month 10, which sets every date behind it.</p>
-    </div>
-    <div class="card">
-      <h3>Delivery</h3>
-      <p class="muted">23 roles from a standing start to peak inside four months, two IP holders in the approval chain, and 12 months to Gold.</p>
-    </div>
+  <h4 style="margin-top:28px">Three leading thoughts</h4>
+  <div class="grid g3">
+    <div class="card"><div class="num">01</div><h3>Accessible PAYDAY for the PUBG audience</h3><p class="muted">Simplify heist structures, objectives and stealth mechanics while keeping the core PAYDAY identity. Intuitive systems, clear progression, and gameplay that works for players who have never played PAYDAY.</p></div>
+    <div class="card"><div class="num">02</div><h3>Fast-paced, varied and re-playable heists</h3><p class="muted">Shorter, action-packed experiences with strong visual and gameplay variation across environments, weapons, combat, stealth, enemies and objectives. Re-playability through progression, loadouts, weapon tuning and meaningful power growth.</p></div>
+    <div class="card"><div class="num">03</div><h3>Evolve the whole experience, not just the new heists</h3><p class="muted">New stealth mechanics, progression, weapon balancing, difficulty and the Shield enemy work across both the new and the existing heists. One consistent experience rather than separate pieces of content.</p></div>
   </div>
 
+  <p class="muted" style="margin-top:22px">The delivery challenge: 27 roles from a standing start to peak inside four months, two IP holders in the approval chain, and 12 months to Gold.</p>
+
   <details class="deep">
-    <summary>The scope as we have read it</summary>
+    <summary>Level design</summary>
     <div class="body">
       <div class="grid g2">
-        <ul>
-          <li>Four new heists adapted from PAYDAY 3: Turbid Station, 99 Boxes or Touch The Sky, Syntax Error, Under The Surphaze</li>
-          <li>The four Heist Royale stages upgraded</li>
-          <li>Progression rework: EXP to currency, free skill and weapon selection</li>
-          <li>Five new weapons</li>
-        </ul>
-        <ul>
-          <li>Stealth ingredient expansion</li>
-          <li>Shield enemy, one more difficulty</li>
-          <li>Restart and partial escape</li>
-          <li>UI/UX overhaul</li>
-          <li>PUBG engine and 3C changes</li>
-        </ul>
+        <div>
+          <h4>Variation</h4>
+          <p class="muted">The heists were chosen because they offer visual variation, multiple vistas and environments. We keep that when we port them. Where we cut gameplay or size, we keep at least part of each distinct environment intact.</p>
+          <h4>Simplify</h4>
+          <p class="muted">More linear structure and heist objectives. Remove complex optional objectives where needed and adjust levels accordingly, including degrading loot and loot bag scanning. Reduce map size where needed. Add new stealth mechanics but keep them simple, and keep the levels enjoyable for players who do not want to play stealth.</p>
+          <h4>Fast pace</h4>
+          <p class="muted">We have been asked to investigate 3Cs. Significant changes to movement and camera systems are hard, so we would also support a faster pace by other means. Keep the heists short and action packed, cut or simplify the slower segments, keep the gameplay loop tight so the tempo between heists and progression rewards holds and long loss states are avoided, and tune new and existing weapons closer to the PAYDAY experience, with solid power spikes on unlock.</p>
+          <h4>Stealth mechanics</h4>
+          <p class="muted">Krafton has asked for additional stealth. The direction we would take is simple stand-alone features rather than complex general systems: lockpicking and safe cracking in the PD3 style, hacking to temporarily disable individual cameras, motion and floor sensors used sparingly, QR codes simplified so no randomly spawned phones are needed, security lasers with fuse boxes or wall terminals, silencer mods (default on side arms, unlocked on primaries), and stealth skills and tools such as throwing knives and stealth variables on armour and skills.</p>
+        </div>
+        <div>
+          <h4>Enemy design</h4>
+          <p class="muted">One new enemy type, the Shield enemy. The work is less the enemy itself and more implementing it well across both new and existing levels, and updating existing enemy behaviour to use the shield as mobile cover in combat.</p>
+          <h4>The existing four levels</h4>
+          <p class="muted">Revisited and updated with the new enemy and AI behaviour, the new stealth mechanics, the new difficulty, rebalancing against the new progression and weapon tuning, and tutorial and HUD elements as needed.</p>
+          <h4>The new heists</h4>
+          <p class="muted" style="font-size:13.5px">Three new heists, alongside the four existing Heist Royale stages upgraded.</p>
+          <p class="muted"><strong>99 Boxes (or Touch the Sky).</strong> A large map blending outdoor and indoor environments around shipping containers and warehouse storage, patrolling guards and cameras with civilians spread out. We keep the smooth indoor/outdoor transition, rebalance for PUBG players, focus on avoiding cameras and guards, and remove civilians.</p>
+          <p class="muted"><strong>Syntax Error.</strong> Large, with multiple visual styles and vistas: busy streets, parks, server rooms, futuristic interiors. We maintain that variation while shortening the heist and reducing the overall size.</p>
+          <p class="muted"><strong>Under the Surphaze.</strong> Compact, stacked on itself across multiple floors with several entry options, heavy on stealth and on gathering information to locate objectives while bypassing motion detectors and lasers. We keep the stealth but make the flow more linear and clearer, simplify the security puzzles, group the information so there is less back and forth, and replace civilians with cameras, patrolling guards and level mechanics. Mechanics: QR code scans, motion scanners, laser traps.</p>
+          <p class="ph">[PLACEHOLDER - Turbid Station. Rift flag it as a stretch goal and are not sure it belongs in the pitch. Robert to decide: in as a stretch goal, or out.]</p>
+        </div>
       </div>
     </div>
   </details>
 </section>
 
-<!-- ============ 3 · WHY AP × RIFT ============ -->
+<!-- 3 WHY AP x RIFT -->
 <section class="slide" id="s3">
   <div class="eyebrow"><span class="n">02</span>Why Aurora Punks × Rift</div>
   <h2>Two studios, one delivery team</h2>
-  <p class="lede">Rift brings the technical depth. Aurora Punks brings design leadership and cost discipline. You talk to one team, with one producer accountable.</p>
 
-  <div class="grid g2" style="margin-top:26px">
-    <div class="card ap">
-      <h4 style="color:var(--ap-teal)">Aurora Punks</h4>
-      <ul>
-        <li>Game direction and design leadership carried by our own leads</li>
-        <li>Publishing and development across Chenso Club, Block'Em!, Go Fight Fantastic, Distant Bloom, Sir Whoopass, Tears of Adria and 1993 Space Machine</li>
-        <li>An indie and AA background, which is where the cost discipline comes from</li>
-      </ul>
-    </div>
-    <div class="card rf">
-      <h4 style="color:var(--rf-neon)">Rift Gaming</h4>
-      <ul>
-        <li>A Stockholm consultancy working only in games</li>
-        <li>Dmitry Garkavenko was on Irons 1 and is the bridge on the technical side</li>
-        <li>Unreal multiplayer framework and live service</li>
-        <li><em style="color:var(--rf-grey)">[PLACEHOLDER - Rift shipped titles and co-dev credits, from Gustav]</em></li>
-      </ul>
-    </div>
+  <div class="grid g3" style="margin-top:6px">
+    <div class="card ap"><h3>Senior leadership</h3><p class="muted">The people named here are the people who do the work.</p></div>
+    <div class="card ap"><h3>AAA to indie experience</h3><p class="muted">Rift carries the AAA technical depth, Aurora Punks the indie and AA cost discipline.</p></div>
+    <div class="card ap"><h3>On-site presence</h3><p class="muted">Both studios are in Stockholm.</p></div>
+    <div class="card rf"><h3 style="color:var(--rf-neon)">Test driven game development</h3><p class="muted">A QA lead and three testers sit inside the team and the price.</p><p class="ph" style="font-size:13px;margin-top:8px">[PLACEHOLDER - supporting line to confirm. If this means playtest cadence or automated testing, the line needs to come from Rift.]</p></div>
+    <div class="card rf"><h3 style="color:var(--rf-neon)">Trusted by studios</h3><p class="ph">[PLACEHOLDER - no supporting fact without naming clients beyond the evidence below. Point it at those, supply a fact, or cut the bullet.]</p></div>
+    <div class="card"><h3>One team</h3><p class="muted">The work splits almost exactly down the middle between the two studios. Not a prime and a subcontractor.</p></div>
   </div>
 
-  <h4 style="margin-top:34px">One delivery team</h4>
-  <div class="splitbar">
-    <div class="ap" style="flex:5004">Aurora Punks · 50%</div>
-    <div class="rf" style="flex:4996">Rift · 50%</div>
+  <div class="splitbar" style="margin-top:26px">
+    <div class="ap" style="flex:478">Aurora Punks · 48%</div>
+    <div class="rf" style="flex:477">Rift · 48%</div>
+    <div class="ex" style="flex:45">4%</div>
   </div>
-  <p class="muted" style="font-size:14.5px">The work splits almost exactly down the middle: not a prime and a subcontractor. One producer, one backlog, one set of milestones. You talk to one team.</p>
+  <p class="muted" style="font-size:14px">One producer, one backlog, one set of milestones. You talk to one team. The remaining 4% is external QA and art support.</p>
 
-  <details class="deep">
-    <summary>Evidence we would put in front of you</summary>
+  <details class="deep" open>
+    <summary>The evidence</summary>
     <div class="body">
-      <p class="muted"><em style="color:var(--rf-grey)">[PLACEHOLDER - logo wall of shipped titles, PAYDAY/Starbreeze credits, Krafton touchpoints, Unreal and live-service work. Visual rather than a list. Rift side to be supplied by Gustav; AP side pullable from the existing team page.]</em></p>
+      <div class="evid"><div class="et">Previous PUBG × PAYDAY experience · Dmitry Garkavenko</div><p>Dmitry helped bring a PAYDAY-style heist and stealth experience into PUBG's live-service codebase, with contributions across Heist and Stealth Experience Integration, Interaction System Hardening, AI and Contextual VO, Combat Readability and Feel, Unreal Animation, and PS5 Rendering, keeping features stable and network-safe.</p></div>
+      <div class="evid"><div class="et">Krafton relationship and previous collaboration · Jimmy Chuong</div><p>The first developer in place to lead and build the core gameplay, systems and UI foundation for a story-driven Unreal Engine / C++ action game, delivering modular systems across Inventory, Navigation, Missions, Maps, Combat, Multiplayer, Animation and development tools. Regular communication and recurring meetings with Krafton throughout.</p></div>
+      <div class="evid"><div class="et">Mojang Dungeons 2 team delivery and release · Per Kjellström and Jesper Staafjord</div><p>The team supported Mojang across Production, Product Advisory, Design Management, Game Engineering and Level Design, working across multiple teams. The delivery covered roadmaps and priorities, team leadership, production and design, gameplay development, performance and stability, and supporting teams through key production and release milestones.</p></div>
+      <div class="evid"><div class="et">Ready or Not · porting from Unreal 4 to 5 for a live game</div><p>Full responsibility for releasing games from idea to launch, based on existing IP.</p></div>
+      <div class="evid">
+        <div class="et">Where our people come from</div>
+        <div class="chips">
+          <span class="chip">Ubisoft</span><span class="chip">Embark</span><span class="chip">Mojang</span><span class="chip">DICE</span><span class="chip">Neon Giant</span><span class="chip">Avalanche</span><span class="chip">Starbreeze</span><span class="chip">King</span><span class="chip">Toca Boca</span><span class="chip">10 Chambers</span><span class="chip">MAG Interactive</span><span class="chip">Arrowhead</span>
+        </div>
+        <p class="ph" style="margin-top:10px;font-size:13px">[PLACEHOLDER - studio logos instead of a text list]</p>
+      </div>
+      <div class="evid">
+        <div class="et">Games released</div>
+        <div class="chips">
+          <span class="chip game">The Ascent 2 (demo)</span><span class="chip game">Arc Raiders</span><span class="chip game">Dungeons 2</span><span class="chip game">Ready or Not</span><span class="chip game">Kingdom Two Crowns</span><span class="chip game">PUBG × PAYDAY 1</span><span class="chip game">The Finals</span><span class="chip game">Crozzle</span>
+        </div>
+      </div>
     </div>
   </details>
 </section>
 
-<!-- ============ 4 · THE TEAM ============ -->
+<!-- 4 TEAM -->
 <section class="slide" id="s4">
   <div class="eyebrow"><span class="n">03</span>The Team</div>
   <h2>Who runs it</h2>
 
-  <div class="grid g3" style="margin-top:24px">
-    <div class="person ap"><div class="nm">Robert Bäckström</div><div class="ro">Executive Producer · AP</div><p>Client ownership, product ownership, stakeholder alignment.</p></div>
-    <div class="person ap"><div class="nm">Tim Browne</div><div class="ro">Game Director &amp; Design Lead · AP</div><p>Holds the game vision and carries it to the team.</p></div>
-    <div class="person rf"><div class="nm">Dmitry Garkavenko</div><div class="ro">Code Lead · Rift</div><p>Was on Irons 1. Unreal multiplayer framework, live service.</p></div>
-    <div class="person rf"><div class="nm">Jesper Staafjord</div><div class="ro">Producer &amp; Lead Level Designer · Rift</div><p>Team performance, timeline, scope and risk.</p></div>
-    <div class="person ap"><div class="nm">Tobias Luckey</div><div class="ro">Systems &amp; Engine Programmer · AP</div><p>Engine and systems work on the PUBG side.</p></div>
-    <div class="person ap"><div class="nm">Hektor Andreasson</div><div class="ro">QA Lead · AP</div><p>Platform compliance, test cadence, external QA management.</p></div>
+  <div class="grid g3" style="margin-top:20px">
+    <div class="person rf"><div class="nm">Dmitry Garkavenko</div><div class="ro">Tech · Rift</div><p>Mojang, Starbreeze (PAYDAY × PUBG), Fast Travel Games, Embark, Arrowhead, Battlestate Games</p></div>
+    <div class="person rf"><div class="nm">Jimmy Chuong</div><div class="ro">Tech · Rift</div><p>Neon Giant, Embark, Liquid Swords, Creative Assembly</p></div>
+    <div class="person ap"><div class="nm">Robert Bäckström</div><div class="ro">Production · Aurora Punks</div><p>Aurora Punks, Bright Gambit, Raw Fury, Fatshark</p></div>
+    <div class="person rf"><div class="nm">Per Kjellström</div><div class="ro">Production · Rift</div><p>Mojang, Liquid Swords, Noid, DICE</p></div>
+    <div class="person ap"><div class="nm">Tim Browne</div><div class="ro">Design · Aurora Punks</div><p>Avalanche, King, Ubisoft, Codemasters</p></div>
+    <div class="person rf"><div class="nm">Jesper Staafjord</div><div class="ro">Design · Rift</div><p>Mojang, The Gang, Star Stable, Ringtail Interactive, Solve, King</p></div>
   </div>
-  <p class="muted" style="font-size:13.5px;margin-top:16px"><em style="color:var(--rf-grey)">[PLACEHOLDER - one line of relevant credits per person, to confirm before this goes out]</em></p>
 
-  <details class="deep">
-    <summary>The full 23 roles</summary>
+  <details class="deep" open>
+    <summary>The full 27 roles</summary>
     <div class="body">
       <div class="grid g2">
         <div>
@@ -327,11 +304,11 @@ details.deep .body{padding:20px 0 4px;animation:fade .25s ease}
             <div class="pips"><i class="pip rf"></i><i class="pip ap"></i><i class="pip ap"></i><i class="pip rf"></i><i class="pip rf"></i><i class="pip rf"></i><i class="pip rf"></i><i class="pip ap"></i></div></div>
           <div class="disc"><div class="disc-head"><span class="nm">Design</span><span class="ct">6</span></div>
             <div class="pips"><i class="pip rf"></i><i class="pip ap"></i><i class="pip ap"></i><i class="pip rf"></i><i class="pip rf"></i><i class="pip rf"></i></div></div>
-          <div class="disc"><div class="disc-head"><span class="nm">Art &amp; audio</span><span class="ct">5</span></div>
-            <div class="pips"><i class="pip ap"></i><i class="pip ap"></i><i class="pip rf"></i><i class="pip ap"></i><i class="pip ap"></i></div></div>
-          <div class="disc"><div class="disc-head"><span class="nm">QA</span><span class="ct">1</span></div>
-            <div class="pips"><i class="pip ap"></i></div></div>
-          <div class="legend"><span><i class="sw ap"></i>Aurora Punks · 12 roles</span><span><i class="sw rf"></i>Rift · 11 roles</span></div>
+          <div class="disc"><div class="disc-head"><span class="nm">Art &amp; audio</span><span class="ct">6</span></div>
+            <div class="pips"><i class="pip ap"></i><i class="pip ap"></i><i class="pip rf"></i><i class="pip ex"></i><i class="pip ap"></i><i class="pip ap"></i></div></div>
+          <div class="disc"><div class="disc-head"><span class="nm">QA</span><span class="ct">4</span></div>
+            <div class="pips"><i class="pip ap"></i><i class="pip ex"></i><i class="pip ex"></i><i class="pip ex"></i></div></div>
+          <div class="legend"><span><i class="sw ap"></i>Aurora Punks · 12</span><span><i class="sw rf"></i>Rift · 11</span><span><i class="sw ex"></i>External · 4</span></div>
         </div>
         <div class="tw">
           <table>
@@ -340,8 +317,8 @@ details.deep .body{padding:20px 0 4px;animation:fade .25s ease}
               <tr><td class="muted">Production &amp; direction</td><td>Executive Producer, Producer, Game Director &amp; Design Lead</td></tr>
               <tr><td class="muted">Engineering</td><td>Code Lead, Systems/Engine, Gameplay ×2, Audio, Enemy AI/Animation, UI, DevOps</td></tr>
               <tr><td class="muted">Design</td><td>Lead Level Designer, Level Designer ×2, Systems Designer, Tech Designer, UI/UX Designer</td></tr>
-              <tr><td class="muted">Art &amp; audio</td><td>Technical Art Lead, Environment Artist, Generalist / Hard Surface / VFX / Lighting, Animator, SFX</td></tr>
-              <tr><td class="muted">QA</td><td>QA Lead (external testers quoted separately)</td></tr>
+              <tr><td class="muted">Art &amp; audio</td><td>Technical Art Lead, Environment Artist, Generalist / Hard Surface / VFX / Lighting, Art Support, Animator, SFX</td></tr>
+              <tr><td class="muted">QA</td><td>QA Lead, QA ×3</td></tr>
             </tbody>
           </table>
         </div>
@@ -350,111 +327,122 @@ details.deep .body{padding:20px 0 4px;animation:fade .25s ease}
   </details>
 </section>
 
-<!-- ============ 5 · DELIVERY PLAN ============ -->
+<!-- 5 DELIVERY PLAN -->
 <section class="slide" id="s5">
   <div class="eyebrow"><span class="n">04</span>Project &amp; delivery plan</div>
   <h2>Twelve months, eight gates</h2>
-  <p class="lede">The start month is open. Krafton indicated a later start works as long as the 12-month development window and the support period after it hold, so month 1 is whenever we sign.</p>
+  <p class="lede">The start month is open. Krafton indicated a later start is workable as long as the 12-month development window and the support period after it hold, so month 1 is whenever we sign.</p>
 
-  <div style="margin:30px 0 8px" class="tw">
-    <svg viewBox="0 0 1200 260" width="100%" height="230" role="img" aria-label="Staffing curve by month, peaking at 22,8 FTE in months 4 to 8">
-      <defs>
-        <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#65ede8" stop-opacity=".34"/>
-          <stop offset="100%" stop-color="#65ede8" stop-opacity="0"/>
-        </linearGradient>
-      </defs>
+  <div style="margin:26px 0 6px" class="tw">
+    <svg viewBox="0 0 1200 258" width="100%" height="224" role="img" aria-label="Staffing curve by month, peaking at 24,3 FTE in months 4 to 6">
+      <defs><linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#65ede8" stop-opacity=".34"/><stop offset="100%" stop-color="#65ede8" stop-opacity="0"/>
+      </linearGradient></defs>
       <g stroke="#26264a" stroke-width="1">
         <line x1="40" y1="220" x2="1160" y2="220"/>
-        <line x1="40" y1="145" x2="1160" y2="145" stroke-dasharray="3 6"/>
-        <line x1="40" y1="70" x2="1160" y2="70" stroke-dasharray="3 6"/>
+        <line x1="40" y1="150.8" x2="1160" y2="150.8" stroke-dasharray="3 6"/>
+        <line x1="40" y1="81.5" x2="1160" y2="81.5" stroke-dasharray="3 6"/>
       </g>
-      <text x="34" y="224" fill="#8a8aa8" font-size="11" text-anchor="end" font-family="Chakra Petch">0</text>
-      <text x="34" y="149" fill="#8a8aa8" font-size="11" text-anchor="end" font-family="Chakra Petch">10</text>
-      <text x="34" y="74" fill="#8a8aa8" font-size="11" text-anchor="end" font-family="Chakra Petch">20</text>
-      <path d="M40,220 L40,139 L141.8,64 L243.6,56.5 L345.5,49 L447.3,49 L549.1,49 L650.9,49 L752.7,49 L854.5,64 L956.4,71.5 L1058.2,101.5 L1160,116.5 L1160,220 Z" fill="url(#areaFill)"/>
-      <polyline points="40,139 141.8,64 243.6,56.5 345.5,49 447.3,49 549.1,49 650.9,49 752.7,49 854.5,64 956.4,71.5 1058.2,101.5 1160,116.5" fill="none" stroke="#65ede8" stroke-width="2.5" stroke-linejoin="round"/>
+      <g fill="#8a8aa8" font-size="11" text-anchor="end" font-family="Chakra Petch">
+        <text x="34" y="224">0</text><text x="34" y="155">10</text><text x="34" y="86">20</text>
+      </g>
+      <path d="M40,220 L40,138.3 L141.8,69.1 L243.6,55.2 L345.5,51.8 L447.3,51.8 L549.1,51.8 L650.9,55.2 L752.7,55.2 L854.5,62.2 L956.4,69.1 L1058.2,96.8 L1160,110.6 L1160,220 Z" fill="url(#areaFill)"/>
+      <polyline points="40,138.3 141.8,69.1 243.6,55.2 345.5,51.8 447.3,51.8 549.1,51.8 650.9,55.2 752.7,55.2 854.5,62.2 956.4,69.1 1058.2,96.8 1160,110.6" fill="none" stroke="#65ede8" stroke-width="2.5" stroke-linejoin="round"/>
       <g fill="#0c0c1c" stroke="#65ede8" stroke-width="2">
-        <circle cx="40" cy="139" r="4"/><circle cx="141.8" cy="64" r="4"/><circle cx="243.6" cy="56.5" r="4"/><circle cx="345.5" cy="49" r="4"/><circle cx="447.3" cy="49" r="4"/><circle cx="549.1" cy="49" r="4"/><circle cx="650.9" cy="49" r="4"/><circle cx="752.7" cy="49" r="4"/><circle cx="854.5" cy="64" r="4"/><circle cx="956.4" cy="71.5" r="4"/><circle cx="1058.2" cy="101.5" r="4"/><circle cx="1160" cy="116.5" r="4"/>
+        <circle cx="40" cy="138.3" r="4"/><circle cx="141.8" cy="69.1" r="4"/><circle cx="243.6" cy="55.2" r="4"/><circle cx="345.5" cy="51.8" r="4"/><circle cx="447.3" cy="51.8" r="4"/><circle cx="549.1" cy="51.8" r="4"/><circle cx="650.9" cy="55.2" r="4"/><circle cx="752.7" cy="55.2" r="4"/><circle cx="854.5" cy="62.2" r="4"/><circle cx="956.4" cy="69.1" r="4"/><circle cx="1058.2" cy="96.8" r="4"/><circle cx="1160" cy="110.6" r="4"/>
       </g>
       <g font-family="Chakra Petch" font-size="11.5" fill="#c5b6af" text-anchor="middle">
         <text x="40" y="240">M1</text><text x="141.8" y="240">M2</text><text x="243.6" y="240">M3</text><text x="345.5" y="240">M4</text><text x="447.3" y="240">M5</text><text x="549.1" y="240">M6</text><text x="650.9" y="240">M7</text><text x="752.7" y="240">M8</text><text x="854.5" y="240">M9</text><text x="956.4" y="240">M10</text><text x="1058.2" y="240">M11</text><text x="1160" y="240">M12</text>
       </g>
-      <g font-family="Barlow Condensed" font-size="12.5" font-weight="700" fill="#ebfb1d" text-anchor="middle" letter-spacing="1">
-        <text x="243.6" y="34">FIRST PLAYABLE</text><text x="447.3" y="20">PRE-ALPHA</text>
-        <text x="650.9" y="34">ALPHA 1</text><text x="854.5" y="44">ALPHA 2</text>
-        <text x="956.4" y="52">CERT</text><text x="1058.2" y="82">BETA</text><text x="1160" y="97">GOLD</text>
+      <g stroke="#ebfb1d" stroke-width="1" stroke-dasharray="2 4" opacity=".5">
+        <line x1="141.8" y1="46" x2="141.8" y2="69.1"/><line x1="243.6" y1="32" x2="243.6" y2="55.2"/>
+        <line x1="447.3" y1="18" x2="447.3" y2="51.8"/><line x1="650.9" y1="32" x2="650.9" y2="55.2"/>
+        <line x1="854.5" y1="40" x2="854.5" y2="62.2"/><line x1="956.4" y1="26" x2="956.4" y2="69.1"/>
+        <line x1="1058.2" y1="76" x2="1058.2" y2="96.8"/><line x1="1160" y1="90" x2="1160" y2="110.6"/>
       </g>
-      <g stroke="#ebfb1d" stroke-width="1" stroke-dasharray="2 4" opacity=".55">
-        <line x1="243.6" y1="40" x2="243.6" y2="56.5"/><line x1="447.3" y1="26" x2="447.3" y2="49"/>
-        <line x1="650.9" y1="40" x2="650.9" y2="49"/><line x1="854.5" y1="50" x2="854.5" y2="64"/>
-        <line x1="956.4" y1="58" x2="956.4" y2="71.5"/><line x1="1058.2" y1="88" x2="1058.2" y2="101.5"/>
+      <g font-family="Barlow Condensed" font-size="12.5" font-weight="700" fill="#ebfb1d" text-anchor="middle" letter-spacing="1">
+        <text x="141.8" y="41">PROTOTYPE</text><text x="243.6" y="27">FIRST PLAYABLE</text>
+        <text x="447.3" y="13">PRE-ALPHA</text><text x="650.9" y="27">ALPHA 1</text>
+        <text x="854.5" y="35">ALPHA 2</text><text x="956.4" y="21">CERT CANDIDATE</text>
+        <text x="1058.2" y="71">BETA</text><text x="1160" y="85">GOLD</text>
       </g>
     </svg>
   </div>
 
   <details class="deep" open>
     <summary>Gate by gate</summary>
-    <div class="body tw">
-      <table>
-        <thead><tr><th>Gate</th><th class="num">Month</th><th class="num">Team</th><th>Deliverable</th></tr></thead>
-        <tbody>
-          <tr><td>Ramp</td><td class="num">1-2</td><td class="num">11 → 21</td><td class="muted">Access, technical mapping, design documentation, infrastructure</td></tr>
-          <tr><td><strong>First Playable</strong></td><td class="num">3</td><td class="num">22</td><td class="muted">Three greybox levels start to end, player progression 1st iteration, infrastructure, design documentation</td></tr>
-          <tr><td><strong>Pre-Alpha</strong></td><td class="num">5</td><td class="num">23</td><td class="muted">Restart and return system, level puzzles, shield enemy, new weapons and tutorial, all 1st iteration</td></tr>
-          <tr><td><strong>Alpha 1</strong></td><td class="num">7</td><td class="num">23</td><td class="muted">Polishing and balancing</td></tr>
-          <tr><td><strong>Alpha 2</strong></td><td class="num">9</td><td class="num">21</td><td class="muted">Polishing and balancing</td></tr>
-          <tr><td><strong>Cert Candidate</strong></td><td class="num">10</td><td class="num">20</td><td class="muted">Cert candidate to Krafton</td></tr>
-          <tr><td><strong>Beta</strong></td><td class="num">11</td><td class="num">16</td><td class="muted">Ready for cert</td></tr>
-          <tr><td><strong>Gold</strong></td><td class="num">12</td><td class="num">14</td><td class="muted">Gold</td></tr>
-          <tr><td>Support</td><td class="num">13+</td><td class="num">TBD</td><td class="muted">Scoped separately once the shape of it is known</td></tr>
-        </tbody>
-      </table>
-      <p class="muted" style="font-size:13.5px;margin-top:14px">FTE by month: 10,8 · 20,8 · 21,8 · 22,8 · 22,8 · 22,8 · 22,8 · 22,8 · 20,8 · 19,8 · 15,8 · 13,8 &nbsp;=&nbsp; 237,6 FTE-months.</p>
+    <div class="body">
+      <div class="grid g2">
+        <div>
+          <div class="gatecard"><div class="gh"><span class="gn">Prototype</span><span class="gm">Month 2</span><span class="gs">22 people</span></div>
+            <ul><li>Player progression rework defined and prototyped</li><li>All design documentation done</li><li>Infrastructure in place and proven</li></ul></div>
+          <div class="gatecard"><div class="gh"><span class="gn">First Playable</span><span class="gm">Month 3</span><span class="gs">24 people</span></div>
+            <ul><li>Three new grey box levels playable end to end</li></ul></div>
+          <div class="gatecard"><div class="gh"><span class="gn">Pre-Alpha</span><span class="gm">Month 5</span><span class="gs">24 people</span></div>
+            <ul><li>Restart / Return system implemented</li><li>New stealth mechanics defined and prototyped</li><li>UI/UX wireframes approved and first iteration of the new HUD in build</li><li>Shield enemy functional</li></ul></div>
+          <div class="gatecard"><div class="gh"><span class="gn">Alpha 1</span><span class="gm">Month 7</span><span class="gs">Feature complete · 24 people</span></div>
+            <ul><li>Player progression and loadout systems functional</li><li>Restart / Return system functional</li><li>Onboarding and tutorials functional</li><li>All three new levels functional and visually representative</li><li>New difficulty level implemented</li><li>Five new weapons functional</li><li>Polish and balancing across the game</li></ul></div>
+        </div>
+        <div>
+          <div class="gatecard"><div class="gh"><span class="gn">Alpha 2</span><span class="gm">Month 9</span><span class="gs">23 people</span></div>
+            <ul><li>HR1 levels updated and adjusted to the new mechanics and improvements</li><li>Loadout customisation functional</li><li>New stealth mechanics functional</li><li>All AI enemies polished and improved</li><li>Polish and balancing across the game</li></ul></div>
+          <div class="gatecard"><div class="gh"><span class="gn">Cert Candidate</span><span class="gm">Month 10</span><span class="gs">Pre-cert candidate ready for Krafton · 22 people</span></div>
+            <ul><li>Gameplay, mechanics and game loops polished, balanced and optimised</li><li>All levels, HUD, art and customisation in a shippable state</li><li>Onboarding and tutorials shippable</li><li>All weapons and gunplay balanced and improved</li><li>New difficulty level balanced and proven</li><li>Required marketing key art approved</li></ul></div>
+          <div class="gatecard"><div class="gh"><span class="gn">Beta</span><span class="gm">Month 11</span><span class="gs">Content complete · 18 people</span></div>
+            <ul><li>Final polish and balancing across the game</li><li>Builds for all platforms ready for CERT</li></ul></div>
+          <div class="gatecard"><div class="gh"><span class="gn">Gold</span><span class="gm">Month 12</span><span class="gs">16 people</span></div>
+            <ul><li>Certification and release candidate stabilisation</li></ul></div>
+          <div class="gatecard sup"><div class="gh"><span class="gn">Support</span><span class="gm">After Gold</span><span class="gs">Scoped separately</span></div></div>
+        </div>
+      </div>
+      <p class="muted" style="font-size:13.5px;margin-top:10px">FTE by month: 11,8 · 21,8 · 23,8 · 24,3 · 24,3 · 24,3 · 23,8 · 23,8 · 22,8 · 21,8 · 17,8 · 15,8 &nbsp;=&nbsp; 256,1 FTE-months.</p>
     </div>
   </details>
 </section>
 
-<!-- ============ 6 · COMMERCIALS ============ -->
+<!-- 6 COMMERCIALS -->
 <section class="slide" id="s6">
   <div class="eyebrow"><span class="n">05</span>Commercials</div>
   <h2>The number, and where it comes from</h2>
 
-  <div class="bignum">28 325 700<span class="cur">SEK ex VAT</span></div>
-  <p class="lede" style="margin-top:18px">23 roles. 237,6 FTE-months. 12 months to Gold.</p>
-  <p class="muted">This is priced from what the team actually costs, not from a fixed rate card. It works out at <strong>119 216 SEK per FTE-month</strong> blended across every role, lead or content. For comparison, the flat 140 000 per developer per month we discussed earlier would put the same team at 33 264 000.</p>
+  <div class="bignum">29 649 100<span class="cur">SEK ex VAT</span></div>
+  <p class="lede" style="margin-top:16px">27 roles. 256,1 FTE-months. 12 months to Gold.</p>
+  <p class="muted">This is priced from what the team actually costs, not from a fixed rate card. It works out at <strong>115 772 SEK per FTE-month</strong> blended across every role, lead or content. For comparison, the flat 140 000 per developer per month we discussed earlier would put the same team at 35 854 000.</p>
 
-  <div class="grid g2" style="margin-top:24px">
+  <div class="grid g2" style="margin-top:20px">
     <div class="tw">
       <table>
-        <thead><tr><th>Milestone</th><th class="num">Months</th><th class="num">SEK</th></tr></thead>
+        <thead><tr><th>Payment</th><th class="num">Month</th><th class="num">SEK</th></tr></thead>
         <tbody>
-          <tr><td>Ramp</td><td class="num">1-2</td><td class="num">3 926 000</td></tr>
-          <tr><td>First Playable</td><td class="num">3-4</td><td class="num">5 213 000</td></tr>
-          <tr><td>Pre-Alpha</td><td class="num">5-6</td><td class="num">5 327 400</td></tr>
-          <tr><td>Alpha 1</td><td class="num">7-8</td><td class="num">5 327 400</td></tr>
-          <tr><td>Alpha 2</td><td class="num">9</td><td class="num">2 444 000</td></tr>
-          <tr><td>Cert Candidate</td><td class="num">10</td><td class="num">2 327 000</td></tr>
-          <tr><td>Beta</td><td class="num">11</td><td class="num">1 963 000</td></tr>
-          <tr><td>Gold</td><td class="num">12</td><td class="num">1 797 900</td></tr>
-          <tr class="tot"><td>Total</td><td class="num">12</td><td class="num">28 325 700</td></tr>
+          <tr class="sig"><td>On signature <span class="ph">[10% - confirm]</span></td><td class="num">0</td><td class="num">2 964 910</td></tr>
+          <tr><td>Prototype</td><td class="num">1-2</td><td class="num">4 050 800</td></tr>
+          <tr><td>First Playable</td><td class="num">3-4</td><td class="num">5 532 800</td></tr>
+          <tr><td>Pre-Alpha</td><td class="num">5-6</td><td class="num">5 582 200</td></tr>
+          <tr><td>Alpha 1</td><td class="num">7-8</td><td class="num">5 452 200</td></tr>
+          <tr><td>Alpha 2</td><td class="num">9</td><td class="num">2 568 800</td></tr>
+          <tr><td>Cert Candidate</td><td class="num">10</td><td class="num">2 451 800</td></tr>
+          <tr><td>Beta</td><td class="num">11</td><td class="num">2 087 800</td></tr>
+          <tr><td>Gold</td><td class="num">12</td><td class="num">1 922 700</td></tr>
+          <tr class="tot"><td>Total</td><td class="num">12</td><td class="num">29 649 100</td></tr>
         </tbody>
       </table>
+      <p class="muted" style="font-size:13px;margin-top:8px">The signature payment is an advance drawn down across the gate invoices. It is not additional to the total.</p>
     </div>
-    <div class="grid" style="gap:18px;align-content:start">
+    <div class="grid" style="gap:16px;align-content:start">
       <div class="card ap">
         <h4 style="color:var(--ap-teal)">Included</h4>
-        <ul style="font-size:14.5px">
-          <li>All 23 roles, both studios, for the months shown</li>
-          <li>Production, engineering, design, art, audio, DevOps and QA lead</li>
+        <ul style="font-size:14px">
+          <li>All 27 roles, both studios plus the external specialists, for the months shown</li>
+          <li>Production, engineering, design, art, audio and DevOps</li>
+          <li>QA lead and three QA testers</li>
+          <li>External art support for characters, VFX and weapons</li>
           <li>Tooling and infrastructure on our side</li>
         </ul>
       </div>
       <div class="card">
         <h4>Not included</h4>
-        <ul style="font-size:14.5px">
+        <ul style="font-size:14px">
           <li>VAT</li>
-          <li>External QA testers, quoted separately at 500 SEK per hour</li>
           <li>Platform certification fees</li>
           <li>Third-party licences owned by you or Krafton</li>
           <li>Support after Gold</li>
@@ -468,68 +456,57 @@ details.deep .body{padding:20px 0 4px;animation:fade .25s ease}
     <div class="body">
       <ul>
         <li>Source access, build access and a PUBG-side technical contact from day one</li>
-        <li>Approvals inside five working days at each milestone</li>
-        <li>Scope as per the 12 August feature list. Material additions move the plan and the number</li>
+        <li>Approvals inside five working days at each gate</li>
+        <li>Scope as per the 12 August feature list and three new heists. Material additions move the plan and the number</li>
         <li>This is a time-and-team price, not a fixed fee. A fixed-fee version carries a risk premium</li>
       </ul>
     </div>
   </details>
 </section>
 
-<!-- ============ 7 · WAYS OF WORKING ============ -->
+<!-- 7 WAYS OF WORKING -->
 <section class="slide" id="s7">
   <div class="eyebrow"><span class="n">06</span>Ways of working</div>
-  <h2>Embedded to collaborate, autonomous enough to deliver</h2>
+  <h2>Embedded with you, owning the delivery</h2>
 
-  <div class="grid g3" style="margin-top:24px">
-    <div class="card">
-      <h3>Ownership</h3>
-      <p class="muted">One producer owns the plan and is your single point of contact. Game direction sits with our design lead, working to your creative approval at each gate.</p>
-    </div>
-    <div class="card">
-      <h3>Decisions</h3>
-      <p class="muted">We bring you decisions with a recommendation. Where we disagree with a direction we say so before the sprint.</p>
-    </div>
-    <div class="card">
-      <h3>Communication</h3>
-      <p class="muted">Leads on site at Birger Jarlsgatan 61, the rest hybrid. Both studios are Stockholm-based. Milestone reviews at all eight gates, weekly written status in between, one shared backlog you can see.</p>
-    </div>
+  <div class="grid g3" style="margin-top:20px">
+    <div class="card ap"><h3>Stockholm-based partner</h3><p class="muted">Both studios are in Stockholm. We work on site with your team.</p></div>
+    <div class="card ap"><h3>One accountable team</h3><p class="muted">A senior core accountable for the whole delivery, not a set of individually placed contractors. Single point of contact, single point of escalation and risk management.</p></div>
+    <div class="card ap"><h3>Full ownership</h3><p class="muted">We take end-to-end ownership of the work required to deliver against the project's creative and technical goals.</p></div>
   </div>
 
-  <h4 style="margin-top:38px">Risk → mitigation</h4>
-  <div class="risk">
-    <div class="r">Ramp to 23 inside four months</div>
-    <div class="m">Both studios are naming people now rather than recruiting later. The month 1-2 ramp is shallow so the seniors set the foundations before the wider team lands.</div>
-  </div>
-  <div class="risk">
-    <div class="r">Two IP holders in the approval chain</div>
-    <div class="m">Milestone gates are set against Krafton's cert candidate date at month 10, and we work back from it.</div>
-  </div>
-  <div class="risk">
-    <div class="r">Integration with the PUBG engine</div>
-    <div class="m">Dmitry was on Irons 1. Month 1 is technical mapping, and the plan is re-cut against what it finds.</div>
-  </div>
-  <div class="risk">
-    <div class="r">Scope growth</div>
-    <div class="m">Every gate carries a named deliverable list. Additions are re-planned in the open, with a number attached.</div>
-  </div>
+  <details class="deep">
+    <summary>Risk and mitigation</summary>
+    <div class="body">
+      <div class="risk"><div class="r">Ramp to 24 inside four months</div><div class="m">Both studios are naming people now rather than recruiting later. The month 1-2 ramp is shallow so the seniors set the foundations before the wider team lands.</div></div>
+      <div class="risk"><div class="r">Manual scripting load from the port</div><div class="m">Irons 1 showed that recreating levels in the PUBG engine is scripting-heavy. The level design and tech design roles are staffed early and held through Beta.</div></div>
+      <div class="risk"><div class="r">Two IP holders in the approval chain</div><div class="m">Milestone gates are set against Krafton's cert candidate date at month 10, and we work back from it.</div></div>
+      <div class="risk"><div class="r">Scope growth</div><div class="m">Every gate carries a named deliverable list. Additions are re-planned in the open, with a number attached.</div></div>
+    </div>
+  </details>
 </section>
 
-<!-- ============ 8 · READY TO BUILD ============ -->
+<!-- 8 READY TO DELIVER -->
 <section class="slide" id="s8">
-  <div class="eyebrow"><span class="n">07</span>Ready to build</div>
-  <h2>Ready to build</h2>
-  <p class="lede">23 people. Stockholm. 12 months to Gold, with support after. Continuity from Irons 1 on the engineering side. One integrated team, one producer, one number.</p>
+  <div class="eyebrow"><span class="n">07</span>Ready to deliver</div>
+  <h2>Ready to deliver</h2>
 
-  <div class="statrow" style="margin:34px 0 38px">
-    <div class="stat"><div class="k teal">23</div><div class="l">Roles</div></div>
+  <h3>The mission is clear</h3>
+  <p class="lede">Create an accessible, fast-paced and replayable PAYDAY experience for the PUBG audience, while preserving what makes PAYDAY great.</p>
+
+  <h3 style="margin-top:26px">Aurora Punks × Rift brings the team to make it happen</h3>
+  <p class="lede">A senior, Stockholm-based co-development team with the <strong>PAYDAY knowledge, shooter experience, Unreal expertise and end-to-end delivery capability</strong> to take the project from concept to launch.</p>
+  <p class="lede">We are ready to take ownership, integrate closely with Starbreeze and Krafton, and deliver as one accountable team.</p>
+
+  <div class="statrow" style="margin:30px 0 32px">
+    <div class="stat"><div class="k teal">27</div><div class="l">Roles, peaking at 24</div></div>
     <div class="stat"><div class="k">Stockholm</div><div class="l">Both studios</div></div>
     <div class="stat"><div class="k">12 + support</div><div class="l">Months</div></div>
-    <div class="stat"><div class="k neon">28 325 700</div><div class="l">SEK ex VAT</div></div>
+    <div class="stat"><div class="k neon">29 649 100</div><div class="l">SEK ex VAT</div></div>
   </div>
 
   <h3>Proposed next step</h3>
-  <p>Walk through this together, agree the scope baseline against the 12 August list, and lock a kickoff month. We can hold the team for a start inside <em style="color:var(--rf-grey)">[PLACEHOLDER - window Robert wants to commit to]</em>.</p>
+  <p>Align on scope, team and commercials, finalise the agreement, kick off.</p>
 </section>
 
 </div>
@@ -545,10 +522,8 @@ details.deep .body{padding:20px 0 4px;animation:fade .25s ease}
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){
-        if(e.isIntersecting){
-          var i=secs.indexOf(e.target);
-          links.forEach(function(l,j){l.classList.toggle('on',j===i);});
-        }
+        if(e.isIntersecting){var i=secs.indexOf(e.target);
+          links.forEach(function(l,j){l.classList.toggle('on',j===i);});}
       });
     },{threshold:.4});
     secs.forEach(function(s){if(s)io.observe(s);});

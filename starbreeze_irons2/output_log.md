@@ -89,3 +89,62 @@ and co-dev credits from Gustav; per-person credit lines for the six named leads;
 wall; and the start window Robert is willing to hold the team for.
 
 **Status:** first draft. Not sent to Starbreeze. More edits expected.
+
+## 2026-09-01 (round 2) — v2 rebuilt to Robert's slide-structure doc
+
+Same URL, same credentials: https://pitch.aurorapunks.com/project-irons-2-v2/ (`starbreeze` / `4QntHWKnVI9Q`).
+
+**Sources used, as instructed**
+- **Staffing sheet = source of truth** for team size, months and money. It had moved again since
+  round 1: a **Prototype** phase added at month 2, an **External** company category (3 QA testers +
+  art support) added to column F, roles now rows 4-30.
+- **Rift's level-design doc**, which Robert exported to a GDoc after SharePoint returned 403
+  (`1M6gtPolpnTs53OOKTIs1kRLs1sB9-5s2VFyJg7vS12A`), for The Mission and the whole level-design
+  section.
+- **Robert's slide-structure PDF** for evidence blocks, credits, gate deliverables, Ways of Working
+  and the close.
+
+**Numbers now (all reconcile to the sheet)**
+- 27 roles · peak 24,3 concurrent · 256,1 FTE-months · 12 months to Gold + support.
+- **29 649 100 SEK ex VAT** = internal 22 807 000 × 1,3. Blended **115 772/FTE-month** vs 35 854 000
+  at the 140k flat.
+- Internal split AP 10 904 000 (12 roles) / Rift 10 885 000 (11) / External 1 018 000 (4). Shown on
+  the page as 48/48/4 percentages only, never as absolute internal cost.
+- Gate payments: Prototype 4 050 800 · FP 5 532 800 · Pre-Alpha 5 582 200 · Alpha 1 5 452 200 ·
+  Alpha 2 2 568 800 · Cert 2 451 800 · Beta 2 087 800 · Gold 1 922 700. Sums exactly to the total.
+- **Signature milestone added** per Robert: shown at 10% = 2 964 910, explicitly framed as an
+  advance drawn down across the gate invoices so the schedule still sums to the total. The
+  percentage is a placeholder.
+
+**Content changes**
+- Slide 2 rebuilt from the Rift doc: the three leading thoughts as cards, plus a full level-design
+  expandable (variation, simplify, fast pace, stealth mechanics, enemy design, existing four levels,
+  the new heists).
+- **Scope corrected from four new heists to three.** The sheet says "3 greybox levels", the
+  structure doc says "all three new levels", and the Rift doc lists three plus Turbid Station as an
+  undecided stretch goal. The page now states three new heists alongside the four upgraded HR1
+  stages, with Turbid Station carried as a marked placeholder decision.
+- Slide 3: five strengths + six evidence blocks with real credits, studio chips and shipped-game chips.
+- Slide 4: the six named people from the structure doc with their credits (Dmitry, Jimmy, Robert,
+  Per, Tim, Jesper), plus the 27-role chart colour-coded AP / Rift / External.
+- Slide 5: eight gate cards with the full deliverable lists, and a staffing curve rescaled for the
+  new peak.
+- Slide 6: QA moved **into** the price, so it is no longer on the "not included" list.
+- Slide 7: Robert's three items (Stockholm-based partner, one accountable team, full ownership),
+  risk/mitigation retained in the expandable.
+- Slide 8: Robert's own "Ready to deliver" copy, treated as his hand and left near-verbatim.
+
+**Voice pass:** second Author pass, `drafts/pitch_v2_copy_draft.md` → `drafts/pitch_v2_copy_authored.md`.
+
+**Editable source for multi-person collaboration** (Robert's ask): Drive folder
+**Project Irons 2 - AP x Rift** `1b3_0Hktyr04fZ7FrlXAX3jiafx5C5Dft` in the Projects shared drive,
+holding **"Irons 2 - Pitch v2 copy (editable source)"**
+`1umJJpUgJ1vfJ3lkuiZFrEhls9AtYZGm4pPQXO2nS0LM`. Not yet shared with anyone; per the Drive
+membership rule this needs item-shares, not drive membership, and the recipient list is Robert's call.
+
+**Open placeholders on the page:** Turbid Station in or out · "Test driven game development"
+supporting line · "Trusted by studios" supporting line · studio logos · signature percentage.
+
+**Doc access granted 2026-09-01:** folder item-shared as writer with gustav.wassberg@riftgaming.gg
+and victor.roxlin@riftgaming.gg (both verified against Robert's mailbox). Per Kjellström also to be
+added but his address is not in the corpus; not guessed.

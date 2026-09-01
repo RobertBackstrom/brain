@@ -412,3 +412,21 @@ leveransmail till publisher) och [[voice_anti_selling]]. Category: channel regis
   ("We understand the creative and technical goals... and" → keep only the ownership commitment), and
   a soft relational clause ("build relationships face to face" - "on site" already carries it).
   Confirms the taxonomy is stabilising; the marginal value is now in what NOT to touch. Category: register.
+
+## 2026-09-01 - Olle access-svaret: tredje passet i samma tråd, taxonomin räckte nästan [cvb / Curveball, mail register]
+- **Omfrågad fråga besvaras rent, utan referens till det tidigare svaret.** Olle frågade 1 sep vem
+  som ska ha LootLocker-access; Robert hade redan svarat 31 aug. Direktivet (Roberts brief, inte
+  korpusobserverat - flagga som sådant tills en diff bekräftar): svara som om frågan var ny, inget
+  "som jag skrev igår". Adressen till mottagaren är svaret, inte tråkhistoriken. Category: register
+  (brief-instructed, unverified).
+- **Ett mekanismfaktum kan ersätta en hel lösningsdiskussion.** Olles "det behöver vi också lösa"
+  om assets föll på ett enda faktum: exporten hämtar allt i lagret oavsett filtyp. Formen som bar:
+  flat slutsats först ("Assets behöver inget eget spår"), sedan mekanismen (ListFiles), stopp.
+  Utkastets version sa samma sak som både ram ("löser sig i samma svep") och svans ("i samma
+  körning") - **samma faktum dubblerat som inledningsram och nyttosvans är en jaktbar form**; behåll
+  en av dem, helst som flat öppning. Category: register (my edit, unverified).
+- Benefit-explainern "det blir snabbare och tål att en tjänst försvinner" ströks trots att den är
+  sann: i en tråd som handlar om att LootLocker försvinner är motiveringen självevident, och en
+  teknisk mottagare drar slutsatsen själv. Samma släkte som 2026-08-26-cutten ("så ingen behöver ta
+  allt på en gång"). Ingen "hör av er"-dörr tillsatt - mailet är tre svar, inget att öppna för.
+  Category: register (my edit, unverified).

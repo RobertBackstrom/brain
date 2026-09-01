@@ -11,6 +11,54 @@
 
 <!-- Append new learnings with: learning, source project, date, category -->
 
+## 2026-09-01 — När huvudboken saknas: motpartens SIE namnger transaktionen i klartext [apb / K 4429-25]
+
+**Project:** Aurora Punks ÅR 2025 + APDS-konkursen | **Category:** redovisning, bevisinhämtning, konkurs
+
+**Huvudlärdomen.** Frågan var hur APDS bokförde sina betalningar till Alpidus Inkasso, och APDS
+huvudbok går inte att få ut (Fortnox kräver BankID för det bolaget, `czp-030` stängd). Svaret låg
+ändå framme, i **motpartens** böcker. AP:s SIE 2024 innehåller verifikat med verifikationstexter som
+`"APDEV lagt ut för AP Alpidus Inkasso"` och `"APDEV betalt Fedelta ALMI"`, och en transaktionsrad
+med texten `"APDEV amorterar åt AP"`. Kontot heter dessutom rakt ut `2410 Borgensskuld ALMI /
+Fedelta`. **Regel: när ett bolags egen bokföring är otillgänglig, greppa motpartens SIE på
+motpartens namn, smeknamn och förkortningar** (här APDEV, inte APDS), inte bara på kontonummer.
+Redovisningskonsulter skriver vad de gör i verifikationstexten, och den texten är ofta mer
+informativ än kontoplanen.
+
+**Förvaltarberättelsen bär hela kontobalansen som bilaga.** FVB:n hade balansrapport per
+konkursdagen och resultatrapport för hela året som bilaga 2 och 3. Det räcker för att **utesluta**
+ett motkonto på storlek: 547 000 kr kan inte ha burits av något resultatkonto när det största
+externa kostnadskontot ligger på 330 tkr. Slutsatsen "posten ligger mot ett balanskonto" gick att dra
+utan huvudboken. **Läs alltid FVB:ns bilagor innan du begär mer material av förvaltaren, halva
+frågan brukar redan vara besvarad där.**
+
+**En huvudbok per konto visar bara ena sidan.** Boet lämnade ut konto 1675 och 2440. 2440 ger datum,
+belopp, verifikationsnummer och leverantörsnamn, men aldrig motkontot. Om frågan är *hur* något
+bokfördes, alltså vilket konto som debiterades, måste begäran till förvaltaren avse **det misstänkta
+motkontot eller verifikaten**, inte skuldkontot. Nils Åberg beviljade en sådan begäran 2026-07-18,
+så vägen finns.
+
+**Praktisk stoppregel:** två parallella fakturaserier till samma inkassobolag i samma månader
+(44 000 och 60 000 från september 2025) betyder att totalen inte får citeras som en enda siffra
+förrän serierna är förklarade. Ett sammanhängande fakturanummerblock (706, 724–734) är för övrigt
+signalen att en hel avbetalningsplan registrerades i en omgång, inte att fakturorna kom löpande.
+
+**Sakfynd att ta med:** AP:s `2410` står oförändrat på 1 904 468,32 från 2024-12-31 genom hela 2025,
+medan Almis eget kapitalbelopp per 2025-12-16 är 1 776 452,96. Differensen **128 015,36 kr** är
+revisionens avstämningspost. APDS betalade 547 000 kr till Alpidus under 2025 utan att AP bokade
+något mot borgensskulden. Underlaget ligger i
+`umbrella/aurora_punks/legal/apds_alpidus_bokforing_2026-09-01.md`.
+
+**Robert valde försiktig linje 2026-09-01:** bara faktabeskrivningen till revisorn, ingen
+regressbedömning i mailet, ingen ny begäran till Carler, ingen utökad Alpidus-beställning. Att fråga
+förvaltaren om just konto 1674 pekar honom på posten. Den avvägningen är hans, inte agentens, och den
+ska ställas som fråga varje gång ett underlag både hjälper revisionen och exponerar bolaget.
+
+**Tags:** APDS, Alpidus, Almi, borgen, regress, huvudbok, SIE, verifikationstext, förvaltarberättelse,
+motkonto, 2410, 1674, 2360, KBR, apb, K-4429-25
+
+---
+
 ## 2026-09-01, ett "enkelt" avtal blir enkelt genom att ta bort penningflöden, inte genom att korta meningar [cvb]
 
 **Project:** Curveball (The Gang Studio) | **Category:** avtalsskrivning, mallhantering, firmateckning
