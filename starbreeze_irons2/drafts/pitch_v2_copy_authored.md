@@ -3,10 +3,14 @@
 Channel: gated web proposal page (document register), recipient: Tobias Remmers (PAYDAY
 Franchise Director) and Matt Dixon (CGO), Starbreeze. English.
 Positioning: Aurora Punks × Rift Gaming as ONE co-development team, not two vendors.
+DIRECTION CHANGE 2026-09-02 (Robert): both logos stay on screen, we do not hide that Rift is in it,
+but NOTHING in the pitch is attributed per studio. No studio label per team member, no split of
+experience between the two companies. The customer must never be left wondering whether these two
+have worked as a team before.
 
 Numbers are locked and verified unchanged from the draft:
 27 roles · peak 24,3 concurrent · 256,1 FTE-months · 12 months to Gold plus support ·
-29 649 100 SEK ex VAT · blended 115 772 SEK per FTE-month · 140k flat equivalent 35 854 000 ·
+29 649 100 SEK ex VAT · blended 115 772 SEK per FTE-month ·
 internal AP 10 904 000 / Rift 10 885 000 / External 1 018 000.
 
 ---
@@ -18,14 +22,10 @@ Aurora Punks × Rift Gaming
 **PAYDAY × PUBG: Co-dev proposal**
 
 Hook line:
-An accessible, fast-paced PAYDAY built for PUBG players. That is the brief.
+Create an accessible, fast-paced and replayable heist experience for the PUBG audience, while preserving what makes PAYDAY great.
 
 Executive summary:
-Aurora Punks × Rift Gaming. 27 roles, peaking at 24 people. Stockholm. 12 months to Gold,
-with support after.
-
-Positioning line (verbatim, Robert's):
-An experienced co-development team built to take the project from concept to shipped experience.
+We provide a team consisting of a total 27 roles spanning over 12 months development plus post release support. The team size peaks at 24 people. All developers are based in Stockholm and can work either as a self-contained team or embedded in Starbreeze's own structure, whichever suits you best.
 
 Stat strip: 27 roles / peak 24 / Stockholm / 12 months + support / 29 649 100 SEK ex VAT
 
@@ -36,91 +36,42 @@ Stat strip: 27 roles / peak 24 / Stockholm / 12 months + support / 29 649 100 SE
 Intent: show we understand the assignment before talking about ourselves.
 
 Opening:
-The players will mostly be active PUBG players who do not know PAYDAY, so anything that needs
-prior PAYDAY knowledge to enjoy is a cost, not a feature. Irons 1 also showed that recreating
-levels in the PUBG engine takes a lot of manual scripting and implementation, and we have
-staffed for that.
+The players will mostly be active PUBG players who do not know PAYDAY, so anything that needs prior
+PAYDAY knowledge to enjoy is a cost, not a feature. Everything below follows from that, and from what
+Irons 1 already taught us.
 
-Three leading thoughts (from Elias and Jesper, and the Irons 1 learnings):
+Scope, stated plainly:
+The job is three new heists, the four existing heists upgraded to match, and the Irons 1 feedback
+addressed across all seven.
 
-1. **Accessible PAYDAY for the PUBG audience.** Simplify heist structures, objectives and stealth
-   mechanics while keeping the core PAYDAY identity. Intuitive systems, clear progression, and
-   gameplay that works for players who have never played PAYDAY.
-2. **Fast-paced, varied and re-playable heists.** Shorter, action-packed experiences with strong
-   visual and gameplay variation across environments, weapons, combat, stealth, enemies and
-   objectives. Re-playability through progression, loadouts, weapon tuning and meaningful power growth.
-3. **Evolve the whole experience, not just the new heists.** New stealth mechanics, progression,
-   weapon balancing, difficulty and the Shield enemy work across both the new and the existing
-   heists. One consistent experience rather than separate pieces of content.
+Grounded in Irons 1 (two blocks). NOTE: no market or player sentiment. It is not our role to tell
+the customer what their players thought. We speak to production learnings only.
 
-The delivery challenge:
-27 roles from a standing start to peak inside four months, two IP holders in the approval chain,
-and 12 months to Gold.
+1. **What Irons 1 missed.** Two things are worth carrying forward. The heists were initially built
+   more complicated than they needed to be and had to be simplified later, which is expensive
+   rework. And the full flow was not played embedded in PUBG often enough, so the problems that only
+   surface in context surfaced late.
+2. **What Irons 2 does about it.** Test earlier, and test in context. Frequent in-house playtesting
+   of the whole flow inside PUBG rather than features in isolation, and external testing with the
+   right target groups from Pre-Alpha and monthly after that. Complexity is budgeted per heist
+   against Irons 1 as the baseline rather than trimmed late, and onboarding and tutorials are a
+   milestone deliverable rather than a line item.
 
-### Expandable detail - level design
-
-**Variation.** The heists were chosen because they offer visual variation, multiple vistas and
-environments. We keep that when we port them. Where we cut gameplay or size, we keep at least part
-of each distinct environment intact.
-
-**Simplify.** More linear structure and heist objectives. Remove complex optional objectives where
-needed and adjust levels accordingly, including degrading loot and loot bag scanning. Reduce map
-size where needed. Add new stealth mechanics but keep them simple, and keep the levels enjoyable
-for players who do not want to play stealth.
-
-**Fast pace.** We have been asked to investigate 3Cs. Significant changes to movement and camera
-systems are hard, so we would also support a faster pace by other means. Keep the heists short and
-action packed, cut or simplify the slower segments, keep the gameplay loop tight so the tempo
-between heists and progression rewards holds and long loss states are avoided, and tune new and
-existing weapons closer to the PAYDAY experience, with solid power spikes on unlock.
-
-**Stealth mechanics.** Krafton has asked for additional stealth. The direction we would take is
-simple stand-alone features rather than complex general systems: lockpicking and safe cracking in
-the PD3 style, hacking to temporarily disable individual cameras, motion and floor sensors used
-sparingly, QR codes simplified so no randomly spawned phones are needed, security lasers with fuse
-boxes or wall terminals, silencer mods (default on side arms, unlocked on primaries), and stealth
-skills and tools such as throwing knives and stealth variables on armour and skills.
-
-**Enemy design.** One new enemy type, the Shield enemy. The work is less the enemy itself and more
-implementing it well across both new and existing levels, and updating existing enemy behaviour to
-use the shield as mobile cover in combat.
-
-**The existing four levels.** Revisited and updated with the new enemy and AI behaviour, the new
-stealth mechanics, the new difficulty, rebalancing against the new progression and weapon tuning,
-and tutorial and HUD elements as needed.
-
-**The new heists.**
-- **99 Boxes (or Touch the Sky).** A large map blending outdoor and indoor environments around
-  shipping containers and warehouse storage, patrolling guards and cameras with civilians spread
-  out. We keep the smooth indoor/outdoor transition, rebalance for PUBG players, focus on avoiding
-  cameras and guards, and remove civilians.
-- **Syntax Error.** Large, with multiple visual styles and vistas: busy streets, parks, server
-  rooms, futuristic interiors. We maintain that variation while shortening the heist and reducing
-  the overall size.
-- **Under the Surphaze.** Compact, stacked on itself across multiple floors with several entry
-  options, heavy on stealth and on gathering information to locate objectives while bypassing
-  motion detectors and lasers. We keep the stealth but make the flow more linear and clearer,
-  simplify the security puzzles, group the information so there is less back and forth, and replace
-  civilians with cameras, patrolling guards and level mechanics. Mechanics: QR code scans, motion
-  scanners, laser traps.
-- **Turbid Station.** [PLACEHOLDER - Rift flag this as a stretch goal and are not sure it belongs
-  in the pitch. Robert to decide: in as a stretch goal, or out.]
 
 ---
 
-## SLIDE 3 — Why Aurora Punks × Rift
+## SLIDE 3 — Why this team
 
 Intent: complementary strengths, one delivery team, evidence over adjectives.
 
 Five things we bring:
 - **Senior leadership.** The people named here are the people who do the work.
-- **AAA to indie experience.** Rift carries the AAA technical depth, Aurora Punks the indie and AA
-  cost discipline.
-- **On-site presence.** Both studios are in Stockholm.
-- **Test driven game development.** A QA lead and three testers sit inside the team and the price.
-  [PLACEHOLDER - supporting line to confirm. The corpus has no specific test-driven practice to
-  cite; if this bullet means playtest cadence or automated testing, the line needs to come from
-  the structure doc or from Rift.]
+- **AAA to indie experience.** The team spans AAA production depth and indie and AA cost discipline.
+- **Scale when the plan moves.** Quick access to senior specialists when production demands change.
+  The core team is named now, and being Stockholm-based lets us scale up or down and reshape the mix
+  as the work shifts, rather than holding people to a plan that no longer fits.
+- **On-site presence.** The whole team is in Stockholm.
+- **Test driven game development.** Builds in front of real PUBG players from Pre-Alpha and monthly after that, backed by frequent in-house testing and embedded QA. A QA lead and three testers sit inside the team and the price.
 - **Trusted by studios.** [PLACEHOLDER - no supporting fact available without naming clients
   beyond the evidence blocks below. Point it at those blocks, supply a fact, or cut the bullet.]
 
@@ -154,9 +105,8 @@ King, Toca Boca, 10 Chambers, MAG Interactive, Arrowhead.
 Games released: The Ascent 2 (demo), Arc Raiders, Dungeons 2, Ready or Not, Kingdom Two Crowns,
 PUBG × PAYDAY 1, The Finals, Crozzle.
 
-One delivery team:
-The work splits almost exactly down the middle between the two studios: not a prime and a
-subcontractor. One producer, one backlog, one set of milestones. You talk to one team.
+One team:
+One producer, one backlog, one set of milestones. You talk to one team.
 
 ---
 
@@ -164,13 +114,13 @@ subcontractor. One producer, one backlog, one set of milestones. You talk to one
 
 Intent: make the team feel real and ready.
 
-- **Dmitry Garkavenko** - Tech (Rift). Mojang, Starbreeze (PAYDAY × PUBG), Fast Travel Games,
+- **Dmitry Garkavenko** - Tech. Mojang, Starbreeze (PAYDAY × PUBG), Fast Travel Games,
   Embark, Arrowhead, Battlestate Games
-- **Jimmy Chuong** - Tech (Rift). Neon Giant, Embark, Liquid Swords, Creative Assembly
-- **Robert Bäckström** - Production (Aurora Punks). Aurora Punks, Bright Gambit, Raw Fury, Fatshark
-- **Per Kjellström** - Production (Rift). Mojang, Liquid Swords, Noid, DICE
-- **Tim Browne** - Design (Aurora Punks). Avalanche, King, Ubisoft, Codemasters
-- **Jesper Staafjord** - Design (Rift). Mojang, The Gang, Star Stable, Ringtail Interactive, Solve, King
+- **Jimmy Chuong** - Tech. Neon Giant, Embark, Liquid Swords, Creative Assembly
+- **Robert Bäckström** - Production. Aurora Punks, Bright Gambit, Raw Fury, Fatshark
+- **Per Kjellström** - Production. Mojang, Liquid Swords, Noid, DICE
+- **Tim Browne** - Design. Avalanche, King, Ubisoft, Codemasters
+- **Jesper Staafjord** - Design. Mojang, The Gang, Star Stable, Ringtail Interactive, Solve, King
 
 The full team, 27 roles:
 - Production and direction: 3
@@ -188,21 +138,29 @@ The full team, 27 roles:
 Intent: months, milestones, staffing, tangible deliverables.
 
 We have kept the start month open. Krafton indicated a later start is workable as long as the
-12-month development window and the support period after it hold, so month 1 is whenever we sign.
+12-month development window and the support period after it hold. Month 0 is signature, and the twelve development months run from there.
+
+Holiday note:
+The team is Swedish, so a twelve month plan contains a Swedish summer, and this plan is costed with
+that already in it. The answer is not to move the gates around July. It is that the lead positions
+overlap rather than sit single-threaded, so a lead taking their holiday does not stall the
+workstream behind them, and the gate dates hold.
 
 **Prototype, month 2.** 22 people.
 - Player progression rework defined and prototyped
-- All design documentation done
+- All design documentation done, including the UI/UX wireframes
+- New stealth mechanics defined and prototyped
 - Infrastructure in place and proven
 
 **First Playable, month 3.** 24 people.
 - Three new grey box levels playable end to end
+- Linear structure and the intended pacing judgeable on the build rather than on a document
 
 **Pre-Alpha, month 5.** 24 people.
 - Restart / Return system implemented
-- New stealth mechanics defined and prototyped
-- UI/UX wireframes approved and first iteration of the new HUD in build
+- First iteration of the new HUD in build
 - Shield enemy functional
+- First external playtest with PUBG players, monthly from here, on a panel provided by Krafton
 
 **Alpha 1, month 7. Feature complete.** 24 people.
 - Player progression and loadout systems functional
@@ -211,33 +169,41 @@ We have kept the start month open. Krafton indicated a later start is workable a
 - All three new levels functional and visually representative
 - New difficulty level implemented
 - Five new weapons functional
+- New stealth mechanics functional
 - Polish and balancing across the game
 
 **Alpha 2, month 9.** 23 people.
 - HR1 levels updated and adjusted to the new mechanics and improvements
 - Loadout customisation functional
-- New stealth mechanics functional
 - All AI enemies polished and improved
+- Playtest findings folded back into the build
 - Polish and balancing across the game
 
-**Cert Candidate, month 10. Pre-cert candidate ready for Krafton.** 22 people.
-- Gameplay, mechanics and game loops polished, balanced and optimised
+**Beta, month 10. Content complete.** 22 people.
+- All content in. Gameplay, mechanics and game loops polished, balanced and optimised
 - All levels, HUD, art and customisation in a shippable state
 - Onboarding and tutorials shippable
 - All weapons and gunplay balanced and improved
 - New difficulty level balanced and proven
 - Required marketing key art approved
 
-**Beta, month 11. Content complete.** 18 people.
+**Cert Candidate, month 11. Ready for submission.** 18 people.
 - Final polish and balancing across the game
-- Builds for all platforms ready for CERT
+- Builds for all platforms ready for submission
 
 **Gold, month 12.** 16 people.
 - Certification and release candidate stabilisation
 
-**Support.** After Gold, scoped separately.
+**Support.** After Gold. Bug fixing through release.
+- We fix bugs that trace back to our work, through to and including release
+- New features and balancing passes sit outside this and need rescoping
 
-Staffing curve, FTE by month: 11,8 / 21,8 / 23,8 / 24,3 / 24,3 / 24,3 / 23,8 / 23,8 / 22,8 / 21,8 / 17,8 / 15,8. Total 256,1 FTE-months.
+The dependency that sets this order: the new heists cannot be blocked out to their final structure
+until the stealth mechanics are defined, because the mechanics decide the routes, the sightlines and
+the objective placement. That is why stealth sits in the Prototype gate in month 2 rather than in
+Pre-Alpha, and why level design and stealth design run as one workstream from month 2 onwards.
+Retrofitting stealth into finished blockouts is the rework this plan is built to avoid.
+
 
 ---
 
@@ -248,10 +214,9 @@ Intent: transparent and simple. Final cost clear and understandable.
 **29 649 100 SEK ex VAT.** 27 roles, 256,1 FTE-months, 12 months to Gold.
 
 This is priced from what the team actually costs, not from a fixed rate card. It works out at
-115 772 SEK per FTE-month blended across every role, lead or content. For comparison, the flat
-140 000 per developer per month we discussed earlier would put the same team at 35 854 000.
+115 772 SEK per FTE-month blended across every role, lead or content.
 
-Payment schedule:
+Payment schedule (amounts follow the month, so the Beta and Cert Candidate swap moved the labels, not the money):
 - On signature: [PLACEHOLDER - percentage to confirm, shown at 10% = 2 964 910]
 - Prototype, months 1-2: 4 050 800
 - First Playable, months 3-4: 5 532 800
@@ -264,24 +229,26 @@ Payment schedule:
 - Total: 29 649 100
 
 What is included:
-- All 27 roles, both studios plus the external specialists, for the months shown
+- All 27 roles for the months shown
 - Production, engineering, design, art, audio and DevOps
 - QA lead and three QA testers
-- External art support for characters, VFX and weapons
+- Art support for characters, VFX and weapons
 - Tooling and infrastructure on our side
 
 What is not included:
 - VAT
 - Platform certification fees
 - Third-party licences owned by you or Krafton
-- Support after Gold, scoped once the shape of it is known
+- Localisation
+- The external playtest panel
+, scoped once the shape of it is known
 
 Key assumptions:
 - Source access, build access and a PUBG-side technical contact from day one
 - Approvals inside five working days at each milestone
 - Scope as per the 12 August feature list and three new heists. Material additions move the plan
   and the number
-- This is a time-and-team price, not a fixed fee. A fixed-fee version carries a risk premium
+
 
 ---
 
@@ -289,7 +256,7 @@ Key assumptions:
 
 Intent: embedded with the client, but ownership of delivery.
 
-**Stockholm-based partner.** Both studios are in Stockholm. We work on site with your team.
+**Stockholm-based partner.** We are in Stockholm and work on site with your team.
 
 **One accountable team.** A senior core accountable for the whole delivery, not a set of
 individually placed contractors. Single point of contact, single point of escalation and risk
@@ -300,7 +267,7 @@ project's creative and technical goals.
 
 ### Expandable detail - risk and mitigation
 
-1. **Ramp to 24 people inside four months.** Both studios are naming people now rather than
+1. **Ramp to 24 people inside four months.** We are naming people now rather than
    recruiting later. The month 1-2 ramp is shallow so the seniors set the foundations before the
    wider team lands.
 2. **Manual scripting load from the port.** Irons 1 showed that recreating levels in the PUBG
@@ -332,3 +299,18 @@ accountable team.
 Align on scope, team and commercials, finalise the agreement, kick off.
 
 Stat strip: 27 roles / peak 24 / Stockholm / 12 months + support / 29 649 100 SEK ex VAT
+
+What we assume from you (added 2026-09-02, from the Tobias thread of the same day):
+
+From Starbreeze:
+- Creative and technical advice in recurring weekly or bi-weekly meetings
+- VO and music
+- Source access, build access and the PD3 trunk
+- Approvals inside five working days at each gate
+
+From Krafton:
+- Localisation
+- A PUBG-side technical contact from day one, and a named decision owner for anything touching the
+  engine, certification or the reward flows
+- Access to external playtests through their focus groups
+

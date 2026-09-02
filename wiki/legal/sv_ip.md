@@ -203,6 +203,79 @@ Credit is **not** a default. A plain outsourcing/work-for-hire agreement with a 
 
 **Back-to-back check:** never grant subcontractors portfolio/showreel rights (screenshots, video clips, credit references) that the studio does not hold upstream. Sub-licensing a publisher's copyright that was never licensed to you is the exposure, and it is easy to create by copy-pasting a standard §3.9 portfolio clause into six sub drafts.
 
+## STIM-anslutning: vad en kompositör faktiskt kan ge bort
+
+**Verifierat 2026-09-02** ordagrant mot [Allmänna villkor för anslutning till Stim](https://www.stim.se/om-oss/villkor-och-avtal/allmanna-villkor-for-anslutning-till-stim).
+
+Återkommande fråga i varje spelmusikaffär med en svensk kompositör: "kan hon skriva under en
+assigns-all-rights-klausul?" Svaret kräver att man delar upp rättigheterna i tre lager.
+
+**Vad STIM faktiskt håller (och som därför INTE kan överlåtas till en publisher):**
+- **3.2:** den Anslutne upplåter exklusivt "såväl existerande som framtida Musik" och "har [inte]
+  rätt att till annan upplåta eller överlåta de Ekonomiska rättigheter som omfattas av detta Avtal".
+- **3.5:** garanterar att rättigheterna inte upplåtits/överlåtits till annan.
+- **9.2:** åtagande att "inte träffa överenskommelse som strider mot Avtalet".
+- => En "assigns ALL rights"-underskrift sätter kompositören i garantibrott mot STIM. Reell risk.
+
+**Kan man plocka enskilda verk ur STIM? NEJ.**
+- **5.1, ordagrant:** *"En Ansluten har rätt att begränsa ett lämnat förvaltningsuppdrag genom att
+  från Stims förvaltning återta en eller flera rättighetskategorier från det eller de territorier
+  som den Anslutne önskar. **Ett återtagande kan aldrig ske på verksnivå.**"*
+- **12.2:** 6 månaders uppsägningstid, även vid begränsning. **6.1:** utökning kan ske när som helst.
+- **3.10:** ideella rätten (`URL 3 §`) stannar alltid hos upphovspersonen (jfr avsnittet ovan).
+- **3.8:** förstaframföranderätten ligger kvar hos musikskaparen; licensen omfattar inte verk där den
+  ännu inte utnyttjats. **3.9:** musikdramatiska verk omfattas inte.
+
+**Vad som ligger UTANFÖR mandatet och alltså är kompositörens att ge direkt:**
+1. **Synk av beställningsmusik.** STIM: *"Du får förhandla själv om synkroniseringsavgiften samtidigt
+   som du förhandlar om din lön för beställningen... fri förhandling mellan dig och beställaren."*
+   Musik komponerad på beställning till ett spel ÄR beställningsmusik → **direktlicensiering**.
+2. **Masterinspelningarna.** STIM hanterar inte masterrätt. Kan överlåtas rakt av. (Utövande
+   konstnärs närstående rättigheter → SAMI, separat fråga.)
+
+**Kvar inom mandatet: framförande + mekanik.** I en spelaffär biter mekaniken på i praktiken ETT
+ställe: publisherns **egen OST-release** (mångfaldigande, i Norden licensierat via NCB). Allt annat
+(in-game, patchar, portar, trailers, marknadsföring) löses via direktlicensierad synk.
+
+**STIM:s per-verk-instrument för spel (verifierat mot blanketten 2026-09-02).** Att förvaltnings-
+uppdraget inte kan ÅTERTAS på verksnivå (5.1) betyder inte att verk inte kan frigöras. STIM har
+blanketten **"Direct Licensing of (a) Certain Music Work(s) in a Video Game"**: per namngivet verk
+(STIM Work Title + Work Number) och per namngivet spel avstår STIM sin licensiering och ger
+kompositören "the sole and perpetual right to directly license or assign". Verken stannar i STIM för
+all annan användning. Signeras av kompositören OCH STIM; kräver verkanmälda spår med verknummer plus
+slutlig speltitel, alltså inte en samma-dag-sak. **Generell lärdom: fråga efter kollektivförvaltarens
+blankettflora innan du svarar nej på en avgränsningsfråga.**
+
+**Waiverns tre luckor.** "Video Game Use" = verken **som integrerad del av spelet**, sync i
+marknadsföringsmaterial, och producentens **egna** plattformar. Täcker alltså INTE: (1) utgivarens
+**fristående OST-release** (inte integrerad del → NCB eller utvidgad definition); (2) **tredjeparts
+streamers**, eftersom "in relation to any other use ... the Affiliation Contract shall fully apply"
+— waivern levererar INTE stream-safe; (3) **kommande titlar i serien**, eftersom den binds till ETT
+namngivet spel. Bonus i utgivarens favör: STIM åtar sig att inte licensiera verken till något annat
+spel. Textkopia: `umbrella/k2c_sands_of_duat/contracts_2026_subcontractors/_rf_music_templates/STIM_waiver_direct_licensing_video_game.md`.
+
+**Stream-safe: utgivarens hårda krav (Robert 2026-09-02).** Ovanstående uppdelning får INTE säljas in
+till kompositören som "du behåller hela STIM-intäkten". Varje spelutgivare kräver att musiken är
+stream-safe, dvs att den inte kan trigga claim, strike, demonetisering eller takedown mot content
+creators som streamar gameplay. Två mekanismer som måste hållas isär: **PRO-waivern** stoppar STIM:s
+egen inkassering, medan **YouTube Content ID / Facebook Rights Manager / Twitch audio-recognition**
+claimar oberoende av waivern och kräver ett separat åtagande (ingen registrering, whitelisting,
+skyldighet att dra tillbaka claims). Den ärliga uppdelningen mot kompositören: **spelanvändning och
+streamers avstås; musiken som musik (egen DSP-release, radio, live) behålls.** Skriv alltid in den
+motvikten, annars läser klausulen som total avsägelse och kompositören vägrar.
+
+**Fyra branschstandarder, rangordnade efter genomförbarhet mot en mall-publisher:**
+1. Överlåtelse enligt publisherns mall + **STIM-carve-out i Special Conditions** (rekommenderas: mallen
+   står orörd, Special Conditions finns till för att anpassas per kompositör).
+2. **Master-buyout + evig exklusiv synklicens** på kompositionen. Vanligaste europeiska indie-standarden.
+3. Publishern tar **förlagsandelen** och registreras som musikförlag i STIM. Verifiera tillåten andel
+   mot STIM:s fördelningsregler innan siffra föreslås (EJ verifierad per 2026-09-02).
+4. Ren licens, kompositören behåller allt. Svagast mot publisher.
+
+**Tillämpning:** dekomponera alltid till synk / master / framförande+mekanik och peka ut vilket lager
+som faktiskt är omtvistat. Det gör svaret till motparten "ni behöver inte ändra ert avtal" i stället
+för "vi vill omförhandla". Se `umbrella/k2c_sands_of_duat/contracts_2026_subcontractors/memo_stim_music_rights_2026-09-02.md` (K2C/Carolina/Raw Fury).
+
 ## Robert's positions
 
 - **2026-05-03 (RLR/Scen & Film):** Försökte hävda att Yasin Hillborg "inte kan hävda upphovsrätt på IP:t" — vilket missförstod vad propån yrkade (ideell rätt, ej ekonomisk). Justerades efter genomgång — strategi blev efterlevnad inom scope, inte stridsläge. Tar rak återkoppling när den är lagrum-baserad.

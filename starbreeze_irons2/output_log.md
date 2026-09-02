@@ -148,3 +148,179 @@ supporting line · "Trusted by studios" supporting line · studio logos · signa
 **Doc access granted 2026-09-01:** folder item-shared as writer with gustav.wassberg@riftgaming.gg
 and victor.roxlin@riftgaming.gg (both verified against Robert's mailbox). Per Kjellström also to be
 added but his address is not in the corpus; not guessed.
+
+**2026-09-02 — cover logo lockup optically corrected.** Sized on letter cap-height instead of file
+height: AP's letters are 18.9% of its PNG, Rift's are 35.4%, so the old 78/34 rendered AP letters at
+14.7px and Rift's at 12.0px (17% smaller). Now 78/42, both at ~14.8px, verified by measuring the
+rendered pixels (size ratio 1.000). AP also gets `translateY(9px)` because its drip tail drags the
+image box centre below its letters, which left the two wordmarks 9px out of line and the × off the
+letter line. Knobs are at index.html:51-57.
+
+## 2026-09-02 — riktningsändring: ett team, inga studioetiketter
+
+Robert, 2026-09-02: **båda loggorna stannar** (vi döljer inte att Rift är med) men **inget i pitchen
+attribueras per studio**. Ingen studiobeteckning per person, ingen uppdelning av erfarenhet mellan
+bolagen. Skälet: kunden ska aldrig lämnas undrande om de två har jobbat som ett team förut.
+
+**Borttaget/omskrivet på sidan**
+1. 48/48/4-stapeln utgår helt. "One producer, one backlog, one set of milestones" flyttad upp i
+   One team-kortet.
+2. Slide 3: "Why Aurora Punks × Rift" → "Why this team", "Two studios, one delivery team" → "One
+   delivery team". AAA-till-indie-kortet skrivet om från "Rift carries X, Aurora Punks Y" till
+   "The team spans...". "Both studios are in Stockholm" → "The whole team is in Stockholm".
+3. Slide 4: studiobeteckning bort från alla sex personer (Tech · Rift → Tech osv). Alla person-
+   kort och alla 27 pips i en färg. Legenden Aurora Punks 12 / Rift 11 / External 4 borttagen.
+4. De två gröna Rift-korten (test driven, trusted by studios) är nu vanliga AP-kort.
+5. Slide 6 "All 27 roles, both studios plus the external specialists" → "All 27 roles".
+6. Slide 7 + riskrutan: "Both studios are in Stockholm" / "Both studios are naming people" → "We".
+7. Statremsan slide 1 + 8: "Stockholm / Both studios" → "Stockholm / One team, on site".
+
+**Logotyplockup** till variant D: AP 78 → 88px, Rift 42 → 47px, nudge 9 → 10px, × 30 → 34px.
+Förhållandet rf = ap × 0,534 håller bokstavshöjderna lika.
+
+**Rubriker:** ögonbrynet ("01 THE MISSION") och expanderrubrikerna ("LEVEL DESIGN") 12 → 24px.
+Letter-spacing något minskad (.3em → .26em, .16em → .14em) eftersom .3em vid 24px spränger raden.
+Sidrubrikerna h1/h2 orörda enligt Roberts val.
+
+**Textkällan** `drafts/pitch_v2_copy_authored.md` är uppdaterad med samma ändringar, plus en
+DIRECTION CHANGE-notis i huvudet. **Google-dokumentkopian är INTE uppdaterad** och är alltså
+inaktuell: `gdrive-upload.js` saknar en `--update <fileId>`, och att radera + ladda upp på nytt
+skulle byta URL. Gustav och Victor har skrivrättighet till mappen, så risken är att de redigerar
+den gamla texten. Uppdateras när Robert är klar med sina textändringar.
+
+## 2026-09-02 (forts.) — Roberts genomgång sida för sida
+
+**Slide 1-2.** Ny hook (= samma mening som slide 8, flaggat som möjlig dubblering). Executive summary
+ersatte positioneringsraden. Slide 2 helt omstrukturerad enligt Roberts fyra rubriker: vad Irons 1
+var, var det fungerade, var det brast, vad Irons 2 gör åt det. Scopet står nu explicit: tre nya
+heists, fyra befintliga uppgraderade, Irons 1-feedbacken åtgärdad över alla sju.
+
+**FAKTAGRANSKNING (Robert stoppade detta, viktigt).** Tre påståenden om Irons 1 var obelagda och två
+direkt fel. Rättat mot primärkällan `pubg.com/en/news/10009`:
+- "roughly five weeks per platform" var FEL. Rätt: fyra veckor. PC 13 maj - 10 juni, konsol 21 maj -
+  18 juni 2026.
+- "four heists adapted from PAYDAY 3" var OBELAGT. PUBG:s annonsering säger inte ursprunget. Ersatt
+  med de verifierade namnen: Diamond District, The Exchange, Nightclub, Road Rage.
+- "May 2026" var en gissning från SteamCharts-kurvor. Ersatt med riktiga datum.
+- Verifierat och kvar: 3,99 USD event pass, en fjärdedel av Starbreeze utvecklingsstab i ett år.
+- **Källkonflikt:** Xbox Wire säger konsol 21 maj - 25 juni, PUBG säger 18 juni. Vi använder PUBG.
+- Lärdom: due diligence-memon taggar källa och konfidens per påstående, men de tre jag plockade
+  saknade taggar. Kontrollera mot primärkälla innan vi skriver fakta om kundens eget spel.
+
+**Slide 3.** Namn borttagna ur Evidence. One team-kortet borttaget. On-site presence säger nu
+"can embed in the Starbreeze organisation if needed". Ready or Not utbyggd med den riktiga
+utmaningen (sjuårig UE4-kodbas, levande Steam-spelarbas, utan att bryta live-spelet, pipelinen eller
+spelarnas mods och saves). "Full responsibility"-påståendet borttaget, ersatt av eget block:
+Kingdom Two Crowns: Pharaoh Lands, DLC från koncept till release på annans IP.
+"Where our people come from" → **Trusted by Studios**. Ubisoft och DICE borttagna (anställning, inte
+kundrelation); Fatshark, Void Interactive och Kinda Brave / Windup Games tillagda. Robert bekräftar
+att övriga är faktiska studiokunder.
+
+**Slide 5 — planändringar, inte bara text.** Roberts kritik läste som en kund och träffade rätt:
+1. **Stealth flyttad fram.** Prototyp M5 → **M2**, funktionell M9 → **M7**. Iterationsfönstret går
+   från tre till fem månader, och "var är stealthen" försvinner ur Krafton-mötena.
+2. **Leveldesignberoendet utskrivet.** Heistsen kan inte blockas ut till slutlig struktur innan
+   stealth-mekaniken är definierad; LD och stealth körs som ett arbetsflöde från M2.
+3. **Beta och Cert Candidate omkastade.** Nu Beta M10 (content complete, 22 pers) och Cert Candidate
+   M11 (ready for submission, 18 pers). Beloppen följer månaden, inte etiketten, så totalen är
+   oförändrad 29 649 100 (verifierat: raderna summerar exakt).
+4. **Speltester inskrivna.** Första externa testet med PUBG-spelare vid Pre-Alpha M5, månadsvis
+   därefter; fynden inarbetade vid Alpha 2. Test driven-kortet på slide 3 följer samma kadens.
+   Robert: externa tester ska komplettera intern testning, inte ersätta den.
+5. **UI/UX-wireframes flyttade M5 → M2**, in i designdokumentationen.
+6. **Kalenderfriskrivning** om svensk sommar mot 1-2 månaders grindavstånd.
+6b. Semesterfriskrivningen omskriven per Robert: överlappande lead-positioner absorberar semestrarna, tidsplanen har dem redan inräknade, och det är "the team", inte "both teams".
+7. Grafen fick M0 = Contract Signature. Testades som stegdiagram (12 hela månadsband) men Robert
+   valde tillbaka den mjuka kurvan med M0 kvar.
+
+**Öppet:** kollaget (7 Steam key art nedladdade i `pitches/project-irons-2-v2/art/`, studiologotyper
+saknas) · Minecraft Dungeons 2 hålls tills annonsering verifierats (sekretessrisk) · vem levererar
+PUBG-speltestarna · Turbid Station in/ut · signaturprocenten · om "cert" = Kraftons submission eller
+plattformscert (Robert valde omkastning utan förklaringstext).
+
+**2026-09-02 (kväll) — kollage, slide 7, Turbid Station.**
+- Turbid Station **ut** enligt Robert. Platshållaren borttagen.
+- **Loggvägg** byggd av tio PNG:er från Roberts Drive-mapp `1grn6XUxJ9dSJ4OJmpMPj53WETDeHaDbC`,
+  hämtade med ny engångsscript `assistant/gdrive-dl.js` (gdrive-upload.js saknar nedladdning).
+  Vit-silhuettfilter (`brightness(0) invert(1)`) på åtta av dem. **Mojang (99,9 % opak) och MAG
+  (79 %) har en fylld platta inbakad och plattas till ett solitt block av filtret**, så de renderas
+  i naturlig färg via `.raw`. De två behöver urklippta transparenta versioner för en enhetlig vägg.
+  Saknas helt: Fatshark, Void Interactive, Kinda Brave / Windup Games (ligger kvar som textchips).
+- **Key art-kollage** av sju Steam-headers i `art/`, app-ID:n upplösta via Steams storesearch-API.
+  Två avvikelser att känna till: "The Ascent 2 (demo)" visas med **The Ascent 1:s** key art eftersom
+  tvåan inte finns på Steam, och "PUBG × PAYDAY" visas med **PUBG:s** basspelsheader, inte lägets
+  egen key art. Crozzle finns inte på Steam och ligger kvar som textchip.
+- **Slide 7 Full ownership** utbyggd med valideringsarbetet: speltester från Pre-Alpha månadsvis,
+  fynden inskrivna i grindleveranserna, teamet på sin egen build dagligen, och lokalisering plus
+  spelarpanel hos Krafton.
+- **Två-IP-risken omskriven.** Den gamla mitigeringen ("grindarna sätts mot Kraftons certdatum")
+  besvarade inte risken. Nu: stående veckokontakt på PUBG-sidan från M1, namngiven beslutsägare hos
+  både Krafton och Starbreeze för allt som rör motor, certifiering och reward-flöden, och en skriven
+  beslutslogg med datum då varje svar behövs.
+- **Ny namngiven risk** enligt Roberts iakttagelse: de tre vaden (linjär struktur, tempo, stealth)
+  konvergerade tidigare först vid Alpha 2. Mitigeringen är tidsplaneändringen: stealth prototyp M2,
+  funktionell M7, externa tester från Pre-Alpha. Robert noterade att hans feedback skrevs före
+  tidsplanen uppdaterades.
+
+**2026-09-02 (sent) — evidensavsnittet omgjort till bild + påstående.**
+- Varje evidensblock har nu egen bild: **PUBG-lägets riktiga key art** (hittad på Kraftons CDN via
+  lägets nyhetssida, alltså inte basspelets header), Neon Giant-loggan på Krafton-blocket,
+  **Minecraft Dungeons II** key art, Ready or Not, Kingdom Two Crowns.
+- **Minecraft Dungeons II är publikt annonserat** (Minecraft Live mars 2026, släpp 2026-09-29),
+  så tidigare sekretessreservation avförd. Steam appid 1912410. CDN:n 404:ar för osläppta titlar,
+  bilden hämtades via `store.steampowered.com/api/appdetails`.
+- "Games released"-kollaget borttaget. Trusted by studios-kortet borttaget ur övre rutraden.
+  "The first developer" → "The first team". FTE-per-månad-raden borttagen (förvirrade).
+- Test driven-kortet och Full ownership omskrivna: **"frequent in-house testing and embedded QA"**
+  ersätter "a team that plays its own game every day" (Robert: krystad formulering).
+- **Loggor:** alla beskurna till motivet. **Fatshark hittad** på Wikipedia
+  (`File:Fatshark AB's logo.png`), mörk på transparent, fungerar med silhuettfiltret.
+  **Void Interactive, Kinda Brave och Windup gick inte att hitta:** Voids egen sajt exponerar bara
+  favikoner och Ready or Nots *spellogga*, Kinda Braves och Windups sajter ger ingenting vid enkel
+  hämtning (JS-renderade), och seeklogo saknar poster (sökningen gav Atlanta Braves och Nintendo).
+  **Mojang och MAG ligger kvar i färg:** även Wikimedias officiella slim-variant av Mojang är en
+  fylld röd platta (99,9 % täckning), plattan ÄR varumärket. Kräver mono-variant från Robert.
+- Kingdom Two Crowns: Pharaoh Lands har ingen publik Steam-post, blocket använder basspelets art.
+
+**2026-09-02 (sent, forts.) — loggvägg klar, Irons 1 halverad.**
+- **Fjorton loggor, alla vita, 7+7.** Utöver de tio från Drive hittades: **Fatshark** (Wikipedia),
+  **Kinda Brave** (kindabrave.com, negativ enradig variant), **VOID Interactive** (officiell
+  transparent SVG på voidinteractive.net/about/), **Raw Fury** (Wikimedia).
+- **Mojang, MAG och Raw Fury hade fylld färgad platta** och gick inte att silhuettera rakt av.
+  Första försöket extraherade ordmärket och slängde plattan, vilket Robert underkände: han ville ha
+  dem **monokroma**, inte helvita. Rätt lösning är omvänd: den färgade plattan blir vit och behåller
+  sin form, det ljusa märket blir **urstansat** (alfa 0) så bakgrunden lyser igenom. Tröskel 150 för
+  Mojang/MAG, 170 för Raw Fury (vit text på orange platta). Filerna bakas så, och CSS-filtret
+  `brightness(0) invert(1)` kan ligga kvar oförändrat på alla fjorton.
+- Kvar som textchip: **Windup Games** (ingen logga hittad, Robert lägger den i Drive).
+- **Irons 1-avsnittet halverat**, fyra rutor till två: "What Irons 1 showed" och "What Irons 2 does
+  about it". Robert: vi behöver inte repetera för dem vad deras eget läge var. Datum, passpris,
+  heistnamn och personalandel borttagna. Caveat-stycket nedkortat till två meningar men behåller
+  telemetri-asken.
+- Kingdom Two Crowns-blocket: "Pharaoh Lands" → **"upcoming DLC"**, texten till presens eftersom
+  DLC:n inte är släppt.
+
+**2026-09-02 — market sentiment ut ur Irons 1-avsnittet.** Robert: det är inte vår roll att berätta
+för kunden vad deras egna spelare tyckte. Borttaget: forumcitat, gisslantagningen, 10 %-bonusen,
+"did not move PUBG's concurrents", trailerns räckvidd, Kraftons H1-omnämnande, allt caveat om
+urvalsstorlek. Kvar och omskrivet till **produktionslärdomar** vi har mandat att tala om: heistsen
+byggdes initialt mer komplicerade än de behövde vara och fick förenklas sent (dyr omarbetning), och
+hela flödet spelades inte inbäddat i PUBG tillräckligt ofta, så kontextberoende problem dök upp sent.
+Svaret är tidigare testning, både intern på hela flödet inuti PUBG och extern med rätt fokusgrupper
+från Pre-Alpha. **Telemetri-asken behålls** men omformulerad som scoping-underlag, inte som ett
+påstående om spelarnas åsikter.
+
+**2026-09-02 — "What we assume from you" tillagd på slide 6**, grundad i Tobias tråd samma dag.
+Starbreeze: kreativ och teknisk rådgivning i återkommande vecko- eller varannanveckomöten, VO och
+musik, källkods- och buildåtkomst plus PD3-trunken, godkännanden inom fem arbetsdagar. Krafton:
+lokalisering, teknisk kontakt från dag ett med namngiven beslutsägare för motor/cert/reward-flöden,
+och åtkomst till externa speltester via deras fokusgrupper. Dubbletter rensade ur den gamla
+antagandelistan.
+**TVÅ ÖPPNA PUNKTER UR TOBIAS MAIL, båda kräver Roberts svar:**
+1. Tobias skriver "Your document states that the total includes 10% of contingency and functional
+   QA". **Ingenting om kontingens finns i v2.** Totalen 29 649 100 = internt 22 807 000 x 1,3.
+   Om de 30 procenten ska läsas som marginal PLUS 10 % kontingens måste det stå, annars tror kunden
+   att en buffert finns som vi inte har prissatt.
+2. Roberts svar till Tobias kallar Kraftons fokusgrupper **"a great bonus"**, medan sidan skriver
+   speltestpanelen som ett **antagande planen vilar på**. Antingen mjukas sidan upp, eller så görs
+   det till en verklig förutsättning i mailspåret.

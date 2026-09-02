@@ -13,6 +13,129 @@
 <!-- Categories: swedish_corp | swedish_tax | swedish_employment | swedish_ip | gdpr | contract_review | process | tooling -->
 <!-- If Robert corrected a substantive legal point: tag `correction` and write the corrected position prominently. -->
 
+## 2026-09-02 — STIM: återtagande kan ALDRIG ske på verksnivå (5.1), men synk av beställningsmusik ligger utanför mandatet
+**Projekt:** k2c (Carolina Foghammar ↔ Raw Fury musikavtal) · **Kategori:** swedish_ip · **Taggar:** STIM allmänna villkor 3.2/3.5/5.1/9.2/12.2, URL 3 §, beställningsmusik, direktlicensiering, NCB, spelmusik, correction
+
+**Robert antog att en STIM-ansluten kompositör kan välja vilka verk som ska vara STIMade. Det är fel,
+och det är den vanligaste missuppfattningen i den här typen av förhandling.** Verifierat ordagrant mot
+stim.se 2026-09-02, Allmänna villkor för anslutning till Stim:
+- **5.1: "Ett återtagande kan aldrig ske på verksnivå."** Begränsning sker per RÄTTIGHETSKATEGORI och
+  TERRITORIUM, aldrig per verk. 12.2 ger 6 månaders uppsägningstid även vid begränsning.
+- 3.2: upplåtelsen är exklusiv och omfattar "såväl existerande som framtida Musik"; den Anslutne får
+  under avtalstiden inte upplåta/överlåta dessa rättigheter till annan. 3.5: garanti om samma sak.
+  9.2: åtagande att inte träffa överenskommelse som strider mot avtalet. 3.10: ideella rätten stannar.
+- => En STIM-medlem som skriver under en "assigns ALL rights"-klausul bryter mot sin egen garanti.
+  Det är en reell risk för kompositören, inte en förhandlingsposition.
+
+**Motvikten, som räddar nästan alla spelmusikaffärer: SYNK ligger till stor del utanför STIM:s mandat.**
+STIM om beställningsmusik: "Du får förhandla själv om synkroniseringsavgiften samtidigt som du
+förhandlar om din lön för beställningen... fri förhandling mellan dig och beställaren." Spelmusik
+komponerad på beställning ÄR beställningsmusik → direktlicensiering. **Masterinspelningarna** rör STIM
+inte alls och kan överlåtas rakt av. Kvar inom mandatet: framförande + mekaniska. Den mekaniska biter
+på exakt ETT ställe i en spelaffär: förlagets **egen OST-release** (mångfaldigande, i Norden via NCB).
+
+**Metod som fungerade:** dekomponera "kan hon ge bort rättigheterna?" i de tre lagren
+synk / master / framförande+mekanik, och peka ut vilket lager som faktiskt är omtvistat. Nio gånger av
+tio är det bara OST-releasen. Då blir svaret till motparten "ni behöver inte ändra ert avtal" i stället
+för "vi vill omförhandla", vilket är en helt annan konversation.
+
+**Förhandlingsteknisk lärdom (generell):** när en motpartsmall inte kan skrivas under, leta först efter
+det bifogade **Special Conditions**-dokumentet. Det finns till för att anpassas per motpart. Att be om
+en rad där är en trivial ask; att be om ändring i masteravtalet är en eskalering till motpartens legal.
+Samma logik gäller alla mallbaserade motparter (RF, plattformshållare, publishers).
+
+**Fyra branschstandarder för spelmusik, rangordnade efter genomförbarhet mot en mall-publisher:**
+(1) överlåtelse + STIM-carve-out i Special Conditions; (2) master-buyout + evig exklusiv synklicens på
+kompositionen (vanligaste europeiska indie/mid-tier-standarden); (3) publishern tar förlagsandelen och
+registreras som musikförlag i STIM (verifiera tillåten andel mot fördelningsreglerna); (4) ren licens,
+kompositören behåller allt (svagast mot publisher).
+
+**Separera alltid juridiken från affären i motpartens svar.** Carolina paketerade ett kommersiellt
+DSP-exklusivitetskrav ("RF tar spelplattformarna, jag tar musikplattformarna") inuti ett korrekt
+STIM-argument. Om man svarar på paketet som helhet förlorar man; STIM-delen ska bejakas och
+exklusivitetsdelen förhandlas separat.
+
+**KORRIGERING AV MIN EGEN KORRIGERING 2026-09-02 — STIM har ett per-verk-instrument, så Robert hade
+rätt från början.** Jag svarade rakt "nej, hon kan inte välja vilka verk som ska vara STIMade" med
+stöd av Allmänna villkor 5.1 ("Ett återtagande kan aldrig ske på verksnivå"). Den regeln står fast,
+men den besvarade fel fråga. STIM har en separat blankett, **"Direct Licensing of (a) Certain Music
+Work(s) in a Video Game"**, där STIM per namngivet verk (STIM Work Title + Work Number) och per
+namngivet spel avstår sin licensiering och ger kompositören "the sole and perpetual right to directly
+license or assign". Verken stannar i STIM för allt annat. **Lärdom: att en rättighet inte kan
+ÅTERTAS på verksnivå betyder inte att kollektivförvaltaren saknar ett MEDGIVANDE-instrument på
+verksnivå. Fråga alltid efter organisationens blankettflora innan du svarar nej på en
+avgränsningsfråga.** Blanketten låg i CZP-driven (`1p31JH1f2NN0Hus2M8L6i1ewRgIGyp4bR`), textkopia i
+`_rf_music_templates/STIM_waiver_direct_licensing_video_game.md`.
+
+**Waiverns tre luckor (verifierade mot texten, gäller varje svenskt spelmusikavtal):** "Video Game
+Use" täcker verken **som integrerad del av spelet**, sync i marknadsföringsmaterial, och
+producentens **egna** plattformar. Den täcker därmed INTE (1) utgivarens **fristående OST-release**,
+som inte är en integrerad del av spelet och alltså kräver NCB eller utvidgad definition; (2)
+**tredjeparts streamers**, eftersom slutklämman säger att "in relation to any other use ... the
+Affiliation Contract shall fully apply" — **waivern levererar alltså INTE stream-safe**, och Content
+ID claimar dessutom oberoende av STIM, så det separata åtagandet behövs; (3) **kommande titlar i
+serien**, eftersom waivern binds till ETT namngivet spel. Bonus i utgivarens favör: STIM åtar sig att
+inte licensiera verken till något annat spel.
+
+**Processlärdom:** waivern signeras av kompositören OCH STIM, och kräver verkanmälda spår med
+verknummer plus slutlig speltitel. Den är inte klar samma dag. Räkna in den i tidplanen.
+
+**Nemo dat: att flytta avtalsparten löser aldrig ett rättighetsproblem.** Robert ville ändra
+anställningsavtalet så att CZP kunde signera med RF samma dag och "lösa det med Carolina sen". Tre
+skäl att säga nej, och de generaliserar: (1) ett tillägg till ett tvåpartsavtal kräver motpartens
+underskrift, så tillägget ÄR den förhandling man försökte skjuta upp, bara i en svårare form
+(retroaktivt indragande läser som att ta, inte köpa); (2) mellanledet förvärvar en belastad rättighet
+och kan ändå inte ge slutkunden mer än vad som fanns; (3) mallens Reps & Warranties + Indemnification
+gör garantin till ett skadeslöshetsåtagande, här på en affär där mellanledet får noll. **Rätt svar
+när klienten vill signera idag: separera brådskan från slutavtalet och leverera en kort
+interimslicens** som låser upp det som faktiskt brådskar (här: musiken in i builden), oåterkallelig
+utom vid avtalsbrott och uttryckligen utan att föregripa huvudfrågan.
+
+**KORRIGERING FRÅN ROBERT 2026-09-02 — stream-safe är utgivarens hårda krav, och det gör
+"kompositören behåller hela STIM-intäkten" till en FELAKTIG förhandlingsframing.** Jag byggde
+underlaget på att hon behåller framföranderättsersättningen från att spelet streamas på Twitch och
+YouTube, som "den långsiktiga pengen i spelmusik". Robert: *"RF kommer inte gå med på att Twitch och
+Youtube streamers måste betala royalties på musiken. Det är ett no go."* Han har rätt, och det gäller
+varje spelutgivare, inte bara RF. Ett spel som lever på content creators kan inte ha musik som
+triggar copyright-strikes, demonetisering eller takedowns mot streamers.
+
+**Två mekanismer som måste hållas isär och båda adresseras i avtalet:**
+1. **PRO-waivern (STIM:s spelmusikblankett)** stoppar kollektivförvaltarens egen inkassering för
+   spelanvändningen.
+2. **YouTube Content ID / Facebook Rights Manager / Twitch audio-recognition** är plattformstjänster
+   som claimar **oberoende av waivern**. En signerad STIM-waiver löser INTE Content ID. Krävs separat
+   åtagande: inte registrera verken där, whitelisting, och skyldighet att dra tillbaka claims.
+
+**Standardklausul att alltid lägga in i spelmusikavtal (nu i redlinen §1.4(c)):** kompositören ska
+inte registrera verket hos någon content-identification-tjänst på sätt som kan ge claim/strike/
+demonetisering/takedown mot utgivaren, dess publisher, eller **någon content creator, streamer eller
+allmänhet som spelar in eller streamar gameplay**, avsäger sig ersättning för sådan användning, och
+ska utan dröjsmål dra tillbaka claims.
+
+**Motvikten som gör klausulen signerbar:** skriv uttryckligen att kompositören BEHÅLLER
+kollektivförvaltad intäkt för musiken **som musik** (egen soundtrack-release på DSP, radio, live).
+Utan den meningen läser klausulen som total avsägelse, vilket varken är sant eller nödvändigt, och
+kompositören kommer att vägra. Den ärliga uppdelningen är: spelanvändning + streamers = avstås;
+musiken som musik = behålls.
+
+**Säljargumentet mot kompositören är äkta, inte spin:** en kompositör vars spelmusik ger
+copyright-strikes mot streamers får inte fler spelmusikjobb. Stream-safe är förutsättningen för att
+musiken ska höras.
+
+**Läs klausulen, inte changeloggen.** Robert (och jag, i första passet) läste PIVOT-5-noten överst i
+`draft_08_carolina_czp_employment.md` som att §8.4 "reserverar musiken till Carolina" och därmed
+blockerade en överlåtelse till RF. Ordagrann läsning av §8.4.2 visade motsatsen: rättigheterna RF
+behöver *"are granted by the Employee under a separate music-rights agreement"*. "Granted" är neutralt
+och specificerar varken licens eller överlåtelse, och §9.3 lägger kontinuiteten i det separata avtalet.
+Alltså inget hinder mot master-buyout och ingen omförhandling av anställningsavtalet. Changeloggar och
+drafting notes i egna utkast är sammanfattningar skrivna i ett tidigare beslutsläge; verifiera alltid
+mot den operativa avtalstexten innan man säger till klienten att något är blockerat.
+
+**Egen exponering: kolla ALLTID vad vi själva redan papprat mot motparten.** CZP:s signerade
+anställningsavtal §8.4 reserverade Audio Works till Carolina, samtidigt som Robert lovat RF "full
+överlåtelse". Man kan inte pressa en motpart till en position man själv skrivit bort i ett annat avtal.
+Se `umbrella/k2c_sands_of_duat/contracts_2026_subcontractors/memo_stim_music_rights_2026-09-02.md`.
+
 ## 2026-08-27 — Samtycke är inte disposition: "räcker klausulen?"-frågor ska dekomponeras per rättshandling
 **Projekt:** k2c (Simon Jakobsson CZP-anställning, k2c-051) · **Kategori:** swedish_ip + swedish_employment + process · **Taggar:** URL 28 §, LAS 6 c §, SemL 5/16b/30 §§, AvtL 36/38 §§, koncernintern överlåtelse, SÄVA, uttagsbeskattning
 

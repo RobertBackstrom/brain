@@ -1,0 +1,33 @@
+<!doctype html><meta charset="utf-8">
+<style>
+body{margin:0;background:#0c0c1c;color:#fff;font-family:system-ui;padding:30px 46px}
+.v{border-bottom:1px solid #26264a;padding:26px 0}
+.lab{font:700 11px/1 system-ui;letter-spacing:.18em;text-transform:uppercase;color:#65ede8;margin-bottom:14px}
+.sub{font:400 12px/1.5 system-ui;color:#8a8aa8;margin-top:10px}
+.lockup{display:flex;align-items:center;gap:30px}
+.x{font:600 30px system-ui;color:#8a8aa8}
+img{width:auto;display:block}
+/* A current */
+.A img.ap{height:78px} .A img.rf{height:34px}
+/* B cap matched */
+.B img.ap{height:78px} .B img.rf{height:42px}
+/* C cap matched + optical vertical align */
+.C img.ap{height:78px;transform:translateY(9px)} .C img.rf{height:42px}
+/* D cap matched, larger, optical align */
+.D img.ap{height:88px;transform:translateY(10px)} .D img.rf{height:47px}
+</style>
+<div class="v A"><div class="lab">A — current (78 / 34)</div>
+<div class="lockup"><img class="ap" src="ap-logo.png"><span class="x">×</span><img class="rf" src="rift-logo.png"></div>
+<div class="sub">AP letters 14.7px · RIFT letters 12.0px</div></div>
+
+<div class="v B"><div class="lab">B — cap-matched (78 / 42)</div>
+<div class="lockup"><img class="ap" src="ap-logo.png"><span class="x">×</span><img class="rf" src="rift-logo.png"></div>
+<div class="sub">both ~14.8px, but AP letters sit high because the drip drags its box centre down</div></div>
+
+<div class="v C"><div class="lab">C — cap-matched + optical vertical align (78 / 42, AP nudged 9px)</div>
+<div class="lockup"><img class="ap" src="ap-logo.png"><span class="x">×</span><img class="rf" src="rift-logo.png"></div>
+<div class="sub">letter blocks centred on the same line</div></div>
+
+<div class="v D"><div class="lab">D — same as C, 13% larger (88 / 47)</div>
+<div class="lockup"><img class="ap" src="ap-logo.png"><span class="x">×</span><img class="rf" src="rift-logo.png"></div>
+<div class="sub">if you want the lockup to carry more weight on the cover</div></div>
