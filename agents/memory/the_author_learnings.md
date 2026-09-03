@@ -448,3 +448,43 @@ leveransmail till publisher) och [[voice_anti_selling]]. Category: channel regis
 ## 2026-09-03 - Simon Jakobsson (K2C-anställning) OpenSign-brödtext: rollrelationen igen, korpus = hans eget mail [k2c, mail/OpenSign register]
 - **Korpus till Simon finns, ett riktigt sänt mail 26 aug (`1a03ce90ab2c24ce`):** "Hej Simon,", helsvenska, korta faktastycken, punktlista för det kommersiella, "Hör av dig om något är oklart." + "Robert". Draftens "Tja Simon!" byttes till "Hej Simon," på samma grund som Carolina-korrigeringen 2026-09-02: arbetsgivare till anställd i ett avtalsärende är varmt men vuxet, och det vinner över Discord-vanan även när de DM:at varandra. Avslutet lyftes ordagrant från hans mail. Category: person register (mail-evidenced, seed för `voice/people/simon-jakobsson.md` om volymen växer).
 - OpenSign-brödtext är en mailyta utan granskningsdraft, så passet gjorde faktakoll mot k2c-051 och draft_12 innan register: anställning (inte B2B), personnummer/adress var tomma fält, §5.4 12→6 mån var Lawyers rekommendation som Robert nu tagit. Allt stämde; inget flaggat. Ingen ny ursäkt tillagd, den var redan given på Discord samma morgon. Category: process.
+
+## 2026-09-03 - Tobias Remmers, plan-v2 delivery mail: the thread already holds the template [sbz / Irons 2, mail register]
+- **Robert's 18 Aug pitch mail (gmail thread `19ff6451882f7d46`) is the structural template for every "here is the page" mail in this thread**: half-sentence lateness up top ("Took me a few days longer than I said."), "Here is our take...", link + user/pass on their own lines, a noun lead-in ("What is in there:") and a numbered list of 5, then one line on the page being live rather than a deck. Numbered lists are corpus-verified to Starbreeze, same as to Xbox. The v2 delivery mail was passed onto that skeleton; lateness became "a day later than I said" (his form, not an apology), and "as promised" went as a frame. Category: person/thread register (mail-evidenced).
+- **Register to Tobias since 20 Aug: "Hello Tobias," or bare "Hello,", and "Best" alone with no name** (Gmail appends the block). Five consecutive sends confirm it; "Hi Tobias," only in the first reply. Use "Hello". Category: person register (mail-evidenced, seed for `voice/people/tobias-remmers.md` if volume grows).
+- **Price delta to a client: number, delta, cause, stop.** First pass cut "It is priced from what the team actually costs" as a defensive contrast. Coordinator then corrected the facts: the live v1 page had moved twice after 18 Aug and last read 35 343 000 (flat 140k per developer, QA separate), so the new 29 974 100 is a REDUCTION, not an increase, and the pricing-basis clause became the operative cause of the delta and went back in as the third sentence, minus "actually" ("priced from what the team costs, not a flat 140k per developer per month"). Lesson: whether a clause is defensive or operative depends on which direction the number moved; verify the counterparty's last-seen number against the live page, not the mail, before passing a price line. Category: register + process.
+- **Fact check that the pass caught, flagged upward not fixed:** the draft said "the 24,9 in my August mail", but the 18 Aug mail carried no total (only "indicative commercials"); the number lived on the page, and the page had since been revised to 35,3 (see above). "Compare against the old link" line was cut on Robert's decision: never invite a diff against a page that moved without notice. Also: draft peak 25 vs project memory peak 24,8; Tobias reads the document as 10 % contingency while Robert's 2 Sep mail said 20 percent. Numbers are locked for The Author. Category: process.
+- The one addition: a walk-through door ("Shout if you want to walk through it live", his own milestone-mail phrase) because Tobias's 2 Sep mail asked "when can we have an updated staffing plan *and a meet again*" and the draft answered only the first half. A door that answers an open question is plan-acting, not padding. Category: register.
+
+## 2026-09-03 (b) — Sänt vs utkast: Irons 2-planen till Tobias [sbz / Starbreeze, mail]
+
+Robert skickade 22:25 samma kväll och gjorde sex ändringar i den röstpassade texten. Alla sex är
+mönster, inte tillfälligheter.
+
+1. **Nya mottagare presenteras överst, med relation och skäl.** Utkastet lade tyst till tre adresser
+   och nämnde Rift först i punkt 1. Robert öppnade i stället med ett eget stycke: vilka de är, att
+   AP teamar upp med dem, att de satt på första projektet, och att AP och Rift jobbat ihop förut med
+   bra resultat. **Regel: när ett mail introducerar nya namn i en kundtråd hör presentationen och
+   motivet högst upp, före sakinnehållet.**
+2. **"Gates" blev "milestones" mot kunden.** Han sa milestones genomgående, aldrig gates, trots att
+   pitchsidan säger gates. Använd milestones i kundtext.
+3. **Prishistoriken ströks helt.** Utkastet hade den avvägda formuleringen "down from the 35,3 on the
+   first version, with QA inside and a higher peak". Robert ersatte hela punkten med
+   "The total is 29 974 100 SEK (roughly 115K per man month)." **Han föredrar pris plus enhetspris
+   framför en berättelse om hur priset rört sig.** Notera också att han **öppet exponerar den
+   blandade månadskostnaden**, vilket motsäger den gamla 140k-platt-doktrinen om att undvika
+   jämförbara enhetspriser. Fråga inte igen, kvot per manmånad är numera säljargument.
+4. **Förseningsfrasen ströks.** Jag lade in "a day later than I said" enligt hans eget 18 aug-mönster
+   ("Took me a few days longer than I said"). Det mönstret gäller **flerdagarsförseningar**. Vid en
+   dag levererar han bara, utan att peka på det.
+5. **Han krediterar kundens egna folk.** Punkt 1 blev "our designers deep diving into both PD3 and
+   Irons 1 (the meeting we had with your tech and design team was very helpful as well)".
+   Kundens bidrag nämns när man beskriver vad arbetet vilar på.
+6. **Avslutningen ströks.** "Still a live page ... Shout if you want to walk through it live."
+   Han hade redan etablerat living-page-principen i tråden 18 augusti. **Upprepa inte en ram som
+   redan är etablerad i tråden.**
+7. Han använde **smiley** mot Tobias. Konsekvent med [[feedback_smileys_in_mails]]: förbudet gäller
+   första kontakt, inte en etablerad tråd.
+
+Behöll oförändrat: "Hello X," som hälsning, numrerad lista, "Best" utan namn, och punkt 2:s
+erkännande att teamet vuxit ("We increased from our initial suggestion to 27 roles").

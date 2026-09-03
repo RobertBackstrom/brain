@@ -32,3 +32,42 @@ Categories: `tooling`, `deck-building`, `client-preference`, `process`, `voice`,
 
 ## 2026-06-22 — paradox_ironcrest_case — voice
 **Speaker notes carry the "why" for a presenter who is NOT the author.** This deck is presented by Robert's friend, and the panel cares about reasoning over numbers. So each slide's notes (1-3 lines) state the point to MAKE and the reasoning behind landing there — not a script to read. Pattern: "lead with X because [panel motive], the key line is Y, this sets up slide Z." Voice rules still apply in notes too: no em-dashes (use " - "), no hype words.
+
+## A brand file's NAME is not evidence of what it contains — render it before it reaches a client
+**Date:** 2026-09-03 · **Project:** K2C (Aurora Punks brand assets) · **Category:** tooling / client delivery
+
+Building the AP logo pack for Raw Fury's trailer editor, I nearly shipped `APlogoblack.svg` as the
+mono-black vector. **All 55 of its visible paths are `fill:#FFFFFF`. The file named "black" renders
+white.** Its sibling `APlogowhite1.svg` is also white, so the folder's naming convention is either
+"for use ON black" or simply wrong, and there is no way to tell from outside.
+
+**The rule: never let a filename stand in for inspection of a client-bound asset.** Open it. For SVG
+that means reading the fills and the CSS classes (`.st0{display:none}` layers hide whole colour
+variants inside a file that looks mono); for PNG it means checking mode, alpha extrema and actually
+looking at it on a mid-grey background so white and black art are both visible at once. A contact
+sheet of every candidate takes two minutes and catches this class of error completely.
+
+**Where a verified variant is missing, derive it and say that you did.** No high-res mono raster
+existed, only 480x270. I built mono white and black from the 11890x7825 transparent master's alpha
+channel, and generated a true mono-black vector by colour-swapping the verified all-white file — an
+exact, checkable transformation. Both facts are stated in the pack's README so the recipient knows
+what is original and what is derived.
+
+## Do not "upgrade" an asset into a heavier format when the source is already lossy
+**Date:** 2026-09-03 · **Project:** K2C (AP animated logo) · **Category:** media pipeline
+
+AP's animated logo sting exists only as a 182 MB, 256-colour GIF. Knowing a GIF is a poor edit
+source, I extracted its 179 frames to PNG and zipped them: 395 MB. Then I realised the sequence was
+extracted **from the GIF**, so every frame was a lossless copy of an already-quantised image. It
+added 395 MB and exactly zero quality. Deleted it before delivery.
+
+**Ask where the quality ceiling actually is before converting.** Transcoding to a better container
+cannot restore what the first encode threw away. The honest deliverable was the GIF plus a README
+line saying plainly that it bands on the fades, that it is the only animated master that exists, and
+that we will re-render ProRes from source on request. Searched Drive first to be sure no master or
+project file existed: none does.
+
+**Grain is why these files are huge.** The sting is mostly dark gradients with film grain, which is
+close to incompressible, so every "just export it losslessly" instinct costs hundreds of megabytes.
+
+See [[project_k2c_sands_of_duat]] for the delivery context.

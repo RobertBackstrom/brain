@@ -408,3 +408,54 @@ en konsol.
 
 **Perforce-arv:** trädet bar skrivskyddsattributet på 11 524 filer, vilket blockerar varje
 filredigering tills det rensas. Gör det direkt när ett p4-träd flyttas till git.
+
+## 2026-09-03 — Leta efter beviset på att accessen användes, inte efter kredentialen (Blue Scarab)
+
+**När en VD beviljar depot-access går uppgifterna till ingenjören, inte till din motpart.** Colin
+Cragg skrev "we're getting perforce account access for you now ... after you get the instructions"
+och Robert kvitterade "thanks for the access" en vecka senare. Mellan de två mailen finns ingenting:
+ingen server, ingen user, inget lösen, någonstans i hela brevlådan. Att söka på `perforce`,
+`p4port`, `1666` och kunddomänen gav noll, och det är **inte** samma sak som att accessen aldrig
+fanns.
+
+**Sök i stället efter artefakten som bara kan ha producerats med access.** Feasibility-dokumentet
+inledde med "based on the fully-synced Perforce checkout, Content ~156 GB, 53 934 .uasset, 19
+plugins, Engine: UE 5.5.0". Den meningen bevisar både att kontot fungerade och ger dig hela den
+tekniska kravbilden gratis: motorversion, projektstorlek, pluginlista. Ett estimat- eller
+granskningsdokument är ofta den enda kvarvarande kvittensen på en access som gick till någon som
+sedan lämnade projektet. Slutsatsen blir också en annan: vägen framåt är **återutfärda**, inte
+återfinn, och det är ett mail till kunden och inte en jakt i arkivet.
+
+**Kolla vilka endpoints byggmaskinen faktiskt bär innan du tror att den varit inne.** forge hade
+p4-klienten installerad och en `p4config.txt` som pekade på en Helix Core, vilket ser ut som access
+tills man läser vilken: en helt annan kunds server under en annan användare. Fyra lagrade endpoints,
+noll mot den kund frågan gällde.
+**Tags:** Perforce, access-arkeologi, kredential-hos-ingenjören, feasibility-doc-som-kvittens, p4config-läs-vilken-server
+
+## 2026-09-03 — DDC-katalogen som är störst är ofta den döda (Blue Scarab / Curveball)
+
+Skulle frigöra disk på forge för en 161 GB-synk. Två kandidater på C:, tillsammans en dryg terabyte.
+Den stora fällan låg i DDC:n: `C:\UnrealData` var 398 GB och 1,38 miljoner filer, medan den DDC som
+**faktiskt används** låg på `D:\UE-DDC` och var 2,0 GB. Skillnaden syns bara i miljövariabeln
+`UE-SharedDataCachePath`. Den feta katalogen var förra ägarens cache, orörd sedan februari.
+**Läs var DDC-sökvägen pekar innan du raderar en DDC**, annars raderar du antingen fel sak eller
+avstår från en gratis halv terabyte för att du antog att den var i bruk.
+
+**Raderingstid skalar med filantal, inte med bytes.** `rd /s /q` tog under en sekund på 610 GB
+fördelat på 455 filer, och 6 minuter 16 sekunder på 398 GB fördelat på 1,38 miljoner. Planera
+fönstret efter `Measure-Object -Count`, inte efter GB, och kör det som `.cmd` under `schtasks` av
+samma skäl som alla andra långkörare på en Windows-byggmaskin över SSH.
+
+**`BuildConfiguration.xml` är maskinbred och därför en kollision så fort maskinen får ett andra
+UE-projekt.** Curveballs pinning till MSVC 14.38 + SDK 22621 för UE 5.3 ligger i
+`%APPDATA%\Unreal Engine\UnrealBuildTool\` och gäller allt som byggs på lådan. Nästa projekt på en
+annan motorversion måste flytta pinningen till projektlokala
+`<Project>\Saved\UnrealBuildTool\BuildConfiguration.xml`, annars slåss projekten om toolchainen.
+Flytta den **innan** första bygget av projekt nummer två, inte efter första felväggen.
+
+**iOS går inte att bygga på en Windows-byggmaskin över huvud taget.** Apples toolchain kräver macOS,
+och UE:s remote build behöver alltså en riktig Mac i flottan. Det är en hårdvarurad som ska in i
+estimatet från början i varje mobilport, inte en detalj som upptäcks vid M1. Android är däremot bara
+installation: Android Studio, JDK och exakt den NDK-revision motorn pinnar, via
+`Engine\Extras\Android\SetupAndroid.bat` ur motorträdet i stället för handplockat.
+**Tags:** DDC-sökväg, UE-SharedDataCachePath, raderingstid-filantal, schtasks, BuildConfiguration-maskinbred, projektlokal-pinning, iOS-kräver-Mac, SetupAndroid

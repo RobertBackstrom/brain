@@ -422,3 +422,43 @@ FTE-raden (259), blandade raten, betalplanens fyra rörliga rader plus totalen, 
 aria-etiketten, förstasidans "peaks at 25 people" och grindkorten Pre-Alpha och Alpha 1 (25 personer)
 är uppdaterade. Alpha 2 och framåt är oförändrade eftersom art support slutar månad 7.
 Även: leden på slide 04 skrevs om, "the support period after it hold" → "stay unchanged".
+
+**2026-09-03 (kväll, sista) — grindarna omplacerade efter Pers landningsinvändning.**
+Invändningen: Beta och Cert låg en månad isär, alltså knappt tid att iterera före submission.
+Robert valde flytten **Pre-Alpha M5→M4, Alpha 2 M9→M8, Beta M10→M9**. Alpha 1 (M7), Cert (M11) och
+Gold (M12) står kvar, vilket ger **två månader mellan content complete och cert candidate** och en
+månad 10 utan grind, alltså synlig poleringstid i kurvan. **Totalen är oförändrad, 29 974 100**, bara
+faktureringen omgrupperas: FP m3 2 741 700, Pre-Alpha m4 2 856 100, Alpha 1 m5-7 8 568 300, Alpha 2
+m8 2 726 100, Beta m9 2 568 800, Cert m10-11 4 539 600. Grindsumman verifierad mot totalen.
+Bemanning per grind följer månaden: Pre-Alpha 25, Alpha 1 25, Alpha 2 24, Beta 23.
+**Feature complete flyttat från Alpha 1 till Alpha 2** (Robert: en ny svårighetsgrad är polering och
+balansering, inte en feature, så den ligger kvar i Beta). Alpha 1 heter nu "All features in first
+iteration". Alpha 1 tappade svårighetsgraden, playtest-återkopplingen (till Beta) och polish-raden
+(Cert hade den redan), och tre punkter skrevs om till första iterationer.
+**Terminologin enhetlig:** "HR1" och "Heist Royale" är borta, allt heter **Irons 1**, vilket är ordet
+Tobias själv använder. Det var Pers andra påpekande.
+
+**2026-09-03 (kväll) — Alpha 1 till månad 6 och mailet till Tobias.**
+- **Alpha 1 flyttad M7 → M6** på Roberts kassaflödesargument: med grindarna M4 och M7 hade vi jobbat
+  fyra månader (M4-M7) mellan två betalningar. Nu är längsta obetalda sträckan två månader.
+  Grindarna: Prototype M2, First Playable M3, Pre-Alpha M4, Alpha 1 M6, Alpha 2 M8, Beta M9,
+  Cert Candidate M11, Gold M12. Betalplanen omgrupperad: Alpha 1 m5-6 = 5 712 200, Alpha 2 m7-8 =
+  5 582 200. Totalen fortfarande 29 974 100, verifierad mot grindsumman.
+- **Mailutkast till Tobias skapat** (`r7513448996125906480`, tråd `19ff6451882f7d46`, ämne
+  "Re: PUBG<>PAYDAY Feature list"), med Matt, Victor och Gustav på raden. Skrivet av The Author.
+- **Viktigt fynd innan mailet:** v1-sidan säger inte 24,9 längre. Den reviderades två gånger efter
+  18 aug-mailet och står nu på **35 343 000 och peak 23**. Tobias 2 sep-mail citerar "10% of
+  contingency and functional QA", vilket matchar exakt den versionen, alltså är det den han läst.
+  **Nya totalen är därför en sänkning på 5,4 MSEK mot det de senast sett, inte en höjning.** Mailet
+  säger det rakt ut. Utkastets ursprungliga punkt 6 ("up from the 24,9") hade varit fel och hade
+  rättats av kunden i stället för av oss.
+- Jämförelseinbjudan till v1 struken (Robert): de ska inte diffa mot en sida som ändrats två gånger
+  utan att vi sagt till. v1 ligger kvar men vi pekar ingen dit.
+- **Kontingensfrågan är fortfarande obesvarad mot kunden** och medvetet inte med i mailet.
+
+**2026-09-03 (kväll, sist) — "gates" → "milestones" på hela sidan.**
+Roberts sända mail sa milestones genomgående medan sidan sa gates. Tolv synliga förekomster bytta:
+rubriken ("Twelve months, nine milestones"), utfällningens rubrik ("Milestone by milestone"),
+sommarstycket, stealth-beroendet, förskottsnoten i betalplanen, godkännandekravet mot Starbreeze,
+Full ownership-kortet och tre rader i riskavsnittet. Noll "gate" kvar i löptext; CSS-klasserna
+(`.gatecard`, `.gn`, `.gm`, `.gs`) heter fortfarande gate, vilket inte syns för läsaren.

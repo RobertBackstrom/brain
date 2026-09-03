@@ -1419,3 +1419,25 @@ nedströmscell. "Updated cell" från MCP:n är inte bevis på att värdet blev d
    filer hela tiden (verifierat via `curl` + pixelräkning), men Roberts webbläsare visade cachade
    versioner och han rapporterade buggen två gånger. **How to apply:** lägg `?v=N` på src:en, eller
    byt filnamn, i samma commit som filen byts. Kostar inget och sparar ett felsökningsvarv.
+
+## Image and video tooling on the VPS: PIL only, and there is no pip
+**Date:** 2026-09-03 · **Project:** K2C / platform · **Category:** tooling inventory
+
+Building a client logo pack, I needed to rasterise SVG and encode video. What is actually on the box:
+
+- **Present:** Python 3 with **PIL/Pillow 10.2.0** (opens PNG/GIF/JPEG/TIFF, resizes, alpha
+  channels, `ImageSequence` for GIF frames). Node with `fetch`. That is the whole toolkit.
+- **Absent:** `rsvg-convert`, `inkscape`, ImageMagick (`convert`/`magick`), `ffmpeg`, and `cairosvg`.
+- **`pip` is not installed at all** — neither `pip3` nor `python3 -m pip`. So the gap cannot be
+  closed from inside a session; it needs a real install on the host.
+
+**Consequences to plan around:** you cannot rasterise an SVG, so deliver vector as vector and build
+rasters from an existing high-res PNG master (PIL can recolour via the alpha channel, which covers
+mono variants). You cannot transcode video, so a GIF stays a GIF. `Image.MAX_IMAGE_PIXELS=None` is
+needed for anything above ~89 MPix or PIL raises a DecompressionBomb warning and refuses.
+
+**Watch the two-minute Bash timeout.** Compressing 179 PNG frames blew it twice. Long media work
+belongs in `nohup ... &` with a log, then an `until grep -q` waiter — same pattern as any long build.
+
+If image tooling becomes recurring, the fix is installing `pip` plus `cairosvg` and `ffmpeg` on the
+host rather than working around it every time. Worth a ticket if it comes up again.
