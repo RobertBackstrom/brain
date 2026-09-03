@@ -13,6 +13,40 @@
 <!-- Categories: swedish_corp | swedish_tax | swedish_employment | swedish_ip | gdpr | contract_review | process | tooling -->
 <!-- If Robert corrected a substantive legal point: tag `correction` and write the corrected position prominently. -->
 
+## 2026-09-03 — Fastställ vilket dokument som är LEVANDE innan du analyserar något
+**Projekt:** k2c (Carolina ↔ Raw Fury) · **Kategori:** process · **Taggar:** contract_review, versionshantering, bilagor, spårade_ändringar, bortkastat_arbete
+
+**Dyraste misstaget i hela sessionen, och det var rent processuellt.** Jag byggde en master-buyout-
+strategi, ett samtalsunderlag och en fullständig redline. Allt var dött vid leverans, av två skäl som
+båda gick att upptäcka på trettio sekunder:
+1. **Fel dokument.** Jag redlinade RF:s `Special conditions - composer.docx` eftersom det var mallen
+   jag hade lokalt. Det levande dokumentet var ett helt annat: ett trepartsbrev, Authorization Letter,
+   som hängde på ett outsourcingavtal jag inte tittat på. Jag upptäckte det först när jag till slut
+   hämtade bilagan.
+2. **Fel version.** Medan jag skrev hade motpartens jurist redan skickat en ny version där hela den
+   klausul jag byggde min analys kring var **struken**. Den låg oläst i inkorgen. Jag hittade den först
+   när Robert frågade "har du läst senaste kontraktet".
+
+**Regel, gör detta FÖRST i varje avtalsärende, före all analys:**
+1. Läs hela mailtråden och **räkna meddelandena**. Kom tillbaka och räkna om innan varje ny leverans i
+   samma session — en tråd som växte från 9 till 10 är en ny version.
+2. **Hämta och läs varje bilaga.** Analysera aldrig ett avtal från en sammanfattning, en mall eller ett
+   changelog-block. Bilagor är billiga att hämta och är den enda källan till vad parterna faktiskt har
+   framför sig.
+3. **Fråga uttryckligen vilket dokument som är det som ska signeras.** Mallar som en motpart skickat
+   "för genomläsning" är ofta inte det instrument affären till slut byggs på.
+4. Öppna .docx med **spårade ändringar separerade** (`w:ins` / `w:del`), inte som platt text. Platt
+   extraktion gav mig "SeptemberJuly" och "into the DLC and any Kingdom gameSoundtrack", vilket dolde
+   att en hel klausul var borttagen. Utan den parsningen hade jag missat hela vändningen.
+
+**Bredare mönster:** motparten kan ha rört sig medan du bygger ditt motförslag. Att kontrollera det är
+en billig operation och att låta bli är dyrt, både i arbetstid och i trovärdighet när klienten
+upptäcker det före dig. **Kontrollera motpartens senaste drag innan du presenterar ditt eget.**
+
+**Utfall här:** RF slopade självmant den fulla överlåtelsen och ersatte den med en licens, alltså
+exakt vad kompositören begärt. Hela förhandlingsstrategin var onödig. Analysen av STIM-mandatet och
+waiverns luckor var däremot inte bortkastad, den blev det som återstod att bevaka.
+
 ## 2026-09-02 — STIM: återtagande kan ALDRIG ske på verksnivå (5.1), men synk av beställningsmusik ligger utanför mandatet
 **Projekt:** k2c (Carolina Foghammar ↔ Raw Fury musikavtal) · **Kategori:** swedish_ip · **Taggar:** STIM allmänna villkor 3.2/3.5/5.1/9.2/12.2, URL 3 §, beställningsmusik, direktlicensiering, NCB, spelmusik, correction
 
@@ -777,3 +811,25 @@ or open the archive file below (each has its own Contents block, so you can offs
 - 2026-06-17 — Employer-employee + direct composer↔publisher music licence: the URL no-WFH "bu…
 - 2026-06-17 — Game-audio IP can route either composer→publisher direct OR composer→employer→p…
 - 2026-06-17 — Splitting the employer from the IP-assignee in a group: assign work-product dir…
+
+## 2026-09-03 — En sekretessklausul utan portfolio-carve-out täcker bilden lika hårt som namnet [sbz / Irons 2 pitch]
+**Projekt:** sbz + k2c · **Kategori:** contract_review + marknadsföringsjuridik · **Taggar:** §5.1, konfidentialitet, referensrätt, gated sales page
+
+Irons 2-pitchen hade ett bevisblock med Kingdom Two Crowns vid namn och Raw Furys key art. RF LTC:n
+saknar credit-klausul och portfolio-carve-out, och §5.1 kräver skriftligt förhandsgodkännande före
+publicering till tredje part (se [[project_k2c_sands_of_duat]]).
+
+1. **"Gated" räddar ingenting.** En lösenordsskyddad säljsida som delas med en namngiven motpart är
+   fortfarande publicering till tredje part. Åtkomstkontrollen minskar exponeringen, inte
+   avtalsbrottet.
+2. **Bilden är minst lika illa som namnet.** Key art är motpartens upphovsrätt *och* avslöjar samma
+   oannonserade produkt. När vi avidentifierar en referens måste assetet bort också, och bort på den
+   host som faktiskt serverar sidan. `sync-pitches.sh` kör medvetet utan `--delete`, så en lokal
+   radering når aldrig edgen: verifiera med en 404 mot skarp URL.
+3. **Avidentifiering är en fullgod mellanväg.** "An unannounced expansion on a third-party franchise,
+   taken from concept through to release" bär hela argumentet (vi bygger på någon annans IP) utan att
+   röja vare sig titel eller rättighetshavare. Namnet kan sättas tillbaka den dag ett skriftligt OK
+   finns i mailtråden, vilket är §5.1-mekanismen och inte kräver avtalstillägg.
+4. **Regeln generellt:** innan en kundreferens går in i säljmaterial, kontrollera tre saker i det
+   avtalet, credit-klausul, portfolio-carve-out och sekretessens räckvidd. Saknas de två första och
+   sekretessen omfattar "the Work", får varken namn, logga eller bild användas.

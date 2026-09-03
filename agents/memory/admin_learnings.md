@@ -11,6 +11,102 @@
 
 <!-- Append new learnings with: learning, source project, date, category -->
 
+## 2026-09-03 — Motpartens egna GDoc-suggestions ÄR persondatakällan, och den här avtalsmallens signaturblock kräver manuell widgetplacering [k2c / k2c-051]
+
+**Project:** K2C Pharaoh Lands, Simon Jakobssons CZP-anställning | **Category:** contracts, opensign, tooling, bevisinhämtning
+
+**Leta persondata i suggestion-notiserna innan du frågar motparten en gång till.** Ticket k2c-051 hade
+"Simons personnummer, adress, bankkonto och skattetabell" som öppen blockerare, och Simon hade
+samtidigt påmint två gånger på Discord om att avtalet inte kommit. Två av fyra uppgifter låg redan
+framme: Google Docs-notismailet `1a03e3e28e0995b0` (2026-08-26) återger **suggestion-texten ordagrant**
+i brödtexten, alltså `Replace: "personnummer" with "19900613-1917"` och `Replace: "address" with
+"Gustav III:s Väg 105"`. **Regel: när en motpart har commenter-access på ett utkast, greppa
+`from:comments-noreply@docs.google.com` på dokumentnamnet innan du skriver en fråga till hen.**
+Notismailet är dessutom läsbart utan Drive-access, vilket räddade körningen här: `gdrive_read_file`
+på det delade dokument-id:t gav `File not found` (två id:n är i omlopp för samma dokument,
+`17u8p6XEtlG…` i memory/output_log och `1Baw2yGe8cc…` i notismailet).
+
+**Ofullständig adress kompletteras ur det tidigare signerade avtalet, inte ur gissning.** Simon skrev
+bara gatuadressen. Postnummer och ort (168 39 Bromma) togs ur det Zigned-signerade Neon
+Artery-avtalet 2024-10-18 där samma gatuadress står som bolagets säte, alltså två oberoende källor på
+samma gata. Lade fram det som ett val till Robert i stället för att fylla i tyst.
+
+**Den här mallfamiljen (CZP-anställning, "Place and date"-block) kan INTE använda `nda`- eller
+`sub`-placement.** Samma fynd som ND-timavtalet 2026-07-15, nu bekräftat på anställningsmallen:
+`buildNdaSignatureWidgets` kräver `Date:`-etiketter plus `For and on behalf of` / `Name: Robert`, och
+`buildSubSignatureWidgets` kräver namnrader på formen `<Namn>, Board Member|Director|CEO|Member`.
+Anställningsavtalet har varken. Båda returnerar `null` och faller tillbaka på `last`, som slänger
+fälten i tomma luften. **Använd `placement: 'manual'` programmatiskt (CLI:t kan inte skicka koordinater).**
+
+**Två renderingsfällor på vägen dit, båda värda att bygga bort direkt i markdownen:**
+1. **Signaturblocket straddlade sidbrytningen** (Roberts "Place and date" på sida 7, hans namnrad på
+   sida 8). Widgets över två sidor är i praktiken ohanterliga. Fix: `md-to-pdf.js` har ingen
+   page-break-styling, men rå HTML går igenom `marked`, så
+   `<div style="page-break-before: always;"></div>` före `## SIGNATURES` lägger hela blocket på egen
+   sista sida.
+2. **En rad med enbart understreck blir `<hr>`,** eftersom `___` är thematic break i markdown. Det ger
+   ett blekt streck i full sidbredd i stället för en signaturlinje. Fix: skriv `Signature: \_\_\_…`
+   med escapade understreck och ledande etikett, då blir det text OCH ett användbart ankare.
+
+**Arbetsflödet som fungerade, i ordning:** rendera md → PDF → `node opensign.js anchors <pdf>` →
+`pdftoppm -f <sista sidan> -png` och titta på bilden (billigaste sanningskontrollen, den avslöjade
+`<hr>`-buggen som anchors-utdatan dolde) → räkna widgetkoordinater ur `yTop` (signaturen ~17 pt över
+namnradens `yTop`, datumet på "Place and date"-radens `yTop` minus 2) →
+`createSignatureRequest({placement:'manual', signerWidgets, sendEmail:false})` → maila varje signatär
+separat med `sendSignerEmail`. **Skicka INTE med `sendEmail:true` när signatärerna behöver olika
+text** — annars får Robert motpartens brev ordagrant, inklusive "signera via länken så skriver jag
+under". Två `sendSignerEmail`-anrop kostar ingenting och ger rätt röst åt båda.
+
+**BEFORDRAD 2026-09-03:** placement-regeln per mallfamilj plus de två renderingsfällorna bor nu
+kanoniskt i [[digital-signatures-self-hosted-opensign]], eftersom varje agent som skickar ett avtal
+behöver dem och de annars ligger begravda här. Läs den först; det här är arbetsloggen bakom den.
+
+**Tags:** k2c-051, opensign, manual-placement, gdoc-suggestions, comments-noreply, page-break,
+markdown-hr-fälla, pdftoppm-verifiering, per-signer-mail, anställningsavtal, czp
+
+---
+
+## 2026-09-03 — En leverantörsreskontra kan kvittera betalningar som aldrig lämnade banken. Stäm alltid av huvudbok mot kontoutdrag innan en summa citeras [apb / K 4429-25]
+
+**Project:** Aurora Punks ÅR 2025 + APDS-konkursen | **Category:** redovisning, bevisinhämtning, konkurs
+
+**Huvudlärdomen.** APDS huvudbok 2440 visade fjorton Alpidus-fakturor om 547 000 kr under 2025,
+samtliga med en matchande "Levbet"-rad. Bankkontoutdraget bär bara 326 000. Fyra poster om 44 000 kr
+(september till december) är registrerade och kvitterade som betalda utan att pengar lämnade kontot:
+den gamla avbetalningsplanen togs aldrig bort ur reskontran när den nya om 60 000 kr startade i
+september. **En "Levbet"-rad i huvudboken bevisar bara att någon markerade fakturan som betald.**
+Innan ett belopp ur en leverantörsreskontra citeras till revisor, motpart eller förvaltare, stäm av
+det mot kontoutdraget. Det gäller särskilt bolag i ekonomiskt trångmål, där reskontran är det första
+som slutar underhållas.
+
+**Så gick avstämningen till, och den är återanvändbar.** Tre spår, i den ordningen:
+1. **Namnmatchning.** Betalmottagaren står i klartext på direktbetalningar ("Alpidus inkasso").
+2. **Buntmatchning.** LB-betalningar går ut som en klumpsumma ("Lbe<bankgiro>"). En bokförd betalning
+   kan bara rymmas i en bunt som är minst lika stor den dagen. Är buntens belopp *exakt* det bokförda
+   är matchningen säker; är den mindre är posten **utesluten**. Det är så de fyra spökposterna föll.
+3. **Saldotaket.** Även utan buntar sätter dagssaldot en gräns. 2025-09-01 stod kontot på ~44 tkr
+   efter att 20 000 och 31 372 gått ut. En betalning om 44 000 var fysiskt omöjlig.
+
+**Räntan är den oberoende tredje kontrollen, och den är den starkaste.** Med en känd räntesats går
+det att räkna baklänges: betalningar minus kapitalminskning = ränta. 326 000 mot en kapitalminskning
+om 128 015,36 ger 197 985 i ränta = 10,8 % på snittkapitalet, mot avtalets 11,16 %. Med 547 000 blir
+det 22,8 %, alltså dubbla avtalsräntan. **När bokföring och bank är oense, låt en tredje storhet som
+ingen av dem kontrollerar avgöra.** Engagemangsbeskedet från borgenären bär både kapitalbeloppet och
+räntesatsen och kostar 0 kr att beställa.
+
+**Engagemangsbesked, praktiskt.** Alpidus levererar per valfri brytdag och svarar snabbt. Beställ
+alltid **två**: en per balansdagen och en per idag. Den andra fångar vad som hänt efter bokslutet
+(här: 0,00 kr i alla tre delar per 2026-08-31 efter ackordet), vilket revisorn behöver för
+efterföljande händelser och eventualförpliktelsenoten.
+
+**Gmail-drafts med bilagor, och hur man inte förstör Roberts egna.** `gmail_create_draft` (MCP) kan
+inte bifoga filer, och den dedupar på threadId, alltså **raderar** ett befintligt utkast med Roberts
+egna bilagor. `assistant/gmail-draft-attach.js` kan bifoga men saknar threadId, cc och In-Reply-To,
+så den skapar en lös draft utanför tråden. Rätt väg när ett trådat utkast ska kompletteras med
+bilagor: hämta draftens raw (`drafts/<id>?format=raw`), spara den som backup, bygg om MIME:t som
+multipart/mixed med gammal To/Subject plus nya bilagor och **PUT till `drafts/<id>` med threadId**.
+Uppdaterar på plats, behåller tråden, och backupen gör felet reversibelt. **Promotat till [[feedback_gmail_draft_dedup]]**, som är den kanoniska hemvisten; varje agent som gör mailutkast behöver den, inte bara CorpBot.
+
 ## 2026-09-01 — När huvudboken saknas: motpartens SIE namnger transaktionen i klartext [apb / K 4429-25]
 
 **Project:** Aurora Punks ÅR 2025 + APDS-konkursen | **Category:** redovisning, bevisinhämtning, konkurs

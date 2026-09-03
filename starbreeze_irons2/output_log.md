@@ -324,3 +324,101 @@ antagandelistan.
 2. Roberts svar till Tobias kallar Kraftons fokusgrupper **"a great bonus"**, medan sidan skriver
    speltestpanelen som ett **antagande planen vilar på**. Antingen mjukas sidan upp, eller så görs
    det till en verklig förutsättning i mailspåret.
+
+## 2026-09-03 — pitch v2, Roberts feedbackrunda sida för sida (16 punkter avgjorda)
+
+Robert gick igenom hela sidan och skickade en samlad lista. Fyra frågerundor, sedan 35 redigeringar
+publicerade och verifierade mot skarp URL.
+
+**Beslut i rundorna:**
+1. **Kontingens parkerad.** Tobias tror totalen rymmer 10 % kontingens plus funktionell QA. Det står
+   fortfarande ingenstans i v2 och arket har ingen kontingensrad i den rörliga modellen (1,3 är
+   påslag, 1,15 finns bara i fastprisvarianten A47/A48). Robert: löses i nästa pitch, inte här.
+2. **Support får ingen siffra.** Kurvan slutar vid Gold. Åtagandet (buggar som härrör från vårt
+   arbete fram till och med release) står kvar utan bemanning eller pris. Arkets Support-kolumn är
+   fortfarande tom.
+3. **Signature blir grind 1**, rubriken "Twelve months, nine gates". Grindkortet listar signerat
+   avtal, källkods- och buildåtkomst plus PD3-trunken, och namngivna beslutsägare på båda sidor.
+4. **Signaturbetalningen låst till 10 %** (2 964 910), platshållaren `[10% - confirm]` borttagen.
+
+**Irons 1 nedtonat, lärdomarna invävda i leading thoughts.** Robert: vi kastar inte paj på
+Starbreeze som gjorde Irons 1. Blocket "What Irons 1 missed / What Irons 2 does about it" är
+borttaget. Innehållet ligger nu i de tre leading thoughts som vår hållning: PUBG-spelarna vill ha
+enklare gameplay så PD3:s komplexitet återskapad i PUBG betalar sig inte (01), polish där det känns
+mest, gunplay och weapon feel (02), och att läget ska sitta *inuti* PUBG med designspråk, progression
+och UX som spelarna känner igen (03). Raden om leveransutmaningen ersatt av metodstycket om iterativ
+level design, prototyper tidigt inför målgrupp och spelade inuti PUBG.
+
+**Level design:** djupet behålls, 3C-avsnittet borttaget som luddigt. "We have been asked to
+investigate 3Cs" och "Krafton has asked for additional stealth" omskrivna till vår egen riktning:
+stealth växer genom enkla fristående features som ger banvariation, inte komplexa generella system
+som är svårlästa. Textstorleken utjämnad.
+
+**Rollräkningen rättad.** Arket har exakt 27 rader (A4-A30) och grupperingen 3/8/6/6/4 stämmer. Felet
+var art-raden som stod "Generalist / Hard Surface / **VFX** / Lighting", vilket läser som fyra roller
+och dessutom hittar på en VFX-rad som inte finns i arket. Nu "Generalist / Hard Surface / Lighting
+Artist", en roll.
+
+**Kingdom Two Crowns-blocket avidentifierat (juridik, inte smak).** RF LTC §5.1 gör the Work och
+Customer Properties konfidentiella och kräver skriftligt förhandsgodkännande före publicering till
+tredje part; §5.2(a) släpper bara det RF själv offentliggjort, så även efter RF:s annonsering får AP
+inte namnge sig. Blocket heter nu "Concept to release on an established IP that is not ours" och
+beskriver en oannonserad expansion utan att namnge KTC. **Raw Furys key art borttagen både lokalt och
+på edgen** (404 verifierad), eftersom §5.1 gäller bilden lika mycket som namnet.
+
+**Loggor:** Starbreeze och Toca Boca hade fyllda plattor som blev vita klumpar under
+`brightness(0) invert(1)`. Ombakade med urstansning enligt ArtDirector-lärdomen (tröskel 150
+respektive 110), cache-bust `?v=3`. Fjorton loggor, alla monokroma, filtret orört.
+
+**Övrigt inlagt:** intron omskriven till Roberts formulering plus "release support" i stället för
+"post release support"; jobblinjen "upgraded to match" → "brought up to the same standard"; Senior
+leadership → "Proven experience leading and driving complex projects from start to finish"; Scale
+when the plan moves → **Scale with project demands** med Roberts text; "The evidence" → "Selected
+evidence"; roll i projektet per person på slide 03 (Code Lead, UI Programmer, Executive Producer,
+Producer, Game Director & Design Lead, Lead Level Designer, **utan studiobeteckning**, år i branschen
+medvetet utelämnat eftersom ingen verifierad källa finns); Jimmy får "Neon Giant (Krafton)";
+256,1 → 256 FTE-månader; hardware och mjukvarulicenser tillagda i Included; "you" → Starbreeze i Not
+included; "What we assume from you" → **"What we need from you"**; hela utfällningen "Assumptions
+this number rests on" borttagen; Stockholm-based partner och risken "Ramp to 24" omskrivna till
+Roberts texter; speltestpanelen fick reservplan ("or budget for us to recruit an equivalent panel")
+så sidan och Roberts "a great bonus" inte längre säger emot varandra.
+
+**Full ownership ändrades inte:** texten Robert skickade som förslag var ordagrant den som redan låg
+uppe. Han läste en skärmdump från före gårdagens sista redigering.
+
+**Bemanningsarket rättat i Drive** (`1bMRoLsK...`): månad 10 heter nu Beta med noten "Content
+complete...", månad 11 Cert Candidate med "Pre-cert candidate to Krafton. Builds for all platforms
+ready for submission". Typot "Ceryt" åtgärdat på köpet. Formler och bemanning orörda, 256,1 MM och
+29 649 100 oförändrade. Robert säger till Rift själv.
+
+**Kvar:** (a) Tobias väntar på uppdaterad bemanningsplan med tidslinje och milstolpsleverabler,
+utlovad "by tomorrow" i Roberts mail 2 sep, alltså idag. Sidan ÄR leveransen men mailet är inte
+skrivet. (b) Kontingensfrågan obesvarad mot kunden. (c) Riskkortet "The three bets converge too late"
+refererar fortfarande till "the first version of this plan", alltså vår egen tidigare plan, vilket
+kunden inte behöver veta.
+
+**2026-09-03 (forts.) — level design skärpt på tre punkter efter Roberts genomläsning.**
+- Slide 01-leden skriven om: "The game mode targets the PUBG audience, so anything that requires prior PAYDAY knowledge is a cost, not a feature." Svansen om Irons 1 borttagen, den var en kvarleva efter att blocket togs bort.
+- "The heists **were chosen because** they offer visual variation" → "The heists offer...". Krafton valde banorna, så motivet var vårt påstående om deras beslut.
+- **Nytt stycke `Content restrictions`** plus omskriven Syntax Error: gatudelen tas bort eftersom den är byggd kring civila och läget inte får låta spelare döda civila, hellre det än en tom gata utan förklaring. Restriktionerna (civila, poliser, riktig valuta) presenteras som en del av leveldesignarbetet och som skäl till att heistsen omstruktureras i stället för att portas.
+- Pers kommentar inarbetad: "whichever suits you best" → "with the flexibility to keep the collaboration close and smooth throughout".
+
+**2026-09-03 (kväll) — sista passet på v2.**
+- **Culturalisation and content compliance** ersatte "Content restrictions" som rubrik. Branschtermen är culturalization (Kate Edwards/IGDA), men den täcker kultur och geopolitik, inte åldersmärkning, så rubriken bär båda. Kategorierna utskrivna: civilbefolkning, poliser som mål, hur stöld och riktig valuta skildras, blod och gore. Den definitiva listan läggs uttryckligen hos Starbreeze och Kraftons marknadsgodkännanden i stället för att vi påstår regler vi inte kan belägga. **Faktakoll:** Kinas NPPA-standard förbjuder rollen "thief or criminal" över huvud taget, plus lik, skelett och blod i alla färger; men PUBG på PC/konsol är inte den licensierade kinesiska produkten (Game for Peace är en separat Tencent-titel), så NPPA är sannolikt inte grinden för det här läget. Inget kinaspecifikt påstående skrevs in i pitchen.
+- **Fatshark-loggan byggd om till positiv.** Gårdagens urstansningsregel gäller när plattan ÄR märket. Hos Fatshark är skivan bara grungebakgrund och hajen är loggan, så filtret gav vit skiva med mörk haj, alltså inverterat. Ny fil: haj och ordmärke i vitt, skivan borttagen, byggd ur Wikipedia-originalet med floodfill av yttre bakgrund plus komponentetikettering (största mörka komponenten = skivan). `?v=3`. Lärdom skriven till ArtDirector-minnet med testfrågan "skulle märket vara igenkännbart utan plattan".
+- **Rolltabellen strukturerad om.** Antalen låg i vänsterkolumnens pip-block och kunde aldrig hålla tabellens radrytm, så trean stod i höjd med rubrikraden. Siffrorna borttagna därifrån; tabellen har nu Discipline / Roles / Breakdown plus **totalrad 27**.
+- **Full ownership kortad** enligt Roberts strykningar: "and monthly after" och hela meningen om att lokalisering och spelarpanelen ligger hos Krafton är borta. Månadskadensen lever kvar där den bär vikt (slide 02 och Pre-Alpha-grinden), Krafton-ansvaret står kvar i Not included och i "What we need from you".
+- **Riskkortet "The three bets converge too late" borttaget** (Robert: en kommentar på vår egen initiala planering, inte en projektrisk). **Ersatt av "Communication and infrastructure across time zones":** Seoul ligger sju till åtta timmar före Stockholm och arbetar primärt på koreanska, så överlappsfönstret hålls som stående slot för motor- och integrationsfrågor, resten går asynkront mot beslutsloggen, djupare tekniska möten körs med tolk bokad i förväg, och käll-, build- och synkinfrastruktur mellan sajterna reses i månad 1 eftersom överföringstider på en kodbas i den storleken är en schemapost. **Tolkning tillagd som Krafton-behov** på slide 05, alltså inte i vårt pris.
+- Slide 01: "The heists were chosen because" → "The heists offer", eftersom Krafton valde banorna. Leden omskriven till "The game mode targets the PUBG audience...". Syntax Error har nu skälet till att gatudelen tas bort (civilbefolkning, och läget får inte låta spelare döda civila).
+- Pers kommentar på intron inarbetad.
+
+**2026-09-03 (kväll, forts.) — commercials omräknad efter höjd art support.**
+Robert höjde Art Support i arket från 2,5 till 5 månader (100 000/mån, alltså 250 000 → 500 000),
+heltid månad 3 till 7. Hela kedjan omräknad ur arket rolldrad för rollrad och avstämd mot arkets egna
+summor: **258,6 FTE-månader, internt 23 057 000, klientpris 29 974 100, blandat 115 908 per
+FTE-månad**, external 1 268 000. Uppdaterat på sidan: rubriksiffran 29,97M, båda statraderna,
+FTE-raden (259), blandade raten, betalplanens fyra rörliga rader plus totalen, och signaturens 10 %
+(2 997 410). **Toppen flyttade 24,3 → 24,8**, så kurvans punkter M4-M7, de två grindmarkörerna,
+aria-etiketten, förstasidans "peaks at 25 people" och grindkorten Pre-Alpha och Alpha 1 (25 personer)
+är uppdaterade. Alpha 2 och framåt är oförändrade eftersom art support slutar månad 7.
+Även: leden på slide 04 skrevs om, "the support period after it hold" → "stay unchanged".

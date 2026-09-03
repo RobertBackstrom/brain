@@ -114,3 +114,43 @@ Full 24-image first pass on fal.ai costs ~$0.36 (Flux 12×$0.025 + fast-SDXL 12�
 ## 2026-08-31 - knives_and_gutters - process
 **A dead pitch URL is a real finding, log it.** The K&G pitch "shared with Owen at Games Workshop" was not a deck at all: the 2025-10-02 mail linked `arkislandstudio.com/demo/mordheim/`, which now 404s. I nearly built guidelines off the wrong artifact by assuming an attachment. **How to apply:** before treating a Drive deck as "the pitch that was sent", read the actual sent mail and check what it linked or attached. When the linked pitch is gone, say so explicitly and name the closest surviving artifact by date rather than silently substituting one.
 **Tags:** knives_and_gutters, verify-what-was-actually-sent, dead-pitch-url, artifact-provenance
+
+## 2026-09-03 - Loggväggar: fyllda plattor kräver urstansning, inte silhuett [sbz / Irons 2 pitch]
+
+En loggvägg på mörk bakgrund görs normalt med `filter: brightness(0) invert(1)`, som gör varje
+logga till en vit silhuett. Det fungerar för märken som är mörk grafik på transparent bakgrund, men
+**förstör loggor vars märke är en fylld färgad platta** (Mojang = röd ruta, MAG = blå cirkel,
+Raw Fury = orange platta). De blir solida vita block.
+
+Fel lösning: extrahera ordmärket och slänga plattan. Robert underkände det, "jag menade inte att de
+skulle bli helvita". Rätt lösning: **behåll plattans form i vitt och stansa ur märket** (alfa 0), så
+bakgrunden lyser igenom bokstäverna. Då blir loggan monokrom men behåller sin identitet.
+
+**How to apply:** mät täckningsgraden först (andel opaka pixlar). Över ~60 % = fylld platta, kräver
+urstansning. Per pixel: opak och luminans över tröskel → alfa 0; opak och under tröskel → vit med
+originalets alfa. Tröskel 150 räckte för vit text på röd/blå, 170 för vit text på orange. Baka det i
+filen, då kan CSS-filtret ligga kvar oförändrat på hela väggen.
+
+## 2026-09-03 (b) — Urstansning är fel svar när plattan bara är en bakgrund [sbz / Irons 2 pitch]
+
+Regeln från posten ovan (fylld platta → behåll plattan i vitt, stansa ur märket) gäller **när plattan
+är varumärket** (Mojang röd ruta, MAG blå cirkel, Raw Fury orange platta, Toca Boca munnen,
+Starbreeze solskivan). Fatshark ser likadan ut i filen, svart skiva med hajen som negativt utrymme,
+men där är **skivan bara en grungebakgrund och hajen är hjälten**. Samma behandling gav en vit skiva
+med mörk haj, vilket Robert direkt läste som inverterad.
+
+**Testfrågan:** skulle märket vara igenkännbart utan plattan? Är svaret ja är plattan bakgrund, och
+då ska den bort helt medan märket blir vitt (positiv), inte tvärtom.
+
+**Så byggs positiven ur en negativ fil** (svart skiva, ljust märke inuti, mörkt ordmärke utanför,
+alltså två motsatta polariteter i samma bild):
+1. Maska mörkt (luminans < 128, alfa > 40) och ljust.
+2. Floodfill ljust från bildkanten = yttre bakgrund.
+3. Etikettera mörka komponenter, den största är plattan.
+4. Vitt ut = mörka komponenter som INTE är plattan (ordmärket) plus inneslutna ljusa komponenter
+   över ~150 px (märket inuti plattan). Storleksfiltret är viktigt, annars blir bokstavshålen i
+   a, s och r också vita.
+5. Allt annat alfa 0. CSS-filtret `brightness(0) invert(1)` kan ligga kvar.
+
+Wikipedia-filen (`Fatshark AB's logo.png`) är källan, hämtad via `w/api.php?action=query&prop=imageinfo`.
+Cache-busta alltid med `?v=N` i HTML:en, annars ligger den gamla kvar bakom Cloudflare.

@@ -169,6 +169,68 @@ agent: pm
 
 # PM Agent Learnings
 
+## 2026-09-03 — An empty dashboard is not evidence of missing access until you have verified you are on the right dashboard [project: necrotic_dominion, nd]
+
+Fourth pass on the same ND CurseForge access question, and I got it wrong twice in one session before
+it resolved. Both errors are worth more than the eventual answer.
+
+**The question.** Robert wanted to test Elias' PS5 fixes on a retail kit. That needs a CurseForge
+account with (a) Cross Platform Testing on the project and (b) PSN under Connected Accounts. Since
+2026-08-12 the record had said `AuroraPunksBoss` "owns nothing, which is why its author portal shows
+**No projects yet**" — a direct console observation, which the 2026-08-28 entry then enshrined as
+beating the contradicting notification mail.
+
+**Error 1: I read a third-party screenshot as a complete state.** Amichai Marmor (CurseForge side) sent
+a Members-tab screenshot with two rows, `davidkruse` and `DevElias`, under the words "You both have full
+permissions". `AuroraPunksBoss` was absent, so I concluded Robert was not a member and built a whole
+runbook on it. Elias, who had the console open, then said flatly: *"AuroraPunksBoss är owner över kartan
+och robert_aurorapunks är author"*. **A Members list need not render the owner as a member row.** The
+account I declared absent was the one that owned the project.
+
+**Error 2, the expensive one: I sent him to the wrong product and confirmed it badly.** Asked where the
+author console lives, I fetched `console.curseforge.com`, saw the title "CurseForge for Studios", and
+called it confirmed. It is not the mod-author dashboard — it is the **publisher** surface where a studio
+registers a *game* (what Studio Wildcard uses for ARK itself). Robert logged in and got "All games — No
+Games yet", which is the correct output of the wrong tool. Mod projects live at
+`www.curseforge.com/account/projects` (302 → `legacy.curseforge.com/account/projects`). **I verified that
+a page existed and had a plausible name, and treated that as verifying it was the right page.** A title
+match is not a capability match; the check is whether the surface lists the object type you care about.
+
+**The compounding failure, and the real lesson.** Error 2 probably *caused* the entire three-week
+investigation. If the 2026-08-12 audit that produced "No projects yet" was also looking at the studios
+console, then the load-bearing observation behind "AuroraPunksBoss owns nothing" was an artifact of the
+wrong dashboard — and the April notification mail that contradicted it was right the whole time. The
+2026-08-28 rule I wrote ("direct observation of the live surface beats the append-only mail ledger")
+needs a hard qualifier: **only if the observation was made on the correct surface.** An empty view is the
+most seductive false negative in access debugging, because absence renders identically whether you lack
+permission, lack the object, or are looking in the wrong place. Before treating "no results" as a state
+read, confirm the surface can display the thing at all — ideally by finding something you *know* exists
+there.
+
+**What actually resolved it: asking the person with the console open.** One Discord line from Elias beat
+three sessions of mail-ledger reconstruction, screenshot interpretation and URL guessing. On any gated
+platform where we hold no session, "who currently has this open, and what do they see" should be the
+*first* move, not the fallback after the clever reconstruction. Cost: one message. It also outperformed
+the platform contact (Amichai), who summarised from memory and named the wrong accounts — the insider
+with the working session beat the insider with the authority.
+
+**Third, smaller, but it nearly produced a bogus ticket:** I ran the project's Discord reader as
+`--days 400`, got `0 msgs` across all four channels at exit 0, and concluded the bot had lost guild
+access. The script takes **positional** args; `parseInt('--days')` is `NaN`, the guard `all.length < PER`
+is `0 < NaN` = false, so it never fetched. Re-run as `100 45` it returned 27 messages, four of which
+became evidence on ND-11. Same shape as the dashboard error: **an empty result from a tool you invoked
+wrongly is indistinguishable from a dead upstream.** Filed db-342 — read tools should fail loud, and an
+all-channels-zero result should not exit 0.
+
+**One good triage habit from the same pass, worth keeping:** among five PS5 crash reports sat one player
+who had loaded the same mod **on Xbox** and flown around in admin. That converts "console crash" into
+"PS5-specific divergence from a working Xbox cook" — a much smaller hypothesis space. On cross-platform
+defects, hunt the channel for the platform that *works*; the negative space is the diagnostic.
+
+**Tags:** necrotic-dominion, curseforge, access-management, permissions, false-negatives, verification-discipline, tooling-footguns, cross-platform-debugging, ps5, nd
+
+---
+
 ## 2026-08-28 — Buggfixar mot en levererad feature är inte featurearbete (k2c)
 
 Jag satte in **Merchant** under "Updated features" i MS4-byggnoteringarna. Robert strök den:
@@ -976,3 +1038,133 @@ or open the archive file below (each has its own Contents block, so you can offs
 - 2026-06-22 — After agile sprint-issue moves, verify membership with JQL `sprint = N`, NOT th…
 - 2026-06-17 — A CUST spawn "only made one task" can be an under-built TEMPLATE, not a broken…
 - 2026-06-17 — Backfilling an existing Location Epic: you can't re-fire the Flow — hand-clone…
+
+## Jira: a ticket missing from a board has at least two distinct causes, check the type before the sprint
+**Date:** 2026-09-03 · **Project:** K2C · **Category:** tooling / Jira
+
+Two "why isn't this on the board" questions arrived a day apart with different answers, and the
+second one is the trap because the first answer is fresh in mind.
+
+1. **No sprint.** Issues created over REST get no sprint field. A sprint board renders only the
+   active sprint, so they vanish. Fix: `POST /rest/agile/1.0/sprint/{id}/issue`.
+2. **Wrong issue type.** In a **team-managed** (`next-gen`) project a board draws Task/Story/Bug
+   only. **Subtasks never render as cards, whatever their sprint or status.** No configuration
+   changes this; it is how the board works.
+
+Diagnose type first, it is one field. `GET /rest/api/3/project/KAN` → `style: "next-gen"` tells you
+which world you are in.
+
+**The gotcha that will mislead you:** a subtask's Sprint field (`customfield_10020`) shows its
+parent's sprint, so the ticket looks like a sprint member. It is not one. JQL `sprint = 9` returned
+189 issues and zero subtasks on a board where 109 open subtasks existed. Both the board API and JQL
+agree with each other and disagree with the issue's own field.
+
+**Always quantify before recommending.** "KAN-673 is a subtask" is a shrug. "109 of 393 open issues,
+28% of open work, including nearly all of the art list" is a decision. One JQL pass grouped by
+parent turns a single-ticket question into the real finding.
+
+**The second-order damage is worse than the invisibility.** Subtask status does not roll up. The
+parent card KAN-142 sat in **To Do** while three children were In Progress. A board used for status
+was reading the project as less advanced than it was, and nobody could see why.
+
+**Fixing the view beats converting the data, and it was Robert's call.** Converting subtask→Task is
+allowed (`editmeta` lists Task/Story/Bug as targets and `parent` is settable) but it flattens
+Epic→Task→Subtask to Epic→Task and loses the per-island grouping card. A board built from a saved
+filter shows everything with no data change. Recipe:
+`POST /rest/api/3/filter` (share `{type:'project'}` or the board is invisible to the team) →
+`POST /rest/agile/1.0/board {type:'kanban', filterId}`.
+
+**Always re-map the columns after creating a board from a filter.** Auto-mapping is naive: it folded
+BACKLOG *and* In Review into In Progress, and Icebox into Done. `PUT
+/rest/greenhopper/1.0/rapidviewconfig/columns` with `{currentStatisticsField:{id:'none_'},
+rapidViewId, mappedColumns:[{name, mappedStatuses:[{id}], isKanPlanColumn:false, min:'', max:''}]}`
+works and is what the UI calls. Then verify no status is left unmapped, since an unmapped status
+means cards that exist but never draw, which is the bug you were sent to fix.
+
+**When answers to a multi-part question contradict each other, say so instead of executing both.**
+Robert picked "convert nothing" and "close the parents as Done"; the second was only coherent if the
+first had gone the other way. Closing KAN-142 with 14 open children would have hidden the work twice.
+Flag and hold the conflicting half, deliver the rest.
+
+## Closing a stale review column: the milestone label lies, the children do not
+**Date:** 2026-09-03 · **Project:** K2C · **Category:** process / Jira hygiene
+
+Robert asked to close the In Review tickets "from MS2 and earlier". The instinct was right (135
+open in one column) but the instrument was wrong, and the gap between what he asked and what the
+board contained was the whole job.
+
+**Check whether the category the user named actually exists before you scope to it.** Zero In Review
+tickets carried an MS0/MS1/MS2 fixVersion or an S1-S3 sprint. Only 5 both originated before MS3 and
+had not moved since. The real bloat was 101 tickets from S8, the MS4 hardening sprint, that shipped
+on 28 Aug and were never closed. Say that out loud and re-ask rather than closing 5 things and
+calling it done.
+
+**Sprint membership can be worthless as evidence.** I built a gate on "in S8 but not carried into
+S9" and it returned 1 ticket. Testing the assumption killed it: all 20 *Done* S8 issues were in S9
+too, so everything had been bulk-carried and S9 membership said nothing about whether work
+continued. Always test a discriminator against a population where you know the answer (the Done
+ones) before trusting it.
+
+**AI notetakers write action items in the imperative, so keyword matching reads "to do" as "done".**
+I matched ticket summaries against Gemini notes gated on /resolved|fixed|completed|implemented/ and
+it surfaced "**Complete map UI** (Dubravko)" as evidence that the map UI ticket was complete. It is
+an assignment. Every one of the 7 "corroborations" was a false positive. A summary of a standup
+cannot verify ticket-level completion, and pretending it can silently closes live work. Past-tense
+statements about a named person ("Fredrik resolved a bug causing banner duplication after saving and
+loading") are real evidence; imperative bullets are not. Read those by hand, they are few.
+
+**Never close a parent that still has open children.** KAN-354 was the single most tempting close
+(In Review since June, untouched) and it had 4 open subtasks plus a comment saying the art iteration
+continues into MS5. Make this a hard precondition, not a judgement call.
+
+**Related tools:** the reusable duplicate scanner is `assistant/jira-dupes.js`; see
+[[feedback_check_before_creating]] and the entry above on notetaker action lists.
+
+## Duplicate detection on a Jira board: score the rare words, penalise the shared prefix
+**Date:** 2026-09-03 · **Project:** K2C · **Category:** tooling
+
+Built `assistant/jira-dupes.js` (registry-driven like the rest, so a new project is one JSON block).
+Three things had to be right before the output was usable at all:
+
+1. **Exclude structural pairs first.** A naive scan ranked "Camel: art" against its own parent
+   "Camel" at 0.9. Subtasks sharing a parent, and any parent/child pair, must be skipped or real
+   duplicates never surface. Before that filter, 33 hits were nearly all noise.
+2. **IDF-weight the tokens against the board's own corpus.** "plinth" is worth far more than "asset".
+   Flat token overlap buries the signal on a board where 80 summaries contain "map".
+3. **Penalise a differing leading qualifier.** "Sobek - Level Art" vs "Sphinx - Level Art" scores
+   high and is two different islands. A mismatched first token is evidence *against* duplication.
+
+**The tool finds candidates; it must not decide.** Of 36 candidates, 2 were true duplicates, and 4
+high scorers were deliberately distinct: hermit CHARACTER (Imi) vs hermit HOUSE (Eamonn) is the art
+split, and Blood Moon composition (Carolina) vs engine loop support (Oskar) is the audio split.
+Closing on score alone would have destroyed real work. Link the near-misses as "Relates" so the next
+sweep does not re-raise them.
+
+**A sync that creates from a list must check the existing epic tree, not just open summaries.** My
+2026-09-01 art-schedule sync created KAN-693 "Demolisher Hermit" while KAN-269 "Demolisher hermit:
+art assets" had existed under epic KAN-266 since April. It also made me report the demolisher
+implementation as unticketed when KAN-270 was sitting right there. Fold the dupe scan into
+`jira-sync.js plan` so creation is checked against the whole board including children.
+
+## Finding someone's email: check calendar invites from other people at the same org
+**Date:** 2026-09-03 · **Project:** K2C · **Category:** tooling / research
+**Source:** Robert, directly.
+
+Needed Pontus Rundqvist's address to share a deliverable. Gmail search, Drive, and the RAG wiki all
+came back empty because he works with Robert on Slack, never over mail, and the Slack MCP servers
+were down that session. I was about to ask Robert.
+
+**The calendar has him.** `list_events` with `fullText: "Pontus"` returned
+`{displayName: "Pontus Rundqvist", email: "pontus@rawfury.com"}` as an attendee on a recurring sync
+organised by Ishani at Raw Fury. One call, exact answer, no guess.
+
+**The general rule: a person who never mails you is still on the invite list of meetings organised
+by their colleagues.** So when an address is missing, search the calendar for people at the SAME
+ORG, not just the person. The attendee list of any invite from that company is a small internal
+directory. This also gives you the org's address format, which turns a guess into a check.
+
+Order to try: calendar attendee lists → Gmail → Drive permission lists on shared folders (existing
+grants show real addresses) → the RAG wiki → ask Robert. Note `search_events` (semantic) returned
+nothing here while `list_events` with `fullText` found it, so prefer `fullText` for a name.
+
+Related: [[feedback_check_web_before_asking]], [[feedback_search_wiki_first]].

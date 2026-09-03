@@ -2,7 +2,7 @@
 project: tkr
 status: open
 priority: high
-updated: 2026-08-27
+updated: 2026-09-03
 created: 2026-08-07
 type: blocker
 owner: Robert
@@ -66,6 +66,34 @@ otherwise. The re-mint above is what settles this. Until then the true equity an
 are both unconfirmed.
 
 **Activity:**
+- [2026-09-03] **Ticker**: Daily scan, zero cards - **setup-limited, not budget-limited** (7th
+  consecutive zero-card scan since 08-26). Budget was a genuine 1: 0 cards at
+  `trade_status=awaiting_confirm`, worst case 1 open lot (35,500 PDX.ST, whose 141 GTC target is
+  near-certainly filled with PDX at 142.7). Ran the 09-01 one-number test (max R = remaining upside
+  / 1.5 x dailySigma) across all 25 names. **Exactly two passed against the raw 3mo high - AMZN
+  3.12R and U 3.71R - and both collapsed against live supply: AMZN 1.22R to the 08-28 rejection at
+  267.56, U 1.47R to the 43.80-44.00 congestion.** Both "highs" are single post-earnings spike bars
+  (AMZN 07-31 +15.3%, U 08-06 +22.7%). Rest of the board died on the raw number alone: NVDA 0.67R,
+  PDX 2.07R, RBLX 1.74R, HEXA-B 1.69R, MTG-B 1.58R, MSFT 1.07R, SF 0.70R, NIBE-B 0.46R, SINCH 2.40R.
+  **The 08-31 carried trigger fired for the first time and it was a false positive:** AMZN closed
+  254.98 against a recorded trigger of 260.44, but that trigger was derived off the period high
+  287.2, which the 09-01 scan had already downgraded to the 267.6 shelf - off the correct shelf the
+  trigger is 242.96. AMZN also broke its 257-259 shelf on 09-01, so the setup is gone, not cheap.
+  Triggers re-derived against live supply and carried forward: **SINCH 43.89** (now 44.05, only 0.4%
+  away and falling - closest name on the board), PDX 141.11 (142.7), HEXA-B 94.75 (97.14), NVDA
+  209.42 (224.41), EMBRAC-B 70.00 (73.66), U 38.86 (40.76), AMZN 242.96 (254.98).
+  EVO re-verified excluded on current facts - Candle Lake/Dart SEK 695 acceptance runs to **09-15**,
+  today sits inside the window (§1). TTWO rejection still live (GTA VI 11-19). SINCH's Q3 date could
+  not be established by search, so per the 08-31 rule that is a **failed check, not an all-clear** -
+  re-run it if the 43.89 trigger fires.
+  **Saxo SIM token still 0 bytes, mtime unmoved at Jul 4 23:06 - day 61.** Balance cache
+  `fetched_at` 2026-06-30, now **65 days** past a 15-minute TTL. Nothing mis-sized (no card), but
+  re-mint remains the only open blocker: `node assistant/saxo.js auth-url` -> approve in browser ->
+  `node assistant/saxo.js exchange "<redirected-url>"`.
+  **Raised for decision: the sprint is 47 days past its own terminal condition.** Playbook §8 ends
+  the experiment at the 30-day window, which closed ~2026-07-18. It has since run with a dead broker
+  token, an unreconciled PDX exit, and no confirmable equity. Recommend the weekly review either
+  formally closes the sprint on the PDX result or restates the window.
 - [2026-08-27] **Ticker**: Daily scan, zero cards - **setup-limited, not budget-limited**. Budget was a
   genuine 1 (0 cards at `trade_status=awaiting_confirm`; worst case 1 open lot, 35,500 PDX.ST, whose
   141 GTC target is now near-certainly filled with PDX at 144). Whole watchlist screened; the

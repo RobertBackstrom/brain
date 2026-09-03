@@ -7,78 +7,54 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
-## 2026-09-02 — "I need a public gated subdomain" was really "the host is on the wrong box" [db-341, Assistant]
+## 2026-09-03 — I designed for a runtime topology I never verified, and built a host Robert cannot reach [db-341, Assistant]
 
-**Learned:** 2026-09-02 | **Project:** Death Board / internal preview host (db-341) | **Category:** static-hosting, topology, bind-address, symlink-safety, systemd, durability
+**Learned:** 2026-09-03 | **Project:** Death Board / preview host (db-341, reverted) | **Category:** code-server, topology, premise-check, search-first, revert
 
-**The requester's proposed shape was the expensive one, and the topology said so.** Robert asked
-for "a separate gated slug or subdomain with its own credentials". Reasonable on its face — it is
-the shape the pitches host already has. But `hostname` says this session runs on the **Nitro**, and
-there is no `cloudflared` process here: the tunnel and `pitches-server.js` live on the Hetzner
-`edge` box, reachable only through `sync-pitches.sh`. So a public subdomain would have put an rsync
-between "I re-rendered the page" and "I can see it" — reintroducing exactly the friction that made
-the throwaway `python3 -m http.server` feel necessary. **Before designing a new host, run `hostname`
-and `ps aux | grep cloudflared` and find out which box the request is actually about.** Post-split
-this box is not the box that serves the public web, and a design that forgets it ships a sync step
-nobody asked for.
+**Rated 1/5. The whole build was sound and completely useless, because the premise was wrong.**
+Robert asked for a durable way to view rendered HTML. I built a loopback + tailnet static host on
+the Nitro and reasoned that "VS Code Remote SSH auto-forwards loopback ports, so `localhost:8899`
+reaches his browser for free". **He does not use VS Code Remote SSH. He uses `code-server` — web
+VS Code served from the VPS — so his browser runs on his own machine and `localhost` there is HIS
+LAPTOP, not this box.** Every loopback service on the Nitro is unreachable from his browser. The
+tailnet leg fails the same way in practice: it needs Tailscale on whichever machine the browser is
+on. Reverted in full the same session.
 
-**The cheapest reach was already there and nobody had named it: VS Code Remote SSH auto-forwards
-loopback ports.** That is *why* Robert's ad-hoc `localhost:8899` worked from his browser in the
-first place. Once you notice it, the whole credential question dissolves: a `127.0.0.1` bind on the
-Nitro is reachable from his browser with zero auth, zero Cloudflare config and zero exposure.
-Adding the **tailnet IP** as a second bind (`tailscale ip -4`, the same model as Death Board on
-`100.77.150.9:8080`) buys phone access for one more `listen()` call and still never touches the
-public internet. **Generalise: when someone asks for credentials on an internal tool, first check
-whether an existing private transport already carries them there.** Auth you do not have to build
-is auth you cannot misconfigure. Node detail: one `http.Server` listens once, so dual-bind means
-two `createServer(handler)` instances sharing one handler — and the tailnet bind's `error` must
-*not* kill the process, or a Tailscale hiccup takes down the loopback leg that is the one actually
-in use.
+**The fact was already in this file's own archive, and I read past it.** From
+`agents/memory/archive/devops/2026-06.md`: *"code-server webview topology (important). A
+WebviewView's HTML/JS runs in Robert's browser, NOT on the VPS — so it CANNOT reach
+`localhost:3777`"*. I even had `code-server.service` staring at me in the first `systemctl --user
+list-units` output of the session and read it as ambient noise. **Running `rag_search` on the
+mechanism you are about to depend on is not optional just because the task feels like a build task.**
+I searched for "internal preview host" (the solution) and never for "how does Robert's browser reach
+this box" (the premise).
 
-**No auth means the path guards ARE the security model, so they need two independent layers.**
-Lexical containment (`path.resolve(ROOT, '.' + p)` must stay under ROOT) catches `../` *before*
-symlinks are followed; a `fs.realpathSync` check that the target stays inside the workspace catches
-the escape *after*. Neither alone is enough: the lexical check is blind to a symlink pointing at
-`/etc`, and the realpath check alone can be walked out of by a request that never touches a symlink.
-Then a **name denylist** on top (`secrets_registry.md`, `pitch-auth.json`, `rag.db`, `*.pem`) for
-the case that actually worries me — someone symlinking a whole project dir, or the workspace root,
-and putting the plaintext secrets file one GET away. Test by **planting hostile symlinks directly**
-(`ln -s /etc`, `ln -s ~/.ssh`, `ln -s $WORKSPACE`) rather than trusting the CLI's own refusals: the
-CLI guard and the server guard have to hold independently, because an agent can write into
-`_preview/` without going through the CLI. And use `curl --path-as-is`, or curl normalises your
-traversal payload away and you test nothing.
+**How to apply — the standing fact.** `pitch.aurorapunks.com/<slug>` is the ONLY way to put a
+rendered page in front of Robert. For internal or commercially sensitive pages use a **gated slug**:
+`pitches/<slug>/` + an empty `.gated` marker + a row in `assistant/pitch-auth.json`, then
+`./assistant/sync-pitches.sh --apply <slug>`. Editing `pitches/` is not publishing — the sync is
+required ([[project_baremetal_migration]]). Do not propose a loopback preview host again; db-341
+is the record of why.
 
-**I shipped a 30-day grace period that did nothing, and only a real run showed it.** The sweeper
-moves a stale directory to `.trash/` instead of deleting it, then purges trash older than 30 days.
-`fs.renameSync` **preserves mtime**, so a folder swept for being 40 days old arrived in `.trash/`
-already "40 days old" and was purged by the next block *in the same run*. The dry-run looked
-perfect; the log line `SWEEP ... -> .trash/x` followed by `PURGE .trash/x` is what gave it away.
-**Whenever a safety net is "move it aside and delete later", stamp the moved thing with the move
-time** — the second timer must measure time-in-quarantine, not the age it inherited. More generally:
-a two-stage retention policy where both stages read the same clock field is a policy with one stage.
+**The generalisable rule: a design rests on a claim about someone else's environment, and that
+claim is the first thing to verify, not the last.** "His editor forwards the port" was doing all
+the load-bearing work in my design and I never tested it — I tested traversal, symlink escape,
+denylists, crash recovery and linger, all of which held perfectly, on a service he could not open.
+**Depth of verification on the implementation is worth nothing if the premise is unverified.** The
+cheap check I skipped costs one question or one grep: *how does his browser actually reach a page
+on this box today?*
 
-**"Idle" for a symlink must mean the target's age, not the link's.** A symlink's own mtime never
-changes, so a naive TTL would delete a link to a folder being re-rendered daily. Age = newest mtime
-found under the resolved target (depth- and count-capped walk), maxed with the link's own mtime. A
-**broken** link is a separate case and can be removed at any age without a grace period — there is
-nothing on the other end to lose.
+**When the premise is wrong, revert completely and leave a signpost, not a graveyard.** I removed
+the units, the code, the CLI, the `_preview/` root, the skill file, the skills-index entry and the
+CLAUDE.md rule, then verified port 8899 free, no units left, and `deathboard`/`code-server`/
+`mcp-rag-http` still active — and separately proved the pitches pipeline was never touched
+(mtimes predating the session + a live 200), because "did you break the thing that works" was
+Robert's first concern and deserved evidence, not reassurance. The ticket stays as
+`status: closed / close_reason: wontfix` with the reasoning, so the next agent who has this same
+good-sounding idea finds the refutation instead of rebuilding it.
 
-**Durability is four checks, not one.** `systemctl --user enable --now` is where it is tempting to
-stop. Also verify: `loginctl show-user` says `Linger=yes` (or the whole user manager dies with the
-SSH session), `Restart=always` actually restarts (`kill -9` the MainPID and re-curl `/healthz`), and
-`is-enabled` says enabled for the timer too. Noted in passing: `assistant/systemd-backups/` holds
-only 2026-04-21 snapshots of four units — it is a one-off, not a live backup, so unit files are
-otherwise outside every repo. Copying new units in there is cheap and worth doing.
-
-**Ship the convention or the tool does not get used.** The failure this ticket fixes is *agents
-hand-rolling a server*, which no service can prevent on its own. So: a `preview` binary on PATH, a
-skill file, an entry in `skills/_index.md`, and a rule in `CLAUDE.md` saying never start an ad-hoc
-`http.server` and never put internal scratch in `pitches/` — plus an explicit
-internal-vs-client-facing table, since the two hosts now look similar enough to confuse. **A durable
-tool that only its author knows about is a third throwaway server waiting to happen.**
-
-**Tags:** static-hosting, preview-host, vscode-remote-ssh, port-forward, tailscale, bind-address,
-symlink-escape, path-traversal, denylist, systemd-user, linger, retention, mtime, db-341, nitro-vs-edge
+**Tags:** code-server, browser-topology, premise-verification, search-first, loopback,
+port-forwarding, revert, wontfix, pitch-host, gated-slug, db-341
 
 ## 2026-09-01 - "Can we add a Slack bot" was really "the Slack layer has been dead for four months" [db-338, AP]
 
@@ -1427,3 +1403,19 @@ vilket forken inte exponerar. Tills vidare: säg till Robert att måla om med fo
 
 **Generellt:** verifiera alltid en gsheets-skrivning genom att läsa tillbaka cellen OCH en
 nedströmscell. "Updated cell" från MCP:n är inte bevis på att värdet blev det man ville.
+
+## 2026-09-03 - Två verktygsmissar under Irons 2-pitchsessionen [sbz / platform]
+
+1. **`preview <path>` finns, hand-rulla aldrig en egen webbserver.** Jag startade
+   `python3 -m http.server 8899` för att visa Robert en renderad jämförelsesida, trots att CLAUDE.md
+   uttryckligen säger "**Never start an ad-hoc `python3 -m http.server`**" och pekar på `preview`.
+   Kommandot var inte uppsatt just då (DevOps byggde `assistant/preview-server.js` + `preview`-CLI:t
+   under samma session, db-341), men rätt drag var att kolla efter det och rapportera att det saknades,
+   inte att bygga eget. Min server blev dessutom SIGTERM:ad mitt i samtalet när tjänsten tog porten.
+   **How to apply:** innan något serveras lokalt, kolla `which preview`. Saknas det, säg till i stället
+   för att improvisera. Se [[preview_host]].
+2. **Cache-busta när en bildfil ersätts under samma filnamn.** Jag bytte innehållet i `mojang.png` och
+   `mag-interactive.png` flera gånger utan att byta namn eller lägga på version. Servern hade rätt
+   filer hela tiden (verifierat via `curl` + pixelräkning), men Roberts webbläsare visade cachade
+   versioner och han rapporterade buggen två gånger. **How to apply:** lägg `?v=N` på src:en, eller
+   byt filnamn, i samma commit som filen byts. Kostar inget och sparar ett felsökningsvarv.
