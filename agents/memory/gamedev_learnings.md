@@ -283,7 +283,7 @@ Följdläge på 2026-08-25-fyndet. Oskar la ett K2C Switch-bygge på Drive (en z
 
 ### 2026-08-27 — EDEV skiljer sig radikalt från SDEV: grå dosa, svart skärm, USB inte ethernet [project: apb / K2C]
 EDEV (Switch-form-factor debugkit; AP har två, "Ember" + ett namnlöst, köpta från Kinda Brave okt 2024) kopplas och strömförsörjs HELT annorlunda än det stora SDEV:t. Om någon säger "EDEV:t verkar dött / tar inte ström / power-knappen gör inget", kolla dessa tre innan hårdvaran döms ut:
-- **Ström går genom en grå dosa**, inte direkt i kitet: Nintendo-adapter → grå dosan → EDEV. Adaptern rakt i EDEV:ns USB-C räcker inte. Grå dosan = "HDMI-till-USB-dockningsstationen" som följde med Ember-kitet.
+- **Grå dosan är en breakout-docka, inte en strömförutsättning** (rättat 2026-09-04, se nedan). Den slår ihop ström + HDMI + debug-USB till kitets enda USB-C-port, så den behövs när du vill ha datorn ansluten *samtidigt* som ström och bild. Enbart ladda gör du med en vanlig retail Switch-adapter rakt i kitets USB-C. Grå dosan = "HDMI-till-USB-dockningsstationen" som följde med Ember-kitet.
 - **Skärmen är SVART med flit när kitet är kopplat till datorn** (AP-doccen "Installera på Switch": *"skärmen på switchen kommer vara släckt när den är kopplad till datorn, skit störande"*). Ett tjudrat EDEV med svart skärm + till synes död power-knapp kan alltså vara fullt funktionellt. Dra ur USB-datakabeln (behåll ström), testa fristående, innan det döms ut. Djupurladdat 2024-batteri kan dessutom kräva 20-30 min laddning + 15 sek hård reset innan livstecken.
 - **EDEV pratar med Target Manager över USB** (kabeln med "lustigt uttag" i nätväskan: grå dosan ↔ PC), till skillnad från SDEV som kör ethernet på subnätet. Konsekvens: NDI + Target Manager 2 måste sitta på maskinen där USB:n är inkopplad, inte på en godtycklig nätvärd.
 - **Remote video** (filmkamera-ikonen i TM2, efter Connect) är enda sättet att se EDEV-skärmen när den är tjudrad.
@@ -482,3 +482,19 @@ bygget* (Nitro).
   nod som heter `DESKTOP-XXXXXX` gör felsökning sämre för alla senare.
 
 **Tags:** Nintendo, EDEV, USB-inte-nät, tailscale, build-drop, dual-bind, NDA-exponering, TM2, Windows-krav, runbook
+
+### 2026-09-04 — Rättelse: grå dosan är en breakout-docka, inte ett strömkrav [project: apb / K2C]
+2026-08-27-posten påstod "adaptern rakt i EDEV:ns USB-C räcker inte". Det stod inte i någon källa.
+Drive-doccen "Installera på Switch" beskriver **hela arbetsuppsättningen** (ström + HDMI + debug-USB
+in i kitets enda USB-C-port), och jag hårdnade en setup-instruktion till en hårdvarubegränsning.
+Robert, som faktiskt håller i hårdvaran, påpekade det: dosan behövs för att ha datorn ansluten
+*samtidigt* som ström och bild, inte för att kitet ska ta ström alls. Retail Switch-adapter rakt i
+USB-C laddar.
+- **Praktisk konsekvens vid ett dött batteri:** ladda **utan** dosan och utan datakabeln. Färre led
+  som kan förhandla fel, full PD rakt in. Dosan hör till testflödet, inte till räddningsflödet.
+- **Metalärdomen, den som är värd mest:** en instruktion som säger "gör A" är inte belägg för att
+  "B inte fungerar". Skriv ner arbetsflödet som ett arbetsflöde. En begränsning ska ha en observation
+  bakom sig, annars ärver nästa agent en uppfunnen vägg. Samma fälla som att citera en adapterspec
+  (15V/2,6A) som om den kom ur våra dokument när den kom ur allmän Switch-kunskap.
+
+**Tags:** EDEV, grå-dosa, breakout-docka, rättelse, laddning, källkritik, överdriven-generalisering, batteri

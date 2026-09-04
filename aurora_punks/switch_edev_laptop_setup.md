@@ -67,9 +67,11 @@ Nintendo Dev Interface 2" (`1s9Nye50snLBN5DcGCi1QSXXWdEjb3f65OIXgISMtLtI`).
 
 Order matters, and three things look like a dead kit but are not:
 
-1. **Power goes through the grey box, not into the kit.** Nintendo adapter → grey box → EDEV. The
-   adapter straight into the EDEV's USB-C is not enough. The grey box is the HDMI-to-USB dock that
-   came with the Ember kit, in the little net bag.
+1. **The grey box is a breakout dock, not a power requirement.** It merges power, HDMI and the
+   debug USB into the kit's single USB-C port, so you need it when you want the computer attached
+   *at the same time* as power and video. To just charge the kit, a standard retail Switch adapter
+   straight into its USB-C is fine and is the cleaner path. The grey box is the HDMI-to-USB dock
+   that came with the Ember kit, in the little net bag.
 2. **The screen is black on purpose while tethered.** From the AP doc: *"skärmen på switchen kommer
    vara släckt när den är kopplad till datorn, skit störande"*. A black screen plus a power button
    that seems dead is often a perfectly working kit. Pull the USB **data** cable (keep power) and
