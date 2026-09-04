@@ -459,3 +459,26 @@ estimatet från början i varje mobilport, inte en detalj som upptäcks vid M1. 
 installation: Android Studio, JDK och exakt den NDK-revision motorn pinnar, via
 `Engine\Extras\Android\SetupAndroid.bat` ur motorträdet i stället för handplockat.
 **Tags:** DDC-sökväg, UE-SharedDataCachePath, raderingstid-filantal, schtasks, BuildConfiguration-maskinbred, projektlokal-pinning, iOS-kräver-Mac, SetupAndroid
+
+### 2026-09-04 — EDEV off-subnet: kitet behöver inget nät, bara bygget behöver ett [project: apb / K2C]
+Följdläge på 2026-08-27. Frågan "hur får jag ett EDEV på ett annat nät än Nitro?" är fel ställd, och
+det är värt att rätta direkt nästa gång den kommer: **EDEV är USB, det är aldrig på något nät.**
+Grå dosan ↔ laptop är hela anslutningen, och vilket LAN laptopen sitter på är irrelevant för kitet.
+Det enda nätverket behöver bära är **byggfilen** från Nitro till laptopen. Skilj alltid på de två
+frågorna innan du börjar rita VPN-topologier: *var är kitet* (USB, hos människan) och *var är
+bygget* (Nitro).
+- **Tailnet är bryggan, inte subnet routing.** `build-drop-server.js` band bara `enp2s0`. Nu binder
+  den **en `http.Server` per adress** över LAN + `tailscale0` (`192.168.32.9` + `100.77.150.9`).
+  Node binder en adress per `listen()`, så flera servrar med samma handler är rätt mönster, och det
+  är också vad som håller den borta från `0.0.0.0`. Bind aldrig wildcard för NDA-byggen: tailnet
+  räcker, bara våra egna noder når det. Verifierat: 200 på HEAD, 206 på Range, loopback vägras.
+- **Tailnet-IP:t är det stabila.** LAN-adressen kommer från DHCP och resolvas om vid omstart;
+  `100.77.150.9` är den som ska bokmärkas på en laptop.
+- **Windows-kravet flyttar med laptopen.** Ingen headless install finns (2026-08-26-fyndet står
+  fast), så NDI 2.5.4 + SDK + TM2 måste installeras på just den maskin som har USB:n i sig, inte på
+  forge och inte på Nitro. En "ny laptop"-fråga är därför alltid en full miljöinstallation, inte en
+  nätverkskonfiguration. Runbook: `aurora_punks/switch_edev_laptop_setup.md`.
+- **Ge laptopen ett hostname innan tailnet-auth.** Tailnet har redan forge/vcsboy/edge/david96gb; en
+  nod som heter `DESKTOP-XXXXXX` gör felsökning sämre för alla senare.
+
+**Tags:** Nintendo, EDEV, USB-inte-nät, tailscale, build-drop, dual-bind, NDA-exponering, TM2, Windows-krav, runbook

@@ -432,3 +432,21 @@ hanterar kontoväljaren när en adress finns som både work och personal),
 `assistant/msrsm-royalty-reports.js` (read-only hämtare, `--recon`/`--list`),
 `assistant/ms-totp.js` och `assistant/msrsm-statements-to-md.py`. Statementen ligger som markdown i
 `aurora_punks/royalty/xbox/` och är indexerade i RAG, per den stående regeln om plattformsrapporter.
+
+## 2026-09-04 — EDEV på laptop utanför Nitro-subnätet: build-drop bundet till tailnet + runbook
+
+Robert vill kunna hänga ett EDEV på en laptop som sitter på ett annat nät än `192.168.32.0/24`.
+Kitet är USB-anslutet och därmed aldrig på något nät alls, så det enda nätet behöver bära är
+**byggfilen** mellan Nitro och laptopen.
+
+**Byggt:** `assistant/build-drop-server.js` binder nu **både** LAN-adressen (`192.168.32.9`, för
+SDEV:t på samma /24) och tailnet-adressen (`100.77.150.9`, för laptopar utanför subnätet). En
+`http.Server` per adress, aldrig `0.0.0.0`, så NDA-byggen exponeras inte mot kontorsnätet.
+Ny env `BUILD_DROP_TAILNET_IFACE` (default `tailscale0`), och `BUILD_DROP_HOST` tar nu en
+kommaseparerad lista. Verifierat efter omstart: båda lyssnarna uppe, `HEAD` över tailnet ger 200 på
+2,16 GB, Range ger 206, loopback vägras.
+
+**Skrivet:** [switch_edev_laptop_setup.md](switch_edev_laptop_setup.md) — runbook från tom laptop
+till bootat bygge: Tailscale-anslutning, NDI 2.5.4 + SDK + TM2 (Windows, ingen headless-väg finns),
+den fysiska EDEV-kedjan med grå dosan och de tre "kitet ser dött ut men lever"-fällorna, hämtning
+från `http://100.77.150.9:8088/k2c.nsp`, install via TM2 och remote video.
