@@ -11,6 +11,67 @@
 
 <!-- Append new learnings with: learning, source project, date, category -->
 
+## 2026-09-04 — Innan du grubblar på om ett dotterbolags bokföring får delas: kolla vem som reviderade dotterbolaget [apb / apb-052]
+
+**Project:** Aurora Punks ÅR 2025, APDS-konkursen | **Category:** revision, sekretess, verktyg, redovisning
+
+**Sekretessfrågan besvaras oftast av signatursidan i motpartens egen årsredovisning.** Amer bad om
+APDS balansräkning och huvudboksutdrag för att kunna rätta AP:s bokföring. Frågan "får vi skicka ett
+konkursbolags bokföring vidare?" kändes tung tills FVB:ns bilaga 3 lästes: **Parameter Revision, Jacob
+Biderholt, signerade APDS revisionsberättelse 2024**, och Christine hade Fortnox-access till bolaget
+under 2025. Mottagaren hade alltså redan sett materialet i sin egenskap av bolagets revisor.
+**Regel: innan du väger delning av ett närståendebolags räkenskaper, greppa revisionsberättelsen på
+revisorns namn.** Är det samma byrå försvinner frågan. Andra bekräftande spår här: boet lämnade ut
+materialet utan sekretessvillkor, och FVB:n i sig är en offentlig handling hos tingsrätten.
+
+**Klipp ut bilagan, skicka aldrig hela förvaltarberättelsen "för säkerhets skull".** FVB:n är 29 sidor
+och bär ett återvinningsavsnitt som pekar ut CZP och Robert som närstående, förvaltarens KBR-antagande
+och en skrivning om återbärings- och skadeståndsskyldighet. Inget av det behövs för en
+bokföringsrättelse, men allt av det hamnar i revisionsakten om man bifogar hela pdf:en. Bilaga 2 låg
+på sid 15-18: `pdfseparate -f 15 -l 18` + `pdfunite`, sedan
+`gs -dPDFSETTINGS=/ebook` som tog 3,19 MB ned till 908 kB. `pdftk` finns inte på VPS:en, `pdfseparate`
+och `pdfunite` gör jobbet. **Kartlägg alltid pdf:en först** med en loop av
+`pdftotext -f $p -l $p ... | cut -c1-110` per sida, det tar tio sekunder och ger sidnumren exakt.
+
+**En revisors "rättelser i bokföringen" kan bära en EK-effekt som ingenstans nämns i mailet. Räkna
+igenom den innan instruktionen går vidare till redovisningskonsulten.** Christine skrev tre rader om
+justering av skuld och upplupen ränta. Genomräknat blev det: skulden till Almi ned till 1 790 627,24,
+ny skuld till konkursboet 326 000, summa skulder **upp 212 158,92**, vilket är 2025 års räntekostnad
+och alltså minus lika mycket på eget kapital. Dessutom krymper ackordsvinsten 2026 med 113 841 när den
+bortbokade skulden blir lägre. Cirka **326 000 kr lägre EK över två år** än den kalkyl styrelsens
+Alt 1 vilade på, som hade ungefär 60 tkr marginal över KBR-gränsen. **Mönstret att ta med sig: ställ
+upp balansposterna före och efter varje gång en revisor ber om en "rättelse", och kontrollera summan
+mot ett resultatkonto.** Skillnaden i summa skulder ÄR resultateffekten, det är den snabbaste
+kontrollen.
+
+**Läs vem instruktionen gäller innan du drar igång en process mot tredje part.** "Då behöver rättelser
+ske i bokföringen för 2025" i en revisionstråd om AP betyder AP:s bokföring. Redovisningskonsulten
+läste det direkt rätt (han svarade att han skickar en uppdaterad SIE-fil, alltså AP:s), och frågan
+"vad avser konto 1674 och 2360 i APDS?" är en fråga om vad posterna gäller, inte en begäran om att
+boets böcker ska rättas. **En konkursgäldenärs bokföring före konkursdagen rättas inte i efterhand,
+varken av moderbolaget eller av förvaltaren.** Att höra av sig till förvaltaren hade varit fel
+åtgärd, och dyr: begäran hade pekat honom på konto 1674 och därmed på regressfrågan, mitt under en
+öppen förlikning.
+
+**Verktyg byggt: `assistant/gmail-draft-thread.js`.** Luckan som beskrevs i posten 2026-09-03 är nu
+täppt. `gmail-draft-attach.js` kan bifoga men saknar threadId, Cc och In-Reply-To; MCP:ns
+`gmail_create_draft` kan tråda men inte bifoga och **raderar** dessutom befintliga utkast på samma
+tråd. Det nya skriptet hämtar sista meddelandets `Message-ID`, `References` och `Subject` ur tråden,
+bygger multipart/mixed med Cc och korrekta trådhuvuden och POSTar med `threadId`:
+`node gmail-draft-thread.js --thread <id> --to <a> --cc <b,c> --bodyfile <fil> --attach <fil> ...`.
+Ämnesraden ärvs och Re:-prefixas bara om den saknas. **Kolla `gmail_list_drafts --threadId` före
+körning** så det inte blir två utkast på samma tråd.
+
+**BEFORDRAT 2026-09-04:** revisorsfaktumet (Parameter reviderade även APDS 2024) bor nu kanoniskt i
+[[project_aurora_punks]], mellanhavandena 1674/2360 per konkursdagen i
+[[project_wlbs_apds_litigation]], och EK-effekten av rättelsen i
+[[project_ap_ek_2025_almi_agarlan]]. Läs dem först, det här är arbetsloggen bakom.
+
+**Tags:** apb-052, APDS, Alpidus, Almi, revision, Parameter, förvaltarberättelse, bilaga-urklipp,
+ghostscript, KBR, ackordsvinst, gmail-draft-thread, regress, K-4429-25
+
+---
+
 ## 2026-09-03 — Motpartens egna GDoc-suggestions ÄR persondatakällan, och den här avtalsmallens signaturblock kräver manuell widgetplacering [k2c / k2c-051]
 
 **Project:** K2C Pharaoh Lands, Simon Jakobssons CZP-anställning | **Category:** contracts, opensign, tooling, bevisinhämtning

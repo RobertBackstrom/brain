@@ -1168,3 +1168,11 @@ grants show real addresses) → the RAG wiki → ask Robert. Note `search_events
 nothing here while `list_events` with `fullText` found it, so prefer `fullText` for a name.
 
 Related: [[feedback_check_web_before_asking]], [[feedback_search_wiki_first]].
+
+## 2026-09-03 (b) — Co-dev-bud: propageringskedjan finns nu som skill [sbz / Irons 2]
+
+När ett bemanningsark ändras rör **en enda rad sju ställen** i offerten (total, FTE-månader och
+blandad rate, betalplanens grupper, kurvans SVG-punkter, toppen på fyra ställen, milstolparnas
+bemanning, rolltabellen). Checklistan, plus milstolpar som kassaflödesinstrument (mät längsta
+obetalda sträckan) och listan över vad som aldrig får stå i en offert, ligger i
+[[codev_bid_pitch]]. Läs den innan nästa co-dev-bud räknas om.

@@ -7,6 +7,131 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-04 - A watchdog that can only shout: six weeks of downtime for a one-command fix [db-229, CZP/AP]
+
+**Learned:** 2026-09-04 | **Project:** Fortnox VPS read-layer (db-229) | **Category:** watchdog-design, self-heal, alert-fatigue, premise-check, fail-closed, search-first
+
+**The alert worked perfectly and the outage lasted six weeks anyway.** `fortnox-probe.service` had
+been posting `LAPSED` to Discord twice a week since at least 27 Aug. Nobody acted, so every
+autonomous Fortnox path - SIE, kundreskontra, faktura-PDF - was dead through the AP bokslut and the
+Runatyr/Feral Flame ÅR work. **A detection-only watchdog on something a human must fix is a bet that
+the human reads the channel, and that bet loses.** Straight continuation of the db-322 lesson: a fix
+that needs a manual step to take effect is indistinguishable from no fix.
+
+**The probe was built on a premise that was never tested, and the premise was wrong.** Its header
+said headless "can't self-heal (Fortnox sends a fresh SMS per session)", so every lapse was routed to
+Robert. In fact **two credentials expire independently**: the session cookie, which dies routinely
+and needs only a password re-login, and the trusted device, which runs to Aug 2027 and whose loss is
+the only thing that triggers MFA. A plain `fortnox-login2.js` run went through on the **password
+alone, no SMS**. Robert was never needed. **Before building a watchdog whose entire escalation path
+is "wake a human", run the recovery once by hand and see whether it actually needs one.**
+
+**Name a human in an alert only when a human is truly required.** The alert's first line was
+"Reauth (kräver Robert, interaktiv 2FA)" followed by the SMS recipe. That framing made a
+self-healing problem look like a blocked-on-Robert problem to every reader including me, and a
+recurring alert about something believed to need an unavailable person is exactly the alert people
+mute. Rewritten as two steps: run login2 (needs nobody), chase an SMS only if it actually prints
+`MFA_REQUIRED`.
+
+**State the limit of a guard honestly, especially when you have already offered it.** I proposed an
+"SMS guard" that would stop the code reaching Robert, then realised while implementing that
+**Fortnox sends the SMS the instant the password is posted** - by the time `MFA_REQUIRED` appears the
+text has already arrived. The guard cannot prevent it. What it can do is kill the child rather than
+block 10 minutes polling for a code nobody will supply, and **latch** the MFA sighting so a dead
+trusted device costs exactly ONE unsolicited SMS instead of one every Monday and Thursday. Saying
+that out loud beat quietly shipping something weaker than advertised.
+
+**Auto-remediation needs three guards, and they are all about not making it worse.** (1) **Scope**:
+only `LAPSED` is healed - `ERROR` is an unknown state, and submitting a password into an unknown
+state is how a network blip becomes a locked account. (2) **Latch**, cleared only by a human
+(`--reset-heal`), so a genuinely dead credential does not become a recurring nuisance. (3)
+**Cooldown**, so a flapping session cannot start a login storm. Corrupt or unreadable state is
+treated as latched: **fail closed on the guard that protects a person's phone.**
+
+**Verify with the check, not with the actor's own claim.** `login2` printing `LOGIN_OK` is its
+opinion. The heal re-runs the real probe and only reports success if that independently agrees.
+Cheap, and it is the difference between "the tool said it worked" and "the thing works".
+
+**A timing assertion is how you test that a guard still short-circuits.** Every case in
+`test-fortnox-selfheal.js` asserts it returns in under a second. A regression that starts spawning
+browsers stays functionally correct and would pass a behavioural test - it shows up as a timing
+failure instead.
+
+**The wiki had the answer I went to the web for.** I web-searched whether the Fortnox REST API could
+replace browser scraping. `reference_fortnox_access` already recorded it: **SIE export was removed
+in API v3.1.0**, so browser automation is mandatory regardless. That single fact demoted the whole
+OAuth track from "the durable fix" to "a nice-to-have that cannot replace what broke". **Search the
+wiki before the web, particularly when the answer would change the recommendation rather than just
+support it.**
+
+**Tags:** fortnox, watchdog, self-heal, alert-fatigue, detection-vs-remediation, premise-check,
+fail-closed, latch, cooldown, mfa, trusted-device, session-cookie, search-first, db-229, db-322
+
+## 2026-09-04 - Three "the bot lost a skill" reports, one shape: a fast-path eating another intent's traffic [Death Board, discord-bot]
+
+**Learned:** 2026-09-04 | **Project:** Death Board / Discord mention router | **Category:** deterministic-matchers, regex-guards, silent-drop, whitelist-drift, regression-testing
+
+**The reported symptom was one message; the cause was a class of bug, and looking for the class
+found two more instances nobody had reported yet.** Robert sent a screenshot of the bot answering
+"add this to Jira, assign to @N1tch" with *"I could only read 0 item(s) out of that message"* - the
+bulk list-syncer's error. He described it as the bot having "lost some skills", and when asked what
+else, he named the Drive answers and the search/read intents too. All three turned out to be the
+same shape: **something in front of the classifier claiming traffic that was never its own.**
+
+**A guard OR'd against a token its own trigger already requires is not a guard.** The sync
+fast-path read `SYNC.test(t) && (LIST.test(t) || /\bjira\b/i.test(t))`. Every alternative in `SYNC`
+already contains "jira" (`add .* (to )?jira`, `put .* on the board|jira`), so the second disjunct is
+true whenever the first is, and the list requirement was dead code from the moment it shipped. The
+whole matcher collapsed to `SYNC`, and `SYNC` matches a one-item "add this to Jira". **Cheap habit:
+for every `A && (B || C)` guard, ask whether C can be false while A is true. If not, B is decoration.**
+
+**A fast-path that steals traffic fails LOUDLY and CONFIDENTLY, which is worse than a classifier
+that hesitates.** The bot did not go quiet - it replied twice, in a fluent and specific voice,
+about a list that did not exist ("I expect a name header then that person's items"). That reads as
+the bot being broken in a much deeper way than it was, and it burned two of Robert's messages before
+he gave up. When a deterministic branch is uncertain it should fall through to the classifier, never
+answer. Mine now hard-returns `false` on the singular case rather than trying to be clever.
+
+**An intent missing from the validator's whitelist fails as SILENCE.** `drive_folder` was added to
+the classifier prompt's JSON shape, to the intent guide, and to the execution switch on 2026-09-01 - but never to `const valid = [...]` in the parser, which rewrites anything unrecognised to `'ignore'`.
+`ignore` means say nothing. So the intent worked only via its deterministic fast-path, and every
+phrasing the regex missed produced a 👂 and nothing else. The same parser also never carried
+`assetKind` out, so every Drive answer silently fell back to the art folder. **When a contract is
+declared in one place (a prompt shape) and enforced in another (a validator), adding a field to the
+first without the second is a silent drop, not an error.** Grep for the enum every time.
+
+**"Search is broken" was the Drive matcher eating Jira questions.** `_looksLikeDriveFolderAsk`
+required a subject (an asset type) and a question signal - and nothing at all requiring the question
+be about a *location*. So *"which art tickets are open?"*, *"what's the status of the ui work?"* and
+*"any open audio bugs?"* all matched on asset-word-plus-question-mark and were answered with a Google
+Drive link. Two additions fixed it: a **place** signal (`where`, folder/drive/directory, access) as a
+hard requirement, and an early bail on tracker/wiki vocabulary (`ticket|issue|jira|bug|sprint|status|
+gdd|spec`) plus any issue key. **A matcher needs a signal for every noun in its own name - this one
+was "drive FOLDER ask" and tested for neither folder nor ask-about-where.**
+
+**Prove the layer before blaming it.** Robert flagged search as broken, and the tempting story was
+Atlassian credentials. Driving `_jiraSearch`, `_jiraGetIssue` and `_confluenceSearch` off the
+prototype with a stub `this` (they touch only `_atlCreds`) returned real, correctly formatted results
+in one pass, which eliminated the entire execution and credential layer and left the router as the
+only suspect. **Prototype methods that don't use instance state are directly callable without
+constructing the service** - that is the cheapest possible end-to-end probe of a running system, and
+it works for the matchers too, which is what `test-discord-matchers.js` is built on.
+
+**The negatives are the test.** 47 cases now, and the two bugs that had shipped were both caught by
+*negative* cases - messages that must NOT match. A table of positives would have passed clean on the
+broken code both times. Same conclusion as the drive_folder branch a week ago; writing it down again
+because it keeps being the thing that would have caught it.
+
+**Verify the load-bearing hop, not the plausible one.** The assignee fix rests on "the nickname
+`@N1tch` resolves to a Jira account". That is one read-only call, and running it (`@N1tch` → Tim
+Browne → `62ba0cc6...`, plus `Imi`, `Dubi`, and a deliberate miss returning null) is what turns a
+design into a verified path. It also confirmed the failure branch: an unmatched name creates the
+issue **unassigned and says so in the channel**, because a silently dropped assignee is the bug that
+hides for weeks. Same lesson as db-341 the day before, applied earlier this time.
+
+**Tags:** discord-bot, mention-classifier, fast-path, regex-guard, dead-code-condition, whitelist-drift,
+silent-drop, drive_folder, jira-sync, assignee, resolveAccountId, negative-tests, db-017, db-338
+
 ## 2026-09-03 — I designed for a runtime topology I never verified, and built a host Robert cannot reach [db-341, Assistant]
 
 **Learned:** 2026-09-03 | **Project:** Death Board / preview host (db-341, reverted) | **Category:** code-server, topology, premise-check, search-first, revert
@@ -1441,3 +1566,19 @@ belongs in `nohup ... &` with a log, then an `until grep -q` waiter — same pat
 
 If image tooling becomes recurring, the fix is installing `pip` plus `cairosvg` and `ffmpeg` on the
 host rather than working around it every time. Worth a ticket if it comes up again.
+
+## 2026-09-03 (c) — Två tidstjuvar i pitch-publiceringen [sbz / Irons 2]
+
+1. **`sync-pitches.sh` måste anropas från projektroten.** Skriptet ligger i `assistant/` men löser
+   sina sökvägar mot `/home/assistant/projects`. Bash-verktygets arbetskatalog **hänger kvar mellan
+   anrop**, så efter en redigering i `pitches/<slug>/` misslyckas nästa publicering med
+   `bash: assistant/sync-pitches.sh: No such file or directory`. Jag gick på det sex gånger på en
+   kväll, en bortkastad runda varje gång. **Skriv alltid `bash
+   assistant/sync-pitches.sh --apply`** i samma kommando som redigeringen.
+2. **Playwright ligger i `assistant/node_modules`, inte i projektroten.** `require('playwright')`
+   från ett skript i scratchpad kastar MODULE_NOT_FOUND; använd absolut sökväg
+   `require('/home/assistant/projects/assistant/node_modules/playwright')`. Chromium finns nedladdat
+   i `~/.cache/ms-playwright`. Detta är enda sättet att **se** en pitchsida i stället för att gissa
+   utifrån HTML, och det fångade två layoutfel i kväll som inte syntes i källkoden: en sifferkolumn
+   som inte kunde alignera mot tabellen bredvid, och en logga som blev tonalt inverterad av
+   CSS-filtret. Elementskärmdump: `(await p.$('#s4 details .body')).screenshot({path})`.

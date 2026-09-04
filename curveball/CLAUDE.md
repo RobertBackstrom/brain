@@ -17,6 +17,21 @@ Term sheet: `drafts/term_sheet_2026-08-31.md`. Den gamla målbilden (≥100K SEK
 - **Med LUG:** AP + LUG recoupar faktiska kostnader 100 %, därefter 70 % The Gang / 30 % AP+LUG. Magnus (LUG) tyst sedan 16 juli.
 - **Steam:** app 2805120 överförs till AP. Önskelistor och följare följer med, finansiell historik gör det inte. Vid avtalets slut går appen tillbaka inom 30 dagar.
 
+## Koncernupplägget (Robert, 2026-09-04)
+**Avtalet tecknas av AP, men arbete, fakturering och butiksdrift går via CZP**, samma form som K2C
+(se `umbrella/k2c_sands_of_duat/Legal/LEGAL_MEMO_K2C_AP_CZP_structure_2026-05-04.md`, AP principal och
+CZP disclosed agent). Skälet här är dessutom faktiskt: **AP AB har inget Steamworks-konto.**
+Koncernens partnerkonto är **Creation Zero Point Holding AB, PartnerID 418393**
+([[reference_steam_partner_accounts]]), och det är dit app 2805120 flyttar. AP är fortsatt The Gangs
+enda motpart och ensam ansvarig.
+
+Följden i avtalstexten (v2, 2026-09-04): ny definition 1.5 Publisher Group Company, Net Revenue i 1.3
+räknar även pengar som en koncernbolag tar emot för AP:s räkning, 2.3 tillåter fullgörande genom
+koncernbolag, 5.1 pekar på CZP:s partnerkonto, 8.2 säger att betalning från ett koncernbolag befriar
+AP, och 8.3 begränsar The Gangs Steamworks-access till just app 2805120 så att de inte ser AP:s
+övriga 18 titlar i kontot. **Skriv aldrig att appen flyttar till "AP:s Steamworks-konto"**, det kontot
+finns inte.
+
 ## Key People
 **Client — The Gang Studio** (www.thegang.io, Slakthusplan 3, 121 62 Stockholm)
 - **Joel Edström** — CEO, joel.edstrom@thegangstudio.com, +46 793 5343 71

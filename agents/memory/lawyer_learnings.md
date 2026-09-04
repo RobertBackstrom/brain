@@ -13,6 +13,41 @@
 <!-- Categories: swedish_corp | swedish_tax | swedish_employment | swedish_ip | gdpr | contract_review | process | tooling -->
 <!-- If Robert corrected a substantive legal point: tag `correction` and write the corrected position prominently. -->
 
+## 2026-09-04 — En överlevnadsklausul är värdelös om definitionen av det som ska överleva bygger på en tillgång parten lämnar ifrån sig
+**Projekt:** cvb (The Gang Studio, publishing-avtal Curveball) · **Kategori:** contract_review + swedish_ip · **Taggar:** revenue share, perpetuity, survival clause, NJA 2004 s. 167, NJA 2009 s. 672, NJA 2018 s. 19, AvtL 36 §, ABL 8:29/8:35/8:42, AvtL 25 §, URL 1/27/28 §§, Unreal EULA, chain of title
+
+1. **Definitionsdriven nullitet, och den är osynlig om man bara läser klausulen man blivit ombedd att granska.** Avtalet lät AP:s intäktsandel överleva uppsägning (12.5). Men Net Revenue var definierad som "amounts received by the Publisher from Valve", och en annan punkt (12.2) lämnade tillbaka Steam-appen inom 30 dagar. Andelen överlevde alltså på noll kronor. **Regel: för varje survival- eller post-termination-klausul, spåra betalningsdefinitionen bakåt till den tillgång eller det förhållande som genererar pengarna, och kontrollera att parten fortfarande har den efter upphörandet.** Samma kontroll gäller earn-outs, royalty tails och provisionsavtal. Följdkontroll: rapporterings-, betalnings- och granskningsplikterna är nästan alltid skrivna åt ETT håll och pekar då fel efter uppsägning, så survival-listan måste säga att de tillämpas med parterna omvända.
+2. **Exklusivitet är aldrig starkare än plattformsdefinitionen.** Här var "Platform" definierad som "PC through the Steam store", alltså behöll motparten Epic, GOG, itch och Humble helt fritt trots att klausulen sa "exclusive". Kombinerat med en klausul som gav dem hela källkoden inklusive vårt arbete, gratis och när som helst under löptiden, utan användningsbegränsning, kunde de sälja vårt färdiga bygge på en konkurrerande butik nästa dag utan att bryta mot avtalet. **Regel: läs exklusivitetsklausulen och definitionen av territorium/plattform tillsammans, och läs sedan källkods- eller materialutlämningsklausulen som ett tredje ben. Varje utlämningsplikt under löptiden behöver en uttrycklig användningsbegränsning ("verification, security and continuity purposes only").**
+3. **Ett standardundantag för utebliven vinst släcker hela remedyn i ett avtal där vederlaget ÄR framtida vinst.** "Neither Party is liable for indirect or consequential loss, including loss of profit" är boilerplate som ingen reagerar på. I ett rev-share-, royalty- eller earn-out-avtal utan kontant ersättning är motpartens avtalsbrott per definition en förlust av framtida andel, alltså utesluten. **Regel: när klienten betalas i andel av framtida intäkt, skriv alltid in att beloppen under intäktsdelningsparagrafen är direkt skada och inte omfattas av undantaget.**
+4. **Eviga intäktsandelar: giltiga, men fel karakteriserade blir de uppsägningsbara.** `NJA 2004 s. 167` upprätthöll ett evighetsavtal, alltså är evighet inte ogiltig i sig. Men huvudregeln för avtal utan bestämd avtalstid är uppsägning med skälig uppsägningstid, `NJA 2009 s. 672` (tre månader, faktorerna "avtalstidens längd samt den uppsagda partens investeringar och omställningskostnader") och `NJA 2018 s. 19` (sex månader efter 22 år). Verifierat mot avtalslagen2020.se avsnitt 10.1, 2026-09-04. **Räddningen är en enda mening om vad andelen ÄR: uppskjuten köpeskilling för en redan gjord investering, inte vederlag för en löpande tjänst.** De rättsfallen gäller löpande prestationer. Skriver man inte ut karaktären läser domstolen avtalet som den avtalstyp som är uppsägningsbar.
+5. **En assignment-klausul skyddar inte mot inkråmsöverlåtelse.** "Neither Party may assign this Agreement without consent" reglerar avtalet, inte tillgången. Motparten kan sälja IP:t och Steam-appen, köparen blir inte bunden (avtal kan inte belasta tredje man), säljaren är kvar som part men utan intäkter. **Regel: i varje avtal där klienten har en evig andel i en tillgång motparten äger, lägg in ett successorsåtagande: tillgången får inte säljas, överlåtas eller exklusivlicensieras utan att förvärvaren skriftligen åtar sig intäktsdelningsparagraferna, och säljaren är kvar ansvarig om åtagandet inte inhämtas.** Aktieöverlåtelse behöver ingen sådan klausul (bolaget är kvar bundet) men förtjänar en underrättelseplikt.
+6. **Motorroyaltyn är inte en "intern kostnad" och glider igenom en no-deductions-klausul.** Unreal Engine tar 5 % på världsomspännande bruttointäkt över första 1 000 000 USD i livstidsintäkt **per produkt** (unrealengine.com/eula/unreal, verifierat 2026-09-04). En klausul som säger "no internal costs of either Party are deducted before the split" fångar den inte, alltså betalas den ur den säljande partens egen andel. **Regel för varje utgivningsavtal på UE eller Unity: räkna upp engine-, middleware- och plattformsroyalty som avdrag i nettointäktsdefinitionen, och lägg till ett åtagande att motparten levererar listan över tredjepartslicenser och ser till att vi får utöva dem.** Många Marketplace- och pluginlicenser är per licenstagare och följer inte med när utgivningen byter bolag.
+7. **Kontrollera MOTPARTENS firmateckning, inte bara vår egen.** Vi lade ned arbete på att AP:s två i förening blev rätt i signaturblocket och missade nästan att motpartens VD tillika ordförande sannolikt inte kan teckna ensam för ett avtal som upplåter exklusiva världsomspännande rättigheter till bolagets enda produkt. `ABL 8 kap. 29 §` ger VD den löpande förvaltningen, och det är inte löpande förvaltning. Undertecknar fel person binder avtalet inte bolaget (`ABL 8 kap. 42 §`) och enda motparten blir undertecknaren personligen enligt `AvtL 25 §`, vilket är värdelöst. **Rutin: begär registreringsbevis för motparten samtidigt som org.nr hämtas, inte i signeringsögonblicket.**
+8. **Produktens ålder mot bolagets ålder är ett gratis chain of title-test.** Steam-appen hade butikssida, demo och NextFest-historik från före december 2024, medan avtalsparten registrerades 2024-12-17, och det fanns ett äldre systerbolag på samma adress. **Regel: jämför alltid det äldsta daterade spåret av produkten (butikssida, releasedatum, domänregistrering, first commit) mot motpartens registreringsdatum. Är produkten äldre än bolaget är rättighetskedjan inte utredd, och garantiklausulen är då enda skyddet, alltså en fordran mot ett nytt bolag med okända tillgångar.**
+9. **"Utvecklaren äger all källkod, inklusive den" är fel så snart vi själva skrivit en rad.** Svensk rätt har ingen work for hire. Upphovsrätten uppkommer hos skaparen (`URL 1 §`) och övergår bara genom avtal (`URL 27 §`), och en förvärvare får varken ändra verket eller överlåta rätten vidare utan avtal (`URL 28 §`). En leveransplikt för källkod är inte en licens. **Regel: i varje co-dev- eller färdigställandeavtal, skilj ut "Publisher Contributions" som egen definition, ange vem som äger dem, och koppla licensen till dem till utfallet: evig och oåterkallelig vid normalt upphörande, men villkorad av ersättning om avtalet upphör på grund av vår egen brist.** Oklarhet om vem som äger vad är alltid dyrare än en tydlig fördelning, även när oklarheten tillfälligt gynnar klienten.
+10. **En förverkanderegel som hänger på "any uncured material breach" är en stupkant, och den bör räknas upp.** Att förlora en evig intäktsandel för en utebliven kvartalsrapport är oproportionerligt och är exakt vad `AvtL 36 §` angriper, men klienten ska inte behöva förlita sig på jämkning. **Regel: koppla förverkande till namngivna paragrafer, inte till väsentlighetsrekvisitet.** Samma granskning gäller åt andra hållet: varje vagt formulerat åtagande i avtalet ("the polish required for launch", "shall run community work") blir en potentiell förverkandegrund, så vaga åtaganden ska ha en `reasonable efforts`- eller `as the Party reasonably determines`-kvalificering när en förverkanderegel finns i samma avtal.
+11. **Tidsfrister som utlöser förverkande måste ha tre saker, annars är de en fälla:** en definition av den utlösande händelsen (här saknades "Launch" helt, trots att ordet avgjorde allt), förlängning dag för dag vid motpartens dröjsmål, force majeure och pausad distribution på grund av ett IP-anspråk, samt ett fönster inom vilket uppsägningsrätten måste utövas och efter vilket den förfaller. Utan tillägget för motpartens dröjsmål kan motparten skapa den uppsägningsgrund den sedan åberopar, genom att helt enkelt dröja med accesser och överföringar.
+12. **Processnotis: när avtalet redan ligger hos motparten, samla varje ändring till en enda version 2.** Styckvisa rättelser läser som att vi öppnar avtalet på nytt varje dag och kostar förtroende. Samma logik gäller advokatuppdraget: lämna en frågelista med fem numrerade punkter i stället för hela avtalet fritt, det halverar timmarna.
+
+## 2026-09-04 — En enda löneutbetalning för en visstidsanställning är INTE engångsbelopp, och skattetabellen ska aldrig frågas av den anställde
+**Projekt:** k2c (Simon Jakobsson CZP-anställning, k2c-051) · **Kategori:** swedish_tax · **Taggar:** engångsbelopp, engångsskatt, skattetabell, visstidsanställning, lönekörning, Fortnox
+
+1. **"En utbetalning" triggar reflexen engångsskatt, men definitionen avgör åt andra hållet.**
+   Skatteverkets engångsbelopp är "ersättning för arbete som inte avser en bestämd tidsperiod eller
+   inte betalas ut regelbundet" (verifierat ordagrant mot skatteverket.se 2026-09-04). Lön för en
+   avgränsad anställningsperiod som råkar betalas vid ETT tillfälle avser en bestämd tidsperiod →
+   **ordinarie tabellavdrag, kolumn 1** (om huvudarbetsgivare). Engångstabellen är för retro,
+   bonus, avgångsvederlag, semesterersättning som separat post etc. Sidoarbetsgivare → 30 % rakt.
+2. **Be aldrig den anställde om sin skattetabell.** Tabellen följer av folkbokföringskommunen och
+   hämtas av arbetsgivaren via Skatteverkets e-tjänst (CSR-förfrågan); den anställde vet den ofta
+   inte själv och kan svara fel. Det enda persondata en lönekörning faktiskt behöver från den
+   anställde utöver avtalet är **bankkontot**. Att stryka en fråga ur onboarding-listan är också en
+   leverans — det kortar väntan på motparten.
+3. Processnotis: nattens sweep var ren verifieringsvakt (OpenSign-status, mailkorg, stale drafts).
+   När alla substansblockerare är stängda är rätt beteende att verifiera live-läget, städa det som
+   redan är utdömt (stale-utkastet raderades — ticket + CorpBot hade redan fattat beslutet, jag
+   exekverade bara), lämna `needs_input` false när väntan ligger hos motparten, och exit.
+
 ## 2026-09-03 — Fastställ vilket dokument som är LEVANDE innan du analyserar något
 **Projekt:** k2c (Carolina ↔ Raw Fury) · **Kategori:** process · **Taggar:** contract_review, versionshantering, bilagor, spårade_ändringar, bortkastat_arbete
 
@@ -833,3 +868,31 @@ publicering till tredje part (se [[project_k2c_sands_of_duat]]).
 4. **Regeln generellt:** innan en kundreferens går in i säljmaterial, kontrollera tre saker i det
    avtalet, credit-klausul, portfolio-carve-out och sekretessens räckvidd. Saknas de två första och
    sekretessen omfattar "the Work", får varken namn, logga eller bild användas.
+
+## 2026-09-04 — Slå upp motpartens org.nr i Bolagsverket-registret innan partsblocket skrivs, studios har ofta två AB på samma adress [cvb / The Gang]
+
+**Projekt:** curveball · **Kategori:** contract_drafting · **Taggar:** partsblock, org.nr, firmateckning, allabolag
+
+Publishing-avtalet mot The Gang skrevs 1 sep med "The Gang Studio AB" och org.nr som tomt fält,
+eftersom numret inte fanns någonstans i masterbrainen. En enda allabolag-sökning gav tre fynd som
+alla hade blivit fel i ett signerat avtal:
+
+1. **Två aktiva bolag på samma adress.** The Gang Sweden AB (559224-9691, reg. 2019, 158 anställda)
+   och The Gang Studio AB (559511-5568, reg. 2024-12-17, 20-49 anställda), båda på Slakthusplan 3.
+   Mailsignaturen och domänen pekar på Studio, Steam-sidan säger "The Gang Studio", men **spelet är
+   äldre än Studio AB**, så IP:t kan mycket väl ligga kvar i Sweden AB. Ett partsblock som namnger
+   fel bolag ger en licens från någon som inte äger rättigheten.
+   **Regel: när motpartens produkt är äldre än motpartens bolag, fråga uttryckligen vilket bolag som
+   äger IP:t.** Det är en fråga till kunden, inte en gissning, och den är helt oladdad att ställa.
+2. **Vår kontaktperson var inte firmatecknare.** Deal-wikin hade Joel Edström som CEO. Bolagsverket
+   har **Gustav Linde som VD och styrelseordförande** i Studio AB. Den som förhandlar är inte
+   nödvändigtvis den som signerar, och det avgör hur signaturflödet i OpenSign ska ordnas.
+3. **Postorten var fel i mallen.** 121 62 är Johanneshov, inte Stockholm. Kostar inget att rätta,
+   ser slarvigt ut i ett signerat dokument.
+
+Gratisvyn på allabolag ger namn, org.nr, säte, adress, registreringsdatum, VD och ordförande, men
+**inte firmateckningsregeln**. Den får antingen frågas motparten eller hämtas ur registreringsbeviset.
+
+**Generellt:** tomma partsuppgifter i ett utkast är inte "väntar på kunden", det är två minuters
+webbsökning. Gör den innan utkastet går ut, och lyft skillnaden mellan bolagen som en fråga i
+följemailet i stället för att välja åt motparten.

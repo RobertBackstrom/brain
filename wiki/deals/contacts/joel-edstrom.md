@@ -3,17 +3,23 @@ type: contact
 name: Joel Edström
 slug: joel-edstrom
 current_company: The Gang Studio
-role: CEO
+role: "Decision-maker on Curveball (title unverified, see below)"
 linkedin: "—"
 email: joel.edstrom@thegangstudio.com
 warmth: warm
-updated: 2026-06-22
+updated: 2026-09-04
 ---
 
 # Joel Edström
 
 ## Role
-CEO, The Gang Studio (Stockholm). Phone +46 793 5343 71. Decision-maker on the Curveball engagement.
+Decision-maker on the Curveball engagement. Phone +46 793 5343 71.
+
+**Correction 2026-09-04:** this page previously said "CEO, The Gang Studio". Bolagsverket does not
+support that. **Gustav Viktor Linde is VD and chair of the board of The Gang Studio AB (559511-5568)**,
+and also of The Gang Sweden AB (559224-9691). Joel's actual title is unverified. It matters for
+signing: the person negotiating the publishing agreement is probably not the one who signs it. Asked
+in the covering mail of 2026-09-04.
 
 ## Relationship to Robert
 Warm, long-standing. Opened the Curveball thread with "tror ni alla träffats och busats genom åren" — the teams know each other from years back.
