@@ -13,6 +13,23 @@
 <!-- Categories: swedish_corp | swedish_tax | swedish_employment | swedish_ip | gdpr | contract_review | process | tooling -->
 <!-- If Robert corrected a substantive legal point: tag `correction` and write the corrected position prominently. -->
 
+## 2026-09-05 — "Watchern sköter arkiveringen" är sant bara om dokumentet är registrerat: opensign.js-utskick registrerar INTE i opensign-watch.json
+**Projekt:** k2c (Simon Jakobsson CZP-anställning, k2c-051) · **Kategori:** tooling + process · **Taggar:** OpenSign, opensign-watch, _legals, arkivering, registry
+
+1. **Utskick och bevakning är två separata steg i vår OpenSign-kedja.** `opensign.js` skickar
+   dokumentet; `opensign-watch.js` (timer var ~10 min) filar den exekverade PDF:en till _legals
+   och notifierar Robert — men bara för dokument som någon manuellt kört
+   `opensign-watch.js register <docId> --label ... --legals <folderId> --gdoc <id>` på.
+   Simons avtal blev fullt signerat 2026-09-04 och låg oregistrerat: ingen arkivering, ingen
+   notis, och CorpBots logg sa ändå "opensign-watch.js sköter det". **Rutin: i samma andetag som
+   ett dokument skickas via opensign.js, verifiera/registrera det i `opensign-watch.json`. Och
+   när ett avtal rapporteras klart, verifiera att PDF:en faktiskt landade i _legals i stället
+   för att lita på att automationen fanns.** Registrering i efterhand är ofarlig — nästa poll
+   tar completed-flödet direkt (fil + notis), så gapet är billigt att stänga när det upptäcks.
+2. Generalisering av 2026-08-27-punkten om osignerade "befintliga avtal": **verifiera alltid att
+   den automation ett beslut lutar sig mot faktiskt är aktiverad för just det här objektet.**
+   "Systemet finns" och "systemet bevakar det här dokumentet" är olika påståenden.
+
 ## 2026-09-04 — En överlevnadsklausul är värdelös om definitionen av det som ska överleva bygger på en tillgång parten lämnar ifrån sig
 **Projekt:** cvb (The Gang Studio, publishing-avtal Curveball) · **Kategori:** contract_review + swedish_ip · **Taggar:** revenue share, perpetuity, survival clause, NJA 2004 s. 167, NJA 2009 s. 672, NJA 2018 s. 19, AvtL 36 §, ABL 8:29/8:35/8:42, AvtL 25 §, URL 1/27/28 §§, Unreal EULA, chain of title
 
