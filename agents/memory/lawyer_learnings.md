@@ -13,6 +13,20 @@
 <!-- Categories: swedish_corp | swedish_tax | swedish_employment | swedish_ip | gdpr | contract_review | process | tooling -->
 <!-- If Robert corrected a substantive legal point: tag `correction` and write the corrected position prominently. -->
 
+## 2026-09-06 — OpenSigns completion-mail levererar den exekverade PDF:en till alla parter: "skicka motsignerad kopia" är redan gjort
+**Projekt:** k2c (Simon Jakobsson CZP-anställning, k2c-051) · **Kategori:** tooling + process · **Taggar:** OpenSign, motsignerad kopia, checklista, avslut
+
+1. **När ett dokument blir fullt signerat i OpenSign mailar plattformen själv completion-mailet
+   "has been signed by all parties" till varje part, med den exekverade PDF:en bifogad.** Verifierat
+   i Simons fall (mail till simon.jakobsson@live.com 2026-09-04 13:42, tråd `1a06ca7b05d44c0c`).
+   Checklistpunkten "skicka motparten sin motsignerade kopia" ska alltså strykas, inte planeras —
+   två nattsweeps bar den som öppet Roberts/CM-moment fast den redan var stängd. **Rutin: när ett
+   OpenSign-avtal rapporteras klart, sök motpartens adress i Gmail efter completion-mailet innan
+   någon "skicka kopian"-uppgift skapas.** Vår arkivering till _legals (opensign-watch) är ett
+   separat, internt ben och sköter inte motpartsleveransen — men plattformen gör det, åt båda håll.
+2. Följdnytta: när kopian redan är levererad kan nästa ask till motparten (här bankkontot) gå som
+   egen kort fråga i stället för att vänta på ett "här är din kopia"-mail som aldrig behövs.
+
 ## 2026-09-05 — "Watchern sköter arkiveringen" är sant bara om dokumentet är registrerat: opensign.js-utskick registrerar INTE i opensign-watch.json
 **Projekt:** k2c (Simon Jakobsson CZP-anställning, k2c-051) · **Kategori:** tooling + process · **Taggar:** OpenSign, opensign-watch, _legals, arkivering, registry
 
