@@ -11,6 +11,36 @@
 
 <!-- Append new learnings with: learning, source project, date, category -->
 
+
+## 2026-09-07 — RÄTTELSE: Sifferrådet/Henrik är INTE längre involverad i CZP. Öppen fråga vem som gör lön och årsmoms
+**Projekt:** czp · **Kategori:** process + correction · **Taggar:** Sifferrådet, Henrik Franzén, CZP, redovisningskonsult, årsmoms, lön, correction
+
+**Robert 2026-09-07: "Henrik är inte involverad längre för CZP."** Det överspelar rättelsen från
+2026-07-16 i `archive/admin/2026-Q3.md` som slog fast att Sifferrådet var HELT AKTIVA på CZP (löner
+varje månad via Emelie Andersson, månatliga resultat- och balansrapporter, **årsmoms**,
+utläggsbokföring, betalfiler, skattekonto- och KFM-bevakning). Den bilden gäller inte längre.
+
+**Amer Alsalek (book-it.se) är fortfarande kvar för Runatyr och AP.** Bara CZP-ledet har ändrats.
+
+**Vad detta öppnar och som INTE får antas bort:**
+1. **Vem gör CZP:s löner nu?** Sifferrådet skapade och attesterade lön i Fortnox, Robert betalade
+   från SEB. Det finns aktiva CZP-anställningar (Elias, Simon Jakobsson, Carolina). Faller
+   löneledet mellan stolarna blir det arbetsgivardeklaration och skatteavdrag som missas, jämför
+   `czp-026` och `czp-027` som redan gällde just det.
+2. **Vem lämnar CZP:s årsmoms?** Den för 2025 lämnades av Henrik 2026-02-26. Nästa förfaller
+   2027-02-26 om perioden fortfarande är helt beskattningsår. **Perioden är inte verifierad mot
+   Skatteverket Mina sidor och äldre registerutdrag duger inte** (samma fälla som Runatyr, se
+   posten 2026-05-13: registerutdraget sa "helt beskattningsår" långt efter att perioden ändrats
+   till kvartal).
+3. Robert säger i samma andetag "du är ju min redovisningskonsult", vilket pekar på att CZP:s
+   löpande bokföring nu ligger på CorpBot. **Bekräfta det uttryckligen innan något körs skarpt**,
+   och skilj på att föra böcker och att lämna deklarationer.
+
+**Generell lärdom, andra gången samma fälla:** konsultrelationer ändras utan att någon säger till
+minnet. Både 2026-07-16 och nu blev en tidigare uppgift fel. **Verifiera vem som faktiskt gör vad
+mot de senaste månadernas flöde innan en konsult adresseras eller antas utföra ett moment**, och
+skriv datum på uppgiften.
+
 ## 2026-09-04 — Innan du grubblar på om ett dotterbolags bokföring får delas: kolla vem som reviderade dotterbolaget [apb / apb-052]
 
 **Project:** Aurora Punks ÅR 2025, APDS-konkursen | **Category:** revision, sekretess, verktyg, redovisning

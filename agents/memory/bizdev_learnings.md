@@ -570,3 +570,10 @@ or open the archive file below (each has its own Contents block, so you can offs
 - 2026-06-10 — Co-Delivery Budget Structuring — when the client provides resources in-kind
 - 2026-06-07 — Single-Deal Supplier Engagements (Blue Scarab Pattern, 2026-06-07)
 - 2026-06-06 — Event Submission Pipeline Hygiene
+
+## 2026-09-07 - A deferred fee with "2,5x recoup then revshare" is only worth what the waterfall says (Disposable Corps / LUG / Rift)
+
+- **Write the recoup position before quoting a multiple.** AP's 300k deferral at 2,5x reads as 750k, but the plan never said whether AP draws 100 percent of net until whole or pro rata with the investors' 1,86 MSEK. In the base case (10 800 units year one) that is the difference between AP receiving 562k and 161k, i.e. between 1,9x and a loss on the deferred cash. Before any partner (Rift) is offered a share of the deferral, the term sheet needs "AP first position on net until 750 000". [dsc, 2026-09-07, commercials]
+- **Sell a co-delivery partner on the cash line, not the option.** The 15 percent revenue share has zero expected value in the low and base cases (it only pays above the recoup crossing). Frame it to Rift as paid work with a small first-position kicker. A pitch that uses the revshare as the return needs the high case as its base, which nothing in the comparables supports. [dsc, 2026-09-07, partner framing]
+- **LUG's demonstrated Western Steam range is 2 000 to 50 000 units per title** (Folklands 59 reviews, Mark of the Deep 354, Blackthorn Arena: Reforged 1 000). Use it as the ceiling for any LUG-published sales case unless a Western marketing partner is named and funded. [dsc, 2026-09-07, publisher calibration]
+- **Striden is AP's own multiplayer cautionary tale and the mail has the numbers.** Emil Darsbo 2024-06-10: 12 000 wishlists, 8 200 playtesters, self-capped 247 CCU. Outcome: 285 launch peak, 271 reviews, servers closed inside a year, "publishers were put off by low player numbers". Cite it when a Swedish multiplayer indie plan assumes the population will hold. [dsc/str, 2026-09-07]

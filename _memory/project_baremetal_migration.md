@@ -85,6 +85,16 @@ that session actually runs on the Hetzner VPS (KVM guest: no `hwmon`, no fan or 
 temps or power state is readable from the VPS, and there is no tunnel to it (no Tailscale, empty
 `~/.ssh/config`, `known_hosts` is GitHub only). Legion diagnostics have to run locally on Windows.
 
+**Superseded 2026-09-07 (the tunnel now exists).** The "no tunnel to it" half of the paragraph above
+was true *from Hetzner in August* and is no longer true from Nitro. The Legion is a tailnet node,
+`legion` / `100.125.204.92`, and **passwordless SSH from Nitro into it works**
+(`ssh legion` → Windows OpenSSH, user `rober`). Verified by driving a full Nintendo-toolchain audit
+over it. So Legion diagnostics *can* be run from a session now: pipe a script into
+`ssh legion 'powershell -NoProfile -ExecutionPolicy Bypass -Command -'` rather than fighting nested
+quoting on a one-liner. Two limits stand: the SSH session is **unelevated**, so anything under
+`HKLM\...\Enum\...\Properties` returns "Access is denied", and the fan/thermal point is unchanged
+(that was about the VPS being a KVM guest, not about reach).
+
 Related: [[feedback_vps_operating_environment]], [[project_the_assistant]],
 [[reference_vps_capacity]], [[project_curveball]].
 

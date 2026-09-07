@@ -7,6 +7,72 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-07 - Team-managed Jira boards cannot draw subtasks at all, and the workaround board already existed [k2c / KAN]
+
+**Learned:** 2026-09-07 | **Project:** K2C Sands of Duat (KAN) | **Category:** jira, board-config, product-limits, search-before-building, filter-jql
+
+**"Why are subtasks missing from the board" is a hierarchy-level question, not a filter bug.** KAN
+board 1 has a clean `project = KAN ORDER BY Rank ASC` and all six statuses mapped to columns, so
+every instinct says config error. It is not: KAN is `style: next-gen` / `simplified: true`, and a
+**team-managed board renders only hierarchy level 0 and 1** (Task/Story/Bug/Feature and Epic).
+Subtasks are level -1 and are structurally never cards. The two facts that settle it in one call
+each are `GET /rest/api/3/project/{key}` -> `style`, and `hierarchyLevel` on the issuetype in any
+issue payload. Atlassian's tracker for it is JRACLOUD-85702, open since 2022 and explicitly
+deprioritised, so there is no config to wait for. **Do not go looking for a board setting that does
+not exist** - decide between the two real routes instead: a filter-based (company-managed style)
+board, where subtasks are ordinary draggable cards, or the team-managed board's own
+`Group by -> Subtasks`, which is per-viewer, turns parents into swimlane headers and makes subtasks
+non-draggable between columns.
+
+**The workaround board was built four days earlier and I twice concluded it was undocumented. It
+was documented in two places.** `GET /rest/agile/1.0/board` showed board 67 "KAN: Real work (incl.
+subtasks)" on filter 10173, already shared with the whole KAN project. My first grep over
+`agents/memory/`, `wiki/` and repo-root `*.md` returned nothing, so I reported the board as an
+undocumented orphan. It is written up at length in `umbrella/k2c_sands_of_duat/output_log.md` AND
+in `project_k2c_sands_of_duat` under Atlassian, complete with the ~28% figure and the filter ids.
+**The gap was my search, not the record.** The masterbrain is at least four separate stores -
+`agents/memory/`, the wiki, per-project `output_log.md` (including under `umbrella/`), and the
+memory directory at `~/.claude/projects/-home-assistant-projects/memory/` - and my habitual
+"grep the masterbrain" reflex covered two of them. **The memory directory is not inside the repo,
+so a repo-root grep can never see it**, which is exactly the store most likely to hold a canonical
+fact. Grep all four, or use `rag_search`, which indexes across them. Cost of getting this wrong:
+I told Robert an artifact was lost when it was filed correctly, which impugns a previous session's
+work and would have sent us rebuilding what already existed.
+
+**The real lesson is about surfacing, not filing.** The fact was recorded properly and Robert
+still asked the same question four days later, because a memory file is a store agents read, not
+a thing he sees while looking at a board. When a limitation has a standing workaround, **the
+useful artifact is the link, handed over on the spot** - so the canonical note now leads with the
+board URL and an instruction to link it rather than re-explain the limitation.
+
+**Two JQL traps in board-backing filters, both live on 10173:**
+1. `statusCategory != Done` on a board whose columns include Done leaves those columns
+   **permanently empty** and makes a card dragged there vanish. Worse here because status
+   **Icebox (10069) sits in the `done` status category** despite meaning "parked", so the Icebox
+   column was silently dead too. Icebox-style statuses need their own explicit clause.
+2. `ORDER BY assignee ASC, status ASC, Rank ASC` breaks drag-to-rank. **A board filter must order
+   by Rank first**, full stop; put any other sort in a saved filter meant for reading, not for a
+   board.
+   Landed on `project = KAN AND (statusCategory != Done OR status = Icebox OR resolutiondate >= -14d) ORDER BY Rank ASC`.
+   The 14-day resolution window is load-bearing: without it the Done column carries 290 items.
+   Prefer `resolutiondate` over `updated` for that window - `updated` bumps on any comment and
+   resurrects long-dead tickets into Done.
+
+**Sizing the blind spot is what makes the report land.** `POST /rest/api/3/search/approximate-count`
+(note: **POST only**, GET returns 405) gave 187 subtasks / 108 open against 294 open parent-level
+items in three cheap calls. "About a quarter of live work is invisible on the board you look at
+every day" is a very different sentence from "subtasks do not show". It also exposed that our own
+`project_k2c_epic_structure` Shape C rested on the false claim that "subtasks roll up under the
+parent on the board" - so a convention had been built on a premise nobody had checked against the
+live board. **When a limitation turns up, grep the masterbrain for conventions that assume the
+opposite** and correct them in the same pass, or the wrong shape keeps getting produced.
+
+**Tooling notes:** the Jira MCP's `jq` parameter is **JMESPath, not jq** - `values[*].{id: id}`
+works, `[.[] | {...}]` returns `_jqError` plus the entire unfiltered payload, which is the
+expensive failure mode. `PUT /rest/api/3/filter/{id}` **replaces** the resource: re-send
+`sharePermissions` or the filter silently goes private and the team loses the board. Board
+*name* and column config have no public write endpoint; only the backing filter is API-editable.
+
 ## 2026-09-04 - A watchdog that can only shout: six weeks of downtime for a one-command fix [db-229, CZP/AP]
 
 **Learned:** 2026-09-04 | **Project:** Fortnox VPS read-layer (db-229) | **Category:** watchdog-design, self-heal, alert-fatigue, premise-check, fail-closed, search-first

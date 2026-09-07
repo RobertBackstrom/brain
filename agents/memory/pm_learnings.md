@@ -7,6 +7,66 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-07 - The standup answered the art critique and walked past the commercial question [k2c / MS5]
+
+**Learned:** 2026-09-07 | **Project:** K2C Pharaoh Lands | **Category:** client-feedback, milestone-scoping, jira-hygiene, evidence
+
+**When a publisher's feedback mixes craft notes with one direct question, the team will answer the
+craft notes.** RF approved MS4 with a caveat and raised two areas: player intentionality, and art
+readability. Buried in the second was a demand with a deliverable attached - is 24/25 Sep content
+complete with zero placeholder art still realistic, and if not, a detailed list of what stays
+provisional. Today's standup produced excellent art direction (Nile to amber, heat haze, cypress
+rework, greed goo signposting) and **nothing at all on the date question**. That is the normal
+failure mode: craft notes are actionable by the people in the room, the commercial question is
+answerable only by the producer, so a standup metabolises the first and drops the second. **Read
+client feedback for the sentence that contains a date or a number and check separately whether
+anyone owns it** - it will not be the loudest item, and it is always the one that turns a caveat
+into a dispute.
+
+**The scope answer has to be built from the board, not from the room's mood.** Pulling MS5 gave a
+verdict nobody in the standup had stated: Sphinx level art 0 of 6 children started, Osiris 0 of 5,
+both entirely on one artist, Drought pass 0 of 5, while Set had 5 of 14 moving. **Code and
+scripting were progressing and art was not, which is precisely the asymmetry the publisher
+described from the outside.** A client's vague-sounding quality complaint often has an exact
+counterpart in the board's status distribution; find it and the reply stops being defensive and
+starts being evidence.
+
+**The real finding was a milestone carrying two incompatible definitions.** MS5 held content
+complete AND a five-platform cert push (KAN-192 to 203, unassigned), and our own 1 Sep standup had
+already recorded the internal decision to deprioritise polish for cert readiness. So the scope
+trade RF was asking about had already been made internally and not communicated. **Check whether
+the answer to the client's question is already sitting in your own meeting notes as a decision** -
+if it is, the task is not analysis, it is disclosure, and the longer it waits the worse it reads.
+
+**Verify milestone counts before quoting one to a client.** MS5 showed 75 open items, but **138
+open items carry no fixVersion at all** (27 art, 43 bugs) out of 402 open. Any milestone number
+from this board is a floor. The k2c-052 followup had flagged exactly this on 28 Aug and warned the
+release view "must not be used for scoping MS5 until the batch is stamped", which was still true
+ten days later. **Quoting a scope number and later revising it upward is worse than quoting
+nothing**, so state a count only after checking the unstamped population. Compounding trap from
+the same day: **subtask status does not roll up on a team-managed board**, so parent tickets read
+To Do while children are In Progress (KAN-142). A scope read off parent status alone is wrong in
+both directions.
+
+**A slipped commitment keeps its old fixVersion and disappears.** KAN-557, the purple-overlay pass
+that flags un-converted Greek assets, was In Progress and still stamped MS4 - the milestone that
+shipped without it. RF named its absence by name. **Nothing re-milestones itself; an item that
+misses its gate silently becomes invisible in every release view.** Worth a standing sweep after
+each delivery: open items still carrying the shipped milestone. Also note why this one mattered
+out of proportion to its size - half the art complaint was that RF could not distinguish
+first-pass from final, which is a readability problem with a tooling fix, not an art problem with
+an art fix. **Separate "looks unfinished" from "cannot tell what is finished" before committing
+art capacity to a quality complaint.**
+
+**Two dependency checks that a standup will not surface:** one artist held both unstarted islands
+(no schedule pressure parallelises one person), and a subcontractor's contract expired seven days
+before the gate while he held four items on it - raised once on 1 Sep and absent from every
+standup since. **Cross the milestone's assignee list against contract end dates**, and treat a
+single name appearing on most of a milestone's unstarted work as a scheduling finding, not a
+staffing detail.
+
+**Tags:** k2c, ms5, content-complete, raw-fury, milestone-scoping, fixversion-hygiene, KAN-557, subtask-rollup
+
 ## 2026-08-31 — Embedding a Drive video in a K2C Confluence delivery page (k2c)
 
 Milestone playthrough videos: upload to the K2C shared `_deliverables/ms<N>` Drive folder, then embed in that milestone's Confluence delivery Legend page. The embed is a plain Confluence macro pointing at the Drive file URL, copied verbatim from the MS3 page (125566978):
@@ -168,6 +228,84 @@ agent: pm
 ---
 
 # PM Agent Learnings
+
+## 2026-09-07 — Read who was answered off the reply-targets, don't ask; and never delete-and-reupload a Doc you have already shared [project: necrotic_dominion, nd]
+
+Two mechanical lessons from reconciling an outreach list, both of which saved or cost real credibility.
+
+**1. Reply state is machine-readable, so read it.** Robert said "I have answered a few of them already,
+update the list". The instinct is to ask which. Discord messages carry `m.reference.messageId` on any
+reply, so adding that to the reader's output maps every one of his messages onto **the exact message it
+answered**. Six replies resolved to six named players in one run, with no interrupt. That also caught
+something asking would have missed: two of the six (JimmyJobi, MasterJay) were *update-timing*
+questions, not PS5 crash reports, so counting them as "answered complainants" silently corrupted the
+arithmetic — I had told Robert nine were left for Elias when the real number was eleven. Generalises
+beyond Discord: before asking a busy person to restate what they did, check whether the platform
+records the linkage (reply-to headers in mail, `in_reply_to` in chat APIs, Jira comment threading).
+**Then re-derive the totals from the reconciled set rather than subtracting from the old one** — a
+count carried forward across a changing definition is where the error hides.
+
+**2. `gdrive-upload.js --delete` + re-upload mints a NEW fileId, silently breaking every link you have
+already handed out.** I did this once mid-session to rename a Doc, which invalidated the URL already
+sitting in a Gmail draft. It was harmless only because the draft had not been sent. The right tool is
+**`assistant/gdrive-update-doc.js <local.md> <fileId>`**, which re-imports the body in place and keeps
+the fileId, the shareable link, and the existing share grants. Rule: **the moment a Doc has been shared
+or linked anywhere, it is append/update-only.** Delete-and-reupload is for documents nobody has seen.
+Related gotcha in the same family: `--share` on a file id prints "Shared folder ..." regardless, so the
+wording is no confirmation you shared the right kind of object.
+
+**3. Mark superseded rows in place rather than deleting them.** The handover doc keeps answered people
+in their original numbered position tagged `[ANSWERED by Robert 2026-09-07 - skip]`, and the one Robert
+kept as `[ROBERT IS TAKING THIS ONE - do not reply]`. Deleting them would renumber the list and make it
+impossible to reconcile against the version already sent. The recipient needs to see that a row was
+considered and removed, not find a gap where it was.
+
+**Tags:** necrotic-dominion, discord-tooling, reply-threading, gdrive, document-versioning, handover-lists, counting-errors, nd
+
+---
+
+## 2026-09-07 — When handing a complaint list to whoever must answer it, group by "does our fix actually cover this person" [project: necrotic_dominion, nd]
+
+Robert shipped the ND PS5 fix and asked for every forum complaint compiled so Elias could answer them.
+The obvious deliverable is a list of names. The useful one is a list **split by whether the thing we
+just shipped actually solves their problem.**
+
+Elias' announcement fixed *the map not opening on PlayStation* — solo and non-dedicated. Of the 16
+people who had complained, **three were reporting a PS5 joining a dedicated server**, which the update
+does not touch. Handing over an undifferentiated list would have had him reply "fixed, please update"
+to people whose problem is still live, on a project where the players already talk to each other in the
+same channel. That is a worse outcome than the silence it replaces, because it converts "slow" into
+"they don't read what I write". **On any ship-then-notify task, diff the fix's actual scope against each
+report before writing the outreach list, and make the split the document's top-level structure.**
+
+**Second, and it changed the recommended tone:** pulling per-message ids surfaced the chase history,
+which the summary view had flattened. Linkdu47 wrote **three times in March** with no reply at all
+before Robert answered in June. TEKtheVIBE chased twice: *"It doesn't seem right to sell a mod that
+doesn't work."* Savage: *"to see nobody has said anything about it is honestly kind of frustrating."*
+The complaints are about **response silence**, not the crash. So the brief leads with "several of these
+people chased us three or four times and got nothing, open with that" rather than with the fix. When
+compiling user complaints, count the **follow-ups per person**, not the distinct reporters — the repeat
+count is what tells you whether you have a product problem or a support problem.
+
+**Tooling, reusable:** `nd-discord-read.js` prints author/timestamp/content but not message ids, so its
+output cannot be turned into links. Copying it and adding `${m.guildId}/${spec.id}/${m.id}` to the
+output line yields `discord.com/channels/<guild>/<channel>/<message>` permalinks for every row, which
+is what makes a handover list actionable rather than a research exercise. Two gotchas when copying a
+script out of `assistant/`: it reads `.env` via `path.join(__dirname, ...)` and resolves `discord.js`
+from the local `node_modules`, so both need absolute paths in the copy. AP guild is
+`616345869490454593`; #ark-bugs `1353639298141782026`; #ark-general `1353752719642329098`. Worth
+folding an `--ids` flag into the real script.
+
+**Know which sources can carry a deeplink at all, and say so rather than fabricating one.** Discord
+gives stable per-message permalinks. CurseForge comments do **not** — the comments page is sign-in
+gated and exposes no per-comment anchor, so those entries get handle plus date against the page URL.
+CurseForge private messages *do* have real URLs (`curseforge.com/private-messages/<id>`). Stating the
+limit in the deliverable is better than a plausible-looking link that 404s for the person you handed
+the work to.
+
+**Tags:** necrotic-dominion, community-management, complaint-triage, outreach-lists, deeplinks, discord-tooling, curseforge, support-silence, nd
+
+---
 
 ## 2026-09-03 — An empty dashboard is not evidence of missing access until you have verified you are on the right dashboard [project: necrotic_dominion, nd]
 

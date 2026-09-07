@@ -450,3 +450,30 @@ kommaseparerad lista. Verifierat efter omstart: båda lyssnarna uppe, `HEAD` öv
 till bootat bygge: Tailscale-anslutning, NDI 2.5.4 + SDK + TM2 (Windows, ingen headless-väg finns),
 den fysiska EDEV-kedjan med grå dosan och de tre "kitet ser dött ut men lever"-fällorna, hämtning
 från `http://100.77.150.9:8088/k2c.nsp`, install via TM2 och remote video.
+
+## 2026-09-07 — EDEV på Legion: maskinen var redan klar, runbooken rättad
+
+Robert ville koppla ett Switch EDEV till Legion-laptopen. Auditerade maskinen över SSH i stället för
+att köra runbooken blint, och den behövde ingenting: NDI 2.6.0, Target Manager 2 21.2.0.0 + NX-plugin,
+Nintendo Package Manager 1.7.0, NativeSDK 16.2.6 + 20.5.17, två Unity NX-addons, `NintendoSdkDaemon`
+igång, ~333 GB ledigt, och drivrutinen för kit `XAL07100029344` redan installerad. Legion når
+build-droppen över tailnet (HTTP 200). Enda som saknades var att kitet inte satt i.
+
+- Svar på Roberts följdfråga: **det är 9344-kitet** som suttit i Legion. …0024 finns inte i
+  USB-enum-registret alls, så det blir förstagångsanslutning med drivrutinsinstallation.
+- Förstagade `k2c.nsp` till `C:\Users\rober\Downloads` över tailnet. Verifierat, inte bara nedladdat:
+  2 314 279 275 byte i båda ändar och SHA256 `de8a81db8bca9a4a415d4bec674dd1e398885bde33f52f39074f6bab5800ad97`
+  identisk på Nitro och Legion. 771 s, ~3,0 MB/s (DERP-relä, ingen direktväg). Källan bakom aliaset är
+  `builds/k2c/2026-08-28/KingdomTwoCrowns.nsp`.
+- Uppdaterat: [switch_edev_laptop_setup.md](switch_edev_laptop_setup.md) med ett Legion-avsnitt
+  (hoppa till steg 3) + två rättelser — `NintendoSdkDaemon` är en process, inte en Windows-tjänst,
+  och SSH-vägen in i Legion finns.
+- Rättat i [[project_baremetal_migration]]: påståendet att Legion-diagnostik måste köras lokalt på
+  Windows gällde från Hetzner i augusti, inte från Nitro idag.
+- Lärdomar till [gamedev_learnings.md](../agents/memory/gamedev_learnings.md).
+
+**Tillägg samma dag — firmware-frågan.** Robert frågade om firmware också behöver uppdateras. Svar:
+troligen inte, men kolla före du rör det, och **flasha inte från Legion**. forge bär NX 22.5.0-1.1,
+Legions nyaste env (NativeSDK20.5.17) bär bara NX 20.4.0-1.0, så Legions uppdaterare kan sänka ett
+fungerande kit under vad bygget kräver. Firmware-avsnitt tillagt i runbooken (steg 3b). Kiten heter
+nu 9344 och 0024 efter Roberts konvention, sparad i [[reference_ap_switch_devkits]].

@@ -115,7 +115,7 @@ Vanlig klientmissuppfattning: att en styrelseledamot *måste* ansöka om konkurs
 | **ABL 29:1** skadestånd, talan **för bolagets räkning** | **5 år** från utgången av det räkenskapsår då beslutet/åtgärden vidtogs (`ABL 29:13`); ettårsfristen i `29:10` kopplas till framlagd ÅR + ansvarsfrihet; konkursbo får föra talan trots ansvarsfrihet (`29:12`); brottsgrundad talan undantagen | Räkenskapsårets utgång | Bolaget, minoritet (`29:7`), konkursboet |
 | **ABL 29:1** borgenärs/tredje mans **egen** talan | Ingen ABL-frist (29:13 avser talan för bolagets räkning) → allmän preskription **10 år** (`PreskL 2 §`). Kräver överträdelse av ABL/ÅRL/bolagsordning + skada + kausalitet — hög tröskel. Gränsdragningen delvis doktrin | Skadegörande handlingen | Enskild borgenär/aktieägare |
 | **ABL 17:6** återbäring + **17:7** bristtäckning | Ingen särskild frist i 17 kap → **10 år** (`PreskL 2 §`) | Värdeöverföringen | Bolaget/konkursboet |
-| **KL 4:5** otillbörlighetsåtervinning | Materiellt: 5 år före fristdagen; mot **närstående ingen bakre tidsgräns** (`KL 4:5` 1 st sista ledet; närståendekrets `4:3`; kunskapspresumtion mot närstående `4:5` 2 st) | Fristdag = konkursansökans dag (`KL 4:2`) | Konkursboet; enskild borgenär om förvaltaren avstår (`4:19` 2 st) |
+| **KL 4:5** otillbörlighetsåtervinning | Materiellt: 5 år före fristdagen; mot **närstående ingen bakre tidsgräns** (`KL 4:5` 1 st sista ledet; närståendekrets `4:3`; kunskapspresumtion mot närstående `4:5` 2 st) | Fristdag = konkursansökans dag (`KL 4:2`) | Konkursboet; enskild borgenär bara om förvaltaren varken påkallar återvinning **eller ingår förlikning** (`4:19` 2 st) |
 | **KL 4:10** betalning av skuld | 3 mån före fristdagen; mot **närstående 2 år** (om inte solvens visas). Försvar: sen betalning i pengar av förfallen skuld är varken förtida eller osedvanlig; ordinär betalning undantas | Fristdag | Samma |
 | **Talefrist all återvinning** | **`KL 4:20` 1 st: talan inom 1 år från konkursbeslutet**, alt. 6 mån från det att anledningen blev känd för boet (specialfall fast egendom/bodelning). **`4:20` 2 st: INGEN frist** när återvinning görs gällande genom **anmärkning mot bevakning eller invändning** mot krav mot boet | Konkursbeslutet resp. kännedom | Konkursboet |
 
@@ -148,8 +148,14 @@ Nej. Anspråken delar sig efter **vem som äger dem**, och förvaltaren kan bara
 
 **Boets, alltså förhandlingsbart med förvaltaren:**
 
-1. `KL 4 kap.` återvinning. Boet har exklusiv talerätt; enskild borgenär får väcka talan bara om
-   förvaltaren avstår (`KL 4:19` 2 st).
+1. `KL 4 kap.` återvinning. Boet har exklusiv talerätt. **Lydelsen i `KL 4:19` 2 st har två led och
+   det andra är lätt att tappa** (verifierad ordagrant 2026-09-07): "Om förvaltaren inte vill påkalla
+   återvinning **och inte heller ingår förlikning i saken**, får en borgenär påkalla återvinning genom
+   att väcka talan vid allmän domstol." En enskild borgenär tar alltså över talerätten bara när
+   förvaltaren gör *ingetdera*. **Ingår förvaltaren förlikning är dörren stängd även för borgenärerna**,
+   och det är därför en uppgörelse ska rubriceras och utformas som en **förlikning**, inte som ett
+   ensidigt återkallande eller en informell överenskommelse. Se avsnittet nedan om granskning av
+   förlikningsavtal.
 2. `ABL 17:6` återbäring och `ABL 17:7` bristtäckning vid olovlig värdeöverföring. Bolagets anspråk,
    förvaltas av boet.
 3. `ABL 29:1` skadestånd, **talan för bolagets räkning**. Boet får föra den även om ansvarsfrihet
@@ -191,6 +197,65 @@ klienten fred från 25:18 eller företrädaransvar via förvaltaren, hur generö
 5. Följd för uppgörelsen: den ska formuleras som avstående från **återvinningsanspråket**, inte som
    återkallande av anmärkningen. Annars ger klienten upp bevakningen och står kvar med
    stämningsrisken till fristens utgång.
+
+## Granska ett förlikningsavtal med ett konkursbo: leta efter vad BOET ger upp (verifierat mot KL 4:19-20, 2026-09-07)
+
+Carlers utkast i K 4429-25 (CZPH mot APDS konkursbo) klarade en snabb genomläsning men var i sak
+ensidigt, och felet är av en typ som återkommer. **Metod för varje uppgörelse med ett konkursbo:**
+
+1. **Ställ en enda fråga först: vad ger boet upp enligt texten?** Kan du inte peka på en klausul där
+   boet avstår från något, är avtalet ensidigt oavsett hur det rubriceras. En handling som heter
+   "Förlikningsavtal" och som säger att parterna "enats om följande överenskommelse" skapar inget
+   avstående av sig själv.
+2. **En sanktionsklausul är inte ett avstående.** Utkastets lydelse var: "För det fall bevakningen
+   inte återkallas ... kommer Konkursboet att vidhålla sitt återvinningskrav." Den reglerar bara
+   borgenärens kontraktsbrott. Ett motsatsslut (att kravet faller om återkallelse sker) är
+   tillgängligt men svagt, eftersom det ska dras ur en klausul om brott. **Godta aldrig ett
+   motsatsslut som skydd mot en löpande talefrist.**
+3. **Skilj det processuella momentet från det bakomliggande anspråket.** Att återkalla bevakningen
+   eller anmärkningen avslutar bevakningstvisten. Kontantrisken är stämningsvägen enligt
+   `KL 4 kap. 19 § 1 st p 1` med frist enligt `KL 4 kap. 20 § 1 st`, ett år från konkursbeslutet.
+   Ett avtal som bara reglerar bevakningen lämnar den fristen orörd, och borgenären har då betalat
+   fullt pris för ingenting.
+4. **Kräv alltid en medgivandefriskrivning.** Bakgrundsavsnitt i förvaltarutkast återger boets
+   version av de faktiska omständigheterna, ofta med sakfel, och pekar gärna ut ställföreträdaren
+   personligen. En rad om att avtalet inte innebär medgivande i sak neutraliserar hela avsnittet.
+   Det är billigare och taktiskt bättre än att processa om bakgrundstexten, eftersom en
+   faktainvändning i förhandlingen röjer försvaret om uppgörelsen spricker.
+5. **Ordval om utdelning har en skattekonsekvens.** "Borgenären **är inte berättigad** till utdelning"
+   läser som att fordran saknar grund och kan användas mot klienten i andra ärenden.
+   "Borgenären **erhåller ingen utdelning**" konstaterar bara att pengar saknas, vilket är det som
+   behövs för att styrka förlusten. Begär den senare lydelsen.
+6. **En omöjlig frist i utkastet är förhandlingshävstång, inte ett problem.** Här skulle
+   återkallelsen ske senast 8 september medan handlingen var osignerad den 7:e. Datumet måste ändras
+   oavsett, alltså kostar det ingenting att öppna texten för de klausuler som faktiskt betyder något.
+   Byt fast datum mot relativ frist räknad från undertecknandet.
+7. **Kontrollera att TSM-godkännandet täcker den lydelse som signeras.** Ett utkast kan uppge att
+   förlikningen godkänts av tillsynsmyndigheten och största borgenär (`KL 7 kap. 10 §`). Ändras
+   texten kan godkännandet behöva förnyas. Be om datum eller kopia när godkännandet står som faktum
+   i en handling klienten undertecknar.
+
+**Hur starkt behöver avståendet formuleras? Rubriken bär mer än lydelsen.** I K 4429-25 landade
+boets åtagande som "Konkursboet åtar sig härmed att inte gå vidare med ytterligare åtgärder
+beträffande återvinningsfordran". Rent tekniskt är det ett *pactum de non petendo*, ett löfte att
+inte agera, inte en eftergift av fordran, och skillnaden biter vid en överlåtelse av fordran till
+tredje man. Men eftersom handlingen är en **förlikning** stängde `KL 4:19` 2 st samtidigt dörren för
+varje enskild borgenär, och det är den större vinsten. **Praktisk slutsats: kräv ett uttryckligt
+åtagande, men bråka inte om eftergift kontra avstående från åtgärder när dokumentet är en förlikning
+som tillsynsmyndigheten och största borgenären godkänt.** Det marginella tillskottet är litet i
+förhållande till kostnaden av ännu en förhandlingsvända.
+
+**Ett villkorat avstående gör prestationsdatumet till avtalets farligaste klausul.** När boets
+åtagande görs beroende av att borgenären återkallar sin bevakning senast ett visst datum, flyttas
+hela risken till en kalenderrad. Före tillägget kostade ett missat datum ingenting extra, eftersom
+boet ändå hade sitt krav. Efter tillägget kostar det själva avståendet. **Regel: så snart motparten
+lägger in ett åtagande som är villkorat av din prestation, granska prestationsfristen om från
+början, och byt fast datum mot en frist räknad från undertecknandet.** Kontrollera särskilt att
+fristen fortfarande är möjlig att hålla när signeringen dragit ut, och räkna in tiden för att
+faktiskt ge in handlingen till domstolen, inte bara för att signera avtalet.
+
+**Vad avtalet inte kan stänga, oavsett lydelse:** `ABL 25:18` (varje enskild borgenärs eget anspråk)
+och `SFL 59 kap. 13 §` (statens). Se avsnittet ovan om vad ett konkursbo kan förlika bort.
 
 ## ABL 21 kap. låneförbud — närståendekretsen i korsägda strukturer
 

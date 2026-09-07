@@ -13,6 +13,155 @@
 <!-- Categories: swedish_corp | swedish_tax | swedish_employment | swedish_ip | gdpr | contract_review | process | tooling -->
 <!-- If Robert corrected a substantive legal point: tag `correction` and write the corrected position prominently. -->
 
+## 2026-09-07 (runda 3) — En osignerad inlaga till domstol är giltig tills rätten begär bekräftelse, och OpenSign är fel verktyg för domstolshandlingar
+**Projekt:** apb/czp (APDS K 4429-25, återkallelse av bevakning) · **Kategori:** process + swedish_corp · **Taggar:** RB 33:3, undertecknande, e-tjänst, OpenSign, domstolsingivande, KL 9:6
+
+1. **Lagrummet att kunna utantill: `RB 33 kap. 3 § tredje stycket`.** Ett meddelande som inte är
+   undertecknat ska bekräftas av avsändaren genom en egenhändigt undertecknad handling **om rätten
+   begär det**. Alltså är en osignerad e-postinlaga giltig tills domstolen säger annat, och
+   komplettering sker i efterhand. **Svaret på "behöver jag signera det här till tingsrätten?" är
+   som huvudregel nej**, till skillnad från bevakningsinlagan som har egna formkrav i `KL 9 kap.`
+   (ej verifierad ordagrant i den här körningen, slå upp innan den citeras).
+2. **OpenSign ska inte användas för domstolshandlingar, och skälet är värt att kunna förklara på en
+   rad.** OpenSign signerar dokument, inte mail; resultatet är en PDF med signaturblock som ändå
+   bifogas i ett vanligt mail, och för domstolen väger den ungefär lika mycket som avsändarens namn
+   i mailkroppen. Den löser inte identitetsfrågan bättre och lägger till ett steg. **Behövs verkligen
+   en signatur är rätt verktyg domstolens e-tjänst** (`digitalhandling.etjanst.domstol.se`), som
+   signerar med BankID inne i tjänsten.
+3. **Omformulera frågan från signatur till kvitto.** Klienten frågade om signering; det som faktiskt
+   var värt något i situationen var ett daterat **inlämningsbevis**, eftersom förlikningsavtalets
+   punkt 2.3 gjorde motpartens åtagande beroende av att återkallelsen var inne en viss dag.
+   E-tjänsten ger kvitto direkt, mejlvägen ger det först när registratorn svarar. **Regel: när en
+   frist är bärande, fråga vilket alternativ som ger bevis snabbast, inte vilket som ser mest
+   formellt ut.** Billig kompensation på mejlvägen: be i själva inlagan om bekräftelse på att
+   handlingen kommit in.
+4. **Motpartsombudets praktiska besked slår vår teoretiska preferens om kanal.** Min tidigare
+   lärdom (2026-08-27) satte e-tjänsten som förstahandsval. Här sa Ellen Berglund, som kör målet
+   dagligen mot samma registrator, uttryckligen "det gör du genom att mejla tingsrätten". **När en
+   praktiker med daglig kontakt med just den domstolen anger en kanal, följ den och behåll den egna
+   preferensen som alternativ**, i stället för att argumentera för procedur mot den som kan rutinen.
+5. **Kontrollera alltid att klienten inte redan agerat innan ett utkast återskapas.** Ett Gmail-utkast
+   "försvann" och skulle enligt förfrågan åtgärdas. Orsaken var att Robert redan skickat sitt eget
+   svar i tråden, motparten hunnit svara, och avtalet hunnit bli färdigsignerat i Scrive. **Läs hela
+   tråden innan ett saknat utkast läggs tillbaka.** Ett återskapat utkast hade dubblerat ett redan
+   sänt meddelande. Följdfynd: den fråga jag lagt in i utkastet (förväntad utdelning) föll bort när
+   klienten skrev sitt eget mail, alltså **kontrollera vad som gick förlorat, inte bara vad som
+   skickades**.
+
+---
+
+## 2026-09-07 (runda 2) — `KL 4:19` 2 st har ett andra led som vår egen KB hade tappat: en FÖRLIKNING stänger dörren även för enskilda borgenärer
+**Projekt:** apb/czp (APDS K 4429-25, Carlers reviderade förlikningsavtal, apb-067) · **Kategori:** swedish_corp + contract_review · **Taggar:** KL 4:19 2 st, KL 4:20, förlikning, pactum de non petendo, villkorat avstående, korrigering_av_KB
+
+1. **KB-rättelse, och det är den viktigaste posten här.** `wiki/legal/sv_corp_law.md` sa på två
+   ställen att en enskild borgenär får väcka återvinningstalan "om förvaltaren avstår". Lagtexten
+   (verifierad ordagrant 2026-09-07) säger: *"Om förvaltaren inte vill påkalla återvinning **och
+   inte heller ingår förlikning i saken**, får en borgenär påkalla återvinning..."* Två led, och
+   vår sammanfattning hade tappat det andra. **Konsekvensen är stor och pekar åt motsatt håll mot
+   vad man först tror:** ett brett *avstående* från förvaltaren kan öppna borgenärsvägen, medan en
+   *förlikning* stänger den. Här betydde det att Skatteverket (53 % av massan) och WLBS konkursbo
+   inte kan plocka upp återvinningstalan på egen hand. **Generellt: när ett anspråk ska köpas bort
+   från ett konkursbo, se till att handlingen rubriceras och utformas som en förlikning.**
+   Båda KB-raderna rättade.
+2. **Följd för hur hårt man ska driva formuleringen.** Boets åtagande landade som "åtar sig härmed
+   att inte gå vidare med ytterligare åtgärder beträffande återvinningsfordran", alltså tekniskt ett
+   *pactum de non petendo* och inte en eftergift. Jag var på väg att begära skarpare lydelse. Rätt
+   svar var att låta bli: skillnaden biter bara vid överlåtelse till tredje man, och den vägen var
+   redan stängd av punkt 1 plus TSM:s och Skatteverkets godkännande. **Räkna ut vad den strukturella
+   ramen redan ger innan du begär en textförbättring. Ibland är klausulen svagare än du vill men
+   ändå tillräcklig, och en extra vända kostar mer än den ger.**
+3. **Ett villkorat avstående flyttar hela risken till prestationsdatumet, och risken ökar när
+   klausulen förbättras.** Tillägget i 2.1 gjordes utan att 2.2:s datum (8 september) rördes, och
+   2.3 gör åtagandet beroende av att återkallelsen är inne i tid. Före tillägget kostade en missad
+   frist ingenting extra; efter tillägget kostar den själva avståendet. **Regel: så snart motparten
+   lägger in ett åtagande villkorat av klientens prestation, granska om prestationsfristen från
+   början även om den var oförändrad i utkastet, och räkna in tiden för att ge in handlingen till
+   domstolen, inte bara för att signera avtalet.**
+4. **Motparten genomförde en av fyra begärda ändringar, och det var den rätta.** Robert bad per
+   telefon särskilt om punkt 2 och 3 (medgivandeklausul och lydelsen om utdelning); Carler levererade
+   i stället punkt 1 (avståendet), som var den enda som kostade pengar. **Lärdom om rankning: när
+   listan är rankad och klienten förhandlar själv, är det värt att säga rakt ut vilken enda punkt som
+   är bärande, eftersom klienten annars kan lägga sitt förhandlingskapital på mellanpunkterna.**
+   Jag sa det en gång efter hans telefonsamtal, och utfallet blev ändå rätt.
+5. **Klientens val att acceptera kända brister ska dokumenteras som ett val, inte som en lucka.**
+   Robert tog medvetet tidsrisken i 2.2 och avstod från medgivandeklausulen hellre än en tredje
+   vända. Det skrevs in i akt, ticket och projektminne med orden "medvetet accepterade", så att nästa
+   agent inte läser det som något som glömdes bort och öppnar frågan igen. **Skriv alltid ut vem som
+   valde och när, när ett råd inte följs.**
+6. **Tooling:** `mcp__gmail__gmail_list_attachments` + `gmail_get_attachment` med `outputPath`
+   direkt in i ärendemappen ger en ren akt utan mellansteg via assistant/uploads. Använd
+   `pdftotext -layout` för avtalstext, radbrytningarna blir jämförbara mellan versioner så att en
+   diff mot föregående utkast blir tillförlitlig. Här avslöjade den att bara en mening tillkommit,
+   vilket var hela granskningen.
+
+---
+
+## 2026-09-07 — Ett förlikningsavtal utan en klausul om vad MOTPARTEN ger upp är inte en förlikning, hur det än rubriceras
+**Projekt:** apb/czp (APDS K 4429-25, Carlers utkast till förlikningsavtal, apb-067) · **Kategori:** contract_review + swedish_corp · **Taggar:** KL 4:19, KL 4:20, KL 7:10, förlikningsavtal, konkursbo, återvinning, medgivandeklausul, kundförlust, Carler
+
+1. **Huvudfyndet, och det ska bli en standardfråga vid varje granskning: peka på klausulen där
+   motparten ger upp något. Kan du inte det är avtalet ensidigt.** Carlers utkast lät korrekt och
+   var prydligt skrivet, men innehöll inget återvinningsavstående. Den enda meningen som rörde
+   återvinningen var en sanktionsklausul: "För det fall bevakningen inte återkallas ... kommer
+   Konkursboet att vidhålla sitt återvinningskrav." Den binder bara klienten. Ett motsatsslut finns
+   att dra men det ska dras ur en klausul om kontraktsbrott, och **ett motsatsslut är aldrig
+   tillräckligt skydd mot en löpande talefrist** (`KL 4:20` 1 st, här 2026-12-14). Klienten skulle
+   ha gett upp en bevakning om 512 500 kr definitivt och behållit hela kontantrisken på 192 000 kr.
+2. **Det här är exakt den failure mode jag själv förutsåg den 2026-08-27 ("vi löser det med
+   kvittning är inte ett avslut"), och den inträffade ändå, i motpartens penna.** Lärdomen är att
+   förutsägelsen inte räcker: när motparten är först med pennan måste granskningen leta efter den
+   saknade klausulen aktivt, inte läsa det som står. **Läs ett motpartsutkast mot din egen
+   utkastcheckista post för post, inte som en löpande text.** Vårt eget utkast fanns och hade
+   klausulen i punkt 3.2; jämförelsen tog två minuter och var hela värdet i uppdraget.
+3. **Processa inte om bakgrundstexten, neutralisera den.** Utkastets 1.2-1.5 återgav boets version
+   inklusive två påståenden vi vet är fel (att underlag saknades, när lånemotposterna ligger i
+   förvaltarens egen utlämnade huvudbok, och att samtliga sex betalningar var delbetalningar av
+   3-miljonersfakturan när 107 000 kr var låneåterbetalning). Frestelsen är att rätta dem eftersom
+   motpartens jurist uttryckligen bad om faktakontroll. **Fel drag: en faktainvändning i
+   förhandlingen röjer försvaret om uppgörelsen spricker.** En rad om att avtalet inte innebär
+   medgivande i sak gör samma jobb, tar hela avsnittet på en gång, och lämnar 107 000-argumentet i
+   reserv.
+4. **Ordvalet om utdelning är värt riktiga pengar och missas lätt.** "Borgenären **är inte
+   berättigad** till utdelning" läser som att fordran saknade grund; "**erhåller ingen utdelning**"
+   konstaterar bara att pengarna inte räcker. Här kunde den första lydelsen användas av Skatteverket
+   i Runatyr-momsen, medan den andra är precis vad som behövs för att styrka förlusten på de
+   512 500 kr inkl. moms (momsdel ca 102 500). **Generell regel: i varje avtal där en fordran skrivs
+   ned, skilj "det finns ingen fordran" från "det finns inga pengar". De ser lika ut och beskattas
+   olika.** Öppen fråga som gick till redovisningskonsulten, inte avgjord av mig: en frivilligt
+   återkallad bevakning mot ett närståendebolag kan Skatteverket vilja se som eftergift snarare än
+   konstaterad kundförlust. **Jag kunde inte verifiera lagrummet för kundförlust i nya
+   mervärdesskattelagen (2023:200) i den här körningen — den tidigare interna noteringen `ML 8:16`
+   är OBEKRÄFTAD och ska inte citeras förrän någon slagit upp den.**
+5. **En omöjlig frist i motpartens utkast är hävstång, inte ett problem.** Återkallelsen skulle ske
+   senast 8 september medan handlingen fortfarande var osignerad den 7:e. Slutsats att säga till
+   klienten rakt ut: datumet måste ändras oavsett, alltså kostar det ingenting att öppna texten för
+   de klausuler som faktiskt betyder något. **Leta alltid efter det argument som gör omförhandlingen
+   gratis innan du ber klienten be om något.**
+6. **Faktakontroll åt båda hållen ger trovärdighet åt de tunga invändningarna.** Genomgången av
+   samtliga partsuppgifter gav två fynd, och de var små: Carlers eget postnummer var fel i utkastet
+   (103 92 mot 103 93 i Ellens signatur), och CZP:s adress Bondegatan 31 var **rätt** trots att Umeå
+   TR skickat kallelsen till den gamla Brännkyrkagatan-adressen (postadressen ändrades hos
+   Bolagsverket 2026-07-13, ärende 415999/2026). **Att kunna säga "allt annat stämmer, och er egen
+   adress är fel" gör den stora invändningen lättare att ta emot.** Kontrollera alltid motpartens
+   utkast mot motpartens egen mailsignatur.
+7. **Notera vad motparten INTE gjorde.** Utkastet saknade helt en "samtliga mellanhavanden"-svepning
+   och innehöll inget kontantkrav, alltså rördes inte Roberts privata bevakning om 331 621,30 kr.
+   Det var den risk vi särskilt bevakade. **Säg det uttryckligen till klienten och lägg till: ta
+   inte upp frågan självmant i korrespondensen.** En granskning som bara listar problem får klienten
+   att öppna fler frågor än nödvändigt.
+8. **Process:** Robert ringde motparten innan han läste memot färdigt och fick Carler att lova
+   uppdateringar på punkt 2 och 3 (medgivandeklausul och 2.1-lydelsen), alltså de två mellersta.
+   Punkt 1, avståendet, var den enda som kostar pengar. **När en klient agerar på delar av en rankad
+   lista, säg en gång vilken punkt som är den bärande och lämna det sedan** — och leverera en kort
+   avstämningslista för den reviderade versionen i stället för att upprepa analysen. Resultat:
+   `signeringskontroll_forlikningsavtal_APDS_2026-09-07.md`, tio punkter, läsbar på en minut.
+9. **Roberts beslut 2026-09-07: ingen extern advokatgranskning**, samma linje som på rättighetskedjan
+   2026-08-26. Mönstret är stabilt nog att räkna med: han köper inte obeståndsadvokattimmar för att
+   granska en enskild klausul. **Rekommendera den ändå när den är befogad, men förvänta nej och se
+   till att underlaget är självbärande.**
+
+---
+
 ## 2026-09-06 — OpenSigns completion-mail levererar den exekverade PDF:en till alla parter: "skicka motsignerad kopia" är redan gjort
 **Projekt:** k2c (Simon Jakobsson CZP-anställning, k2c-051) · **Kategori:** tooling + process · **Taggar:** OpenSign, motsignerad kopia, checklista, avslut
 

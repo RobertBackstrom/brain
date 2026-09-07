@@ -47,6 +47,13 @@ settled.
 - `M` open map and **recruit AI soldiers at spawn icons**
 - `T` open the command menu to **issue orders to your AI squad**
 
+**The control map changed in the December 2025 refactor (post 2025-12-22, found 2026-09-07):**
+`1-9` weapons, `P` first/third person, `T` open squad command, `E` interaction, `B` open building
+panel, `M` open map, arrow keys switch vehicle seats. `I` is gone and there is no separate buy key,
+so buy was either folded into the building panel or moved. Which map the public demo (3617330,
+last updated Aug 2025) runs is unconfirmed. One store screenshot carries a "Development Build"
+watermark, an engine hint only. UX brief: `drafts/ux_assessment_2026-09-07.md`.
+
 **The round.** Phases cycle `[Prepare]`, `[Defense]`, `[Attack]`, with the two teams on opposite
 phases. Flags are capture points. Each flag has a white circle on the ground; capturing it makes
 that circle your team's **defense zone**, and the tutorial tells the player to stay inside one
