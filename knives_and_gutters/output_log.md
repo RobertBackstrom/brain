@@ -19,3 +19,4 @@ Track significant deliveries, drafts, and external posts here. Each entry: date,
 | 2026-08-31 | New skill: art direction critique + paint-over method + grimdark corpus | `skills/art_direction_critique.md` | Registered in skills index |
 | 2026-08-31 | Deck image provenance sheet (36 images, numbered) + Robert confirmed plates are sourced GW art | `brand/deck_image_provenance_sheet.png`; kng-001 resolved, kng-003 opened | Critical: original art package now gates all public surfaces |
 | 2026-08-31 | GTM / community monetization plan v1 (tiers, revenue maths, sequencing, mod-forum risk carved out) | `gtm_plan_v1.md` (VPS only, NOT uploaded to the shared Drive folder) | Draft for Robert |
+| 2026-09-07 | 3D Character Artist role description: public ad (IP-scrubbed) + shortlist version with AI/Tripo pipeline + 6 notes | `drafts/character_artist_role_2026-09-07.md` | Draft for Robert; voice pass by The Author done |

@@ -175,6 +175,16 @@ details.deep .body{padding:20px 0 4px;animation:fade .25s ease}
   details.deep .body{display:block!important}
 }
 /* --- Disposable Corps additions --- */
+.cmp{border-top:1px solid var(--line);padding:16px 0}
+.cmp .nm{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+  font-size:16px;color:#fff;margin-bottom:2px}
+.cmp .fig{font-size:12.5px;letter-spacing:.04em;color:var(--muted-2);margin-bottom:9px}
+.cmp dl{margin:0;display:grid;grid-template-columns:76px 1fr;gap:5px 14px}
+.cmp dt{font-family:var(--disp);font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  font-size:11px;color:var(--ap-teal);padding-top:3px}
+.cmp dt.d{color:var(--rf-neon)}
+.cmp dd{margin:0;font-size:14.5px;color:var(--muted)}
+@media(max-width:640px){.cmp dl{grid-template-columns:1fr}.cmp dt{padding-top:8px}}
 .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:22px 0 0}
 .shots figure{margin:0;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--panel)}
 .shots img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
@@ -246,8 +256,8 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
     <img class="rf" src="assets/rift-logo.png" alt="Rift Gaming">
   </div>
   <h1>Disposable Corps<br>Co-dev proposal</h1>
-  <p class="hook">You dig the trench, you fight in the trench you dug, and it is blown apart underneath you.</p>
-  <p class="position-line">A twelve month plan to take a 5v5 trench warfare shooter from a stalled build to an Early Access release, costed and with the publisher's financiers. One seat in it for Rift, and a second left open.</p>
+  <p class="hook" style="max-width:34ch">Build, defend, and destroy trenches in a team-based military shooter where every plan&mdash;and every <span style="white-space:nowrap">soldier&mdash;is</span> disposable</p>
+  <p class="position-line">A twelve month plan to take a 5v5 trench warfare shooter from a stalled build to an Early Access release, funded by the publisher.</p>
   <div class="ctarow">
     <a class="cta" href="https://store.steampowered.com/app/3617330/" target="_blank" rel="noopener">Play the demo <span class="sub">free on Steam, start here</span></a>
     <a class="cta alt" href="https://store.steampowered.com/app/3579070/" target="_blank" rel="noopener">Store page</a>
@@ -263,14 +273,13 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
 <!-- 2 THE GAME -->
 <section class="slide" id="s2">
   <div class="eyebrow"><span class="n">01</span>The game</div>
-  <h2>Play it before you read the rest</h2>
+  <h2>Play it first</h2>
   <p class="lede">Disposable Corps is a low poly first and third person shooter set in the First World
   War, with steampunk mechs, tanks, artillery, destructible terrain and digging. Rounds cycle
   Prepare, Defense and Attack, with the two teams on opposite phases. Players earn money and spend
   it on gear, on fortifications, and on <strong>AI soldiers they recruit and then command</strong>,
   so a 5v5 match already puts far more than ten bodies on the field.</p>
-  <p>The demo is free and live. Jesper, twenty minutes in it will tell you more than this deck can,
-  and the first two of those minutes are the whole argument for the UX seat.</p>
+  <p>The demo is free and live. Jesper, start with the tutorial. That is where the UX problems are.</p>
   <a class="cta" href="https://store.steampowered.com/app/3617330/" target="_blank" rel="noopener">Play the demo <span class="sub">app 3617330</span></a>
   <div class="hero-shot"><img src="assets/ss_0.jpg" alt="Disposable Corps"></div>
 
@@ -294,8 +303,8 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
           <h3>The squad layer</h3>
           <p>The player recruits AI soldiers and commands them from a menu. NPCs also assist with
           building since the December refactor, and the AI was reworked to handle more units and
-          more complex tasks. <strong>This exists already.</strong> It is the differentiator, and it
-          is on the fault list because it works badly, not because it is missing.</p>
+          more complex tasks. <strong>This exists already,</strong> and it is on the fault list because
+          it works badly.</p>
         </div>
         <div class="card">
           <h3>Combat and hosting</h3>
@@ -304,24 +313,70 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
           exists and January 2026 added a host region filter. Steam lists LAN PvP and LAN Co-op.</p>
         </div>
       </div>
-      <p class="muted" style="margin-top:18px">The control map changed between the September and
-      December 2025 playtests and we do not know which one the public demo runs. That is one of the
-      questions the review month answers.</p>
+
     </div>
   </details>
 
   <details class="deep">
-    <summary>The differentiator against the comparable set</summary>
+    <summary>How it compares, title by title</summary>
     <div class="body">
-      <p>Nothing in the comparable set does this at this scale. Battlefield 1 sells the fantasy at
-      AAA scale without letting the player shape the ground. Foxhole lets the player shape the ground
-      but at MMO scale over weeks. The low poly war sandboxes give the chaos with no persistent
-      player built terrain at all.</p>
-      <p>The WW1 tactical audience over-indexes on realism and RTS and
-      under-indexes on sandbox mechanics; the low poly sandbox audience is the reverse. The game
-      sits between two audiences and the store page currently speaks clearly to neither. And the
-      differentiator is a multiplayer differentiator: a dug trench is only interesting if somebody
-      has to storm it. Slide 05 is about what that means for the plan.</p>
+      <p class="muted">Alike and different, per title. Steam figures pulled 7 September 2026.</p>
+
+      <div class="cmp">
+        <div class="nm">BattleBit Remastered</div>
+        <div class="fig">2023 · 146 375 reviews, 81 % · 5 to 10M owners · 523 playing · 14,99 USD · three developers</div>
+        <dl>
+          <dt>Alike</dt><dd>Low poly military shooter. Destructible terrain. Team based. Three developers. Same price point.</dd>
+          <dt class="d">Different</dt><dd>254 players a match against 5v5. Seven years in development. No squad of AI soldiers, no building phase, no round structure. Several million copies off a viral launch.</dd>
+        </dl>
+      </div>
+
+      <div class="cmp">
+        <div class="nm">Foxhole</div>
+        <div class="fig">2022 · 53 031 reviews, 80 % · 1 to 2M owners · 3 058 playing · 29,99 USD</div>
+        <dl>
+          <dt>Alike</dt><dd>Players dig and build the terrain they then fight over. Trenches, bunkers, logistics. Persistent player built fortifications are the core.</dd>
+          <dt class="d">Different</dt><dd>Top down, hundreds of players, one war lasting weeks. Building is a job for a separate logistics player.</dd>
+        </dl>
+      </div>
+
+      <div class="cmp">
+        <div class="nm">Ravenfield</div>
+        <div class="fig">2017 · 80 015 reviews, 97 % · 1 to 2M owners · 701 playing · 17,99 USD · one developer</div>
+        <dl>
+          <dt>Alike</dt><dd>Low poly war sandbox, one developer, and the player commands AI squads. Still holds players nine years after release.</dd>
+          <dt class="d">Different</dt><dd>Single player and bots first, multiplayer second. No player built terrain. No competitive round structure. Mod support, which this game does not have.</dd>
+        </dl>
+      </div>
+
+      <div class="cmp">
+        <div class="nm">Operation: Harsh Doorstop</div>
+        <div class="fig">2023 · 20 706 reviews, 78 % · 2 to 5M owners · 239 playing · free</div>
+        <dl>
+          <dt>Alike</dt><dd>Small team, tactical military shooter, bots fill empty slots.</dd>
+          <dt class="d">Different</dt><dd>Free, modern setting, no building, no digging, no economy. Owner count reflects a free download, not sales.</dd>
+        </dl>
+      </div>
+
+      <div class="cmp">
+        <div class="nm">Battlefield 1</div>
+        <div class="fig">2016 · AAA, EA DICE</div>
+        <dl>
+          <dt>Alike</dt><dd>The same First World War setting and fantasy.</dd>
+          <dt class="d">Different</dt><dd>AAA budget and headcount. The player cannot shape the ground.</dd>
+        </dl>
+      </div>
+
+      <div class="cmp">
+        <div class="nm">Minecraft WW1 trench mods and servers</div>
+        <div class="fig">Free. War of Valor and PlumePack: WW1 mods, the World War I: Trenches modpack, and server projects such as Trenches: The Dystopian Fronts</div>
+        <dl>
+          <dt>Alike</dt><dd>Build a trench, hold it, push the enemy off the next one. One server project gives each faction six trenches and the goal is to take them in turn, which is close to the sector loop in this plan. Blocky art, destructible ground, squad play.</dd>
+          <dt class="d">Different</dt><dd>Built by hobbyists inside someone else's game, no cost to the player, Minecraft combat rather than shooter gunplay, no AI squads.</dd>
+        </dl>
+      </div>
+
+      
     </div>
   </details>
 </section>
@@ -346,10 +401,9 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
     <div class="fault"><div class="f">Bots kill the player too fast</div><div class="a">Accuracy down, weighted to suppression. Players die mainly to players. Bots supply mass and chaos.</div></div>
     <div class="fault"><div class="f">Squad orders feel bad</div><div class="a">Three orders on a radial. Pathing on a sector bounded navmesh instead of the open field.</div></div>
     <div class="fault"><div class="f">UI and UX are behind</div><div class="a">The Rift seat. Slide 04.</div></div>
-    <div class="fault"><div class="f">Not fun for long enough</div><div class="a">Every round builds to one moment: the whistle, the climb over the top, the barrage.</div></div>
+    <div class="fault"><div class="f">Not fun for long enough</div><div class="a">Each round builds to the assault over the top.</div></div>
   </div>
-  <p style="margin-top:24px"><strong>Every line on that list is design and readability,</strong> not missing content,
-  technology or production value. Programmer hours alone do not close it.</p>
+  
 </section>
 
 <!-- 4 THE LOOP -->
@@ -401,17 +455,21 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
 <section class="slide" id="s5">
   <div class="eyebrow"><span class="n">04</span>The seat</div>
   <h2>Product owner and UX, in one person</h2>
-  <p class="lede">Jesper, this is the job. A new player launches the tutorial and meets
-  <strong>at least five instruction blocks rendered on top of each other in the same text area,
-  with two voice over tracks playing at once.</strong> The one part of the game whose job is to
-  explain the rest cannot be read or heard. They then enter a match where the HUD names the enemy's
-  phase but not their own, shows a money total but not what it buys, and shows no objective, no
-  front line and no clock. Four key driven systems sit behind single letters with no on screen
-  affordance. Then the enemy AI kills them before they have worked any of it out.</p>
-  <p>The seat is scoped as product owner as well as designer: the order set, the recruit model and
-  the cut list are design decisions somebody has to make, and making them next to the
-  interface is better than making them in a document. Robert stays executive producer and carries
-  the publisher and developer relationship, the schedule and the commercial.</p>
+  <p class="lede">The seat is product owner and designer in one person. What we expect it to
+  own: the order set, the recruit model, the cut list, the onboarding path, and the interface work
+  listed below. Robert stays executive producer and carries the publisher and developer
+  relationship, the schedule and the commercial.</p>
+  <h4 style="margin-top:26px">What we have seen in the public build</h4>
+  <ul class="muted">
+    <li>Tutorial: at least five instruction blocks render on top of each other in the same text area, and two voice over tracks play at the same time.</li>
+    <li>HUD names the enemy's phase, not the player's own.</li>
+    <li>HUD shows a money total with no indication of what it buys.</li>
+    <li>No objective marker, no front line, no phase clock.</li>
+    <li>Buy, build, map and recruit, and squad command sit on single keys with no on screen affordance.</li>
+  </ul>
+  <p class="muted">Sources: the public demo, the developer's playtest notes, the store screenshots
+  and Robert's own sessions. Nobody on our side has had the current build, the repository or any
+  telemetry.</p>
 
   <div class="pri"><div class="n">1</div><div><div class="t">The first session</div>
     <p>Starts with a ten second diagnostic. Open the tutorial and read the overlapping lines. Same
@@ -423,22 +481,22 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
   <div class="pri"><div class="n">2</div><div><div class="t">Round state, the HUD's four questions</div>
     <p>Which phase am I in, what is the objective, where is the front, how long is left. Own phase
     named rather than the enemy's, one objective marker, a sector boundary read, a phase clock, and
-    team identification on soldiers. One sector at a time is what makes this tractable.</p></div><div class="sz">6 to 8 days</div></div>
+    team identification on soldiers. One sector at a time means one objective and one clock to show.</p></div><div class="sz">6 to 8 days</div></div>
   <div class="pri"><div class="n">3</div><div><div class="t">Squad orders on a radial</div>
-    <p>Advance to marker, hold, dig here. Plus the read back the HUD lacks completely: how many
+    <p>Advance to marker, hold, dig here. Plus the read back the HUD lacks: how many
     soldiers you have, what they are doing, where they are. It has to work with the hand that is
     aiming.</p></div><div class="sz">5 to 6 days</div></div>
   <div class="pri"><div class="n">4</div><div><div class="t">Build and buy, one phase gated panel</div>
     <p>Opens only in the phase where it makes sense, shows what the money buys then, closes. The
-    December control list dropped the separate buy key, so part of this may already exist.</p></div><div class="sz">4 to 8 days</div></div>
+    December patch notes dropped the separate buy key, so part of this may already exist.</p></div><div class="sz">4 to 8 days</div></div>
   <div class="pri"><div class="n">5</div><div><div class="t">Map and recruit</div>
-    <p>The map screen doubles as the place you buy AI soldiers, mid match. Recruitment is the on
-    ramp to the whole differentiator. Scoped as a fix in phase 1, redesign deferred.</p></div><div class="sz">4 to 5 days</div></div>
+    <p>The map screen doubles as the place you buy AI soldiers, mid match. Recruitment is where
+    the squad layer starts. Scoped as a fix in phase 1, redesign deferred.</p></div><div class="sz">4 to 5 days</div></div>
 
   <div class="note">
     <p><strong>Sizing.</strong> That list is
     roughly 45 days at the optimistic end and 55 at the pessimistic. It works if the designer is in
-    the build during the review month so month two starts with decisions rather than discovery, if
+    the build during the review month, if
     UI implementation and icon production sit with the development team, and if map and recruit
     stays scoped as a fix. Front loaded fits the curve better than flat.</p>
   </div>
@@ -456,12 +514,12 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
         <div class="card rf"><h3>Redesigns, a designer owns the pass</h3>
           <p>In round guidance, the round state HUD, the three order radial and squad readout, the
           phase gated panel, and the map and recruit model if a fix is not enough. The closed
-          playtest at the end of phase 1, the go or no go, is read through whichever HUD exists that
-          day.</p></div>
+          playtest at the end of phase 1 is the go or no go, and it runs on whatever HUD is in the
+          build by then.</p></div>
       </div>
       <h4 style="margin-top:24px">What we cannot answer yet, and would get you in week one</h4>
       <ul class="muted">
-        <li>The current playtest build, not just the public demo, and which control map it runs.</li>
+        <li>The current playtest build. The public demo is the August 2025 one.</li>
         <li>Fifteen minutes of screen capture of the command menu, the map and recruit screen, the build panel and the lobby. No public image shows any of them.</li>
         <li>Engine and UI framework, and whether UI lives in prefabs, data or code.</li>
         <li>Any telemetry from the two public playtests: session length, tutorial completion, quit points.</li>
@@ -477,7 +535,7 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
 <!-- 6 MARKET -->
 <section class="slide" id="s6">
   <div class="eyebrow"><span class="n">05</span>The market</div>
-  <h2>The number the publisher has to move</h2>
+  <h2>Wishlists at launch</h2>
   <p class="lede">Both sides carry part of their own cost against this. Year one units come out at roughly wishlists at launch times
   0,36, on published conversion benchmarks cross checked against a comparable set. Net is after
   Steam's cut, regional pricing, discounting, VAT and refunds.</p>
@@ -495,8 +553,7 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
   <p style="margin-top:20px"><strong>52 000 wishlists at launch is where the money both sides have
   at risk comes back.</strong> The store page has 2 741 followers today after sixteen months and six trade
   shows, and we do not have the wishlist count, the publisher does. Moving that number between now
-  and month ten is the publisher's side of this plan, and it is the single input the whole
-  commercial rests on.</p>
+  and month ten is the publisher's side of this plan, and the commercial rests on it.</p>
 
   <details class="deep">
     <summary>The comparable set, and the one cut we want reversed</summary>
@@ -514,10 +571,13 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
           <tr><td><strong>Last Flag</strong><br><span class="muted" style="font-size:13px">5v5, 2026, celebrity marketing</span></td><td>2026</td><td class="num">704 / 76 %</td><td class="num">21k to 35k</td><td class="num">0</td></tr>
         </tbody>
       </table></div>
-      <p class="muted" style="margin-top:16px">Public Steam data, 7 September 2026. Matched on
-      format and budget. BattleBit is not in the set.</p>
+      <p class="muted" style="margin-top:16px">Public Steam data, 7 September 2026. This table is
+      for estimating units, so it is matched on format and budget only. BattleBit, Foxhole,
+      Ravenfield and Operation: Harsh Doorstop are not in it: they have between one and ten million
+      owners each.
+      They are compared on design on slide 01 instead.</p>
       <div class="note">
-        <p><strong>Everything at this budget that is still alive plays offline.</strong> Easy Red 2
+        <p>Easy Red 2
         has full bot play and more live players than Zero Hour and Due Process combined, and both of
         those are 5v5 games with publishers and far more reviews. The 2025 and 2026 5v5
         launches died in weeks: Last Flag peaked at 558 and was publicly conceding on player numbers
@@ -612,7 +672,7 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
 <section class="slide" id="s8">
   <div class="eyebrow"><span class="n">07</span>Next</div>
   <h2>Play it, then let us talk</h2>
-  <a class="cta" href="https://store.steampowered.com/app/3617330/" target="_blank" rel="noopener">Play the demo <span class="sub">twenty minutes is enough</span></a>
+  <a class="cta" href="https://store.steampowered.com/app/3617330/" target="_blank" rel="noopener">Play the demo <span class="sub">start with the tutorial</span></a>
   <div style="margin-top:30px">
     <div class="ask"><div class="n">1</div><div><div class="t">A short call, Jesper on it</div>
       <p>On the UX seat, slide 04.</p></div></div>

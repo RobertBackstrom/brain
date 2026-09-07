@@ -668,3 +668,38 @@ själv. Ordningen är inte uppenbar och det finns ett moment-22 mitt i.
   NDP-firmware täcker vilket dev-bygge som helst och att firmware bara går framåt.
 
 **Tags:** HtcTargets.xml-firmware, nnpm-versionslås, datasources-export-import, app-get-updater, Inno-VERYSILENT, torrkörning-get-package-list, DevKitVersionUpdater, toolsets-list-versions, eleverad-SSH, access-denied-är-inte-behörighetsbevis
+
+**Follow-up same day: the password was dead, and there is a clean way to prove that without one.**
+Manual entry in a fresh non-elevated PowerShell on forge still gave `Password invalid.`, so it was
+not a paste or terminal artifact. Diagnostic that settled it, and it is **reusable on any Perforce
+server, needs no credential**: `p4 -u <name> login -s` returns two *different* errors, and the
+difference is the signal.
+
+- `Perforce password (P4PASSWD) invalid or unset.` = the user **exists**, just isn't authenticated.
+- `User <name> doesn't exist.` = no such user.
+
+Run it across a candidate list including a deliberate junk name as a control. Result here: only
+lowercase `perforce` existed; `Perforce`, `PERFORCE`, `oskar.hansen`, `robert` and the junk control
+all returned "doesn't exist". That isolates the failure to the password string alone and stops the
+"is it the username / the case / the server" guessing loop dead. Note usernames are case-sensitive
+on a case-sensitive server (`Case Handling: sensitive` in `p4 info`), which is why the case variants
+are worth including.
+
+Corollary worth remembering: **`oskar.hansen` does not exist on this server**, so despite the shared
+`ServerID: master.1`, `ssl:142.93.146.224:1666` is NOT the `falldamage.helixcore.io` instance in
+forge's old `.p4qt` map. `master.1` is just a Helix Core default, not an identifier. Don't infer
+server identity from it.
+
+**Also ruled out a transcription error, and here is the trick:** when Robert accidentally pasted the
+whole credential block into PowerShell, the shell echoed the password back inside its
+`CommandNotFoundException` message, in an unambiguous monospace console font, straight from the
+clipboard. That echo is a faithful rendering of the true characters and beats squinting at a Discord
+screenshot where `l`/`I`/`1` are ambiguous. A failed paste can be a free transcription check.
+
+**Ticket location is why the login must happen on the target box, as the same account the agent
+SSHes in as.** Verified on forge: agent SSH lands as `petterbox\robert` with
+`USERPROFILE=C:\Users\robert`, and Robert's console session is the same `robert`. So his one
+interactive login writes `C:\Users\robert\p4tickets.txt` and every later agent `p4` call inherits it.
+UAC elevation of the *same* account is harmless (profile unchanged); "Run as different user" or a
+separate Administrator account breaks it by writing the ticket into another profile. Tell people
+"same account, elevation irrelevant", not "run as admin".
