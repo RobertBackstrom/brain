@@ -17,6 +17,36 @@ Term sheet: `drafts/term_sheet_2026-08-31.md`. Den gamla målbilden (≥100K SEK
 - **Med LUG:** AP + LUG recoupar faktiska kostnader 100 %, därefter 70 % The Gang / 30 % AP+LUG. Magnus (LUG) tyst sedan 16 juli.
 - **Steam:** app 2805120 överförs till AP. Önskelistor och följare följer med, finansiell historik gör det inte. Vid avtalets slut går appen tillbaka inom 30 dagar.
 
+## Tekniska beslut (Robert, 2026-09-08)
+1. **Vänlista: Steams vänner och inbjudningar räcker för Early Access.** Öppen fråga 4 i
+   `drafts/dev_plan_p2p_steam.md` är därmed besvarad. Spelets egen vänlista hänger på LootLocker,
+   utgör 57 procent av party- och menynodmassan och flyttas inte. Lägger WP1.3 i botten av bandet
+   32 till 52 h.
+   **Referensen Robert bad om, utredd 2026-09-08:** "Metachameleon" är spelet **MECCHA CHAMELEON**
+   (Steam app 4704690), som Joel gillade. Deras modell enligt Steam-sidan: spelarhostat, ingen
+   dedikerad server, och **värden väljer privat eller öppet**, där "if you create a server that is
+   not set to private, anyone can join freely". Maxantalet spelare anges öppet som beroende av
+   värdens nät, 2 till 10 rekommenderat, i stället för att döljas. Streamers pekas ut som eget
+   användningsfall, "easily host viewer participation games", vilket rimmar med att The Gang tog upp
+   Blast TV i mailtråden 28 aug.
+   **Tre följder för vårt gränssnitt:**
+   a) `IMatchSessionProvider` behöver en synlighetsflagga på värdsidan, publikt eller privat, inte
+      bara en quick match-knapp.
+   b) Upptäckt måste kunna visa **vad som finns**, inte bara auto-joina bästa träff. Med en liten
+      EA-population är en synlig lista bättre än en blind kö. Robert satt 8 sep i en kö som såg
+      trasig ut just för att inget gick att se.
+   c) **Öppen fråga 2 är inte längre blockerad på The Gang.** Maxantal per läge låg i deras
+      backendkonfiguration, men i en spelarhostad modell är talet vårt att sätta mot värdens
+      bandbredd, precis som MECCHA CHAMELEON gör.
+2. **HUDMenu är skarp, `HUDMenu_Rework` är dött.** Avgjort mot bevis 2026-09-08, inte frågat The Gang:
+   körloggen säger `Game class is 'GM_MainMenu_C'`, den levande `GM_MainMenu` refererar bara
+   `/Game/HUDMenu/`, och ingenting utanför `HUDMenu_Rework`-mappen pekar in i den. Bygg inte om
+   Rework-trädet.
+3. **Testbygget är fel target.** `CustomConfig = "Steam"` sitter bara på `BladeBallArenaClient`.
+   `BladeBallArena`, som allt speltestande använt hittills, läser aldrig Steam-konfigurationen, och
+   `DefaultEngine.ini` saknar `DefaultPlatformService` helt. **Allt Steam-relaterat måste verifieras
+   på Client-targeten.**
+
 ## Koncernupplägget (Robert, 2026-09-04)
 **Avtalet tecknas av AP, men arbete, fakturering och butiksdrift går via CZP**, samma form som K2C
 (se `umbrella/k2c_sands_of_duat/Legal/LEGAL_MEMO_K2C_AP_CZP_structure_2026-05-04.md`, AP principal och

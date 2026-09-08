@@ -2,7 +2,7 @@
 project: tkr
 status: open
 priority: high
-updated: 2026-09-03
+updated: 2026-09-08
 created: 2026-08-07
 type: blocker
 owner: Robert
@@ -55,6 +55,29 @@ Error: 401 OAuth access token has expired.` The 08-12 and 08-13 runs both spawne
 like a one-off refresh gap. Worth watching in the `deathboard` journal; if it recurs the lane loses
 days invisibly.
 
+**Blocker D - `assistant/fx.js` has been overwritten by a Fortnox browser navigator, and it blocks EVERY order (found 2026-09-07, unchanged 2026-09-08).**
+`saxo.js:53` does `require('./fx')` and calls `fx.getRateToSek(ccy)`. The file now at that path
+(mtime 2026-08-27 17:00) is a **Playwright Fortnox navigator** from the CorpBot `fx-*` family
+(`fx-levfaktura.js`, `fx-lonekorning.js`, ...). It exports nothing and runs an IIFE on require.
+Two live consequences:
+
+1. `fx.getRateToSek` is undefined, so `saxo.js:692` throws and every order dies on
+   `guardrail: fx-rate-unavailable` - **including SEK orders**, because line 692 is unconditional and
+   never short-circuits `ccy === 'SEK'`. This is a HARDER blocker than the dead SIM token: even a
+   confirmed card cannot execute.
+2. Any `saxo.js suggest-size` call launches headless Chromium into `apps5.fortnox.se` (Creation Zero
+   Point tenant, persistent `.fortnox-profile`) and writes `/tmp/fx.png`. A market-data sizing call
+   opens a credentialed session into the corporate accounting system as a side effect. The
+   2026-09-08 scan deliberately did not run `suggest-size` for this reason.
+
+Latent third consequence: `saxo.js:416` (the balance path) catches the same TypeError and falls back
+to `fxRate = 1`, so if auth is ever restored the EUR 1,004,075.91 SIM balance resolves to
+**1,004,076 SEK instead of 11,095,039** - an ~11x understated equity basis under every % cap, silently.
+
+Fix (DevOps, not Robert): restore the Yahoo rate module under a non-colliding name (e.g.
+`assistant/fxrate.js`) and repoint `saxo.js:53`. Do not patch the caller. Also guard `ccy === 'SEK'`
+at `saxo.js:692` and remove the `fxRate = 1` swallow at `saxo.js:416`.
+
 **Open question raised by the 2026-08-13 scan — what happened to the PDX.ST position?**
 `ticker/trades_log.csv` records 35,500 PDX.ST bought @ 124.5 filled 2026-06-22 and a resting
 limit-sell target @ 141 placed the same day, then **no exit line ever**. PDX traded through 141 on
@@ -66,6 +89,21 @@ otherwise. The re-mint above is what settles this. Until then the true equity an
 are both unconfirmed.
 
 **Activity:**
+- [2026-09-08] **Ticker**: Daily scan, zero cards (8th consecutive zero-card scan). **Setup-limited
+  again, but Blocker D is now the binding one and it is new to this card.** US markets were closed
+  Monday 09-07 (Labor Day), so the whole US board carries Friday's bars unchanged and nothing there
+  could re-rank; the real work was the Swedish board on fresh 09-07 closes. Field: SINCH gapped
+  **+8.31% to 48.11**, a fresh 52w high with no findable catalyst, so its stale-price 2.66R screen
+  was consumed by the gap and it is now blue sky with no ceiling to target. HEXA-B is the only name
+  that passes the arithmetic (3.55R to the 102.5 high) and it fails the setup gate: six consecutive
+  lower closes 101.75 -> 95.58, no tested support between here and the 93.76 period low. Everything
+  else died on the one-number test: PDX **2.00R** (142.90 vs a 151 ceiling that is the 1mo AND 3mo
+  high), EMBRAC-B 1.98R, SF 2.06R, ERIC-B 1.71R, MTG-B 1.23R, NIBE-B 0.73R (posInRange 85.4).
+  EG7 (posInRange 1.9) and G5EN (19.0) are downtrend knives. EVO 859.6 is at its 52w high and sits
+  **24% above the SEK 695 Candle Lake mandatory offer** whose acceptance period ends ~09-15 with
+  settlement ~09-23, i.e. a binary event inside the horizon (see `tkr-016`). Saxo token file still
+  0 bytes, mtime Jul 5 01:06 - **day 65**; `positions` still fails, so the slot count is again a
+  worst-case bound (0 `awaiting_confirm` cards; the trades API returns only the terminal `tkr-003`).
 - [2026-09-03] **Ticker**: Daily scan, zero cards - **setup-limited, not budget-limited** (7th
   consecutive zero-card scan since 08-26). Budget was a genuine 1: 0 cards at
   `trade_status=awaiting_confirm`, worst case 1 open lot (35,500 PDX.ST, whose 141 GTC target is

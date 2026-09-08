@@ -1,0 +1,35 @@
+Hej Jesper och Victor,
+
+Vi har en tolvmånadersplan för ett 5v5-spel som ska till Early Access, färdigkostad och funded av förläggaren (Light Up Games). Vi skulle behöva hjälp från Rift med är produktägare och UX i en och samma person. Kod (gameplay och nätverk) är öppen mellan er och oss.
+
+Demon är gratis och ligger uppe: https://store.steampowered.com/app/3617330/
+Upplägget: https://pitch.aurorapunks.com/disposable-corps-rift
+Användare rift, lösenord qpFdQhXTL0I0
+
+Nästa steg
+
+1. Spela demon (lägg inte för mycket tid men fokusera på tutorial)
+2. Läs planen och kom tillbaka på den. Ordningen på UX-arbetet och vår tidsuppskattning ligger på sida 04, månad för månad på sida 03. Listan är ett förslag.
+3. Sen skickar vi den vidare till LUG och utvecklarna.
+4. Genomlysning av källkoden och nätverkslagret, så vi kan svara utvecklarens ingenjör konkret på vad vi föreslår tekniskt. Kräver repot, och är det första kodarplatsen gör när accessen landar.
+
+Spelet. Lågpolygonshooter i första världskriget med steampunkmechs, stridsvagnar, artilleri och förstörbar terräng. Faserna växlar Prepare, Defense och Attack, lagen alltid på motsatt fas. Spelarna tjänar pengar och köper utrustning, befästningar och AI-soldater som de sedan för befäl över, så en 5v5-match har långt fler än tio man på fältet.
+
+Läget.
+
+- Butikssida och demo uppe sedan maj 2025, två publika playtests.
+- Senaste publika inlägget 10 januari 2026.
+- Utvecklaren är två grundare som jobbar med ett par konsulter.
+- Tidplanen har glidit flera gånger och utgivaren har verklig oro för leveransen.
+
+Problemområden enligt LUG
+
+- Kartan för stor.
+- Spelarna förstår inte vad de ska göra.
+- Botarna dödar för fort.
+- Truppkommenderingen känns dålig.
+- UI och UX ligger efter.
+- Det håller inte tillräckligt länge.
+
+
+mvh

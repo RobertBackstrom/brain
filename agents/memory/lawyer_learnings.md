@@ -10,6 +10,20 @@
 >
 
 <!-- Append new learnings with: learning, source project, date, category, tags -->
+
+## 2026-09-08 — En noop-sweep som upprepar sig är ett routingfel, och agenten kan åtgärda score-drivaren själv
+**Projekt:** k2c (Simon Jakobsson CZP-anställning, k2c-051) · **Kategori:** process · **Taggar:** 4am-sweep, priorityScore, due-datum, ticket-hygien, noop
+
+1. **Tre nätter i rad fick samma ticket en Fable-sweep för ren verifiering**, trots att lawyer-scopet
+   tömdes 27/8–4/9. Drivaren var frontmattern: `due: 2026-08-28` (den stängda granskningsfristen)
+   gav urgency 3 = overdue = score 20, varje natt, för alltid. **Regel: när scopet är uttömt och
+   sweepen blir noop andra natten i rad, leta upp vad som håller uppe scoren och rätta det som
+   ticket-hygien i stället för att logga ännu en nattkontroll.** Här: due flyttat till 2026-09-25
+   (lönekörningen, enda kvarvarande skarpa datumet) → urgency 1, ticketen faller ur nattkön.
+2. Gränsdragning: att justera ett överspelat due-datum till nästa verkliga frist är CAN-DO-hygien
+   (ramverket tillåter "moving stale items between statuses"); att stänga ticketen är det inte —
+   den väntar fortfarande på Roberts sänd och Simons bankkonto. Rekommendationen loggades OCH
+   utfördes i samma runda; en rekommendation utan utförande hade producerat en fjärde noop-natt.
 <!-- Categories: swedish_corp | swedish_tax | swedish_employment | swedish_ip | gdpr | contract_review | process | tooling -->
 <!-- If Robert corrected a substantive legal point: tag `correction` and write the corrected position prominently. -->
 

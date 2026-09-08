@@ -39,9 +39,30 @@ Single content items under the umbrella epics (KAN-13 ABILITIES, KAN-15 BLESSING
 
 Several pre-existing content items already had a single subtask carrying the design content in its summary (e.g. KAN-149 "Reuse from base game / average stats" under KAN-148 Standard Horse). When topping these up, leave the existing summary alone — that spec content is useful in place — and add the art + implementation siblings alongside.
 
-Subtasks inherit the parent Task's Sprint and parent Epic; no need to assign sprints to subtasks directly.
+⚠️ **RÄTTAD 2026-09-08 — den här meningen stod tidigare som "Subtasks inherit the parent Task's
+Sprint and parent Epic; no need to assign sprints to subtasks directly". Det är sant för
+*visningen* i ärendevyn men falskt överallt där det spelar roll:** subtasken matchar inte
+`sprint in openSprints()` i JQL, så den syns inte i någon sprintrapport, och den renderas inte
+som kort på boardet. Sätt sprint explicit på allt som ska räknas.
 
-Why a third shape: FEATURE epics (banner, monarch rework) use sibling Tasks because each discipline is substantial. CONTENT items (one ability, one mount) are small enough that one parent + three subtasks fits — Subtasks roll up under the parent on the board and stay legible at backlog scale.
+Why a third shape: FEATURE epics (banner, monarch rework) use sibling Tasks because each
+discipline is substantial. CONTENT items (one ability, one mount) are small enough that one parent
+plus three children fits.
+
+⚠️ **RÄTTAD 2026-09-08.** Motiveringen löd tidigare "Subtasks roll up under the parent on the
+board and stay legible at backlog scale". **Det är fel.** KAN board är team-managed
+(`type: simple`) och renderar **bara ärenden på uppgiftsnivå**; subtasks blir aldrig egna kort och
+rullar inte upp någonstans, de finns bara inne på förälderkortet. Med `Group: Assignee` hamnar
+kortet dessutom hos **förälderns** ägare, så en subtask ägd av någon annan är helt osynlig i den
+personens kolumn. Det här kostade projektet 50 osynliga ärenden, upptäckt 2026-09-08 när Robert
+frågade varför KAN-674 inte syntes.
+
+**REGEL FRAMÅT:** arbete som har **egen ägare och eget flöde** blir **Task under epicen**, aldrig
+subtask. Subtasks reserveras för äkta checklistor under ett ärende med **en enda ägare**, där ingen
+behöver se dem på boardet. Shape C:s design/art/implementation-trio ska alltså skapas som sibling
+Tasks under samma epic när de tre disciplinerna har olika ägare, vilket de nästan alltid har.
+Konverteringsmekaniken (bulk-move, och att flytten nollställer sprintfältet) ligger i
+[[pm_learnings]] 2026-09-08.
 
 Applied 2026-05-22 to: KAN-164, 166, 168, 305 (abilities), KAN-178, 180 (blessings), KAN-174, 176, 218 (enemies), KAN-148, 150, 152, 154, 156, 158, 160, 162 (mounts). Skipped: KAN-170 Lurker greed and KAN-172 Apesh (already covered by FEATURE epic siblings KAN-261 + KAN-257).
 

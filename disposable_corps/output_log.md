@@ -54,3 +54,32 @@ Track significant deliveries, drafts, and external posts here. Each entry: date,
 | 2026-09-07 | Slide 05:s tabell hålls kvar som **enbart försäljningsestimat**, med ny bildtext om varför miljonsäljarna inte ligger i den och var de i stället jämförs. The Author fångade ett sakfel i min formulering: Operation: Harsh Doorstop är gratis, så "sold between one and ten million copies" blev "have between one and ten million owners" | pitchdeck slide 05 | Antalet ägare är nedladdningar, inte sålda exemplar, vilket blockets egen Different-rad redan sa |
 | 2026-09-07 | **Fjärde och femte registerrättelsen från Robert samma dag.** "Every line on that list is design and readability, not missing content, technology or production value" struken (domslut ovanpå en tabell som redan visar det). Slide 04:s ingress skriven om från dramatiserad spelarresa ("Jesper, this is the job... Then the enemy AI kills them") till **förväntningar plus en platt observationslista** med källrad | pitchdeck slides 02 + 04 | Roberts ord: "Stop acting like a hollywood market guy. Just describe our expectations." The Author svepte därefter slides 01 till 05 och hittade **åtta ytterligare** förekomster av samma form, inklusive en rad den själv medvetet behållit tidigare ("Every round builds to one moment: the whistle, the climb over the top, the barrage") |
 | 2026-09-07 | Punkten "Enemy AI kills the player quickly" struken ur slide 04:s observationslista | pitchdeck | Den var utgivarens fellisterad, inte något vi själva sett. `build_feedback.md` har inget om botarnas dödlighet. Att lista den under "vad vi har sett i det publika bygget" var alltså en felaktig attribution, inte bara en tunn punkt |
+
+## 2026-09-08 — Rift deck, Robert's revision round
+
+- Cover stat row: total budget 1 860 000 replaces "funded cash"; the vague "1 month anyone commits
+  to first" stat removed; developer count corrected to two founders plus a few contractors.
+- Slide 01 h2 to "Game description". Every reference to Jesper by name removed from the deck (4
+  places), replaced by "the first step is a UX evaluation pass".
+- Slide 02 lede rewritten from implied narrative to flat facts. Fault panel framed as our outside
+  reading, not a decision.
+- Slide 03 reframed from a prescribed loop to "The problems to solve". The loop design demoted to
+  an expandable marked as a sketch the evaluation pass can replace.
+- Slide 03 plan expanded to month by month, ten gates, with public playtests in months 4 and 8.
+- New expandable on post-EA content: our position is after Early Access, decided at the month 8
+  playtest, funded from EA revenue, explicitly outside the 1 860 000.
+- Two UI artist months reserved inside the design seat, months 6 to 9, seat drops 60 % to 30 % from
+  month 6. No change to the monthly total. Section 6b of rift_split_2026-09-07.md.
+- Slide 04 priority list reframed as a suggestion for the designer to respond to.
+- The Author passed the rename and evaluation-pass copy; all five recommendations taken.
+- Live and verified at pitch.aurorapunks.com/disposable-corps-rift. LUG page untouched, still 200.
+- Slide 07 rebuilt as four numbered next steps (play the demo, feed back on the plan, send to LUG
+  and the devs, source code and network layer assessment). The two open questions moved out of the
+  numbered list. Heading "Play it, then let us talk" to "Next steps".
+- Step 4 added after Anthony relayed Paul's questions from 27 Aug: what the hosting change is, what
+  we would do to the network layer, what technical direction we propose, at the level of naming the
+  change. Slide 06 now says the technical direction is a written review-month deliverable, in those
+  terms, because nobody on our side can answer it without the repo. FishNet and A* deliberately not
+  put on the page: they were his examples of the form, not confirmed facts about the stack.
+- Mail v5 written, Author-passed twice (full pass, then step 4), Gmail draft r7941755006595133730
+  created and the stale v4 draft r3638134461610185643 deleted.

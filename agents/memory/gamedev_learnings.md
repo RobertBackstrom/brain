@@ -703,3 +703,56 @@ interactive login writes `C:\Users\robert\p4tickets.txt` and every later agent `
 UAC elevation of the *same* account is harmless (profile unchanged); "Run as different user" or a
 separate Administrator account breaks it by writing the ticket into another profile. Tell people
 "same account, elevation irrelevant", not "run as admin".
+
+**Flag raised by The Author during the voice pass, worth carrying forward:** `perforce` is the
+conventional **default superuser name on a Helix Core server**. So a vendor handing over a shared
+login literally called `perforce` may be handing over their admin account rather than a
+purpose-made review account. Not raised with BSE (Robert's call was to leave the shared-account
+question alone), but if that credential ever does start working, treat it as potentially
+privileged: check `p4 protects -u perforce` before running anything with side effects, and stick to
+read-only `sync`/`print`/`filelog` on a client engagement.
+
+### 2026-09-08, T3D-exporter ljuger på tre sätt, och den fjärde lögnen är att tabellerna skulle innehålla data [project: cvb / Curveball]
+Första riktiga svepet genom Curveballs 635 blueprintexporter. Fyra fällor som ger fel svar om man bara greppar, och som gäller varje UE-projekt man exporterar till text:
+- **Varje funktionsgraf finns två gånger i filen.** Utöver den redigerade grafen skriver exportören en kompilerad kopia med suffixet `_MERGED`, plus `ExecuteUbergraph_<BP>` som är en tredje kopia av EventGraph. En rå `grep -c` på ett funktionsanrop ger alltså ungefär **dubbla** antalet riktiga noder. Filtrera bort `_MERGED` och `ExecuteUbergraph_` innan du räknar något du tänker sätta en siffra på.
+- **T3D:n har två faser.** Först deklareras alla objekt som tomma `Begin Object Class=... Name=... / End Object`, sedan kommer kropparna som `Begin Object Name="..."` **utan** `Class=`. Vill man veta vilken graf en träff ligger i måste man spåra `^   Begin Object Name=` i fas två, inte `Begin Object Class=...EdGraph` i fas ett. Gör man fel hamnar varje träff i den sista grafen i deklarationslistan.
+- **Enstaka filer är blandad teckenkodning.** 6 av 635 började med UTF-16-BOM och innehöll både UTF-16- och ASCII-partier i samma fil. Varken vanlig grep eller en naiv UTF-8-läsning ser hela filen, och python med `encoding='utf-8'` returnerar tyst noll träffar där grep hittar åtta. Normalisera allt med `tr -d '\000\r'` plus BOM-strip innan analys, alltid, inte bara när något ser konstigt ut.
+- **DataTables innehåller ingen data.** Objekt-T3D-fallbacken (den man tvingas till i 5.3 headless, se 2026-08-28) skriver bara `RowStruct` och `RowStructPathName`, cirka 1 kB per tabell. Alla 20 tabeller i Curveball är alltså tomma på rader. Samma sak gäller **user-defined structs och enums**, som inte ens ingår i klassurvalet Blueprint/WidgetBlueprint/AnimBlueprint/DataTable. Man får logiken men inte datamodellen och inte balansdatan. Säg det rakt ut i rapporten i stället för att låtsas att exporten är komplett.
+**Det som gör svepet värt besväret:** ett exec-pin-spårande skript (följ `LinkedTo` på pinnar med `PinType.PinCategory="exec"`, både utgående och inkommande) ger den faktiska anropskedjan nod för nod, inte bara "vilka funktioner nämns". Det var så `IsDedicatedServer`-grinden hittades. Bygg det skriptet en gång, det är ~60 rader python och det är skillnaden mellan att kunna citera ett flöde och att gissa om det.
+**Tags:** UE5.3, T3D, Blueprint-export, _MERGED-dubblering, tvåfas-T3D, blandad-teckenkodning, DataTable-utan-rader, exec-pin-spårning
+
+### 2026-09-08, "Blueprint-begravt" är en hypotes, inte ett estimat: mät nodmassan och dela upp den efter beroende [project: cvb / Curveball]
+Dev-planen kallade WP1.3 (party till Steam-lobbies) "largest single unknown" med motiveringen att presence- och toast-UI:t var blueprint-begravt. Efter mätning: **57 procent av den party- och menyrelaterade nodmassan var vänlistan, och den hängde på LootLocker, inte på backend-tjänsten som skulle bytas ut.** Den följde alltså inte med i flytten alls. Estimatet gick från 40-60 h till 32-52 h, och WP1.2 från 24-40 till 24-36.
+**Mönstret, generellt för varje "byt ut tjänst X i ett blueprinttungt spel":**
+1. Bygg ett **referensindex** över hela exporten: fil, referenstyp (`FunctionReference` / `DelegateReference` / `EventReference` / `VariableReference`), klass och medlem. En rad per träff. Det tar tio minuter och besvarar sedan varje "hur djupt sitter det"-fråga på en sekund.
+2. **Gruppera per beroende, inte per mapp.** Widgetar i samma katalog kan hänga på helt olika tjänster. Curveballs `Widgets/Friends/` såg ut som backend-beroende men fem av sex filer där rörde bara LootLocker.
+3. **Räkna vilka delegatparametrar som faktiskt är kopplade**, inte bara vem som binder delegaten. Fem blueprints band matchmakingens statusdelegat, men bara **en** konsumerade `IP`/`Port`/`PlayerSessionId`. Det avgjorde att signaturen kan frysas och fyra widgetar lämnas orörda, vilket var hela nedskrivningen av WP1.2.
+4. **Räkna noder, inte filstorlek.** T3D-storlek domineras av pin-plumbing och korrelerar dåligt med logikmängd.
+**Andra halvan av lärdomen:** samma svep hittade en tyst regression som ingen letade efter. Utdelningen av belöningar var gatead på `IsDedicatedServer`, alltså skulle en P2P-omställning ha gett **noll belöningar**, inte dubbla. Man letar efter dubbelutdelning när auktoriteten flyttar och missar då att grinden kan slå åt andra hållet. Kolla alltid grindens polaritet, inte bara dess existens.
+**Tags:** Curveball, estimering, blueprint-mätning, referensindex, delegat-signaturfrysning, IsDedicatedServer-vs-HasAuthority, P2P-konvertering
+
+## 2026-09-08 — I ett UE-projekt under Perforce är `Binaries` ofta versionshanterat, leta efter checkout-skriptet innan du kallar det byggutdata [cvb / Ground Zero]
+
+**Projekt:** curveball (forge-städning) · **Kategori:** tooling + source_control · **Taggar:** perforce, unreal, binaries, diskrensning
+
+När jag skulle frigöra disk på byggmaskinen delade jag upp ett UE-projekt i "ligger i
+versionshantering" och "byggutdata". `Saved`, `Intermediate`, `.vs` och `DerivedDataCache` är alltid
+det senare. **`Binaries` antog jag också var det. Fel.** Projektet hade en `CheckOutBinaries.bat` i
+roten som körde `p4 edit -c default //GroundZero/main/Binaries/Win64/...` plus samma sak för varje
+plugin. Kompilerade DLL:er checkas alltså in, vilket är vanligt i Unreal-team där artister och
+designers inte har en kompilator och måste kunna synka färdiga binärer.
+
+**Regel:** innan du kallar en katalog i ett UE-projekt för byggutdata, leta efter ett
+`CheckOutBinaries.bat`, `.p4ignore.txt` eller motsvarande. Skriptet är den snabbaste sanningen om vad
+depån faktiskt bär.
+
+**Två saker till från samma körning:**
+
+1. **Skrivskyddsflaggan säger ingenting när arbetsytan kör `allwrite`.** Standardheuristiken "läs
+   skrivbara filer, så ser du vad som är utcheckat" gav 227 917 av 227 917 filer, alltså brus. Kolla
+   klientens options innan du drar slutsatser av filattribut. Motsatt fall finns också: Curveballs
+   eget träd bar skrivskydd på 11 524 filer från kundens Perforce-tid och blockerade en patch.
+2. **Arbetsyta är inte depå.** En synkad Perforce-arbetsyta är per definition en kopia, så
+   borttagning kostar omsynktid och inte data, med det enda undantaget osubmittat arbete. Den
+   skillnaden är avgörande när man ska bedöma om något får raderas, och den går inte att avgöra
+   offline: `p4 opened` mot servern är enda säkra svaret.

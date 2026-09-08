@@ -263,23 +263,22 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
     <a class="cta alt" href="https://store.steampowered.com/app/3579070/" target="_blank" rel="noopener">Store page</a>
   </div>
   <div class="statrow">
-    <div class="stat"><div class="k teal">155 000</div><div class="l">SEK per month, funded cash</div></div>
+    <div class="stat"><div class="k teal">1 860 000</div><div class="l">SEK total budget, twelve months</div></div>
     <div class="stat"><div class="k">12 mo</div><div class="l">To Early Access, month ten</div></div>
-    <div class="stat"><div class="k neon">1</div><div class="l">Month anyone commits to first</div></div>
-    <div class="stat"><div class="k">2</div><div class="l">People on the developer side</div></div>
+    <div class="stat"><div class="k">2</div><div class="l">Founders, plus a few contractors</div></div>
   </div>
 </section>
 
 <!-- 2 THE GAME -->
 <section class="slide" id="s2">
   <div class="eyebrow"><span class="n">01</span>The game</div>
-  <h2>Play it first</h2>
+  <h2>Game description</h2>
   <p class="lede">Disposable Corps is a low poly first and third person shooter set in the First World
   War, with steampunk mechs, tanks, artillery, destructible terrain and digging. Rounds cycle
   Prepare, Defense and Attack, with the two teams on opposite phases. Players earn money and spend
   it on gear, on fortifications, and on <strong>AI soldiers they recruit and then command</strong>,
   so a 5v5 match already puts far more than ten bodies on the field.</p>
-  <p>The demo is free and live. Jesper, start with the tutorial. That is where the UX problems are.</p>
+  <p>The demo is free and live. Start with the tutorial. That is where the UX problems are.</p>
   <a class="cta" href="https://store.steampowered.com/app/3617330/" target="_blank" rel="noopener">Play the demo <span class="sub">app 3617330</span></a>
   <div class="hero-shot"><img src="assets/ss_0.jpg" alt="Disposable Corps"></div>
 
@@ -385,16 +384,20 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
 <section class="slide" id="s3">
   <div class="eyebrow"><span class="n">02</span>Where it stands</div>
   <h2>Live since May 2025, silent since January 2026</h2>
-  <p class="lede">Store page live since May 2025, free demo since May 2025, two public playtests,
-  six trade show appearances. The December 2025 playtest rebuilt movement, camera, AI and
-  pathfinding: the second playtest in a row spent on foundation work. The last
-  public post, 10 January 2026, said the team was going dark. Nothing since.</p>
+  <p class="lede">Store page and free demo live since May 2025. Two public playtests. Six trade
+  show appearances. The December 2025 playtest rebuilt movement, camera, AI and pathfinding. Last
+  public post 10 January 2026. The developer is two founders working with a few contractors. The
+  schedule has slipped repeatedly, and the publisher has real concern about delivery.</p>
   <div class="statrow">
     <div class="stat"><div class="k">7 mo</div><div class="l">Since the last public update</div></div>
     <div class="stat"><div class="k">2 741</div><div class="l">Steam followers</div></div>
     <div class="stat"><div class="k neon">65 %</div><div class="l">Demo score, mixed, 77 reviews</div></div>
     <div class="stat"><div class="k">0</div><div class="l">Announced release date</div></div>
   </div>
+  <h4 style="margin-top:34px">The publisher's fault list, and where we currently think each one lands</h4>
+  <p class="muted">Left column is the publisher's, in their words. Right column is our own reading
+  from the outside, written before anyone on our side has had the build. It is where we would start
+  looking, not a decision about how any of it gets built.</p>
   <div class="faults">
     <div class="fault"><div class="f">The map is too large</div><div class="a">One sector of the front is live at a time, the rest closed. The map is gated, not rebuilt.</div></div>
     <div class="fault"><div class="f">Players do not know what to do</div><div class="a">One objective, one visible front line, one clock. The next thing to do is always on screen.</div></div>
@@ -409,19 +412,19 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
 <!-- 4 THE LOOP -->
 <section class="slide" id="s4">
   <div class="eyebrow"><span class="n">03</span>The plan</div>
-  <h2>Cut it to one loop</h2>
+  <h2>The problems to solve</h2>
   <p class="lede">The build today is four games stacked: a shooter, a squad RTS, a base builder and
-  a vehicle sim, spread over a map larger than any of them needs. A match becomes three sectors,
-  twenty to twenty-five minutes, sides swapping.</p>
+  a vehicle sim, spread over a map larger than any of them needs. Below is what we think has to be
+  solved in the first phase. How it gets solved is the evaluation pass's call.</p>
   <div class="loop">
-    <div class="ph"><div class="t">90 seconds</div><div class="n">Dig in</div>
-      <p>The defender fortifies one bounded sector: fixed dig points, barricades, gun nests. The attacker picks an approach and support.</p></div>
-    <div class="ph"><div class="t">5 to 7 minutes</div><div class="n">Over the top</div>
-      <p>One objective, a single trench line, clearly marked, on a visible clock. Each player commands four to six AI soldiers, so 5v5 fills a front.</p></div>
-    <div class="ph"><div class="t">60 seconds</div><div class="n">The line moves</div>
-      <p>If the line falls the front shifts to the next sector and the loop restarts with sides swapped. Three sectors is a match.</p></div>
+    <div class="ph"><div class="t">Scope</div><div class="n">Four systems, one session</div>
+      <p>The shooting, the squad layer, the building and the vehicles all compete for the same twenty minutes. Nothing in the match tells a player which one it is about.</p></div>
+    <div class="ph"><div class="t">Readability</div><div class="n">No bounded objective</div>
+      <p>The map is larger than ten players fill. No front line, no objective marker, no clock. The publisher's fault list says players do not understand what they are meant to do.</p></div>
+    <div class="ph"><div class="t">The squad layer</div><div class="n">Bought, then unread</div>
+      <p>Players buy AI soldiers and command them, and the HUD does not show how many they have, where those soldiers are or what they are doing. Command is on single keys with no on screen affordance.</p></div>
   </div>
-  <h4 style="margin-top:34px">Parked until after launch</h4>
+  <h4 style="margin-top:34px">What we would park until after launch</h4>
   <div class="cuts">
     <span>Money economy and tank factories</span>
     <span>Nation roster beyond two factions</span>
@@ -436,29 +439,98 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
   </div>
 
   <details class="deep">
-    <summary>Ten months to Early Access</summary>
+    <summary>One shape we have sketched, not a decision</summary>
     <div class="body">
-      <div class="tw"><table>
-        <thead><tr><th>Phase</th><th>When</th><th>Outcome</th></tr></thead>
-        <tbody>
-          <tr><td><strong>0. Review</strong></td><td>Month 1</td><td>Build and code review, engine and netcode read, design teardown, cut and fix list, backlog, fixed price on phase 1. The only thing anyone commits to at the start.</td></tr>
-          <tr><td><strong>1. Core loop</strong></td><td>Months 2 to 5</td><td>The rescope built, one map with three sectors, squad command v2, bot tuning, the UX pass, the hosting change. Ends in a closed playtest with measured retention. The go or no go.</td></tr>
-          <tr><td><strong>2. EA content</strong></td><td>Months 6 to 9</td><td>Three maps, two factions, light progression, telemetry, new store page and trailer, localisation, performance.</td></tr>
-          <tr><td><strong>3. Launch and live</strong></td><td>Months 10 to 12</td><td>Early Access release, patch cadence, community, first content drop.</td></tr>
-        </tbody>
-      </table></div>
+      <p class="muted">Written before anyone on our side has had the current build, the repository or
+      any telemetry. It is here to show the size of rescope we have costed, not to fix the design.
+      The evaluation pass can replace all of it.</p>
+      <div class="loop">
+        <div class="ph"><div class="t">90 seconds</div><div class="n">Dig in</div>
+          <p>The defender fortifies one bounded sector: fixed dig points, barricades, gun nests. The attacker picks an approach and support.</p></div>
+        <div class="ph"><div class="t">5 to 7 minutes</div><div class="n">Over the top</div>
+          <p>One objective, a single trench line, clearly marked, on a visible clock. Each player commands four to six AI soldiers, so 5v5 fills a front.</p></div>
+        <div class="ph"><div class="t">60 seconds</div><div class="n">The line moves</div>
+          <p>If the line falls the front shifts to the next sector and the loop restarts with sides swapped. Three sectors is a match.</p></div>
+      </div>
     </div>
   </details>
+
+  <details class="deep">
+    <summary>Month by month, to Early Access</summary>
+    <div class="body">
+      <p class="muted">Twelve months from signature. Early Access in month 10. Two public playtests
+      sit in it, in months 4 and 8, because a UX change is not verified until people outside the
+      project play it. The store page and the demo already carry an audience, so a Steam playtest
+      is the cheapest test panel available to this project.</p>
+
+      <div class="gatecard"><div class="gh"><span class="gn">Review</span><span class="gm">Month 1</span><span class="gs">The only thing anyone commits to at the start</span></div>
+        <ul><li>Build and code review, engine and netcode read</li><li>UX evaluation pass on the current build</li><li>Design teardown, cut list and fix list, backlog</li><li>Fixed price on phase 1</li></ul></div>
+
+      <div class="gatecard"><div class="gh"><span class="gn">Fix build</span><span class="gm">Month 2</span><span class="gs">Internal</span></div>
+        <ul><li>The cheap fixes off the evaluation pass, whatever it puts on that list</li><li>Tutorial root cause closed, on the answer the diagnostic gives</li><li>No public build this month. Nothing here is worth testing on players yet</li></ul></div>
+
+      <div class="gatecard"><div class="gh"><span class="gn">Loop v1</span><span class="gm">Month 3</span><span class="gs">Playable end to end, internal</span></div>
+        <ul><li>The rescoped match playable start to finish on one map</li><li>Round state readable in build, first iteration</li><li>Squad orders in build, first iteration</li><li>Hosting change started</li></ul></div>
+
+      <div class="gatecard"><div class="gh"><span class="gn">Public playtest 1</span><span class="gm">Month 4</span><span class="gs">First outside evidence</span></div>
+        <ul><li>Steam playtest, opened to the store page's followers and the demo's players</li><li>Measured: tutorial completion, session length, where players quit, whether squad orders get used at all</li><li>Compared against the two playtests the developer has already run, so the numbers have a baseline</li><li>This is the first point anyone outside the project confirms the UX work landed</li></ul></div>
+
+      <div class="gatecard"><div class="gh"><span class="gn">Loop v2</span><span class="gm">Month 5</span><span class="gs">Go or no go on the rest of the term</span></div>
+        <ul><li>Playtest findings folded back into the build</li><li>Squad command second iteration, bot tuning</li><li>Player hosting live and tested at 5v5</li><li>Decision gate. If the loop does not hold players here, the content months are not worth spending</li></ul></div>
+
+      <div class="gatecard"><div class="gh"><span class="gn">Content build</span><span class="gm">Months 6 to 7</span><span class="gs">The Early Access set</span></div>
+        <ul><li>Two further maps on the same sector structure</li><li>Second faction</li><li>Light progression, telemetry in build</li><li>UI artist starts, half time. HUD assets and icons against the phase 1 designs, in the build before playtest 2</li></ul></div>
+
+      <div class="gatecard"><div class="gh"><span class="gn">Public playtest 2</span><span class="gm">Month 8</span><span class="gs">The Early Access candidate, in public</span></div>
+        <ul><li>Second Steam playtest, on the full content set, same measures as playtest 1</li><li>Retention read against playtest 1. That comparison is the launch decision</li><li>New store page and trailer cut from this build, wishlists driven from here</li><li>Also the point where the content question below gets answered on data</li></ul></div>
+
+      <div class="gatecard"><div class="gh"><span class="gn">EA candidate</span><span class="gm">Month 9</span><span class="gs">Content complete</span></div>
+        <ul><li>Localisation, performance, patch pipeline</li><li>UI art finished, second and last month of the artist reservation</li><li>Store page live, wishlist push ahead of launch</li></ul></div>
+
+      <div class="gatecard"><div class="gh"><span class="gn">Early Access</span><span class="gm">Month 10</span><span class="gs">Release</span></div>
+        <ul><li>Release on Steam</li></ul></div>
+
+      <div class="gatecard sup"><div class="gh"><span class="gn">Live</span><span class="gm">Months 11 to 12</span><span class="gs">Support</span></div>
+        <ul><li>Patch cadence, community, first content drop</li></ul></div>
+    </div>
+  </details>
+
+  <details class="deep">
+    <summary>When more content gets added, and what is not in this budget</summary>
+    <div class="body">
+      <p class="muted">Raised here because the publisher will ask it, and the answer changes the
+      launch date rather than the monthly number.</p>
+      <p>What the 1 860 000 covers on the content side is three maps, two factions and light
+      progression. That is the Early Access set. Nothing beyond it is budgeted, priced or
+      scheduled.</p>
+      <h4 style="margin-top:22px">Our position: after Early Access, not before</h4>
+      <ul class="muted">
+        <li>Early Access exists to sell an unfinished game and fund the rest of it. Content built
+        before month 10 is spend with no revenue behind it, and it moves the release date.</li>
+        <li>The month 8 playtest says what players actually want more of. Building it before that
+        reading is guessing.</li>
+        <li>If retention at months 4 and 8 does not hold, more content does not fix it. Content on a
+        loop players leave is spend without a return.</li>
+      </ul>
+      <p>So: the decision point is month 8, on playtest data, in time to plan the first drop for
+      months 11 and 12, and it gets funded from Early Access revenue rather than from this budget.</p>
+      <p class="muted">If the publisher wants content before launch instead, it is a separate number
+      and a later release date. We would size it after the review month, when the real cost of a map
+      on this pipeline is known rather than estimated.</p>
+    </div>
+  </details>
+
 </section>
 
 <!-- 5 THE UX JOB -->
 <section class="slide" id="s5">
   <div class="eyebrow"><span class="n">04</span>The seat</div>
   <h2>Product owner and UX, in one person</h2>
-  <p class="lede">The seat is product owner and designer in one person. What we expect it to
-  own: the order set, the recruit model, the cut list, the onboarding path, and the interface work
-  listed below. Robert stays executive producer and carries the publisher and developer
-  relationship, the schedule and the commercial.</p>
+  <p class="lede">The first step, in the review month, is a UX evaluation pass on the current
+  build, to assess what needs to be done. The seat is product owner and designer in one person. What we expect it to own: the order set,
+  the recruit model, the cut list, the onboarding path, and the interface work listed below. Robert
+  stays executive producer and carries the publisher and developer relationship, the schedule and
+  the commercial.</p>
   <h4 style="margin-top:26px">What we have seen in the public build</h4>
   <ul class="muted">
     <li>Tutorial: at least five instruction blocks render on top of each other in the same text area, and two voice over tracks play at the same time.</li>
@@ -470,6 +542,13 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
   <p class="muted">Sources: the public demo, the developer's playtest notes, the store screenshots
   and Robert's own sessions. Nobody on our side has had the current build, the repository or any
   telemetry.</p>
+
+  <h4 style="margin-top:30px">A suggested way forward, and the designer's first task</h4>
+  <p>The list below is what we would do and in what order. It is a suggestion, not a brief. The
+  first task on the seat is to play the demo and come back on it: what is missing, what is in the
+  wrong order, what we have sized wrong, and what we have called a fix that is really a redesign.
+  The day figures are our own, made from the outside without the build, and they are the part we
+  most want argued with.</p>
 
   <div class="pri"><div class="n">1</div><div><div class="t">The first session</div>
     <p>Starts with a ten second diagnostic. Open the tutorial and read the overlapping lines. Same
@@ -494,15 +573,19 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
     the squad layer starts. Scoped as a fix in phase 1, redesign deferred.</p></div><div class="sz">4 to 5 days</div></div>
 
   <div class="note">
-    <p><strong>Sizing.</strong> That list is
-    roughly 45 days at the optimistic end and 55 at the pessimistic. It works if the designer is in
-    the build during the review month, if
-    UI implementation and icon production sit with the development team, and if map and recruit
-    stays scoped as a fix. Front loaded fits the curve better than flat.</p>
+    <p><strong>Sizing.</strong> The list is roughly 45 days at the optimistic end and 55 at the
+    pessimistic, against about 40 days available in phase 1 at 60 % of full time. It assumes the
+    designer is in the build during the review month, that UI implementation sits with the
+    development team, and that map and recruit stays scoped as a fix. Those three assumptions and
+    the gap between 55 and 40 are what the first pass has to settle. Front loaded fits the curve
+    better than flat.</p>
+    <p style="margin-top:12px"><strong>Icon and HUD asset production is not designer work</strong>,
+    and until now it had no home in this budget. Two months of UI artist are now reserved inside the
+    design seat, months 6 to 9. The split is in the commercial, slide 06.</p>
   </div>
 
   <details class="deep">
-    <summary>Fix versus redesign, and what Jesper needs to see</summary>
+    <summary>Fix versus redesign, and what the evaluation pass needs</summary>
     <div class="body">
       <div class="grid g2">
         <div class="card ap"><h3>Fixes, closable from a written spec</h3>
@@ -605,7 +688,7 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
     <thead><tr><th>Seat</th><th>Side</th><th class="num">Real cost</th><th class="num">Paid by the project</th><th class="num">Carried</th></tr></thead>
     <tbody>
       <tr><td>Founders, the two developers</td><td>Developer</td><td class="num">30 000</td><td class="num">30 000</td><td class="num">0</td></tr>
-      <tr class="sig"><td><strong>Product owner and UX</strong><br><span class="muted" style="font-size:13px">Jesper, 60 % of full time</span></td><td>Rift</td><td class="num">72 000</td><td class="num">55 000</td><td class="num">17 000</td></tr>
+      <tr class="sig"><td><strong>Product owner and UX</strong><br><span class="muted" style="font-size:13px">60 % of full time</span></td><td>Rift</td><td class="num">72 000</td><td class="num">55 000</td><td class="num">17 000</td></tr>
       <tr class="sig"><td><strong>Developer, gameplay and network</strong><br><span class="muted" style="font-size:13px">Dima or Chris, or Oskar on our side, 50 %</span></td><td>Open</td><td class="num">50 500</td><td class="num">50 000</td><td class="num">500</td></tr>
       <tr><td>Executive producer<br><span class="muted" style="font-size:13px">Robert, 25 %</span></td><td>Aurora Punks</td><td class="num">35 000</td><td class="num">20 000</td><td class="num">15 000</td></tr>
       <tr class="tot"><td>Total, per month</td><td></td><td class="num">187 500</td><td class="num">155 000</td><td class="num">32 500</td></tr>
@@ -614,10 +697,23 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
   <p class="muted" style="font-size:13.5px;margin-top:8px">Real cost is each side's own internal
   cost for the person, at the rates the two studios already use between them. Over twelve months the
   team costs 2 250 000 SEK, the project pays 1 860 000, and 390 000 is carried.</p>
+  <p style="margin-top:20px"><strong>Two months of UI artist sit inside the design seat.</strong>
+  The seat runs at 60 % of full time through month 5, then drops to 30 % once the loop is settled
+  and the role is mostly product ownership. That frees 2,1 months of the seat, and two of them go to
+  a UI artist at half time across months 6 to 9, producing HUD assets and icons against the designs
+  from phase 1. The seat's monthly cost to the project does not move, so the total above is
+  unchanged. An artist's rate is not a designer's, so the exact number of weeks gets set in the
+  review month. If it comes out short it is fewer artist weeks, not a larger number.</p>
+
   <p style="margin-top:20px">The network work is merged into the developer seat rather than sitting
   on its own line. Moving the game off dedicated servers and onto player hosting is the one
   technical promise the plan makes, a server browser and host region filter already exist, and it is
   the same person's job as the gameplay work.</p>
+  <p class="muted" style="font-size:13.5px;margin-top:8px">The developer's engineer has asked for
+  that direction at the level of naming the change rather than describing it. Nobody on our side can
+  answer at that level without the repository, so the technical direction is a written deliverable
+  of the review month, in those terms, and the code assessment is the first thing the developer seat
+  does.</p>
 
   <div class="grid g2" style="margin-top:26px">
     <div class="card rf">
@@ -671,17 +767,24 @@ tr.hit td:first-child{color:var(--rf-neon);font-weight:700}
 <!-- 8 NEXT -->
 <section class="slide" id="s8">
   <div class="eyebrow"><span class="n">07</span>Next</div>
-  <h2>Play it, then let us talk</h2>
+  <h2>Next steps</h2>
   <a class="cta" href="https://store.steampowered.com/app/3617330/" target="_blank" rel="noopener">Play the demo <span class="sub">start with the tutorial</span></a>
   <div style="margin-top:30px">
-    <div class="ask"><div class="n">1</div><div><div class="t">A short call, Jesper on it</div>
-      <p>On the UX seat, slide 04.</p></div></div>
-    <div class="ask"><div class="n">2</div><div><div class="t">Does Rift want the developer seat</div>
-      <p>Design alone, or design and code. It is the difference between 660 000 and 1 260 000 over the term. Not decided, your call.</p></div></div>
-    <div class="ask"><div class="n">3</div><div><div class="t">From our side</div>
-      <p>The wishlist count and the playtest telemetry from the publisher, and fifteen minutes of screen capture of the screens no public image shows.</p></div></div>
+    <div class="ask"><div class="n">1</div><div><div class="t">Play the demo</div>
+      <p>One day. Start with the tutorial.</p></div></div>
+    <div class="ask"><div class="n">2</div><div><div class="t">Feed back and iterate on the project plan</div>
+      <p>One day. The suggested order of work and our sizing are on slide 04, the month by month plan on slide 03.</p></div></div>
+    <div class="ask"><div class="n">3</div><div><div class="t">Send it to the publisher and the developers</div>
+      <p>The version that goes out is the one you have been through, not this one.</p></div></div>
+    <div class="ask"><div class="n">4</div><div><div class="t">Source code and network layer assessment</div>
+      <p>The developer's engineer has asked what we propose in technical terms: what the hosting change is, what we would do to the network layer, and what technical direction we would set. He wants it at the level of naming the change, not a summary of it. That needs repository access, and it is the first thing the developer seat does once access lands.</p></div></div>
   </div>
-  <p class="lede" style="margin-top:34px">The only thing anyone commits to at the start is the review
+  <h4 style="margin-top:34px">Two things still open</h4>
+  <ul class="muted">
+    <li><strong>Does Rift want the developer seat.</strong> Design alone, or design and code. It is the difference between 660 000 and 1 260 000 over the term. Not decided, your call.</li>
+    <li><strong>What we need from the publisher.</strong> The wishlist count, the playtest telemetry, and fifteen minutes of screen capture of the screens no public image shows.</li>
+  </ul>
+  <p class="lede" style="margin-top:30px">The only thing anyone commits to at the start is the review
   month.</p>
 </section>
 

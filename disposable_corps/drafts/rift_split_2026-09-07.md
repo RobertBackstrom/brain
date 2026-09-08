@@ -128,6 +128,27 @@ nothing false. Note the exposure though: **if Rift later learns AP holds 30 perc
 Rift holds none, it will read as withheld rather than as never theirs.** Worth deciding when that
 gets said rather than letting timing decide it.
 
+## 6b. The UI artist reservation, added 2026-09-08
+
+Robert: *"I think we should set aside money and time for at least 2 months of UI work from an
+artist. This could be deducted from the UX time slot the latter part of the project."*
+
+Icon and HUD asset production was never designer work and had no line in the budget. It is now
+carried **inside the design seat**, so no number in section 2 changes:
+
+- The design seat runs at **60 % of full time through month 5**, then **30 % from month 6**, once
+  the loop is settled and the role is mostly product ownership.
+- That frees **2,1 months** of the seat (0,3 x 7 months).
+- **Two of those months go to a UI artist**, half time across **months 6 to 9**, producing HUD
+  assets and icons against the phase 1 designs, in the build before public playtest 2 in month 8.
+- Monthly cost to the project is unchanged: 55 000 paid, 72 000 real cost, 17 000 carried by Rift.
+
+**The caveat that has to be honoured.** An artist's rate is not a designer's rate. The freed 2,1
+seat-months buy two artist-months only if the artist costs roughly what the designer does. If the
+artist is cheaper the reservation stretches, if dearer it shrinks. Settled in the review month
+against Rift's own rates, and the fallback is fewer artist weeks rather than a bigger number. Do not
+let this become a mid-term budget increase request.
+
 ## 7. Open
 
 1. **Seat sizing.** Jesper at 60 percent is 72 000 of real cost against 55 000 paid. If the UX brief

@@ -306,6 +306,7 @@ Byggde `assistant/mcp-stdio-bridge.js`, en generell stdio-till-HTTP-brygga, och 
 - **Blockerare 2 hävd:** Niklas bekräftade 2026-08-23 att Atomic Elbow kommer åt Sir Whoopass och inte rapporterade att de ser AP:s övriga titlar. Kvar är en behörighetsdetalj (New bundles / New add-ons) som bör fixas före en entitetsändring.
 - Uppdaterat: `umbrella/aurora_punks/legal/xbox_entity_transfer_APDS_to_CZP_2026-08-26.md` (tillägg med bevisen), mastern `apds_entity_transfer_master_2026-08-26.md` §3.4, ticket apb-055 (in_progress + needs_input), `agents/memory/admin_learnings.md`.
 | 2026-08-27 | AP F-skatt/moms statuskoll — Skatteverkets öppna e-tjänst "Hämta företagsinformation" körd via Playwright mot 559256-9718 | Svar per mail till robert@aurorapunks.com (`foretagsuppgifter@skatteverket.se`, 13:40) + ticket `apb-056` | **Godkänd för F-skatt: NEJ. Registrerad för moms: NEJ.** Bekräftar att paying-agent-strukturen (CZP fakturerar åt AP) fortfarande är den enda vägen. allabolag.se visar felaktigt "Registrerad för Moms, F-skatt, Arbetsgivaravgift" — opålitlig källa. Själva ärendestatusen (avslagsdatum + motivering) ligger bakom BankID på Skatteverket Mina sidor och kräver Robert. |
+| 2026-09-08 | Xbox royalty-rapport genererad ur 30 Microsoft-statements (db-327) | `aurora_punks/reports/xbox_royalties.md` + RAG | APDS 12 639 enheter / 115 620 USD, WLBS 2 enheter / 5,08 USD. Sir Whoopass Digital Deluxe star for 87 646 USD av totalen. Byggd av `assistant/xbox-aggregate.js` ur fliken AlliantStripData; skrivs om vid varje korning. Statementen hamtas av `msrsm-royalty-reports.js`. Flagga: WLBS-vendorn far fortfarande statements, senast juni 2026. |
 
 ## 2026-08-27 — Xbox: AE:s behörigheter satta, apb-055 eskalerad, PS GDPA-onboarding startad
 - **swa-002:** Robert satte och sparade AE:s två saknade behörigheter i Partner Center (`New bundles` kontonivå, `New add-ons` produktnivå på Sir Whoopass). `New apps` och `Manage product groups` medvetet utelämnade, de hade låtit AE skapa nya produkter i AP:s konto. Scopingen verifierad en andra gång ur AE:s egen vy. Svar skickat till Niklas. Kvar: han testar add-on + bundle.
@@ -477,3 +478,37 @@ troligen inte, men kolla före du rör det, och **flasha inte från Legion**. fo
 Legions nyaste env (NativeSDK20.5.17) bär bara NX 20.4.0-1.0, så Legions uppdaterare kan sänka ett
 fungerande kit under vad bygget kräver. Firmware-avsnitt tillagt i runbooken (steg 3b). Kiten heter
 nu 9344 och 0024 efter Roberts konvention, sparad i [[reference_ap_switch_devkits]].
+
+## 2026-09-08 — Tuut cloud/telco: portfolio-katalog, IP-svep, mailutkast (apb)
+
+Robert hade möte med **Robert Schmiedl, Managing Director på Tuut** (robert@tuut.sk) om distribution
+via telcooperatörers cloud gaming och TV-boxar. Uppföljningen: en portfoliolänk plus AP:s
+bolagsuppgifter för ett MNDA.
+
+- **Byggt och driftsatt [pitch.aurorapunks.com/portfolio](https://pitch.aurorapunks.com/portfolio)**
+  (gated, user `aurorapunks`). Sökbart genreindex plus **11 one-pagers**, en per titel. Grundat i
+  `ap_ip_ownership_canonical.md`, inte i Steams publisher-sträng.
+- **Mediapipeline:** 66 bilder och 10 gameplay-loopar hämtade från Steam. Steam har lagt om trailers
+  till DASH/HLS, så de flata `movie480.webm`-URL:erna finns bara kvar för äldre uppladdningar. De fem
+  nyare titlarna krävde att segmenten hämtas med curl och avkodas lokalt, se
+  [devops_learnings](../agents/memory/devops_learnings.md).
+- **Cloud fit-kolumnen är hämtad ur Blacknut-avtalets Annex 2**, alltså en påskriven leveransspec,
+  inte en gissning: Linux-bygge föredras, DRM-fritt, extraherbar save-data, full handkontroll.
+  Fynden: bara 1993 har Linux-bygge, Block'Em! saknar singleplayer trots bredast lokalisering
+  (13 språk), och Tears of Adria deklarerar ingen handkontrollsupport alls trots bäst betyg.
+- **Prisankare hittat:** Blacknut gav licensgivaren **70 % av nettointäkten**, worldwide och
+  **icke-exklusivt**. Det är siffran att hålla Tuut mot. KT Game Box (Korea Telecom) skrev dessutom
+  avtal med AP redan nov 2021 på 1993, TaniNani och Hoplegs, så affärsformen är beprövad.
+- **Internt IP-svep:** [tuut_cloud_distribution_brief_2026-09-08.md](drafts/tuut_cloud_distribution_brief_2026-09-08.md).
+  Varmaste spåret är **Studio Camelia** där Emma Delage skrivit rakt ut att Alzara-IP:t fortfarande
+  går att köpa ur likvidationen. Därtill Ace Maddox (DLA Piper-anbud nov 2024), Legendo (konkurs okt
+  2024), Windswept vars källkod AP redan äger, samt Upstream Arcade och Red Marmoset som AP äger 15 %
+  i och som båda söker distribution.
+- **Mailutkast** skapat i tråden "Cloud Gaming cooperation", voice-pass av The Author. Ej skickat.
+
+**Öppet:** Blacknut-avtalets status är oklar eftersom licensgivaren på pappret är WLBS som är i
+konkurs. Faktiska försäljningssiffror ligger inte på sidan, de kräver Steamworks-session och kontot
+som bär flertalet titlar har mobil-2FA på Roberts privata Steam-inlogg.
+
+**Notera:** Robot Lord Rising ligger med på Roberts uttryckliga begäran, märkt som oreglerad.
+Rättigheterna sitter hos Runatyr. Vessels of Decay är utelämnad, ägandet är fortfarande UNCLEAR.

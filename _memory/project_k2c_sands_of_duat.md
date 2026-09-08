@@ -10,7 +10,42 @@ modified: 2026-08-17T08:49:32.774Z
 **Prefix:** k2c
 **⚠️ RENAMED 2026-07-03:** DLC is now **Kingdom Two Crowns: Pharaoh Lands** (Niclas/RF). "Sands of Duat" was working-title only; new name aligns with franchise convention. Robert accepted same day; propagate everywhere (checklist: `umbrella/k2c_sands_of_duat/pharaoh_lands_rename_checklist.md`, PLANNING-only, nothing renamed yet). Keep prefix `k2c` + Jira key `KAN` + folder slug unchanged.
 
-**Status (2026-08-16):** MS0-MS3 all delivered and approved. **MS4 Pre-Cert is the live milestone**, due Fri 2026-08-28. **S7 (Aug 10-21) is active; S8, the MS4 hardening sprint, starts Mon Aug 24.** Two dates dominate the fortnight, both inside the gate week: **interim build to RF Thu 20 Aug** and **RF's external playtest starts Mon 24 Aug**. ⚠️ **MS3 invoice (560k, sent 07-31) was due ~08-15 - VERIFY receipt against the bank, do not assume it landed.** **Dubravko started 18 Aug on UI/key-art scope, which is NOT asset-list work — see the 08-19 CORRECTION below.** The asset-list pool is at the no-fourth-artist baseline (−7% over the 9-week window); the Lost Hive extension is what moves it. ⚠️ **Fury Studios contract: notice must be served by FRI 21 AUG to stop at 31 Aug, or the cost runs to 30 Sep (`k2c-047`).** Internal cut 27 Aug, **MS4 gate remains 28 Aug**. Milestones hold: MS4 Aug 28 · MS5 Sep 25 · MS6 Oct 23 · MS7 Gold Dec 1. **Budget:** 5.6 MSEK, team of 6, Apr-Dec 2026.
+**Status (2026-09-08):** MS0-MS4 levererade och godkända. **MS5 Content Complete är den levande
+milstolpen, grind fre 2026-09-25.** S9 (MS5 Production) löper 31 aug till 11 sep. **MS4 godkändes
+skriftligt av Niclas 2026-09-04 16:47** (tråd `1a04a098c9f6e01b`) med två anmärkningar som är
+MS5-villkor: objective signposting och player intentionality (åtgärdsplan hos Tim, KAN-707), samt
+art coherence plus bekräftelse på att content complete 24/25 sep håller. ⚠️ **MS4-fakturan,
+560 000 SEK ex moms (700 000 inkl), är INTE skickad per 8 sep** — CZP fakturerar som paying agent
+till moneymoney@rawfury.com, betalning 15 kalenderdagar, kortet är `k2c-052`. ⚠️ **Robert lovade RF
+ett svar på feedbacken "early next week", alltså denna vecka; inget har gått iväg.** Boardet är
+omstrukturerat 8 sep: subtasks konverterade till Task, In Review nere på 18 ärenden, MS4- och
+MS5-vyerna går att lita på. Fury Studios-avtalet motsignerades 27 aug, så Dubravkos kostnad löper
+till minst 30 sep. Milstolpar: MS5 Sep 25 · MS6 Oct 23 · MS7 Gold Dec 1. **Budget:** 5.6 MSEK,
+team of 6, Apr-Dec 2026.
+
+## 2026-09-08 — MS4 stängd på boardet, subtask-blindheten åtgärdad
+
+**MS4 godkänd av RF 2026-09-04 16:47** (Niclas, tråd `1a04a098c9f6e01b`): *"We are approving MS4,
+please go ahead with the invoice"*, med två anmärkningar som är MS5-arbete: objective signposting
+och player intentionality (KAN-707 hos Tim), samt art coherence plus bekräftelse av att content
+complete 24/25 sep håller. **Fakturan 560 000 SEK ex moms är ännu inte skickad** per 8 sep.
+Robert lovade RF ett svar "early next week", alltså denna vecka.
+
+**Boardet är omstrukturerat, tre saker att känna till framåt:**
+
+1. **KAN board är team-managed (`type: simple`) och renderar aldrig subtasks som kort.** Med
+   `Group: Assignee` hamnar ett subtask-kort dessutom hos *förälderns* ägare. Därför var 50
+   ärenden osynliga, bland annat hela Set-öns art under KAN-142. **Subtasks matchar inte heller
+   `sprint in openSprints()` i JQL**, så varje sprintbaserad fråga har underskattat arbetet.
+   Alla 50 är konverterade till Task under rätt epic. **Regel framåt: arbete med egen ägare blir
+   Task under epicen, aldrig subtask.**
+2. **In Review gick från 125 till 18 ärenden.** 91 MS4-ärenden stängdes mot leveranssidans
+   known issues-logik (Confluence 150274049 säger att listan bara innehåller öppna punkter),
+   30 till stängdes mot Discord- och Gemini-bevisning. Beviskedjorna står som kommentarer på
+   KAN-482 och KAN-504. Öppna med skäl: KAN-586 (deferrad till MS5), KAN-354, KAN-302, KAN-471.
+3. **109 ärenden fick fixVersion MS5 och 44 playtestbuggar drogs in i S9.** MS5-vyn var blind och
+   playtestbatchen 27-28 aug låg utanför varje sprint. Den flaggan från 28 aug hade aldrig
+   åtgärdats.
 
 ## 2026-08-26 — CANONICAL: the Staff of Ra is not supposed to damage the bosses
 

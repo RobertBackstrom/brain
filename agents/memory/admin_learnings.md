@@ -12,6 +12,122 @@
 <!-- Append new learnings with: learning, source project, date, category -->
 
 
+
+
+
+## 2026-09-08 — Fortnox UI går INTE att klicka sig fram i headless: djuplänka, eller låt bli
+**Projekt:** czp (AGI augusti) · **Kategori:** tooling · **Taggar:** Fortnox, Playwright, navigation, webapp-ui, djuplänk, misslyckade_forsok
+
+1. **Facit på en dag: fem av fem navigeringsförsök misslyckades.** Två gissade URL:er
+   (`/lon/arbetsgivardeklaration`, `/lon/skatt`) gav 404. Ett menyklick landade i Lön-INSTÄLLNINGAR
+   i stället för funktionen. Ett "Rapporter"-klick hamnade på nginx 404. En torrkörning timeoutade på
+   `text=Meny` med "element is not visible". **Sluta gissa selektorer och sökvägar i Fortnox.**
+2. **Vad som däremot fungerar varje gång:** `fortnox-login2.js` (lösenord ensamt, betrodd enhet),
+   tenant-val genom `getByText('Creation Zero Point Holding').click()`, och därefter **djuplänkning
+   till en KÄND sökväg** inne i `webapp-ui`-framen. Det är exakt vad `fortnox-sie-download.js` och
+   `fortnox-kundreskontra.js` gör, och därför fungerar de. Skillnaden mot mina misslyckanden är inte
+   tur, det är att de har en verifierad URL att gå till.
+3. **Regel för nästa Fortnox-automation: skaffa den riktiga URL:en först.** Be Robert kopiera
+   adressfältet när han står på den sida som ska automatiseras. Tenant-id:t i URL:en är
+   per-session och ska strippas, men **sökvägen efter tenant-id är stabil** och är det som saknas.
+   Ett enda klistrat URL sparar en timmes selektorletande.
+4. **Bygg aldrig skrivautomation mot bokföring under deadline.** Här fanns fyra dagar till
+   AGI-fristen och en manuell väg på tio minuter. Rätt beslut var att leverera en
+   bokföringsspecifikation och bygga automationen mot NÄSTA lönekörning, där ett misslyckat försök
+   inte kostar något. Ett felklick i lönemodulen skapar verifikat som någon måste nysta upp.
+5. **Sakfynd som är värt mer än automationen:** löner ska inte bokföras som manuellt verifikat utan
+   **markeras som utbetalda i Fortnox Lön**. Ett manuellt 2910/1930-verifikat nollar visserligen
+   skulden men lämnar lönebeskeden omarkerade, arbetsgivardeklarationen står kvar som
+   **Preliminär** och går inte att lämna in, och man får dubbelbokning när beskeden senare markeras.
+   **Det är utbetalningsmarkeringen som frigör deklarationen, inte bokföringen.**
+
+## 2026-09-08 — Konto 1930 i en SIE-fil är INTE bankkontot: det är bara de bankhändelser någon hunnit bokföra
+**Projekt:** czp (AGI augusti, lönebetalningar) · **Kategori:** process + correction · **Taggar:** SIE, 1930, bankavstämning, negativ_kontroll, rag_search, betalningslista
+
+1. **Felet.** Jag skulle avgöra om augustis löner var utbetalda. Jag summerade konto **1930** i CZP:s
+   SIE för augusti och september, hittade inga löneposter, och skrev till Robert: *"i bankflödet för
+   augusti och september hittar jag inga löneutbetalningar alls"*. Fel källa och fel påstående.
+   **En SIE-fil innehåller bara bokförda transaktioner.** Betalningarna var gjorda men obokförda,
+   alltså strukturellt osynliga. Kontoutdraget visade sedan alla fyra på 2026-08-25:
+   42 450 + 42 643 + 18 958 + 440 = 104 491, exakt saldot på 2910.
+2. **Regeln:** säg **"inte bokförd"**, aldrig "inte betald" eller "syns inte i bankflödet", när
+   underlaget är bokföring. Att en bankhändelse saknas i 1930 är information om
+   **bokföringens fullständighet**, inte om huruvida pengarna rört sig. Vill man veta om en betalning
+   skett krävs kontoutdrag, inte huvudbok. De två frågorna har olika källor och blandas ihop lätt
+   just för att kontot heter "Företagskonto".
+3. **Den dyra delen: jag sökte inte i masterbrain innan jag påstod ett negativt.**
+   `czp-finances/drafts/betalningslista_2026-08-25.md` låg RAG-indexerad i projektmappen med raden
+   "2026-08-25 | L27–L30 | Löner augusti, fyra anställda | 104 491,00". En enda `rag_search` hade
+   gett hela svaret. I stället ställdes en fråga till Robert som masterbrain redan kunde besvara.
+   **Kör alltid `rag_search` innan ett negativt påstående om vad som hänt i ett bolag**, särskilt
+   innan klienten frågas. Det är samma regel som `feedback_search_wiki_first`, och den gäller även
+   när man tror sig ha primärdata.
+4. **Följdfel:** jag flaggade att Elias 440 kr kunde vara obetald och blockera deklarationen. Den var
+   betald ("TIMLÖN AUG" samma dag). Ett felaktigt negativt påstående föder gärna en felaktig
+   riskflagga ovanpå sig.
+5. **Det som faktiskt var rätt i analysen, och som står kvar:** mönstret L-verifikat (lönebesked,
+   krediterar 2910) → D-verifikat (Levfakt person) → E-verifikat (Levbet, betalar) finns för februari
+   till juli men **saknas helt för augusti**. Det var en riktig observation om bokföringsglappet, och
+   det är också orsaken till att Fortnox markerade arbetsgivardeklarationen 2026.S.08 som
+   **Preliminär**: lönebesked som inte är markerade som utbetalda kan inte lämnas in.
+   **Diagnosen var rätt, formuleringen av beviset var fel.**
+6. **Kontoutdrag från SEB kommer mojibakade** när de klistras in (UTF-8 läst som latin1): `LÃN` är
+   `LÖN`, `ÃGARLÃN` är `ÄGARLÅN`. **Läs aldrig `LÃN` som "LÅN"** utan att kontrollera beloppet mot
+   lönebeskedet, annars förvandlas en lön till ett ägarlån i analysen.
+
+## 2026-09-08 — Ett draft-ID är ingen garanti för att mailet fortfarande är ett utkast
+
+**Projekt:** apb (Nintendo-entitetsflytten, apb-054) · **Kategori:** tooling
+
+Robert bad om att få bilagor tillagda på Nintendo-utkastet. Utkastet fanns i `gmail_list_drafts`
+med sitt gamla `messageId` från 26 augusti, så allt såg normalt ut. Först när `drafts.update`
+svarade **`400 Message not a draft`** visade det sig att han hade skickat mailet en kvart tidigare
+och att draft-posten pekade på ett meddelande med labeln `SENT`.
+
+**Regeln:** innan du lovar att ändra ett utkast, verifiera att det fortfarande *är* ett utkast:
+
+```
+GET /drafts/<draftId>?format=minimal   →   message.labelIds
+```
+
+Står det `SENT` är mailet ute och kan inte ändras, då är enda vägen ett uppföljningsmail.
+`gmail_list_drafts` räcker inte: den kan returnera ett inaktuellt `messageId` när Robert redigerat
+draften i Gmail-webben nyss, och den säger ingenting om labels.
+
+**Varför det spelar roll:** Robert skickar utkast inom minuter. Fönstret mellan "jag läser draften"
+och "jag skriver till den" är i praktiken det fönster han hinner trycka skicka i. Detta är samma
+felkälla som [[feedback_verify_draft_sent]] och som RAG-träff-lärdomen ovan (2026-09-08), fast
+från API-hållet: tre olika ytor ljuger på tre olika sätt om huruvida ett mail är skickat.
+
+**Sidofynd samma ärende:** Gmails Drive-knapp lägger in en **länk**, inte en bilaga. Påstå aldrig
+att mottagaren kommer åt filen utan att kontrollera delningen först, `assistant/drive-lib.js`
+`listPermissions` visar den. Verktyget för riktiga bilagor är
+`assistant/gmail-draft-attach.js`, se [[reference_gmail_draft_attachments]] — det fungerar bara på
+utkast.
+
+## 2026-09-08 — En RAG-träff på ett Gmail-meddelande bevisar INTE att det skickats: drafts indexeras med From, To och Date precis som sända mail
+**Projekt:** apb/czp (APDS K 4429-25) · **Kategori:** tooling + process · **Taggar:** RAG, gmail, drafts, verifiering, false_positive
+
+1. **Nära misstag som är lätt att göra igen.** En `rag_search` gav två träffar på samma
+   återkallelseskrivelse till Umeå tingsrätt, en daterad 7 sep och en 8 sep, båda med
+   `From: Robert Bäckström`, `To: umea.tingsratt.allmanna@dom.se` och ett datum. Slutsatsen
+   "handlingen har skickats två gånger till domstolen" låg nära, och jag var på väg att rapportera
+   den. **Fel.** Den 8 september-posten var ett **osänt utkast** som jag själv skapat samma morgon.
+   RAG:s gmail-indexering tar med drafts, och en draft bär samma headers som ett sänt mail.
+2. **Regel: en RAG- eller `gmail_search`-träff är aldrig bevis för avsändning.** Verifiera med
+   `in:sent` eller `gmail_list_drafts` innan något påstås vara skickat, och särskilt innan en
+   dubblett rapporteras till klienten. Här räckte `in:sent to:<mottagare>` för att visa att bara
+   ETT mail gått i väg, den 7 september 16:01, vilket också stämde med domstolens
+   ankomststämpel (aktbilaga 72, INKOM 2026-09-07).
+3. **Följdåtgärd som är den egentliga lärdomen: städa bort utkast som blivit inaktuella.** Utkastet
+   låg kvar och hade, om det skickats, gett domstolen en andra återkallelse av en bevakning som
+   redan var återkallad. Ofarligt men rörigt i akten. Raderat. **När ett ärende avslutas, gå igenom
+   egna kvarvarande utkast i tråden och ta bort dem.**
+4. **Bakomliggande orsak, andra gången på två dagar:** jag återskapade ett utkast utan att först
+   kontrollera om klienten redan agerat. Igår gällde det Ellen-mailet (han hade redan svarat själv),
+   i dag tingsrättsmailet (han hade redan skickat det 7 sep). **Kontrollera `in:sent` FÖRE varje
+   återskapat utkast**, inte bara tråden det ska ligga i.
+
 ## 2026-09-07 — RÄTTELSE: Sifferrådet/Henrik är INTE längre involverad i CZP. Öppen fråga vem som gör lön och årsmoms
 **Projekt:** czp · **Kategori:** process + correction · **Taggar:** Sifferrådet, Henrik Franzén, CZP, redovisningskonsult, årsmoms, lön, correction
 

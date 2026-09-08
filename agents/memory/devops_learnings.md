@@ -7,6 +7,127 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-08 - Gitea bakom tailnet: DNS-only är poängen, och admin-flaggan har ingen CLI [db-331]
+
+**Learned:** 2026-09-08 | **Project:** Death Board (db-331) | **Category:** dns, cloudflare, tailscale, gitea, windows
+
+**En A-post mot en tailnet-adress ska vara DNS-only, och det är inte en kompromiss.** Tailnet-IP:n
+ligger i 100.64/10 (CGNAT). Cloudflare kan inte proxa den, och ingen utanför tailnet kan nå den, så
+posten ger det historiska värdnamnet tillbaka utan att exponera något. Det enda den läcker är en
+privat adress i publik DNS. Skriv det i postens `comment`-fält, annars ser nästa person en grå
+molnikon och tror att någon glömt slå på proxyn. Cloudflares comment-fält tar max 100 tecken, ett
+längre anrop faller på `code 9313`.
+
+**Räkna med att den lokala resolvern ljuger i en halvtimme efteråt.** Kontorsroutern hade cachat
+NXDOMAIN för namnet, och `aurorapunks.com` har SOA-minimum 1800 s, så `curl` mot värdnamnet gav 000
+medan 1.1.1.1 och 8.8.8.8 svarade rätt. Verifiera alltid en ny post mot en publik resolver innan du
+felsöker något annat, och testa tjänsten med `curl -H "Host: <namn>" http://<ip>/` under tiden.
+
+**`ROOT_URL` är det som faktiskt betyder något i Gitea, inte var tjänsten svarar.** Instansen hade
+kört korrekt på LAN och tailnet i månader medan `ROOT_URL`, `DOMAIN` och `SSH_DOMAIN` pekade på en
+adress som inte funnits sedan flytten. Allt fungerar utom det enda användaren kopierar: klon-URL:en.
+Verifiera efter omstart genom att grep:a den serverade HTML:en efter värdnamnet.
+
+**Gitea 1.22.4 kan inte ta bort en admin-flagga från kommandoraden.** `gitea admin user` har create,
+list, change-password, delete, generate-access-token och must-change-password, inget mer. Vägarna är
+webb-UI:t, API:t (kräver att man genererar en token åt en riktig persons konto, och den kan bara
+raderas med basic auth, alltså personens lösenord) eller en direkt UPDATE i `gitea.db`. På en
+Windows-värd utan node, python eller sqlite3 återstår `winsqlite3.dll` via P/Invoke, vilket
+auto-lägets klassare stoppar. **Uppdatera per id, inte per namn**, om du någonsin kör SQL:en: då
+slipper du enkelfnuttar helt, som annars kolliderar med bash-citeringen över ssh.
+
+**Kolla vem som redan har åtkomst innan du bygger åtkomst.** Ticketen bad om att ge Elias tillgång.
+Han fanns redan som användare och var dessutom site admin, alltså med insyn i Eternal Minds repon.
+Uppdraget var i själva verket en nedgradering plus ett nätverksproblem, inte en behörighetstilldelning.
+
+**Tags:** gitea, cloudflare-dns, cgnat, tailscale, root-url, vcsboy, windows, sqlite
+
+## 2026-09-08 - Redaction som bara gäller ena indexeringsvägen, och binära rapporter som aldrig når RAG [db-287 / db-327]
+
+**Learned:** 2026-09-08 | **Project:** Death Board (db-287, db-327) | **Category:** rag, säkerhet, indexering, playwright, portal-drift
+
+**Fråga alltid VILKEN kodväg en skyddsregel sitter i, inte om regeln finns.** db-287 var skriven som
+"regexarna är för smala". De var det, men den stora läckan var att `rag-indexer.js` anropar
+`CFG.isDenylisted(filePath)` i `indexFile()` medan `indexContent()` (Gmail + Drive) tar emot `denied`
+som **parameter** och den enda anroparen som satte den var filsystemsvandraren. En `.env`, en
+`.pem` eller en `google_service_account.json` på Drive indexerades alltså i sin helhet, medan samma
+filnamn på disk blev en tom stubbe. Sensmoral: när skyddet är en parameter i stället för ett anrop
+inne i funktionen, leta upp varje anropare innan du tror att skyddet gäller.
+
+**En prefixbaserad hemlighetsregel missar hela creds-filer.** Vendor-prefix (`sk-`, `ghp_`, `AIza`)
+fångar tokens som nämns i löpande text, inte dokument där allt är hemligt. Lade till
+`hasHighConfidenceSecret()`: bär kroppen nyckelmaterial eller en leverantörstoken lagras ingen
+kropp alls. Den fick medvetet INTE innehålla `generic`, `jwt` eller `square`, för marknadsföringsmail
+är fulla av `otpToken=`, unsubscribe-JWT och base64 som börjar på EAAA. Första försöket med
+`EAAA[A-Za-z0-9_-]{20,}` blankade 300 dokument, mest Unity Addressables-kataloger och nyhetsbrev.
+Med exakt längd (`{60}`, en riktig Square-token är 64 tecken) föll det till 4, och att lyfta ut
+regeln ur blanknings-setet gav 0. **Kalibrera alltid en ny regel mot korpusen innan den får radera.**
+
+**`-----BEGIN PRIVATE KEY-----` matchade inte den befintliga private-key-regeln**, för den hade
+`[A-Z ]+` där det ska vara `[A-Z ]*`. PKCS#8, alltså exakt formatet i en Google service
+account-nyckel, saknar ord före PRIVATE. Regeln såg rätt ut i fem år och skyddade aldrig mot den
+känsligaste filtypen i korpusen. Testa en regex mot ett riktigt exemplar, inte mot minnesbilden.
+
+**Att nolla ett dokument tar bort det ur sökningen helt, inte bara dess kropp.** Nyckelordssökningen
+går `chunks_fts MATCH` → `chunks` → `docs`, så ett dokument utan chunks är osynligt. Kommentaren i
+`rag-config.js` lovar att "path + title are still indexed" men det stämmer bara på Drive-vägen där en
+stubbtext lagras. Backfillen skriver därför en namnstubbe med en chunk och `no_embed = 1`.
+
+**Verktygsdetaljer.** (1) `better-sqlite3` vägrar starta en transaktion medan en iterator är öppen
+på samma anslutning: samla arbetet i ett pass, skriv i ett andra. (2) Ett skript som rör
+`chunk_vecs` måste ladda `sqlite-vec` först, annars `no such module: vec0`. (3) gitleaks skannar
+1,4 GB text på ~30 s, så vägen "exportera docs.content till radindexerade shards → `gitleaks detect`
+→ mappa StartLine tillbaka till doc_id" är fullt körbar för hela korpusen och ger en riktig
+inventering per källa i stället för ett stickprov.
+
+**db-327: en portal-DOM daterar snabbare än ticketen.** `msrsm-royalty-reports.js` byggdes 31 aug mot
+`img[alt="download"]`. Åtta dagar senare var Microsofts royaltyportal ombyggd till
+`<button class="st-dl">` och skriptet hittade noll knappar utan att fela. Acceptera båda formerna i
+selektorn, och kör alltid `--recon` före nedladdning på en portal som inte körts på en vecka.
+
+**Plattformsrapporter som laddas ner som xlsm eller csv når aldrig RAG.** Indexeraren går på markdown
+i projektmapparna, och Drive-extraktion av kalkylark är tunn. Nintendo-spåret har samma lucka:
+`ndp-aggregate.js` skriver till stdout. Mönstret som fungerar är hämtare → aggregator → markdown i
+en indexerad projektmapp (`xbox-aggregate.js` → `aurora_punks/reports/xbox_royalties.md`), sedan
+`rag-indexer.js --backfill`. Skriv en varning i rapporten om vad aggregatet INTE innehåller: en
+period med noll transaktionsrader kan ändå bära justeringar och avräkning mot förskott i en annan
+flik.
+
+**Tags:** rag, redaction, denylist, gitleaks, indexContent, better-sqlite3, sqlite-vec, chunks_fts, playwright, msrsm, royalty, xbox
+
+## 2026-09-08 - "Sätt Google som sökmotor" på forge var en kapad Chrome-profil, och sync gör offline-städning verkningslös [forge / desktop-support]
+
+**Learned:** 2026-09-08 | **Project:** forge desktop support | **Category:** chrome, hijack-triage, sync, windows, node-sqlite
+
+**En sökmotorlista utan Google är en kapning, inte ett felval.** Robert bad om att "Chrome ska
+ligga som sökmotor" på forge. Chrome-UI:t visade Yahoo som default och ingen Google alls i listan.
+Rätt triage-ordning, alla steg läsning: (1) `HKLM/HKCU:\SOFTWARE\Policies\Google\Chrome` (tom här,
+alltså ingen enterprise-policy), (2) `Preferences` -> `default_search_provider.guid`, (3)
+`keywords`-tabellen i profilens `Web Data`, (4) varje `manifest.json` under `Extensions\` efter
+`chrome_settings_overrides.search_provider`. Fyndet: default-raden hette "Yahoo" med Yahoos favicon
+och Yahoos suggest-URL, men sök-URL:en gick till `healthygeorge.com/PjgjEA?...&q={searchTerms}`, och
+tillägget **"Browse Safely for Chrome"** (`djlfggieadldppbgniioekadgenldepb`, Web Store-installerat)
+bar en aktiv `searchProvider`-behörighet mot `api.voilepassportal.com`. Två lager alltså. Sensmoral:
+**läs alltid hela url-fältet, inte short_name** - kapare klär sig i ett känt varumärkes namn, ikon
+och suggest-endpoint. Google-raden (prepopulate_id 1) var helt borttagen ur tabellen.
+
+**`created_by_policy=1` på en keywords-rad utan motsvarande registernyckel är ett kaparfingeravtryck**,
+inte bevis för att en policy finns. Kolla registret innan du tror på flaggan.
+
+**Sync avgör metodvalet.** `Preferences` -> `sync.data_type_status_for_sync_to_signin` visade
+`search_engines=True` och `extensions=True` för robert@aurorapunks.com. Filkirurgi med Chrome
+stängt skickar inga tombstones; servern har kvar entiteterna och lägger tillbaka både tillägget och
+den falska motorn vid nästa start. Borttagning måste därför propageras av en **körande** Chrome:
+tillfällig `ExtensionInstallBlocklist`-policy på tilläggs-id:t (Chrome tvångsavinstallerar och
+synkar bort det), sedan bort med policyn igen. Kolla samma tilläggs-id på alla synkade maskiner.
+
+**Verktygsknep på forge:** ingen sqlite3.exe finns, men **node 24 har `node:sqlite`** inbyggt, så
+`Web Data` läses med en fyra-raders `.mjs`. Två fällor: `SELECT *` kraschar på Chromes
+mikrosekunds-timestamps (`RangeError: Value is too large`), välj kolumner explicit; och filen är
+låst medan Chrome kör, så `Copy-Item` till `$env:TEMP` först. Skriptet skrivs enklast med
+`Set-Content -Value @" ... "@` över ssh (default-skalet på forge är PowerShell, så `&`, `2>/dev/null`
+och `python -c` funkar inte).
+
 ## 2026-09-07 - Team-managed Jira boards cannot draw subtasks at all, and the workaround board already existed [k2c / KAN]
 
 **Learned:** 2026-09-07 | **Project:** K2C Sands of Duat (KAN) | **Category:** jira, board-config, product-limits, search-before-building, filter-jql
@@ -1648,3 +1769,39 @@ host rather than working around it every time. Worth a ticket if it comes up aga
    utifrån HTML, och det fångade två layoutfel i kväll som inte syntes i källkoden: en sifferkolumn
    som inte kunde alignera mot tabellen bredvid, och en logga som blev tonalt inverterad av
    CSS-filtret. Elementskärmdump: `(await p.$('#s4 details .body')).screenshot({path})`.
+
+## 2026-09-08 — Steam-mediapipeline: hämta trailers och skärmdumpar utan systemets ffmpeg (apb, Tuut-portfolion)
+
+Byggde 66 bilder och 10 gameplay-loopar till `pitches/portfolio/`. Fyra fällor, i den ordning de slog till.
+
+1. **Steam har lagt om trailers till DASH/HLS.** `appdetails`-svarets `movies`-objekt har numera bara
+   `dash_av1`, `dash_h264`, `hls_h264` och `thumbnail`. De gamla flata filerna
+   (`store_trailers/<movieid>/movie480.webm`) finns **fortfarande kvar för äldre uppladdningar** men
+   ger 404 för nyare. Testa den flata URL:en först, den är en enda curl, och fall tillbaka på HLS.
+   Nyare uppladdningar har dessutom ett annat URL-schema, `store_trailers/<appid>/<sub>/<hash>/<ts>/`,
+   där inga flata filer finns alls.
+2. **Det finns inget systemets ffmpeg på burken, men två andra.** Playwrights
+   (`~/.cache/ms-playwright/ffmpeg-1011/ffmpeg-linux`) är avskalad till oigenkännlighet: den
+   demuxar **bara matroska/webm och image2pipe**, saknar `movflags`, saknar alla nätverksprotokoll
+   och har bara libvpx VP8 som encoder. Den duger till att trimma en nedladdad webm och till
+   ingenting annat.
+3. **`npm install ffmpeg-static` ger en fullständig build utan sudo**, med mp4-demuxer och libx264.
+   Men **dess nätverkslager kraschar på den här maskinen** (`dumped core` på en https-input). Så:
+   full build för lokal avkodning, curl för allt som ska över nätet. Kombinationen fungerar,
+   ingendera gör jobbet ensam.
+   `pip` finns inte alls, varken som `pip` eller `python3 -m pip`, så npm är vägen in för binärer.
+4. **Använd PIL, inte ffmpeg, till stillbilder.** Playwright-byggets mjpeg-*decoder* finns men det
+   saknas encoder, så skalning av Steams 1920-skärmdumpar dog på `Invalid data found`. `PIL` 10.2.0
+   finns installerat och gör jobbet i tre rader. `imagemagick` finns inte.
+
+**HLS-receptet som fungerade:** hämta master-m3u8 med curl, regexa fram varianten närmast 854x480,
+hämta dess playlist, konkatenera `#EXT-X-MAP`-initsegmentet med sex `chunk-stream*.m4s` till en fil,
+och mata den lokalt till den statiska ffmpeg-byggen. fMP4-segment konkatenerar rent så länge
+initsegmentet ligger först. Resultat: ~10 MB trailer blir en 7-sekunders loop på ~500 KB.
+
+**Bakgrundsjobb via `nohup ... &` överlevde inte verktygsanropet.** Skriptet dödades efter två av
+elva titlar trots exit 0 på wrappern. Kör långa jobb i förgrunden med höjd `timeout` i stället.
+
+Playwright-noteringen ovan (punkt 2 i förra avsnittet) behöver en rättelse: **chromium finns numera
+även på Nitron** (`~/.cache/ms-playwright/chromium-1234`) och renderade pitchsidorna lokalt utan
+omvägen över `ssh edge`. Modulen ligger i `~/.npm/_npx/e41f203b7505f1fb/node_modules/playwright`.

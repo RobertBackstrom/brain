@@ -7,6 +7,78 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-08 — Death Board-botens dedup-svar i #qa är en sökbar fixlogg, inte brus
+
+När 125 ärenden i In Review skulle triageras mot verkligheten var det avgörande beviset inte
+boardet och inte standupnotiserna, utan **botens eget meddelande i #qa 2026-08-28 19:53**. Det
+citerar Oskar i klartext för sju ärenden ("It is now possible to buy all 4 shields/squires from
+Castle", "Critters no longer runs behind ra temple", "Bell post for warf now renders infront of
+player") och namnger dessutom vad den *inte* matchade och varför. Botens
+"matched from the conversation"-block är alltså en tidsstämplad, ticketkopplad logg över vad
+teamet påstått är fixat, formulerat i deras egna ord, och den finns bara i Discord.
+
+**How to apply:** greppa botmeddelandena i #qa och #general **innan** en statusgenomgång, innan en
+leveranssida skrivs och inför varje "är den här buggen egentligen kvar"-fråga. Sök på "Matched
+from the conversation" och på "I read KAN-". Det ser ut som kanalbrus men är den enda strukturerade
+bryggan mellan vad någon sa i chatten och ett ticketnummer, och den är starkare bevisning än en
+Gemini-notis eftersom den citerar originalformuleringen i stället för att sammanfatta den. Botens
+"not matched, so not touched"-rader är lika användbara: de pekar ut påståenden om fixar som ingen
+ticket fångade. Källa: K2C.
+
+
+## 2026-09-08 — Ett team-managed board renderar aldrig subtasks, och JQL:s sprintfunktion ser dem inte heller
+
+Robert såg att KAN-674 inte fanns någonstans i boardvyn. Orsaken är inte ett filter utan
+boardtypen: ett **team-managed board (`type: simple`) renderar bara ärenden på uppgiftsnivå**,
+subtasks finns bara som child items inne på förälderkortet. Med `Group: Assignee` blir effekten
+värre än så, för kortet hamnar hos **förälderns** ägare. Här låg 14 Set-ärenden ägda av Joanna,
+Simon och Eamonn osynliga inuti KAN-142, som är tilldelad art leaden och dessutom stod To Do
+medan fem av barnen var In Progress eller In Review. Boardet visade 12 kort för Joanna när hon
+hade 17 aktiva ärenden. **Det allvarligare fyndet i samma pass: subtasks matchar inte heller
+`sprint in openSprints()` i JQL**, så varje sprintrapport, varje "vad ligger i S9"-fråga och varje
+hygiensvep byggt på den frågan har underskattat arbetet lika mycket som boardet. En sprintquery
+som ser ren ut är inte bevis för att sprinten är ren.
+
+**How to apply:** när någon säger att ett ärende inte syns, kolla `issuetype.subtask` och
+förälderns ägare *innan* du letar efter filterfel. På ett team-managed board hör allt arbete som
+har en egen ägare och ett eget flöde hemma som Task under epicen, inte som subtask under en
+container-task; spara subtasks till äkta checklistor under ett ärende med en enda ägare. Kör
+hygiensvep med `issuetype in subTaskIssueTypes() AND statusCategory != Done` som en **separat**
+fråga vid sidan av sprintfrågan, annars är den blind.
+
+**Mekaniken för att konvertera (Jira Cloud, verifierad på 50 ärenden):** `PUT
+/rest/api/3/issue/{key}` med ny issuetype vägrar och ger det missvisande felet *"Issues with this
+Issue Type must be created in the same project as the parent"*. Det som fungerar är
+`POST /rest/api/3/bulk/issues/move` med nyckeln `"<projectId>,<taskTypeId>"` i
+`targetToSourcesMapping` plus `inferClassificationDefaults`, `inferFieldDefaults`,
+`inferStatusDefaults` och `inferSubtaskTypeDefault` satta till true. Lägger man till parent-id som
+tredje del av nyckeln **misslyckas** jobbet med ett intetsägande fel, och skickar man med
+`targetMandatoryFields` eller `targetStatus` avvisas anropet i validering. Flytten **nollställer
+sprintfältet** och sätter ingen parent, så varje konverterat ärende behöver ett efterföljande PUT
+med sprint, fixVersion och parent, annars ramlar arbetet ur sprinten och du har gjort saken värre.
+Statusen överlever. Källa: K2C.
+
+## 2026-09-08 — En leveranssida som säger "bara öppna punkter listas här" är facit när In Review-högen ska städas
+
+93 ärenden låg In Review med fixVersion MS4 när RF godkänt milstolpen. Robert ville inte ha en
+blind bulkstängning utan att de skulle synkas mot vad som faktiskt sagts. Det avgörande
+underlaget visade sig vara en enda mening i vår egen leveranssida: *"Known issues. Open and
+pending only. Anything already fixed and awaiting verification is left out."* Den meningen gör
+listan till ett **komplement**: ett ärende som stod In Review vid grinden och saknas i
+known issues var per konstruktion fixat och väntade bara på verifiering, och kundens godkännande
+är den verifieringen. Av 93 fanns bara ett (KAN-504) i known issues-listan, så 91 kunde stängas i
+en bulktransition med beviskedjan i en kommentar på grindärendet i stället för i 91 kommentarer.
+
+**How to apply:** skriv alltid den meningen i leveransnoteringarna, för den gör dokumentet
+tvåvägs-läsbart och sparar en veckas ticket-för-ticket-triage vid nästa milstolpe. När du städar
+efter ett godkännande: matcha In Review-högen mot known issues-listan, stäng komplementet, håll
+kvar det som står i listan, och peka om det som visar sig vara levande arbete till nästa milstolpe
+i stället för att stänga det (här KAN-471, som fortfarande producerar mockups). Lägg beviskedjan
+som kommentar på milstolpens grindärende. Och kontrollera Discord för regressioner efter
+grinddatumet innan du stänger: hittar du en, blir det ett nytt ärende, aldrig en återöppning.
+Källa: K2C.
+
+
 ## 2026-09-07 - The standup answered the art critique and walked past the commercial question [k2c / MS5]
 
 **Learned:** 2026-09-07 | **Project:** K2C Pharaoh Lands | **Category:** client-feedback, milestone-scoping, jira-hygiene, evidence
@@ -1314,3 +1386,31 @@ blandad rate, betalplanens grupper, kurvans SVG-punkter, toppen på fyra ställe
 bemanning, rolltabellen). Checklistan, plus milstolpar som kassaflödesinstrument (mät längsta
 obetalda sträckan) och listan över vad som aldrig får stå i en offert, ligger i
 [[codev_bid_pitch]]. Läs den innan nästa co-dev-bud räknas om.
+
+## 2026-09-08 - A UX change is not verified until outsiders play it, and a plan written before the specialist is hired points at problems only [dsc / Rift]
+- **Put the public playtests in the schedule as gates, not as events.** Robert asked for a granular
+  plan to Early Access and named the thing he wanted it built around: *"Focus on when we will be able
+  to have new public playtests to verify new UX flow."* Disposable Corps landed on twelve months with
+  ten gates and **two public playtests, months 4 and 8**. Month 4 is the first outside evidence the UX
+  work landed; month 8 runs on the full content set, and **the retention comparison between the two is
+  the launch decision**, not a milestone review. Two things make this cheap on a game that already has
+  a store presence: a Steam playtest can be opened to the existing followers and demo players, and the
+  developer's own earlier playtests give the new numbers a baseline. Category: planning.
+- **When the specialist who will solve a problem is not hired yet, the plan points at problems and
+  stops.** Slide 03 originally prescribed a loop (90 s dig in, 5 to 7 min over the top, 60 s the line
+  moves). Robert: *"Here we sort of jump the gun. The UX pass is needed to decide this. We can list a
+  plan to frame what we think the project will be about but I think its better to allow for more free
+  reigns. We point at problems not how they should be solved."* Rebuilt as three problems (four systems
+  competing for one session, no bounded objective, a squad layer players buy but cannot read), with the
+  loop kept but demoted into an expandable labelled a sketch the evaluation pass can replace. Same
+  treatment on the priority list, reframed as a suggestion the incoming designer responds to as their
+  first task alongside playing the demo. **The work does not shrink; the claim does**, and the sizing
+  note now names the 55-versus-40-day gap as something the first pass settles rather than an assumption
+  we assert. Category: proposals (a plan for work someone else will own).
+- **A publisher will ask when content gets added, so answer it in the plan even though it is not
+  budgeted.** Position taken: after Early Access, decided at the month 8 playtest on retention data,
+  funded from EA revenue, with the first drop in months 11 to 12. Reasoning that holds up: EA exists to
+  fund the rest, so content before launch is spend with no revenue behind it and it moves the release
+  date; the playtest says what players want more of; and content does not fix a loop players leave.
+  State plainly that it sits outside the budget and would be a separate number sized after the review
+  month. Category: planning (scope beyond the term).

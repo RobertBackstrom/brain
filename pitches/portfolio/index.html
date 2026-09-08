@@ -1,0 +1,349 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurora Punks Portfolio</title>
+<meta name="description" content="Aurora Punks catalogue for cloud and telco streaming distribution. Rights status, cloud readiness and performance per title.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@600;700;800;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+:root{--ink:#0d0d0f;--paper:#f4f1ea;--card:#fffdf8;--mag:#e6186e;--muted:#5f5b56;
+--line:#ddd6c8;--ok:#1f7a4d;--warn:#b4681a;--bad:#8d2f2f;--dim:#8e887e}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);
+font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+@media(max-width:700px){.wrap{padding:0 18px}}
+.eyebrow{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.22em;
+text-transform:uppercase;color:var(--mag);font-weight:700}
+h1,h2,h3{font-family:Anton,Archivo,sans-serif;font-weight:400;letter-spacing:.01em;
+line-height:1.02;text-transform:uppercase;margin:0}
+.lede{font-size:19px;color:var(--muted);max-width:70ch}
+/* header */
+.top{border-bottom:3px solid var(--ink);padding:22px 0;background:var(--paper);
+position:sticky;top:0;z-index:50}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-family:Anton;font-size:22px;text-transform:uppercase;letter-spacing:.02em}
+.brand span{color:var(--mag)}
+.topmeta{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;
+text-transform:uppercase;color:var(--muted)}
+/* hero */
+.hero{padding:64px 0 40px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(40px,7vw,82px);margin:14px 0 20px}
+.heronums{display:flex;gap:40px;flex-wrap:wrap;margin-top:34px;
+padding-top:26px;border-top:1px solid var(--line)}
+.hn b{display:block;font-family:Anton;font-size:34px;line-height:1}
+.hn span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--muted)}
+/* controls */
+.controls{background:var(--paper);
+padding:22px 0 16px;border-bottom:1px solid var(--line)}
+.search{width:100%;padding:14px 16px;font-size:16px;font-family:Inter,sans-serif;
+border:2px solid var(--ink);background:var(--card);border-radius:0;outline:none}
+.search:focus{border-color:var(--mag)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;
+text-transform:uppercase;padding:7px 12px;border:1px solid var(--line);background:var(--card);
+cursor:pointer;user-select:none;transition:.12s}
+.chip:hover{border-color:var(--ink)}
+.chip[data-on="1"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chiplabel{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--dim);align-self:center;margin-right:4px}
+.count{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);margin-top:12px}
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+gap:26px;padding:34px 0 60px}
+.card{background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;
+text-decoration:none;transition:.15s;overflow:hidden}
+.card:hover{border-color:var(--ink);transform:translateY(-3px);
+box-shadow:0 12px 34px rgba(0,0,0,.10)}
+.card .art{position:relative;aspect-ratio:460/215;background:#e6e0d4;overflow:hidden}
+.card .art img,.card .art video{width:100%;height:100%;object-fit:cover}
+.card .art video{position:absolute;inset:0;opacity:0;transition:opacity .3s}
+.card:hover .art video{opacity:1}
+.card .body{padding:18px 20px 22px;flex:1;display:flex;flex-direction:column}
+.card h3{font-size:23px;margin-bottom:8px}
+.card .gen{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;
+text-transform:uppercase;color:var(--mag);margin-bottom:10px}
+.card .hook{font-size:14px;color:var(--muted);flex:1}
+.card .foot{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;padding-top:14px;
+border-top:1px solid var(--line);font-family:'Space Mono',monospace;font-size:11px;color:var(--muted)}
+.badge{display:inline-block;font-family:'Space Mono',monospace;font-size:10px;
+letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border:1px solid currentColor}
+.b-owned{color:var(--ok)} .b-publishing{color:var(--warn)}
+.b-brokered{color:#4a5ba8} .b-encumbered{color:var(--bad)}
+.fit-strong{color:var(--ok)} .fit-moderate{color:var(--warn)}
+.fit-caveat{color:var(--warn)} .fit-weak{color:var(--bad)}
+/* sections */
+section{padding:56px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:26px}
+@media(max-width:820px){.two{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);padding:24px 26px}
+.panel h3{font-size:17px;margin-bottom:12px}
+.panel ul{margin:0;padding-left:18px;color:var(--muted);font-size:15px}
+.panel li{margin-bottom:7px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:18px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;
+text-transform:uppercase;color:var(--dim)}
+.scroller{overflow-x:auto}
+footer{background:var(--ink);color:var(--paper);padding:52px 0;margin-top:20px}
+footer h2{color:var(--paper);font-size:30px;margin-bottom:16px}
+footer a{color:var(--mag)}
+.legal{font-family:'Space Mono',monospace;font-size:11px;color:#8e887e;
+margin-top:26px;padding-top:20px;border-top:1px solid #2a2a2e;line-height:1.8}
+.hide{display:none!important}
+</style></head><body>
+<div class="top"><div class="wrap">
+<div class="brand">Aurora <span>Punks</span></div>
+<div class="topmeta">Catalogue for streaming distribution &nbsp;/&nbsp; Confidential</div>
+</div></div>
+
+<div class="hero"><div class="wrap">
+<div class="eyebrow">Portfolio</div>
+<h1>Games available for<br>cloud and telco distribution</h1>
+<p class="lede">Everything in this catalogue is either owned by Aurora Punks, published by us, or something we can broker directly with the studio. Nothing here sits behind a third-party publisher. Each title is scored for cloud readiness against the technical criteria streaming platforms actually apply: controller support, offline play, localisation breadth and execution target.</p>
+<div class="heronums">
+<div class="hn"><b>11</b><span>Titles</span></div>
+<div class="hn"><b>9</b><span>Released</span></div>
+<div class="hn"><b>3,509</b><span>Steam reviews</span></div>
+<div class="hn"><b>8</b><span>Full controller</span></div>
+<div class="hn"><b>13</b><span>Languages, best title</span></div>
+</div></div></div>
+
+<div class="controls"><div class="wrap">
+<input class="search" id="q" type="search" placeholder="Search by title, genre, studio or keyword" autocomplete="off">
+<div class="chips" id="genrechips"><span class="chiplabel">Genre</span>
+<span class="chip" data-k="genre" data-v="Action RPG">Action RPG</span><span class="chip" data-k="genre" data-v="Action adventure">Action adventure</span><span class="chip" data-k="genre" data-v="Action roguelite">Action roguelite</span><span class="chip" data-k="genre" data-v="Card / deckbuilder">Card / deckbuilder</span><span class="chip" data-k="genre" data-v="Cozy management">Cozy management</span><span class="chip" data-k="genre" data-v="Party">Party</span><span class="chip" data-k="genre" data-v="RPG / strategy">RPG / strategy</span><span class="chip" data-k="genre" data-v="Shoot &#x27;em up">Shoot &#x27;em up</span><span class="chip" data-k="genre" data-v="Strategy">Strategy</span></div>
+<div class="chips" id="fitchips"><span class="chiplabel">Cloud fit</span>
+<span class="chip" data-k="fit" data-v="strong">Strong fit</span><span class="chip" data-k="fit" data-v="moderate">Moderate fit</span><span class="chip" data-k="fit" data-v="caveat">Fit with caveat</span><span class="chip" data-k="fit" data-v="weak">Not ready</span></div>
+<div class="chips" id="rightschips"><span class="chiplabel">Rights</span>
+<span class="chip" data-k="rights" data-v="owned">Owned</span><span class="chip" data-k="rights" data-v="publishing">Publishing rights</span><span class="chip" data-k="rights" data-v="brokered">Brokered</span><span class="chip" data-k="rights" data-v="encumbered">Not available</span></div>
+<div class="count" id="count"></div>
+</div></div>
+
+<div class="wrap"><div class="grid" id="grid"><a class="card" href="./1993-space-machine/" data-genre="Shoot &#x27;em up" data-rights="owned" data-fit="strong" data-hay="1993 space machine shoot &#x27;em up arcade retro local co-op a shoot &#x27;em up built for the amiga 500 in 1992, lost for 23 years, then finished and shipped. gradius and r-type lineage, arcade session length. exceed / aurora punks">
+<div class="art"><img src="./media/373480/header.jpg" alt="1993 Space Machine key art" loading="lazy"><video src="./media/373480/loop.webm" muted loop playsinline preload="none" onmouseenter="this.play()" onmouseleave="this.pause()"></video></div>
+<div class="body">
+<div class="gen">Shoot &#x27;em up</div>
+<h3>1993 Space Machine</h3>
+<p class="hook">A shoot &#x27;em up built for the Amiga 500 in 1992, lost for 23 years, then finished and shipped. Gradius and R-Type lineage, arcade session length.</p>
+<div class="foot">
+<span class="badge b-owned">Owned</span>
+<span class="fit-strong">Strong fit</span>
+<span>Mixed (70%, 386 reviews)</span>
+</div></div></a><a class="card" href="./chenso-club/" data-genre="Action roguelite" data-rights="owned" data-fit="strong" data-hay="chenso club action roguelite brawler local co-op pixel art a chainsaw-swinging arena roguelite for one to four players on the couch. pick a fighter, clear the screen, upgrade, repeat. pixadome">
+<div class="art"><img src="./media/1454730/header.jpg" alt="Chenso Club key art" loading="lazy"><video src="./media/1454730/loop.webm" muted loop playsinline preload="none" onmouseenter="this.play()" onmouseleave="this.pause()"></video></div>
+<div class="body">
+<div class="gen">Action roguelite</div>
+<h3>Chenso Club</h3>
+<p class="hook">A chainsaw-swinging arena roguelite for one to four players on the couch. Pick a fighter, clear the screen, upgrade, repeat.</p>
+<div class="foot">
+<span class="badge b-owned">Owned</span>
+<span class="fit-strong">Strong fit</span>
+<span>Mostly Positive (75%, 326 reviews)</span>
+</div></div></a><a class="card" href="./blockem/" data-genre="Party" data-rights="owned" data-fit="caveat" data-hay="block&#x27;em! party local multiplayer family puzzle-action a block-building party brawl for two to four players. simple controls, chaotic races. built for a sofa and four pads. cat shawl games">
+<div class="art"><img src="./media/1529220/header.jpg" alt="Block&#x27;Em! key art" loading="lazy"><video src="./media/1529220/loop.webm" muted loop playsinline preload="none" onmouseenter="this.play()" onmouseleave="this.pause()"></video></div>
+<div class="body">
+<div class="gen">Party</div>
+<h3>Block&#x27;Em!</h3>
+<p class="hook">A block-building party brawl for two to four players. Simple controls, chaotic races. Built for a sofa and four pads.</p>
+<div class="foot">
+<span class="badge b-owned">Owned</span>
+<span class="fit-caveat">Fit with caveat</span>
+<span>Very Positive (89%, 122 reviews)</span>
+</div></div></a><a class="card" href="./ooglians/" data-genre="Strategy" data-rights="owned" data-fit="moderate" data-hay="ooglians strategy tower defense local co-op early access defend your machinery with more machinery, which attracts more ooglians. a tower defence joke that keeps escalating. cat shawl games / simon bäckström">
+<div class="art"><img src="./media/2162070/header.jpg" alt="Ooglians key art" loading="lazy"><video src="./media/2162070/loop.webm" muted loop playsinline preload="none" onmouseenter="this.play()" onmouseleave="this.pause()"></video></div>
+<div class="body">
+<div class="gen">Strategy</div>
+<h3>Ooglians</h3>
+<p class="hook">Defend your machinery with more machinery, which attracts more Ooglians. A tower defence joke that keeps escalating.</p>
+<div class="foot">
+<span class="badge b-owned">Owned</span>
+<span class="fit-moderate">Moderate fit</span>
+<span>Mixed (64%, 256 reviews)</span>
+</div></div></a><a class="card" href="./iron-evil/" data-genre="Action roguelite" data-rights="owned" data-fit="weak" data-hay="iron evil action roguelite roguelite sci-fi unreleased a roguelite through a factory owned by an evil corporation. every part you leave behind gets bolted onto something that hunts you. iron evil studio">
+<div class="art"><img src="./media/1795100/header.jpg" alt="IRON EVIL key art" loading="lazy"></div>
+<div class="body">
+<div class="gen">Action roguelite</div>
+<h3>IRON EVIL</h3>
+<p class="hook">A roguelite through a factory owned by an evil corporation. Every part you leave behind gets bolted onto something that hunts you.</p>
+<div class="foot">
+<span class="badge b-owned">Owned</span>
+<span class="fit-weak">Not ready</span>
+<span>No reviews yet</span>
+</div></div></a><a class="card" href="./distant-bloom/" data-genre="Cozy management" data-rights="publishing" data-fit="strong" data-hay="distant bloom cozy management colony sim wholesome single-player restore a broken alien world by planting it back to life. a serene colony builder about repair rather than conquest. ember trail">
+<div class="art"><img src="./media/1450250/header.jpg" alt="Distant Bloom key art" loading="lazy"><video src="./media/1450250/loop.webm" muted loop playsinline preload="none" onmouseenter="this.play()" onmouseleave="this.pause()"></video></div>
+<div class="body">
+<div class="gen">Cozy management</div>
+<h3>Distant Bloom</h3>
+<p class="hook">Restore a broken alien world by planting it back to life. A serene colony builder about repair rather than conquest.</p>
+<div class="foot">
+<span class="badge b-publishing">Publishing rights</span>
+<span class="fit-strong">Strong fit</span>
+<span>Mostly Positive (76%, 272 reviews)</span>
+</div></div></a><a class="card" href="./go-fight-fantastic/" data-genre="Action adventure" data-rights="publishing" data-fit="strong" data-hay="go fight fantastic action adventure hack and slash co-op hand-drawn bird planet is under attack. a fast, hand-drawn hack and slash for one to three players, solo or in co-op. dinomite games">
+<div class="art"><img src="./media/1183530/header.jpg" alt="Go Fight Fantastic key art" loading="lazy"><video src="./media/1183530/loop.webm" muted loop playsinline preload="none" onmouseenter="this.play()" onmouseleave="this.pause()"></video></div>
+<div class="body">
+<div class="gen">Action adventure</div>
+<h3>Go Fight Fantastic</h3>
+<p class="hook">Bird Planet is under attack. A fast, hand-drawn hack and slash for one to three players, solo or in co-op.</p>
+<div class="foot">
+<span class="badge b-publishing">Publishing rights</span>
+<span class="fit-strong">Strong fit</span>
+<span>Mostly Positive (74%, 106 reviews)</span>
+</div></div></a><a class="card" href="./kreaturekind/" data-genre="Card / deckbuilder" data-rights="publishing" data-fit="strong" data-hay="kreaturekind card / deckbuilder deckbuilder wholesome single-player save magic by debating monsters into joining you. a warm deckbuilder about building a movement rather than an army. valiant game studio">
+<div class="art"><img src="./media/1428090/header.jpg" alt="KreatureKind key art" loading="lazy"><video src="./media/1428090/loop.webm" muted loop playsinline preload="none" onmouseenter="this.play()" onmouseleave="this.pause()"></video></div>
+<div class="body">
+<div class="gen">Card / deckbuilder</div>
+<h3>KreatureKind</h3>
+<p class="hook">Save magic by debating monsters into joining you. A warm deckbuilder about building a movement rather than an army.</p>
+<div class="foot">
+<span class="badge b-publishing">Publishing rights</span>
+<span class="fit-strong">Strong fit</span>
+<span>Positive (88%, 43 reviews)</span>
+</div></div></a><a class="card" href="./tears-of-adria/" data-genre="RPG / strategy" data-rights="brokered" data-fit="caveat" data-hay="tears of adria rpg / strategy autobattler party rpg dark fantasy a real-time strategy rpg with autobattles. one hero becomes a party, then a dragon problem, then a resurrection you probably should not attempt. ark island studio">
+<div class="art"><img src="./media/2561500/header.jpg" alt="Tears of Adria key art" loading="lazy"><video src="./media/2561500/loop.webm" muted loop playsinline preload="none" onmouseenter="this.play()" onmouseleave="this.pause()"></video></div>
+<div class="body">
+<div class="gen">RPG / strategy</div>
+<h3>Tears of Adria</h3>
+<p class="hook">A real-time strategy RPG with autobattles. One hero becomes a party, then a dragon problem, then a resurrection you probably should not attempt.</p>
+<div class="foot">
+<span class="badge b-brokered">Brokered</span>
+<span class="fit-caveat">Fit with caveat</span>
+<span>Very Positive (87%, 79 reviews)</span>
+</div></div></a><a class="card" href="./sir-whoopass/" data-genre="Action RPG" data-rights="brokered" data-fit="strong" data-hay="sir whoopass: immortal death action rpg comedy co-op third person a comedy action rpg that spends its entire runtime mocking serious action rpgs. nearly 2,000 reviews and very positive. atomic elbow">
+<div class="art"><img src="./media/1240590/header.jpg" alt="Sir Whoopass: Immortal Death key art" loading="lazy"><video src="./media/1240590/loop.webm" muted loop playsinline preload="none" onmouseenter="this.play()" onmouseleave="this.pause()"></video></div>
+<div class="body">
+<div class="gen">Action RPG</div>
+<h3>Sir Whoopass: Immortal Death</h3>
+<p class="hook">A comedy action RPG that spends its entire runtime mocking serious action RPGs. Nearly 2,000 reviews and Very Positive.</p>
+<div class="foot">
+<span class="badge b-brokered">Brokered</span>
+<span class="fit-strong">Strong fit</span>
+<span>Very Positive (82%, 1919 reviews)</span>
+</div></div></a><a class="card" href="./robot-lord-rising/" data-genre="Party" data-rights="encumbered" data-fit="weak" data-hay="robot lord rising party arena card-driven unreleased a four-player arena brawl driven by action cards and thirty-second panic. couch or online. windswept interactive">
+<div class="art"><img src="./media/1420120/header.jpg" alt="Robot Lord Rising key art" loading="lazy"><video src="./media/1420120/loop.webm" muted loop playsinline preload="none" onmouseenter="this.play()" onmouseleave="this.pause()"></video></div>
+<div class="body">
+<div class="gen">Party</div>
+<h3>Robot Lord Rising</h3>
+<p class="hook">A four-player arena brawl driven by action cards and thirty-second panic. Couch or online.</p>
+<div class="foot">
+<span class="badge b-encumbered">Not available</span>
+<span class="fit-weak">Not ready</span>
+<span>No reviews yet</span>
+</div></div></a></div></div>
+
+<div class="wrap">
+<section>
+<div class="eyebrow">At a glance</div>
+<h2>The catalogue in one table</h2>
+<div class="scroller"><table>
+<tr><th>Title</th><th>Genre</th><th>Controller</th><th>Languages</th><th>Builds</th><th>Cloud fit</th><th>Rights</th></tr>
+<tr><td><a href="./1993-space-machine/"><b>1993 Space Machine</b></a></td><td>Shoot &#x27;em up</td>
+<td>Full</td><td>2</td><td>Windows, macOS, Linux</td>
+<td><span class="fit-strong">Strong fit</span></td>
+<td><span class="badge b-owned">Owned</span></td></tr><tr><td><a href="./chenso-club/"><b>Chenso Club</b></a></td><td>Action roguelite</td>
+<td>Full</td><td>9</td><td>Windows</td>
+<td><span class="fit-strong">Strong fit</span></td>
+<td><span class="badge b-owned">Owned</span></td></tr><tr><td><a href="./blockem/"><b>Block&#x27;Em!</b></a></td><td>Party</td>
+<td>Full</td><td>13</td><td>Windows</td>
+<td><span class="fit-caveat">Fit with caveat</span></td>
+<td><span class="badge b-owned">Owned</span></td></tr><tr><td><a href="./ooglians/"><b>Ooglians</b></a></td><td>Strategy</td>
+<td>Full</td><td>1</td><td>Windows</td>
+<td><span class="fit-moderate">Moderate fit</span></td>
+<td><span class="badge b-owned">Owned</span></td></tr><tr><td><a href="./iron-evil/"><b>IRON EVIL</b></a></td><td>Action roguelite</td>
+<td>Partial</td><td>1</td><td>Windows</td>
+<td><span class="fit-weak">Not ready</span></td>
+<td><span class="badge b-owned">Owned</span></td></tr><tr><td><a href="./distant-bloom/"><b>Distant Bloom</b></a></td><td>Cozy management</td>
+<td>Full</td><td>3</td><td>Windows</td>
+<td><span class="fit-strong">Strong fit</span></td>
+<td><span class="badge b-publishing">Publishing rights</span></td></tr><tr><td><a href="./go-fight-fantastic/"><b>Go Fight Fantastic</b></a></td><td>Action adventure</td>
+<td>Full</td><td>2</td><td>Windows</td>
+<td><span class="fit-strong">Strong fit</span></td>
+<td><span class="badge b-publishing">Publishing rights</span></td></tr><tr><td><a href="./kreaturekind/"><b>KreatureKind</b></a></td><td>Card / deckbuilder</td>
+<td>Full</td><td>10</td><td>Windows</td>
+<td><span class="fit-strong">Strong fit</span></td>
+<td><span class="badge b-publishing">Publishing rights</span></td></tr><tr><td><a href="./tears-of-adria/"><b>Tears of Adria</b></a></td><td>RPG / strategy</td>
+<td>None listed</td><td>1</td><td>Windows, macOS</td>
+<td><span class="fit-caveat">Fit with caveat</span></td>
+<td><span class="badge b-brokered">Brokered</span></td></tr><tr><td><a href="./sir-whoopass/"><b>Sir Whoopass: Immortal Death</b></a></td><td>Action RPG</td>
+<td>Full</td><td>9</td><td>Windows</td>
+<td><span class="fit-strong">Strong fit</span></td>
+<td><span class="badge b-brokered">Brokered</span></td></tr><tr><td><a href="./robot-lord-rising/"><b>Robot Lord Rising</b></a></td><td>Party</td>
+<td>Partial</td><td>1</td><td>Windows</td>
+<td><span class="fit-weak">Not ready</span></td>
+<td><span class="badge b-encumbered">Not available</span></td></tr></table></div>
+</section>
+
+<section>
+<div class="eyebrow">How we scored this</div>
+<h2>What a streaming platform actually screens on</h2>
+<p class="lede">The cloud fit column is not a marketing rating. It is scored against the deliverable and technical requirements in the streaming licences Aurora Punks has already signed, so it reflects what an integration team will ask for rather than what a trailer promises.</p>
+<div class="two">
+<div class="panel"><h3>Technical</h3><ul>
+<li>Native Linux build is the preferred execution target. Windows is accepted, but Linux is cheaper to run at scale.</li>
+<li>Full controller support, since the end device is a TV, a set-top box or a handset with a pad. Partial support is a blocker.</li>
+<li>DRM free packaging, delivered as a self contained flat archive.</li>
+<li>Save data written to an identifiable file or path, so progression can be extracted and reinjected between sessions.</li>
+</ul></div>
+<div class="panel"><h3>Editorial and commercial</h3><ul>
+<li>Offline single-player. A multiplayer-only title cannot serve a solo subscriber.</li>
+<li>Localisation breadth, EFIGS first, then territory languages.</li>
+<li>Short session length, which suits living-room and set-top usage.</li>
+<li>Low visual bitrate cost. Slow or static frames cost less to stream, which improves the revenue split under time-spent accounting.</li>
+</ul></div>
+</div>
+</section>
+
+<section>
+<div class="eyebrow">Rights</div>
+<h2>Who signs what</h2>
+<div class="two">
+<div class="panel"><h3><span class="badge b-owned">Owned</span> and <span class="badge b-publishing">Publishing rights</span></h3><ul>
+<li><b>Owned.</b> Aurora Punks group controls the IP and the storefront. We can licence these directly, on our signature alone.</li>
+<li><b>Publishing rights.</b> Aurora Punks holds the publishing mandate and a revenue interest. A streaming licence is available, with the developer countersigning.</li>
+</ul></div>
+<div class="panel"><h3><span class="badge b-brokered">Brokered</span> and <span class="badge b-encumbered">Not available</span></h3><ul>
+<li><b>Brokered.</b> The studio owns the IP. Aurora Punks has the relationship and full storefront access, and can introduce and structure the deal, but the studio signs.</li>
+<li><b>Not available.</b> Listed for completeness. The rights position is unresolved, so we are not offering it.</li>
+</ul></div>
+</div>
+</section>
+</div>
+
+<footer><div class="wrap">
+<div class="eyebrow">Next step</div>
+<h2>Mutual NDA, then per-title detail</h2>
+<p class="lede" style="color:#c9c3b8">Unit sales, wishlist and revenue detail per title are available once a mutual NDA is in place. Aurora Punks AB, org. nr 559256-9718, Timmermansgatan 43, 118 55 Stockholm, Sweden. VAT SE559256971801.</p>
+<p style="margin-top:20px"><a href="mailto:robert@aurorapunks.com">robert@aurorapunks.com</a></p>
+<div class="legal">Confidential. Prepared for a named counterparty and not for redistribution.<br>
+Steam metadata retrieved 8 September 2026. Review counts are public storefront figures and move over time.<br>
+Rights and cloud-fit assessments are the Aurora Punks position as at 8 September 2026 and are indicative, not a warranty.</div>
+</div></footer>
+
+<script>
+var state={genre:new Set(),fit:new Set(),rights:new Set()};
+var q=document.getElementById('q'),grid=document.getElementById('grid'),cnt=document.getElementById('count');
+var cards=[].slice.call(grid.querySelectorAll('.card'));
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    var k=c.dataset.k,v=c.dataset.v,on=c.dataset.on==='1';
+    if(on){c.dataset.on='0';state[k].delete(v);} else {c.dataset.on='1';state[k].add(v);}
+    render();
+  });
+});
+q.addEventListener('input',render);
+function render(){
+  var term=q.value.trim().toLowerCase(),n=0;
+  cards.forEach(function(c){
+    var ok = (!term || c.dataset.hay.indexOf(term)>-1)
+      && (!state.genre.size || state.genre.has(c.dataset.genre))
+      && (!state.fit.size || state.fit.has(c.dataset.fit))
+      && (!state.rights.size || state.rights.has(c.dataset.rights));
+    c.classList.toggle('hide',!ok); if(ok) n++;
+  });
+  cnt.textContent = n + ' of ' + cards.length + ' titles shown';
+}
+render();
+</script>
+</body></html>

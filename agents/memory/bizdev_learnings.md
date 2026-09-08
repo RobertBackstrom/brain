@@ -577,3 +577,50 @@ or open the archive file below (each has its own Contents block, so you can offs
 - **Sell a co-delivery partner on the cash line, not the option.** The 15 percent revenue share has zero expected value in the low and base cases (it only pays above the recoup crossing). Frame it to Rift as paid work with a small first-position kicker. A pitch that uses the revshare as the return needs the high case as its base, which nothing in the comparables supports. [dsc, 2026-09-07, partner framing]
 - **LUG's demonstrated Western Steam range is 2 000 to 50 000 units per title** (Folklands 59 reviews, Mark of the Deep 354, Blackthorn Arena: Reforged 1 000). Use it as the ceiling for any LUG-published sales case unless a Western marketing partner is named and funded. [dsc, 2026-09-07, publisher calibration]
 - **Striden is AP's own multiplayer cautionary tale and the mail has the numbers.** Emil Darsbo 2024-06-10: 12 000 wishlists, 8 200 playtesters, self-capped 247 CCU. Outcome: 285 launch peak, 271 reviews, servers closed inside a year, "publishers were put off by low player numbers". Cite it when a Swedish multiplayer indie plan assumes the population will hold. [dsc/str, 2026-09-07]
+
+## 2026-09-08 - Fund a missing discipline out of an existing seat, and keep every number off the first mail (Disposable Corps / Rift)
+- **When the counterparty has already accepted a headline number, add a missing role by re-cutting an
+  existing seat, not by adding a line.** Disposable Corps had no artist, so icon and HUD asset
+  production had no home in a budget LUG's financiers were already holding at 155 000/mo and
+  1 860 000 total. Solution: the design seat runs 60 % through month 5, drops to **30 % from month 6**
+  once the role is mostly product ownership, freeing 2,1 seat-months, and **two go to a UI artist at
+  half time across months 6 to 9**. Monthly cost to the project unchanged. The move works because a
+  seat's *allocation* changes shape across a project's phases anyway, so the re-cut is a real
+  production fact, not an accounting trick. **Write the rate caveat in at the same time** ("an
+  artist's rate is not a designer's; if it comes out short it is fewer artist weeks, not a bigger
+  number"), or it returns as a mid-term budget increase request. Category: deal structuring.
+- **The first outreach mail on a deal carries no numbers.** Robert cut 59 % of my Rift mail before
+  sending, and everything commercial went: the cost table, per-side recoup, the wishlist sensitivity,
+  and the disclosure that first position in the waterfall is not secured. Kept: the ask, the links,
+  numbered next steps, a flat description of the game and its status, and the publisher's problem
+  list. The page carries the commercial and can be revised; a mail cannot, and terms put in front of
+  someone before they have looked at the thing create a version that drifts. **Sequence beats
+  completeness** even for a disclosure that is true, material and correctly flagged. See
+  [[feedback_first_mail_is_a_cover_note]]. Category: outreach.
+- **Name the publisher once an NDA exists, and say the money is funded rather than being raised.** My
+  "hos utgivarens finansiärer" became his "funded av förläggaren (Light Up Games)". Two corrections in
+  one phrase: anonymising a counterparty the recipient is already cleared for reads as evasive, and
+  "at the financiers" tells a partner the money is not there yet. Category: outreach (register).
+- Rift entity and rate facts promoted to [[reference_rift_gaming]].
+- **Härled kravspecen ur våra egna påskrivna avtal i stället för att googla den.** Robert bad om
+  research på vad plattformsägare och distributörer vill se på ett sales sheet. Webbsökningar gav
+  brädspelspitchar och SEO-slagg. **Blacknut-licensavtalets Annex 2 i Drive var svaret**: exakt
+  leveransspec (3 skärmdumpar i 1920x1080 liggande, logga, cover, brief på 160 tecken, long på 2000,
+  EFIGS) och teknisk spec (Linux-bygge föredras, Windows Server 2012, DRM-fritt, självutpackande
+  flatarkiv, extraherbar save-data). Att poängsätta portfolion mot en spec vi faktiskt skrivit under
+  ger en kolumn motparten känner igen, i stället för en marknadsföringsrating. Kolla alltid om vi
+  redan har ett avtal i samma vertikal innan du söker utåt. Category: research.
+- **Cloud/telco-streaming betalar per speltid, inte per sålt ex, och drar tekniska kostnader först.**
+  Blacknut: **70 % av nettointäkten multiplicerat med titelns andel av spelarens totala speltid**,
+  worldwide och icke-exklusivt, där CPU, bandbredd och lagring dras av **före** delningen. Följden är
+  kontraintuitiv: ett billigt renderat spel med långa sessioner (kortspel, cozy management) tjänar
+  strukturellt mer än ett dyrt renderat med korta. Led med den ekonomin, inte bara med den största
+  titeln. 70 % av netto är dessutom vårt prisankare mot varje ny aggregator. Category: deal structuring.
+- **En aggregator som säger "vi behöver bara en Steam-nyckel" underskattar integrationen.** Tuut
+  beskrev det så; varje streamingavtal AP faktiskt skrivit under kräver betydligt mer. Fråga tidigt
+  **vilka operatörerna är** - om vi redan har en direktrelation (KT Game Box, Blacknut) behövs inte
+  mellanhandens marginal. Category: deal structuring.
+- **Butikssidan är inte en rättighetskälla, och inte heller en kravkälla.** Steams publisher-sträng
+  visar fel för Chenso Club och Block'Em! (reverterade till AP), och signerande bolag för de 18
+  appid:erna är **CZP Holding AB, partner 418393**, inte AP AB. Kontrollera alltid mot
+  `aurora_punks/ap_ip_ownership_canonical.md`. Category: rights.
