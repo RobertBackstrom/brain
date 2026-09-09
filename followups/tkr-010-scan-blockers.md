@@ -2,7 +2,7 @@
 project: tkr
 status: open
 priority: high
-updated: 2026-09-08
+updated: 2026-09-09
 created: 2026-08-07
 type: blocker
 owner: Robert
@@ -55,7 +55,7 @@ Error: 401 OAuth access token has expired.` The 08-12 and 08-13 runs both spawne
 like a one-off refresh gap. Worth watching in the `deathboard` journal; if it recurs the lane loses
 days invisibly.
 
-**Blocker D - `assistant/fx.js` has been overwritten by a Fortnox browser navigator, and it blocks EVERY order (found 2026-09-07, unchanged 2026-09-08).**
+**Blocker D - `assistant/fx.js` has been overwritten by a Fortnox browser navigator, and it blocks EVERY order (found 2026-09-07, unchanged 2026-09-09, re-verified day 3).**
 `saxo.js:53` does `require('./fx')` and calls `fx.getRateToSek(ccy)`. The file now at that path
 (mtime 2026-08-27 17:00) is a **Playwright Fortnox navigator** from the CorpBot `fx-*` family
 (`fx-levfaktura.js`, `fx-lonekorning.js`, ...). It exports nothing and runs an IIFE on require.
@@ -194,3 +194,13 @@ are both unconfirmed.
   logged to `agents/memory/ticker_learnings.md` 31 times with no follow-up card in existence.
 
 _Not financial advice._
+
+---
+
+**2026-09-09 re-verification (scan 7 of the zero-card run).** Both open blockers unchanged:
+- **Blocker A (Saxo SIM token):** `.saxo_tokens_sim.json` still 0 bytes, mtime still Jul 5 01:06 - **day 67**. `positions` and `balance` both fail "No valid access token and no refresh token", so the open-position count is still a worst-case bound from `trades_log.csv` rather than a verified number.
+- **Blocker D (`fx.js` shadowed):** `head assistant/fx.js` still shows the Playwright Fortnox navigator (`FX_COMPANY || 'Creation Zero Point'`, `.fortnox-profile`); `saxo.js:53` still `require('./fx')`. The order path remains 100% fail-closed, SEK included. Not run today - with zero cards to size there was no reason to open a credentialed Fortnox session for a market-data call.
+
+Neither blocker was load-bearing today: the scan produced **zero cards on setup grounds**, with at least 3 of 4 slots free. They become load-bearing the moment a name clears the 2.5R gate.
+
+**New this run - a third, lower-severity data defect (does NOT need Robert, logged for DevOps):** Yahoo is returning `null` OHLC for the two most recent **Stockholm** sessions while `meta.regularMarketPrice` stays current. `ticker-data.js` drops the null bars, so `.ST` `vol`/`history` silently compute on a window ending 09-04, and `quote.previousClose` resolves to the last non-null bar - which makes the digest's "Day %" a multi-session change for Stockholm names. US names are unaffected. Bias is optimistic (understated vol -> understated stop floor -> overstated R), so it is safe for rejections but not for any `.ST` name that passes the gate. Full detail in `agents/memory/ticker_learnings.md` [ticker, 2026-09-09, tooling].

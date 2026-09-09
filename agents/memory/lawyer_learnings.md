@@ -11,6 +11,35 @@
 
 <!-- Append new learnings with: learning, source project, date, category, tags -->
 
+## 2026-09-09 — Läs scoringFUNKTIONEN, inte scoringformeln i skill-dokumentet: `priority: critical` golvar urgency på 3, och `routed_*` i frontmattern spelar upp stale routing vid varje spawn
+**Projekt:** k2c (Simon Jakobsson CZP-anställning, k2c-051) · **Kategori:** process + tooling · **Taggar:** scoreTicket, priorityScore, routed_agent, routed_model, ticket-hygien, 4am-sweep, modellrouting
+
+1. **Gårdagens fix träffade fel lever, och felet var att jag härledde drivaren ur formeldokumentet
+   i stället för koden.** `autonomous_decision_framework.md` beskriver urgency som ren
+   due-datumsfunktion, men `scoreTicket()` (server.js:3134) gör därefter
+   `if (prio === 'critical') urgency = Math.max(urgency, 3)`. Due-flytten 8/9 kunde alltså aldrig
+   sänka scoren; ticketen fick sin fjärde Fable-natt på score 20. **Regel: när ett systembeteende
+   ska ändras via data (frontmatter, config), läs den konsumerande funktionen först och verifiera
+   vilken input som faktiskt dominerar uttrycket. Skill-dokument är sammanfattningar och tappar
+   max/golv-regler.** Fixen: priority critical → high (critical-grunden, LAS-exponeringen, släcktes
+   4/9 — en prioritet vars faktagrund försvunnit är hygien att sänka, med logg så Robert kan
+   återställa).
+2. **`routed_agent`/`routed_model`/`routed_reason` persisteras i frontmattern uttryckligen för att
+   re-spawns ska slippa klassificeraren (`writeRoutedMeta`, server.js:1991) — vilket betyder att
+   routing som var rätt när ticketen skapades spelas upp oförändrad långt efter att scopet
+   migrerat.** Här: routed_reason citerade §8.7-frågan (stängd 27/8) och skickade lawyer/fable på
+   ren lönebevakning i fyra nätter. **Regel: när en tickets kvarvarande scope byter domän (juridik
+   klar → lön kvar), uppdatera routed_agent + routed_model + routed_reason som en del av samma
+   hygienpass — annars betalar nästa natt Fable-pris för fel agents noop.** Rerouterat
+   admin/sonnet (medium-mekaniskt per modellstegen).
+3. **"Utkastet ligger kvar och väntar på Roberts sänd" ska verifieras mot tråden, inte mot Drafts
+   ensamt.** Utkastet var borta ur Drafts — men inte för att det skickats: Robert hade skrivit ett
+   EGET, kortare svar på tråden 8/9 och (själv eller därigenom) skrotat mitt utkast. Hade jag bara
+   kollat Drafts-listan hade slutsatsen blivit "skickat" eller "försvunnet". **Regel: läs tråden
+   för att fastställa vad som faktiskt gick ut och i vems ord, innan bevakningströsklar räknas om
+   eller utkast återskapas** (samma familj som 2026-09-07 p.5). Följd här: väntan flyttade från
+   Robert till Simon, och puff-tröskeln flyttade från 11/9 (puffa Robert) till 15/9 (puffa Simon).
+
 ## 2026-09-08 — En noop-sweep som upprepar sig är ett routingfel, och agenten kan åtgärda score-drivaren själv
 **Projekt:** k2c (Simon Jakobsson CZP-anställning, k2c-051) · **Kategori:** process · **Taggar:** 4am-sweep, priorityScore, due-datum, ticket-hygien, noop
 
