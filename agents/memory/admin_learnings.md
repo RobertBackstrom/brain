@@ -12,7 +12,59 @@
 <!-- Append new learnings with: learning, source project, date, category -->
 
 
+## 2026-09-10 — Månadsrutinen för lön + AGI är nedskriven: läs `rutin_manadslon_och_agi.md` FÖRE varje lönekörning
+**Projekt:** czp · **Kategori:** process · **Taggar:** lön, AGI, runbook, Fortnox, tusenkronorsgränsen, eget_uttag
 
+**Robert 2026-09-10:** "Jag utgår ifrån att allt vi gör nu sparas i learnings/RAG etc så vi kan
+använda samma förfarande för september och framåt." Rutinen ligger i
+`czp-finances/rutin_manadslon_och_agi.md`, sex steg plus kalender. **Läs den filen först, återupptäck
+inte det här varje månad.**
+
+De fyra sakerna som annars fälls om och om igen:
+
+1. **Markera lönebeskeden som UTBETALDA innan deklarationen skapas.** Görs det inte blir AGI:n
+   **Preliminär** och går inte att lämna in. Bokför INTE lönebetalningarna som manuellt
+   2910/1930-verifikat: det nollar skulden men lämnar beskeden omarkerade, deklarationen förblir
+   preliminär, och man får dubbelbokning när beskeden senare markeras.
+2. **Tusenkronorsgränsen summeras per ÅR, inte per månad.** Under 1 000 kr: inga avgifter, inget
+   skatteavdrag, ingen individuppgift. När årets belopp når 1 000 kr blir avgifter skyldiga på
+   **hela årets belopp** och tidigare AGI ska rättas bakåt.
+3. **Fortnox statusdropdown är en manuell etikett.** Alla CZP-perioder stod på "Inlämnad, klar för
+   signering" trots att Robert bekräftat att de är signerade hos Skatteverket t.o.m. juli.
+   **Dra inga slutsatser om verklig inlämningsstatus ur den kolumnen, åt något håll.**
+4. **SIE-metoden för att räkna fram AGI-underlag är verifierad** mot Fortnox för alla sju perioder
+   jan–jul 2026, exakt. Använd den för att veta vad Fortnox *ska* visa innan du tittar. Blind fläck:
+   ett **nollbesked ger inget bokföringsavtryck** och syns därför inte i SIE.
+
+**Klassificering, nya besked från Robert 2026-09-10:** `LÅN KM` är **eget uttag** (KM är mottagare
+för avbetalningar på ett privatlån). **Samtliga egna uttag under 2026 ska stämmas av mot en
+vinstutdelning**, som en egen övning senare; håll dem spårbart samlade under året.
+
+## 2026-09-10 — En skattetabellsgissning för en stadsdel går att verifiera billigt: kolla vilken kommun stadsdelen tillhör och sök en redan verifierad person i samma kommun [k2c / k2c-051]
+
+**Project:** K2C Pharaoh Lands, Simon Jakobsson lön september | **Category:** swedish_tax, process
+
+Lawyer skrev 2026-09-04 "sannolikt tabell 30" för Simons adress i Bromma, en ohedgad gissning som
+sedan låg orörd i ticketen i sex dagar. Bromma är en stadsdel **inom Stockholms kommun**, precis som
+Bandhagen där Elias Strandberg bor — och Elias tabell (31, kolumn 1) verifierades redan 2026-08-20
+mot skattetabeller.se + SCB (`czp-finances/drafts/loner_augusti_2026.md`). Kommunal- och regionskatt
+sätts per **kommun**, inte per stadsdel, så samma beräkning (18,22 % kommun + 12,33 % region +
+0,07 % begravningsavgift = 30,62 %) gäller Simon. Rätt tabell är **31**, inte 30.
+
+**Regel:** innan en skattetabell gissas eller lämnas som "sannolikt", slå upp vilken **kommun**
+adressen tillhör (inte bara vilken stadsdel/ort) och sök efter en redan verifierad person i samma
+kommun i projektminnet. Två stadsdelar i samma stad har nästan alltid samma tabell (undantag:
+kyrkoavgift, huvudarbetsgivarstatus — flagga alltid de två som förbehåll, inte som en färdig siffra).
+Att inte göra det korrekt kostade här sex dagars ohedgad felinformation som hade kunnat ge fel
+skatteavdrag på en verklig lönekörning.
+
+**Sidolärdom:** en ticket-blockerare kan vara löst mellan två nattsweeps utan att föregående sweep
+vetat om det. Verifiera alltid Gmail-tråden live (`gmail_thread`, inte bara `gmail_search`-snippet)
+innan man upprepar "väntar fortfarande på svar" från gårdagens logg — Simon svarade 2026-09-09 12:00,
+efter förra nattens 02:45-sweep men före denna. Samma mönster som
+[[feedback_verify_draft_sent]], fast på inkommande svar i stället för utgående utkast.
+
+**Tags:** k2c-051, skattetabell, kommun-vs-stadsdel, Bromma, Bandhagen, Stockholms-kommun, Simon-Jakobsson, gmail-thread-verifiering, czp
 
 
 ## 2026-09-08 — Fortnox UI går INTE att klicka sig fram i headless: djuplänka, eller låt bli
