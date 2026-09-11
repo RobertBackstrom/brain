@@ -462,3 +462,52 @@ rubriken ("Twelve months, nine milestones"), utfällningens rubrik ("Milestone b
 sommarstycket, stealth-beroendet, förskottsnoten i betalplanen, godkännandekravet mot Starbreeze,
 Full ownership-kortet och tre rader i riskavsnittet. Noll "gate" kvar i löptext; CSS-klasserna
 (`.gatecard`, `.gn`, `.gm`, `.gs`) heter fortfarande gate, vilket inte syns för läsaren.
+
+## 2026-09-11 — v3 byggd: Starbreeze som avsändare mot Krafton
+
+Möte med Starbreeze 10 sep (Tobias Remmers, **Jonas Skantze**, Head of People). Bara Krafton kvar att
+godkänna, målet är start i oktober. Starbreeze bad om en bemanningsplan de kan dela med Krafton.
+
+**Ny pitch:** `pitch.aurorapunks.com/project-irons-2-v3/` · user `starbreeze` · pass `N4mtjb4clLsA`.
+Gatad (401 utan creds, verifierad). v2 och v1 ligger kvar orörda.
+
+**Omtaget.** v3 är inte vår offert längre utan **Starbreeze produktionsförslag till sin finansiär**.
+Robert: ta bort allt som refererar till Aurora Punks och Rift, vi ska framstå som en del av
+Starbreeze. Noll träffar på "Aurora" och "Rift" i dokumentet, verifierat mot skarp URL.
+- **Hela bevisavsnittet borttaget** (PUBG x PAYDAY, Neon Giant, Minecraft Dungeons II, Ready or Not,
+  det avidentifierade RF-blocket) plus **loggväggen med fjorton studior**. Studiomeriter var till för
+  att övertyga Starbreeze om vår förmåga, och den frågan är avgjord.
+- **Individers meriter är kvar**, det var Roberts uttryckliga undantag. Roberts egen rad tappade
+  "Aurora Punks" och lyder nu Bright Gambit, Raw Fury, Fatshark.
+- Slide 02 ombyggd från säljargument till **How it is staffed**, fem kort utan leverantörsröst.
+  "Scale with project demands" struket, det är en leverantör som säljer flexibilitet.
+- **"What we need from you" blev "How the two sides split"**: Starbreeze provides (projektledning,
+  kreativ riktning, teamet, VO och musik, källkod, franchisegodkännande) mot What we need from
+  Krafton (teknisk kontakt, beslutsägare, godkännanden inom fem dagar inklusive innehåll och
+  marknad, testcommunity, lokalisering, tolk).
+- Sidfot och sekretessnotis skrivna till Starbreeze-Krafton. Avslutningen och nästa steg omskrivna
+  mot oktoberstart.
+
+**Formspråk.** PD3/Heist Royale: nära svart (#08080a) med varmt guld (#f0a63c) hämtat ur PAYDAY 3:s
+egen key art, Barlow Condensed som display. **Starbreeze officiella vektorlogga i vitt** extraherad
+ur deras egen sajt (inline SVG i headern på starbreeze.com, 131x50, alla fills vita) och inbakad i
+sidan som avsändarlogga. Deras riktiga brand guidelines saknas fortfarande, Robert kompletterar från
+Tobias.
+
+**Nya kanoniska tal, ur `Irons 2 Staffing plan_to_SBZ` (`1wjPVdOJVsc...`).** Kopian bytte Lead Level
+Designer (120k) mot **Senior Level Designer Andreas Wangler (80k)**, vilket sänker Rift från
+10 885 000 till 10 405 000. **258,6 FTE-månader, internt 22 577 000, klientpris 29 350 100**, blandat
+**113 495**. Min omräkning rad för rad landar exakt på arkets summarader. Betalplanen omgrupperad mot
+milstolparna och summerar exakt till totalen: signatur 2 935 010, Prototype 3 946 800, First Playable
+2 689 700, Pre-Alpha 2 804 100, Alpha 1 5 608 200, Alpha 2 5 478 200, Beta 2 516 800, Cert Candidate
+4 435 600, Gold 1 870 700. Bemanningskurvan oförändrad, toppen 24,8.
+
+**Arket rättat:** SBZ-kopian hade kvar den gamla milstolpsordningen (Pre-Alpha M5, Alpha 1 M7,
+Alpha 2 M9, Beta M10). Nu Prototype M2, First Playable M3, Pre-Alpha M4, Alpha 1 M6, Alpha 2 M8,
+Beta M9, Cert Candidate M11, Gold M12, alltså samma plan som sidan. Arbetsarket har fortfarande den
+gamla ordningen och bör rättas innan någon bygger något nytt från det.
+
+**Öppet:** (a) priset i v3 är vårt leveranspris, lägger Starbreeze på egna personer eller marginal
+mot Krafton blir talet ett annat och det är deras kalkyl. (b) Tobias och en game designer är inte
+inlagda som rader, enligt Roberts besked skickar vi vår lista och Starbreeze säger vem de vill
+ersätta. (c) Brand guidelines och typsnitt saknas.

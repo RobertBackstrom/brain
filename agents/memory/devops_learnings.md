@@ -7,6 +7,40 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-11 - robocopy /L mot NUL hanger for evigt, och en 7,5 TB Windows-disk mats per katalog med kallan som mal [db-344]
+
+**Learned:** 2026-09-11 | **Project:** Death Board (db-344, VCSBOY Rocky-migration) | **Category:** windows, robocopy, disk-inventering, felsokning
+
+**`robocopy <kalla> NUL /L` ar en fotangel: NUL tolkas som `\\.\NUL\`, en natverkssokvag som inte finns,
+och robocopys standard ar en MILJON omforsok med 30 s paus.** Varje "hang" jag jagade i ett dygn var
+den loopen, inte disken och inte en trasig fil. Jag hann felaktigt dra slutsatsen "olasbar fil pa D:"
+innan jag last robocopys egen logg, som sa `ERROR 53 The network path was not found ... Retrying`.
+Lardom pa tva niver: (1) for att mata en katalogs storlek utan att kopiera, anvand **kallan aven som
+mal** -- `robocopy $d $d /L /S /BYTES /NC /NFL /NDL /R:0 /W:0` -- inte `NUL`. `/R:0 /W:0` sa en
+verklig I/O-strul inte heller loopar. (2) Las alltid verktygets logg innan du skyller pa hardvaran;
+en "hang" som forsvinner nar processen far en signal satt i en retry-sleep, inte i kernel-I/O.
+
+**Get-ChildItem -Recurse timeoutar mot miljontals filer; robocopy /L listar dem pa nagon minut.**
+Men en enda ssh-anrop racker inte for en depa pa flera TB, sa mat den i en **fristaende
+`Start-Process powershell -WindowStyle Hidden -File script.ps1`** som skriver rad for rad till en
+txt, och polla filen. Tva krav: skriv en `START`-rad med tidsstampel forst sa du ser att den lever,
+och lagg den langsammaste katalogen (P4ROOT) SIST sa de sma rapporteras direkt. En detached process
+overlever ssh-sessionen, men den overlever INTE att du sjalv `taskkill`:ar robocopy i en annan session
+-- flera overlappande matningar som appendar till samma fil racar och ger skrap. Kor en i taget.
+
+**Nar en detached matning inte vill bli klar: harled genom subtraktion.** `Get-PSDrive D` ger exakt
+anvant, och alla toppkataloger utom den storsta mats snabbt. Den sista faller ut som
+`anvant - summan av de ovriga`. P4ROOT hamnade pa ~2,7 TB den vagen utan att den tunga scannen
+nagonsin blev klar.
+
+**Konkret fynd vart att minnas om VCSBOY:** 3,6 av 7,5 TB var korrupta DB-kopior och gamla backuper
+(`P4ROOT_CORRUPT_BACKUP`, `_BACKUP_2`, `_PoossibleCorrupTDB`, `DB HAVE BACKUP`). Nar en byggmaskin ar
+nastan full, misstank stadskuld fore hardvara. Och `D:\Gitea` var 796 GB, inte 56 -- de 56 var bara
+`gitea-repositories`, hela tradet inkluderar LFS-binarerna. Mat rot-katalogen, inte underkatalogen du
+rakar minnas.
+
+**Tags:** robocopy, NUL, windows, disk-inventering, get-psdrive, subtraktion, vcsboy, perforce, gitea-lfs
+
 ## 2026-09-08 - Gitea bakom tailnet: DNS-only är poängen, och admin-flaggan har ingen CLI [db-331]
 
 **Learned:** 2026-09-08 | **Project:** Death Board (db-331) | **Category:** dns, cloudflare, tailscale, gitea, windows
