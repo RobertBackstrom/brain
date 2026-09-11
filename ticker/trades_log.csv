@@ -31,3 +31,4 @@ timestamp,action,symbol,side,quantity,limit_price,order_id,env
 2026-08-14T18:03:56.846Z,expired,EVO.ST,Buy,6079,730,tkr-014-evo-st-buy-entry,sim
 2026-08-18T18:14:36.254Z,expired,EVO.ST,Buy,6013,738,tkr-015-evo-st-buy-entry,sim
 2026-08-20T18:07:56.181Z,expired,EMBRAC-B.ST,Buy,59973,74,tkr-016-embrac-b-st-buy-entry,sim
+2026-09-11T18:01:53.611Z,expired,U,Buy,11000,41.85,tkr-013-u-buy-entry,sim

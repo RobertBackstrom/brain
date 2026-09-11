@@ -12,6 +12,34 @@
 <!-- Append new learnings with: learning, source project, date, category -->
 
 
+## 2026-09-11 — Fortnox Lön: tenant-id är sessionsbundet, och PRELIMINÄR sitter i rubriken (CZP)
+
+**Tenant-id:t i Fortnox-URL:en byts varje inloggning.** Fyra körningar i rad gav fyra olika id:n för
+Creation Zero Point Holding AB. En sparad djuplänk med id kastar tillbaka till företagsväljaren
+**utan felmeddelande**, vilket ser ut som att sessionen dött. Den lever. Rätt mönster: gå till
+`https://apps.fortnox.se/login-fortnox-id/tenant-select`, klicka bolagsnamnet, vänta, läs `<base>`
+ur URL:en minus `/common/lobby`. Skriv aldrig ned ett id som om det var stabilt, och tolka aldrig en
+företagsväljare som utloggning.
+
+**Innehållet ligger i en iframe.** `page.innerText` ger menyraden och ingenting annat. Loopa
+`page.frames()` och välj ramen på textinnehåll.
+
+**Interaktion är fortfarande omöjlig, läsning är trivial.** Sjunde misslyckade klickförsöket. SPA:n
+håller alla moduler i DOM:en samtidigt, så "Visa lista" finns i dussintals osynliga kopior och varje
+selektor timeoutar på "element is not visible". Slutsats att sluta testa om: **djuplänka och läs,
+lämna varje klick till Robert.** Det är inte en selektorfråga.
+
+**Två statusbegrepp i AGI, och det fällde min bedömning.** Listkolumnen STATUS sa "Ej inlämnad" och
+jag rapporterade att blockeraren var borta. Rubriken inne i deklarationen sa **PRELIMINÄR**, alltså
+att den inte går att lämna in. Kolumnen är inlämningsstatus, rubriken är tillstånd. **Läs rubriken.**
+Jag rättade mig inom samma körning eftersom jag öppnade perioden i stället för att nöja mig med
+listan, och det är den vanan som ska behållas: öppna posten, lita inte på översiktsraden.
+
+**Individuppgifter avslöjar osynliga lönebesked.** S.08 visade 5 IU där SIE bara kände fyra
+lönebesked. Ett nollbesked ger inget bokföringsavtryck och är därför osynligt för SIE-metoden. **IU-
+antalet är den enda kontrollen som ser nollbesked.** Stäm alltid av det mot antalet anställda minus
+dem under tusenkronorsgränsen.
+
 ## 2026-09-10 — Månadsrutinen för lön + AGI är nedskriven: läs `rutin_manadslon_och_agi.md` FÖRE varje lönekörning
 **Projekt:** czp · **Kategori:** process · **Taggar:** lön, AGI, runbook, Fortnox, tusenkronorsgränsen, eget_uttag
 
