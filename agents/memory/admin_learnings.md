@@ -12,6 +12,32 @@
 <!-- Append new learnings with: learning, source project, date, category -->
 
 
+## 2026-09-12 — Under 1 000 kr ska MED i AGI, i ruta 131 (CZP, rättelse)
+
+**Jag sa åt Robert att ta bort Elias individuppgift. Det var fel.** Rättat inom ett dygn, innan
+inlämning, men instruktionen hann bli en åtgärdspunkt.
+
+**Fältnumret avgjorde saken, och jag hade inte läst det.** Fortnox lade Elias 440 kr i **ruta 131,
+kontant ersättning som inte är underlag för socialavgifter**, som är den ruta Skatteverket anvisar
+för bland annat löner under 1 000 kr. Ruta **011** är den som ÄR avgiftsunderlag. En anställd under
+tusenkronorsgränsen **ska ha individuppgift**, med beloppet i 131. Räkna med hen i IU-antalet.
+
+**Regeln jag blandade ihop den med:** under 1 000 kr redovisas på kontrolluppgift i stället för i AGI
+**när utbetalaren inte är arbetsgivare åt personen**. Går personen i lönekörningen gäller det inte.
+
+**Ruta 010, avräkning från avgiftsfri ersättning**, är svepningen när gränsen passeras: det tidigare
+avgiftsfria beloppet redovisas om i 010 i den brytande månaden och avgifter utgår från första kronan.
+**Gamla AGI-perioder omprövas inte.** Jag hade skrivit motsatsen i två filer.
+
+**Lärdomen som är generaliserbar: läs fältnumret innan du uttalar dig om en skatteblankett.** Jag
+resonerade om vad som "borde" gälla i tre svar i rad medan svaret stod i rutnumret på Roberts skärm.
+Rutnummer är primärkälla, resonemang om regeln är det inte. Samma sak gäller SIE-konton och
+momsrutor. **Fråga efter skärmbilden tidigare.**
+
+**Och: när Robert ifrågasätter något jag nyss sagt, kontrollera i stället för att upprepa.** Frågan
+"vad ÄR Elias individuppgift" var inte en begäran om en definition, den var en signal att jag hade
+gått för fort. Skärmbilden kom för att jag inte kollat själv.
+
 ## 2026-09-11 — Fortnox Lön: tenant-id är sessionsbundet, och PRELIMINÄR sitter i rubriken (CZP)
 
 **Tenant-id:t i Fortnox-URL:en byts varje inloggning.** Fyra körningar i rad gav fyra olika id:n för

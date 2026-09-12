@@ -7,6 +7,37 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-12 - Radera TB av Perforce-depakopior pa Windows: metod och detach spelar roll [db-344]
+
+**Learned:** 2026-09-12 | **Project:** Death Board (db-344, VCSBOY-stadning) | **Category:** windows, radering, perforce, detach, langa-sokvagar
+
+**PowerShell `Remove-Item -Recurse` ar oanvandbar for TB av sma filer.** Pa en korrupt P4ROOT-kopia
+(depaernas versionsarkiv = miljontals sma `,d`-filer i djupa trad) frigjorde den **7 GB pa 40
+minuter**. Byt till `rd /s /q` i cmd, som saknar PowerShells per-objekt-pipelineoverhead och tog
+resten pa minuter. For att mata storlek utan att radera: `robocopy <d> <d> /L /S /BYTES` (kallan aven
+som mal, ALDRIG `NUL` -- det tolkas som `\\.\NUL\` och trigger en miljon-omforsoksloop som ser ut
+som en hang).
+
+**Bara en SYSTEM-schemalagd uppgift overlever verkligen att ssh-sessionen atervander.** Bade
+`Start-Process -WindowStyle Hidden` och en detached `.bat` dog mitt i den 2,6 TB stora raderingen nar
+det anropande ssh-kommandot returnerade. `schtasks /create /ru SYSTEM /sc once` + `schtasks /run`
+kor under Task Scheduler-tjansten, helt fristaende fran login-sessionen, och gick i mal (37 min, exit
+0). Monster for langa Windows-jobb over ssh: schemalagd uppgift som loggar till en txt, polla txt:en.
+
+**`rd /s /q` lamnar kvar det som ligger over 260-teckengransen.** Efter att 2,6 TB var borta och rd
+gett exit 0 fanns 1 357 tomma kataloger och 450 sma filer kvar (7,5 MB), i Perforce-sokvagar langre
+an MAX_PATH. `Remove-Item` klarade dem inte heller. Losningen: `robocopy C:\Temp\empty <target>
+/MIR` speglar en tom mapp over malet och tar aven langa sokvagar, sedan `Remove-Item` pa det tomma
+skalet. **Verifiera alltid med en objektrakning efter en stor rd, lita inte pa exit 0 + frigjord
+disk** -- disken kan visa allt frigjort medan tomma djupa trad star kvar.
+
+**Sakerhetsordning som holl:** fore radering av "corrupt backup"-kataloger, bevisa att LIVE-kopian ar
+god (servern serverar `p4 info`, db.*-filer finns, checkpoint finns off-box) och att inget
+raderingsmal ar en junction in i levande data (`(Get-Item).Attributes -match "ReparsePoint"`). Da kan
+en felnamngiven "backup" inte visa sig vara enda lasbara kopian.
+
+**Tags:** windows, rd, remove-item, robocopy-mir, schtasks, detach, perforce-depot, max-path, vcsboy
+
 ## 2026-09-11 - robocopy /L mot NUL hanger for evigt, och en 7,5 TB Windows-disk mats per katalog med kallan som mal [db-344]
 
 **Learned:** 2026-09-11 | **Project:** Death Board (db-344, VCSBOY Rocky-migration) | **Category:** windows, robocopy, disk-inventering, felsokning
