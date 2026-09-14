@@ -7,6 +7,146 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-14 - Svenska tecken försvinner när jag skriver svensk text inline i en bash-heredoc
+
+Två durabla filer fick skrivas om samma session, och flera frågealternativ gick ut till Robert med
+"granulerat", "Foljer", "oarna" och "sparbarhet". Orsaken är inte att bash eller Python tappar
+tecken, utan att **jag själv skriver svensk text utan diakriter när den bäddas in mitt i ett
+skalkommando**. Det syns inte förrän filen läses tillbaka, och då har den redan publicerats.
+
+**How to apply:** skriv aldrig svensk prosa inline i en `python3 - <<EOF`-blob eller som argument.
+Lägg texten i en egen fil med `cat > fil.md <<'EOF'` och låt scriptet läsa den, precis som med
+`row.txt` och `block.md` här. Läs sedan tillbaka den skrivna raden och kontrollera att å, ä och ö
+faktiskt finns innan du går vidare. Samma gäller alternativtexterna i `AskUserQuestion`, som
+Robert ser direkt. Detta är samma klass av utdataslarv som [[feedback_no_em_dashes]] fångar, och
+den regeln bröt jag också i samma session, i output_log, learnings och tolv Jira-kommentarer, innan
+det städades. **Kör en avslutande kontroll av egen skriven text mot båda reglerna: inga em-dashes,
+och diakriterna intakta.** Källa: K2C.
+
+## 2026-09-14 - En "needs"-lista är en behovslista, inte en restlista, och halva den var redan levererad
+
+Robert bad mig lägga Carolinas tasklista i Jira. Listan visade sig vara Drive-sheetet
+**"Sands of Duat - Audio needs"** (`1PvIqCvTHADxEptKYCRnFkoInxeEGNE3UcO1fJqFaOHM`), och den
+naiva läsningen hade varit att skapa 59 ärenden. **30 av de 59 raderna hade redan ticket**, många
+Done sedan MS4. Ett dokument som heter "needs" beskriver den fullständiga kravbilden för hela
+projektet, inte det som återstår, och ingen uppdaterar det när en rad blir klar. Kör alltid
+dedup mot boardet först: här gav en enda JQL
+(`labels=audio OR summary~"sfx" OR summary~"sound" OR summary~"music" OR assignee=<ljudpersonen>`)
+48 befintliga ärenden att matcha mot.
+
+**Boardets egen grupperingskonvention avgör granulariteten, inte källdokumentets radantal.**
+KAN-508 heter "Bata - walk, charge/attack, charge up, hit, injured" och KAN-509 samlar fyra
+Large-Black-Cat-ljud i ett ärende. Att följa det mönstret gjorde 24 saknade rader till 13 ärenden
+i stället för 24, med alla rader bevarade som punktlista i beskrivningen. Leta efter mönstret i de
+redan levererade ärendena innan du väljer hur fint du delar.
+
+**Fyndet som var värt mer än ticketarna: sheetet spränger kontraktet.** Carolinas avtal
+(`draft_07_carolina_audio_TBD.md`) skriver 12 musikspår plus cirka 25 SFX/stings. Spåren stämde
+exakt på 12, men sheetet listar **47 SFX**, alltså nästan dubbelt. Hon är visstidsanställd i CZP
+så det utlöser ingen extra faktura, men det är kapacitet rakt in i en content lock. **Jämför alltid
+en kravlista mot leveransomfattningen i motsvarande avtal medan du ändå läser båda.**
+
+**Spårbarhet tillbaka till källan:** `assistant/gsheet-set-cell.js` tar godtyckligt många
+`"'Blad'!A1=värde"`-par och rör bara de namngivna cellerna, så en ny nyckelkolumn kan läggas till
+utan att bryta preserve-formulas-regeln. Lade Jira-nyckel i H (musik) och I (SFX), alltså utanför
+det använda området A till G, vilket gör bakåtmappningen möjlig utan att ändra någons data.
+Källa: K2C.
+
+## 2026-09-14 - Gemini-notiserna kommer numera från gemini-notes@google.com, och receptet i pm.md pekade fel
+
+`from:meetings-noreply@google.com` gav **noll träffar** för både fredag och måndag, trots att båda
+standupnotiserna fanns i lådan. Google har flyttat avsändaren till **`gemini-notes@google.com`**.
+Den gamla adressen lever kvar men bär bara "Problem with the notes"-fel och mötesdata från 2023,
+så en sökning på den ser ut som "inga möten hölls" i stället för "fel adress". Ämnessökning på
+`"Notes by Gemini"` gav också noll, eftersom ämnesraden numera lyder `Notes: "<mötesnamn>" <datum>`.
+Fixat i [agents/pm.md](agents/pm.md). **Catch-all som alltid fungerar: fritextsökning
+`Gemini after:YYYY/MM/DD`.** Generell lärdom: när en källsökning ger exakt noll för en period där
+du vet att aktivitet skedde, misstänk sökreceptet före verkligheten. Källa: K2C.
+
+## 2026-09-14 - Ett sprintmål som sätts på morgonen kan vara motbevisat vid lunch
+
+Jag aktiverade S10 med det mål som legat i sprintdefinitionen sedan planeringen: "Content lock,
+balancing finalize, Rapid Patch submit, **Xbox cert, iOS/Android builds**". Standupen samma morgon
+beslutade att **skjuta trophies, achievements och allt icke-Steam-plattformsarbete** och satte
+scopet till tre spelbara öar. Sprintmålet sa alltså raka motsatsen till dagens beslut, och det var
+jag som publicerade det.
+
+**How to apply: läs dagens mötesnotiser INNAN du startar en sprint, inte efter.** En sprint som
+byggdes vid planeringen bär förra veckans antaganden i målraden, och målraden är det enda teamet
+faktiskt läser. Konkret följdeffekt här: 18 ärenden (KAN-192 till KAN-203 plattform/cert plus fem
+achievement-ärenden) bar MS5 och flyttades till MS6, vilket är samma "MS5 bär två oförenliga
+definitioner" som flaggades 7 sep, nu avgjort av ett internt beslut i stället för av en gissning.
+Och KAN-712, som jag plockat ur sprinten på morgonen för att den stod BACKLOG, visade sig vara
+den save/load-fix Oskar satt och testade just då. **Parkerad status är en påstående om igår.**
+Källa: K2C.
+
+## 2026-09-14 - "In Review" staleness must be read from the changelog, not from `updated`, and a bulk close needs a verification EVENT
+
+S9 closed with 58 items in In Review and the instinct (mine and the board's shape) said stale pile.
+It was not. Pulling the changelog for the transition *into* In Review on each one: **44 of 58 entered
+review inside 7 days, 30 inside 4 days, 8 that morning.** Only 5 had sat longer than 14 days. The
+`updated` field said nothing useful because a comment or a sprint move touches it; the only honest
+staleness measure is `changelog.histories[].items[] where field=status and toString='In Review'`.
+
+**The deeper rule: In Review on this board means "fixed, pending verification", so a close needs a
+verification event, and the developer's own past-tense statement is not one - it is what PUT the
+item in review.** The 8 Sep MS4 bulk close of 91 tickets worked only because RF's milestone approval
+*was* the verification event, and our delivery page said open-and-pending-only, making the known
+issues list a complement. MS5 has no such event yet, so almost nothing was closable: 3 of 58, and
+all three had an explicit third-party past-tense record (two standup lines naming Imi as having
+"finalised" the hermit, one where the paired implementation ticket had independently gone Done).
+Before promising an evidence-gated close, ask what the verification event would be. If there is not
+one, say so up front rather than producing a close list of three.
+
+**Check the evidence source exists for the window before you plan around it.** The plan was to
+triage against the Death Board bot's #qa fix log, which was decisive on 8 Sep. For the S9 window
+that channel held **zero** "Matched from the conversation" blocks and only five newly-filed bugs - 
+it was intake-only for a fortnight. Grep the source for the actual date range first; a channel that
+was a fix log last month can be a bug funnel this month. Source: K2C.
+
+## 2026-09-14 - Re-stamping a shipped milestone's stragglers is a classification job, and two of the four classes are not yours to decide
+
+60 open items still carried the shipped MS4 fixVersion (the KAN-557 failure at scale). Bulk-moving
+them to MS5 would have been wrong for **34 of them**. The split that matters:
+
+1. **Epics (11) - never re-stamp.** An epic's fixVersion is a container label spanning milestones;
+   it stays open until its children close. KAN-7 (Sobek) and KAN-10 (Anubis/Apesh) *correctly* carry
+   MS4 under the authoritative island→MS map, so re-stamping would have corrupted the map and moved
+   no actual work.
+2. **Parked features + their children (23) - escalate, do not promote.** Flail of Anubis, Apesh,
+   Scarab, Apis, Monarch rework, day-cycle, farm boost, the two blessings. Promoting parked work into
+   MS5 silently answers the exact question RF asked and the standup ducked ("is 25 Sep content
+   complete with zero placeholder art realistic"). A hygiene pass must not decide a 560k-class gate
+   question.
+3. **Active (In Progress / In Review) + unparented To Do (26) - unambiguous, re-stamp.** Work in
+   flight before content lock, plus the MS4 known-issue bug debt, which belongs in the MS5 hardening
+   sprint by definition.
+
+**The finding worth carrying: a parked parent with a live sibling means the board is telling two
+stories about one feature.** KAN-168 Flail of Anubis sits BACKLOG while KAN-704 (Flail light-effect
+SFX) went In Review the same day; same for Apesh (KAN-172 parked, KAN-710 iteration in review) and
+Monarch rework (KAN-252 parked, KAN-607 in review). Parked status on a feature epic is not evidence
+the feature is dead - check for siblings before quoting a deferral to anyone. Source: K2C.
+
+## 2026-09-14 - A carry rule keyed on fixVersion collides with unstamped work that is in flight
+
+Robert chose "MS5-stamped carries to S10, MS4-stamped and unstamped drop to backlog" off a summary
+that said 12 unstamped. What the summary did not say, and what decided the execution, is that
+**7 of those 12 were In Progress or In Review that morning** (Farmlands, Grading pass, Demolisher
+Hermit House, glowing-overlay bug, monument/map polish, border lantern, music-track review) - they
+were unstamped only because they had been created recently, not because they were debt. Backlogging
+them would have pulled live work off the team's board on the first morning of the new sprint, with
+nothing scheduled to rescue it (the re-stamp pass covers only the MS4 population). Carried them
+instead and said so. **A rule keyed on one field needs a status check before it runs**; the MS4
+stragglers could go to backlog safely precisely because a re-stamp pass was queued behind them.
+
+**Clean sprint-close mechanics that worked (Jira Cloud, team-managed board 1):** move the carry set
+into the next sprint first (`POST /rest/agile/1.0/sprint/{id}/issue`, **max 50 keys per call**), push
+the rest to backlog (`POST /rest/agile/1.0/backlog/issue`, same cap), verify the old sprint reads
+**0 open** - and only then `POST /rest/agile/1.0/sprint/{id}` `{state:'closed'}`, followed by
+`{state:'active'}` on the next one. Closing with zero incomplete means Jira's own move-incomplete
+behaviour never fires, so the destination is entirely yours and the result is auditable. Source: K2C.
+
 ## 2026-09-08 — Death Board-botens dedup-svar i #qa är en sökbar fixlogg, inte brus
 
 När 125 ärenden i In Review skulle triageras mot verkligheten var det avgörande beviset inte
