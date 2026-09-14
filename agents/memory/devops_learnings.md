@@ -7,6 +7,272 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-14 - Ett larm mäter bara något om nämnaren är rätt, och en review-hög som ingen räknar är ingen bevakning [db-348]
+
+**Learned:** 2026-09-14 | **Project:** receipt-router / kvitto-intake (db-348) | **Category:** mätning, larmdesign, OCR, kortdata, drive-pipelines
+
+**Fel nämnare gör en frisk siffra till en katastrof.** Ticketen påstod att "kortavläsningen
+fallerade på samtliga nio filer". De nio var Telia-**fakturor** — `payment_method: invoice`/
+`autogiro` — och en faktura trycker aldrig något kortnummer. Räknat över alla kvittoposter blir
+avläsningen 20 %, räknat över bara dem där modellen säger `payment_method=card` blir den 43 %.
+Samma logg, samma dag, dubbla siffran. **Innan man larmar på en andel: fråga vilka poster som ens
+*kunde* lyckas.** Ett mått på fel nämnare skapar antingen panik eller falsk trygghet, och båda
+kostar mer än att inte mäta alls.
+
+**Ett larm som alltid postar blir mutat, och ett mutat larm ser ut som bevakning.** Svepet är
+medvetet tyst när högen är tom eller färsk och avläsningen är OK. Samma princip som
+`weekly-pleo-sanity.sh`: tyst OK, larm bara på faktiskt fel.
+
+**En engångsping är ingen bevakning.** Routern pingade Discord i samma ögonblick som den parkerade
+en fil, och tittade sedan aldrig på mappen igen. Resultat: tio filer, äldsta 69 dagar. **Varje
+pipeline som kan parkera något behöver en andra, periodisk läsare av parkeringen** — den som
+producerar ett undantag är strukturellt fel instans att bevaka att det åtgärdas.
+
+**En ping man inte kan agera på är anledningen till att en hög slutar tömmas.** "Okänt kort
+****1658" går inte att göra något med. "Visa DEBIT ****1658, kontaktlös, sedd hos Sikali 2 aug och
+Continental 11 sep" går att känna igen. Lade beskrivningen i `cardNotes` **utan** att lägga kortet
+i `cards` — posten ska fortfarande gå till review, den ska bara ställa en besvarbar fråga.
+
+**Samma fysiska kort kan visa två olika sista-fyra.** Betalar man med Apple Pay/Google Pay trycker
+terminalen **wallet-token (DPAN)**, inte plastens PAN. Det förklarar troligen varför `8786` och
+`0844` båda låg som "Pleo-kort CZP" — ett kort, två nummer. Numret i sig är stabilt (1658 läste
+identiskt hos två krogar sex veckor isär), så det går att mappa; det syns i Apple Wallet som
+kortets **Enhetskontonummer**. **Antag aldrig att sista-fyra identifierar plasten.**
+
+**Läs originalkvittot innan du tror på extraktionen.** "1298" såg ut som en felläsning av 1658 —
+samma krog, samma kväll. PDF:erna renderade till PNG visade AID:erna: 1658 är
+`A0000000031010` (Visa) kl 18:07, 1298 är `A0000000041010` (Mastercard) kl 18:57. **Två kort, inte
+en felläsning.** `pdftotext` ger noll på fotade kvitton och tesseract finns inte på burken; vägen
+är `pdftoppm -r 200 -png` och sedan läsa bilden själv. AID-koden är dessutom ett hårdare
+brand-bevis än vad kassan råkar skriva ut i klartext.
+
+**En regel kan vara rätt för arkivering och fel som bokföringssignal.** `telia -> czp` filar rätt,
+men fakturan blandar privat och företag (6 302 bolagets, 6 168 privata jan-sep 2026), så den som
+bokför rakt av bokför dubbelt. Lösningen var inte att ändra routningen utan att göra varningen
+omöjlig att missa där beslutet fattas: `_DELAD-PRIVAT` **i filnamnet**, eftersom den som bokför
+öppnar en Drive-mapp och ser en lista med namn. En varning i en logg når aldrig fram.
+
+**Städa ut det som aldrig *kan* klassificeras.** Ett pass och en signerad årsredovisning i
+review-högen gör varje räkning av högen missvisande. `_ej_kvitto/` plus ett snävt villkor i routern
+(`kind=other` **och** varken kort eller belopp — så att ett feltolkat riktigt kvitto stannar kvar på
+kvittovägen).
+
+---
+
+## 2026-09-14 - Cloudflare-tokenen är IP-låst till en burk vi inte kör på längre, och en Access-bypass ska en människa godkänna [db-347]
+
+**Learned:** 2026-09-14 | **Project:** Bankdata via AISP (db-347) | **Category:** cloudflare-access, ip-lock, bare-metal-migration, säkerhetsgränser, klassare, redirect-endpoints
+
+**`CLOUDFLARE_ACCESS_API_TOKEN` svarar `10000 Authentication error` från Nitro, och det är inte
+tokenen som är trasig.** Den är **IP-låst till Hetzner-VPS:en** (89.167.23.168), och hjärnan flyttade
+till Nitro (95.198.169.122) i bare-metal-migrationen. Anropet går igenom direkt via
+`ssh edge '...'`, eftersom `edge` fortfarande sitter på den låsta adressen. **Gäller varje
+Access-ändring framåt, inte bara den här** — och samma fälla väntar på alla IP-låsta creds som
+skapades före 24 augusti. Registret sa "IP-locked to the VPS"; det som saknades var att "VPS:en"
+inte längre är den burk koden kör på.
+
+**En Access-bypass stoppas av auto-lägets säkerhetsklassare ("Security Weaken"), och det är rätt.**
+Både POST:en som skapar appen och **committen av diffen som lägger till poster i
+`CF_JWT_BYPASS_PATHS`** blockerades. Att runda det vore att gå runt avsikten. Rätt drag: bygg klart,
+verifiera lokalt, skriv exakt vad som ska öppnas och varför i kortet, och lämna beslutet till
+Robert. Han godkände, samma anrop gick igenom oförändrat. **Bygg hela vägen fram till gränsen och
+stanna där, i stället för att fråga innan något finns att bedöma.**
+
+**En publik redirect-endpoint skyddas av sitt `state`, inte av att den är svår att gissa.**
+`/bank/callback` måste vara öppen, för det är bankens redirect efter BankID. Skyddet är att
+`link` utfärdar ett slumpat `state`, lagrar det, och att callbacken **bara** växlar in en kod mot
+ett state servern själv utfärdat, oanvänt och yngre än 30 minuter. Utan den kontrollen kan vem som
+helst länka in ett eget konto i vårt lager. Okänd state avvisas innan något anrop lämnar burken.
+
+**Skopa bypassen på sökväg, aldrig på prefix.** Två appar, `board.runatyr.games/bank/callback` och
+`/bank/privacy`, inte ett `/bank/*`. Skarp verifiering efteråt ska visa **båda** sidorna av
+gränsen: privacy 200 publikt, callback 400 (den *når* servern och avvisas korrekt), och
+`/api/followups` fortfarande 302 till Access-inloggningen. Att bara testa att det nya fungerar
+missar hela risken, som är att man råkade öppna något annat.
+
+**Ett `require` av en CLI-fil kör CLI:n.** `enablebanking.js` hade en toppnivå-IIFE; i det
+ögonblick `server.js` krävde in den för `exchangeCode` hade den kört sin argv-parsning vid varje
+serverstart. `if (require.main === module)` runt blocket, och verifiera med ett `require` som
+skriver ut exporterna.
+
+**Tags:** cloudflare-access, bypass-policy, ip-lock, baremetal-migration, edge-jumphost,
+säkerhetsklassare, människogodkännande, oauth-state, redirect-endpoint, require-main, db-347
+
+## 2026-09-14 - Nordigens gratis självbetjäning finns inte kvar, och ett dashboard-konto låser inte upp dataportalen [db-347, czp/run/apb]
+
+**Learned:** 2026-09-14 | **Project:** Bankdata via AISP (db-347) | **Category:** open-banking, PSD2, leverantörsdrift, auth0, signup-flöden, sidoeffekter
+
+**Receptet "GoCardless Bank Account Data har en gratis produktionsnivå, registrera och kör" är
+föråldrat.** Det stämmer fortfarande att gratisnivån finns och att GoCardless är auktoriserad
+AISP, men **självbetjäningsregistreringen är borta**. `bankaccountdata.gocardless.com/signup/`
+renderar ett *inloggnings*formulär (även med `nordigen_login_mode=signUp` i URL:en), och ett
+inskick svarar `Wrong email or password`. Lösenordsåterställning för adressen skickar **inget mail
+alls**, vilket är det billiga beviset på att ingen portalanvändare finns. Dokumentationen pekar
+vidare till GoCardless dashboard, men **det kontot ger inte portalåtkomst**: portalen kör en egen
+Auth0-databas och avvisar samma lösenord. Kvar som trolig väg in är Google-SSO, som inte går att
+köra headless.
+
+**Auth0:s "Welcome <smeknamn>!" är inte ett bevis på att ett konto finns.** Den raden dök upp för
+en adress som bevisligen saknade portalkonto, och jag höll på att läsa den som "kontot finns
+redan". Verifiera existens med något som har en observerbar konsekvens, som ett
+återställningsmail, inte med en hälsningsfras.
+
+**Ett formulär som ser ut som signup kan vara login, och skillnaden syns först i felmeddelandet.**
+T&C-toggeln fanns på båda. Läs alltid av *svaret* på inskicket innan du tror på vilken sida du står.
+
+**Dolda inputs: `check()` misslyckas, `dispatchEvent('click')` fungerar.** T&C-switchen är en
+input som ligger utanför viewporten (visually-hidden-mönstret). Playwrights `check({force:true})`
+svarar `Element is outside of the viewport` och lämnar den ochecked, alltså blir submit-knappen
+kvar disabled och **ingenting händer, utan felmeddelande**. En dispatchad click driver Reacts
+state. Lade till det som `jsclick` i `gcb.js`.
+
+**En engångskod på fem minuter kräver en process, inte två.** Registreringen mailar en sexsiffrig
+kod som dör på fem minuter, och varje resend ogiltigförklarar den förra. En navigator som stänger
+webbläsaren mellan stegen tappar sidan och bränner en kod per försök. `gocardless-signup.js`
+läser därför koden själv via `gmail-api.js` i samma körning, och **tidsankrar** på
+`internalDate` så en kod från ett tidigare försök inte kan plockas upp. Exakt samma disciplin som
+`pleo-login.js` kom fram till med SMS-koder.
+
+**Rapportera sidoeffekten du skapade, oombedd.** Vägen fram skapade ett riktigt **betalkonto** hos
+GoCardless i CZP:s namn (ingen KYC, inget paket valt) som kanske inte behövs. Det ska stå i kortet
+och i svaret till Robert med ett erbjudande att avsluta det, inte tystas ned för att det var ett
+mellansteg.
+
+**Domänfakta värda att behålla:** SEB:s **företagskonton omfattas av PSD2** och SEB stödjer open
+banking för SEB Företag utan avgift från bankens sida. Företagsflödet tar 10-siffrigt orgnr (eller
+SEB:s 14-siffriga id) plus BankID, och **samtycket gäller 180 dagar**, inte 90 som den äldre
+GoCardless-dokumentationen säger. Enable Banking har ingen publik prislista längre (offert sedan
+april 2026), så den gratisvägen är inte längre ett alternativ att peka på i förbifarten.
+
+**RÄTTELSE samma dag, och den gör hela felsökningen ovan onödig:** portalen visar en ren
+skylt, *"New signups for Bank Account Data are currently disabled."* GoCardless tar alltså inte
+emot nya kunder alls. Varje slutsats ovan var korrekt men jag grävde i symptomen (login-formulär,
+tyst återställning, fel Auth0-databas) i stället för att leta efter ett **statusbesked om
+produkten**. **När en självbetjäningsregistrering beter sig obegripligt: leta efter skylten först.
+"Stängt för nya kunder" ser exakt ut som "du gör fel" ända tills någon läser dörren.**
+
+**Ersättaren, och kriteriet som avgjorde:** **Enable Banking** (Espoo, AISP under FIN-FSA) har
+**"Restricted Production" gratis och i självbetjäning, begränsat till konton du länkar själv** —
+alltså precis rätt form för egna bolagskonton. Inget kontrakt, ingen KYB, inget eIDAS-certifikat,
+och autentiseringen är **nyckelbaserad** (application id + RSA-privatnyckel som signerar en JWT,
+max 24 h), alltså ingen webbläsarsession att hålla vid liv. **Kriteriet att sortera AISP:er på är
+inte "har de en gratisnivå" utan "får jag komma åt mina EGNA konton utan kontrakt".** Deras
+registrering kräver dock en människa: reCAPTCHA-bildruta, och den ska man inte gå runt.
+
+**Stäng gitignore-hålet innan nyckeln kommer, inte efter.** `assistant/` är ett eget repo som
+pushas till GitHub **och** hamnar i den krypterade Drive-backupen, alltså publicerat två gånger.
+En `.pem`, en Playwright-profil med levande sessionscookies och `bank/` med råa PSD2-transaktioner
+hade alla följt med ett `git add -A`. Samma form som Steam-profilincidenten. Ingenting var spårat
+än, och regeln lades in innan det fanns något att tappa.
+
+**Tags:** gocardless, nordigen, bank-account-data, PSD2, AISP, enable-banking, restricted-production,
+SEB-företag, auth0, signup-vs-login, stängd-produkt, dolda-inputs, dispatchEvent, engångskod,
+en-process, gitignore, sidoeffekter, db-347, db-229
+
+## 2026-09-14 - Byt leveranskanal i stället för att automatisera en BankID-vägg (Telia -> kvitto-intaget) [czp / czp-038, db-279]
+
+**Learned:** 2026-09-14 | **Project:** Kvitto-intake / CZP | **Category:** portal-automation, BankID-gräns, kanalbyte, återanvändning, dry-run-verifiering
+
+**Frågan var "kan du skrapa Mitt Telia headless varje månad", och rätt svar var att fakturan
+aldrig behöver hämtas.** Mitt Telia loggar in med BankID i första hand (lösenord finns bara som
+reservväg) och Telia skärper identifieringen. Men Telia erbjuder **e-postfaktura**: PDF:en skickas
+från `faktura@telia.se` till en adress vi äger. Då blir problemet ett mailproblem, och det är redan
+löst. **Generella regeln: innan du bygger en robot mot en portal, kolla om leverantören kan skicka
+dokumentet i stället. Ett engångsklick av Robert slår en månatlig session som ska hållas vid liv.**
+
+**Intervallet är en del av riskbedömningen, inte en detalj.** En session som används *en gång i
+månaden* är den värsta tänkbara: den hinner alltid dö emellan, och varje körning blir en
+återinloggning. Fortnox-lärdomen (db-229) gäller dubbelt här. Ett dagligt jobb kan bära en skör
+session; ett månatligt kan det inte.
+
+**Kolla att mailen faktiskt inte redan kommer, innan du designar något.** Sökning i båda
+brevlådorna på Telia gav bara reklam och orderbekräftelser, noll fakturor. Den kontrollen tog en
+minut och avgjorde hela arkitekturen: hade PDF:en redan kommit på mail vore allt som behövdes en
+regel, utan något engångsmoment alls.
+
+**Leveransen blev två rader config, inte ett nytt skript.** `receipt-routing.json`: `telia -> czp`
+i `vendors` (fakturan är autogiro och saknar kort, så det är vendor-grenen i `resolveEntity` som
+avgör, konfidens 0.8 mot tröskeln 0.75), plus `faktura@` i avsändarfrågan i `mail-receipt-router.js`
+så en **svenskt namngiven** fakturaavsändare fångas även om ämnesraden inte säger faktura. Den
+befintliga frågelistan var helt engelsk (`receipts@ billing@ invoice@ payment@`) fast rörledningen
+går mot svenska leverantörer.
+
+**Dry-run mot ett riktigt dokument, inte mot en hypotes.** Hämtade en verklig Telia-PDF från Drive
+och körde `extractWithEscalation` + `resolveEntity` + `periodFolder` + `proposeFilename` i ett
+scratch-skript. Det gav destination och filnamn svart på vitt (`CZP / Utgifter / 2026-07`,
+`2026-07-04_Telia-Sverige-AB_2098SEK.pdf`) innan något var live. Billigt, och skiljer "regeln finns"
+från "regeln träffar".
+
+**Cachningen avgör om en omstart behövs, och de två ändringarna skilde sig åt.** `loadConfig()`
+läser JSON från disk vid varje körning, så vendor-regeln gällde direkt. Router-**modulen** är
+däremot `require`:ad inne i serverns 08:00-gren och ligger kvar i Nodes modulcache, så
+kodändringen krävde omstart av `deathboard.service`. Fråga alltid vilken av de två sorterna en
+ändring är innan du rapporterar den som live.
+
+**Sidofynd om bankdata (svar på Roberts följdfråga):** CZP:s SEB-transaktioner är **redan** läsbara
+headless i dag via Fortnox bankfeed, `node fx.js goto /transactions` visar dem med motpart och
+datum. Fortnox kan det för att Fortnox är licensierad AISP, inte för att någon skrapar SEB.
+`FX_COMPANY="Aurora Punks"` landar däremot på `startguide/eula`, alltså en tenant som aldrig
+tagits i bruk. Runatyr och Zenland har ingen bokföringstjänst alls. Vägen till bankdata för de
+bolagen går genom en AISP (Fortnox-bankkoppling eller en egen open banking-aggregator), aldrig
+genom Playwright mot internetbanken.
+
+**Tags:** telia, e-postfaktura, kvitto-intake, receipt-routing, BankID-gräns, kanalbyte,
+mail-receipt-router, modulcache, dry-run, fortnox-bankfeed, AISP, czp-038, db-279, db-229
+
+## 2026-09-14 - A "do I need to pay?" question about a SaaS plan is really a question about which copy of the data you own [db-345, db-338, AP]
+
+**Learned:** 2026-09-14 | **Project:** Slack / Aurora Punks plan decision (db-345) | **Category:** saas-plans, data-retention, api-parity, backfill-window, unapplied-fix
+
+**The reframe that made the decision cheap.** Robert asked whether he needed a paid Slack plan to
+"parkera" the AP chats. Stated that way it is a recurring-cost question with no good answer. The
+useful version is *where does the durable copy live*: Slack free hides everything older than 90
+days, but hidden is not deleted, it comes back on upgrade, and only becomes permanent deletion at
+roughly the one-year mark. So one month of Pro is not a subscription decision at all, it is a
+**one-time key that unlocks the history long enough to copy it somewhere we own**. Generalise: when
+a vendor gates access to *our own* historical data behind a plan, price the shortest paid window
+that lets us export, not the ongoing subscription. The ongoing question becomes separable and much
+less urgent once the archive is off their infrastructure.
+
+**The API honours the same paywall as the UI, and that kills the obvious workaround.** The
+instinct is "we have a read integration, so the plan does not matter to us". Wrong: Slack's free
+90-day cutoff applies to `conversations.history` exactly as it applies to scrollback. A read layer
+on a free workspace can only ever see a rolling 90-day window, no matter how good the tooling is.
+Check API/UI parity on any retention limit *before* designing an integration as the answer to a
+plan limitation. `rag-slack-indexer.js` had this written in its own header comment from db-322;
+reading the file beat reasoning about it.
+
+**An expiring trial is an export window, and we slept through it.** The AP Pro trial ran 14 Aug to
+13 Sep with the entire history unlocked, and not one message was copied out, because the db-338 app
+install never happened. Nobody made a wrong call; the ticket was simply blocked on a human action
+for 13 days while a clock nobody had connected to it ran out. **When a ticket is blocked on a human
+step and something unrelated is expiring, those two facts belong in the same place.** Cheap habit:
+when a trial-ending or renewal mail lands, grep the followups for anything blocked on that system
+and cross-link right then, rather than filing the mail as its own isolated decision ticket.
+
+**This is the second time db-338/db-322 bit on the same shape** (see 2026-09-01): a fix that is
+built, correct, on disk and deployed, but needs fifteen minutes from a human to take effect, is
+operationally identical to no fix. It has now cost a one-off export window that does not come back.
+If a ticket's remaining work is a human action, the ticket's due date should track the *external*
+clock, not the build.
+
+**Slack Connect is a paid feature on both sides, and downgrade disconnects permanently.** Free gets
+1:1 external DMs only. Slack's own downgrade mail spells it out: *"All shared channels will be
+disconnected. This is permanent."* So a partner re-invite arriving the morning after a trial expiry
+is not a notification, it is the partner rebuilding a channel that silently vanished. Worth knowing
+before debugging "why can I not see the channel". Corollary for the bot's fail-closed
+`is_ext_shared` guard: it cannot be exercised at all while the workspace is on free.
+
+**When mixed sources disagree, name the cheapest experiment instead of picking a side.** Third-party
+write-ups said free workspaces cannot join Slack Connect channels; the invite mail itself said
+"Free and no setup required" (vendor boilerplate). Rather than arbitrating, the answer to Robert
+was "click Accept, it costs nothing and the result *is* the answer". A 30-second empirical test
+beats a confident synthesis of contradictory secondary sources.
+
+**Tags:** slack, slack-connect, free-tier, retention, api-parity, export-window, backfill,
+trial-expiry, unapplied-fix, blocked-on-human, db-345, db-338, db-322
+
+
 ## 2026-09-12 - Radera TB av Perforce-depakopior pa Windows: metod och detach spelar roll [db-344]
 
 **Learned:** 2026-09-12 | **Project:** Death Board (db-344, VCSBOY-stadning) | **Category:** windows, radering, perforce, detach, langa-sokvagar
@@ -1870,3 +2136,58 @@ elva titlar trots exit 0 på wrappern. Kör långa jobb i förgrunden med höjd 
 Playwright-noteringen ovan (punkt 2 i förra avsnittet) behöver en rättelse: **chromium finns numera
 även på Nitron** (`~/.cache/ms-playwright/chromium-1234`) och renderade pitchsidorna lokalt utan
 omvägen över `ssh edge`. Modulen ligger i `~/.npm/_npx/e41f203b7505f1fb/node_modules/playwright`.
+
+## 2026-09-14 — Inkorgsgenomgång: avregistrering vs filtrering (båda kontona)
+
+**Mät innan du skriver regler.** `sender-inventory.js`-mönstret (lista alla meddelanden i ett
+fönster, hämta `format=metadata` med `List-Unsubscribe`, gruppera per avsändaradress) gav på 90
+dagar 3 356 mejl / 424 avsändare på jobbkontot och 1 584 / 192 privat. Det avslöjade direkt vilka
+avsändare som faktiskt bar kostnaden, och skilde "kan stoppas vid källan" från "måste filtreras".
+Utan den mätningen hade jag skrivit regler mot det som råkade ligga överst i inkorgen.
+
+**Gmail API:s kvot är per minut och delas mellan konton.** `messages.get` kostar 5 enheter; 12
+parallella hämtningar över två körningar sprängde "Units per minute per user" och gav 403 mitt i.
+Felen såg ut som enstaka tappade meddelanden (halva datasetet försvann tyst) tills jag lade på
+retry. Kör bulkinventering på **concurrency 4 med exponentiell backoff upp till 60 s**, och lägg
+retry även på `messages.list` — inte bara på `get`, det var där körningen dog.
+
+**RFC 8058 one-click fungerar server-side, men inte överallt.** `gmail-unsubscribe.js` POSTar
+`List-Unsubscribe=One-Click` mot URL:en i headern. 51 av 57 avsändare svarade 200/202/204. De som
+inte gick: OpenAI (403) och Courage.Events (401) kräver browsersession, och DriveThruRPG,
+Dreamstime, Sellpy och SF Game Development saknar headern helt. **Mönstret: avregistrera det som
+går, lägg resten som trash-regel i policyn i samma veva** — annars ser det ut som att de är
+avklarade.
+
+**Avregistrera aldrig kallt B2B-utskick.** Klicket bekräftar att adressen lever. Policyn hade redan
+regeln ("Cold spam — filter, do NOT unsubscribe"); den gäller Trapster/Heropost/TELUS-kategorin
+även när de har en fungerande one-click-länk.
+
+**En sweep-regel kan tyst äta det användaren viktigast vill se.** Regeln "System notifications"
+arkiverade hela `feedback@slack.com`, alltså även "We were unable to process your payment". När
+Robert sa att ekonomilarm ska ligga kvar var den befintliga regeln redan i strid med det. **Läs om
+gamla regler mot den nya keep-listan, lägg inte bara till nya.** Scopa i stället:
+`from:feedback@slack.com -subject:(payment OR invoice OR betalning OR faktura OR unable)`.
+
+**Två mejl per händelse är ett eget brusmönster.** Pleo skickar både "Avvisad transaktion på
+<ställe>" och "Ditt köp med Pleo-kortet nekades" för samma nekade betalning. Behåll det som
+namnger motparten, arkivera dubbletten. Leta efter den sortens par innan du föreslår att stänga av
+avsändaren helt.
+
+**`--lookback all` är rätt vid engångsstädning.** Sweepen defaultar till 14 dagar, så nya regler
+biter bara på färskt brus och backloggen ligger kvar. En gång med `--lookback all` efter att
+reglerna lagts in tar historiken också.
+
+**`threads.list` med `q=in:inbox` ljuger (2026-09-14).** Den returnerar trådar vars meddelanden
+ALLA saknar INBOX-etiketten - jag fick tillbaka trådar från 2024 som var arkiverade sedan länge,
+och räknade dem som kvarvarande inkorgsposter. `messages.list` med samma query är exakt. Använd
+trådvyn bara för att svara på "skrev Robert sist i tråden", aldrig för att räkna inkorgen.
+
+**Sweepen arbetar per meddelande, inte per tråd.** En tråd ligger kvar i inkorgen så länge ett
+enda meddelande i den har INBOX. Därför kan en regel matcha och "arkivera" utan att tråden
+försvinner ur vyn. Det är inte ett fel i regeln, men det förklarar varför avsändarstatistik per
+tråd inte stämmer med vad sweepen rapporterar.
+
+**"Robert skrev sist" är det mest träffsäkra arkivkriteriet som finns.** 48 av 215 arbetstrådar
+föll på det ensamt, och det följer direkt av konventionen inkorg = ohanterat. Kolla SENT-etiketten
+på sista meddelandet, inte bara avsändaradressen: Google Group-alias (finance@, sales@) gör att
+hans egna mail kommer tillbaka med gruppens adress som From.
