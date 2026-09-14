@@ -1,8 +1,13 @@
 # Anslutningsmatris WP1.1, körinstruktion 14 sep 2026
 
-Bygget ligger på legion i `E:\Curveball\PackagedClient\Windows`, samma artefakt som på forge
-(exe 285 826 560 byte, 14 sep 15:08:25, SHA256 `755F427C...41E44DD`). Brandvägg, `steam_appid.txt`
-och startgenvägar är på plats på båda maskinerna.
+Bygget ska ligga på legion i `E:\Curveball\PackagedClient\Windows`, samma artefakt som på forge
+(exe 285 826 560 byte, 14 sep 15:08:25, SHA256 `755F427C...41E44DD`). Brandvägg och startgenvägar
+är på plats på båda maskinerna.
+
+**Steg 0, väck legion.** Hela arkivet kom över (2 547 958 724 byte, exit 0), uppackningen startade,
+och sedan somnade maskinen och föll av tailnet. Väck den och säg till, så läser jag
+`E:\Curveball\logs\stage_extract.log` och bekräftar hash och tidsstämpel innan du kör något.
+Sätt samtidigt legion på att aldrig vila, annars dör en körning mitt i.
 
 **Först:** legions Steam är inloggad som Alouatta, alltså samma konto som forge kör. Två maskiner
 på samma konto ser aldrig varandras lobbyer, så testet ger noll träffar om du hoppar över steg 1.

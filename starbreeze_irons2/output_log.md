@@ -511,3 +511,13 @@ gamla ordningen och bör rättas innan någon bygger något nytt från det.
 mot Krafton blir talet ett annat och det är deras kalkyl. (b) Tobias och en game designer är inte
 inlagda som rader, enligt Roberts besked skickar vi vår lista och Starbreeze säger vem de vill
 ersätta. (c) Brand guidelines och typsnitt saknas.
+
+## 2026-09-14 — Svar till Tobias om bemanning (Gmail-utkast, osänt)
+
+Utkast `r6744100908243905895` i tråden "Staffing Plan" (`1a0909ad3d40888b`), till Tobias med Victor
+och Gustav på CC. Svarar på Tobias tre frågor 14 sep 19:06 (roller, PD2/PD3/Irons-erfarenhet, datum):
+Pierrick Pamart ej tillgänglig, Antonia Kiili technical artist potentiellt tillgänglig, Dennis
+Hansson UI-programmerare tillgänglig men i andra processer. Håller fast vid teamet, öppnar per roll
+med förbehåll om egen intervju, och sonderar mjukt hur Starbreeze och Krafton väger PD-erfarenheten.
+Andrew Gomes roll adresserad som täckt av Robert + Per. Text i
+`drafts/reply_tobias_staffing_2026-09-14.md`, Author-passad.
