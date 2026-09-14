@@ -33,11 +33,24 @@ producerar ett undantag är strukturellt fel instans att bevaka att det åtgärd
 Continental 11 sep" går att känna igen. Lade beskrivningen i `cardNotes` **utan** att lägga kortet
 i `cards` — posten ska fortfarande gå till review, den ska bara ställa en besvarbar fråga.
 
-**Samma fysiska kort kan visa två olika sista-fyra.** Betalar man med Apple Pay/Google Pay trycker
-terminalen **wallet-token (DPAN)**, inte plastens PAN. Det förklarar troligen varför `8786` och
-`0844` båda låg som "Pleo-kort CZP" — ett kort, två nummer. Numret i sig är stabilt (1658 läste
-identiskt hos två krogar sex veckor isär), så det går att mappa; det syns i Apple Wallet som
-kortets **Enhetskontonummer**. **Antag aldrig att sista-fyra identifierar plasten.**
+**Sista-fyra identifierar inte plasten — men wallet-token var fel förstahandsgissning.** Två saker
+kan göra att ett nummer på ett kvitto inte finns på något kort Robert har: Apple/Google Pay trycker
+**wallet-token (DPAN)** i stället för PAN, *och* ett **omutfärdat eller utgånget kort byter
+sista-fyra** medan gamla kvitton behåller det gamla numret. Jag ledde med DPAN-teorin och skickade
+Robert till Apple Wallet; korten fanns inte där alls, eftersom de var gamla. **Fråga "kan kortet
+vara utgånget?" före "kan det vara en wallet-token?"** — det förra är vanligare och kräver ingen
+teori. Numret i sig är stabilt över tid (1658 läste identiskt hos två krogar sex veckor isär).
+
+**Kontot avgör kortet, inte minnet — matcha mot bankdatan.** `bank-query.js` (db-347) plus belopp
+±0,02 inom ±8 dagar placerade 1658 på Roberts privatkonto på två exakta träffar, på sekunder. Det
+är den enda källan som inte bygger på att någon minns rätt.
+
+**Men läs frånvaron rätt.** Att en transaktion INTE finns i bankdatan bevisar ingenting på egen
+hand: **Pleo-köp blir aldrig egna bankrader**, bara påfyllningar. Jag rapporterade först att 0844
+var felmappad och att en Pleo-vidarebefordran på 3 957 kr därför var fel — men samma frånvaro är
+lika förenlig med att kortet faktiskt ÄR ett Pleo-kort. **En negativ träff i ett ofullständigt
+dataset är inte ett fynd.** Kontrollera först att varje konto som *kunde* innehålla raden är inläst;
+Runatyr svarade `401 EXPIRED_SESSION` och var just det konto som kunde avgöra saken.
 
 **Läs originalkvittot innan du tror på extraktionen.** "1298" såg ut som en felläsning av 1658 —
 samma krog, samma kväll. PDF:erna renderade till PNG visade AID:erna: 1658 är
@@ -2191,3 +2204,31 @@ tråd inte stämmer med vad sweepen rapporterar.
 föll på det ensamt, och det följer direkt av konventionen inkorg = ohanterat. Kolla SENT-etiketten
 på sista meddelandet, inte bara avsändaradressen: Google Group-alias (finance@, sales@) gör att
 hans egna mail kommer tillbaka med gruppens adress som From.
+
+**Kolla om filen redan finns innan du skriver den (2026-09-14, db-349).** Jag skapade
+`gmail-unsubscribe.js` med `cat >` och skrev över en version från juni 2026 som gjorde exakt samma
+sak. Ingen automation bröts (inga skript anropade den), men CLI-kontraktet ändrades under fötterna
+på dokumenterade anteckningar, och junis **medvetna** säkerhetsval hade försvunnit tyst: den
+vägrade röra allt utom one-click, eftersom en mailto-avregistrering bekräftar att adressen lever.
+`ls gmail-*.js` tar två sekunder och hade visat den. Gör det innan du bygger ett verktyg vars namn
+känns självklart — är uppgiften uppenbar har någon troligen löst den förut, och här fanns fjorton
+`gmail-*.js` i samma mapp.
+Receptet när det ändå hänt: `git log --diff-filter=A -- <fil>` visar om filen fanns sedan tidigare,
+`git show <commit>:<fil>` ger tillbaka den, och rätt åtgärd är att **slå ihop**, inte att välja
+sida. Den gamla versionens flaggor återställdes (`--file`, bara adresser) och den nya funktionen
+gjordes opt-in (`--mailto`).
+
+**Pleo skiljer bolagen på mottagaradressen.** Kanonisk fakta, promotad till
+[[project_czp_finances]] 2026-09-14 — leta där, inte här.
+
+## 2026-09-14 — Autologon på forge är en säkerhetsställning, inte en bekvämlighet [project: cvb / db]
+
+**Kontext:** Steam-klienten måste köra i den interaktiva sessionen (session 1) för att `SteamAPI` ska initiera, och SSH landar i session 0. `schtasks /it /ru robert` löser det så länge **någon är inloggad vid konsolen**, men den sessionen överlever inte en omstart. Robert har därför beslutat att sätta AutoAdminLogon på forge.
+
+- **Två lagringsformer, välj rätt.** Klassiska `AutoAdminLogon` lägger lösenordet i **klartext** i `HKLM\...\Winlogon\DefaultPassword`, läsbart för allt som kan läsa registret lokalt. Sysinternals **Autologon** sätter samma funktion men lagrar lösenordet som **krypterad LSA-hemlighet**. Samma resultat, väsentligt bättre lagring, så Sysinternals-vägen är default och klartextvägen ska sägas ut högt om den används.
+- **Det som gör forge speciell är inte Curveball, det är historiken.** Maskinen är ex-Petters (`PetterBox`, APDS-tenanten) och har burit **annat kunduppdrag**: Fall Damages `GroundZero`-arbetsyta på `ssl:falldamage.helixcore.io:1666`, synkad med **oskar.hansen**, plus `p4tickets.txt` och `.p4qt` i `D:\_preserve\_critical`. `Content` (950 GB) ligger kvar. En maskin med autologin är en maskin där **fysisk eller RDP-närvaro ger direkt tillgång till en annan kunds material** utan att passera ett lösenord. Bedöm autologin mot det, inte mot "det är ju bara en byggmaskin".
+- **Kompenserande kontroller som faktiskt gäller här:** ports 22 och 3389 är verifierat stängda mot publikt internet, åtkomsten går över tailnet, och ingen BitLocker finns (alltså skyddar disken ingenting vid stöld oavsett autologin). Autologin flyttar alltså risken från "någon som har lösenordet" till "någon som har fysisk åtkomst eller en tailnet-nyckel". Det är ett medvetet val, inte en försämring per automatik, men det ska stå skrivet.
+- **Agenten kan inte och ska inte sätta det.** Säkerhetsklassaren nekade både läsning av Winlogon-nycklarna och nedladdning av autologon-verktyget. Rätt form är att ägaren kör `Autologon64.exe` vid maskinen och skriver lösenordet i den maskerade rutan. Samma princip som P4-biljetten 7 sep: be aldrig om ett lösenord i en session, be om att ägaren gör engångsmomentet på sin egen låda.
+- **Verifieringen kräver en omstart** och den ska planeras när inget bygge kör. Efter omstarten ska tre saker bekräftas: `query session` visar `console rober/robert Active`, Steam är uppe i session 1, och en `schtasks /run /tn cvb_start_steam` ger samma `[AppId: 480] Client API initialized 1` som före. Innan det är gjort är autologin obekräftad, oavsett vad registret säger.
+
+**Projekt:** curveball / db (forge) · **Kategori:** windows, säkerhet, session-0 · **Taggar:** AutoAdminLogon, Sysinternals-Autologon, LSA-hemlighet, session-1, schtasks-it, forge, Fall-Damage-arbetsyta, kundmaterial-på-delad-maskin, ingen-BitLocker

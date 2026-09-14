@@ -114,6 +114,8 @@ Arkitektoniskt värt att veta: `BP_GameInstance` är sista ledet i en fyra nivå
 | `Game/HUDMenu/Widgets/Party/WB_GamemodeButton.T3D` | 76 | vald konfiguration + `IsRunningUpdatedEvent` |
 | `Game/HUDMenu/Widgets/Friends/WB_GameMode.T3D` | 57 | vald konfiguration |
 
+**Rättelse 2026-09-14, gjord under WP1.2-implementationen:** `PlayerSessionId` går **inte** till `Options`-pinnen. `Options` är okopplad och tom, och `PlayerSessionId` sätts i en medlemsvariabel. Reseadressen byggs som `Conv_StringToName(IP + ":" + Port)` med kolonet som literal, vilket betyder att "lägg `steam.<SteamID64>` i `IP` och lämna `Port` tomt" ger en adress som slutar på kolon. Det är skälet till att WP1.2 flyttade resan till C++ i stället.
+
 Resan in i matchen sker med `GameplayStatics::OpenLevel`, inte `ClientTravel`. Två anropsställen finns: ett i `BP_GameInstance:GameLift` (matad via `Conv_StringToName` från en sammanslagen IP-och-port-sträng, med `PlayerSessionId` på `Options`-pinnen) och ett i `WB_ReadyButton`, sannolikt för den lokala practice-vägen. Det andra är inte verifierat till sitt syfte.
 
 ### 5.3 Nytt estimat: 24 till 36 h, centralt 28 h, tillförsikt medelhög till hög
