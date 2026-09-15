@@ -12,6 +12,74 @@
 <!-- Append new learnings with: learning, source project, date, category -->
 
 
+## 2026-09-15 — Arbetsintyg för gamla anställda: arbetsgivaren är nästan aldrig bolaget de minns (AP)
+
+**När någon ber om intyg "för min tid hos AP", verifiera arbetsgivarbolaget innan du skriver en
+rad.** Patrik Malm (Iron Evil/Clönk) bad om ett anställningscertifikat för sin tid "hos AP".
+Anställningsavtalet låg i **White Lines Black Spaces AB (559217-4196)**, ett dotterbolag, inte i
+Aurora Punks AB. Folk minns koncernnamnet och mailsignaturerna, inte vilket org.nr som stod på
+lönespecen. Konsekvensen är inte kosmetisk: ett intyg som utpekar fel juridisk person är ett
+felaktigt intyg i en visum- eller myndighetsprövning.
+
+**Är arbetsgivarbolaget i konkurs går intyget inte att utfärda i bolagets namn.** WLBS försattes i
+konkurs 2024-09-25 och saknar behörig styrelse, så Robert kan inte teckna det. Tre vägar finns:
+AP AB som moderbolag med WLBS utpekat som formell arbetsgivare, ett personligt intyg från Robert i
+hans dåvarande roll, eller konkursförvaltaren. Robert valde det personliga. Skriv i så fall **ut
+varför** i intyget ("the company was declared bankrupt on X and is therefore no longer able to
+issue employment documentation itself") — annars ser det ut som att man kringgår arbetsgivaren.
+
+**Sökmönstret som gav hela tidslinjen på fyra anrop:**
+1. `rag_search` på personens namn + projekt → `gdrive` hittar själva anställningsavtalet (roll,
+   period, omfattning, lön, signatär).
+2. Gmail-sök på namnet mot **löneleverantören** (Sifferrådet) → återanställningar och ändringar som
+   aldrig blev ett nytt pappersavtal. Här låg period två, 2023-02-01, bara som ett mail.
+3. Gmail-sök på "sista datum"/turordning → Roberts egen lista "Sista datum för anställda"
+   (2023-04-19) gav exakt slutdatum. Den listan är guld för alla WLBS-anställda 2023.
+4. Löne-/personalkostnadsbudgeten i Drive (`Budget - personalkostnader.xlsx`, flik per projekt)
+   bekräftar anställd/slutat-datum och sysselsättningsgrad.
+
+**Anställningsperioder är sällan sammanhängande.** Patrik hade två perioder med fyra månaders
+glapp. Frestelsen att skriva "2022-06-01 – 2023-04-30" är stor och gör intyget osant. Lista
+perioderna var för sig i en tabell.
+
+**Håll intyget rent från sakfrågan.** Samma person förhandlar just nu om IP-rättigheterna till
+spelet han byggde. Ett intyg som beskriver spelet som "hans projekt" kan citeras i den
+förhandlingen. Certifiera anställning, roll, omfattning och leveranser — aldrig ägande.
+
+**Uppsägningsgrund: skriv bara det underlaget bär.** Turordningslista och Unionen-förhandling
+finns dokumenterade, men inte Patriks egen uppsägningshandling. "I samband med omorganisation och
+personalneddragning, förhandlad med Unionen" håller; "arbetsbrist" som juridisk term kräver
+handlingen. Flagga skillnaden för Robert i stället för att välja åt honom.
+
+Kanoniska fakta om projektet (arbetsgivarbolag, rättighetsklausul, Steam-ägande, personer) bor i
+[[project_iron_evil_clonk]], inte här. Öppen svans i `apb-077`.
+
+*Kategori: contracts/HR · Projekt: Aurora Punks (WLBS) · 2026-09-15*
+
+
+## 2026-09-15 — Pleo in i Fortnox: serien varierar, och importen är manuell (CZP)
+
+**"Verifikaten kommer in automatiskt" var en förhastad slutsats.** Jag såg 109 verifikat i serie
+PLEO och rapporterade att integrationen sköter sig själv. Den gör den inte. Importen är ett manuellt
+månadsmoment, och det har **stannat sedan 2026-07-28**, sannolikt när Sifferrådet lämnade CZP.
+Rätt kontroll är inte "finns det verifikat" utan **"hur färska är de jämfört med övriga serier"**.
+Serie A och D löpte till 2026-09-14 medan PLEO stod stilla i sju veckor. Den jämförelsen tar fem
+sekunder och hade gett rätt svar direkt.
+
+**Serien varierar mellan månader.** Juni 2026 bokfördes i **serie A**, juli i serie **PLEO**. Söker
+man på serienamnet ser juni ut som ett hål på 24 verifikat, och jag rapporterade det som ett hål för
+Robert innan jag hittade dem. **Sök på Pleos namnmönster `<HANDLARE> - <person> - 26000NN`, aldrig på
+serien.** Samma sak gäller rimligen andra importerade serier.
+
+**Skilj på kvitton och bokföringsunderlag.** Robert löste de saknade kvittona i Pleo-appen och
+antog att bokföringen då var täckt. Kvitton är verifikationsunderlag till poster som redan finns,
+exportfilen är det som skapar posterna. Två olika saker, och bara den ena löstes.
+
+**`NEEDS_LOGIN` från Fortnox-skripten kan vara både sant och falskt.** Den här gången var sessionen
+verkligen död, men kontrollen som ger rätt svar är att gå till `tenant-select` och läsa sidan: en
+företagsväljare betyder att sessionen lever, en lösenordsprompt att den är död. Och: **lösenordet
+räckte**, ingen mailkod behövdes, tvärtemot vad [[reference_fortnox_access]] antyder.
+
 ## 2026-09-12 — Under 1 000 kr ska MED i AGI, i ruta 131 (CZP, rättelse)
 
 **Jag sa åt Robert att ta bort Elias individuppgift. Det var fel.** Rättat inom ett dygn, innan
@@ -1335,3 +1403,37 @@ or open the archive file below (each has its own Contents block, so you can offs
 - 2026-07-16 — CZP:s faktiska finansiella läge per april 2026: utdelning stoppas av försiktigh…
 - 2026-07-15 — AP:s revisor = Parameter Revision AB (skild från redovisningskonsult) — 2026-07…
 - 2026-07-15 — AP:s speltillgång "Vessels of Decay" - förläggare, ägande, intäktsrutt, bokfört…
+
+---
+
+## 2026-09-15 — Be inte en motparts förvaltare intyga att han skött sitt uppdrag [apb / apb-051]
+
+**Project:** Aurora Punks (rättighetskedjan APDS -> Bright Gambit -> CZP) | **Category:** process, motpartstaktik, omdöme
+
+**Learning:** apb-051 bar i tre veckor en åtgärdspost om att "begära betalningsbevis från BG eller
+Carler" för de 55 000 kr Bright Gambit skulle betala till APDS-boets klientmedelskonto. Robert
+stängde den med rätt invändning: förvaltaren **företräder boet och bevakar dess intressen enligt
+konkurslagen**. Hade köpeskillingen uteblivit hade han flaggat det, och äganderättsförbehållet hade
+varit hans hävstång, inte vår risk. Att begära beviset är att fråga en fiduciarie om han utfört sitt
+uppdrag. Det ger inget nytt, och det signalerar till en motpart att vi tvivlar på ett led i vår egen
+kedja.
+
+**Generell regel: innan en verifieringspost skrivs in, fråga vem som bär risken om saken inte
+stämmer.** Bär motparten eller en fiduciarie (förvaltare, revisor, myndighet) risken, och skulle de
+ha agerat vid avvikelse, är tystnaden redan svaret. Verifiera det vi själva bär risk för. Det här är
+motsatsen till [[feedback_verify_client_facts_primary_source]], som gäller påståenden **vi** ska
+föra vidare utåt, och en variant av den tidsspärr som noterades 2026-08-27 på samma ticket: varje
+begäran mot en motpart har en kostnad även när den "bara kostar ett mail".
+
+**Samma session, tre besläktade stängningar värda att känna igen som mönster.** (1) En formell
+defekt i en handling (fel org.nr på två ställen i boavtalets operativa text) behöver inte drivas när
+avtalet i övrigt är godkänt av den som skulle invända. Känn till defekten så att den kan bemötas,
+begär inte rättelse. (2) En momsfråga där två parter behandlat samma transaktion olika lämnas till
+Skatteverket när beloppet är litet och båda leden är dokumenterade; en proaktiv utredning skapar ett
+ärende som annars inte finns. (3) **Leta efter handlingen i vad vi redan skickat innan den begärs
+av motparten.** Det "addendum" som ticketen i veckor listade som saknat visade sig vara bilaga 2 i
+januariavtalet, och hade redan gått till Nintendo som bilaga 2026-09-08. Sök i skickad post innan en
+saknad bilaga blir en åtgärdspost.
+
+**Tags:** konkursförvaltare, fiduciarie, verifieringsdisciplin, motpartstaktik, äganderättsförbehåll,
+Bright Gambit, apb-051, ticket-hygien

@@ -512,3 +512,41 @@ som bär flertalet titlar har mobil-2FA på Roberts privata Steam-inlogg.
 
 **Notera:** Robot Lord Rising ligger med på Roberts uttryckliga begäran, märkt som oreglerad.
 Rättigheterna sitter hos Runatyr. Vessels of Decay är utelämnad, ägandet är fortfarande UNCLEAR.
+
+## 2026-09-15 — Arbetsintyg Patrik Malm (Iron Evil / Clönk)
+
+**Levererat:** [certificate_of_employment_patrik_malm_2026-09-15.md](drafts/certificate_of_employment_patrik_malm_2026-09-15.md)
+plus renderad PDF och DOCX i samma mapp. Osignerat, väntar på Roberts granskning.
+
+- **Form:** personligt intyg från Robert (Roberts val), engelska, inga löneuppgifter, praktiken
+  utelämnad. Ingen AP-brevhuvud, ingen formulering om vem som äger Clönk/IRON EVIL eftersom
+  rättighetsförhandlingen med Patrik och Ly Nguyen (IQM) är öppen.
+- **Faktaunderlag:** arbetsgivaren var **White Lines Black Spaces AB (559217-4196)**, inte AP AB.
+  Projektanställningsavtal i Drive (`Agreement - Patrik Malm.pdf`, signerat av Christian Gyllenberg)
+  2022-06-01 – 2022-09-30, Designer and 3D artist, heltid 40 h/v, 15 000 kr/mån. Andra perioden
+  2023-02-01 – 2023-04-30 enligt Roberts mail till Sifferrådet 2023-02-24 (24 000 kr/mån) och
+  hans egen lista "Sista datum för anställda" 2023-04-19. WLBS i konkurs 2024-09-25, kan därför
+  inte utfärda intyg själv, vilket intyget säger ut.
+- **Öppet:** formell uppsägningsgrund för perioden 2023 är inte belagd i något dokument jag hittat.
+  Intyget säger "i samband med omorganisation och personalneddragning, förhandlad med Unionen",
+  vilket underlaget bär. Vill Robert skriva "arbetsbrist" rakt ut bör uppsägningshandlingen kollas.
+
+**Signering (2026-09-15):** intyget uppe i OpenSign, dokument-id `w7CVkgqUU9`, enda signatär Robert.
+Signaturfält placerat manuellt ovanför den streckade raden på sida 2. Signeringslänk mailad till
+robert@aurorapunks.com. Signerad PDF hämtas ur OpenSign och går till Patrik via Discord.
+
+## 2026-09-15 — apb-051 krympt: rättighetskedjan är stängd
+Statusgenomgång av apb-051 (kedjan APDS -> Bright Gambit -> CZP). Ticketen låg på `critical` /
+`needs_input` sedan 2026-08-27 och var tre veckor efter verkligheten. Krympt från 250 rader till 77.
+**Verifierat mot live Gmail, inte mot ticketen:** utkastet till Andreea (`r-1071264801540023386`) är
+borta ur tråden `19eb0ca7e91ae68a` och gick aldrig; Nintendo-tråden `1a03d5a3bed81b61` har rört sig,
+Robert Gandy frågade 2026-09-11 om CZP har rätt till utestående betalningar till APDS och Robert
+besvarade det 2026-09-14 med tillträdesdagen 21 jan 2026 som brytpunkt, utan anspråk på tiden
+dessförinnan. Det är exakt den formulering CorpBot skrev regeln för 2026-08-27.
+**Robert stängde de fyra administrativa posterna:** tillgångsförteckningen finns redan (bilaga 2 i
+januariavtalet, gick till Nintendo 2026-09-08); Carler-avtalet är godkänt så org.nr-defekten lämnas;
+betalningsbeviset för BG:s 55 000 begärs inte, förvaltaren bevakar boets intressen och hade flaggat
+utebliven betalning; momsen lämnas till Skatteverket. Plus BG-slutbetalningen bekräftad mot Fortnox.
+Kvar på ticketen är bara bevakning av de tre plattformsärendena (apb-054 Nintendo, apb-015
+PlayStation, apb-055 Xbox). [[project_apds_czp_rights_chain]] uppdaterad, CorpBot-learning skriven
+om att inte be en motparts fiduciarie intyga att han skött sitt uppdrag.
