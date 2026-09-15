@@ -550,3 +550,9 @@ utebliven betalning; momsen lämnas till Skatteverket. Plus BG-slutbetalningen b
 Kvar på ticketen är bara bevakning av de tre plattformsärendena (apb-054 Nintendo, apb-015
 PlayStation, apb-055 Xbox). [[project_apds_czp_rights_chain]] uppdaterad, CorpBot-learning skriven
 om att inte be en motparts fiduciarie intyga att han skött sitt uppdrag.
+**Stängd samma dag.** Kontrollerade att de tre kvarvarande raderna inte var unika: apb-054
+(`in_progress`), apb-055 (`in_progress`) och apb-015 (`planned`) lever alla som egna ticketar och
+hängde inte på apb-051. Kedjedokumentationen bor i [[project_apds_czp_rights_chain]] och i
+`aurora_punks/legal/apds_entity_transfer_master_2026-08-26.md`. apb-051 satt till `closed` /
+`close_reason: completed`. **Flaggat: apb-015 (PlayStation) är stale**, due 2026-05-28 och rörd
+senast 2026-08-27, medan Nintendo- och Xbox-spåren rörde sig 2026-09-14.
