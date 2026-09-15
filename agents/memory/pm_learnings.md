@@ -1554,3 +1554,54 @@ obetalda sträckan) och listan över vad som aldrig får stå i en offert, ligge
   date; the playtest says what players want more of; and content does not fix a loop players leave.
   State plainly that it sits outside the budget and would be a separate number sized after the review
   month. Category: planning (scope beyond the term).
+- **The authoritative "what is left after the milestone" list can live only in Discord, where RAG and
+  Drive will never find it.** K2C, 2026-09-15. Robert pointed at "the list from Imi on what assets will
+  remain after 25 Sep". `rag_search` (reranked, several phrasings) and `gdrive_search` both returned
+  nothing; the list was a plain Discord message in `#art`, 14 Sep 09:16, broken down per artist, posted
+  the morning after the art break-out the standup had asked for. Read it with
+  `assistant/k2c-discord-read.js <perChannelLimit> <sinceDays>`. Two things follow. First, when a client
+  or partner asks for a forward-looking scope list, check the working channel before concluding it does
+  not exist - production lists get typed where the work is discussed, not filed. Second, the same sweep
+  paid for itself twice: `#general` 9 Sep carried Robert's own "no need to stress for cert now, they
+  will need builds by mid october", which was the only source verifying a claim the mail to the
+  publisher depended on and which appears nowhere in the mail thread. Category: sourcing.
+- **Aggregate a per-artist internal list by area before it goes to the publisher.** Same run. Imi's list
+  is organised per person because that is how the art lead assigns it; the publisher neither needs nor
+  should get the subcontractor breakdown ([[feedback_no_subcontractor_name]]). Regrouping by area
+  (drought pass, lighting, ability effects, props, wildlife) also makes the list read as a plan rather
+  than a staffing report, which is the difference between "here is what we decided" and "here is what we
+  did not finish". Category: client comms.
+- **When the design answer and the art schedule disagree, put the split in the mail rather than picking
+  one.** Same run. Tim's design plan sold the Anger/Protection of Anubis reactions to Raw Fury as the fix
+  for the Bata payoff they complained about, while Imi's list had exactly those sitting after the
+  milestone. Resolved by saying the mechanics and signposting land in MS5 and the finishing art on those
+  two lands in MS6, and flagging to Robert that pulling the art forward would let the answer land in one
+  milestone. Silently promising both in MS5 would have been the third caveated approval waiting to
+  happen. Category: client comms (never resolve an internal contradiction by overclaiming outward).
+- **The read-only `atlassian-confluence` MCP does reach the aurorapunks site, despite the Rovo caveat.**
+  K2C, 2026-09-15. Both the project CLAUDE.md and `confluence-set.js`'s own header say the Rovo MCP only
+  connects to badass-studios, which reads as "no MCP reaches aurorapunks Confluence". That is true of
+  Rovo specifically; the separate `atlassian-confluence` server authenticates to aurorapunks and served
+  `/wiki/api/v2/pages/{id}` and `/children` fine. Practical split: **read the tree with the MCP, write
+  with `confluence-set.js`.** Two gotchas on the read side - `/wiki/api/v2/pages/{id}/body` is not a
+  valid v2 path and returns a full HTML 404 page rather than a JSON error, so fetch the page with
+  `body-format=storage` as a query param instead; and a `jq` slice like `body.storage.value[0:1800]`
+  came back null under the default TOON output. Category: tooling.
+- **A flat wiki tree needs its first section before it needs its second page.** Same run. K2C Sands of
+  Duat Home had carried one page per milestone delivery, MS1 through MS4, with no grouping. The moment
+  a milestone needed two prep documents with different owners plus the delivery notes still to come, the
+  flat convention stopped working. Creating an "MS5 (Content Complete)" parent with a `children` macro
+  index cost nothing and gave the delivery notes somewhere to land on the gate date. When a client asks
+  for something to be "trackable", the structure is usually the deliverable, not the content.
+  Category: documentation.
+- **Turning an internal page client-facing is a provenance pass, not a tone pass.** K2C, 2026-09-15.
+  Rewrote three Confluence pages from internal notes into a direct answer to the publisher: second
+  person, a "You asked / Answer" table, defensive asides cut. An internal "Still open our side"
+  checklist survived that rewrite because I reworded it instead of asking where each item came from.
+  Robert caught it. Traced back, neither item came from the client's feedback or from our own design
+  plan: one was an engineer's status note in the daily standup, the other a Discord message from the
+  art lead asking the designer whether an asset was needed at all. On a page addressed to the client,
+  that reads as doing our planning in their inbox. **The test to run on every line of a page going
+  outward: does this trace to something they asked, or to our answer to it? If neither, it belongs in
+  the tracker, not on the page.** Tone edits will not catch these because the sentence reads fine;
+  only provenance does. Category: client comms.

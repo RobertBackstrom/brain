@@ -32,7 +32,8 @@ Two separate parties. Keep them apart in any material.
 - **Publisher-side problem list (Anthony, 2026-06-12), internal only:** UI/UX bad, map poorly designed and too big, players confused about what to do, bots kill the player too fast, bot pathing and commanding bad, overall not fun. His stated cause: lack of skill and no sense of game design. **Never repeat that assessment in writing to anyone outside AP.**
 - **Gmail threads:** `19851c3c40f6e46b` ("Disposable Corps", intro) and `1989745d9f5d43d3` ("Aurora Punks Services (Hing Light Up Games)", the proposal + on-hold reply).
 - **Discord:** Anthony Wong DM, plus the group **LUG <> AP Disposable Corps** (Anthony, Magnus, Robert), created 2026-08-26 by Anthony and renamed by Robert. This is now the live channel. The proposal has been sent there and LUG will package it for their finance partners.
-- **No project GDrive folder yet.** Create one under AP when there are deliverables - [[feedback_deliverables_to_project_folder]].
+- **GDrive:** Projects shared drive / **Disposable Corps** (`1Fb0GN3piu7W8t4vrxfFfWVtKJwCIUAIZ`), created 2026-09-15. Prefix `dsc` registered in `assistant/drive-folders.json`.
+- **Jira:** project **DSC** on aurorapunks.atlassian.net, created 2026-09-15, 8 epics and 64 issues rated from the design and UX evaluation. **Written to be shared**: no seat costs, no internal assessments, no evaluator named. Not shared with anyone yet.
 
 ## How the game works today (reconstructed 2026-08-26)
 

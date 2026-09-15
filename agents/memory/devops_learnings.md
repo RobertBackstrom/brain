@@ -7,6 +7,78 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-15 - "Kan vi stänga av 2FA?" är fel fråga; rätt fråga är vilken metod [db-352]
+
+**Learned:** 2026-09-15 | **Project:** CZP Pleo headless (db-352) | **Category:** auth, totp, headless, integrationsdesign
+
+**Reglerade tjänster går aldrig att köra utan 2FA, men metoden är nästan alltid valbar.** Pleo är
+betalinstitut, SCA är lagkrav, och det finns ingen avstängning att hitta hur länge man än letar.
+**Däremot** stödjer de autentiseringsapp i stället för SMS, och en autentiseringsapp är bara
+HMAC-SHA1 över ett delat frö. Håller VPS:en fröet är inloggningen obemannad. Faktorn är kvar, den
+har flyttat dit ett skript når den. **Generaliserbart till varje SMS-spärrad tjänst vi kör mot:
+fråga inte om avstängning, fråga om TOTP.** Samma mönster satt redan i `ms-session.js` för
+Microsofts royaltyportal utan att vara uttalat som ett mönster.
+
+**Avvägningen måste sägas högt, inte gömmas i en kommentar.** Frö plus lösenord på samma burk gör
+kontot enfaktor i praktiken. Det är rätt avvägning för en läsande bokföringsavstämning och fel för
+ett konto som kan flytta pengar. Skrev in det i både `secrets_registry.md` och filhuvudet, för
+nästa agent kommer att se mönstret och vilja kopiera det till något värre.
+
+**RFC 6238-testvektorernas nyckel är 20 byte, inte 10.** Mitt första självtest failade på alla fem
+vektorerna och såg ut som en trasig implementation. Felet var testet: ASCII-nyckeln
+`12345678901234567890` blir `GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ` i base32, **32 tecken**. Tar man de
+självklara 16 tecknen avkodas de till `1234567890` och man får sex siffror som är fel men helt
+plausibla. **En TOTP-implementation som ger "nästan rätt" ger inga ledtrådar alls** — verifiera
+alltid mot vektorerna innan du tror på ett fel någon annanstans, och spara testet som fil.
+
+**Skrivskydd hör hemma i requestlagret när ett annat system äger skrivvägen.** Pleos Export-API är
+byggt för att *vara* bokföringsintegrationen: det markerar poster exporterade, och **en export går
+inte att ångra**. CZP har redan en Fortnox-koppling som gör det. En kommentar om "läs bara" hade
+inte överlevt första gången någon behövde en siffra snabbt, så `pleo-api.js` kastar på POST/PUT/
+PATCH/DELETE. **Regeln: när ett annat system äger skrivvägen ska vår klient inte kunna skriva, inte
+bara låta bli.**
+
+**Kolla om primitiven redan finns innan du skriver den.** `ms-session.js` hade redan en RFC
+6238-implementation. Jag skrev en ny, korskörde dem mot vektorerna (identiska) och behöll båda
+medvetet: `ms-session.js` kräver playwright på toppnivå, och att dra in en browser-motor för sex
+siffror är fel beroende. **Duplicering som är testad och motiverad är OK, duplicering man inte vet
+om är det inte.** Kontrollen tog två minuter och hade lika gärna kunnat avslöja en divergens.
+
+**Dokumentationssajter bygger för maskiner nu.** `developers.pleo.io` serverar rå markdown om man
+lägger `.md` sist på URL:en, och har ett komplett sidindex på `/llms.txt`. Det slog både WebFetch
+och att klicka runt i SPA:n, som dessutom gav 404 på flera `/reference/`-slugs som sökmotorn
+trodde fanns. **Leta efter `/llms.txt` först på varje docs-sajt.**
+
+## 2026-09-15 - Cloudflare-403 på en hjälpsajt är ett bot-check, inte ett IP-block, och headless chromium tar sig förbi [czp-039]
+
+**Learned:** 2026-09-15 | **Project:** CZP Pleo-import (czp-039) | **Category:** web-collection, cloudflare, playwright, dokumentationsjakt
+
+**`help.pleo.io` svarade 403 på både WebFetch och `curl` med riktig UA.** Bodyn var Cloudflares
+"Attention Required", inte en tom vägg. Jag var nära att skriva upp det som ännu en rad i
+[[reference_vps_web_collection_limits]] bredvid Reddit och YouTube-kommentarerna. **Det hade varit
+fel slutsats.** Samma URL:er gav 200 direkt via `playwright` headless chromium med
+`--disable-blink-features=AutomationControlled` plus `navigator.webdriver`-spoof, alltså exakt
+samma stealth-recept som `pleo-login.js` redan använder. Cloudflares challenge tittar på
+JS-exekvering och TLS-fingeravtryck, inte på IP:t.
+
+**Regel: innan du noterar en sajt som oåtkomlig från VPS:en, läs 403-bodyn.** Cloudflare-challenge
+= testa chromium. Ren `403 Forbidden` eller uttalad IP-rate-limit = då först är det ett riktigt
+block. Skillnaden tar trettio sekunder att avgöra och avgör om ett underlag går att hämta alls.
+
+**Återanvändbart mönster:** ett tjugoradigt playwright-skript som tar URL:er som argv och dumpar
+`document.body.innerText` till fil slog både WebFetch och curl på en Cloudflare-skyddad
+dokumentationssajt. Värt att ha som standardfallback vid varje 403 på publik dokumentation.
+
+**Och: hämta relaterade-artiklar-länkarna, gissa dem inte.** Hjälpcenter roterar slugs mellan
+språkversioner (`/sv/articles/<id>-<slug>` mot `/sv-SE/support/solutions/articles/<id>-<slug>`,
+med procentkodade å/ä/ö). Att köra `document.querySelectorAll('a')` på en artikel och filtrera på
+`/articles/` gav de tre felsökningsartiklarna på en gång. Gissade URL:er hade blivit 404.
+
+**Sakfynd som hör hemma i [[pleo_fortnox_export]]:** Pleo-exporten till Fortnox är **två steg**
+(Lägg till i exportkö, sedan Exportera i Exportkön), den **går inte att ångra**, och utgifter utan
+tilldelad kategori följer **tyst** inte med vid massflytt. Det sista är en riktig fälla: ingen
+felsignal, bara färre poster än väntat.
+
 ## 2026-09-14 - Ett larm mäter bara något om nämnaren är rätt, och en review-hög som ingen räknar är ingen bevakning [db-348]
 
 **Learned:** 2026-09-14 | **Project:** receipt-router / kvitto-intake (db-348) | **Category:** mätning, larmdesign, OCR, kortdata, drive-pipelines
@@ -2232,3 +2304,85 @@ gjordes opt-in (`--mailto`).
 - **Verifieringen kräver en omstart** och den ska planeras när inget bygge kör. Efter omstarten ska tre saker bekräftas: `query session` visar `console rober/robert Active`, Steam är uppe i session 1, och en `schtasks /run /tn cvb_start_steam` ger samma `[AppId: 480] Client API initialized 1` som före. Innan det är gjort är autologin obekräftad, oavsett vad registret säger.
 
 **Projekt:** curveball / db (forge) · **Kategori:** windows, säkerhet, session-0 · **Taggar:** AutoAdminLogon, Sysinternals-Autologon, LSA-hemlighet, session-1, schtasks-it, forge, Fall-Damage-arbetsyta, kundmaterial-på-delad-maskin, ingen-BitLocker
+
+## 2026-09-15 — A public index turns gated pages into a client list [, DSC]  [Security / Pitch hosting]
+
+`pitches-server.js` served a plain-text directory of every live slug at the root of
+pitch.aurorapunks.com, with the code comment "public but uninteresting". Every page behind it was
+correctly gated with per-slug HTTP Basic, so the content never leaked. The **names** did, and the
+names are clients: `disposable-corps-rift`, `project-irons-2-v2`, `project-irons-2-v3`, `curveball`,
+`rankone`, `elias`, `royalty-1993`, `equinox-mobile`, `teef`.
+
+Two concrete harms, both of which had been live for months:
+1. **Cross-client disclosure.** Anyone holding one pitch link could read the full list of Aurora Punks
+   engagements. Starbreeze could see Curveball and RankOne exist, and vice versa. That is exactly what
+   [[feedback_no_client_cross_reference]] exists to prevent, arriving through infrastructure rather
+   than through a document.
+2. **Counterparty-variant disclosure.** A slug like `disposable-corps-rift` next to `disposable-corps`
+   tells the publisher that a partner-specific version of their own deck exists, which is a fact about
+   the deal structure they had not been told.
+
+**The general lesson: an index is a disclosure surface even when every entry behind it is locked.**
+Access control on the documents does not cover the existence, the naming, or the count of them. When
+slugs are named after counterparties, the listing is the leak. Check for this wherever we enumerate
+anything publicly: directory listings, sitemaps, autocomplete, error messages that differ between
+"no such project" and "not authorised", and folder names in a shared drive.
+
+**Fix:** root returns 404. Nothing legitimate depended on the listing, because every share is a direct
+link to its own slug. Deployed by scp to the `edge` host plus `systemctl --user restart
+pitches.service`, since `sync-pitches.sh` syncs `pitches/` and only *warns* when server code differs
+between the Nitro and the edge. Verified after restart: root 404, each page 200 with its own
+credentials, and 401 both without credentials and with the other party's credentials.
+
+**Verification habit worth keeping:** test the negative case with the *other* counterparty's real
+credentials, not just with none. "Does LUG's login open the Rift page" is the question that was
+actually being asked, and only that test answers it.
+
+## 2026-09-15 — A reusable page keeps the first recipient's name [, DSC/AP]  [Pitch hosting / Outward-facing hygiene]
+
+`pitches/team/` is the generic Aurora Punks team page: core team, partner studios, shipped titles.
+Nothing in its body is recipient specific. But its banner and footer read **"Confidential // Prepared
+for Erik Reynolds - Afrime"**, because it was built for one recipient and then reused as the standing
+team link. It was sent to Light Up Games on 2026-07-23 for the Disposable Corps developers to read,
+so at least three counterparties saw another counterparty's name on it, and the page is ungated, so
+anyone holding the link sees it too.
+
+**The pattern: a page whose body is generic but whose letterhead is personal.** The body is what gets
+reviewed when the page is reused; the banner and footer are chrome nobody re-reads. Every reusable
+outward-facing page should carry a recipient-neutral line, and only genuinely per-recipient pages
+should name anyone. Check the banner, the footer, the `<title>`, the `og:description` and the file
+name, not just the content.
+
+**Related to the same day's root-listing finding:** both were exposure through the parts of a page
+nobody looks at twice. Grep outward-facing pages for counterparty names before sharing a link that
+was built for someone else: `grep -ril "<name>" pitches/`.
+
+Fixed by replacing both lines with "Confidential // Aurora Punks core team and partner studios", kept
+ungated on Robert's call so the links already circulating keep working. Verified against the live page
+that no reference to the earlier recipient remains.
+
+## 2026-09-15 — Giving one project away without giving away the site [, DSC]  [Atlassian / External access]
+
+Needed to give a publisher access to one Jira project on the aurorapunks site, which also hosts a Raw
+Fury client board and another client's board.
+
+**A normal product grant is not project-scoped.** All three team-managed projects sit at access level
+"open" (`isPrivate: false`), which means anyone with a Jira product grant can browse all of them. So
+"invite them to DSC" would in practice have handed over Sands of Duat as well. The **guest** role is
+the mechanism that scopes an external person to one project. Neither the access level nor the guest
+invite is exposed in the public REST API, so both are UI operations.
+
+**Check membership before locking anything down.** The tempting fix is to set the other projects to
+members-only. On KAN the only named role member was Robert: the nineteen other users, the whole K2C
+team, reach it through the open access level. That change would have locked out a live client project
+mid-flight. Read `/rest/api/3/project/<KEY>/role` and its actors before touching an access level.
+
+**Verify the grant, never assume it.** The invite being "done" says nothing about what it actually
+gave. The test:
+`GET /rest/api/3/user/permission/search?permissions=BROWSE_PROJECTS&projectKey=<KEY>&accountId=<id>`
+returns the user when they can browse that project, empty when they cannot. Run it for the project you
+granted **and** for each project that must stay private. Same habit as testing a gated page with the
+other counterparty's real credentials rather than with none: the useful question is always "can the
+wrong person get in", and only the negative test answers it.
+
+Promoted to [[reference_atlassian_access_model]], which is where every agent looks for this.

@@ -675,3 +675,26 @@ or open the archive file below (each has its own Contents block, so you can offs
   konkurrent som hinner före med samma mekanik och nästan samma namn påverkar namn, datum och
   butikssynlighet, och att hitta den är det mest värdefulla en rådgivare kan leverera i ett sådant
   läge. Category: market research.
+- **Bygg aldrig ett deck på RAG-snuttar. Hämta hela källdokumentet först.** Cold Response (cr,
+  2026-09-15). Första decket byggdes på `rag_search`-träffar och blev, med Roberts ord, utan substans
+  och fullt av floskler. `rag_get_doc` på samma tekniska deck gav allt som saknades: 400 000 000 m2
+  spelyta byggd på **verklig svensk GIS-data**, multitrådad ballistik med materialmetadata per yta
+  och **VPAM-pansarstandard**, egen ljudmiddleware som simulerar ljudhastighet och luftabsorption,
+  förbränningsmotorsimulator som driver både ljud och fordonsfysik, Iris-replikering med spatiala
+  filter, **AngelScript som skeppas okompilerat** (kunden kan bygga scenarier utan att få motorn),
+  serverstack med telemetri, forensik och ML-baserad beteendeanalys, och hela grejen på 4-6 GB VRAM.
+  Snuttar ger positionering, dokumentet ger bevisen. Category: process.
+- **Motpartens eget deck kan innehålla både traktionen och investerarfrågan, ordagrant.** Samma deck:
+  ett svenskt milsim-läge **utvecklas med Hemvärnet**, sex roller, virtuell instruktör och elev, med
+  riktiga radiosändare, uttalat syfte att vara en kostnadseffektiv plattform för att träna nya
+  drönarpiloter. Och under militära intäktsmodellen står rakt ut att de **söker investerare med
+  bevisad erfarenhet av defense-tech-monetisering** eftersom den kompetensen saknas internt. Läs
+  hela motpartens material innan du formulerar ett erbjudande: ibland har de redan skrivit ner
+  exakt vilket hål du ska fylla, och då handlar förhandlingen om villkor, inte om att övertyga.
+  Category: deal structuring.
+- **Steams appdetails-API räcker för att göra ett deck visuellt utan att hotlinka.**
+  `store.steampowered.com/api/appdetails?appids=<id>` ger fulla 1920x1080-screenshots som går att
+  spara lokalt i pitchmappen. Trailervideon ligger däremot inte alltid i API:t, och YouTube-kanaler
+  går inte att skrapa från VPS:ens IP, men `youtube.com/oembed` fungerar och `i.ytimg.com` går att
+  hämta, så bygg klickbara facades med lokal thumbnail som laddar iframen först vid klick. Snabb
+  sida, inget hotlinkande, och footage högt upp i decket. Category: tooling.

@@ -842,3 +842,160 @@ Hela matrisen kördes utan att någon satt vid någon maskin. Det som gjorde det
 - **Kontrollera brandväggen på båda noderna, inte bara den som krånglat.** forge bar `Query User{GUID}`-regler med Action Block sedan tidigare. legion var ren (två egna Allow-regler, inbound TCP och UDP). Tio sekunders läsning per nod, och det tar bort hela hypotesklassen "nätverket".
 - **Verifiera att artefakten är identisk innan du tolkar ett testresultat, även när du staged den själv.** Båda noderna: 285 826 560 byte, 15:08:25, SHA256 `755f427c…41e44dd`. Samma regel som 31 augusti, och den kostar två kommandon.
 **Tags:** Curveball, SSH-driven-testrigg, schtasks-/it, steam-shutdown-blockerar, 267009-betyder-kör, ping-som-väntan, brandvägg-på-båda-noderna, artefakthash-före-tolkning
+
+## 2026-09-15 — Grading an external design/UX evaluation [, DSC]  [Design Review / Partner Deliverables]
+
+First time we received a design and UX pass from an outside designer (Jesper Staafjord, Rift) on a
+build we do not have the repository for. What to carry forward:
+
+**The method question that outranks every finding: how many players were in the session.** A 5v5
+game evaluated solo against bots produces a predictable set of conclusions, "map too large", "map too
+empty", "too much walking", "rounds are repetitive", "NPC behaviour is static", and they are the same
+conclusions you get whether or not they are true of the populated game. *A map built for ten players
+reads as empty with one.* Establish player count, build version, platform and hours before accepting
+any pacing or scale finding. If the document has no evidence-base section, that absence is itself the
+first finding.
+
+**Ask two questions before writing a critique.** (1) How many sessions were populated multiplayer.
+(2) Can you return a ranked top ten with rough sizing, mapped to the fix window and the first
+playtest date. Four of the six usual failure modes collapse into those two, and asking is cheaper and
+less political than writing a critique that says the same thing.
+
+**The characteristic failure of a competent evaluation is shape, not substance.** ~120 correct,
+specific, well observed bullets, flat, unranked, uncosted, with no summary and no next step. It is a
+research dump the producer then has to redo. A plan with a month 2 fix build cannot consume it.
+
+**The "I will stay neutral on the game's identity" move.** Evaluators raise the positioning question
+(here: milsim or goofy sandbox), declare they will leave it out to stay objective, then write a list
+that silently assumes one answer. Check the recommendations against both branches, because under the
+other branch a large share of them argue the wrong way. The identity call is a gate in front of the
+fix list, not a section that excuses itself.
+
+**An uncosted redesign is the most dangerous thing in the document,** not the most exciting. Here it
+was a full round-progression redesign (start small, grow the army, scale the conflict outward). To a
+financier holding a fixed budget it reads as scope. Treat it as a later go/no-go gate and keep it out
+of publisher material until it has an effort number.
+
+**A design and UX pass is not coverage of the technical layer.** Silence about netcode, hosting and
+performance is legitimate for the discipline but it means the technical questions have not moved.
+Say so explicitly in the internal read, or someone will assume the review month is under way.
+
+**The one property that makes this kind of document valuable to a publisher:** independent
+confirmation. Jesper reproduced all six items of the publisher's own June fault list without having
+seen it, which converts the publisher's complaints from taste into findings. Second most valuable:
+any broken incentive or exploit found (here, the most profitable play pattern was dying repeatedly
+near the enemy point), because that is a thing that would have shipped and generated reviews. Lead
+publisher-facing summaries with those two, never with the usability list.
+
+**Never hand the publisher the grading of the partner we sold them.** Translate: "no prioritisation"
+becomes "the ranking is the next step of the review month"; "never addressed the technical direction"
+becomes "deliberately left to month 1, because it needs the repository". Full translation table in
+[[external_design_evaluation]].
+
+**An outside pass can resolve an internal open question for free.** Our own build log had two
+hypotheses for a doubled tutorial voice over; his document supplied a third we had not considered
+(the tutorial layer and the live game sequence running in parallel, each with its own text and VO).
+When reading someone else's evaluation, diff it against your own open-questions list deliberately,
+not just against your findings.
+
+**Tooling.** No pandoc or python-docx on the VPS, and none needed: a .docx is a zip, and
+`unzip -p f.docx word/document.xml` parsed with stdlib ElementTree (w:p, w:t, w:tab, w:pStyle for
+headings, w:numPr for list depth, w:tbl for tables) gives clean markdown. Script pattern saved in the
+session scratchpad; prefer .docx over .pdf for any document that must be read faithfully, since
+`pdftotext` loses reading order on multi-column and table layouts. Drive helpers: `gdrive-dl.js
+<outdir> <id>:<name>` downloads, and files.list with `corpora=allDrives` plus a `modifiedTime >`
+filter is a reliable way to catch a file the moment it is uploaded when you do not know where it will
+land.
+
+## 2026-09-15 — Turning an evaluation into a board, and who does the rating [, DSC]  [Design Review / Backlog]
+
+Follow-on from the entry above, same day, after Robert set the direction.
+
+**Do not send the evaluator back to write the ranking.** Robert's call: a partner who delivered a
+4 000 word pass unpaid and before signature gets asked two questions, not given homework. AP rates and
+sizes the list itself, AP edits the text into the publisher-facing version, and the only thing asked
+of the author is **approval before anything reaches the publisher**. That inverts my instinct, which
+was to ask him for the top ten. Approval is the gate, labour is ours. It also protects the seat we are
+selling: a partner who is made to do admin before a contract exists is a partner who reprices.
+
+**A rating scale that survives having no repository:** severity (`blocks` / `degrades` / `polish`)
+times crude effort (`hours` / `days` / `weeks` / `weeks+`), then a gate bucket taken from the delivery
+plan's own milestones rather than from an abstract priority. Here: P0 fix build months 1 to 2, P1
+before public playtest 1 in month 4, P2 before EA in month 10, P3 outside the budget, decided at the
+month 8 playtest. Effort stays deliberately coarse because precision would be invented. Rejected RICE
+for exactly that reason: computed scores from a demo we cannot measure look defensible and are not.
+
+**The shape of the rated list becomes the sales argument.** Twelve P0 items, eleven of them fixes and every
+one of those hours or days, containing both onboarding blockers and the economy exploit. That sentence sells a review month
+better than any adjective: the most damaging problems in this game are not the expensive ones. Always
+count the buckets and look for that property before writing the publisher-facing summary.
+
+**Label P3 explicitly as outside the budget, on the board and on the page.** An uncosted redesign
+sitting unlabelled in a backlog a financier reads makes the budget look understated.
+
+**A board written "to be shared" has three rules, applied at creation, not in a later scrub pass:** no
+internal cost or seat references, no assessments of the people, and **do not name the external
+evaluator**. The last one extends a decision Robert had already taken for the pitch deck, where he
+removed all four references to the evaluator by name and replaced them with "a UX evaluation pass".
+Same logic on a ticket board: the finding travels, the name does not.
+
+**Tooling for AP's Jira.** Raw curl writes get denied by the auto-mode classifier. The sanctioned path
+is `assistant/jira-project.js` (list, me, templates, create, issuetypes) and `assistant/jira-set.js`
+for issue-level writes, credentials in `~/.claude/.atlassian-credentials.json`. Project creation takes
+a JSON payload file. For a bulk import, one throwaway node script against the same creds beats 70 MCP
+calls: create the epics first, keep the returned keys, then set `fields.parent = {key}` on each child.
+Team-managed projects accept `parent` directly, no epic-link custom field needed. Issue types on a new
+agility-kanban project: Epic, Task, Story, Feature, Bug, Subtask.
+
+## 2026-09-15 — Per-item estimates are not free to show [, DSC]  [Client Communication / Estimation]
+
+Robert cut the per-item effort column out of the developer-facing document before it went anywhere.
+Two reasons worth keeping.
+
+**An estimate you cannot stand behind is a liability, not a proof of rigour.** We sized every item
+from a public demo with no repository. Putting `hours` and `days` next to twelve items makes the
+sizing look like a commitment the moment the counterparty reads it, and the first argument in month 1
+becomes our own numbers rather than their game.
+
+**Sizing reads as expensive even when it is meant to read as cheap.** My framing was "these are all
+hours or days, the damaging problems are not the expensive ones". Robert's read of the same table was
+that it sounded costly. A list of twelve items with time next to each of them invites the reader to
+add them up, and the total is the impression that survives.
+
+**So: the list of what gets fixed goes out, the sizing stays home.** Severity stays, because it
+explains the ordering and is not a cost claim. Sizing lives in the internal backlog and as labels on
+our own board, where it does the work it was built for, which is deciding what goes in which gate.
+Revisit once there is repository access and the estimates are defensible.
+
+**Where it is still worth showing:** the funder-facing page, where "cheap to fix" is the argument for
+paying for a review month at all. Different reader, opposite effect. Decide per audience rather than
+per document.
+
+## 2026-09-15 — A game with no players cannot validate its own map [, DSC]  [Evaluation / Playtest design]
+
+Disposable Corps is 5v5 and there are not enough players to fill a match. That is not a footnote about
+one evaluator's method, it is a property of the project, and it has two consequences worth carrying.
+
+**Every source inherits the same blindness at once.** The external evaluation, the publisher's own
+fault list and Robert's own play sessions were all formed in a solo session against bots, so they agree
+with each other for a reason that has nothing to do with being right. Three independent-looking sources
+confirming "the map is too large and the rounds are repetitive" is not corroboration when all three
+were produced by the same impossible-to-populate build. **A map built for ten players reads as empty
+with one**, and so does a pacing problem, a travel-time problem and a repetitive-round problem.
+
+**Which findings survive the caveat and which do not.** Onboarding, economy, menus, vehicles and HUD
+are all visible with a single player, so they stand. Map scale, travel distance, emptiness, NPC density
+and round repetition do not. Split the list on that line before anyone commits budget, because map work
+is among the most expensive things on it and the evidence for it is the weakest.
+
+**The consequence for planning: the first populated playtest has two jobs, not one.** It tests whatever
+was built, and it is the first evidence that can settle the suspended findings. It only does the second
+job if enough people are **in the same match at the same time**. A week-long open test with a large
+sign-up count and no concurrency produces the same empty game, and the team draws the same unvalidated
+conclusion twice, now with a playtest's authority behind it. So: booked windows, a target measured in
+full matches rather than in participants, and the suspended questions written down in advance as the
+things being measured.
+
+**Generalises to any pre-release multiplayer title.** Before accepting any scale or pacing finding, ask
+what the concurrent player count in that session was. If the answer is "bots", the finding is a
+hypothesis, however many people repeat it.

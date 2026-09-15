@@ -787,3 +787,31 @@ Headup inte styckantal, så där redovisas ett härlett spann med metoden angive
 och nov. Skapar Death Board-följdsedel och DM:ar Robert. Rapporterar kvartalet som slutade två
 månader tidigare. Nästa körning **2026-11-24** för perioden till 2026-09-30. Rutinen dokumenterad
 i czp-031.
+
+## 2026-09-15 (em) — Pleo headless-åtkomst: TOTP-brygga + API-klient, DevOps
+
+Följd på czp-039 (Pleo-importen stannad sedan 2026-07-28). Robert bad om en headless anslutning till
+Pleo och frågade om SMS-2FA går att ta bort.
+
+**Svaret på frågan: nej, men fel fråga.** Pleo är reglerat betalinstitut, 2FA går inte att stänga av.
+Metoden går däremot att byta från SMS till autentiseringsapp, och TOTP är något en VPS kan räkna ut.
+
+**Byggt och verifierat:**
+1. `assistant/pleo-totp.js` — RFC 6238, bara stdlib. Verifierad mot alla fem SHA-1-testvektorer via
+   `pleo-totp.test.js`. Korskörd mot `ms-session.js` befintliga implementation: identiska koder.
+2. `assistant/pleo-login.js` — patchad. Räknar fram koden själv när `PLEO_TOTP_SECRET` finns, tre
+   försök över olika tidsfönster, väntar ut ett fönster som håller på att löpa ut. SMS-vägen kvar
+   oförändrad när fröet saknas, verifierat.
+3. `assistant/pleo-api.js` — Platform API-klient. **Vägrar POST/PUT/PATCH/DELETE på requestnivå**,
+   eftersom Export-API:t markerar poster exporterade, vilket inte går att ångra och skulle krocka med
+   den levande Fortnox-kopplingen. Basic auth verifierad byte för byte mot curl-exemplet.
+4. `secrets_registry.md` — `pleo.totp` + `pleo.api-key`, båda `pending Robert`.
+5. `skills/pleo_fortnox_export.md` + `skills/pleo_headless_access.md`, båda i `skills/_index.md`.
+6. Ärende `db-352`.
+
+**Rättelse mot db-238:** det ärendet påstod att Pleos open API ligger bakom en dyrare
+prenumerationsnivå. Standalone API Keys är inte påslagna som standard men går att få påslagna på
+begäran. Om det kostar ska det framgå av Pleos svar, inte antas.
+
+**Väntar på Robert:** byta 2FA-metod och spara base32-fröet, samt kontrollera om Inställningar →
+API Keys syns i Pleo och annars be supporten aktivera det. Detaljer i db-352.

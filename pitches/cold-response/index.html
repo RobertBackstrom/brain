@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Cold Response - FPV drone simulation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0D11; --card:#111820; --card-2:#151E27; --line:#1F2C38; --line-2:#2A3A49;
+    --ink:#EDF3F8; --slate:#93A6B6; --slate-2:#6B7F90;
+    --ice:#4FA8DE; --ice-2:#86C8EE; --amber:#D9A23F; --green:#41B489;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.62;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.cond{font-family:'Barlow Condensed','Inter',sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  a{color:var(--ice-2);text-decoration:none}
+  img{max-width:100%;display:block}
+  section{padding:54px 0}
+  .eyebrow{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.22em;font-size:12.5px;font-weight:700;color:var(--ice-2)}
+  .sec-h{font-size:clamp(25px,3.4vw,35px);font-weight:700;line-height:1.1;max-width:24ch}
+  .sec-sub{color:var(--slate);max-width:66ch;margin-top:12px;font-size:16.5px}
+  p+p{margin-top:12px}
+
+  .bar{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .word{font-family:'Barlow Condensed';font-weight:700;font-size:23px;text-transform:uppercase;letter-spacing:.06em;color:#fff}
+  .word b{color:var(--ice-2)}
+  .tag{font-size:11px;color:var(--slate-2);letter-spacing:.16em;text-transform:uppercase;font-family:'Barlow Condensed';font-weight:600}
+  .bar .right{margin-left:auto;font-size:11px;color:var(--amber);letter-spacing:.18em;text-transform:uppercase;font-family:'Barlow Condensed';font-weight:600}
+
+  .hero{padding:66px 0 40px;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(760px 340px at 82% -16%, rgba(79,168,222,.22), transparent 64%);z-index:0}
+  .hero>.wrap{position:relative;z-index:1}
+  h1{font-size:clamp(34px,5.4vw,58px);line-height:1.02;font-weight:700;max-width:19ch}
+  h1 .hl{color:var(--ice-2)}
+  .lede{font-size:clamp(16.5px,1.9vw,20px);color:var(--slate);max-width:62ch;margin-top:20px}
+
+  .spec{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:34px}
+  .spec div{background:var(--card);padding:18px}
+  .spec .n{font-family:'Barlow Condensed';font-weight:700;font-size:clamp(20px,2.6vw,27px);color:var(--ice-2);line-height:1.1}
+  .spec .l{font-size:12.5px;color:var(--slate);margin-top:5px;line-height:1.45}
+
+  .vids{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:30px}
+  .vid{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#05080b}
+  .fac{position:relative;aspect-ratio:16/9;cursor:pointer;background:#05080b}
+  .fac img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:opacity .18s ease}
+  .fac:hover img{opacity:1}
+  .fac .play{position:absolute;inset:0;display:grid;place-items:center}
+  .fac .play span{width:62px;height:62px;border-radius:50%;background:rgba(10,13,17,.72);border:1.5px solid rgba(255,255,255,.5);display:grid;place-items:center}
+  .fac .play span:after{content:"";border-left:17px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+  .vid iframe{width:100%;aspect-ratio:16/9;border:0;display:block}
+  .vid .cap{padding:13px 16px;font-size:13.5px;color:var(--slate);border-top:1px solid var(--line)}
+  .vid .cap b{color:var(--ink);font-weight:600}
+
+  .feat{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;margin-top:34px}
+  .feat.rev{grid-template-columns:.95fr 1.05fr}
+  .feat .shot{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .feat .shot .cap{padding:11px 14px;font-size:12.5px;color:var(--slate-2);border-top:1px solid var(--line);background:var(--card)}
+  .feat h3{font-size:clamp(21px,2.6vw,27px);font-weight:700;line-height:1.14;margin-bottom:12px}
+  .feat p{color:var(--slate);font-size:16px}
+  .feat .k{font-family:'Barlow Condensed';font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--ice-2);margin-bottom:9px}
+
+  ul.spec-list{margin-top:18px;list-style:none}
+  ul.spec-list li{padding:9px 0 9px 22px;position:relative;color:var(--slate);font-size:15.5px;border-bottom:1px solid var(--line)}
+  ul.spec-list li:last-child{border-bottom:0}
+  ul.spec-list li:before{content:"";position:absolute;left:2px;top:17px;width:7px;height:7px;background:var(--ice);transform:rotate(45deg)}
+  ul.spec-list li b{color:var(--ink);font-weight:600}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
+  .grid.three{grid-template-columns:repeat(3,1fr)}
+  .card{border:1px solid var(--line);border-radius:12px;padding:22px;background:var(--card)}
+  .card h4{font-size:19px;font-weight:600;margin-bottom:7px;line-height:1.2}
+  .card p{color:var(--slate);font-size:15px}
+  .card .k{font-family:'Barlow Condensed';font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--ice-2);margin-bottom:8px}
+
+  .band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#0C1116}
+  .flag{border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:10px;background:rgba(217,162,63,.05);padding:22px 24px;margin-top:26px}
+  .flag h3{font-size:19px;font-weight:600;margin-bottom:10px}
+  .flag li{color:var(--slate);font-size:15.5px;margin-left:18px;padding:4px 0}
+
+  .people{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
+  .p{border:1px solid var(--line);border-radius:12px;padding:22px;background:linear-gradient(180deg,var(--card-2),var(--card))}
+  .p .nm{font-family:'Barlow Condensed';font-size:23px;font-weight:700}
+  .p .rl{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--ice-2);font-family:'Barlow Condensed';font-weight:600;margin:3px 0 10px}
+  .p p{color:var(--slate);font-size:15px}
+
+  .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+  .strip figure{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+  .strip figcaption{padding:10px 12px;font-size:12px;color:var(--slate-2);border-top:1px solid var(--line)}
+
+  table{width:100%;border-collapse:collapse;margin-top:24px;font-size:15px}
+  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.14em;font-size:11.5px;color:var(--ice-2);font-weight:700}
+  td{color:var(--slate)}
+  td strong{color:var(--ink);font-weight:600}
+  .tbl-wrap{overflow-x:auto}
+
+  .cta{background:linear-gradient(120deg,#12405E,#2C749E 55%,var(--ice));border-radius:16px;padding:44px 38px;margin:24px 0 52px;text-align:center;position:relative;overflow:hidden}
+  .cta:after{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at 78% 0%,rgba(255,255,255,.16),transparent 60%)}
+  .cta>*{position:relative}
+  .cta h2{font-size:clamp(24px,3.2vw,33px);font-weight:700;color:#fff}
+  .cta p{color:rgba(255,255,255,.9);margin-top:11px;font-size:16.5px;max-width:58ch;margin-left:auto;margin-right:auto}
+  .cta .contact{margin-top:20px;font-size:15px;color:rgba(255,255,255,.92)}
+  .cta .contact a{color:#fff;font-weight:700}
+
+  footer{border-top:1px solid var(--line);padding:24px 0 44px;color:var(--slate-2);font-size:13px;display:flex;gap:12px;flex-wrap:wrap}
+  footer .right{margin-left:auto;text-transform:uppercase;letter-spacing:.14em;font-family:'Barlow Condensed';font-weight:600;font-size:11px}
+
+  @media(max-width:880px){
+    .spec{grid-template-columns:repeat(2,1fr)}
+    .vids,.grid,.grid.three,.people,.feat,.feat.rev{grid-template-columns:1fr}
+    .strip{grid-template-columns:1fr}
+    .hero{padding:44px 0 32px}
+    .cta{padding:34px 22px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="bar">
+    <div class="word">Cold <b>Response</b></div>
+    <div class="tag">FPV drone simulation</div>
+    <div class="right">Confidential</div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Prepared for Ralph Strandberg, September 2026</div>
+    <h1 style="margin-top:16px">Built by a pilot, for <span class="hl">pilots who fly the real thing</span>.</h1>
+    <p class="lede">Cold Response simulates each motor independently, runs transmitter input through real tuning rate curves into a PID controller modelled on Betaflight and Cleanflight, and puts the aircraft into 400 square kilometres of Swedish terrain built from real GIS data. You build the airframe from parts, hang what you want under it, and fly it on your own radio.</p>
+    <p class="lede">It is playable now. Our technology would be built on a licence of Cold Response from <b>Eternal Minds AB</b>, the Stockholm studio that developed it.</p>
+
+    <div class="spec">
+      <div><div class="n">400 km&sup2;</div><div class="l">Playable area, landscape derived from real Swedish GIS data</div></div>
+      <div><div class="n">Per motor</div><div class="l">Thrust, air density and wind resolved individually, not approximated</div></div>
+      <div><div class="n">VPAM</div><div class="l">International armour rating standard used for damage and penetration</div></div>
+      <div><div class="n">4 to 6 GB</div><div class="l">VRAM. It runs on the machines a training unit already owns</div></div>
+    </div>
+  </div>
+</div>
+
+<section style="padding-top:34px">
+  <div class="wrap">
+    <div class="eyebrow">See it fly</div>
+    <h2 class="sec-h" style="margin-top:10px">Footage, not renders</h2>
+    <div class="vids">
+      <div class="vid">
+        <div class="fac" data-yt="1TeOOiTfXaA">
+          <img src="media/yt-1TeOOiTfXaA.jpg" alt="Cold Response gameplay, state of the game">
+          <div class="play"><span></span></div>
+        </div>
+        <div class="cap"><b>State of the game.</b> Flight, co-op, AI and world systems running in the build. The developer flying his own simulator.</div>
+      </div>
+      <div class="vid">
+        <div class="fac" data-yt="2H4UjMwx3SU">
+          <img src="media/yt-2H4UjMwx3SU.jpg" alt="Cold Response teaser trailer">
+          <div class="play"><span></span></div>
+        </div>
+        <div class="cap"><b>Teaser.</b> FPV flight through the Swedish village environment, weapons and destruction.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The flight model</div>
+    <h2 class="sec-h" style="margin-top:10px">The part nobody else got right</h2>
+    <p class="sec-sub">Flight dynamics are where a training simulator either transfers to the real aircraft or does not. This one was written by an FPV pilot who builds his own airframes, which is why experienced pilots recognise the feel within seconds.</p>
+    <ul class="spec-list">
+      <li><b>Each motor is simulated on its own.</b> Thrust is resolved per motor against air density and wind, so asymmetric thrust, prop wash and the behaviour of a damaged or unbalanced airframe fall out of the physics instead of being faked.</li>
+      <li><b>Real tuning, not a difficulty slider.</b> Transmitter input passes through the pilot's chosen rate curve to produce degrees per second, which an advanced PID controller modelled on Betaflight and Cleanflight then matches. All common tuning rate curves are supported and PID values are adjustable.</li>
+      <li><b>Your own radio.</b> Full transmitter support through the standard OS APIs, alongside gamepad and mouse and keyboard, including the menus. A pilot brings the controller they already fly and the configuration they already trust.</li>
+      <li><b>Wind, air density and foliage.</b> The aircraft is flown through a simulated medium in a simulated forest, not through empty space with a wind value applied.</li>
+      <li><b>Radio signal disturbance.</b> Video and control degradation modelled, which is the failure mode that actually ends real flights.</li>
+    </ul>
+  </div>
+</section>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="feat">
+      <div>
+        <div class="k">Modularity</div>
+        <h3>Build the airframe, then fly it</h3>
+        <p>Drones are composed from parts rather than picked from a list. Motors, frames, upgrades and payloads combine into the aircraft you want, and the physics responds to what you built: mass, thrust and balance change the way it flies.</p>
+        <p>For a training customer this is the whole argument. A configuration that exists in the real world can be rebuilt in the engine and flown against the same conditions, whether that is the airframe your own unit operates or the one being flown at you. A simulator with a fixed aircraft teaches one aircraft. This teaches the pilot.</p>
+        <p>Payloads already run from shotguns and grenades to recoilless weapons, including the Swedish Pansarskott m/86. Roles already exist for reconnaissance, one-way attack and heavier assault, each with its own loadout.</p>
+      </div>
+      <div class="shot">
+        <img src="media/shot-09.jpg" alt="An armed quadcopter on the ground in a Swedish forest clearing">
+        <div class="cap">A weapon-carrying airframe, composed from parts, sitting where the pilot put it down.</div>
+      </div>
+    </div>
+
+    <div class="feat rev" style="margin-top:44px">
+      <div class="shot">
+        <img src="media/shot-06.jpg" alt="Muzzle flash at night in rain">
+        <div class="cap">Firing at dusk in rain. Light, weather and sound are all simulated rather than staged.</div>
+      </div>
+      <div>
+        <div class="k">Terminal effects</div>
+        <h3>Ballistics that know what they hit</h3>
+        <p>Ballistics are multithreaded and resolved properly. Every physical surface carries metadata describing the material and its properties, so when a projectile begins penetration a headless simulation calculates the interaction.</p>
+        <p>A hard material at a steep angle is likely to ricochet. A softer one may spall, fragment, or let the projectile through while shedding a realistic amount of kinetic energy. Damage to vehicles, personnel and equipment is calculated against <b>VPAM</b>, the international armour rating standard. Calibre and distance matter, which means an effects assessment in the simulator means something outside it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The world</div>
+    <h2 class="sec-h" style="margin-top:10px">400 square kilometres of Sweden, and a full year of it</h2>
+    <p class="sec-sub">The environment is not a backdrop. It is the variable that decides whether a flight succeeds, and it is the thing existing simulators reproduce worst.</p>
+    <ul class="spec-list">
+      <li><b>Real terrain.</b> The landscape is derived from Swedish GIS data. The first world is a 400 000 000 square metre playable area, populated by a bespoke procedural generation system that uses a grammar-based approach so that artistic control is retained rather than surrendered to noise.</li>
+      <li><b>A simulated year.</b> The world runs a full year at an accelerated rate. Seasons, weather and the day and night cycle are continuous, and plant life and wildlife change with them. Flying the same route in February and in July are two different problems.</li>
+      <li><b>Materially destructible.</b> Almost every object is either destructible or affected by the physics simulation. The environment changes as the exercise proceeds, so the second run through a position is not the first one repeated.</li>
+      <li><b>Ground vehicles too.</b> A wheeled and tracked physics framework with multi-role crewed vehicles, fuel and maintenance, and a persistent global landscape deformer that leaves tracks which then affect handling.</li>
+    </ul>
+    <div class="strip">
+      <figure><img src="media/shot-02.jpg" alt="Swedish landscape with lake and cliffs"><figcaption>Terrain from GIS data. Scale, treeline and rock the way the country actually looks.</figcaption></figure>
+      <figure><img src="media/shot-04.jpg" alt="Heavy rain seen from under a concrete structure"><figcaption>Weather. Visibility and surface conditions change with it.</figcaption></figure>
+      <figure><img src="media/shot-01.jpg" alt="Night scene with night vision equipment"><figcaption>Night. The light condition is simulated, not a blue filter.</figcaption></figure>
+    </div>
+  </div>
+</section>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Systems</div>
+    <h2 class="sec-h" style="margin-top:10px">What is running underneath</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="k">Audio</div>
+        <h4>Proprietary audio middleware</h4>
+        <p>Written in house to simulate the speed of sound, air absorption and frequency shift. Distance and direction are audible, which matters for a pilot learning to interpret what they are hearing as well as what they are seeing.</p>
+      </div>
+      <div class="card">
+        <div class="k">Engines</div>
+        <h4>Combustion engine simulation</h4>
+        <p>An open-source combustion engine simulator implemented as a multithreaded actor component, driving both audio and vehicle physics from the same source of truth rather than from a sound file.</p>
+      </div>
+      <div class="card">
+        <div class="k">Opposition</div>
+        <h4>Goal-oriented action planning</h4>
+        <p>Non-player behaviour runs on a proprietary GOAP architecture, so opposition adapts and works around problems. Behaviour shifts with equipment, weather, season, fatigue, physical and mental state, and time of day. Threat models, not target sets.</p>
+      </div>
+      <div class="card">
+        <div class="k">Networking</div>
+        <h4>Iris replication, spatial filters</h4>
+        <p>Custom spatial filters minimise network churn in both directions. Peer to peer for small groups, or hosted dedicated servers. Every system was built for networked play rather than retrofitted for it.</p>
+      </div>
+      <div class="card">
+        <div class="k">Code</div>
+        <h4>C++ where it is hot, AngelScript where it is not</h4>
+        <p>Performance-critical systems in C++, the majority of simulation logic in AngelScript, which <b>ships uncompiled</b>. That is what makes scenario and systems work possible for a customer or an integrator without handing over the engine.</p>
+      </div>
+      <div class="card">
+        <div class="k">Server stack</div>
+        <h4>Telemetry, forensics and analytics</h4>
+        <p>The dedicated server stack ships with full telemetry, forensics, administration and moderation tooling and an interactive world map, plus behaviour tracking using statistical modelling and machine learning. Most of an after-action review capability already exists here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+<section>
+  <div class="wrap">
+    <div class="feat">
+      <div>
+        <div class="k">Already pointed this way</div>
+        <h3>A training mode is being designed, with input from people who train on this</h3>
+        <p>A dedicated Swedish military simulation mode is in design. Six roles can be assumed, so a session runs with a virtual instructor and trainees learning to operate drones on real radio transmitters, and support for <b>DIS</b>, the protocol that lets separate simulators share one exercise, is on the technical roadmap.</p>
+        <p><b>To be precise about its status:</b> the direction of that mode is an ongoing design discussion with individuals connected to Hemv&auml;rnet, the Home Guard. It is not a formal collaboration, a procurement, or an endorsement by the Swedish Armed Forces, and we would not present it as one. What it does mean is that the design is being shaped by people who actually train drone operators, rather than by developers guessing at requirements.</p>
+        <p>The developer is also explicit about where the gap is. On the military revenue model their own material says, in as many words, that they are seeking investors with proven expertise in defence-tech monetisation and growth, because that experience is currently limited internally. That is precisely the hole this conversation fills.</p>
+      </div>
+      <div class="shot">
+        <img src="media/shot-07.jpg" alt="Swedish armed forces military training area sign in a birch forest">
+        <div class="cap">In-game. The level of Swedish specificity runs all the way down to the signage.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Who builds it</div>
+    <h2 class="sec-h" style="margin-top:10px">Two people made all of the above, self-funded</h2>
+    <p class="sec-sub">Cold Response is developed by <b>Eternal Minds AB</b> in Stockholm, the studio our licence would come from. Development started in June 2025 and has been financed entirely through work for hire. Everything described on this page is implemented and running, which is a statement about the engineering rather than about the budget.</p>
+    <div class="people">
+      <div class="p">
+        <div class="nm">Robin Hofstr&ouml;m</div>
+        <div class="rl">Programming and tech art, founder</div>
+        <p>Twenty years of programming, across robotics, AI, multiplayer systems, physics and real-time graphics, with deep Unreal Engine and GPU and CPU optimisation work. Principal Technical Artist at Aurora Punks, Senior C++ Developer at GOALS, AI Programmer at Cult of the North. A long-time RC and FPV pilot, which is the reason the flight model is what it is.</p>
+      </div>
+      <div class="p">
+        <div class="nm">Arvid Stenersj&ouml;</div>
+        <div class="rl">Art and animation</div>
+        <p>Five years in the industry and fifteen making games before that. All-rounder with a focus on 3D art. The visual consistency across 400 square kilometres, on a strict texture budget, is his.</p>
+      </div>
+    </div>
+    <p class="sec-sub" style="margin-top:22px">On the delivery side, we bring an established Stockholm development studio we already run two co-development programmes with, whose people have shipped and certified titles on PlayStation, Xbox, Switch and PC. They take the operator-facing product. The team also has shipping and certification experience across XSX, PS5, PC, Steam Deck and MacOS, which is what makes a hardened, deployable build a scheduling question rather than a research one.</p>
+  </div>
+</section>
+
+<div class="band">
+<section>
+  <div class="wrap">
+    <div class="eyebrow">What we add</div>
+    <h2 class="sec-h" style="margin-top:10px">The operator layer</h2>
+    <p class="sec-sub">The simulation is finished to a standard that a training organisation would respect. What it does not yet have is the product wrapped around it. That work is ordinary software engineering with a knowable price, and it is what the investment buys.</p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Build</th><th>What it is</th><th>What already exists to build on</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Scenario authoring</strong></td><td>A non-developer places threats, sets season, weather, light and radio conditions, defines objectives, saves the exercise and runs it again next intake.</td><td>Every one of those variables is already simulated and adjustable. The gap is the interface.</td></tr>
+        <tr><td><strong>After-action review</strong></td><td>Flight path playback, control input trace, engagement log, measured performance against objectives.</td><td>The server stack already does telemetry, forensics and behaviour tracking. Most of the data is already captured.</td></tr>
+        <tr><td><strong>Curriculum and progression</strong></td><td>A structured path from first hover to complex mission, with competence measured rather than assumed.</td><td>New. Built with the customer, not for them.</td></tr>
+        <tr><td><strong>Multi-seat exercise control</strong></td><td>One instructor, several pilots, one scenario, conditions changed while it runs.</td><td>Dedicated servers, six roles and the instructor and trainee concept are already in the milsim mode.</td></tr>
+        <tr><td><strong>Deployment</strong></td><td>Offline installation, nothing leaving the site, logging and data handling a security officer can sign off.</td><td>Encrypted session data with a selectable method exists. The rest is hardening.</td></tr>
+        <tr><td><strong>DIS interoperability</strong></td><td>Joining an exercise that other simulators are already running.</td><td>On the roadmap by design. Scope it with the customer, since it is what makes procurement take a simulator seriously.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The structure</div>
+    <h2 class="sec-h" style="margin-top:10px">How it would be put together</h2>
+    <div class="grid three">
+      <div class="card">
+        <div class="k">01</div>
+        <h4>A new company licenses the technology</h4>
+        <p>A purpose-built Swedish company takes a licence from <b>Eternal Minds AB</b> for the defence, security and professional training field. The consumer game stays with Eternal Minds, so the two roadmaps do not fight each other.</p>
+      </div>
+      <div class="card">
+        <div class="k">02</div>
+        <h4>Part of the price is a co-production</h4>
+        <p>Cash, plus a co-production of the consumer game. That keeps the engineer who built this engaged and building rather than cashed out, and keeps the flight model under the most unforgiving testers there are.</p>
+      </div>
+      <div class="card">
+        <div class="k">03</div>
+        <h4>Investment funds the product</h4>
+        <p>Into the operator layer, the compliance work and the first deployments. Not into proving the simulation, which is playable today and can be demonstrated live on request.</p>
+      </div>
+    </div>
+
+    <div class="flag">
+      <h3>Three things that are open, stated plainly</h3>
+      <ul>
+        <li>It is <b>not certified</b> for military training. Certification, where it applies, is a workstream with a cost and a calendar.</li>
+        <li>The <b>export-control classification</b> is being established in writing rather than assumed. It affects the structure, so it is being handled before anything is sold.</li>
+        <li>The <b>procurement timeline</b> is the real risk, not the technology. Which door we go through changes the answer by quarters, and your side may well know more about that than ours.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="cta">
+    <h2>The fastest next step is a live technical demonstration</h2>
+    <p>This page is a summary of an engineering effort that is easier to judge by watching someone fly it and asking hard questions in real time. We can put that in front of you, and your contact, at short notice.</p>
+    <div class="contact">
+      Robert Backstrom &nbsp;&middot;&nbsp; <a href="mailto:robert@aurorapunks.com">robert@aurorapunks.com</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <footer>
+    <div>Confidential. Prepared September 2026. Screenshots and footage are from the current build. Not for onward distribution without agreement.</div>
+    <div class="right">Cold Response</div>
+  </footer>
+</div>
+
+<script>
+document.querySelectorAll('.fac').forEach(function(f){
+  f.addEventListener('click',function(){
+    var id=f.getAttribute('data-yt');
+    var i=document.createElement('iframe');
+    i.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';
+    i.setAttribute('allow','accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture');
+    i.setAttribute('allowfullscreen','');
+    f.replaceWith(i);
+  });
+});
+</script>
+
+</body>
+</html>

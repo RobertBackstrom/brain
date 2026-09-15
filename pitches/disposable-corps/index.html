@@ -130,7 +130,7 @@ footer .who{color:var(--text);font-family:'Oswald',sans-serif;font-size:17px;tex
 <body>
 <main>
 
-<div class="confbar">Confidential · Prepared for Light Up Games · 26 August 2026</div>
+<div class="confbar">Confidential · Prepared for Light Up Games · 26 August 2026 · updated 15 September 2026</div>
 
 <div class="hero">
   <div class="eyebrow">Aurora Punks · production plan</div>
@@ -178,6 +178,50 @@ footer .who{color:var(--text);font-family:'Oswald',sans-serif;font-size:17px;tex
     <div class="fix"><div class="p">Squad AI pathing and giving orders both feel bad</div><div class="a">Orders are reduced to three on a radial: advance to marker, hold, dig here. Pathing runs on a sector-bounded navmesh instead of the open field.</div></div>
     <div class="fix"><div class="p">UI and UX are behind the rest of the game</div><div class="a">A dedicated UI/UX designer from month two, owning HUD, onboarding and the order interface.</div></div>
     <div class="fix"><div class="p">The whole thing is not yet fun for long enough</div><div class="a">Every round builds toward one moment: the whistle, the climb over the top, the barrage.</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head"><span class="eyebrow">Evaluation</span><h2>An outside pass now confirms the diagnosis</h2></div>
+  <p class="body">Ahead of the engagement, an external design and UX evaluation was made of the public
+  Steam demo. It reproduces every point on the list above, point for point, written by someone who had
+  never been shown that list. The problems are not a matter of taste, and they are reproducible.</p>
+  <div class="fixlist">
+    <div class="fix"><div class="p">The tutorial is broken rather than merely rough</div><div class="a">The tutorial and the normal game sequence run in parallel, each with its own instruction text and its own voice over, so the part of the game whose job is to explain the rest cannot be read or heard. That is a fixable defect, not a rewrite.</div></div>
+    <div class="fix"><div class="p">The economy rewards the wrong behaviour</div><div class="a">The most profitable play pattern in the game today is dying repeatedly near the enemy point. In a competitive title that is an exploit and an open griefing surface, and on the current trajectory it would have shipped.</div></div>
+    <div class="fix"><div class="p">The game has not chosen what it is</div><div class="a">A slower military simulation and a goofy multiplayer sandbox are both live in the same build. Both can work. The choice decides player health, time to kill, vehicle visibility and the tone of the onboarding, so it is the first thing the review month settles.</div></div>
+  </div>
+  <p class="body" style="margin-top:22px">The findings have been rated by severity and rough size and
+  placed against the schedule, so the first months have a list to execute rather than a document to
+  read.</p>
+  <div class="stat-band">
+    <div class="stat"><div class="n">2 + 1</div><div class="l">Months 1 to 2: two decisions and a rebuilt onboarding</div></div>
+    <div class="stat"><div class="n">18</div><div class="l">Before public playtest 1, month 4</div></div>
+    <div class="stat"><div class="n">16</div><div class="l">Before Early Access, month 10</div></div>
+    <div class="stat"><div class="n">4</div><div class="l">Longer-term ideas, outside this budget</div></div>
+  </div>
+  <p class="body" style="margin-top:22px">The first version of this list opened with eleven small
+  fixes. The designer who ran the pass disagreed with it, and he was right: six of them were properties
+  of the tutorial as it is built, and they disappear when it is replaced. So the first months are not
+  a fix list. They are two decisions and one rebuild.</p>
+  <p class="body" style="margin-top:16px"><strong>Decide what the game is</strong>, a slower military
+  simulation or a goofy multiplayer sandbox, because it settles player health, time to kill, vehicle
+  visibility and the tone of the onboarding. <strong>Take the demo down</strong> while the onboarding is
+  rebuilt, and publish it again when the new one is in: the demo is the only thing a new player meets
+  today, and it cannot teach them what the game is, so every player who tries it is a wishlist lost
+  rather than gained. Both decisions belong to the development team. <strong>Then rebuild the
+  onboarding</strong> rather than patch it, which absorbs twenty of the detailed findings as
+  requirements.</p>
+  <p class="body" style="margin-top:16px">One finding is neither small nor absorbed by the rebuild, and
+  it is the one we would take this week: the most profitable thing a player can do today is die
+  repeatedly near the enemy point.</p>
+  <div class="callout">
+    <p>The evaluation was made from the public demo, without repository access and without playtest
+    telemetry. Sizes are therefore rough, and the findings about map scale and travel time need to be
+    re-tested at full player count before any map work is committed. The technical direction, including
+    hosting and the network layer, stays a written deliverable of the review month, because it cannot
+    be answered without the repository. The fourth group above is design work that sits outside the
+    1 860 000 and would be decided at the month 8 playtest.</p>
   </div>
 </section>
 
@@ -267,15 +311,16 @@ footer .who{color:var(--text);font-family:'Oswald',sans-serif;font-size:17px;tex
   <div class="tw"><table>
     <tr><th>Seat</th><th>Side</th><th>Allocation</th><th>SEK / month</th></tr>
     <tr><td><strong>Founders</strong><br>Coding, and vision and game design</td><td>Development team</td><td class="num">2 people</td><td class="num">30 000</td></tr>
-    <tr><td><strong>Lead programmer</strong><br>Hosting change, network layer, technical direction and review</td><td>Aurora Punks</td><td class="num">50%</td><td class="num">45 000</td></tr>
-    <tr><td><strong>UI/UX designer</strong><br>HUD, objective readability, onboarding, order interface</td><td>Aurora Punks</td><td class="num">50%</td><td class="num">40 000</td></tr>
-    <tr><td><strong>Artist</strong><br>Environment and art support on the rescoped sectors</td><td>Aurora Punks</td><td class="num">50%</td><td class="num">40 000</td></tr>
-    <tr><td><strong>Producer and product owner</strong><br>Robert Bäckström</td><td>Aurora Punks</td><td class="num">25%</td><td class="num">25 000</td></tr>
+    <tr><td><strong>Developer</strong><br>Gameplay and network work, technical direction and review</td><td>Aurora Punks</td><td class="num">50%</td><td class="num">50 000</td></tr>
+    <tr><td><strong>Design and product ownership</strong><br>HUD, objective readability, onboarding, order interface, and the product decisions that follow from them</td><td>Aurora Punks</td><td class="num">60%</td><td class="num">55 000</td></tr>
+    <tr><td><strong>Executive producer</strong><br>Robert Bäckström</td><td>Aurora Punks</td><td class="num">25%</td><td class="num">45 000</td></tr>
     <tr><td><strong>Total</strong></td><td></td><td></td><td class="num"><strong>180 000</strong></td></tr>
   </table></div>
-  <p class="body" style="margin-top:16px">The Aurora Punks programmer seat is set at half time
-  because the development team codes day to day. Aurora Punks takes the hosting and network work,
-  technical direction and code review. UI/UX is staffed because it is not covered on the development side.</p>
+  <p class="body" style="margin-top:16px">The Aurora Punks developer seat is set at half time
+  because the development team codes day to day. Aurora Punks takes the network work, technical
+  direction and code review. Design is staffed above half time because the seat carries product
+  ownership as well as the interface work, and neither is covered on the development side. Art is
+  funded inside that seat rather than as a separate line.</p>
 </section>
 
 <section>
@@ -337,7 +382,8 @@ footer .who{color:var(--text);font-family:'Oswald',sans-serif;font-size:17px;tex
 <footer>
   <div class="who">Aurora Punks</div>
   Robert Bäckström, Founder and Executive Producer · robert@aurorapunks.com<br>
-  Prepared for Light Up Games, 26 August 2026. Confidential, not for onward distribution without
+  Prepared for Light Up Games, 26 August 2026. Updated 15 September 2026 with the design and UX
+  evaluation, the onboarding rebuild and the current team composition. Confidential, not for onward distribution without
   Aurora Punks' agreement. Figures are estimates pending a technical review.
 </footer>
 

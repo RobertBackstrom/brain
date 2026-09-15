@@ -12,6 +12,76 @@
 <!-- Append new learnings with: learning, source project, date, category -->
 
 
+## 2026-09-15 — Ett kontraktstak och en P&L-rad är två olika tal: kontingensen hör hemma i det ena och aldrig i det andra (k2c)
+
+**Uppdragsbeskrivningen sa att det nya taket 426 969 "inkluderar 10 %-kontingensen". Det gör det
+inte, och det gick att avgöra på en rad:** 316 200 + 110 769 = 426 969 exakt. Kontingenssiffran i
+kalkylen (121 846) är förlängningen laddad med 10 %, och den hör hemma i P&L:ens egen
+kontingensrad, inte i det tak en motpart skriver under. Hade den smugit in i avtalet hade AP
+bundit sig för 438 046 och gett bort hela bufferten. **Regel: när en kalkyl visar både ett rått
+belopp och ett kontingensladdat, kontrollera vilket av dem som summerar till det påstådda taket
+innan något skrivs in i ett avtal.** Additionen tar fem sekunder och är hela kontrollen.
+
+**Ett dokument som säger "authoritative Gsheet <id>" kan vara migrerat sedan månader.** Kalkylen
+pekade på `1xlHrzOL…`, som bär en egen rubrik: "LEGACY as of 2026-06-23: MIGRATED into the AP P&L
+workbook … EDIT THERE." Den legacy-kopian låg dessutom kvar på det gamla värdet (MS3 86 400,
+total 300 000), alltså **utan Amendment No. 1**, medan den levande fliken hade 102 600 och
+316 200. Två sheets med samma radnummer och olika sanning. Hade cellskrivningarna gått till den
+citerade id:t hade de landat i ett dokument ingen läser, och avstämningen mot avtalet hade sett
+fel ut åt båda håll. **Läs alltid A1 på ett sheet innan du litar på id:t i ett memo** — migrerade
+kopior skyltar med det, och radnumren flyttar sig (Subcontractor Total gick från rad 17 till 18
+när två nya underleverantörer lades in, medan rad 14 råkade stå kvar).
+
+**Avtalstexten citerade det interna sheet-id:t.** Exhibit A i underleverantörsavtalet namnger
+AP:s egen P&L med fullt dokument-id, i ett dokument en motpart signerar. Ingen skada skedd här,
+men det är intern ekonomi i ett externt papper. Flaggat till Robert, inte tyst rättat.
+
+**En förlängd löptid startar om varje klausul som räknar bakåt från slutdatumet.** Exhibit A:s
+"Potential extension" kräver förhandling senast trettio (30) dagar före slutdatumet. Flyttas
+slutet från 18 sep till 23 okt blir den nya triggerdagen **23 september**, alltså åtta dagar efter
+att förlängningen skrivs. Det är inte en bieffekt man upptäcker senare med behag. **Innan ett
+slutdatum flyttas: greppa avtalet på "prior to", "before the end", "no later than … days" och
+räkna om varje sådan dag mot det nya datumet.** Samma sak gäller frånvarokvoter uttryckta "over
+the Term" — femton dagar över en längre löptid är en annan sak än femton dagar över den
+ursprungliga, och tystnad avgör inte frågan. Skriv ut vilken läsning som gäller.
+
+**Och: skriv en kontinuitetsklausul när avtalet hinner löpa ut innan bläcket torkar.** Tre
+signatärer i ordning, tre dagar kvar till att avtalet lapsar. En rad om att tillägget verkar från
+det gamla slutdatumet oavsett exekveringsdag kostar ingenting och stänger glappet.
+
+**Verifiera att föregående tillägg faktiskt är signerat innan du bygger vidare på dess siffra.**
+Spårningsfilen stod på "🟡 out for signature" sedan 22 juli. `opensign.js status` svarade
+`isCompleted: true` med alla tre signatärerna klara. Baslinjen 316 200 höll, men det var tur, inte
+kunskap. Ett tillägg som bygger på ett osignerat tillägg har fel ingångsvärde.
+
+*Kategori: contracts/finance · Projekt: K2C Pharaoh Lands (k2c-040) · 2026-09-15*
+
+
+## 2026-09-15 — Bankavstämning: tre fällor som alla gav fel svar först (CZP)
+
+**1. SIE-regex på `#TRANS <konto> {}` missar rader med kostnadsställe.** Formatet är
+`#TRANS 1930 {6 "19"} -72000`, alltså kan objektlistan ha innehåll. Mitt `\{\}` matchade bara tomma
+och tappade fyra leverantörsbetalningar, vilket fick dem att se obokförda ut. **Använd
+`\{[^}]*\}`.** Samma fel lurar i varje SIE-parser vi skriver.
+
+**2. Lönebeskedsverifikatet bokar inte utbetalningen.** L27 träffar 7210, 2710, 2910, 2730 och 7510
+och rör **inte** 1930. Att lönebeskeden är markerade som utbetalda och att AGI är inlämnad betyder
+alltså inte att pengarna är bokförda mot banken. **Kontrollera 1930 separat, inte 2910.**
+Och min gamla varning "bokför INTE 2910 mot 1930 manuellt" gällde bara före inlämning, när en manuell
+bokning hade låst AGI:n i preliminärt läge. Efter inlämning är det tvärtom den åtgärd som saknas.
+**En varning som var rätt i ett läge blir fel i nästa om man inte daterar den.**
+
+**3. Enable Bankings `status` är inte ett åtkomstbevis.** CZP och AP stod på `AUTHORIZED, 179 dgr
+kvar` men varje `pull` svarade `HTTP 401 EXPIRED_SESSION`, oavsett periodlängd. **Lita på en riktig
+hämtning, aldrig på ett statusfält.** Exakt samma klass av fel som Fortnox företagsväljare.
+Zenlands `422 WRONG_TRANSACTIONS_PERIOD` var däremot äkta och bara en för lång period, `--days 30`
+löste den. Skilj de två åt: den ena är åtkomst, den andra är parameter.
+
+**4. AISP-data innehåller framtidsdaterade rader.** CZP hade poster daterade 2026-09-30 till
+2026-12-30 för 7wise och Svea Bank. Det är stående betalningsuppdrag, inte transaktioner. **Filtrera
+bort allt efter dagens datum**, annars ser bokföringen ut att sakna poster den omöjligt kan ha, och
+"senaste transaktion" blir tre månader fel.
+
 ## 2026-09-15 — Arbetsintyg för gamla anställda: arbetsgivaren är nästan aldrig bolaget de minns (AP)
 
 **När någon ber om intyg "för min tid hos AP", verifiera arbetsgivarbolaget innan du skriver en

@@ -92,3 +92,46 @@ the memos, the whole tool is dead weight.
   (rate card / `wiki/legal/` + [[lawyer]] / [[feedback_security_defaults]] / `/code-review`).
   Advisory only, never blocking, never edits the artifact. Death Board recommendation detector
   scoped as a DevOps handoff, not yet built.
+- **[2026-09-15] [legal] [sm93 / utgivaravtal Krister]** — **"Replaces the prior agreement" is only
+  as good as party continuity, and party continuity is decided by the transfer agreements'
+  exclusion clauses, not by their asset lists.** The draft let AP AB "replace" a 2019 agreement
+  AP was never party to. The chain WLBS-bo, APDS, Bright Gambit, CZP never contained AP, and the
+  estate's own överlåtelseavtal said in plain text (punkt 3.4) that the buyer does *not* step into
+  the debtor's contracts without the counterparty's consent, while punkt 2.2 excluded fordringar.
+  Everyone had read the asset list (1993 = "IP ägs av extern klient"); nobody had read 3.4. Rubric
+  takeaway: whenever an artifact terminates, replaces or recoups under an earlier contract, (1)
+  name the actual parties to that contract today, (2) read the *exclusions* in every transfer
+  document between then and now, (3) check the old contract for an insolvency clause (this one
+  had none, so it survived the konkurs). The cure is almost always the counterparty's
+  retroactive consent plus the real holder signing as acknowledging party, not a recital.
+  Category: `rubric_gap`. Cost: ~180k tokens, 14 tool calls, one WebFetch to verify lagtext.
+- **[2026-09-15] [legal] [sm93]** — **Sublicence structures leak through the revenue definition
+  before they leak anywhere else.** "Gross Revenue = amounts received by the Publisher or by a
+  Group Company *on the Publisher's behalf*" collapses the moment the same draft lets the group
+  company "receive and invoice in its own right" as sublicensee: the royalty base silently becomes
+  the intra-group fee. Same pattern for co-publisher cost pass-through ("spent by or on behalf of
+  the Publisher") and for "internal costs of either Party" exclusions when the operating company
+  is not a Party. Check every money definition against every entity the grant clause lets touch
+  the money. Category: `rubric_gap`.
+- **[2026-09-15] [legal] [sm93]** — **A statutory right the contract is silent on is not a win for
+  the drafter, it is an unpriced dispute.** The draft had no reversion for non-exploitation, which
+  looked publisher-friendly until `URL 29 d §` (tvingande, DSM art. 22/23) turned out to give the
+  upphovsman that right anyway. Same logic applied to the missing liability cap against a
+  privatperson (`AvtL 36 § 2 st`). When the counterparty is a physical person, run the
+  36 §/URL 29 checklist explicitly and price the concession at what the law already gives away.
+  Verified URL 28 to 29 e §§ against lagen.nu today rather than from memory; the paragraph
+  numbering post-SFS 2022:1712 is easy to misremember. Category: `process`.
+- **[2026-09-15] [legal, pass 2] [sm93]** — **My own proposed clauses were the two defects in the
+  second pass.** The liability cap I drafted in pass 1 ("total liability limited to amounts paid
+  in the preceding 24 months") silently capped the estate indemnity I had also drafted, and the
+  royalty debt itself; the survival clause I told the producer to narrow ("16.6 to 16.10") dropped
+  the consent-and-indemnity clause 16.1 that most needs to outlive the agreement. Both are the
+  pass-1 lesson from the VPS audit again, in contract form: a Reviewer memo is a hypothesis list,
+  and **every proposed clause must be re-read against every other proposed clause before it is
+  handed over**, especially caps against indemnities and survival lists against anything added
+  late. Second, new: **verify the completion of the last link in a title chain, not just its
+  existence.** The BG-to-CZP agreement carried an äganderättsförbehåll and the final instalment was
+  unpaid, so the recital's "acquired" was untrue on the signing day even though the document was
+  real; and the producer's recital skipped the intermediate buyer entirely. When a chain is
+  summarised in a recital, check each link's party names, date and whether title has actually
+  passed. Category: `false_positive` (own clause) + `rubric_gap` (chain completion).
