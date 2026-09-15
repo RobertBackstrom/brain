@@ -624,3 +624,54 @@ or open the archive file below (each has its own Contents block, so you can offs
   visar fel för Chenso Club och Block'Em! (reverterade till AP), och signerande bolag för de 18
   appid:erna är **CZP Holding AB, partner 418393**, inte AP AB. Kontrollera alltid mot
   `aurora_punks/ap_ip_ownership_canonical.md`. Category: rights.
+- **Innan du bygger en licenspitch: sök på motpartens EGET material i Drive, inte bara vår tråd med
+  dem.** Cold Response / Eternal Minds (cr, 2026-09-15). Robert bad om en pitch för att licensiera
+  Robins drönarsim in i ett försvarsspår. RAG-svepet hittade **"Pitch EM"**, ett halvifyllt
+  försvarspitchformulär skrivet av **Robin själv**, med namngivna rådgivare (Abelian Group / Cloke,
+  Fred Addy, Logal Torrence) och ett påstående om tidigare simuleringsarbete åt amerikanska
+  försvarsunderleverantörer. Dessutom ett success-fee-erbjudande från Mandai Tech i februari. Utan
+  det fyndet hade vi pitchat exklusivitet på ett fält motparten redan bearbetar. **Lärdomen:** när
+  vi ska licensiera in något, sök på motpartens namn plus vertikalen (`"<bolag>" + defense`,
+  `+ enterprise`, `+ B2B`) över hela Drive, inklusive "Shared with me". Delade dokument från en
+  motpart är deras strategi, inte bara ett underlag. De tre luckor de lämnat tomma
+  (affärsmodell, pricing, go-to-market) är exakt vår värdeandel och därmed vårt förhandlingsargument.
+  Category: research.
+- **Ett spel som har bytt positionering två gånger är inte en licensierbar tillgång förrän du
+  bestämt vilken version du köper.** Cold Response gick från "FPV drone warfare simulator"
+  (pressrelease 2025-09) till "milsim survival sandbox à la DayZ/Rust/Tarkov" (tekniskt deck 2026),
+  med en namnlista i Drive där ett tredje namn vann en runda. Datera alltid varje positionering och
+  fråga vilken som gäller innan ett field of use skrivs, annars definierar avtalet en produkt som
+  inte längre finns. Category: deal structuring.
+- **Utvecklarens tekniska deck innehåller ofta B2B-argumentet redan, oanvänt.** Cold Response-decket
+  nämnde i förbifarten "cost-effective platform for training new drone pilots" och DIS-stöd för
+  simulatorinteroperabilitet. Det är precis de två meningar en upphandlare reagerar på, begravda i
+  ett konsumentdeck. Läs motpartens tekniska material med B2B-glasögon innan du skriver egen copy,
+  bevisen finns oftast redan. Category: pitch craft.
+- **Kolla utgivarfältet på Steam-sidan innan du tar emot en publisher-pitch.** Crack a Pack /
+  simsum (cap, 2026-09-15). Vincent skickade ett publisher-deck som ber om distributionspartner,
+  50k i förskott och produktionsstöd. Decket nämner inte med ett ord att **Vsoo Games redan står
+  som utgivare** på Steam-sidan för både det nya spelet och det förra. Två minuter på butikssidan
+  ändrade hela bedömningen: vi vet inte vad som faktiskt erbjuds, och en intro till en av våra
+  kontakter in i en oförklarad befintlig utgivarrelation kostar oss kontakten, inte dem. Gör
+  utgivar- och utvecklarfältet på Steam till en obligatorisk kontroll i varje inkommande pitch,
+  före allt annat. Category: due diligence.
+- **Jämförelseobjekten i ett indie-deck är nästan alltid uppblåsta, och de går att kontrollera på
+  tio minuter.** Samma deck: Scritchy Scratchy angavs till 1 000 000 enheter (verkligt ~335k på
+  Steam enligt Gamalytic, 750k+ över PC och mobil enligt utvecklarens eget utskick) och This Ain't
+  Even Poker Ya Joker till 130 000 (utvecklaren annonserade själv 85 000+). Kör alltid varje
+  comp-siffra mot SteamDB/Gamalytic/Raijin plus utvecklarens egna Steam-nyheter innan siffran får
+  gå in i ett av våra dokument. Category: research.
+- **Ställ studions projektion mot vad samma team faktiskt sålde förra gången, det är den enda
+  jämförelsen som betyder något.** simsum projicerade 200 000 enheter för Crack a Pack medan deras
+  släppta titel Gamestonk Simulator ligger på uppskattat 2 300 sålda och 106 recensioner. 50x till
+  80x utan förklaring är ett rött skynke för varje utgivare som kollar. **Den användbara vändningen:
+  räkna breakeven i stället.** 5,49 USD minus Steams 30 % och moms ger ~3 USD netto per enhet, så
+  ett förskott på 50k går jämnt upp vid ~16 000 enheter. Det är ett försvarbart tal, och ett
+  starkare argument än taket. Använd breakeven-vinkeln varje gång ett deck överdriver uppsidan.
+  Category: pitch craft.
+- **Sök alltid på spelets titelkoncept på Steam, inte bara på titeln.** Crack a Pack släpps enligt
+  decket 12 dec 2026. *Crack the Pack* (Doigt, app 4614210), samma loop under ett nästan identiskt
+  namn, släpps 29 sep 2026. Utvecklaren nämnde det inte, troligen för att de inte visste. En
+  konkurrent som hinner före med samma mekanik och nästan samma namn påverkar namn, datum och
+  butikssynlighet, och att hitta den är det mest värdefulla en rådgivare kan leverera i ett sådant
+  läge. Category: market research.
