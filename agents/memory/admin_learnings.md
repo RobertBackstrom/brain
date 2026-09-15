@@ -127,6 +127,37 @@ Kanoniska fakta om projektet (arbetsgivarbolag, rättighetsklausul, Steam-ägand
 *Kategori: contracts/HR · Projekt: Aurora Punks (WLBS) · 2026-09-15*
 
 
+## 2026-09-15 — Pleo-bokföringen är CorpBots månadsmoment nu, och den har en påminnelse
+
+**Rättelse till entryt nedan och till czp-039: det finns ingen Fortnox-integration.** Exporten ur
+Pleo producerar en **zip med en SIE-fil** (`Pleo SIE type 4I export 1.1.0`) plus kvitton. Någon
+måste ta den filen och importera den i Fortnox. Den någon var Sifferrådet. Slutsatsen att
+"verifikaten träffar rätt BAS-konton, sådant uppstår inte vid manuell inmatning" var riktig i sak
+men ledde fel: allt det kommer ur SIE-filen, inte ur en integration.
+
+**Generaliserbart: ett uteblivet manuellt steg ser aldrig ut som ett fel.** Ingenting larmade under
+sju veckor, för det fanns inget som gick sönder. Bokföringen i övrigt var aktuell, så inget såg
+konstigt ut förrän man jämförde färskheten mellan serier. **När en byrå eller konsult lämnar: fråga
+vilka manuella moment de utförde, inte bara vilka system de hade åtkomst till.** Åtkomsten
+återkallas automatiskt, rutinen gör det inte.
+
+**Rutinen ligger nu i en månadspåminnelse.** `assistant/pleo-monthly-reminder.js`, cron den 3:e
+09:00, skapar följdsedel (`routed_agent: admin`) och DM:ar Robert. Den 3:e och inte den 1:a, för
+bara **reglerade** transaktioner går att exportera och kortköp i månadsskiftet behöver några dagar.
+Idempotent per månad via `pleo-monthly-state.json`. Full rutin i `skills/pleo_fortnox_export.md`.
+
+**Två kontroller som faktiskt avslöjar ett hål**, till skillnad från att räkna verifikat:
+1. **Jämför färskheten mellan serier.** Serie A och D löpte till 2026-09-14 medan Pleo stod stilla
+   sedan 2026-07-28. Tar fem sekunder.
+2. **Kontrollera att löpnumren följer obrutet.** Sista bokförda var 2600134, augustifilen började på
+   2600135. Det är den enda kontroll som fångar att något fallit bort *mitt i* en period.
+
+**Konto 1731 är facit.** Det ska ligga nära det verkliga kortsaldot i Pleo. Bokfört 21 487,29 mot
+faktiskt 5 002,05 betydde 16 485 kr obokförd förbrukning, och den siffran pekade rätt hela vägen.
+
+*Kategori: bokföring/rutiner · Projekt: CZP (czp-039, db-352) · 2026-09-15*
+
+
 ## 2026-09-15 — Pleo in i Fortnox: serien varierar, och importen är manuell (CZP)
 
 **"Verifikaten kommer in automatiskt" var en förhastad slutsats.** Jag såg 109 verifikat i serie

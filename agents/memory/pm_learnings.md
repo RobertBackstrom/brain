@@ -1605,3 +1605,45 @@ obetalda sträckan) och listan över vad som aldrig får stå i en offert, ligge
   outward: does this trace to something they asked, or to our answer to it? If neither, it belongs in
   the tracker, not on the page.** Tone edits will not catch these because the sentence reads fine;
   only provenance does. Category: client comms.
+- **`gsheets_read` relabels cell locations relative to the range you asked for, so the reported
+  addresses are wrong.** K2C, 2026-09-15. Reading `ap_pnl_2026!A8:O12` returned rows labelled
+  `A1`, `A2`, `A3`, `A4`. Those were really sheet rows 8 to 11. I nearly reported the wrong row as
+  the K2C line, and re-reading "A3" to check returned a different row entirely. **Never trust the
+  `location` field in a gsheets_read result; trust the range you asked for and count from its first
+  row.** When you need one specific row, request exactly that row (`A10:O10`) so there is nothing to
+  miscount. Category: tooling.
+- **A pre-costed scenario carries the assumptions of the day it was written; re-derive before
+  booking it.** Same run. `k2c-041` scenario B priced a contractor at 92 928 SEK to 30 Sep. Robert
+  had separately fixed the start at Tue 18 Aug, but the scenario counted from Mon 17 Aug, so it was
+  one working day long: 32 days, 256 h, **90 112 SEK**. He had already made this exact correction
+  once, to scenario A (11 days to 10), and it never propagated to B and C. Two things follow. A
+  scenario table written before a decision does not silently absorb that decision, and the row most
+  likely to be wrong is the one nobody has had to use yet. Recompute the working days from the
+  confirmed start date before any number goes in a financial model. Category: estimation.
+- **A milestone-phased model whose columns are labelled with months lies as soon as the schedule
+  moves.** Same run. The K2C P&L columns read "Oct / MS5", "Nov / MS6". Revenue accrues on the
+  publisher's approval date, which is roughly a month after delivery, so the month labels were about
+  right for revenue and about a month wrong for cost, which is incurred during the work period. MS5
+  actually delivered 25 Sep and MS6 lands 23 Oct. Fix applied: drop the month names, make the
+  milestone the primary key, carry the delivery date on the live milestones, and write the
+  convention into a note cell so the next reader does not have to infer it. **When one axis of a
+  model means two different things for two different rows, say which in the sheet rather than in a
+  memo nobody opens.** Category: financial modelling.
+- **When a production plan assigns work past a milestone, check the term of every person named in
+  it.** K2C, 2026-09-15. Two subcontracts were found in one week running out underneath work that
+  was already assigned, and both were found by accident rather than by anything watching. Lost Hive
+  (Eamonn and Joanna) expired 18 Sep with the Sphinx and Osiris art unfinished, and it had a
+  *contractual* 30-day discussion trigger that fired on 19 August and still sat in backlog five weeks
+  later. Simon's fixed-term employment terminates automatically on 25 Sep under 5 § LAS while the art
+  lead's list gives him tree curtains, the skeletal horse, the drought pass and polish afterwards.
+  **The mechanism is that the plan and the paperwork are maintained by different people and never
+  read against each other.** The art lead assigns by capability and does not track contract end
+  dates; the contract file does not know what the sprint says. Neither is wrong on its own and the
+  gap is invisible from either side. **The check: take the forward-looking plan, list every person in
+  it, and read each name's term end against the last date they are assigned work.** It is a
+  five-minute sweep that would have caught both in August. Worth making standing rather than
+  remembering. Category: production management.
+- **Canonical fact promoted, see [[project_k2c_sands_of_duat]]:** Lost Hive is two people, Eamonn
+  Byrne and Joanna "Ash" Supska, not Eamonn alone. Scoping it as one artist halves their share of the
+  remaining work. The authoritative copy now lives in the K2C project memory where every agent reads
+  it with authority. Category: canonical (pointer).
