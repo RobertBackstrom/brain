@@ -1,45 +1,85 @@
 ---
 type: deal
-company: Bandit Island Games
+company: Bandit Island Games AB
 slug: bandit-island-games
-project: elias
-status: Contacted
-priority: medium
+project: aurora_punks
+status: Evaluating
+priority: high
 country: Sweden
 size: small
-last_activity: 2026-02-26
+last_activity: 2026-09-16
 network_strength: warm
-updated: 2026-05-06
+updated: 2026-09-16
 ---
 
 # Bandit Island Games
 
 ## Snapshot
-Stockholm-based studio, ~22 employees, founded 2022. Engine TBD (founder profile = Bullfrog/King/Disney/Namco — social/casual/AAA mix). Studio focus per their site: "social, fun, a little bit wild" multiplayer; first announced project not public yet. Robert has a personal-friend tier relationship with Stephen Jarrett (Co-founder & CEO) — 39 LinkedIn DMs 2025–2026 including dinner planning with Stephen + Vanessa. Per Robert 2026-05-06: "might be a great fit." Source: [[../../umbrella/elias_bizdev/wave1_rolodex]], [[../../umbrella/elias_bizdev/prospect_tracker]].
+Stockholm studio, ~22 employees, founded 2022, office on Österlånggatan 43. Self-described as
+"high-quality, IP-driven titles and original games for couch co-op, family fun, and next-gen
+parties". Founded by ex-Bullfrog/King/Disney/Namco people. They build for **Amazon Luna
+GameNight**, Amazon's phone-controlled party-game tier, and have two quiz titles there including
+a **Jeopardy!** game. Robert has a personal-friend tier relationship with Stephen Jarrett.
+
+**Live opportunity as of Sep 2026: console porting.** Inbound from Stephen 2026-09-10 asking
+either for help estimating developer-months or for AP to take the porting job. This is now the
+primary deal; the older Elias audio-middleware intro track is dormant underneath it.
 
 ## Key People
-- [[../contacts/stephen-jarrett]] — Co-founder & CEO. Personal-friend tier with Robert. Ex-Bullfrog/King/Disney/Namco.
+- [[../contacts/stephen-jarrett]] - Co-founder & CEO, stephen@bandit-island.com. Personal-friend tier. Made the inbound ask.
+- [[../contacts/robert-woodburn]] - Co-founder ("Woody"), woody@bandit-island.com. Signed the NDA, owns the Amazon relationship, gates source access.
+- Also on the mail thread: omar@, patrik@, patsy@, rebecca@bandit-island.com. Roles unconfirmed.
 
 ## Pipeline Status
-Status: **Contacted (DM ready, paste-manual)** — ultra-casual DM text in eli-007. **Robert handles directly.** BizDev supports with materials only if asked. Per the relationship-shape categorisation: personal-friend DM, drop ALL formal structure, "do you want me to vouch and connect you?" not "let me pitch you." Source: [[../../agents/memory/bizdev_learnings]].
+Status: **Evaluating** - initial estimate delivered 2026-09-16, waiting on their Amazon approvals.
 
-- 2026-05-06: Personal-friend tier confirmed; ultra-casual DM text in eli-007. Robert handles. Source: [[../../umbrella/elias_bizdev/wave1_rolodex]].
+Track record on this deal: inbound Thu 10 Sep, office meeting Fri 11 Sep (Robert + Oskar Hansen),
+mutual NDA signed the same day, estimate delivered Wed 16 Sep. Six days from first ask to a
+costed proposal.
 
 ## What They Bring / What We Bring
-**They bring:** small Stockholm multiplayer studio with strong-pedigree founder. Exact engine TBD. Pre-public-announcement project = pristine audio-stack window.
+**They bring:** two quiz titles already shipping on Amazon Luna, an Amazon relationship that
+covers publishing support, and a Steam/PC version landing Feb 2027. A second title that runs on
+the same codebase, so the expensive engineering is paid for once.
 
-**We bring:** Robert vouching as the friend; soft intro to Elias rather than a cold pitch. The relationship is the asset, not the tech sheet — they trust Robert, not Elias. NGC mixer p.s.
+**We bring:** the porting capability they say is new to them, a porting lead who has taken Unity
+titles through all three platform holders' certification, and a diagnosis of their actual problem
+that they had not made themselves. The relationship is the way in; the technical read is what
+makes us the vendor rather than a quote to compare.
+
+## The Deal on the Table
+Six SKUs (PS5, PS4, Xbox Series X/S, Xbox One, Switch, Switch 2). **3 420 000 SEK**, 28,5
+FTE-months across four roles, at the 120 000 SEK per FTE-month rate Robert gave them in the
+office. Dec 2026 start, cert-ready Aug 2027, release-ready Nov 2027. Steam is theirs.
+
+Pitch: https://pitch.aurorapunks.com/bandit-island/ (gated, creds in `assistant/pitch-auth.json`).
+Full breakdown and the technical argument: [[../../../followups/bi-001-jeopardy-console-port-estimate]].
+Project folder: [[../../../bandit_island/CLAUDE]].
+
+**Why the number is not a normal porting number.** On Luna, phone-as-controller and voice
+answering are Amazon *platform services* running beside the game in Amazon's data centre. On a
+console none of that exists, so the job is a port plus a feature build: room-code join, a
+companion web client, a relay service and speech recognition, all from nothing. Alternates were
+priced openly in the pitch rather than hidden: second title ~1,1 MSEK, gamepad-only ~1,1 MSEK
+and explicitly not recommended.
 
 ## Activity Log
-- 2026-05-06 — Personal-friend tier confirmed; DM text drafted in eli-007. Robert-handled per relationship texture. Source: [[../../umbrella/elias_bizdev/wave1_rolodex]].
-- 2026-02-26 — Last LinkedIn touch (per CSV export Apr 10 snapshot). Source: [[../../umbrella/elias_bizdev/prospect_tracker]].
-- 2025–2026 — 39 LinkedIn DMs total including dinner planning with Stephen + Vanessa. Source: [[../../agents/memory/bizdev_learnings]] (relationship-shape categorisation).
+- 2026-09-16 - Estimate delivered as a gated web pitch; cover mail drafted on thread `1a0a9cb279aa62e5`. Woody replies 16:14 that Amazon talks are mid-flight, positive signals but nothing decided, and source access needs an approval tier cleared first. He expects news early w/c 21 Sep. Source: gmail thread `1a0a9cb279aa62e5`.
+- 2026-09-11 - Office meeting, Österlånggatan 43, 15:00. Robert + Oskar Hansen saw the build. Mutual NDA signed the same day via Zigned (`RB_Bandit_Island_Games_NDAdocx.pdf`). Source: calendar invite from Stephen, Zigned confirmation.
+- 2026-09-10 - Inbound from Stephen on LinkedIn: two quiz titles on Luna, considering PlayStation / Xbox / Switch / Steam ports, asking AP either to estimate developer-months or to take the job. Robert offers to come look at the project.
+- 2026-05-06 - Personal-friend tier confirmed for the Elias audio-middleware intro; DM text in eli-007, Robert-handled. That track is dormant behind the porting deal. Source: [[../../umbrella/elias_bizdev/wave1_rolodex]].
+- 2025-2026 - 39 LinkedIn DMs including dinner planning with Stephen + Vanessa. Source: [[../../agents/memory/bizdev_learnings]].
 
 ## Open Questions / Next Actions
-- [ ] Robert to send personal-friend DM directly when timing's right.
-- [ ] Engine confirmation needed before any formal pitch (Stephen's pedigree suggests social/multiplayer focus — likely Unity, but unverified).
-- [ ] Track if NGC mixer attendance materialises.
+- [ ] Source-code access, blocked on Amazon approval tiers. Everything downstream of it.
+- [ ] Engine unconfirmed. The estimate assumes one engine across both titles and a separable input layer.
+- [ ] Jeopardy! rights for console distribution, possibly scoped to Luna only. Not our work, on our critical path.
+- [ ] Who publishes on console, Amazon or Bandit Island, and who holds the platform accounts.
+- [ ] Confirm Amazon really covers QA and release management.
+- [ ] Old-gen in or out. PS4 + Xbox One is the one line that removes cleanly.
+- [ ] Light nudge to Woody at the end of w/c 21 Sep if nothing lands. A chase would be wrong here, the delay is genuinely Amazon's.
 
 ## Cross-links
-- Project: [[../projects/elias]]
-- Contact: [[../contacts/stephen-jarrett]]
+- Project: [[../projects/aurora_punks]]
+- Dormant track: [[../projects/elias]]
+- Contacts: [[../contacts/stephen-jarrett]], [[../contacts/robert-woodburn]]

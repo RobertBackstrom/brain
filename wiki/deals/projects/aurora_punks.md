@@ -3,7 +3,7 @@ type: project_pipeline
 project: aurora_punks
 client: Aurora Punks AB (internal — Robert's own company)
 contract_window: ongoing portfolio engagement
-updated: 2026-05-20
+updated: 2026-09-16
 status: phase-4-backfill
 ---
 
@@ -21,6 +21,7 @@ Aurora Punks AB is **the studio + producer** entity. This pipeline tracks the re
 ## Active Deals (by status)
 
 ### Demo Scheduled / Evaluating
+- [[deals/bandit-island-games]] *(Evaluating)* - Jeopardy! console port, six SKUs. Inbound from Stephen Jarrett 2026-09-10, office meeting + mutual NDA 2026-09-11, costed proposal delivered 2026-09-16 (3,42 MSEK / 28,5 FTE-months). Blocked on their Amazon approvals releasing source access; Woody expects news early w/c 21 Sep.
 - [[deals/formula-drone]] *(Evaluating)* — Flightball multiplayer game tied to UK live-sport showcase (May 2026). Bill closing £250K angel round; NDA signed 2026-05-06; AP-side scope/budget commitment dependency still outstanding.
 - [[deals/arsenal-agency]] *(Evaluating)* — IndieCade Climate Jam compilation. May 7 planning call set the structure (charity Steam bundle of 8-10 games, AP as publisher of record, fixed fee recouped from proceeds); Caspar sent the redlined contract May 8. AP reply (three redlines accepted, Exhibit B services + Exhibit D revenue proposed, Steam-page credit requested) drafted 2026-05-20, pending Robert send.
 
@@ -44,6 +45,9 @@ Aurora Punks AB is **the studio + producer** entity. This pipeline tracks the re
 
 ## Recent Activity (last 14 days)
 
+- 2026-09-16 - [[deals/bandit-island-games]]: Initial estimate delivered as a gated pitch; cover mail drafted. Woody replies that Amazon talks are mid-flight and source access still needs an approval tier cleared. Status Contacted → Evaluating. Source: gmail thread `1a0a9cb279aa62e5`.
+- 2026-09-11 - [[deals/bandit-island-games]]: Office meeting at Österlånggatan 43 (Robert + Oskar Hansen); mutual NDA signed via Zigned the same day.
+- 2026-09-10 - [[deals/bandit-island-games]]: Inbound from Stephen Jarrett - two Amazon Luna quiz titles, asking AP to estimate or to take the porting job.
 - 2026-05-20 — [[deals/arsenal-agency]]: May 7 planning call + May 8 contract redline ingested; status Contacted → Evaluating. AP reply drafted (redlines accepted, Exhibit B/D proposed, Steam-page credit asked), pending Robert send. Source: [[raw/meetings/2026-05-07-indiecade-planning]], [[raw/gmail/19e0701535fbff73]].
 - 2026-05-08 — [[deals/arsenal-agency]]: Caspar sent the redlined contract; Exhibit B (services) + D (revenue) flagged open. Source: [[raw/gmail/19e0701535fbff73]].
 - 2026-05-07 — [[deals/arsenal-agency]]: IndieCade planning call; charity-compilation structure + fixed-fee model agreed, AP as publisher of record. Source: [[raw/meetings/2026-05-07-indiecade-planning]].

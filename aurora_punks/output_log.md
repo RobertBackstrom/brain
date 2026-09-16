@@ -513,6 +513,16 @@ som bär flertalet titlar har mobil-2FA på Roberts privata Steam-inlogg.
 **Notera:** Robot Lord Rising ligger med på Roberts uttryckliga begäran, märkt som oreglerad.
 Rättigheterna sitter hos Runatyr. Vessels of Decay är utelämnad, ägandet är fortfarande UNCLEAR.
 
+## 2026-09-16 — Erik/Afrime investor deck live + data room index (BizDev, apb-029)
+
+- **Trigger:** Erik Reynolds asked on WhatsApp 17:48 for the investor deck and a data room, "actual financials to share with my bank". Robert: "Yes I'll send over this evening." Two banking partners reviewing his facility.
+- **Levererat:** gated investor deck at **pitch.aurorapunks.com/afrime** (`afrime` / credential in `assistant/pitch-auth.json`). Source `aurora_punks/drafts/apb-029/afrime/`. Synced with `sync-pitches.sh --apply afrime`; verified 401 unauth, 200 auth, byte-identical on edge.
+- **FX omräknat:** 9,78 SEK/USD (frankfurter 9,7837 + open.er-api 9,7784, båda 16 sep) mot augustis 9,50. Alla USD-tal flyttade ~3 %. C3-strukturen räknad om och verifierad: 145 789 / 485 963 = **30,00 %** exakt, 18,1M kr ($1,85M), blended 124,4 kr ($12,71) mot 152 kr ($15,54), 18,2 % rabatt, pre 60,2M kr ($6,16M) / post 73,9M kr ($7,55M).
+- **Upplysningar i decket:** KBR/negativt EK per 2025-12-31 (apb-052), katalogen ligger i CZP inte AP, Curve 50 % net receipts, CZP-bokföringsberoendet, varumärkesluckan på bolagsnamnet, Dark Riviera-eventualposten. Medvetet val eftersom materialet går till långivare.
+- **Data room index:** `drafts/apb-029/data_room_index_2026-09-16.md` — provided-vs-outstanding per dokument, inga tysta luckor.
+- **Intangibles-sheeten:** två parallella data rooms. Den levande inaktuella sheeten låg i `Board_Governance / Data Room`, inte i Erik-rummet; Erik-rummet hade bara en trasig genväg mot kopian CorpBot korrekt slängde i juli. Alla tre objekten slängda 2026-09-16 (återställningsbara).
+- **Delat:** Erik tillagd som **commenter** på data room `1COpiGvTe3zpnIdwvJ-UY2pj_IyD7aGQe`, `sendNotificationEmail=false` så Robert äger utskicket. Decket ej skickat än — WhatsApp-utkast i `drafts/apb-029/erik_whatsapp_reply_2026-09-16.md`.
+
 ## 2026-09-15 — Arbetsintyg Patrik Malm (Iron Evil / Clönk)
 
 **Levererat:** [certificate_of_employment_patrik_malm_2026-09-15.md](drafts/certificate_of_employment_patrik_malm_2026-09-15.md)

@@ -1727,16 +1727,38 @@ och variera ordbrytningen i speltiteln.
 `feedback_signed_agreements_search_blindspot` säger detta, och sökfrasen som fungerar är
 `from:docusign OR from:zigned` plus motpartsnamnet. Använd den **först** nästa gång, inte sist.
 
-**Luckan syntes bara genom att korsa tre källor.** Mailen gav nio försäljningsrapporter, huvudboken
-gav åtta fakturor, och banken gav en obokförd inbetalning. Junirapporten på 382,74 USD
-fakturerades aldrig, men IndieArk betalade mot rapporten ändå, 3 466,76 kr den 2026-09-01. Ingen
-av de tre källorna visar luckan ensam. **Räkna rapporter mot fakturor mot betalningar, inte två av
-tre.** Att den brutna månaden är augusti 2026 är ingen slump, det är när Sifferrådet lämnade.
+**Den viktigaste lärdomen, och den kom av att Robert invände.** Jag matchade verifikattexterna på
+"Yaozuo", fick sju fakturor mot nio rapporter, och drog slutsatsen att junirapporten aldrig
+fakturerats och att IndieArk betalat mot rapporten i stället. Robert svarade "de brukar bara betala
+mot faktura". Han hade rätt. **Fakturan fanns, den var bara inte bokförd**, och en obokförd faktura
+har per definition ingen verifikattext att träffa i huvudboken. Den ligger i Fortnox med ett
+**preliminärt verifikatnummer, alltså ett nummer med asterisk som `B60*`**, och syns inte i SIE.
+
+**Rätt metod är att räkna nummerserien, inte att söka på namnet.** Kundfakturorna 49 till 108 var
+kompletta utom **105**. Ett hål i en obruten nummerserie är ett svar. En utebliven textträff är
+det inte. Det här generaliserar: **när något saknas, leta efter hålet i sekvensen** — fakturanummer,
+verifikatnummer, periodnummer — i stället för att söka på innehåll som bara finns om posten redan
+är bokförd.
+
+**Och den bredare lärdomen: en frånvaro är inte ett bevis.** Två gånger i samma session drog jag en
+slutsats ur att något inte syntes. Första gången påstod jag nästan att en Tebex-utbetalning aldrig
+kom fram, när bankdatan bara inte sträckte sig så långt bak. Andra gången påstod jag att en faktura
+inte fanns, när den låg obokförd. **Innan du säger att något inte finns, fastställ att källan du
+tittar i skulle ha visat det om det fanns.**
+
+Att den brutna månaden är augusti 2026 är ingen slump, det är när Sifferrådet lämnade.
 
 **Kursen är det som identifierar en betalning.** Två kandidater fanns till bankraden. 3 466,76 mot
-382,74 ger 9,0578, mot 440,96 ger 7,86. Bara den första är en möjlig USD-kurs. **Dividera beloppet
+382,00 ger 9,0753, mot 440,96 ger 7,86. Bara den första är en möjlig USD-kurs. **Dividera beloppet
 med varje kandidat och kasta de kurser som inte kan vara växelkurser** — det avgör matchningen
-snabbare än något annat.
+snabbare än något annat. Fakturakursen på 105 var 9,4898 och betalkursen 9,0753, differensen 158,17
+kr till 7960, exakt samma mönster som varje tidigare Yaozuo-betalning.
+
+**Fortnox-fakturor läses med skärmbild, inte med DOM.** `innerText` ger bara etiketter eftersom
+värdena sitter i input-fält, och att läsa `input.value` ger hundratals dolda formulärmallar,
+eftersom SPA:n håller hela applikationens DOM samtidigt. Samma fälla som redan står i
+månadsrutinen. **Djuplänka till `<base>/kf/invoice/<nr>`, ta en skärmbild och läs den.** Det tog
+en körning mot tre misslyckade.
 
 **Avtalsvillkoret som styr bokföringen:** 10 % av Net Revenue på Switch, Xbox och PlayStation i
 fem år efter konsolsläppet, i USD, betalning 30 dagar efter faktura. Avtalet säger kvartalsrapport,
