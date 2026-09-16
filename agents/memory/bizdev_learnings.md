@@ -14,6 +14,179 @@ agent: bizdev
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-16 - Vänskapsnivån ger dig inbjudan, den tekniska diagnosen ger dig jobbet [Bandit Island, bi-001]
+
+Stephen Jarrett är personal-friend tier (39 LinkedIn-DM, middagsplanering med honom och Vanessa) och
+deal-sidan har i ett år sagt att Robert hanterar honom direkt utan formell struktur. Det stämde och
+det räckte hela vägen till bordet: inbound 10 sep, kontorsmöte 11 sep, ömsesidigt NDA samma dag.
+
+Men **formen på hans fråga var ett varningstecken lika mycket som en möjlighet**. Han erbjöd
+*rådgivningsalternativet först* ("help us estimate the developer months") och *uppdraget andra*. Så
+frågar en vän, och det är också hur man gratis får en siffra utan att anlita någon. Det som gör
+skillnaden är att inte bara svara med ett estimat utan med en **diagnos de inte själva hade ställt**:
+att deras port egentligen är ett featurebygge, eftersom Lunas telefon- och röstlager är plattformens
+och inte spelets. Relationen öppnade dörren, analysen är det som gör oss till leverantören i stället
+för en siffra att jämföra med.
+
+**How to apply:** på vänskapsnivåns inbound, leverera alltid ett steg mer insikt än det som efterfrågas.
+Ombeds du estimera, estimera **och** säg vad de har missat. Det är den billigaste
+konverteringsmekanismen som finns, och den fungerar bara när relationen redan gett dig tillgång till
+att se produkten.
+
+## 2026-09-16 - I ett grundarpar öppnar den ena dörren och den andra kör den, hitta den andra tidigt [Bandit Island, bi-001]
+
+Stephen (CEO, vännen) gjorde inbounden, bokade mötet och skickade kalenderinbjudan inom minuter. I
+samma sekund som affären blev verklig tog **Woody (Robert Woodburn)** över: han skickade NDA:t, han
+svarar på mailtråden, och han är den som sitter på Amazon-relationen och därmed grindar källkoden.
+Deal-sidan hade bara Stephen, så den halvan av bolaget var osynlig för wikin fram till idag.
+
+**How to apply:** så fort en warm-relation konverterar, kartlägg vem som faktiskt äger den blockerande
+resursen och lägg upp en contact-sida på den personen direkt. Vännen är sällan den som beslutar om
+källkodsåtkomst, plattformskonton eller partneravtal. Uppföljning ska gå till operatören, inte till
+dörröppnaren, annars ber du din vän att jaga sin egen medgrundare.
+
+Registerskillnad värd att notera: Woody skriver kort, med emoji, och ber om ursäkt för förseningar
+innan man hunnit fråga. Han sa rakt ut att Amazon-samtalen "go from insanely fast to excruciatingly
+slow depending on the day". Den som är så öppen med vad han inte styr över ska inte jagas, han ska
+få ett "no stress" tillbaka.
+
+## 2026-09-16 - Poldens signeringströskel är en gratis, extern KPI-port för varje "bygg en Steam-sida först"-scope [House Siege, hsg-001]
+
+**Source project:** hsg (House Siege / fastighetskillar) | **Category:** deal craft, KPI-sättning
+
+- **När ett scope delas i "gör marknadsföringsmaterialet" och "bygg spelet" saknas nästan
+  alltid en objektiv port mellan dem.** Utan port blir beslutet att finansiera steg två en
+  känsla. Polden Publishing publicerar sin egen: **30 000 wishlists från marknadstestet så
+  signerar de**. Det är en tredjepartsdefinierad tröskel i exakt samma genre, och den går
+  att låna rakt in i vårt eget förslag. Starkare än en siffra vi hittat på själva, eftersom
+  kunden kan verifiera den.
+- **Men skilj signeringströskel från lönsamhetströskel, annars säljer man in en falsk seger.**
+  30 000 wishlists ger vid 38 procents 30-dagarskonvertering cirka 11 400 exemplar. Det
+  betalar ingenting. Trettiotusen betyder "konceptet bär, fortsätt investera". Säg båda
+  talen i samma andetag, annars firar kunden en siffra som inte täcker fakturan.
+- **Poldens övriga publicerade tal, återanvändbara i vilken friendslop-kalkyl som helst:**
+  150 000 USD snittinvestering per spel, marknadsföring ovanpå och recoupas aldrig.
+  Wishlist-källorna enligt Oreshkin: TikTok/Reels/Shorts 35 %, Steam internt 25 %, vänner
+  25 %, Twitch/YouTube 10 %, eget innehåll 5 %. **70 procent kommer utifrån Steam**, vilket
+  är argumentet för att mediabudget inte är valfritt i ett sidan-först-scope. Lägg den som
+  egen rad, aldrig inne i manmånadspriset, annars ser marginalen fel ut.
+- **När man använder ett förlag som måttstock: säg också att de finansierar samma test
+  själva.** Polden betalar för Steam-sida, trailer och creator-kampanj i ungefär den
+  storleksordning vi offererade. Kunden hittar det annars själv, och då ser vår offert ut
+  som något de kunnat få gratis. Säg det först och lägg motargumenten bredvid (genrefit,
+  rättigheter, att ett marknadstest aldrig ger tekniskt besked).
+
+**Genre-ekonomi värd att spara (friendslop, verifierat 2026-09-16):** prispunkt 5.99 till
+9.99 USD, inte premium. Wishlist-till-köp 21 till 38 procent dag 7 och 38 till 64 procent
+dag 30, mot 3 till 6 procent för AAA. Det är den siffran som gör att en wishlist i den här
+lanen faktiskt är värd något, och den vänder hela ROI-kalkylen jämfört med ett
+30-dollarsspel.
+
+## 2026-09-16 - Ett koncept-deck utan team, budget och tidplan går inte att värdera; värdera scopet i stället [House Siege, hsg-001]
+
+**Source project:** hsg | **Category:** research method, pitchbedömning
+
+- **När ett deck saknar team, budget, tidplan och komparativa tal finns det inget
+  kommersiellt att bedöma.** Frestelsen är att recensera koncepten. Det som faktiskt hjälper
+  är att **säga vad spelet som beskrivet skulle kosta, och sedan beskriva det nedskalade
+  spelet som ryms i genrens budget**. House Siege som skrivet (4v4/5v5, full strukturfysik,
+  sex hustyper, matchmaking, backend, console) är 15 till 25 MSEK. Skalat till 3v3, ett hus,
+  chunk-baserad förstörelse och sex minuters ronder ligger det i lanen. Skillnaden mellan de
+  två är hela rådgivningen.
+- **Leta efter den designfråga som comparna redan har svarat på.** Deras eget material
+  ställde rätt fråga ("är det lika roligt att bygga och reparera som att förstöra?").
+  Comp-passet svarar nej: Teardown, Brick Rigs, Besiege och Instruments of Destruction är
+  alla förstörelse-bara. **Det finns ingen shippad titel där laga eller bygga är den roliga
+  halvan.** En comp-tabell är inte bara budgetunderlag, den är en designrevision.
+- **En bra core-loop-kritik byter ut ett verb, den lägger inte till features.** Lösningen här
+  var att göra även försvararens verb destruktivt (riv ut husets egna delar för att
+  barrikadera, och börja äta bärande konstruktion när möblerna tar slut). Samma fysik, samma
+  komik, en interaktionsmodell i stället för två. **Symmetriska verb är dessutom ett
+  scope-argument:** halva prototypkostnaden jämfört med två separata system. Designförslag
+  som samtidigt sänker budgeten är de som går igenom.
+- **Steams storesearch-API duger för konkurrentkartläggning och är gratis.** Enordssökningar
+  fungerar (`demolish`, `wrecking`, `destruction`), flerordsfraser returnerar tomt. Att kunna
+  säga "jag sökte igenom Steam och ingen äger den här positionen" är ett konkret fynd, inte
+  en känsla. Hämta `developers` och `publishers` ur `appdetails` i samma svep.
+- **Räkna om en tredjeparts omsättningspåstående innan du citerar det vidare.** En
+  analysartikel angav ungefär 80 MUSD brutto för Meccha Chameleon. Titeln har 88 828
+  recensioner at 5.99 USD, vilket vid 30-50:1 ger 2,7 till 4,4 miljoner exemplar och 16 till
+  27 MUSD brutto. Talen går inte ihop. Citera inte vidare, använd det recensionshärledda
+  spannet och säg vilken multipel du använt. Samma disciplin som cap-001.
+
+## 2026-09-16 — A not-found ID plus a live same-named file does NOT mean the cleanup failed; look for a parallel folder tree [Aurora Punks, apb-029]
+
+**Source project:** apb (Erik Reynolds / Afrime data room) | **Category:** due diligence, tooling
+
+I nearly reported a false alarm to Robert and should write down how I caught it, because the wrong
+version of this lesson is worse than none.
+
+**What I saw:** `ap_ip_ownership_canonical.md` §G says the stale "Aurora Punks Intangibles" sheet
+"was trashed from the DD room 2026-07-13". The ID in the July manifest
+(`1A_flxQizN6uAl3UOfUP9PlM27Sc48LbOuKPAoJpO5Kk`) returned **"not found"**, while a title search
+surfaced a **live** sheet of the same name (`16v1Srm…`) still listing Robot Lord Rising and Agents
+of Concordia as 100% AP. **I inferred the wrong file had been trashed. That inference was wrong.**
+
+**What was actually true**, once I resolved the parent chain of every candidate instead of just
+reading names:
+- There are **two different data rooms**: `Aurora Punks Data Room` (the Erik-facing one) and a
+  separate `Drive / Board_Governance / Data Room`.
+- The live stale sheet and a working shortcut to it lived in the **Board_Governance** room.
+- The Erik-facing room contained only a **dangling shortcut** to `1A_flx…`, the copy CorpBot
+  **correctly trashed in July**. The "not found" was evidence the cleanup *worked*, not that it
+  missed.
+
+**The method that settles it, and the thing to actually do:** don't reason from file names and
+trashed-flags. **Walk `parents` up to a known root for every candidate and print the full path.**
+Names duplicate across trees, shortcuts point sideways, and a dangling shortcut looks identical to
+a missing cleanup until you resolve where each object physically sits.
+
+**And the second-order lesson:** a "not found" on a recorded ID is ambiguous evidence. It is equally
+consistent with "the cleanup succeeded" and "the manifest recorded the wrong ID". Resolve the
+ambiguity before telling the principal his records are wrong, because that claim spends trust.
+
+**Canonical home:** both room IDs, the external share state and this warning are now recorded in
+[[reference_drive_folders]] so every agent hits them, not just BizDev. Read that before touching
+either room.
+
+## 2026-09-16 — Re-cut FX before reusing a structure deck that quotes both currencies [Aurora Punks, apb-029]
+
+**Source project:** apb (Erik Reynolds / Afrime) | **Category:** deal mechanics, numbers
+
+The August C3 structure was priced at 9,50 SEK/USD. Re-sending it on 16 September without
+re-checking would have put stale dollar figures in front of two banks.
+
+- Live rate was **9,78** (frankfurter 9,7837, open.er-api 9,7784). ~3% move in a month. Total
+  ticket fell from ~$1,9M to **$1,85M**, pre-money from $6,3M to **$6,16M**, blended entry from
+  $13,10 to **$12,71**.
+- **What does NOT move is the part that matters:** the share counts, the 152 kr registered
+  subscription price, the 30,00% landing and the 18% discount are all SEK-denominated legal facts.
+  Only the translation moved.
+- **So: lead a cross-border deck in the registered currency and mark the USD column with the rate
+  and the date.** It makes the page durable against FX drift instead of silently wrong a month
+  later, and a lender reads the SEK column anyway because that is what the share register says.
+- Ties to [[reference_fx_rates]] — fetch live, cross-check two sources, never trust `.fx_cache.json`.
+
+## 2026-09-16 — When material goes to the counterparty's lender, disclosure stops being a style choice [Aurora Punks, apb-029]
+
+**Source project:** apb (Erik Reynolds / Afrime) | **Category:** deal process, risk
+
+Erik's ask changed shape between July and September without the ask itself changing words. In July
+he wanted a data room to evaluate an investment himself. In September he wants "the actual
+financials to share with my bank", with two banking partners reviewing.
+
+- **That is a different disclosure event.** The signed NDA covers Erik, not his lenders, and a
+  credit committee underwrites off the documents rather than reading them for colour. An open
+  negative-equity / kontrollbalansräkning position (apb-052) is precisely the fact that is
+  survivable when disclosed up front and fatal to credibility when found in diligence.
+- **Practical rule: when a counterparty says the material is going onward to a financing party, re-read
+  the pack for anything that would be a "why didn't you tell us" item, and put it in a named
+  disclosures section rather than a footnote.** Then tell the principal you did it and make it
+  cheap to reverse. A gated HTML page is good for this: pulling a section and re-syncing is a
+  two-minute operation, so the disclosure decision stays the principal's without blocking delivery.
+- Do not let "I'm not sure we'll follow up on this deal" translate into a thinner disclosure. A
+  lukewarm deal is exactly the one where reputational residue outlasts the transaction.
+
 ## 2026-09-16 - Check whether a deck's comp numbers are internally consistent before calling them inflated [Crack a Pack, cap-001]
 
 **Source project:** cap (Crack a Pack / simsum), 4am sweep | **Category:** research, due diligence

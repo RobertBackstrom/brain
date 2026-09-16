@@ -51,6 +51,9 @@ gånger och kräver oförändrat radantal och netto. `bank-query.test.js` gör d
 i en temp-katalog. CorpBot hittade buggen genom att läsa enskilda radbelopp, inte summan — hade
 avstämningen litat på summeringsraden hade den blivit fel åt det svåraste hållet att upptäcka.
 
+Verktyget som sådant, och de två fällorna en avstämning måste känna till, är promotade till
+[[reference_bank_data_access]] 2026-09-16 — leta där, inte här.
+
 **Projekt:** db / czp · **Kategori:** dataintegritet, verktyg, bank · **Taggar:** entry_reference,
 idempotent-merge, snapshot-dedup, Enable-Banking, EXPIRED_SESSION, PDNG, avstämning
 
