@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="sv">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>House Siege · Utvecklingsupplägg · Aurora Punks</title>
-<meta name="description" content="Marknadsunderlag, core loop, art direction och ett tvåstegsupplägg för House Siege.">
+<title>House Siege · Development proposal · Aurora Punks</title>
+<meta name="description" content="Market evidence, core loop, art direction and a two-step development plan for House Siege.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,17 +62,15 @@ li::marker{color:var(--pd-gold-mid)}
 .grid{display:grid;gap:18px}
 .g2{grid-template-columns:repeat(2,1fr)}
 .g3{grid-template-columns:repeat(3,1fr)}
-.g4{grid-template-columns:repeat(4,1fr)}
-@media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+@media(max-width:900px){.g2,.g3{grid-template-columns:1fr}}
 .card{background:linear-gradient(160deg,var(--panel) 0%,var(--panel-2) 100%);border:1px solid var(--line);border-radius:3px;padding:22px 20px}
 .card.ap{border-top:2px solid var(--pd-gold)}
 .card .num{font-family:var(--disp);font-weight:800;font-size:30px;color:var(--pd-amber);line-height:1;margin-bottom:8px}
-.card .verb{font-family:var(--disp);font-weight:800;font-size:27px;color:var(--pd-gold);line-height:1;margin-bottom:9px;letter-spacing:.04em}
 .card p:last-child,.card ul:last-child{margin-bottom:0}
 .card p{font-size:14.5px;color:var(--muted)}
 
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:620px}
 th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line)}
 th{font-family:var(--disp);font-weight:700;letter-spacing:.13em;text-transform:uppercase;font-size:11.5px;color:var(--muted-2)}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
@@ -80,14 +78,39 @@ tr.tot td{border-top:2px solid var(--pd-gold);border-bottom:0;font-weight:700;co
 tr.sig td{background:rgba(255,194,61,.05)}
 tbody tr:hover td{background:rgba(255,255,255,.02)}
 caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2);padding-top:10px;letter-spacing:.04em}
+.tt{display:flex;align-items:center;gap:13px}
+.tt img{width:96px;height:45px;object-fit:cover;border-radius:2px;border:1px solid var(--line);flex:0 0 auto;display:block}
+.tt span{font-weight:600;color:#fff}
+
+.logowall{display:grid;grid-template-columns:repeat(6,1fr);gap:34px;align-items:center;margin:8px 0 0;padding-top:26px;border-top:1px solid var(--line)}
+@media(max-width:820px){.logowall{grid-template-columns:repeat(3,1fr);gap:22px}}
+.logowall img{max-width:100%;max-height:58px;width:auto;height:auto;object-fit:contain;opacity:.82;transition:opacity .18s;justify-self:center}
+.logowall img:hover{opacity:1}
+.logowall img.inv{filter:invert(1)}
+
+.artgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:20px 0 0}
+@media(max-width:900px){.artgrid{grid-template-columns:1fr}}
+.artgrid figure{margin:0;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--panel);display:flex;flex-direction:column}
+.artgrid img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.artgrid figcaption{padding:14px 16px 16px}
+.artgrid .an{font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:.05em;text-transform:uppercase;color:var(--pd-gold);margin-bottom:5px}
+.artgrid .ad{font-size:13.5px;color:var(--muted);line-height:1.5}
+
+.apgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 0}
+@media(max-width:900px){.apgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.apgrid{grid-template-columns:1fr}}
+.apgrid figure{margin:0;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--panel)}
+.apgrid img{display:block;width:100%;height:auto}
+.apgrid figcaption{padding:11px 14px 13px}
+.apgrid .gn{font-family:var(--disp);font-weight:700;font-size:15.5px;letter-spacing:.04em;text-transform:uppercase;color:#fff}
+.apgrid .gd{font-size:12.5px;color:var(--muted-2);letter-spacing:.04em;margin-top:2px}
 
 .gatecard{border-left:2px solid var(--pd-gold);padding:0 0 0 18px;margin-bottom:20px}
 .gatecard .gh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:3px}
 .gatecard .gn{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:21px;letter-spacing:.03em}
 .gatecard .gm{font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--pd-amber)}
 .gatecard .gs{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2)}
-.gatecard p{font-size:14.5px;color:var(--muted);margin:6px 0 0}
-.gatecard.sup{border-left-color:var(--steel)}
+.gatecard>div:last-child{font-size:14.5px;color:var(--muted)}
 
 .risk{display:grid;grid-template-columns:minmax(200px,1fr) 2fr;border-top:1px solid var(--line)}
 .risk>div{padding:14px 0}
@@ -105,11 +128,6 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
 
 .pull{border-left:3px solid var(--pd-amber);padding:10px 0 10px 20px;margin:26px 0;font-family:var(--disp);font-weight:600;font-size:clamp(19px,2.3vw,28px);line-height:1.2;color:var(--pd-amber);max-width:46ch}
 
-.ref{border-top:1px solid var(--line);padding:13px 0;display:grid;grid-template-columns:minmax(150px,1fr) 2fr;gap:20px}
-.ref .rn{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:15px;color:#fff}
-.ref .rd{font-size:14.5px;color:var(--muted)}
-@media(max-width:820px){.ref{grid-template-columns:1fr;gap:4px}}
-
 .rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;gap:11px}
 .rail a{width:9px;height:9px;border-radius:50%;border:1px solid var(--line-2);transition:.18s}
 .rail a:hover{border-color:var(--pd-gold);transform:scale(1.35)}
@@ -126,307 +144,356 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
 </head>
 <body>
 
-<div class="draftflag">Underlag för Markus Månsson och Oscar Nordqvist · Konfidentiellt · 16 september 2026</div>
+<div class="draftflag">Prepared for Markus Månsson and Oscar Nordqvist · Confidential · 16 September 2026</div>
 
-<nav class="rail" aria-label="Sektioner">
-  <a href="#s1" title="Framsida"></a><a href="#s2" title="Marknaden"></a>
-  <a href="#s3" title="Skalan"></a><a href="#s4" title="Core loop"></a>
-  <a href="#s5" title="Riskerna"></a><a href="#s6" title="Art direction"></a>
-  <a href="#s7" title="Steg 1"></a><a href="#s8" title="Porten"></a>
-  <a href="#s9" title="Steg 2"></a><a href="#s10" title="Affären"></a>
-  <a href="#s11" title="Nästa steg"></a>
+<nav class="rail" aria-label="Sections">
+  <a href="#s1" title="Front"></a><a href="#s2" title="Who we are"></a>
+  <a href="#s3" title="The market"></a><a href="#s4" title="The scale"></a>
+  <a href="#s5" title="Core loop"></a><a href="#s6" title="The risks"></a>
+  <a href="#s7" title="Art direction"></a><a href="#s8" title="Step one"></a>
+  <a href="#s9" title="The gate"></a><a href="#s10" title="Step two"></a>
+  <a href="#s11" title="The deal"></a><a href="#s12" title="Next steps"></a>
 </nav>
 
 <div class="deck">
 
-<!-- 1 FRAMSIDA -->
+<!-- 1 FRONT -->
 <section class="slide cover" id="s1">
   <div class="lockup">
     <span class="mark">Aurora Punks</span>
     <span class="rule"></span>
-    <span class="co">Utvecklingsupplägg · House Siege</span>
+    <span class="co">Development proposal · House Siege</span>
   </div>
-  <h1>House Siege<br>Vägen till ett spel</h1>
-  <p class="hook">Ett hus. Två lag. Det enda sättet att rädda huset är att äta upp det.</p>
-  <p class="position-line">Vi har läst ert material, mätt konceptet mot marknaden och tagit fram ett upplägg i två steg. Steg ett bygger butikssidan och materialet som mäter efterfrågan. Steg två bygger spelet som beviset motiverar. Ni äger allt, hela vägen.</p>
+  <h1>House Siege<br>From concept to game</h1>
+  <p class="hook">One house. Two teams. The only way to save the house is to eat it.</p>
+  <p class="position-line">We have read your material, measured the concept against the market, and built a plan in two steps. Step one produces the store page and the footage that measure real demand. Step two builds the game that evidence justifies. You own everything, all the way through.</p>
   <div class="statrow">
-    <div class="stat"><div class="k teal">3v3</div><div class="l">Sex minuters ronder</div></div>
-    <div class="stat"><div class="k">2 steg</div><div class="l">Med en mätbar port emellan</div></div>
-    <div class="stat"><div class="k">9 månader</div><div class="l">Från start till Steam Beta</div></div>
-    <div class="stat"><div class="k neon">2,73 MSEK</div><div class="l">Totalt, båda stegen</div></div>
+    <div class="stat"><div class="k teal">3v3</div><div class="l">Six minute rounds</div></div>
+    <div class="stat"><div class="k">2 steps</div><div class="l">With a measurable gate between</div></div>
+    <div class="stat"><div class="k">9 months</div><div class="l">From start to Steam Beta</div></div>
+    <div class="stat"><div class="k neon">2.73 MSEK</div><div class="l">Total, both steps</div></div>
   </div>
 </section>
 
-<!-- 2 MARKNADEN -->
+<!-- 2 WHO WE ARE -->
 <section class="slide" id="s2">
-  <div class="eyebrow"><span class="n">01</span>Marknaden</div>
-  <h2>Ni har hittat rätt hylla</h2>
-  <p class="lede">Den mest kapitaleffektiva genren på Steam just nu kallas friendslop. Korta ronder, låg prislapp, byggt för att klippas och delas. House Siege har den enda egenskap som verkligen avgör där: en hook som funkar på ett stumt klipp utan förklaring.</p>
+  <div class="eyebrow"><span class="n">01</span>Who we are</div>
+  <h2>Aurora Punks</h2>
+  <p class="lede">A Stockholm co-development and co-publishing studio, founded in 2019. Around twenty people in Stockholm plus partner studios abroad, working full cycle: concept, prototype, production, porting, release and live operations. We have shipped across PC, console, mobile and VR.</p>
+  <p class="lede">Our model is simple. We put an experienced senior team into a partner's project and hit a defined date on a defined scope. We are developers first, which is why we are comfortable telling you what a plan actually costs before anyone has signed anything.</p>
 
-  <h3>Genombrotten i genren</h3>
+  <h3 style="margin-top:30px">Titles we have published or co-published</h3>
+  <div class="apgrid">
+    <figure><img src="media/ap/1454730.jpg" alt="Chenso Club" loading="lazy"><figcaption><div class="gn">Chenso Club</div><div class="gd">Action roguelite · Local co-op</div></figcaption></figure>
+    <figure><img src="media/ap/1183530.jpg" alt="Go Fight Fantastic" loading="lazy"><figcaption><div class="gn">Go Fight Fantastic</div><div class="gd">Co-op action adventure</div></figcaption></figure>
+    <figure><img src="media/ap/1529220.jpg" alt="Block'Em!" loading="lazy"><figcaption><div class="gn">Block'Em!</div><div class="gd">Party · Local multiplayer</div></figcaption></figure>
+    <figure><img src="media/ap/2162070.jpg" alt="Ooglians" loading="lazy"><figcaption><div class="gn">Ooglians</div><div class="gd">Tower defense · Local co-op</div></figcaption></figure>
+    <figure><img src="media/ap/1450250.jpg" alt="Distant Bloom" loading="lazy"><figcaption><div class="gn">Distant Bloom</div><div class="gd">Cozy colony sim</div></figcaption></figure>
+    <figure><img src="media/ap/1428090.jpg" alt="KreatureKind" loading="lazy"><figcaption><div class="gn">KreatureKind</div><div class="gd">Deckbuilder</div></figcaption></figure>
+  </div>
+  <p class="muted" style="margin-top:20px">Four of those six are co-op or party games. That is the relevant part for House Siege: shipping games that people play together, at indie budgets, is the thing we do most often.</p>
+</section>
+
+<!-- 3 THE MARKET -->
+<section class="slide" id="s3">
+  <div class="eyebrow"><span class="n">02</span>The market</div>
+  <h2>You have picked the right shelf</h2>
+  <p class="lede">The most capital efficient genre on Steam right now is called friendslop. Short rounds, low price, built to be clipped and shared. House Siege has the one property that actually decides outcomes there: a hook that works on a muted autoplaying video with no explanation.</p>
+
+  <h3>The breakouts</h3>
   <div class="tw">
   <table>
-    <caption>Recensionsantal hämtade direkt från Steam 2026-09-16. Recensioner, inte uppskattad försäljning.</caption>
-    <thead><tr><th>Titel</th><th class="num">Recensioner</th><th>Betyg</th><th class="num">Pris</th><th>Släppt</th></tr></thead>
+    <caption>Review counts pulled directly from Steam on 16 September 2026. Reviews, not estimated sales.</caption>
+    <thead><tr><th>Title</th><th class="num">Reviews</th><th>Rating</th><th class="num">Price</th><th>Released</th></tr></thead>
     <tbody>
-      <tr><td>Lethal Company</td><td class="num">510 897</td><td>97 % Overwhelmingly Positive</td><td class="num">$9.99</td><td>okt 2023</td></tr>
-      <tr><td>R.E.P.O.</td><td class="num">423 797</td><td>96 % Overwhelmingly Positive</td><td class="num">$6.49</td><td>feb 2025</td></tr>
-      <tr><td>PEAK</td><td class="num">371 878</td><td>94 % Very Positive</td><td class="num">$7.99</td><td>jun 2025</td></tr>
-      <tr><td>Content Warning</td><td class="num">163 413</td><td>94 % Very Positive</td><td class="num">$7.99</td><td>apr 2024</td></tr>
-      <tr><td>Meccha Chameleon</td><td class="num">88 828</td><td>88 % Very Positive</td><td class="num">$5.99</td><td>jun 2026</td></tr>
+      <tr><td><div class="tt"><img src="media/lethal-company/header.jpg" alt="" loading="lazy"><span>Lethal Company</span></div></td><td class="num">510,897</td><td>97 % Overwhelmingly Positive</td><td class="num">$9.99</td><td>Oct 2023</td></tr>
+      <tr><td><div class="tt"><img src="media/repo/header.jpg" alt="" loading="lazy"><span>R.E.P.O.</span></div></td><td class="num">423,797</td><td>96 % Overwhelmingly Positive</td><td class="num">$6.49</td><td>Feb 2025</td></tr>
+      <tr><td><div class="tt"><img src="media/peak/header.jpg" alt="" loading="lazy"><span>PEAK</span></div></td><td class="num">371,878</td><td>94 % Very Positive</td><td class="num">$7.99</td><td>Jun 2025</td></tr>
+      <tr><td><div class="tt"><img src="media/content-warning/header.jpg" alt="" loading="lazy"><span>Content Warning</span></div></td><td class="num">163,413</td><td>94 % Very Positive</td><td class="num">$7.99</td><td>Apr 2024</td></tr>
+      <tr><td><div class="tt"><img src="media/meccha/header.jpg" alt="" loading="lazy"><span>Meccha Chameleon</span></div></td><td class="num">88,828</td><td>88 % Very Positive</td><td class="num">$5.99</td><td>Jun 2026</td></tr>
     </tbody>
   </table>
   </div>
 
   <div class="grid g3" style="margin-top:26px">
-    <div class="card ap"><div class="num">$5.99</div><h4>Prispunkten</h4><p>Genren ligger på sex till tio dollar, inte premium. Det är en medveten strategi: att övertala tre kompisar att lägga sex dollar var är en helt annan försäljning än att övertala dem att lägga trettio.</p></div>
-    <div class="card ap"><div class="num">38-64 %</div><h4>Wishlist till köp</h4><p>Andelen som faktiskt köper inom trettio dagar efter lansering. Motsvarande siffra för ett AAA-spel är tre till sex procent. Vid sex dollar är en wishlist i praktiken ett köp som väntar.</p></div>
-    <div class="card ap"><div class="num">Ingen</div><h4>Direkt konkurrent</h4><p>Vi har sökt igenom Steam på destruction, demolish, siege och raid. Det finns fysiksandlådor utan PvP och asymmetrisk PvP utan förstörelse. Ingen äger kombinationen.</p></div>
+    <div class="card ap"><div class="num">$5.99</div><h4>The price point</h4><p>The genre sits between six and ten dollars, not premium. That is deliberate. Talking three friends into spending six dollars each is a completely different sale from talking them into thirty.</p></div>
+    <div class="card ap"><div class="num">38-64 %</div><h4>Wishlist to purchase</h4><p>The share who actually buy within thirty days of launch. The equivalent figure for a AAA title is three to six percent. At six dollars a wishlist is effectively a purchase waiting to happen.</p></div>
+    <div class="card ap"><div class="num">None</div><h4>No direct competitor</h4><p>We searched Steam for destruction, demolish, siege and raid. There are physics sandboxes without PvP, and asymmetric PvP without destruction. Nobody owns the combination.</p></div>
   </div>
 
-  <h3 style="margin-top:34px">Och förstörelse säljer på egen hand</h3>
+  <h3 style="margin-top:34px">And destruction sells on its own</h3>
   <div class="tw">
   <table>
-    <thead><tr><th>Titel</th><th class="num">Recensioner</th><th>Betyg</th><th class="num">Pris</th></tr></thead>
+    <thead><tr><th>Title</th><th class="num">Reviews</th><th>Rating</th><th class="num">Price</th></tr></thead>
     <tbody>
-      <tr><td>Teardown</td><td class="num">136 106</td><td>96 % Overwhelmingly Positive</td><td class="num">$29.99</td></tr>
-      <tr><td>Brick Rigs</td><td class="num">59 630</td><td>95 % Very Positive</td><td class="num">$19.99</td></tr>
-      <tr><td>Besiege</td><td class="num">53 252</td><td>95 % Overwhelmingly Positive</td><td class="num">$14.99</td></tr>
-      <tr><td>Instruments of Destruction</td><td class="num">1 574</td><td>91 % Very Positive</td><td class="num">$19.99</td></tr>
+      <tr><td><div class="tt"><img src="media/teardown/header.jpg" alt="" loading="lazy"><span>Teardown</span></div></td><td class="num">136,106</td><td>96 % Overwhelmingly Positive</td><td class="num">$29.99</td></tr>
+      <tr><td><div class="tt"><img src="media/brick-rigs/header.jpg" alt="" loading="lazy"><span>Brick Rigs</span></div></td><td class="num">59,630</td><td>95 % Very Positive</td><td class="num">$19.99</td></tr>
+      <tr><td><div class="tt"><img src="media/besiege/header.jpg" alt="" loading="lazy"><span>Besiege</span></div></td><td class="num">53,252</td><td>95 % Overwhelmingly Positive</td><td class="num">$14.99</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="muted" style="margin-top:14px">Teardown tar trettio dollar och har 136 000 recensioner helt utan multiplayer. Men notera spannet i samma tabell. Instruments of Destruction har 1 574. Bra förstörelsetech garanterar ingenting på egen hand. Teardown vann på design, inte på fysik.</p>
-</section>
+  <p class="muted" style="margin-top:14px">Teardown charges thirty dollars and has 136,000 reviews with no multiplayer at all. Destruction carries a premium price by itself. But note the spread inside the same category: Instruments of Destruction, a technically accomplished destruction game, has 1,574 reviews. Good destruction tech guarantees nothing on its own. Teardown won on design.</p>
 
-<!-- 3 SKALAN -->
-<section class="slide" id="s3">
-  <div class="eyebrow"><span class="n">02</span>Skalan</div>
-  <h2>Ett beslut avgör om det här går att bygga</h2>
-  <p class="lede">House Siege som ert material beskriver det, med 4v4 eller 5v5, full strukturfysik, sex hustyper, progression, matchmaking, backend, cosmetics och en konsolplan, är ett projekt på 15 till 25 miljoner kronor och ungefär tre år. Det är inte en kritik av idén. Det är vad den ambitionsnivån kostar, oavsett vem som bygger den.</p>
-
-  <p class="lede">Samma spel skalat till <strong>3v3, ett hus, chunk-baserad förstörelse och sex minuters ronder</strong> går att ta till en spelbar beta på nio månader för under tre miljoner.</p>
-
-  <div class="pull">Att skala ner är inte att sänka ambitionen. Det är att flytta beviset framför pengarna.</div>
-
-  <div class="tw">
-  <table>
-    <thead><tr><th>Parameter</th><th>Ert material</th><th>Vårt förslag</th><th>Varför</th></tr></thead>
-    <tbody>
-      <tr><td>Lagstorlek</td><td>4v4 eller 5v5</td><td><strong>3v3</strong></td><td>Sex spelare är taket för stabil peer to peer och golvet för att folk faktiskt får igång en match. Genrens spel ligger på två till fyra.</td></tr>
-      <tr><td>Rondlängd</td><td>12 minuter</td><td><strong>6 minuter</strong></td><td>Fler ronder per session, fler klipp, lägre tröskel. En kväll blir best of three på tjugo minuter.</td></tr>
-      <tr><td>Sidbyte</td><td>Nämns inte</td><td><strong>Byt sida varje rond</strong></td><td>Alla får förstöra. Löser halva risken att försvararrollen känns som andrahandsvalet.</td></tr>
-      <tr><td>Hus vid start</td><td>Sex arketyper</td><td><strong>Ett</strong></td><td>Fler hus är innehåll, inte bevis. De byggs när loopen är bevisad.</td></tr>
-      <tr><td>Förstörelse</td><td>Strukturell fysik</td><td><strong>Chunk-baserad</strong></td><td>Fritt deformerbar fysik går inte att synka över nät till rimlig kostnad. Förfrakturerade bitar gör det.</td></tr>
-      <tr><td>Vinstvillkor</td><td>Integrity över 50 %</td><td><strong>Oförändrat</strong></td><td>Den är bra. Ett synligt tal på ett fysiskt föremål, begripligt utan förklaring. Vi rör den inte.</td></tr>
-    </tbody>
-  </table>
+  <h4 style="margin-top:34px;margin-bottom:0">The comparison set</h4>
+  <div class="logowall">
+    <img class="inv" src="media/lethal-company/logo.png" alt="Lethal Company" loading="lazy">
+    <img src="media/repo/logo.png" alt="R.E.P.O." loading="lazy">
+    <img src="media/content-warning/logo.png" alt="Content Warning" loading="lazy">
+    <img src="media/teardown/logo.png" alt="Teardown" loading="lazy">
+    <img src="media/brick-rigs/logo.png" alt="Brick Rigs" loading="lazy">
+    <img src="media/besiege/logo.png" alt="Besiege" loading="lazy">
   </div>
 </section>
 
-<!-- 4 CORE LOOP -->
+<!-- 4 THE SCALE -->
 <section class="slide" id="s4">
-  <div class="eyebrow"><span class="n">03</span>Core loop</div>
-  <h2>Huset är sitt eget byggmaterial</h2>
-  <p class="lede">Ert material ställer den helt rätta frågan: är det lika roligt att bygga och reparera som att förstöra? Vi har letat efter ett spel som svarar ja på den, och vi hittar inget. Teardown, Brick Rigs, Besiege och Instruments of Destruction är alla renodlad förstörelse. Ingen har lyckats göra reparation till den roliga halvan.</p>
-  <p class="lede">Så vi föreslår att försvararens verb också blir destruktivt.</p>
+  <div class="eyebrow"><span class="n">03</span>The scale</div>
+  <h2>One decision determines whether this is buildable</h2>
+  <p class="lede">House Siege as your material describes it, with 4v4 or 5v5, full structural physics, six house archetypes, progression, matchmaking, backend, cosmetics and a console roadmap, is a 15 to 25 million krona project over roughly three years. That is not a criticism of the idea. It is what that level of ambition costs, whoever builds it.</p>
+  <p class="lede">The same game scaled to <strong>3v3, one house, chunk based destruction and six minute rounds</strong> reaches a playable beta in nine months for under three million.</p>
 
-  <p><strong>Försvararna har inga byggresurser.</strong> De får material genom att slita sönder huset inifrån. Du behöver bräda ytterdörren, det finns ingen brädhög, det finns en trappa. Du river trappan, släpar upp den och slänger den mot dörren.</p>
+  <div class="pull">Scaling down is not lowering the ambition. It is putting the evidence in front of the money.</div>
 
-  <div class="pull">Möbler är gratis. När möblerna tar slut börjar du äta bärande konstruktion, och då sjunker din egen Integrity.</div>
-
-  <p>Det ger tre saker på en gång. Försvaret blir lika fysiskt och lika komiskt som anfallet, ingen står och håller inne en knapp. Varje försvar kostar något, så du gräver i din egen mätare för att överleva nästa minut. Och kartan förändras av försvaret, inte bara av anfallet: du rev trappan, nu kommer du själv inte upp.</p>
-
-  <h3 style="margin-top:30px">Loopen, femton till tjugofem sekunder</h3>
-  <div class="loopbar">
-    <div class="lv"><div class="t">GRAB</div><div class="d">Slit loss något. En dörr, ett badkar, ett kylskåp, en bärande balk.</div></div>
-    <div class="lv"><div class="t">HAUL</div><div class="d">Bär det. Tungt, klumpigt, du blir långsam och du ser dum ut.</div></div>
-    <div class="lv"><div class="t">SLAM</div><div class="d">Slå fast det. Försvarare bräddar. Angripare använder samma sak som murbräcka eller ramp.</div></div>
-    <div class="lv"><div class="t">BREAK</div><div class="d">Någon river det du just satte dit. Loopen börjar om.</div></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Parameter</th><th>Your material</th><th>Our proposal</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Team size</td><td>4v4 or 5v5</td><td><strong>3v3</strong></td><td>Six players is the ceiling for stable peer to peer and the floor for people actually getting a match started. The genre's hits run two to four.</td></tr>
+      <tr><td>Round length</td><td>12 minutes</td><td><strong>6 minutes</strong></td><td>More rounds per session, more clips, lower commitment. An evening becomes best of three in twenty minutes.</td></tr>
+      <tr><td>Side switching</td><td>Not mentioned</td><td><strong>Switch every round</strong></td><td>Everyone gets to destroy. Solves half the risk that defending feels like the consolation role.</td></tr>
+      <tr><td>Houses at launch</td><td>Six archetypes</td><td><strong>One</strong></td><td>More houses are content, not evidence. They get built once the loop is proven.</td></tr>
+      <tr><td>Destruction</td><td>Structural physics</td><td><strong>Chunk based</strong></td><td>Freely deformable physics cannot be synchronised over a network at a sane cost. Pre fractured pieces can.</td></tr>
+      <tr><td>Win condition</td><td>Integrity above 50 %</td><td><strong>Unchanged</strong></td><td>It is good. A visible number on a physical object, understandable without explanation. We are not touching it.</td></tr>
+    </tbody>
+  </table>
   </div>
-  <p class="muted"><strong>Båda lagen kör samma fyra verb.</strong> Det är ett designval, men det är också ett budgetval: en interaktionsmodell i stället för två halverar kostnaden för prototypen och gör balansen enklare att hålla över tid.</p>
 </section>
 
-<!-- 5 RISKERNA -->
+<!-- 5 CORE LOOP -->
 <section class="slide" id="s5">
-  <div class="eyebrow"><span class="n">04</span>Riskerna</div>
-  <h2>Vad planen måste svara på</h2>
-  <p class="lede">Det här är de fem sakerna som avgör om House Siege blir ett spel. Vi lägger fram dem öppet, eftersom hela upplägget nedan är byggt för att besvara dem i rätt ordning och till lägsta möjliga kostnad.</p>
+  <div class="eyebrow"><span class="n">04</span>Core loop</div>
+  <h2>The house is its own building material</h2>
+  <p class="lede">Your material asks exactly the right question: is building and repairing as much fun as destroying? We went looking for a game that answers yes, and we cannot find one. Teardown, Brick Rigs, Besiege and Instruments of Destruction are all pure destruction. Nobody has managed to make repair the fun half.</p>
+  <p class="lede">So we propose that the defender's verb becomes destructive too.</p>
 
-  <div class="risk"><div class="r">Försvaret måste vara kul</div><div class="m">Den största risken, och den vi har lagt ett konkret förslag på ovan. Frågan får sitt svar i månad två av steg två, inte i månad sex. Om svaret blir nej ska projektet stoppas där.</div></div>
-  <div class="risk"><div class="r">Förstörelse plus multiplayer</div><div class="m">Den dyraste kombinationen som finns i den här storleken på projekt. Teardown har ingen multiplayer, och det är inget sammanträffande. Lösningen är att synka skadehändelser i stället för fysiktillstånd, alltså att bara skicka vilka bitar som gått sönder och låta spillrorna flyga lite olika hos olika spelare. Det är standard och det gör problemet hanterbart.</div></div>
-  <div class="risk"><div class="r">PvP behöver folk</div><div class="m">Ett spel för sex spelare behöver sex spelare. Det är kallstartsproblemet som sänker de flesta mindre PvP-spel. Därför är bottar inte en extrafunktion i det här upplägget, de är en del av produkten och de är budgeterade som en egen milstolpe.</div></div>
-  <div class="risk"><div class="r">Balans är en löpande kostnad</div><div class="m">Asymmetriska spel kräver justering i åratal. Rainbow Six Siege har hållit på i tio år. Det talar för färre verktyg och tydligare roller från start, och för sidbyte varje rond så att obalans drabbar båda lagen lika.</div></div>
-  <div class="risk"><div class="r">Priset styr spelet</div><div class="m">Ert material talar om ett premiumspel. Genren som House Siege passar i ligger på sex till åtta dollar. Det är två olika produkter med två olika budgetar, och valet behöver göras tidigt eftersom allt annat följer av det. Vi rekommenderar den lägre prispunkten och den större publiken.</div></div>
+  <p><strong>Defenders have no build resources.</strong> They get materials by tearing the house apart from the inside. You need to board the front door, there is no pile of planks, there is a staircase. You rip out the staircase, drag it up and slam it against the door.</p>
+
+  <div class="pull">Furniture is free. When the furniture runs out you start eating load bearing structure, and your own Integrity drops.</div>
+
+  <p>That does three things at once. Defending becomes as physical and as funny as attacking, with nobody standing still holding a button. Every defence costs something, so you are digging into your own meter to survive the next minute. And the map is reshaped by the defence, not only by the attack: you tore out the staircase, now you cannot get upstairs either.</p>
+
+  <h3 style="margin-top:30px">The loop, fifteen to twenty five seconds</h3>
+  <div class="loopbar">
+    <div class="lv"><div class="t">GRAB</div><div class="d">Rip something loose. A door, a bathtub, a fridge, a load bearing beam.</div></div>
+    <div class="lv"><div class="t">HAUL</div><div class="d">Carry it. Heavy, awkward, you are slow and you look stupid.</div></div>
+    <div class="lv"><div class="t">SLAM</div><div class="d">Put it down hard. Defenders board a gap. Attackers use the same object as a ram or a ramp.</div></div>
+    <div class="lv"><div class="t">BREAK</div><div class="d">Someone destroys what you just placed. The loop starts again.</div></div>
+  </div>
+  <p class="muted"><strong>Both teams use the same four verbs.</strong> That is a design choice, but it is also a budget choice: one interaction model instead of two halves the cost of the prototype and makes balance easier to hold over time.</p>
 </section>
 
-<!-- 6 ART DIRECTION -->
+<!-- 6 THE RISKS -->
 <section class="slide" id="s6">
-  <div class="eyebrow"><span class="n">05</span>Art direction</div>
-  <h2>Flatpack</h2>
-  <p class="lede">Huset ska synligt vara byggt av delar som klickar ihop, som ett möbelpaket. Det gör förstörelsen läsbar, eftersom man ser exakt vilken bit som lossnade, och det gör produktionen billig, eftersom ett kit räcker till sex hus.</p>
+  <div class="eyebrow"><span class="n">05</span>The risks</div>
+  <h2>What the plan has to answer</h2>
+  <p class="lede">These five things decide whether House Siege becomes a game. We put them up front, because the whole plan below is built to answer them in the right order and at the lowest possible cost.</p>
 
-  <div class="pull">Konsten ska se ut som att en människa gjort den snabbt, inte som att en maskin gjort den perfekt.</div>
-
-  <p>Det är inte en estetisk åsikt utan en kommersiell. Publiken i den här genren känner igen överpolerat marknadsmaterial direkt och läser det som att det inte finns något spel bakom. Grovt men sammanhängande läses tvärtom som att någon faktiskt bygger något och är med på skämtet. De spel i tabellen på sidan ett som sålt mest ser alla medvetet enkla ut.</p>
-
-  <h3 style="margin-top:30px">Referenser, och vad vi tar från varje</h3>
-  <div class="ref"><div class="rn">R.E.P.O.</div><div class="rd">Guldstandarden. Nästan otexturerade miljöer, en stark läsbar silhuett, fysiken bär hela intrycket.</div></div>
-  <div class="ref"><div class="rn">Brick Rigs</div><div class="rd">Modulariteten. Man ser att världen är byggd av bitar, vilket är precis vad vi behöver när bitarna ska lossna.</div></div>
-  <div class="ref"><div class="rn">Content Warning</div><div class="rd">Flat shading och stram palett. Läsbart på en telefon i en scrollande feed, vilket är där spelet faktiskt upptäcks.</div></div>
-  <div class="ref"><div class="rn">Human Fall Flat</div><div class="rd">Degiga figurer utan ansiktsanimation. All komik kommer ur rörelsen, vilket är billigt och åldras väl.</div></div>
-  <div class="ref"><div class="rn">How to Fish</div><div class="rd">Den medvetna grovheten. Ingenting försöker imponera, och det är själva poängen.</div></div>
-
-  <div class="grid g3" style="margin-top:30px">
-    <div class="card ap"><h4>Färg i stället för detalj</h4><p>En bit går från hel till sprucken till borta genom färg, inte genom texturdetalj. Läsbart i litet format och dramatiskt billigare att producera.</p></div>
-    <div class="card ap"><h4>En dräktslot per figur</h4><p>Blanka figurer med ett utbytbart lager. Det ger en väg till cosmetics längre fram utan att vi behöver bygga karaktärskonst nu.</p></div>
-    <div class="card ap"><h4>Fast vid kamera</h4><p>Man ska se hela huset falla. Klippbarhet går före inlevelse, eftersom klippet är marknadsföringen.</p></div>
-  </div>
+  <div class="risk"><div class="r">Defending has to be fun</div><div class="m">The biggest risk, and the one we have put a concrete proposal against above. The question gets answered in month two of step two, not month six. If the answer is no, the project should stop there.</div></div>
+  <div class="risk"><div class="r">Destruction plus multiplayer</div><div class="m">The most expensive combination there is at this project size. Teardown has no multiplayer and that is no accident. The answer is to synchronise damage events rather than physics state, meaning we only send which pieces broke and let the debris fly slightly differently for each player. That is standard practice and it makes the problem tractable.</div></div>
+  <div class="risk"><div class="r">PvP needs people</div><div class="m">A game for six players needs six players. That cold start problem is what sinks most smaller PvP titles. This is why bots are not an extra feature in this plan. They are part of the product and they get their own budgeted milestone.</div></div>
+  <div class="risk"><div class="r">Balance is a running cost</div><div class="m">Asymmetric games need tuning for years. Rainbow Six Siege has been at it for a decade. That argues for fewer tools and clearer roles from the start, and for switching sides every round so imbalance hits both teams equally.</div></div>
+  <div class="risk"><div class="r">Price decides the game</div><div class="m">Your material describes a premium title. The genre House Siege fits sits at six to eight dollars. Those are two different products with two different budgets, and the choice needs making early because everything else follows from it. We recommend the lower price and the larger audience.</div></div>
 </section>
 
-<!-- 7 STEG 1 -->
+<!-- 7 ART DIRECTION -->
 <section class="slide" id="s7">
-  <div class="eyebrow"><span class="n">06</span>Steg ett</div>
-  <h2>Butikssidan, innan spelet</h2>
-  <p class="lede">Målet är en publicerad Steam-sida, en trailer som ser ut som gameplay, och ett trettiotal vertikala klipp för TikTok, Reels och Shorts. Utan att bygga spelet.</p>
-  <p>Metoden är ett trailerbygge. Rasen författas som bakade simuleringar och spelas upp som animation, så vi behöver ingen förstörelsemotor i det här steget. Huset byggs på en inköpt modulär byggsats som vi ger ett eget uttryck genom en egen shader, en låst palett och en egen figursilhuett. Det är den delen som gör att materialet inte ser inköpt ut, och det är den enda delen vi inte kortar.</p>
+  <div class="eyebrow"><span class="n">06</span>Art direction</div>
+  <h2>Flatpack</h2>
+  <p class="lede">The house should visibly be built from parts that click together, like flat pack furniture. That makes destruction readable, because you can see exactly which piece came loose, and it makes production cheap, because one kit covers six houses.</p>
 
-  <div class="gatecard">
-    <div class="gh"><span class="gn">Månad 1</span><span class="gm">Uttrycket låses</span><span class="gs">1,5 manmånader</span></div>
-    <div>Flatpack-kit v1, palett, shader, figurdesign, första testrender. Ni ser hur spelet kommer att se ut.</div>
-  </div>
-  <div class="gatecard">
-    <div class="gh"><span class="gn">Månad 2</span><span class="gm">Huset står klart</span><span class="gs">2,25 manmånader</span></div>
-    <div>Ett komplett hus, sex till åtta rassekvenser, figur med dräkt, set dressing och kamerauppsättning.</div>
-  </div>
-  <div class="gatecard">
-    <div class="gh"><span class="gn">Månad 3</span><span class="gm">Sidan går live</span><span class="gs">1,25 manmånader</span></div>
-    <div>Trailer klippt, trettio vertikala klipp, capsules, skärmdumpar, butikstext och taggar. Sidan publicerad och kampanjen igång.</div>
+  <div class="pull">The art should look like a person made it quickly, not like a machine made it perfectly.</div>
+
+  <p>That is a commercial position rather than an aesthetic one. This audience recognises over polished marketing material instantly and reads it as a sign that there is no game behind it. Rough but coherent reads the opposite way: somebody is actually building something and is in on the joke. Every one of the best selling titles in the tables above looks deliberately simple.</p>
+
+  <h3 style="margin-top:30px">References, and what we take from each</h3>
+  <div class="artgrid">
+    <figure>
+      <img src="media/repo/shot0.jpg" alt="R.E.P.O." loading="lazy">
+      <figcaption><div class="an">R.E.P.O.</div><div class="ad">The gold standard. Almost untextured environments, one strong readable silhouette, and physics carrying the entire impression. 423,000 reviews on this look.</div></figcaption>
+    </figure>
+    <figure>
+      <img src="media/brick-rigs/shot0.jpg" alt="Brick Rigs" loading="lazy">
+      <figcaption><div class="an">Brick Rigs</div><div class="ad">The modularity. You can see the world is assembled from pieces, which is exactly what we need when those pieces are going to come apart.</div></figcaption>
+    </figure>
+    <figure>
+      <img src="media/content-warning/shot1.jpg" alt="Content Warning" loading="lazy">
+      <figcaption><div class="an">Content Warning</div><div class="ad">Flat shading and a tight palette. Readable on a phone in a scrolling feed, which is where the game actually gets discovered.</div></figcaption>
+    </figure>
+    <figure>
+      <img src="media/human-fall-flat/shot0.jpg" alt="Human Fall Flat" loading="lazy">
+      <figcaption><div class="an">Human Fall Flat</div><div class="ad">Doughy blank characters with no facial animation. All the comedy comes from the movement, which is cheap to make and ages well.</div></figcaption>
+    </figure>
+    <figure>
+      <img src="media/how-to-fish/shot0.jpg" alt="How to Fish" loading="lazy">
+      <figcaption><div class="an">How to Fish</div><div class="ad">The deliberate crudeness. Nothing is trying to impress anyone, and that is precisely the point. This is the tonal floor we are aiming at.</div></figcaption>
+    </figure>
+    <figure>
+      <img src="media/webfishing/shot0.jpg" alt="WEBFISHING" loading="lazy">
+      <figcaption><div class="an">WEBFISHING</div><div class="ad">Flat vertex colour instead of textures. Enormous saving in production, and it is the actual visual language of the genre right now.</div></figcaption>
+    </figure>
   </div>
 
-  <div style="margin-top:30px"><div class="bignum">600 000<span class="cur">SEK</span></div></div>
-  <p class="muted" style="margin-top:12px">5,0 manmånader över tre månader. Kontant del 420 000, resten skjuts till baksidan enligt affären längre ned.</p>
-  <p class="muted"><strong>Utöver detta tillkommer mediabudget för kampanjen, 150 000 till 300 000.</strong> Den är inte vår intäkt och vi tar ingen del av den, men den måste finnas. Sjuttio procent av alla wishlists kommer från kanaler utanför Steam, så utan spridning mäter testet ingenting.</p>
-  <p class="muted"><strong>Ni äger allt som produceras.</strong> Sidan, trailern, klippen, byggsatsen och figurerna. Går ni inte vidare med oss kan ni ta paketet till vem som helst.</p>
+  <div class="grid g3" style="margin-top:26px">
+    <div class="card ap"><h4>Colour instead of detail</h4><p>A piece goes from intact to cracked to gone through colour, not texture detail. Readable at small sizes and dramatically cheaper to produce.</p></div>
+    <div class="card ap"><h4>One costume slot per character</h4><p>Blank figures with one swappable layer. That opens a route to cosmetics later without building character art now.</p></div>
+    <div class="card ap"><h4>Fixed wide camera</h4><p>You need to see the whole house fall. Clippability beats immersion, because the clip is the marketing.</p></div>
+  </div>
+  <p class="muted" style="margin-top:20px">Images above are the reference titles on Steam, shown to fix the target. They are not House Siege artwork. Concept art in this direction is the first deliverable of step one, and we would produce it as real renders from the actual build rather than as generated images, for the reason in the pull quote.</p>
 </section>
 
-<!-- 8 PORTEN -->
+<!-- 8 STEP ONE -->
 <section class="slide" id="s8">
-  <div class="eyebrow"><span class="n">07</span>Porten</div>
-  <h2>Siffran som avgör steg två</h2>
-  <p class="lede">Hela poängen med att bygga butikssidan först är att den producerar ett tal som gör nästa beslut enkelt. Vi föreslår att ni binder er vid talet i förväg, innan ni vet utfallet.</p>
+  <div class="eyebrow"><span class="n">07</span>Step one</div>
+  <h2>The store page, before the game</h2>
+  <p class="lede">The goal is a published Steam page, a trailer that looks like gameplay, and around thirty vertical clips for TikTok, Reels and Shorts. Without building the game.</p>
+  <p>The method is a trailer build. Collapses are authored as baked simulations and played back as animation, so we need no destruction engine in this step. The house is built on a purchased modular kit that we give its own identity through a custom shader, a locked palette and an original character silhouette. That is the part that stops the material looking bought, and it is the one part we do not cut.</p>
 
-  <p>Måttstocken är hämtad utifrån. Polden Publishing är ett förlag som specialiserat sig på precis den här genren och som arbetar datadrivet: de kör ett marknadstest innan de skriver på, och deras publicerade tröskel för att signera ett spel är <strong>30 000 wishlists från testet</strong>. De anger 150 000 dollar som snittinvestering per titel och har över en miljon wishlists genererade före produktionsbeslut i portföljen.</p>
+  <div class="gatecard">
+    <div class="gh"><span class="gn">Month 1</span><span class="gm">The look is locked</span><span class="gs">1.5 person months</span></div>
+    <div>Flatpack kit v1, palette, shader, character design, first test renders. You see how the game is going to look.</div>
+  </div>
+  <div class="gatecard">
+    <div class="gh"><span class="gn">Month 2</span><span class="gm">The house stands</span><span class="gs">2.25 person months</span></div>
+    <div>One complete house, six to eight collapse sequences, character with costume, set dressing and camera work.</div>
+  </div>
+  <div class="gatecard">
+    <div class="gh"><span class="gn">Month 3</span><span class="gm">The page goes live</span><span class="gs">1.25 person months</span></div>
+    <div>Trailer cut, thirty vertical clips, capsules, screenshots, store copy and tags. Page published and the campaign running.</div>
+  </div>
+
+  <div style="margin-top:30px"><div class="bignum">600,000<span class="cur">SEK</span></div></div>
+  <p class="muted" style="margin-top:12px">5.0 person months across three calendar months. Cash portion 420,000, the remainder deferred per the deal below.</p>
+  <p class="muted"><strong>Media budget for the campaign is on top of this, 150,000 to 300,000.</strong> It is not our revenue and we take no share of it, but it has to exist. Seventy percent of all wishlists come from channels outside Steam, so without distribution the test measures nothing.</p>
+  <p class="muted"><strong>You own everything produced.</strong> The page, the trailer, the clips, the kit and the characters. If you do not continue with us, you can take the package anywhere.</p>
+</section>
+
+<!-- 9 THE GATE -->
+<section class="slide" id="s9">
+  <div class="eyebrow"><span class="n">08</span>The gate</div>
+  <h2>The number that decides step two</h2>
+  <p class="lede">The entire point of building the store page first is that it produces a number which makes the next decision easy. We suggest you commit to the number in advance, before you know the outcome.</p>
+  <p>The benchmark comes from outside. Polden Publishing is a publisher specialising in exactly this genre and working from data: they run a marketing test before signing anything, and their published threshold for signing a game is <strong>30,000 wishlists from that test</strong>. They state 150,000 dollars as their average investment per title and report more than a million wishlists generated before production decisions across their portfolio.</p>
 
   <div class="tw" style="margin-top:22px">
   <table>
-    <thead><tr><th>Utfall 60 dagar efter att sidan gått live</th><th>Tolkning</th><th>Beslut</th></tr></thead>
+    <thead><tr><th>Outcome 60 days after the page goes live</th><th>Reading</th><th>Decision</th></tr></thead>
     <tbody>
-      <tr><td>Under 10 000 wishlists</td><td>Hooken bär inte i den här formen</td><td>Stoppa. Ni har materialet och har lagt 600 000, inte 2,7 miljoner.</td></tr>
-      <tr><td>10 000 till 30 000</td><td>Tvetydigt</td><td>Gör om trailer och capsule, kör kampanjen en gång till, besluta sedan.</td></tr>
-      <tr class="sig"><td><strong>30 000 eller mer</strong></td><td>Branschens egen signeringströskel passerad</td><td><strong>Kör steg två.</strong></td></tr>
-      <tr><td>100 000 eller mer</td><td>Nivån där genren talar om en stor titel</td><td>Kör steg två och höj ambitionen på lokalisering och konsol.</td></tr>
+      <tr><td>Under 10,000 wishlists</td><td>The hook does not carry in this form</td><td>Stop. You keep the material and you have spent 600,000, not 2.7 million.</td></tr>
+      <tr><td>10,000 to 30,000</td><td>Ambiguous</td><td>Rebuild the trailer and capsule, run the campaign once more, then decide.</td></tr>
+      <tr class="sig"><td><strong>30,000 or more</strong></td><td>The industry's own signing threshold cleared</td><td><strong>Run step two.</strong></td></tr>
+      <tr><td>100,000 or more</td><td>The level at which this genre talks about a major title</td><td>Run step two and raise ambition on localisation and console.</td></tr>
     </tbody>
   </table>
   </div>
 
-  <p class="muted" style="margin-top:20px"><strong>En viktig nyansering.</strong> 30 000 wishlists är en tröskel för att fortsätta investera, inte för att tjäna pengar. Vid trettio dagars normal konvertering motsvarar det ungefär 11 400 sålda exemplar, vilket inte betalar för någonting. Det talet betyder att konceptet bär. För att hela upplägget ska gå ihop vill vi se omkring 150 000 wishlists vid lansering, vilket är fullt normalt i den här genren om steg två levererar en beta som folk vill klippa.</p>
+  <p class="muted" style="margin-top:20px"><strong>One important nuance.</strong> 30,000 wishlists is a threshold for continuing to invest, not for making money. At normal thirty day conversion it corresponds to roughly 11,400 copies sold, which pays for nothing. That number means the concept carries. For the whole plan to work we want to see around 150,000 wishlists at launch, which is entirely normal in this genre if step two delivers a beta people want to clip.</p>
 </section>
 
-<!-- 9 STEG 2 -->
-<section class="slide" id="s9">
-  <div class="eyebrow"><span class="n">08</span>Steg två</div>
-  <h2>Prototypen, och vägen till Steam Beta</h2>
-  <p class="lede">Sex månader som besvarar tre frågor i tur och ordning: är loopen rolig, går förstörelsen att synka över nät, och kan bottar bära spelet när det inte finns sex människor online. Slutläget är en beta på Steam som ni kan bygga community kring.</p>
-
-  <div class="gatecard">
-    <div class="gh"><span class="gn">M1</span><span class="gm">Prototype</span><span class="gs">2,75 manmånader</span></div>
-    <div>De fyra verben i grålåda. Chunk-förstörelse på en vägg. Teknisk spike på nätsynk redan här, så att den farligaste frågan ställs tidigt. <strong>Besvarar: känns det bra att slita loss saker?</strong></div>
-  </div>
-  <div class="gatecard">
-    <div class="gh"><span class="gn">M2</span><span class="gm">First Playable</span><span class="gs">3,0 manmånader</span></div>
-    <div>Hela loopen i ett hus. Integrity-mätaren. Mekaniken där man äter av huset. Lokal 3v3 mot enkla bottar. <strong>Besvarar: är försvar lika kul som anfall?</strong> Blir svaret nej stoppar vi här.</div>
-  </div>
-  <div class="gatecard">
-    <div class="gh"><span class="gn">M3</span><span class="gm">Netcode Alpha</span><span class="gs">3,0 manmånader</span></div>
-    <div>Peer to peer, synkade skadehändelser, sex spelare över internet. Projektets tekniskt tyngsta månad.</div>
-  </div>
-  <div class="gatecard">
-    <div class="gh"><span class="gn">M4</span><span class="gm">Bots &amp; Balance</span><span class="gs">3,0 manmånader</span></div>
-    <div>Bottar som både kan anfalla och försvara. Värdbyte om värden lämnar, återanslutning, första balanspasset med sidbyte.</div>
-  </div>
-  <div class="gatecard">
-    <div class="gh"><span class="gn">M5</span><span class="gm">Beta Candidate</span><span class="gs">3,0 manmånader</span></div>
-    <div>Steam-lobbies, inbjudningsflöde, enkel progression, telemetri, krasch- och prestandapass.</div>
-  </div>
-  <div class="gatecard">
-    <div class="gh"><span class="gn">M6</span><span class="gm">Steam Beta</span><span class="gs">3,0 manmånader</span></div>
-    <div>Stängd beta till wishlist-listan, därefter öppen. Communitykanal, patchkadens och löpande mätning.</div>
-  </div>
-
-  <div style="margin-top:30px"><div class="bignum">2 130 000<span class="cur">SEK</span></div></div>
-  <p class="muted" style="margin-top:12px">17,75 manmånader över sex månader. Kontant del 1 491 000.</p>
-</section>
-
-<!-- 10 AFFÄREN -->
+<!-- 10 STEP TWO -->
 <section class="slide" id="s10">
-  <div class="eyebrow"><span class="n">09</span>Affären</div>
-  <h2>Vi tar risk med er</h2>
-  <p class="lede">Vi prissätter arbetet till 120 000 kronor per manmånad och tar bara sjuttio procent kontant. Resten skjuter vi till baksidan och får tillbaka först när spelet säljer. Vi tar ingen ägarandel i House Siege. IP:t är ert, odelat, hela vägen.</p>
+  <div class="eyebrow"><span class="n">09</span>Step two</div>
+  <h2>The prototype, and the road to Steam Beta</h2>
+  <p class="lede">Six months answering three questions in order: is the loop fun, can the destruction be synchronised over a network, and can bots carry the game when six people are not online. The end state is a Steam beta you can build a community around.</p>
 
-  <div class="tw">
-  <table>
-    <thead><tr><th>Villkor</th><th>Nivå</th></tr></thead>
-    <tbody>
-      <tr><td>Pris per manmånad</td><td>120 000 SEK</td></tr>
-      <tr><td>Kontant</td><td>70 procent</td></tr>
-      <tr><td>Skjutet till baksidan</td><td>30 procent</td></tr>
-      <tr><td>Återbetalning på den skjutna delen</td><td>2,5 gånger, vid release</td></tr>
-      <tr><td>Därefter</td><td>15 procent av intäkterna</td></tr>
-      <tr><td>Ägande i IP</td><td>Inget. Ni äger allt.</td></tr>
-    </tbody>
-  </table>
+  <div class="gatecard">
+    <div class="gh"><span class="gn">M1</span><span class="gm">Prototype</span><span class="gs">2.75 person months</span></div>
+    <div>The four verbs in grey box. Chunk destruction on one wall. A technical spike on network sync already here, so the most dangerous question gets asked early. <strong>Answers: does ripping things loose feel good?</strong></div>
+  </div>
+  <div class="gatecard">
+    <div class="gh"><span class="gn">M2</span><span class="gm">First Playable</span><span class="gs">3.0 person months</span></div>
+    <div>The full loop in one house. The Integrity meter. The mechanic where you eat the house. Local 3v3 against simple bots. <strong>Answers: is defending as fun as attacking?</strong> If the answer is no, we stop here.</div>
+  </div>
+  <div class="gatecard">
+    <div class="gh"><span class="gn">M3</span><span class="gm">Netcode Alpha</span><span class="gs">3.0 person months</span></div>
+    <div>Peer to peer, synchronised damage events, six players over the internet. The technically heaviest month of the project.</div>
+  </div>
+  <div class="gatecard">
+    <div class="gh"><span class="gn">M4</span><span class="gm">Bots and Balance</span><span class="gs">3.0 person months</span></div>
+    <div>Bots that can both attack and defend. Host migration if the host leaves, reconnection, and the first balance pass with side switching.</div>
+  </div>
+  <div class="gatecard">
+    <div class="gh"><span class="gn">M5</span><span class="gm">Beta Candidate</span><span class="gs">3.0 person months</span></div>
+    <div>Steam lobbies, invite flow, simple progression, telemetry, and a crash and performance pass.</div>
+  </div>
+  <div class="gatecard">
+    <div class="gh"><span class="gn">M6</span><span class="gm">Steam Beta</span><span class="gs">3.0 person months</span></div>
+    <div>Closed beta to the wishlist, then open. Community channel, patch cadence and continuous measurement.</div>
   </div>
 
-  <h3 style="margin-top:34px">Vad det blir i kronor</h3>
-  <div class="tw">
-  <table>
-    <thead><tr><th>Steg</th><th class="num">Manmånader</th><th class="num">Totalt</th><th class="num">Kontant</th><th class="num">Till baksidan</th></tr></thead>
-    <tbody>
-      <tr><td>Steg 1, butikssidan</td><td class="num">5,0</td><td class="num">600 000</td><td class="num">420 000</td><td class="num">180 000</td></tr>
-      <tr><td>Steg 2, prototyp till beta</td><td class="num">17,75</td><td class="num">2 130 000</td><td class="num">1 491 000</td><td class="num">639 000</td></tr>
-      <tr class="tot"><td>Totalt</td><td class="num">22,75</td><td class="num">2 730 000</td><td class="num">1 911 000</td><td class="num">819 000</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="muted" style="margin-top:14px">Kontantåtagandet fördelar sig över nio månader och börjar på 126 000 den första månaden. Beslutet om steg två fattas efter tre månader, så det verkliga åtagandet vid start är 420 000 plus mediabudget.</p>
-
-  <h3 style="margin-top:30px">Vad som krävs för att ni ska ha igen pengarna</h3>
-  <p>Vid en prispunkt på sju dollar, efter Steams andel och ett realistiskt avdrag för regionspriser och rabatter, täcker <strong>omkring 114 000 sålda exemplar</strong> både vår kontanta ersättning och hela återbetalningen på den skjutna delen. Därefter går femton procent av intäkterna till oss och resten till er.</p>
-  <p class="muted">Sätt det mot tabellen på sidan ett. Content Warning har 163 000 recensioner, och recensioner brukar motsvara någonstans mellan en trettiondel och en femtiondel av försäljningen. Upplägget kräver alltså inte att House Siege blir en av genrens stora titlar. Det kräver att spelet blir klart och hittar en normal publik.</p>
+  <div style="margin-top:30px"><div class="bignum">2,130,000<span class="cur">SEK</span></div></div>
+  <p class="muted" style="margin-top:12px">17.75 person months across six calendar months. Cash portion 1,491,000.</p>
 </section>
 
-<!-- 11 NÄSTA STEG -->
+<!-- 11 THE DEAL -->
 <section class="slide" id="s11">
-  <div class="eyebrow"><span class="n">10</span>Nästa steg</div>
-  <h2>Tre saker, sedan kan vi börja</h2>
+  <div class="eyebrow"><span class="n">10</span>The deal</div>
+  <h2>We take risk with you</h2>
+  <p class="lede">We price the work at 120,000 kronor per person month and take only seventy percent in cash. The rest we defer and only recover when the game sells. We take no ownership stake in House Siege. The IP is yours, undivided, the whole way.</p>
+
+  <div class="tw">
+  <table>
+    <thead><tr><th>Term</th><th>Level</th></tr></thead>
+    <tbody>
+      <tr><td>Price per person month</td><td>120,000 SEK</td></tr>
+      <tr><td>Cash</td><td>70 percent</td></tr>
+      <tr><td>Deferred</td><td>30 percent</td></tr>
+      <tr><td>Recoup on the deferred portion</td><td>2.5 times, at release</td></tr>
+      <tr><td>After that</td><td>15 percent of revenue</td></tr>
+      <tr><td>IP ownership</td><td>None. You own everything.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 style="margin-top:34px">What that is in kronor</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Step</th><th class="num">Person months</th><th class="num">Total</th><th class="num">Cash</th><th class="num">Deferred</th></tr></thead>
+    <tbody>
+      <tr><td>Step 1, the store page</td><td class="num">5.0</td><td class="num">600,000</td><td class="num">420,000</td><td class="num">180,000</td></tr>
+      <tr><td>Step 2, prototype to beta</td><td class="num">17.75</td><td class="num">2,130,000</td><td class="num">1,491,000</td><td class="num">639,000</td></tr>
+      <tr class="tot"><td>Total</td><td class="num">22.75</td><td class="num">2,730,000</td><td class="num">1,911,000</td><td class="num">819,000</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted" style="margin-top:14px">The cash commitment spreads across nine months and starts at 126,000 in the first month. The step two decision is taken after three months, so the real commitment at the start is 420,000 plus media budget.</p>
+
+  <h3 style="margin-top:30px">What it takes for you to be whole</h3>
+  <p>At a seven dollar price point, after Steam's share and a realistic deduction for regional pricing and discounts, <strong>around 114,000 copies</strong> covers both our cash fee and the full recoup on the deferred portion. After that, fifteen percent of revenue comes to us and the rest is yours.</p>
+  <p class="muted">Put that against the first table. Content Warning has 163,000 reviews, and reviews typically represent somewhere between a thirtieth and a fiftieth of sales. So the plan does not require House Siege to become one of the genre's major titles. It requires the game to get finished and find a normal audience.</p>
+</section>
+
+<!-- 12 NEXT STEPS -->
+<section class="slide" id="s12">
+  <div class="eyebrow"><span class="n">11</span>Next steps</div>
+  <h2>Three things, then we can start</h2>
 
   <div class="grid g3">
-    <div class="card ap"><div class="num">01</div><h4>Ett spel i taget</h4><p>Ert material driver tre koncept parallellt. Vi föreslår att House Siege körs ensamt tills porten i steg ett är passerad. De andra två står kvar och tappar ingenting på att vänta.</p></div>
-    <div class="card ap"><div class="num">02</div><h4>Ett bolag och en ägare till IP:t</h4><p>Eftersom en del av vår ersättning ligger på baksidan behöver avtalet en tydlig motpart och ett tydligt ägande. Det är en formalia, men den ska vara på plats innan vi börjar.</p></div>
-    <div class="card ap"><div class="num">03</div><h4>En kreativ beslutsfattare</h4><p>Ni vill vara aktivt kreativt med, vilket är bra och något vi arbetar med ofta. Det fungerar när en person har sista ordet och det står i avtalet vem det är.</p></div>
+    <div class="card ap"><div class="num">01</div><h4>One game at a time</h4><p>Your material runs three concepts in parallel. We suggest House Siege runs alone until the gate in step one is cleared. The other two lose nothing by waiting.</p></div>
+    <div class="card ap"><div class="num">02</div><h4>An entity and a clear IP owner</h4><p>Because part of our fee sits on the back end, the agreement needs a clear counterparty and clear ownership. It is a formality, but it should be in place before we start.</p></div>
+    <div class="card ap"><div class="num">03</div><h4>One creative decision maker</h4><p>You want to be actively involved creatively, which is good and something we work with often. It works when one person has the final word and the agreement says who.</p></div>
   </div>
 
-  <h3 style="margin-top:36px">Förslag på möte</h3>
-  <p class="lede">En timme där vi går igenom core loopen tillsammans, tittar på referensspelen i praktiken och stämmer av om prispunkten och 3v3 känns rätt för er. Därefter kan vi lägga en startdag för steg ett.</p>
-  <p class="muted">Hör av er till Robert Bäckström, robert@aurorapunks.com.</p>
+  <h3 style="margin-top:36px">Proposed meeting</h3>
+  <p class="lede">An hour where we walk the core loop together, look at the reference games in practice, and check whether the price point and 3v3 feel right to you. After that we can set a start date for step one.</p>
+  <p class="muted">Contact Robert Bäckström, robert@aurorapunks.com.</p>
 </section>
 
 </div>
 
 <div class="foot">
-  Aurora Punks · Underlag för House Siege · 16 september 2026 · Konfidentiellt, ej för spridning.
-  Marknadsdata hämtad från Steam 2026-09-16. Alla belopp i SEK exklusive moms.
+  Aurora Punks · House Siege development proposal · 16 September 2026 · Confidential, not for distribution.
+  Market data pulled from Steam on 16 September 2026. All amounts in SEK excluding VAT.
+  Reference images are copyright their respective developers and are shown here for art direction reference only.
 </div>
 
 </body>

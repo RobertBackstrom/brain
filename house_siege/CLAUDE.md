@@ -49,6 +49,10 @@ vinner försvararna.
 `pitches/house-siege/index.html` publicerad på **https://pitch.aurorapunks.com/house-siege**,
 gated med användaren `housesiege`. **Redigering av mappen är inte publicering:** kör
 `./assistant/sync-pitches.sh --apply house-siege` och verifiera mot live-URL:en efteråt.
+Sidan är **på engelska** sedan 2026-09-16 och innehåller riktig Steam-media i `media/`
+(kapslar, logotyper, referensskärmdumpar) plus ett AP-avsnitt som bara namnger
+**AP-publicerade titlar**, aldrig kundengagemang, per [[feedback_no_client_cross_reference]].
+Referensbilderna är andras upphovsrätt och visas som art direction-referens, vilket står i foten.
 Sidan är den skrubbade versionen. Allt i listan "Regler" ovan som rör grundarnas meriter,
 deras deck eller vår marginal ligger medvetet **inte** på sidan. Håll det så.
 
