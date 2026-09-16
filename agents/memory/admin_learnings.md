@@ -1696,10 +1696,55 @@ session still valid" och hämtade fyra inloggningssidor. **Gate på att URL:en e
 innehåller `/login/`.** Samma klass av fel som Enable Bankings `status`, som rapporterade
 AUTHORIZED medan varje pull gav 401: ett svar som inte är ett felmeddelande är inte ett kvitto.
 
-**Sidoupptäckt, och den är farlig.** `bank-query.js` dubbelräknar när samma konto hämtats flera
+**Sidoupptäckt, och den är farlig.** `bank-query.js` dubbelräknade när samma konto hämtats flera
 gånger. Nettoraden visade 10 459,02 kr för en enda transaktion på 5 229,51. Tyst, och åt fel håll.
 `db-353`. **Lita inte på summeringsraden i ett eget verktyg förrän den är testad mot en känd post.**
+
+> **Åtgärdat 2026-09-16 (DevOps, db-353).** Verktyget dedupar nu på SEB:s `entry_reference` och
+> summeringsraden går att lita på. Två saker att känna till vid avstämning: framtidsdaterade
+> planerade betalningar (status ≠ BOOK) ligger **utanför** netto och `--summary` som default, foten
+> säger hur många som dolts och `--planned` tar med dem; och `--accounts` flaggar numera konton som
+> hämtats i flera pullar samt pullar vars session gått ut. Regressionstest:
+> `node assistant/bank-query.test.js`.
 
 **Bokslutspunkt att inte glömma:** Steam betalar den 30:e i månaden efter försäljningsmånaden, så
 decemberintäkten måste periodiseras vid bokslutet. Tebex konsolavräkning ligger ungefär två månader
 efter och har samma problem. Kategori: bokföring + verktyg.
+
+---
+
+## 2026-09-16 — IndieArk: sökningen föll på två stavningar, och luckan låg i betalningen (CZP)
+
+**Två namnfel gjorde att avtalet såg ut att inte finnas.** Motparten heter **Yaozuo Games Ltd**,
+IndieArk är bara varumärket, och spelet heter **Strike Force Heroes i tre ord**. Jag sökte på
+"Indie Ark" och "Strikeforce Heroes" och fick noll, och rapporterade till Robert att avtalet inte
+fanns i RAG. Det fanns hela tiden. **När en sökning på ett företagsnamn ger noll, sök på
+motpartens personnamn eller e-postdomän i stället** (`kevinye@indieark.com` hade gett allt direkt),
+och variera ordbrytningen i speltiteln.
+
+**Signerade avtal finns i DocuSign-mailen, inte i RAG.** Filen låg som bilaga på
+"Completed: Complete with DocuSign: ..." med hela det signerade PDF:et, 605 kB, direkt hämtbar.
+`feedback_signed_agreements_search_blindspot` säger detta, och sökfrasen som fungerar är
+`from:docusign OR from:zigned` plus motpartsnamnet. Använd den **först** nästa gång, inte sist.
+
+**Luckan syntes bara genom att korsa tre källor.** Mailen gav nio försäljningsrapporter, huvudboken
+gav åtta fakturor, och banken gav en obokförd inbetalning. Junirapporten på 382,74 USD
+fakturerades aldrig, men IndieArk betalade mot rapporten ändå, 3 466,76 kr den 2026-09-01. Ingen
+av de tre källorna visar luckan ensam. **Räkna rapporter mot fakturor mot betalningar, inte två av
+tre.** Att den brutna månaden är augusti 2026 är ingen slump, det är när Sifferrådet lämnade.
+
+**Kursen är det som identifierar en betalning.** Två kandidater fanns till bankraden. 3 466,76 mot
+382,74 ger 9,0578, mot 440,96 ger 7,86. Bara den första är en möjlig USD-kurs. **Dividera beloppet
+med varje kandidat och kasta de kurser som inte kan vara växelkurser** — det avgör matchningen
+snabbare än något annat.
+
+**Avtalsvillkoret som styr bokföringen:** 10 % av Net Revenue på Switch, Xbox och PlayStation i
+fem år efter konsolsläppet, i USD, betalning 30 dagar efter faktura. Avtalet säger kvartalsrapport,
+IndieArk skickar månadsrapport, och avtalet tillåter tätare rapportering på begäran, så praktiken
+ryms. **Läs Exhibit A, inte huvudtexten** — vid konflikt går bilagan före, och alla kommersiella
+villkor bor där.
+
+**Återkommande mönster värt ett eget namn: inaktuell mottagare i motpartens underlag.** IndieArks
+rapporter är ställda till APDS, som är i konkurs. Valve betalade länge till samma bolag. **Kolla
+vem motpartens underlag är ställt till varje gång ett bolag har bytt entitet**, det är inte samma
+sak som att betalningen landar rätt. Kategori: bokföring + avtal.
