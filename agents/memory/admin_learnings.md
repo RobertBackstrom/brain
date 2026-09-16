@@ -12,6 +12,52 @@
 <!-- Append new learnings with: learning, source project, date, category -->
 
 
+## 2026-09-16 — Ett verktyg som skickar men inte registrerar bygger ett arkiv som ser komplett ut och är till 60 % tomt (k2c / apb / czp)
+
+**Registret var aldrig sanningen om vad som signerats — servern var det.** `opensign-watch.json`
+hade 13 poster. OpenSign-servern hade **47 dokument, varav 21 färdigsignerade**. Skillnaden är
+inte en eftersläpning, den är hela arkivet: **13 executed-avtal hade aldrig filats någonstans på
+Drive** och fanns bara inuti signeringsverktyget. Fem K2C-underleverantörsavtal, Fury
+Studios-samarbetsavtalet, två AP-MNDA:er, ett anställningsintyg, ett Steam-fullmaktsbrev. Ingen
+larmade, för inget gick sönder — registret rapporterade glatt om de få dokument det kände till.
+**Regel: när ett register och en server kan gå isär, räkna alltid raderna på båda innan du tror
+på registret.** `opensign.js` saknar en list-funktion, men `parseQuery("contracts_Document",
+{limit:500, order:"-createdAt"})` är exporterad och tar masterkey — det är den auktoritativa
+inventeringen och den tar ett anrop.
+
+**Rotorsaken är formen "skicka" och "registrera" som två kommandon.** `opensign.js send` skapade
+dokumentet och slutade där; arkiveringen hängde på att någon separat körde `opensign-watch.js
+register`. Ett andra steg som inte är en sidoeffekt av det första blir inte gjort. Patchat så
+`createSignatureRequest` registrerar per default och **varnar i klartext när ingen
+`_legals`-destination satts** — tyst degradering var precis felet. Obs: registreringen måste
+inlineas i `opensign.js`, den får inte `require('./opensign-watch')`, för den filen kräver redan
+`opensign.js` och cykeln hade brutit båda.
+
+**"Saknas i registret" ≠ "saknas på Drive" — kolla filen innan du säger att avtalet är borta.**
+Fyra av de fem träffarna i slutavstämningen var falsklarm: bevakningarna, julireversen och
+Carolina Foghammar-avtalet **låg redan på Drive**, filade för hand under egna filnamn. Hade jag
+backfillat på registret ensamt hade jag laddat upp dubbletter av signerade avtal, vilket är värre
+än luckan. Rätt åtgärd var en registerpost med `note` om att PDF:en lades dit manuellt, utan
+uppladdning. Samma sak åt andra hållet: **matcha aldrig på filnamnssträngar utan att normalisera
+tankstreck** — min sista "lucka" var OpenSigns `Timavtal — Necrotic Dominion` (em-dash) mot min
+egen `Timavtal - ...` (bindestreck). Filen fanns. Se [[feedback_no_em_dashes]] för varför våra
+egna filnamn aldrig bär em-dash.
+
+**Strukturantagandet som inte höll: AP:s interna Drive hade ingen `_legals`-mapp alls.**
+[[reference_drive_folders]] listar per-bolagsmallen som om den vore utrullad, men på AP internal
+`0ACOk67Zhg9zlUk9PVA` finns 31 mappar och `_legals` är inte en av dem — den enda AP-legals ligger
+i den legacy-märkta Financial-drivan. Samma tomhet på IRON EVIL, Necrotic Dominion och Sir
+Whoopass. **Verifiera att målmappen existerar innan du planerar en filning dit**; registret
+beskriver mallen, inte utfallet. Fyra `_legals` (+`_working`/`_archive`) skapade.
+
+**Bifynd värt att jaga:** Skokloster-outsourcingavtalet står på 2 av 3 signaturer **sedan 17
+juni**. Ett dokument som varken är completed eller declined syns inte i någon av våra vyer — det
+bara ligger. Ett svep mot signerade avtal hittar det aldrig; det krävde en räkning av *alla*
+dokument. Registrerat nu, men in-flight-åldring är ett eget hål utan bevakare.
+
+**Tags:** opensign-send-registrerar-inte, parseQuery-som-inventering, register-vs-drive,
+em-dash-matchning, _legals-mall-ej-utrullad, in-flight-åldring, k2c-junibatchen
+
 ## 2026-09-15 — Ett kontraktstak och en P&L-rad är två olika tal: kontingensen hör hemma i det ena och aldrig i det andra (k2c)
 
 **Uppdragsbeskrivningen sa att det nya taket 426 969 "inkluderar 10 %-kontingensen". Det gör det
@@ -1538,3 +1584,122 @@ saknad bilaga blir en åtgärdspost.
 
 **Tags:** konkursförvaltare, fiduciarie, verifieringsdisciplin, motpartstaktik, äganderättsförbehåll,
 Bright Gambit, apb-051, ticket-hygien
+
+## 2026-09-16 — Ett tyst delivery-led är värre än ett fel, och "tom inkorg" är ofta rätt [project: k2c]
+
+**Lärdom:** när ett flöde levererar till olika mottagare vid olika tidpunkter, säg vem som fick vad
+**vid sändningstillfället**, oombedd. Lost Hive Amendment No. 2 gick ut med sekventiell signering
+Mattias → Robert → Eamonn. Servern mailar bara order-0, så Robert, som är signatär 2, fick
+ingenting och frågade om sändningen gått fel. Den hade inte det. Kostnaden var en runda oro och en
+onödig kontroll mitt i en tvådagarsdeadline.
+
+**Så här tillämpas det:** i rapporten efter ett `opensign.js send` ska tre saker alltid stå: vem som
+mailades, vem som **inte** mailades, och vad som väcker dem (`opensign-watcher.js` vid föregående
+signatur). Samma princip gäller varje annat asynkront utskick med kö.
+
+**Andra halvan av samma körning:** verifiera aldrig registertäckning från en delvis utskrift. Jag
+tittade på de tre första raderna i `opensign-watch.json` och sa till Robert att inget registrerats
+sedan juni. Full uppräkning visade **25 poster, de flesta färdigställda samma dag**. Luckan var
+smalare och mer specifik än jag påstod: **tilläggsavtal**, inte allt efter juni. En felaktig
+bredare slutsats hade kunnat beställa ett onödigt svep. Räkna upp hela filen innan du uttalar dig
+om täckning. Kategori: verktyg + rapportering.
+
+Kanoniskt befordrat till [[reference_digital_signatures]].
+
+---
+
+## 2026-09-16 — Tebex: wallet-utdraget går inte att hämta headless, men underlaget finns ändå (CZP/ND)
+
+**Cloudflare-muren sitter per värdnamn, inte på hela Tebex.** `www.tebex.io` och `docs.tebex.io`
+svarar 200 från VPS:en. `accounts.tebex.io` och `wallet.tebex.io` svarar **403 "Just a moment..."**
+med en Turnstile-widget. Det är alltså en medveten WAF-regel på auth- och plånbokshostarna, inte
+IP-rykte: VPS:ens utgående adress är 95.198.169.122, en svensk Telia-adress i samma intervall som
+Robert själv loggar in från. Testa alltid ett par ofarliga värdnamn på samma domän innan du skyller
+på IP:t, annars felsöker du fel sak.
+
+**Fyra konfigurationer föll, och de faller likadant.** Gammal headless shell, ny headless
+(`channel: 'chromium'`), spoofad UA, `--disable-blink-features=AutomationControlled` och
+init-script som döljer `navigator.webdriver` plus 30 sekunders väntan på att Turnstile ska lösa sig
+självt. Alla stannade på "Just a moment...". Utan Xvfb (inte installerat, ingen lösenordsfri sudo)
+finns ingen headful-väg, och en anti-detektionspatch av Playwright stoppas av auto-mode-klassaren
+och ska ändå inte installeras utan Roberts uttryckliga ja.
+
+**Det som däremot är öppet: `plugin.tebex.io`.** Den svarar `{"error_message":"Please specify a
+secret key via the X-Tebex-Secret header.","error_code":403}` — ren JSON, ingen utmaning. Men den
+hjälper oss inte för ND, eftersom **butiken är Overwolfs, inte vår**. Vi har en plånbok, inte en
+butik, så det finns ingen secret key att hämta. Kolla alltid vem som äger butiken innan du föreslår
+Plugin-API:t som lösning.
+
+**Tvåfaktorn är e-post, inte SMS.** Tebex mailar koden till `finance@aurorapunks.com`, som är
+Google-gruppen "All things money" och landar i den indexerade arbetslådan. Den är alltså läsbar för
+en agent via gmail-MCP:n. Till skillnad från Pleo (SMS) är Tebex 2FA fullt automatiserbar — det som
+saknas är enbart lösenordet, som inte finns i `secrets_registry.md` eller `assistant/.env`.
+
+**Viktigast: hela utbetalningshistoriken finns redan i mailen.** Varje uttag ur plånboken genererar
+"Your withdrawal is processing" med belopp och datum. Hela historiken är tre mail: 640,00 USD
+begärt 2026-04-24 och utbetalt 2026-04-30, samt 550,00 USD begärt 2026-09-14. **Fråga vad
+plattformen skickar ut innan du bygger en skrapa mot det den visar upp** — samma lärdom som
+CurseForge-kommentarerna (se pm_learnings). Den gated ytan är den kanoniska kopian, inte den enda.
+
+**Två rutter, två växelkurser, och det är så man skiljer dem åt.** April kom som banköverföring
+direkt från TEBEX LIMITED, 5 801,91 SEK på 640 USD = 9,0655. September kom via PayPal Europe,
+5 229,51 SEK på 550 USD = 9,5082. Bankraden i september säger bara "PAYPAL (EURO", vilket är
+avhugget `PAYPAL (EUROPE) S.A.R.L.` — **betalarens namn, inte valutan**. Läs inte "EURO" som euro.
+
+**Kontrollera datatäckningen innan du säger att en betalning saknas.** Jag var nära att påstå att
+aprilutbetalningen aldrig kom fram, eftersom ingen PayPal-rad finns före september. CZP:s
+Enable Banking-data börjar 2026-06-22 och AP:s 2026-07-01, så april finns helt enkelt inte i
+underlaget. Huvudboken hade svaret: verifikat **A108 2026-04-30, 5 801,91 kr, bokad mot 2999**.
+
+**Öppen post som föll ut av övningen:** konto 2999 i CZP bär exakt en oavslutad post för 2026, just
+A108. Tebex-intäkten parkerades på observationskonto och klassificerades aldrig som intäkt.
+Septemberbetalningen är inte bokförd alls. Kategori: bokföring + verktyg.
+
+**Tillägg 2026-09-16, efter att Robert laddat upp wallet-utdraget.** Tre saker som bara syns i
+CSV:en och inte i mailen eller banken.
+
+1. **Konsolintäkten går genom Tebex-plånboken**, som raden `Balancing Payment` med texten
+   `Premium Console Mods - <månad>`, cirka två månader i efterskott. ND-projektfilen påstod att
+   konsol inte syns i Tebex alls. Rättat. Konsol är dessutom den större intäkten, drygt dubbelt mot
+   PC. En körhastighet som skattats ur ett par veckors köprader blev tre gånger fel för PC.
+2. **Det första uttaget var inte årets intäkt.** Insättningen 640,02 USD 2026-03-27 heter
+   `Transfer from centralised_198024_272` och är saldot från den arkiverade gamla plånboken vid
+   entitetsmigreringen. Uttaget på 640,00 USD tre veckor senare är alltså den balansen, inte
+   aprilförsäljning. **Läs alltid den första raden i ett plånboksutdrag innan du periodiserar det
+   första uttaget.**
+3. **Rekonstruktionen går att validera mot ett känt saldo.** Summeringen fram till 2026-08-11 gav
+   exakt 470,74 USD, samma siffra som noterats i plånboken 2026-08-12. När ett utdrag saknar
+   löpande saldokolumn är ett daterat saldo från en annan källa det enda som bevisar att liggaren
+   är komplett. Leta efter ett sådant innan du litar på en egen summering.
+
+---
+
+## 2026-09-16 — Steam: avstämningen finns i partnerrapporten, och sessionen ljuger tyst (CZP)
+
+**Utbetalningen går att stämma av exakt.** `partner_report2.php?partnerid=418393` har en länk per
+månad, och varje månadsrapport slutar med ett avsnitt **Payment History** som ger redovisnings-
+period, betalningsdatum, brutto, källskatt och netto. Juli 2026 gav 3 186,53 USD utbetalt den 25
+augusti, mot bankraden 30 018,33 SEK den 28 augusti, kurs 9,4207. Bankradens text är `H<nnnn>`, det
+mönster som redan står i månadsrutinen som "kundinbetalning internationell". Leta efter Payment
+History, inte i försäljningstabellerna, när det är en betalning som ska stämmas av.
+
+**Life to date är svaret på entitetsfrågan.** Rapportens avsnitt Life to date var identiskt med
+juli månad, vilket bevisar att partnerkontot saknar historik före juli 2026 och att betalningen
+inte bär någon eftersläpning från APDS. Det stängde `czp-023`, som legat på "planned" och väntat på
+precis det beviset. **När en ticket väntar på att något ska ha fungerat, leta efter siffran som
+bevisar det, inte efter en bekräftelse.**
+
+**Fällan som kostade en körning: en utloggad Steamworks-session svarar `File not found.`** Jag
+gatade på om sidtexten innehöll "Sign in to Steamworks". `nav_finance.php` finns inte längre och
+svarar med femton tecken som inte matchar någon inloggningstext, så skriptet rapporterade "existing
+session still valid" och hämtade fyra inloggningssidor. **Gate på att URL:en efter navigering
+innehåller `/login/`.** Samma klass av fel som Enable Bankings `status`, som rapporterade
+AUTHORIZED medan varje pull gav 401: ett svar som inte är ett felmeddelande är inte ett kvitto.
+
+**Sidoupptäckt, och den är farlig.** `bank-query.js` dubbelräknar när samma konto hämtats flera
+gånger. Nettoraden visade 10 459,02 kr för en enda transaktion på 5 229,51. Tyst, och åt fel håll.
+`db-353`. **Lita inte på summeringsraden i ett eget verktyg förrän den är testad mot en känd post.**
+
+**Bokslutspunkt att inte glömma:** Steam betalar den 30:e i månaden efter försäljningsmånaden, så
+decemberintäkten måste periodiseras vid bokslutet. Tebex konsolavräkning ligger ungefär två månader
+efter och har samma problem. Kategori: bokföring + verktyg.

@@ -26,11 +26,17 @@ earn coins, burn cards for prestige, complete the set.
   https://drive.google.com/drive/folders/12TMTkd20U1eJk1U4q-oCtWogm3npkDjS
 - **Deck:** `CrackAPack_Aug 2026.pdf` (10 Aug 2026) —
   https://drive.google.com/file/d/1_VQDIgbVoJu-8zmunvltX4pO-XDe13sG/view
-- **Steam, Crack a Pack:** app 4678500, release date "To be announced", publisher listed as
-  simsum + **Vsoo Games**.
+- **Steam, Crack a Pack:** app 4678500, still "Coming soon" with no public date and no confirmed
+  price as of 2026-09-16, publisher listed as simsum + **Vsoo Games**.
+- **Steam, Crack a Pack Demo:** app **4972380, live since 2026-09-15**. English plus Simplified and
+  Traditional Chinese with full audio. Same publisher pair. Public Playtest #1 ran 2026-08-25.
+- **Steam, the name collision:** *Crack the Pack*, app 4614210, developer and publisher both
+  **Doigt** (self-published), releases **29 Sep 2026**.
 - **Steam, Gamestonk Simulator: Gone Rogue:** app 3349970. EA 20 Oct 2025, 1.0 on 21 May 2026,
   EUR 13.99, 83 % of 106 reviews, same publisher pair.
 - **Discord (their community):** https://discord.gg/teHYba8k
+- **Deal wiki:** [[projects/crackapack]] (pipeline), `wiki/deals/deals/simsum.md` (deal),
+  `wiki/deals/contacts/vincent-donvino.md` (contact). Bootstrapped 2026-09-16.
 - **Their marketing surfaces:** SullyGnome for Twitch outreach, Reddit accounts `donvino82` and
   `Potential_Feature941`, Keymailer product 229386.
 
@@ -59,5 +65,6 @@ port/co-dev tail that he already said he wants.
 - Deck claims get verified against primary sources (Steam, SteamDB, Gamalytic/Raijin) before they
   enter any document we hand back. See [[feedback_verify_client_facts_primary_source]].
 - No other client names in anything that reaches simsum. See [[feedback_no_client_cross_reference]].
-- Every mail draft goes through The Author. Discord one-liners do not.
+- Every mail draft goes through The Author. Discord one-liners do not. In practice this is a
+  **Discord-only** relationship: zero Gmail history on either mailbox, verified 2026-09-16.
 - Deliveries logged to `output_log.md`, drafts to `drafts/`.

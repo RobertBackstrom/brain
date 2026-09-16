@@ -815,3 +815,26 @@ begäran. Om det kostar ska det framgå av Pleos svar, inte antas.
 
 **Väntar på Robert:** byta 2FA-metod och spara base32-fröet, samt kontrollera om Inställningar →
 API Keys syns i Pleo och annars be supporten aktivera det. Detaljer i db-352.
+
+
+## 2026-09-16 — Pleo augusti bokförd i Fortnox, DevOps
+
+SIE-filen ur Pleos augustiexport importerad via `assistant/fortnox-sie-import.js --commit`
+(serieåtgärd Koppla, in i befintlig serie A). Verifierat mot färsk SIE direkt efteråt:
+
+1. **26 nya Pleo-verifikat**, serie A, registrerade 2026-09-16, samtliga balanserade.
+   Pleo-verifikat totalt 133 → 159. Sista Pleo-datum 2026-07-28 → 2026-08-30.
+2. **Löpnummer 2600135-2600160, inga luckor, inga dubbletter.**
+3. **Konto 1731: 21 487,29 → 9 281,39.** Påfyllningar aug-sep 20 000,00, bokförda köp -17 205,90.
+   Mot kortsaldot 5 002,05 återstår 4 279,34 = septemberköpen 1-15 sep, ännu ej exporterade.
+
+**Rättelse förd in i czp-039:** det finns ingen Fortnox-integration i Pleo. Exporten ger en zip med
+en SIE-fil som någon måste importera manuellt. Det var Sifferrådets moment, och det föll bort när de
+slutade. Ingen larmade, för inget gick sönder.
+
+**Motmedel:** `assistant/pleo-monthly-reminder.js` + cron den 3:e varje månad. Följdsedel till
+CorpBot med hela rutinen, plus DM till Robert. Första riktiga körningen 2026-10-03 för september.
+
+**Kvar:** 12 av augustis 26 verifikat saknar kvitto, till övervägande del utländska SaaS-abonnemang
+där kvittot kommer per mail (Anthropic, Voyage AI, Hetzner, Apple, Xsolla, PlayStation, Google
+Workspace). Tyngst i kronor: Pinchos 1 500, HomeFitnessCode 1 299, Apple 999.

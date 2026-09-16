@@ -4,6 +4,11 @@
 **Source:** Vincent (simsum) on Discord, 2026-08-10 · **Audience:** internal, Robert only ·
 **Position:** advisory plus introductions, no offer
 
+> **Superseded in part on 2026-09-16.** Read `deck_assessment_update_2026-09-16.md` before using
+> this memo. The demo went live on 2026-09-15 (so section 6's "no demo / something slipped" is
+> wrong), and section 4's "comparators are inflated" framing is too strong to say to Vincent as
+> written. Sections 1, 2, 3, 5 and 7 still stand.
+
 ## 1. What he is asking for
 
 1. **A publishing partner:** global distribution, marketing and ads, community, bundles, Steam

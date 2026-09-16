@@ -14,10 +14,131 @@ agent: bizdev
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-16 - Check whether a deck's comp numbers are internally consistent before calling them inflated [Crack a Pack, cap-001]
+
+**Source project:** cap (Crack a Pack / simsum), 4am sweep | **Category:** research, due diligence
+
+This **narrows the learning I wrote yesterday** ("jämförelseobjekten i ett indie-deck är nästan
+alltid uppblåsta", 2026-09-15, further down this file). That entry is still directionally right
+about verifying comps, but the *conclusion* I drew on this specific deck was too strong, and I
+caught it one day later only because I re-ran the numbers before Robert sent the read.
+
+- **Divide each claimed unit number by the title's live Steam review count and compare the ratios
+  across the whole comp slide.** On the Crack a Pack deck: Scritchy Scratchy 15,217 reviews vs a
+  claimed 1,000,000 (66:1), Gamblers Table 2,953 vs 230,000 (78:1), This Ain't Even Poker Ya Joker
+  1,781 vs 130,000 (73:1). A **66-78:1 band is internally consistent**, which means one estimator
+  applied uniformly (or cross-platform totals), **not** cherry-picked inflation. Cherry-picking
+  produces scattered ratios; a consistent band produces a single sourcing problem.
+- **Why it matters commercially:** I had drafted "your comps are inflated about 3x". If Robert had
+  sent that, Vincent could answer that 750k+ is the developer's own announced cross-platform
+  figure, and Robert would look like he did ten minutes of homework on a deck he was asked to take
+  seriously. **An overstated criticism costs more credibility than no criticism**, because the
+  counterparty knows their own comp set better than we do.
+- **The defensible critique is narrower and more useful:** the numbers carry no source in the deck;
+  66-78:1 is the aggressive end of the review-to-sales range, so a publisher modelling 30-50:1
+  lands materially lower and will ask; and at least one figure is cross-platform sitting in a
+  Steam-only column. **The fix is labelling, not cutting** - cite the source and multiplier, split
+  Steam from mobile, show a band instead of a point number. Same destination as "your numbers are
+  too big", reached by a route the counterparty cannot rebut.
+- **Bonus find from the same pass, and it is a free gift to the counterparty:** every one of the
+  three comparators was **publisher-backed** (Funday Games; Oro Interactive + Drillhounds;
+  Bossforge). A comp slide chosen to prove market size doubles as proof that *the lane gets
+  signed*, which argues **for** the developer's ask rather than inviting an audit of it. Always
+  pull the publisher field on every comp, not just on the pitching studio's own titles - it
+  reframes the slide and it seeds the intro shortlist with names already operating in that price
+  band.
+
+## 2026-09-16 - A store-page fact observed today can be false tomorrow; re-verify before the advice is sent, not when it is written [Crack a Pack, cap-002]
+
+**Source project:** cap | **Category:** process
+
+- Yesterday's assessment recorded "the Steam page shows **no demo**" and asked whether the demo or
+  the release date had slipped. The **demo went live that same day** (app 4972380, 2026-09-15,
+  English + Simplified/Traditional Chinese). The memo was accurate at the hour it was written and
+  wrong by the next morning, and the advice had not been sent yet.
+- **Any claim about a counterparty's live storefront state - demo present, date shown, price,
+  publisher field, wishlist-visible - has a shelf life measured in hours around a launch beat, and
+  the whole point of a roadmap-critique is that things are moving.** Re-run the store checks in the
+  same turn the message actually goes out. Between writing and sending, treat every store-state
+  line as provisional.
+- **Concrete guard:** when a memo criticises schedule slippage, put the verification timestamp on
+  that specific section and flag it as needing a re-check before send. I added a supersede banner
+  to the stale file pointing at the update rather than silently editing it, so the ticket and the
+  memo cannot drift apart.
+- Nearly sent a developer a complaint that he had missed a milestone **he had just hit**. Leading a
+  requested critique with a false miss is the fastest way to lose the read.
+
 ## LinkedIn
 
 - Personal, enthusiastic tone; name people; don't over-polish [feedback, 2026-03]
 - Lead with connection, not pitch [feedback, 2026-03]
+
+## 2026-09-16 - A public-sector "route to market" is a calendar, not a landscape (cr / Cold Response)
+
+**Source project:** cr-008, 4am sweep | **Category:** deal craft, research method
+
+- **Before writing any route-to-market section for a public buyer, search for live funding calls
+  with dates.** The Cold Response ticket asked for a map of how one reaches FMV. The map was the
+  easy half. The half that changed the epic was that **Vinnova's *Acceleration av civil-militara
+  innovationer 2027* was open and closes 2026-10-06 14:00**, up to 1 150 000 SEK, up to 100 per
+  cent for a company under five years old. A route map without dates reads as strategy. A route
+  map with an open window 20 days out is an instruction. Always look for the second thing.
+- **Grant eligibility can force a corporate-structure decision months earlier than the deal
+  timeline assumes.** That Vinnova call requires the applicant to be an **existing Swedish
+  aktiebolag**. The vehicle in this deal does not exist yet and was scheduled to be settled in
+  October alongside the licence. The deadline moved it to September, and the alternatives both
+  cost something: the licensor applying means the grant lands on their side of the negotiation,
+  and the parent applying puts the exposure in exactly the group the new vehicle exists to
+  protect. **Check applicant eligibility before telling anyone a grant is available**, and treat
+  it as an input to the cap-table ticket rather than a footnote on the funding one.
+- **The direct award threshold is the most useful single number in any public-sector pitch.**
+  It defines the size of a first order that needs no tender at all, which is the difference
+  between a 12-month sales cycle and a phone call. Sweden, fixed in law and unchanged by the
+  2026-01-01 threshold revision: **LOU 700 000 SEK, LUF and LUFS 1 200 000 SEK**, excluding VAT.
+  That reframes route selection: aim the first sale under the limit, at a unit or a civil buyer,
+  and let it buy the reference that qualifies you for the real procurement later.
+- **Security screening reaches the cap table, so ask where the money comes from before the term
+  sheet.** A Swedish authority must put a *sakerhetsskyddsavtal* in place under 2 kap. 6
+  sakerhetsskyddslagen (2018:585) where a contract touches classified information or
+  security-sensitive activity, and foreign ownership and ultimate control are what that screening
+  examines. Subcontractors with source access are in scope too. None of it blocks grants or a
+  civil customer. It bites precisely when a defence contract is signed, which is when the cap
+  table is hardest to change. Asked early it reads as competence.
+- **In a war-adjacent market, assume a combat-proven free competitor exists and go find it before
+  you write the moat paragraph.** Two weeks of searching would have been wasted arguing flight
+  fidelity: a Ukrainian FPV simulator went **free on Steam to Ukrainian users on 2026-08-24** and
+  is reported as planned for US military training, and another claims 7 000 operators trained.
+  The moat moved to the operator layer (scenario authoring, after-action review, curriculum,
+  offline deployment, national terrain data, interoperability). Generalisable: where a
+  capability is being used in an actual war, the reference implementation is probably already
+  free and already better tested than ours.
+
+**Tooling:** a project doc's `project:` frontmatter is what RAG tags the chunk with, and it must
+be the **folder slug, not the ticket prefix**. Writing `project: cr` on a file in `cold_response/`
+made it invisible to `rag_search(project="cold_response")` while every sibling file in the same
+folder was findable. Use the slug, put the ticket on a separate `ticket:` line.
+
+`fmv.se` and `testandevaluation.fmv.se` both return **403 to WebFetch from the VPS**
+while the same pages are readable through the search index. Government and agency sites do this
+often. Do not conclude a page is empty or gone when it 403s, pull the content from search results
+or an alternate host, and say in the source list which way you got it. Adjacent to
+[[reference_vps_web_collection_limits]].
+
+## 2026-09-16 - What Robert cuts from a draft before sending is itself information (cr / Cold Response)
+
+**Source project:** cr-004/cr-005, 4am sweep | **Category:** process, mail hygiene
+
+The ticket and the project output log both said the cover note to Ralph was a Gmail draft
+"waiting for Robert to send". He had sent it **the same afternoon, 16:51 CEST, inside the hour**.
+That is the known trap in [[feedback_verify_draft_sent]] and it keeps happening because the
+session that writes the ticket ends before Robert acts. The new part is worth its own line:
+
+**He also edited it, and the edit removed the ask.** The draft closed by asking what the investor
+is actually after, a company to own, a product to fund or an order to place. The sent version
+does not contain that question. So a question the whole track depends on silently changed status
+from "asked, awaiting reply" to "unasked, and nobody has it on a list". **Diff the sent text
+against the draft, not just the send status**, and move whatever was cut onto the agenda for the
+next live conversation. Pairs with [[feedback_compare_draft_vs_sent]].
 
 ## 2026-08-29 — A project can carry live tracked deals for days with zero deal-wiki presence [Dark Riviera, dr-000/001/002]
 

@@ -1,11 +1,11 @@
 ---
 type: dashboard
-updated: 2026-09-14
+updated: 2026-09-16
 ---
 
 # Deal Wiki — Dashboard
 
-> **Zero deals had activity in the last 7 days — the second consecutive fully quiet week.** [[deals/boombox]] (dark_riviera), the only deal active in the prior cycle (last_activity 2026-08-25), is now 20 days stale — still in the gap between the 7-day Hot window and the 30-day Stale threshold (crosses into Stale on 2026-09-24 if untouched). Pipeline otherwise unchanged: 58 deals across 6 active projects, **eighth consecutive cycle with identical totals**. All open escalations deepened by 7 more days: **Starbreeze meeting target (Aug 17) is now 28 days overdue with no outcome recorded** — the most advanced active Elias deal and the top follow-up priority this cycle. Chief Rebel NGC demo 2026-05-27 — **110 days** unlogged (status frozen at "Demo Scheduled"); Arsenal Agency redlines 2026-05-08 — **129 days**, no response; DevGAMM K&G Public Pitch decline staged 2026-05-21 — **116 days**, send unconfirmed; Dead Astronauts intro drafted 2026-06-08 — **98 days**, send unknown. Formula Drone (aurora_punks, Evaluating) is now 55 days stale. All 36 active Elias deals stale >30 days. Data-quality flags now number 17 (6 newly surfaced this cycle), none resolved.
+> **Updated out of cycle 2026-09-16: [[deals/simsum]] (crackapack) is the one deal with activity in the last 7 days**, after the project was bootstrapped into the wiki and its deck read re-verified. Its live item is time-boxed: `cap-002` due 2026-09-19, competitor release 2026-09-29. The rest of this brief is the 2026-09-14 `/digest-deals` text and its day counts run 2 days behind. As of that run, zero deals had activity in the trailing 7 days, the second consecutive fully quiet week. [[deals/boombox]] (dark_riviera), the only deal active in the prior cycle (last_activity 2026-08-25), is now 20 days stale — still in the gap between the 7-day Hot window and the 30-day Stale threshold (crosses into Stale on 2026-09-24 if untouched). Pipeline otherwise unchanged for the pre-existing projects; the total moved 58 → **59 deals across 7 active projects** on the crackapack bootstrap, ending an eight-cycle identical-totals streak. All open escalations deepened by 7 more days: **Starbreeze meeting target (Aug 17) is now 28 days overdue with no outcome recorded** — the most advanced active Elias deal and the top follow-up priority this cycle. Chief Rebel NGC demo 2026-05-27 — **110 days** unlogged (status frozen at "Demo Scheduled"); Arsenal Agency redlines 2026-05-08 — **129 days**, no response; DevGAMM K&G Public Pitch decline staged 2026-05-21 — **116 days**, send unconfirmed; Dead Astronauts intro drafted 2026-06-08 — **98 days**, send unknown. Formula Drone (aurora_punks, Evaluating) is now 55 days stale. All 36 active Elias deals stale >30 days. Data-quality flags now number 17 (6 newly surfaced this cycle), none resolved.
 
 ## Pipeline Snapshot
 
@@ -17,15 +17,23 @@ updated: 2026-09-14
 | knives_and_gutters |  5 | 0 | 1 | 1 | 1 | 0 | 0 | 2 | 0 |
 | curveball          |  1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
 | dark_riviera       |  1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **TOTAL**          | **58** | **20** | **14** | **6** | **2** | **3** | **6** | **4** | **3** |
+| crackapack         |  1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
+| cold_response      |  1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **TOTAL**          | **60** | **20** | **15** | **7** | **2** | **3** | **6** | **4** | **3** |
 
-_Count and status unchanged from 2026-09-07 cycle. No status changes. No new deals added. Eighth consecutive cycle with identical totals._
+_Out-of-cycle insert 2026-09-16 (not a full `/digest-deals` run): **cold_response added to the snapshot**, the project had a pipeline page and a live deal since 2026-09-15 but had never reached this table. [[deals/ralph-strandberg-network]] moved New to Contacted on evidence the cover note was sent 2026-09-15 16:51. Total 59 to 60, Contacted 14 to 15, projects 7 to 8._
+
+_Out-of-cycle insert 2026-09-16 (not a full `/digest-deals` run): **crackapack bootstrapped** - new project pipeline page, [[deals/simsum]] and [[contacts/vincent-donvino]]. Total 58 → 59, Interested 6 → 7, projects 6 → 7. Breaks the eight-cycle identical-totals streak. Everything else is unchanged from the 2026-09-14 cycle and its day counts are now 2 days stale._
 
 ## Hot This Week
 
 _Window: 2026-09-07 – 2026-09-14._
 
-**None.** No deal page has `last_activity` within the last 7 days — second empty week in a row. [[deals/boombox]] (dark_riviera, Contacted — high) remains the only deal with any activity in the last month (2026-08-25, now 20 days out); no reply logged yet from Philippe, Sylvain, or Emilie, and Robert's own follow-up trigger (~2026-09-02) has now passed 12 days without a logged update — worth checking directly.
+**[[deals/ralph-strandberg-network]]** (cold_response, Contacted - high) - `last_activity` 2026-09-15. Cover note with the gated pitch sent to Ralph Strandberg 16:51 CEST, unanswered after a day. The route map delivered 2026-09-16 under `cr-008` gives the follow-up call a concrete agenda, and one question in it is time-critical: the Vinnova call in `cr-009` closes **2026-10-06 14:00** and the applicant must be an existing Swedish AB, which forces the NewCo decision in `cr-002` forward by a month.
+
+**[[deals/simsum]]** (crackapack, Interested - medium) - `last_activity` 2026-09-16. First deal with activity inside the window in three weeks. Deck read re-verified against live Steam sources; the demo shipped 2026-09-15 and the comparator criticism was narrowed before it reached the counterparty. **Time-boxed:** the competitor *Crack the Pack* ships 2026-09-29, and `cap-002` (Robert sends the read on Discord) is due 2026-09-19. Introductions are blocked until Vsoo Games' role is explained.
+
+Otherwise the window is empty — no other deal page has `last_activity` within the last 7 days, a third quiet week for the pre-existing pipeline. [[deals/boombox]] (dark_riviera, Contacted — high) remains the only deal with any activity in the last month (2026-08-25, now 20 days out); no reply logged yet from Philippe, Sylvain, or Emilie, and Robert's own follow-up trigger (~2026-09-02) has now passed 12 days without a logged update — worth checking directly.
 
 **Highest-priority open item regardless of window: [[deals/starbreeze]] (elias, Interested — high) meeting target was 2026-08-17 — now 28 days overdue with no outcome recorded.** If the meeting happened, log it immediately and move status to Evaluating (or hold at Interested if no concrete next step resulted). Kristofer check-in remains unresolved. Next expected signal outside Starbreeze: [[deals/formula-drone]] (aurora_punks, Evaluating — medium) — James Waite to schedule Robert ↔ Tony Hardie-Bick (Xoomble) preliminary call, now 55 days stale.
 
@@ -100,3 +108,5 @@ _Updated 2026-09-14. No flags resolved since 2026-08-10 cycle. Day counts update
   - [[projects/curveball]] — Curveball / The Gang Studio (co-dev + publishing)
   - [[projects/knives_and_gutters]] — Knives & Gutters (festival/showcase placement)
   - [[projects/dark_riviera]] — Dark Riviera IP placement with studios/publishers
+  - [[projects/cold_response]] — Cold Response defence simulator, licence plus NewCo plus FMV route
+  - [[projects/crackapack]] — Crack a Pack advisory track
