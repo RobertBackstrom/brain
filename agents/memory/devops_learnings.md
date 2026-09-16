@@ -7,6 +7,62 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-16 — En stängd listning ska flyttas bakom auth, inte återuppstå; och gating som inte reser med sidan [db-355]
+
+Robert ville ha länkträdet över pitcharna på internal. Rotlistningen på `pitch.aurorapunks.com/`
+hade stängts dagen innan, medvetet, för att sluggarna **är** kundlistan. Rätt svar var alltså inte
+att öppna roten igen utan att bygga samma lista på andra sidan CF Access. Generellt: när ett
+index stängts av läckageskäl är behovet kvar, och det behovet har nästan alltid en auth-gränsad
+plats att bo på. Läs kommentaren i koden som stängde den — `pitches-server.js` bar hela
+motiveringen, inklusive varför just sluggarna var det känsliga, och den formuleringen blev både
+designbeslutet och sidans egen ingress.
+
+**Två lager, och det inre är det som bär i framtiden.** `/pitches` ligger på :3777 som redan är
+CF Access-gränsat, så det hade räckt idag. Men db-268 ska flytta internal.aurorapunks.com till en
+egen Access-app och släppa in styrelse och kunder — och sidan delar ut skarpa pitchlösenord. Därför
+`isInternalAdmin()`, som kräver `role.tiles === "*"` och fail-closar på okänd/tom/null. Viktigt att
+hålla isär från `resolveInternalTiles()`: den är **kosmetisk** (vilka rutor som ritas) och säger det
+själv i sin kommentar. Att återanvända ett kosmetiskt behörighetsbeslut som en riktig grind är den
+frestande genvägen här. Verifierat isolerat med en unit-test som drar ut funktionen ur `server.js`
+och kör den mot nio identiteter — snabbare än att försöka förfalska en JWT.
+
+**Gating-intent och credentials reser olika vägar, så bygg indexet som en avstämning.** `pitches/`
+rsyncas Nitron→edge; `pitch-auth.json` ligger utanför det trädet. Det är exakt det glappet
+`.gated`-markören uppfanns för (2026-08-24): markören åker **med** sidan, och en sida med markör men
+utan credentialrad vägras med 503 i stället för att serveras publikt. `bandit-island` hade
+credentials men ingen markör — grindad idag, men utan fail-close-egenskapen om credentialfilen
+någon gång når edgen utan sidan. Den buggen syntes inte för någon förrän listan ställde de två
+källorna bredvid varandra. **Lärdomen: ett index över resurser som gated på två ställen ska
+kontrollera att de två är överens, inte bara visa den ena.** Fem lägen flaggas nu:
+`creds_no_marker`, `marker_no_creds`, `not_synced`, `gate_not_live`, `edge_503`.
+
+**Live-kolla mot den riktiga värden när författande och servande är olika maskiner.** Efter
+bare-metal-splitten är en pitch som finns lokalt inte live förrän `sync-pitches.sh --apply` körts,
+och de två ser identiska ut ända tills mottagaren klickar och får 404. En HEAD per slug (401 räknas
+som live — den bevisar att sidan är deployad) med 5 min cache kostar nästan ingenting och gör
+skillnaden synlig. Samma resonemang gäller varje internt index över något som serveras från en
+annan maskin än den som byggde det.
+
+**Två mekaniska saker värda att komma ihåg.** (1) Den levande tunnel-ingressen går att läsa
+programmatiskt: `GET /accounts/{acct}/cfd_tunnel/{tunnel}/configurations` med VPS-tokenen. Den
+visade `internal.aurorapunks.com -> http://100.77.150.9:3777`, alltså Tailscale-IP:t till Nitron —
+vilket är svaret på "cloudflared kör på edgen men inget lyssnar på :3777 där". Lokala
+`~/.cloudflared/config.yml` är **stale** och ljuger; tunneln är dashboard-managed. (2) Playwright
+resolvar bara från `assistant/`; ett renderingstest i scratchpad behöver
+`NODE_PATH=/home/assistant/projects/assistant/node_modules`. Det testet var värt sina två minuter —
+det bekräftade att radbrytningar överlever i ett `data-copy`-attribut, vilket var den enda delen av
+sidan jag inte kunde resonera mig till.
+
+**En sak att vara vaken på:** en auto-commit-cron committade mina nya filer mitt i arbetet, under
+"Auto-commit 2026-09-16". Koden var identisk med arbetsträdet så inget gick sönder, men den
+läsbara historiken fick skrivas som en efterföljande commit. Räkna inte med att ha `git`-tillståndet
+för dig själv på den här maskinen. Parallella sessioner skriver också: `house-siege` dök upp i
+`pitches/` mitt under bygget och `pitch-auth.json` ändrades under fötterna på mig.
+
+**Projekt:** db · **Kategori:** säkerhet, internportal, deploy-integritet, cloudflare ·
+**Taggar:** isInternalAdmin, fail-closed, .gated, sync-pitches, split-stack, cfd_tunnel-config,
+pitch-index, dashboard-managed-tunnel
+
 ## 2026-09-16 — Ett verktyg som slår ihop ögonblicksbilder dubbelräknar tills nyckeln är rätt [db-353, czp]
 
 `bank-query.js` läste alla lagrade Enable Banking-pullar och konkatenerade dem. Varje konto som
