@@ -7,6 +7,82 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-16 — Ett verktyg som slår ihop ögonblicksbilder dubbelräknar tills nyckeln är rätt [db-353, czp]
+
+`bank-query.js` läste alla lagrade Enable Banking-pullar och konkatenerade dem. Varje konto som
+hämtats två gånger fick alltså varje delad transaktion returnerad två gånger, och nettoraden visade
+10 459,02 kr för en enda inbetalning på 5 229,51. Fyra saker att ta med sig.
+
+**En ögonblicksbild har ingen egen identitet, raderna har det.** Verktyget hade `idx`, transaktionens
+position i pullen, och den förskjuts ett steg mellan snapshots så fort en ny rad tillkommit överst.
+Allt som är positionsberoende är fel nyckel. SEB skickar `entry_reference` på varje **bokförd**
+transaktion, identisk mellan pullar och unik per transaktion; verifierat mot riktig data, 75 av 75
+delade CZP-rader matchade och noll kollisioner mellan konton. `transaction_id` är bara base64 av
+samma sträng, så den tillför ingenting.
+
+**Leta efter raderna som saknar nyckeln innan du litar på den.** Åtta CZP-rader hade
+`entry_reference: null` och det var exakt de framtidsdaterade PDNG-betalningarna. En dedup enbart på
+`entry_reference` hade tappat dem eller slagit ihop dem till en. Sammansatt fallback-nyckel, med
+löpnummer räknat **inom** varje pull, så att två äkta identiska betalningar samma dag överlever båda
+men samma par i två pullar bara räknas en gång.
+
+**"Läs bara senaste pullen" är den frestande genvägen och den tappar data tyst.** Pullfönstren är
+olika långa: 09-14-pullen gick tillbaka till 2026-06-22, 09-15-pullen bara till 2026-07-17. 32
+bokade rader fanns bara i den äldre. Kontrollen som visar om en dedup äter äkta rader är att köra
+den per bolag och kräva noll borttagna för de bolag som *inte* har dubbla pullar: privat 847 → 847,
+runatyr 91 → 91, medan czp 207 → 120 och ap 23 → 14.
+
+**Slå ihop äldst först, men låt inte den nyaste pullen vinna fält den inte kan.** Nyast vinner är
+rätt för status (PDNG på måndag, BOOK på tisdag ska läsas som bokförd). Men CZP hade en
+`EXPIRED_SESSION`-pull som behöll sina fem transaktioner och tappade sitt `details`-block, så den
+nyaste versionen av raden skalade bort kontots produktnamn. Etiketter måste därför lösas per
+kontonummer över alla pullar, inte tas från den rad som råkar vinna. Samma pull visade också varför
+kontoidentitet ska kunna härledas ur raderna själva: varje transaktion namnger vår egen sida
+(`debtor_account` på DBIT, `creditor_account` på CRDT), och utan det ser ett konto med trasig
+session ut som ett andra konto och dedupas inte alls.
+
+**Framtidsdaterade rader är inte pengar.** Samma dataset bar planerade betalningar till 2026-12-30
+som räknades in i nettot. Default är nu att status ≠ BOOK utesluts ur tabell, netto och `--summary`,
+med en rad i foten som säger hur många som dolts och `--planned` för att se dem. Att dölja tyst hade
+bara bytt ut ett tyst fel mot ett annat.
+
+**Det generella:** ett eget verktyg som summerar pengar ska ha ett test som hämtar samma sak två
+gånger och kräver oförändrat radantal och netto. `bank-query.test.js` gör det med syntetiska pullar
+i en temp-katalog. CorpBot hittade buggen genom att läsa enskilda radbelopp, inte summan — hade
+avstämningen litat på summeringsraden hade den blivit fel åt det svåraste hållet att upptäcka.
+
+**Projekt:** db / czp · **Kategori:** dataintegritet, verktyg, bank · **Taggar:** entry_reference,
+idempotent-merge, snapshot-dedup, Enable-Banking, EXPIRED_SESSION, PDNG, avstämning
+
+## 2026-09-16 - Fortnox uppladdningswidget: sätt filen på ALLA inputar, och vet när du ska sluta gräva [db-352]
+
+**Learned:** 2026-09-16 | **Project:** CZP Pleo/Fortnox (db-352) | **Category:** playwright, fortnox, filuppladdning, självkritik
+
+**Fortnox SIE-import ligger på `<companyBase>/import/sieimportupload`** (speglar `/export/sieexport`).
+Widgeten är **blueimp jQuery File Upload** och sidan bär **~22 `input[type=file]`**, nästan alla
+dolda. Tre vägar testade, i den ordning som känns naturlig:
+1. `setInputFiles` på **första** inputen: tyst ingenting, sidan står kvar på "Dra och släpp en
+   SIE-fil här". Den levande inputen är inte den första.
+2. Klick på den synliga `button.icon-upload-alt` ("Läs in fil") med `waitForEvent('filechooser')`:
+   knappen rapporteras **inte synlig** headless trots att den finns i DOM:en. Ingen filechooser.
+3. Syntetisk HTML5-drop med DataTransfer: drop-eventet registrerades (texten växlade till "Dra och
+   släpp filen här för att ladda upp") men filen togs aldrig emot.
+
+**Det som fungerar: sätt filen på SAMTLIGA filinputar i alla ramar.** Rätt input tar. Det är fult
+men rationellt, för **uppladdning är inte import** — en felriktad `setInputFiles` kostar ingenting,
+och guiden validerar innan något commitas. Generaliserbart till varje Fortnox-uppladdningsyta.
+
+**Guiden efteråt:** blocken får gröna bockar, serieåtgärden defaultar till **"Koppla"**
+(`value=connect`), och `Ångra SIE` finns på samma sida — en felaktig import går att backa, vilket
+sänker risken rejält mot vad man först antar av att SIE 4I-filer saknar verifikatnummer.
+
+**Självkritiken, som är den egentliga lärdomen.** Jag körde fem iterationer på den här widgeten och
+drog dessutom en felaktig slutsats på vägen (påhittade orphan-chromium, se separat entry). Robert
+satte sessionen till 3 av 5 med just detta som motivering. **Sätt en gräns i förväg: två till tre
+försök på en okänd UI-widget, sedan lämna tillbaka med "det här är fyra klick för dig, så här gör
+du".** Jag hade allt annat verifierat och kunde ha lämnat över efter försök två utan att tappa
+något. Att gräva vidare kändes produktivt och var det inte.
+
 ## 2026-09-16 - Ett nekat anrop är inte ett behörighetsfel: klassificeraren sitter ovanför permissions [settings.local.json]
 
 **Learned:** 2026-09-16 | **Project:** VPS platform / permissions | **Category:** permissions, auto-mode, tooling
