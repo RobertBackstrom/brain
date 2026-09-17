@@ -7,6 +7,56 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-17 — En gate som sitter i EN av två skrivvägar är ingen gate [k2c / Death Board]
+
+**Source project:** K2C (KAN) | **Category:** tooling, integration design, calibration
+
+Fredrik anmärkte att pipan fyllde KAN med dubbletter och med tasks teamet redan fixat. Fyra
+lärdomar, varav tre är generella långt bortom Jira:
+
+1. **Räkna skrivytorna innan du bygger skyddet.** Jira-tickets skapades på TVÅ ställen:
+   `jira-ops.createIssue` och en egen `fetch`-POST inne i `discord-bot.js`. En kontroll i den
+   ena hade sett komplett ut och släppt igenom allt som gick via den andra. Metod som funkade:
+   `grep -rn "rest/api/3/issue"` på hela katalogen, inte bara på modulnamnet. Skyddet ligger nu
+   dessutom som backstop *inne i* `createIssue`, så nästa kodväg någon lägger till ärver det
+   utan att veta om det.
+
+2. **`statusCategory != Done` är ett filter som gör systemet dövt.** Matcharen såg bara öppna
+   ärenden, alltså 300 av 772 på KAN. De 472 stängda var precis de Fredrik klagade på ("tasks
+   som vi fixat"). Generellt: varje gång ett verktyg frågar "finns det redan?" måste korpusen
+   innehålla det som är AVSLUTAT, annars återskapar det färdigt arbete i evighet. Träff mot ett
+   stängt ärende ska rapporteras som `resolved`, inte som dubblett — svaret är "återöppna eller
+   släpp", inte "det finns redan".
+
+3. **Mät separationen innan du väljer tröskel, och acceptera svaret.** Jag handetiketterade par
+   från riktiga KAN-summeringar. Resultat: äkta dubbletter 0.52-1.0, äkta SYSKON 0.52-0.77.
+   Banden överlappar. "Go through all achievements text" mot "…tutorial text" ligger på 0.77,
+   exakt som en verklig omformulering av samma bugg. Ingen tröskel separerar dem, för signalen
+   är semantisk och df kan inte se den ("achievement" df 10 är lika statistiskt distinkt som
+   "feature" df 23). Rätt drag var INTE att fortsätta trimma tills mina 13 par såg bra ut, utan
+   att sätta trösklarna efter KONSEKVENS: blockering (det enda beslut ingen människa ser innan
+   det verkställs) bara vid nära ordagrann träff, allt annat åker med som namngiven granne.
+   Nästa steg om det behövs är en LLM-adjudicator på 0.45-0.85-bandet, inte fler magiska tal.
+
+4. **Den farligaste buggen hittades av att köra den riktiga vägen, inte enhetstesterna.** En
+   torrkörning av `jira-sync plan` planerade att DÖPA OM KAN-767 "tutorial text" till "subtitle
+   text". Ett godkännandeklick från att förvandla ett verkligt, ägt arbete till ett annat, och
+   det syns inte i efterhand eftersom ticketen fortfarande finns. Dubbletter är irritation,
+   tyst omdöpning är arbete som försvinner medan det ser ut att finnas kvar. Automatisk
+   omdöpning är borttagen. **Regel att ta med: kör alltid den faktiska anropskedjan mot skarp
+   data i torrläge innan något släpps — syntetiska testfall hade aldrig visat detta.**
+
+5. **Ett dagligt pass som föreslår samma par varje morgon blir bruset det skulle ta bort.**
+   Öarnas epics (KAN-7/8/9/11) kommer ligga 0.55-0.59 mot varandra för alltid. Därför en
+   avfärdningsstore per PAR (inte per ticket) i `jira-dupes-dismissed.json`. Utan den slutar
+   mottagaren läsa kortet inom en vecka, och då är hela passet meningslöst.
+
+Bonus, domänspecifikt men lätt att missa på andra boards: **stopword-listan åt ett egennamn.**
+K2C:s ö "Set" låg i STOP, så de två öarna hade inget ord kvar som skilde dem och scorade 0.711.
+Per-projekt `jira.dedupe.protectedTerms` i registret. Leta efter kollisionen i varje ny
+board-vokabulär (vanliga bovar: Set, Map, UI, Hub, Ra, Sun).
+
+
 ## 2026-09-17 — "Har vi täckning för Voyage?" är två frågor, och kortet är den som brinner [RAG / czp]
 
 **Source project:** RAG / Death Board + CZP Pleo | **Category:** cost, billing, monitoring, rag
