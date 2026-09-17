@@ -135,3 +135,22 @@ the memos, the whole tool is dead weight.
   real; and the producer's recital skipped the intermediate buyer entirely. When a chain is
   summarised in a recital, check each link's party names, date and whether title has actually
   passed. Category: `false_positive` (own clause) + `rubric_gap` (chain completion).
+- **[2026-09-16] [business_case+factual] [bandit_island / bi-001]** — Pitch page review, six-SKU
+  console port estimate. **Version-drift residue hides in cross-references and vocabulary, not
+  just in assets.** The logo residue (a Starbreeze SVG copied from `project-irons-2-v3`) had
+  been fixed, but the same copy-paste history left two "see section 07" pointers that now point
+  at the SWOT instead of the budget, and Unity-specific vocabulary ("addressables", "Unity port")
+  on a page that states the engine is unconfirmed. Rubric takeaway: after any renumbering or
+  rebuild, grep every "section NN" against the eyebrow numbers, and grep engine/tool-specific
+  nouns against the page's own "unknown" list. **Second: a payment table with an advance row must
+  foot.** Signature 342k + six gate rows summing to 3,42M showed 3,762M in the column against a
+  3,42M total; the footnote said "drawn down" but never showed the net figures. Check every money
+  table by adding the visible rows, not by trusting the total row. **Third: claims that appear
+  twice on one page are usually sell, and claims that contradict each other on one page are
+  usually an old version surviving next to a new one** ("removes the Switch memory constraint
+  entirely" vs "Switch 1 still needs a memory pass"; "pre-phase needs no source" vs a Gate 0 that
+  requires source access). Verified externally: Switch 2 mic + 12/9 GB, Switch 1 3,2 GB to games
+  and USB-mic-via-dock support, Jackbox on PS4 Nov 2014 (so "over a decade" holds), Ubisoft/Frima
+  Jeopardy! on PS4/XB1/Switch 2017 (prior console licence exists). Could not publicly confirm the
+  client's title is live on Luna GameNight; flagged, not asserted. Category: `rubric_gap`.
+  Cost: ~120k tokens, 17 tool calls.

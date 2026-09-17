@@ -14,6 +14,77 @@ agent: bizdev
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-17 - Ett innovationsbidrag kan inte betala for en licens plus en underleverantor, och startstodet ar kopplat till cap table [Cold Response, cr-009]
+
+Tva regler i svenska innovationsbidrag som slar direkt mot den affarsform vi bygger oftast, alltsa
+"vi licensierar teknik av nagon och lagger bygget pa en partner". Bada hittades forst nar
+utlysningstexten lastes ordagrant, inte i sammanfattningen, och bada var osynliga i den ruttkarta
+som skrevs dagen innan.
+
+**1. Taket pa konsult- och licenskostnader.** Vinnova, *Acceleration av civil-militara innovationer
+2027*, ordagrant: *"Kostnader for konsulttjanster, kunskap och patent som kopts in eller anvands pa
+licens fran extern aktor. Dessa kostnader far uppga till hogst 20 procent av en organisations
+budget."* Vinnovas generella anvisning oppnar i vissa utlysningar for en hogre andel om den
+motiveras, men den meningen fanns inte i den har texten. Indirekta kostnader far dessutom vara
+hogst 30 procent av lonekostnaderna.
+
+Konsekvensen ar generell: **ett innovationsbidrag ar ett loneinstrument, inte ett
+inkopsinstrument.** Ett nybildat bolag utan anstallda kan inte anvanda bidraget till det enda det
+tankt gora, namligen kopa in licensen och bygget. Minst 80 procent av budgeten maste vara egen lon.
+Folj alltid den har ordningen nar ett bidrag dyker upp i en licensaffar: las kostnadsreglerna
+**innan** du rangordnar bolagsalternativ, inte efter. Strategin rangordnar annars alternativ som
+budgetreglerna redan har uteslutit.
+
+**2. Koncernvillkoret i startstodet.** GBER art. 22 ger upp till 100 procent men kraver ett icke
+borsnoterat smaforetag **under fem ar** som annu inte delat ut vinst, och Vinnovas egen
+sammanstallning tillagger: *"Om foretaget ingar i en koncern maste hela koncernen uppfylla
+villkoren."* Ett nytt dotterbolag till ett gammalt holdingbolag ar alltsa inte "nystartat" i
+stodhanseende. **Vem som ager vehikeln avgor vilken stodniva den kan halla**, vilket gor
+bidragsfragan till en cap table-fraga och inte en bokforingsfraga. Reservvagen ar de minimis, ocksa
+upp till 100 procent men max 300 000 EUR over tre ar och raknat per "ett enda foretag", sa taket
+delas med modern. FoU-stod art. 25 (45-70 %) ar osakert for vart slags arbete: Vinnova skriver
+sjalva att *produktutveckling ofta inte ryms i begreppet experimentell utveckling*. Art. 28 ser
+lockande ut men ger bara 50 procent for forvarv av immateriella tillgangar; 100-procentsnivan dar
+galler bara innovationsradgivning fran forskningsinstitut och testinfrastrukturer, inte en licens
+fran ett privat bolag.
+
+**Tva sidofynd varda att ha med.** Bedomningskriteriet *aktorer* vager uttryckligen **jamstalldhet
+och maktfordelning i teamet**, sa ett tremannalag av man ar en poangforlust som ska hanteras i
+rekryteringsbeslutet, inte bortforklaras i texten. Och oddsen ar publika nar man letar: 2026 ars
+omgang hade **over 120 sokande och 30 beviljade**, alltsa cirka en fjardedel. Titta alltid pa
+foregaende ars beviljade bolag, de visar vilken inramning som faktiskt gatt igenom (har: obemannade
+flygsystem och syntetisk data, bada nara var egen).
+
+Kalla: `cold_response/vinnova_2027_bolagsval_och_budget_2026-09-17.md`.
+
+
+## 2026-09-16 - Ett lockup-block som kopieras fran en annan pitch bar den andra kundens logga, och SVG:n sager inte vad den ritar [Bandit Island, bi-001]
+
+Byggde bi-001-pitchen pa `pitches/project-irons-2-v3/` som mall och kopierade `.lockup`-blocket rakt av,
+inklusive den inline-SVG som lag dar. **Den SVG:n ritade Starbreeze-loggan.** I Irons-pitchen var det
+korrekt, for det var Starbreeze forslag till Krafton och AP bara byggde det. I bi-001 blev det en annan
+kunds logga hogst upp pa ett dokument till Bandit Island. Robert sag det direkt pa forsta skarmbilden.
+Jag sag det inte, for en inline `<path d="M23.76 43.56H27.76...">` ser likadan ut oavsett vad den ritar,
+och filen hette ingenting.
+
+Tva saker gor felet latt att upprepa. **Inline-SVG har ingen filnamnsledtrad**, till skillnad fran
+`<img src="ap-logo.png">` som sager vad den ar i klartext. Och **mallpitchen ar inte alltid AP:s egen
+avsandare**: `project-irons-2*` ar skrivna i Starbreeze namn, `disposable-corps-rift` och
+`project-irons-2-v2` har Rift-loggor. Tre av mallarna i katalogen har alltsa fel avsandare for ett
+vanligt AP-forslag.
+
+**How to apply:** kopiera aldrig `.lockup`-blocket. AP:s kanoniska logga ar `ap-logo.png` (89 882 byte,
+identisk i tio pitchkataloger) och renderas `<img src="ap-logo.png" alt="Aurora Punks">`. Kopiera in
+PNG:n i den nya slug-katalogen och skriv img-taggen for hand. Om en mall har inline-SVG i lockupen,
+**oppna den i en browser eller kolla om det finns en namngiven .svg bredvid** (`starbreeze-logo.svg`
+lag i samma katalog hela tiden) innan du later den folja med. Generellt: en kopierad mall barvar
+avsandaridentitet, inte bara layout, och avsandaren ar det forsta kunden ser.
+
+Grundorsaken var att jag aldrig korde The Reviewer pa artefakten. Voice-passet pa mailet kordes,
+substanspasset pa sjalva pitchen hoppades over. **En kundvand pitch med kommersiella siffror ar precis
+det registret beskriver som konsekvent, alltsa obligatoriskt review-pass.** Se
+[[feedback_no_client_cross_reference]].
+
 ## 2026-09-16 - Vänskapsnivån ger dig inbjudan, den tekniska diagnosen ger dig jobbet [Bandit Island, bi-001]
 
 Stephen Jarrett är personal-friend tier (39 LinkedIn-DM, middagsplanering med honom och Vanessa) och

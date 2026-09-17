@@ -1770,3 +1770,7 @@ villkor bor där.
 rapporter är ställda till APDS, som är i konkurs. Valve betalade länge till samma bolag. **Kolla
 vem motpartens underlag är ställt till varje gång ett bolag har bytt entitet**, det är inte samma
 sak som att betalningen landar rätt. Kategori: bokföring + avtal.
+
+**Kanoniskt befordrat 2026-09-16:** avtalsvillkoren för IndieArk bor nu i
+[[reference_indieark_yaozuo]] och bokföringsregeln för utländska intäkter i
+[[reference_czp_utlandsintakter]]. Läs dem där, inte här.

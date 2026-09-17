@@ -7,6 +7,41 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-16 - Ett utkast syns som ett meddelande i gmail_thread, sa antal meddelanden i traden ar inget bevis pa att nagot skickats [Bandit Island, bi-001]
+
+The Reviewer oppnade sin granskning av bi-001-pitchen med att lanken "was already sent to the client
+at 16:56 on 16 Sep (thread `1a0a9cb279aa62e5`, msg 3)" och lade om hela memot efter det: varje fix
+beskrevs som en republisering av en sida kunden kan ha last. **Det var fel.** Msg 3 i den traden *ar*
+utkastet. `mcp__gmail__gmail_thread` returnerar utkast som fullvardiga meddelanden i `messages`,
+komplett med From, To, Date och body, utan nagot faltsom skiljer dem fran skickad post.
+
+De tva kontrollerna som faktiskt avgor saken, och som bada kordes i samma tur:
+`mcp__gmail__gmail_list_drafts` (utkastet lag kvar med sitt draftId) och en `in:sent`-sokning pa
+traden (returnerade bara Roberts ursprungliga 12:38-mail).
+
+**How to apply:** rakna aldrig meddelanden i en trad for att avgora om nagot gatt ivag, varken sjalv
+eller nar en annan agent gor det. Kor `gmail_list_drafts` plus `in:sent`. Det galler ocksa at andra
+hallet: en agent som rapporterar mailstatus ska inte tas pa orden, den har troligen last samma
+tradvy. Forstarker [[feedback_verify_draft_sent]] med den konkreta felkallan.
+
+## 2026-09-16 - En betalplan med forskottsraden inne i tabellen summerar inte till totalen, och mallen bar felet vidare [Bandit Island, bi-001]
+
+Betalplanen i bi-001 hade raderna 342 000 (10 % vid signatur) + sex grindbelopp, med en totalrad pa
+3 420 000. Kolumnen summerade till **3 762 000**. En fotnot sa att forskottet "dras av mot
+grindfakturorna" men visade aldrig var. Vem som helst som adderar kolumnen ser fel siffra, och pa en
+offert ar det den lasaren som ar ekonomichefen.
+
+Felet arvdes fran Irons-mallen, som har exakt samma konstruktion. Det gick oupptackt dar for att
+signaturraden dar lag *utanfor* det som totalraden summerade, vilket ar korrekt men oforklarat.
+
+**Fix som funkar:** tva belopps­kolumner. "Gate value" = FTE-manader x raten, "Invoiced" = samma
+belopp minus 10 %. Forskottsraden far bindestreck i gate value och hela 342 000 i invoiced. Da
+summerar invoiced-kolumnen till totalen pa raden, utan fotnot som forsvarar aritmetiken.
+
+**How to apply:** innan en betalplan gar till kund, **addera beloppskolumnen och jamfor med
+totalraden**. Om de inte ar lika maste tabellen byggas om, inte forklaras. Samma kontroll pa
+FTE-kolumnen mot rollmatrisen.
+
 ## 2026-09-16 - Ett "port" som körts på en cloud-plattform är ett portjobb plus ett featurebygge, och skillnaden är hela offerten [Bandit Island, bi-001]
 
 Bandit Islands Jeopardy ligger på **Amazon Luna GameNight**. Där scannar spelarna en QR-kod, telefonen

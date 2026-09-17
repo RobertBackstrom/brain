@@ -75,3 +75,33 @@ multi-seat instructor control, offline deployment, DIS, and Swedish GIS terrain.
    or security-sensitive activity, and foreign ownership and ultimate control are what that
    screening examines. Subcontractors with source access are in scope too. Ask Ralph's contact
    where the capital ultimately comes from before a term sheet, not after. Feeds `cr-002`.
+
+## Added risk (2026-09-17)
+6. **Grant rules reach the cap table too, and from a second direction.** Vinnova's
+   *Acceleration av civil-militara innovationer 2027* caps **konsult- och licenskostnader at 20
+   per cent of the budget**, verbatim and without qualifier. Both the licence fee to Eternal Minds
+   and the co-development partner sit in that category, so of a 1 000 000 SEK project no more than
+   about 200 000 SEK can reach them combined. **The grant is a salary instrument, not a purchasing
+   instrument**, and the applicant must have people on payroll from January 2027. Separately, the
+   100 per cent startup rate (GBER art. 22) requires a company under five years old and Vinnova's
+   own text adds that **the whole group must meet the conditions**. CZP dates from 2019, so a
+   NewCo held as a CZP subsidiary loses the startup rate. Fallback is de minimis, also 100 per cent
+   but capped at 300 000 EUR over three years and counted per "single undertaking", so the ceiling
+   is shared with the parent. Detail and sources:
+   `cold_response/vinnova_2027_bolagsval_och_budget_2026-09-17.md`. Feeds `cr-002` and `cr-009`.
+
+## Grant competition, for the investor case
+2026's round of the same call had **over 120 applicants and 30 grants**, roughly one in four.
+**VCraft Aeronautics** (unmanned aerial systems) and **SCAILAB** (synthetic data for machine
+learning) were both funded, which is close to Robin's own description of Eternal Minds as building
+"simulation and synthetic data solutions for modern aerial security". The framing that gets through
+is autonomous systems with AI supporting, not simulation and training, which is not one of NATO's
+nine EDT areas.
+
+## Ralph Strandberg, status 2026-09-17
+Cover note with the gated pitch link sent 2026-09-15 16:51 CEST, thread `1a0a5554a33a00d7`.
+**Still no reply after two days**, verified live in Gmail 2026-09-17. Ticket due date is
+2026-09-22, so this is still inside the normal window. A sixth call question has been added in
+`cr-005`: whether an investor would come in before year end at a level that covers two salaries
+through 2027, because the Vinnova budget rules make NewCo staffing a first-call topic rather than a
+post-term-sheet one.
