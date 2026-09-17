@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>House Siege · Development proposal · Aurora Punks</title>
-<meta name="description" content="Market evidence, core loop, art direction and a two-step development plan for House Siege.">
+<title>House Siege · Proposed development partner · Aurora Punks</title>
+<meta name="description" content="Market evidence, core loop, combat, art direction and a three-step development plan for House Siege.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -140,19 +140,33 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
   body::before{display:none}.rail{display:none}
   .slide{min-height:auto;page-break-after:always;border:0;padding:26px 0}
 }
+
+.fork{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px 0 0}
+@media(max-width:900px){.fork{grid-template-columns:1fr}}
+.fork .opt{border:1px solid var(--line);border-top-width:2px;border-top-color:var(--line-2);border-radius:3px;padding:20px 20px 22px;background:linear-gradient(160deg,var(--panel) 0%,var(--panel-2) 100%)}
+.fork .opt.pick{border-top-color:var(--pd-gold);background:linear-gradient(160deg,#1a1510 0%,#221a12 100%)}
+.fork .ot{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:20px;letter-spacing:.03em;color:var(--muted);margin-bottom:2px}
+.fork .opt.pick .ot{color:var(--pd-gold)}
+.fork .os{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2);margin-bottom:13px}
+.fork .opt.pick .os{color:var(--pd-amber)}
+.fork p{font-size:14.5px;color:var(--muted);margin:0 0 11px;max-width:none}
+.fork p:last-child{margin-bottom:0}
+.fork .cost{border-top:1px solid var(--line);margin-top:13px;padding-top:11px;font-size:13.5px;color:var(--muted-2)}
 </style>
 </head>
 <body>
 
-<div class="draftflag">Prepared for Markus Månsson and Oscar Nordqvist · Confidential · 16 September 2026</div>
+<div class="draftflag">Prepared for Markus Månsson and Oscar Nordqvist · Confidential · 17 September 2026</div>
 
 <nav class="rail" aria-label="Sections">
   <a href="#s1" title="Front"></a><a href="#s2" title="Who we are"></a>
   <a href="#s3" title="The market"></a><a href="#s4" title="The scale"></a>
-  <a href="#s5" title="Core loop"></a><a href="#s6" title="The risks"></a>
-  <a href="#s7" title="Art direction"></a><a href="#s8" title="Step one"></a>
-  <a href="#s9" title="The gate"></a><a href="#s10" title="Step two"></a>
-  <a href="#s11" title="The deal"></a><a href="#s12" title="Next steps"></a>
+  <a href="#s5" title="Core loop"></a><a href="#s6" title="Combat"></a>
+  <a href="#s7" title="Skill"></a><a href="#s8" title="The risks"></a>
+  <a href="#s9" title="Art direction"></a><a href="#s10" title="Step zero"></a>
+  <a href="#s11" title="Step one"></a><a href="#s12" title="The gate"></a>
+  <a href="#s13" title="Step two"></a><a href="#s14" title="The deal"></a>
+  <a href="#s15" title="Next steps"></a>
 </nav>
 
 <div class="deck">
@@ -162,16 +176,16 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
   <div class="lockup">
     <span class="mark">Aurora Punks</span>
     <span class="rule"></span>
-    <span class="co">Development proposal · House Siege</span>
+    <span class="co">Proposed development partner · House Siege</span>
   </div>
   <h1>House Siege<br>From concept to game</h1>
-  <p class="hook">One house. Two teams. The only way to save the house is to eat it.</p>
-  <p class="position-line">We have read your material, measured the concept against the market, and built a plan in two steps. Step one produces the store page and the footage that measure real demand. Step two builds the game that evidence justifies. You own everything, all the way through.</p>
+  <p class="hook">One house. Two teams. You tear the house down to hold it up.</p>
+  <p class="position-line">We are putting ourselves forward as the development partner for House Siege. We have read your material, measured the concept against the market, and built a plan in three steps, each one cheap enough to stop after. You own everything, all the way through.</p>
   <div class="statrow">
     <div class="stat"><div class="k teal">3v3</div><div class="l">Six minute rounds</div></div>
-    <div class="stat"><div class="k">2 steps</div><div class="l">With a measurable gate between</div></div>
-    <div class="stat"><div class="k">9 months</div><div class="l">From start to Steam Beta</div></div>
-    <div class="stat"><div class="k neon">2.73 MSEK</div><div class="l">Total, both steps</div></div>
+    <div class="stat"><div class="k">3 steps</div><div class="l">Each with a decision point</div></div>
+    <div class="stat"><div class="k">10 months</div><div class="l">From start to Steam Beta</div></div>
+    <div class="stat"><div class="k neon">180,000</div><div class="l">To find out if it is fun</div></div>
   </div>
 </section>
 
@@ -180,7 +194,7 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
   <div class="eyebrow"><span class="n">01</span>Who we are</div>
   <h2>Aurora Punks</h2>
   <p class="lede">A Stockholm co-development and co-publishing studio, founded in 2019. Around twenty people in Stockholm plus partner studios abroad, working full cycle: concept, prototype, production, porting, release and live operations. We have shipped across PC, console, mobile and VR.</p>
-  <p class="lede">Our model is simple. We put an experienced senior team into a partner's project and hit a defined date on a defined scope. We are developers first, which is why we are comfortable telling you what a plan actually costs before anyone has signed anything.</p>
+  <p class="lede">If you take this proposal, our model is to put an experienced senior team into your project and hit a defined date on a defined scope. We are developers first, which is why the first thing we are proposing is the cheapest possible way to find out whether the idea works, rather than the biggest contract we could ask you to sign.</p>
 
   <h3 style="margin-top:30px">Titles we have published or co-published</h3>
   <div class="apgrid">
@@ -250,7 +264,7 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
   <div class="eyebrow"><span class="n">03</span>The scale</div>
   <h2>One decision determines whether this is buildable</h2>
   <p class="lede">House Siege as your material describes it, with 4v4 or 5v5, full structural physics, six house archetypes, progression, matchmaking, backend, cosmetics and a console roadmap, is a 15 to 25 million krona project over roughly three years. That is not a criticism of the idea. It is what that level of ambition costs, whoever builds it.</p>
-  <p class="lede">The same game scaled to <strong>3v3, one house, chunk based destruction and six minute rounds</strong> reaches a playable beta in nine months for under three million.</p>
+  <p class="lede">The same game scaled to <strong>3v3, one house, chunk based destruction and six minute rounds</strong> reaches a playable beta in ten months for under three million.</p>
 
   <div class="pull">Scaling down is not lowering the ambition. It is putting the evidence in front of the money.</div>
 
@@ -263,6 +277,7 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
       <tr><td>Side switching</td><td>Not mentioned</td><td><strong>Switch every round</strong></td><td>Everyone gets to destroy. Solves half the risk that defending feels like the consolation role.</td></tr>
       <tr><td>Houses at launch</td><td>Six archetypes</td><td><strong>One</strong></td><td>More houses are content, not evidence. They get built once the loop is proven.</td></tr>
       <tr><td>Destruction</td><td>Structural physics</td><td><strong>Chunk based</strong></td><td>Freely deformable physics cannot be synchronised over a network at a sane cost. Pre fractured pieces can.</td></tr>
+      <tr><td>Combat</td><td>Weapons, explosives, rockets</td><td><strong>Physics only, no weapons</strong></td><td>See the next section. This is the single biggest cost decision in the whole project.</td></tr>
       <tr><td>Win condition</td><td>Integrity above 50 %</td><td><strong>Unchanged</strong></td><td>It is good. A visible number on a physical object, understandable without explanation. We are not touching it.</td></tr>
     </tbody>
   </table>
@@ -276,11 +291,12 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
   <p class="lede">Your material asks exactly the right question: is building and repairing as much fun as destroying? We went looking for a game that answers yes, and we cannot find one. Teardown, Brick Rigs, Besiege and Instruments of Destruction are all pure destruction. Nobody has managed to make repair the fun half.</p>
   <p class="lede">So we propose that the defender's verb becomes destructive too.</p>
 
-  <p><strong>Defenders have no build resources.</strong> They get materials by tearing the house apart from the inside. You need to board the front door, there is no pile of planks, there is a staircase. You rip out the staircase, drag it up and slam it against the door.</p>
+  <p><strong>Defenders have no build resources and no menu to place things from.</strong> Everything they board a gap with has to be ripped out of the house first. You need to block the front door, there is no pile of planks, there is a staircase. You tear out the staircase, drag it over and slam it against the door.</p>
+  <p>We call it <strong>salvage</strong>. Furniture is free salvage: sofas, doors, bathtubs, fridges, the piano. Once the loose furniture is gone, the only thing left to salvage is load bearing structure, and taking that lowers your own Integrity. So the house you are defending is also the stockpile you are defending it with.</p>
 
-  <div class="pull">Furniture is free. When the furniture runs out you start eating load bearing structure, and your own Integrity drops.</div>
+  <div class="pull">You tear the house down to hold it up.</div>
 
-  <p>That does three things at once. Defending becomes as physical and as funny as attacking, with nobody standing still holding a button. Every defence costs something, so you are digging into your own meter to survive the next minute. And the map is reshaped by the defence, not only by the attack: you tore out the staircase, now you cannot get upstairs either.</p>
+  <p>That does three things at once. Defending becomes as physical and as funny as attacking, with nobody standing still holding a button. Every barricade costs something, so late in a round you are trading structure for time. And the map is reshaped by the defence as well as the attack: you tore out the staircase, so now you cannot get upstairs either.</p>
 
   <h3 style="margin-top:30px">The loop, fifteen to twenty five seconds</h3>
   <div class="loopbar">
@@ -292,22 +308,75 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
   <p class="muted"><strong>Both teams use the same four verbs.</strong> That is a design choice, but it is also a budget choice: one interaction model instead of two halves the cost of the prototype and makes balance easier to hold over time.</p>
 </section>
 
-<!-- 6 THE RISKS -->
+<!-- 6 COMBAT -->
 <section class="slide" id="s6">
-  <div class="eyebrow"><span class="n">05</span>The risks</div>
+  <div class="eyebrow"><span class="n">05</span>Combat</div>
+  <h2>You fight with the house, not with guns</h2>
+  <p class="lede">Neither your material nor our first draft was clear about what happens when two players meet in a corridor, and it is the most important unanswered question in the design. Here is our answer, and it is also the single biggest cost decision in the project.</p>
+
+  <div class="pull">Nobody carries a weapon. Nobody dies. You never kill anyone, you inconvenience them spectacularly.</div>
+
+  <p>Players get staggered, knocked down or buried for ten to fifteen seconds, then dug out by a teammate or they recover on their own. No health bars, no respawn screens, no kill feed, no scoreboard of kills. The only number on screen is House Integrity.</p>
+
+  <div class="grid g3" style="margin-top:24px">
+    <div class="card ap"><h4>Shove</h4><p>You have hands. Push someone off a ledge, through the hole you just made in the floor, or into the path of something heavy that is already falling.</p></div>
+    <div class="card ap"><h4>Swing what you carry</h4><p>You are already hauling a bathtub. It is a weapon by physics, not by design. No separate combat animation set, no weapon art, no balance table.</p></div>
+    <div class="card ap"><h4>Drop your load</h4><p>Release the fridge on whoever is underneath you. The most satisfying thing in the game costs us nothing to build because the object is already simulated.</p></div>
+    <div class="card ap"><h4>Cut the support</h4><p>Bring the floor down while three of them are standing on it. Attackers do this to break in. Defenders do this to bury the people who just broke in.</p></div>
+    <div class="card ap"><h4>Rig it</h4><p>Defenders can rig a barricade so it collapses when touched. A wall that looks solid and is not is the best trap in a game about structures.</p></div>
+    <div class="card ap"><h4>Bait the collapse</h4><p>The whole house is telegraphing what is about to fall. Standing somewhere so the other team follows you under it is the highest skill play available.</p></div>
+  </div>
+
+  <h3 style="margin-top:34px">Why not weapons</h3>
+  <p>Your material lists demolition tools, explosives, rockets and fighting room by room. Read plainly, that describes a shooter. If House Siege is a shooter, three things follow immediately. The budget roughly doubles, because weapons mean gunfeel, ballistics, hit registration, weapon art, animation sets, a damage model and a permanent balance job. The comparison set stops being the games on the previous page and becomes Rainbow Six Siege, which has had a decade and a AAA team. And the audience changes from people who want to laugh with their friends to people who want to win, which is a harder audience to reach and a much less forgiving one.</p>
+  <p>Physics only combat costs close to nothing extra, because every object is already simulated for the destruction system. It is funnier, it clips better, and as far as we can tell nobody else is doing it.</p>
+</section>
+
+<!-- 7 SKILL -->
+<section class="slide" id="s7">
+  <div class="eyebrow"><span class="n">06</span>Skill</div>
+  <h2>How good can a player get?</h2>
+  <p class="lede">This needs answering before anyone writes a line of code, because it decides the controls, the pace, the animation budget and how much live balancing the game will need forever. There are two honest options and they lead to different companies.</p>
+
+  <div class="fork">
+    <div class="opt">
+      <div class="ot">Execution skill</div>
+      <div class="os">The Fortnite model</div>
+      <p>Building is fast and precise. Top players place structures in fractions of a second, and the ceiling is in hand speed and muscle memory. Mastery looks spectacular and creates a competitive scene.</p>
+      <p>What it costs: a very high ceiling only stays fun with constant balancing, and it needs a large population to matchmake fairly. In a 3v3 game one practised player simply beats everyone. A friend who joins in month six has a miserable evening.</p>
+      <div class="cost">Requires a permanent balance and matchmaking effort we would be selling you a fantasy about at this budget.</div>
+    </div>
+    <div class="opt pick">
+      <div class="ot">Knowledge skill</div>
+      <div class="os">Recommended</div>
+      <p>Carrying is slow and awkward on purpose. One object at a time. No build menu, no hotkeys, no inventory. You physically cannot build fast, so nobody can out click you.</p>
+      <p>The ceiling is in reading the house. Knowing which wall is load bearing. Knowing that pulling the staircase cuts the attackers' route but also your own. Knowing when a collapse is two hits away and standing so the other team follows you under it.</p>
+      <div class="cost">Mastery is in where and when, not in how fast. That ceiling needs no live balancing team.</div>
+    </div>
+  </div>
+
+  <div class="pull">The best player in the room should win because they knew the house, not because they clicked faster.</div>
+
+  <p>We recommend the second one for three reasons. Friends of mixed ability have to be able to play together, and that is the entire premise of this genre rather than a nice extra. Slow and heavy is funnier than fast and precise, and funny is the marketing. And a knowledge ceiling deepens through content, meaning new houses, rather than through patches, which means the game gets better as you add to it instead of needing a team to keep it alive.</p>
+  <p class="muted">This is a reversible decision only until step two starts. After that it is in the controls, the animation and the netcode, and changing it is a rebuild.</p>
+</section>
+
+<!-- 8 THE RISKS -->
+<section class="slide" id="s8">
+  <div class="eyebrow"><span class="n">07</span>The risks</div>
   <h2>What the plan has to answer</h2>
   <p class="lede">These five things decide whether House Siege becomes a game. We put them up front, because the whole plan below is built to answer them in the right order and at the lowest possible cost.</p>
 
-  <div class="risk"><div class="r">Defending has to be fun</div><div class="m">The biggest risk, and the one we have put a concrete proposal against above. The question gets answered in month two of step two, not month six. If the answer is no, the project should stop there.</div></div>
+  <div class="risk"><div class="r">Defending has to be fun</div><div class="m">The biggest risk, and the one salvage and physics combat are our answer to. Step zero exists purely to test it, for 180,000 kronor, before anything else is committed.</div></div>
   <div class="risk"><div class="r">Destruction plus multiplayer</div><div class="m">The most expensive combination there is at this project size. Teardown has no multiplayer and that is no accident. The answer is to synchronise damage events rather than physics state, meaning we only send which pieces broke and let the debris fly slightly differently for each player. That is standard practice and it makes the problem tractable.</div></div>
   <div class="risk"><div class="r">PvP needs people</div><div class="m">A game for six players needs six players. That cold start problem is what sinks most smaller PvP titles. This is why bots are not an extra feature in this plan. They are part of the product and they get their own budgeted milestone.</div></div>
-  <div class="risk"><div class="r">Balance is a running cost</div><div class="m">Asymmetric games need tuning for years. Rainbow Six Siege has been at it for a decade. That argues for fewer tools and clearer roles from the start, and for switching sides every round so imbalance hits both teams equally.</div></div>
+  <div class="risk"><div class="r">Balance is a running cost</div><div class="m">Asymmetric games need tuning for years. Rainbow Six Siege has been at it for a decade. That argues for fewer tools and clearer roles, for switching sides every round, and for the knowledge ceiling in the previous section rather than the execution one.</div></div>
   <div class="risk"><div class="r">Price decides the game</div><div class="m">Your material describes a premium title. The genre House Siege fits sits at six to eight dollars. Those are two different products with two different budgets, and the choice needs making early because everything else follows from it. We recommend the lower price and the larger audience.</div></div>
 </section>
 
-<!-- 7 ART DIRECTION -->
-<section class="slide" id="s7">
-  <div class="eyebrow"><span class="n">06</span>Art direction</div>
+<!-- 9 ART DIRECTION -->
+<section class="slide" id="s9">
+  <div class="eyebrow"><span class="n">08</span>Art direction</div>
   <h2>Flatpack</h2>
   <p class="lede">The house should visibly be built from parts that click together, like flat pack furniture. That makes destruction readable, because you can see exactly which piece came loose, and it makes production cheap, because one kit covers six houses.</p>
 
@@ -331,7 +400,7 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
     </figure>
     <figure>
       <img src="media/human-fall-flat/shot0.jpg" alt="Human Fall Flat" loading="lazy">
-      <figcaption><div class="an">Human Fall Flat</div><div class="ad">Doughy blank characters with no facial animation. All the comedy comes from the movement, which is cheap to make and ages well.</div></figcaption>
+      <figcaption><div class="an">Human Fall Flat</div><div class="ad">Doughy blank characters with no facial animation. All the comedy comes from the movement, which is cheap to make and ages well. This is also our combat reference.</div></figcaption>
     </figure>
     <figure>
       <img src="media/how-to-fish/shot0.jpg" alt="How to Fish" loading="lazy">
@@ -351,11 +420,42 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
   <p class="muted" style="margin-top:20px">Images above are the reference titles on Steam, shown to fix the target. They are not House Siege artwork. Concept art in this direction is the first deliverable of step one, and we would produce it as real renders from the actual build rather than as generated images, for the reason in the pull quote.</p>
 </section>
 
-<!-- 8 STEP ONE -->
-<section class="slide" id="s8">
-  <div class="eyebrow"><span class="n">07</span>Step one</div>
+<!-- 10 STEP ZERO -->
+<section class="slide" id="s10">
+  <div class="eyebrow"><span class="n">09</span>Step zero</div>
+  <h2>One month to find out if it is fun</h2>
+  <p class="lede">Before the store page, before the art, before anything else, we want to build the loop in grey boxes and play it. One month, one programmer, a designer at half time, and nothing else.</p>
+
+  <div class="grid g2" style="margin-top:8px">
+    <div class="card ap">
+      <h4>What gets built</h4>
+      <p>One room made of grey cubes. Salvage, carry, slam, break. Shove and drop. One wall that can be broken into pieces and one support that can be cut. Local co-op on one machine or two on a LAN. Nothing else at all.</p>
+    </div>
+    <div class="card ap">
+      <h4>What does not get built</h4>
+      <p>No art, no characters, no menus, no netcode, no bots, no matchmaking, no progression, no sound beyond placeholders. Anything that is not the question gets cut.</p>
+    </div>
+  </div>
+
+  <div class="pull">If carrying a bathtub across a room and slamming it into a doorway is not funny in grey boxes, no amount of art will save it.</div>
+
+  <p>This is the cheapest honest answer to the only question that matters, and it is a question no market data and no pitch deck can answer for you. It also gives us something you can sit down and play rather than a document you have to take on trust.</p>
+
+  <div class="gatecard">
+    <div class="gh"><span class="gn">Month 0</span><span class="gm">Grey box prototype</span><span class="gs">1.5 person months</span></div>
+    <div>Programmer at full time, design and direction at half time. Ends with a build on your machine and an hour of us playing it together.</div>
+  </div>
+
+  <div style="margin-top:26px"><div class="bignum">180,000<span class="cur">SEK</span></div></div>
+  <p class="muted" style="margin-top:12px">Cash portion 126,000. This is the entire commitment required to start.</p>
+  <p class="muted"><strong>The decision at the end is binary and it is yours.</strong> If the loop is not fun, we say so, you stop, and the total cost of finding out was 180,000 rather than 600,000 on a store page for a game that does not work. If it is fun, we have a build to make the trailer from and step one gets cheaper and safer.</p>
+</section>
+
+<!-- 11 STEP ONE -->
+<section class="slide" id="s11">
+  <div class="eyebrow"><span class="n">10</span>Step one</div>
   <h2>The store page, before the game</h2>
-  <p class="lede">The goal is a published Steam page, a trailer that looks like gameplay, and around thirty vertical clips for TikTok, Reels and Shorts. Without building the game.</p>
+  <p class="lede">The goal is a published Steam page, a trailer that looks like gameplay, and around thirty vertical clips for TikTok, Reels and Shorts. Without building the full game.</p>
   <p>The method is a trailer build. Collapses are authored as baked simulations and played back as animation, so we need no destruction engine in this step. The house is built on a purchased modular kit that we give its own identity through a custom shader, a locked palette and an original character silhouette. That is the part that stops the material looking bought, and it is the one part we do not cut.</p>
 
   <div class="gatecard">
@@ -377,18 +477,18 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
   <p class="muted"><strong>You own everything produced.</strong> The page, the trailer, the clips, the kit and the characters. If you do not continue with us, you can take the package anywhere.</p>
 </section>
 
-<!-- 9 THE GATE -->
-<section class="slide" id="s9">
-  <div class="eyebrow"><span class="n">08</span>The gate</div>
+<!-- 12 THE GATE -->
+<section class="slide" id="s12">
+  <div class="eyebrow"><span class="n">11</span>The gate</div>
   <h2>The number that decides step two</h2>
-  <p class="lede">The entire point of building the store page first is that it produces a number which makes the next decision easy. We suggest you commit to the number in advance, before you know the outcome.</p>
+  <p class="lede">The entire point of building the store page before the game is that it produces a number which makes the next decision easy. We suggest you commit to the number in advance, before you know the outcome.</p>
   <p>The benchmark comes from outside. Polden Publishing is a publisher specialising in exactly this genre and working from data: they run a marketing test before signing anything, and their published threshold for signing a game is <strong>30,000 wishlists from that test</strong>. They state 150,000 dollars as their average investment per title and report more than a million wishlists generated before production decisions across their portfolio.</p>
 
   <div class="tw" style="margin-top:22px">
   <table>
     <thead><tr><th>Outcome 60 days after the page goes live</th><th>Reading</th><th>Decision</th></tr></thead>
     <tbody>
-      <tr><td>Under 10,000 wishlists</td><td>The hook does not carry in this form</td><td>Stop. You keep the material and you have spent 600,000, not 2.7 million.</td></tr>
+      <tr><td>Under 10,000 wishlists</td><td>The hook does not carry in this form</td><td>Stop. You keep the material and you have spent 780,000, not 2.8 million.</td></tr>
       <tr><td>10,000 to 30,000</td><td>Ambiguous</td><td>Rebuild the trailer and capsule, run the campaign once more, then decide.</td></tr>
       <tr class="sig"><td><strong>30,000 or more</strong></td><td>The industry's own signing threshold cleared</td><td><strong>Run step two.</strong></td></tr>
       <tr><td>100,000 or more</td><td>The level at which this genre talks about a major title</td><td>Run step two and raise ambition on localisation and console.</td></tr>
@@ -399,19 +499,19 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
   <p class="muted" style="margin-top:20px"><strong>One important nuance.</strong> 30,000 wishlists is a threshold for continuing to invest, not for making money. At normal thirty day conversion it corresponds to roughly 11,400 copies sold, which pays for nothing. That number means the concept carries. For the whole plan to work we want to see around 150,000 wishlists at launch, which is entirely normal in this genre if step two delivers a beta people want to clip.</p>
 </section>
 
-<!-- 10 STEP TWO -->
-<section class="slide" id="s10">
-  <div class="eyebrow"><span class="n">09</span>Step two</div>
-  <h2>The prototype, and the road to Steam Beta</h2>
-  <p class="lede">Six months answering three questions in order: is the loop fun, can the destruction be synchronised over a network, and can bots carry the game when six people are not online. The end state is a Steam beta you can build a community around.</p>
+<!-- 13 STEP TWO -->
+<section class="slide" id="s13">
+  <div class="eyebrow"><span class="n">12</span>Step two</div>
+  <h2>The build, and the road to Steam Beta</h2>
+  <p class="lede">Six months answering three questions in order: does the loop survive contact with a whole house, can the destruction be synchronised over a network, and can bots carry the game when six people are not online. The end state is a Steam beta you can build a community around.</p>
 
   <div class="gatecard">
-    <div class="gh"><span class="gn">M1</span><span class="gm">Prototype</span><span class="gs">2.75 person months</span></div>
-    <div>The four verbs in grey box. Chunk destruction on one wall. A technical spike on network sync already here, so the most dangerous question gets asked early. <strong>Answers: does ripping things loose feel good?</strong></div>
+    <div class="gh"><span class="gn">M1</span><span class="gm">Vertical Prototype</span><span class="gs">2.0 person months</span></div>
+    <div>The step zero build rebuilt properly. Chunk destruction on a real wall, plus a technical spike on network sync already here so the most dangerous question gets asked early. Shorter than it would be because step zero already answered the design question.</div>
   </div>
   <div class="gatecard">
     <div class="gh"><span class="gn">M2</span><span class="gm">First Playable</span><span class="gs">3.0 person months</span></div>
-    <div>The full loop in one house. The Integrity meter. The mechanic where you eat the house. Local 3v3 against simple bots. <strong>Answers: is defending as fun as attacking?</strong> If the answer is no, we stop here.</div>
+    <div>The full loop in one house. The Integrity meter. Salvage economy and physics combat tuned together. Local 3v3 against simple bots.</div>
   </div>
   <div class="gatecard">
     <div class="gh"><span class="gn">M3</span><span class="gm">Netcode Alpha</span><span class="gs">3.0 person months</span></div>
@@ -430,13 +530,13 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
     <div>Closed beta to the wishlist, then open. Community channel, patch cadence and continuous measurement.</div>
   </div>
 
-  <div style="margin-top:30px"><div class="bignum">2,130,000<span class="cur">SEK</span></div></div>
-  <p class="muted" style="margin-top:12px">17.75 person months across six calendar months. Cash portion 1,491,000.</p>
+  <div style="margin-top:30px"><div class="bignum">2,040,000<span class="cur">SEK</span></div></div>
+  <p class="muted" style="margin-top:12px">17.0 person months across six calendar months. Cash portion 1,428,000.</p>
 </section>
 
-<!-- 11 THE DEAL -->
-<section class="slide" id="s11">
-  <div class="eyebrow"><span class="n">10</span>The deal</div>
+<!-- 14 THE DEAL -->
+<section class="slide" id="s14">
+  <div class="eyebrow"><span class="n">13</span>The deal</div>
   <h2>We take risk with you</h2>
   <p class="lede">We price the work at 120,000 kronor per person month and take only seventy percent in cash. The rest we defer and only recover when the game sells. We take no ownership stake in House Siege. The IP is yours, undivided, the whole way.</p>
 
@@ -459,39 +559,40 @@ caption{caption-side:bottom;text-align:left;font-size:12.5px;color:var(--muted-2
   <table>
     <thead><tr><th>Step</th><th class="num">Person months</th><th class="num">Total</th><th class="num">Cash</th><th class="num">Deferred</th></tr></thead>
     <tbody>
+      <tr class="sig"><td>Step 0, grey box prototype</td><td class="num">1.5</td><td class="num">180,000</td><td class="num">126,000</td><td class="num">54,000</td></tr>
       <tr><td>Step 1, the store page</td><td class="num">5.0</td><td class="num">600,000</td><td class="num">420,000</td><td class="num">180,000</td></tr>
-      <tr><td>Step 2, prototype to beta</td><td class="num">17.75</td><td class="num">2,130,000</td><td class="num">1,491,000</td><td class="num">639,000</td></tr>
-      <tr class="tot"><td>Total</td><td class="num">22.75</td><td class="num">2,730,000</td><td class="num">1,911,000</td><td class="num">819,000</td></tr>
+      <tr><td>Step 2, build to beta</td><td class="num">17.0</td><td class="num">2,040,000</td><td class="num">1,428,000</td><td class="num">612,000</td></tr>
+      <tr class="tot"><td>Total</td><td class="num">23.5</td><td class="num">2,820,000</td><td class="num">1,974,000</td><td class="num">846,000</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="muted" style="margin-top:14px">The cash commitment spreads across nine months and starts at 126,000 in the first month. The step two decision is taken after three months, so the real commitment at the start is 420,000 plus media budget.</p>
+  <p class="muted" style="margin-top:14px"><strong>You are never committed to the total.</strong> The only thing you are agreeing to at the start is step zero, at 126,000 in cash. Step one is decided after you have played the prototype. Step two is decided after you have seen the wishlist number. Three decisions, each one made with better information than the last.</p>
 
   <h3 style="margin-top:30px">What it takes for you to be whole</h3>
-  <p>At a seven dollar price point, after Steam's share and a realistic deduction for regional pricing and discounts, <strong>around 114,000 copies</strong> covers both our cash fee and the full recoup on the deferred portion. After that, fifteen percent of revenue comes to us and the rest is yours.</p>
+  <p>At a seven dollar price point, after Steam's share and a realistic deduction for regional pricing and discounts, <strong>around 117,000 copies</strong> covers both our cash fee and the full recoup on the deferred portion. After that, fifteen percent of revenue comes to us and the rest is yours.</p>
   <p class="muted">Put that against the first table. Content Warning has 163,000 reviews, and reviews typically represent somewhere between a thirtieth and a fiftieth of sales. So the plan does not require House Siege to become one of the genre's major titles. It requires the game to get finished and find a normal audience.</p>
 </section>
 
-<!-- 12 NEXT STEPS -->
-<section class="slide" id="s12">
-  <div class="eyebrow"><span class="n">11</span>Next steps</div>
+<!-- 15 NEXT STEPS -->
+<section class="slide" id="s15">
+  <div class="eyebrow"><span class="n">14</span>Next steps</div>
   <h2>Three things, then we can start</h2>
 
   <div class="grid g3">
-    <div class="card ap"><div class="num">01</div><h4>One game at a time</h4><p>Your material runs three concepts in parallel. We suggest House Siege runs alone until the gate in step one is cleared. The other two lose nothing by waiting.</p></div>
+    <div class="card ap"><div class="num">01</div><h4>One game at a time</h4><p>Your material runs three concepts in parallel. We suggest House Siege runs alone until step zero has been played. The other two lose nothing by waiting a month.</p></div>
     <div class="card ap"><div class="num">02</div><h4>An entity and a clear IP owner</h4><p>Because part of our fee sits on the back end, the agreement needs a clear counterparty and clear ownership. It is a formality, but it should be in place before we start.</p></div>
     <div class="card ap"><div class="num">03</div><h4>One creative decision maker</h4><p>You want to be actively involved creatively, which is good and something we work with often. It works when one person has the final word and the agreement says who.</p></div>
   </div>
 
   <h3 style="margin-top:36px">Proposed meeting</h3>
-  <p class="lede">An hour where we walk the core loop together, look at the reference games in practice, and check whether the price point and 3v3 feel right to you. After that we can set a start date for step one.</p>
+  <p class="lede">An hour where we walk the core loop and the combat together, settle the skill question in section 06, and look at the reference games in practice. If it lands, we can set a start date for step zero and have something playable in your hands a month later.</p>
   <p class="muted">Contact Robert Bäckström, robert@aurorapunks.com.</p>
 </section>
 
 </div>
 
 <div class="foot">
-  Aurora Punks · House Siege development proposal · 16 September 2026 · Confidential, not for distribution.
+  Aurora Punks · House Siege development proposal · 17 September 2026 · Confidential, not for distribution.
   Market data pulled from Steam on 16 September 2026. All amounts in SEK excluding VAT.
   Reference images are copyright their respective developers and are shown here for art direction reference only.
 </div>

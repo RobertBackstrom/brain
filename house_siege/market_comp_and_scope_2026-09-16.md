@@ -33,6 +33,10 @@ Internt underlag. Inget här har gått till Markus, Oscar eller Bibbi.
    som jämförelse.
 6. **Go/no-go-porten mellan dem är 30 000 wishlists inom 60 dagar.** Det är Poldens egen
    signeringströskel, och den är den enda ärliga anledningen att spendera Scope B-pengarna.
+7. **LÄS AVSNITT 11 FÖRST.** Efter Roberts genomgång 2026-09-17 är upplägget tre steg, inte
+   två: ett grålådesteg på 180 000 ligger före butikssidan. Dessutom är strid och skill level
+   nu besvarade (fysikkaos utan vapen, knowledge-tak inte execution-tak), och "eat the house"
+   är utbytt mot salvage. Avsnitt 11 gäller före avsnitt 3, 5, 6 och 10 där de krockar.
 
 ---
 
@@ -564,6 +568,94 @@ Asset Store- och Synty-licenser tillåter kommersiell användning, men villkoren
 mellan evig licens och prenumeration, och vidaredistribution av källfiler är normalt
 förbjudet. Gå igenom licensen för varje paket **innan** det hamnar i ett bygge som ska
 levereras till kunden, inte efteråt. Lägg licensförteckningen som bilaga till avtalet.
+
+---
+
+## 11. Designbeslut och omstrukturering 2026-09-17 (Roberts genomgång)
+
+Fem ändringar efter Roberts läsning. Tre av dem är riktiga designbeslut som inte fanns i
+underlaget ovan, så det här avsnittet gäller före avsnitt 3, 5, 6 och 10 där de krockar.
+
+### 1. Avsändare: "proposed development partner"
+
+Sidan presumerade affären. Nu står det att AP **föreslår sig** som utvecklingspartner.
+Gäller lockup, framsida och AP-avsnittet.
+
+### 2. "Eat the house" är utbytt mot "salvage"
+
+Robert: kul men förvirrande, äter försvararna bokstavligen sina hus? Mekaniken heter nu
+**salvage** och formuleringen är att man river ut och återanvänder. Pull-quote:
+**"You tear the house down to hold it up."** Samma paradox, noll tvetydighet.
+
+### 3. Strid: fysikkaos, inga vapen (NYTT, saknades helt)
+
+Varken deras deck eller min första version sa vad som händer när två spelare möts i en
+korridor. Robert pekade rätt: en stor del av roligheten är fysikkaos, putta, spränga,
+lura motståndare i fällor och under rasande huskroppar.
+
+**Beslut: inga vapen, ingen dör.** Spelare blir omkullslagna, stunnade eller begravda i
+tio till femton sekunder och grävs ut av lagkamrat. Ingen health bar, ingen respawn, inget
+kill feed. Enda talet på skärmen är House Integrity. Verb: shove, swing what you carry,
+drop your load, cut the support, rig it, bait the collapse.
+
+**Varför det är ett budgetbeslut och inte bara ett designbeslut:** deras deck listar
+"explosives, rockets, fight room by room", vilket rakt läst är en shooter. Blir det en
+shooter fördubblas budgeten (gunfeel, ballistik, hit reg, vapenart, animationsset,
+skademodell, permanent balansjobb), comp-setet byts från friendslop till Rainbow Six Siege,
+och publiken byts från folk som vill skratta med kompisar till folk som vill vinna.
+Fysikstrid kostar nästan ingenting extra eftersom varje objekt redan simuleras för
+förstörelsesystemet.
+
+### 4. Skill level: knowledge, inte execution (NYTT)
+
+Robert frågade rakt ut: Fortnite-nivå där toppspelare bygger blixtsnabbt, eller en del i
+taget där man springer och hämtar? Sidan har nu en explicit gaffel med rekommendation.
+
+**Vald: knowledge skill.** Bärandet är långsamt och klumpigt med flit, ett föremål i taget,
+ingen byggmeny, inga hotkeys. Taket ligger i att läsa huset (vilken vägg är bärande, att
+trappan kapar angriparnas väg men också din egen, när ett ras är två slag bort). Tre skäl:
+kompisar med olika skicklighet måste kunna spela ihop och det ÄR genrens premiss;
+långsamt och tungt är roligare och roligt är marknadsföringen; och ett kunskapstak fördjupas
+genom innehåll (nya hus) i stället för genom patchar, alltså inget permanent balansteam.
+
+Execution-modellen kräver konstant balansering och en stor population för matchmaking. I
+3v3 vinner en tränad spelare alltid, och kompisen som hoppar in i månad sex har en usel kväll.
+
+**Beslutet är reversibelt bara fram till att steg två startar.** Sedan sitter det i
+kontroller, animation och netcode.
+
+### 5. Steg 0: grålådeprototyp före allt annat (Roberts förslag, infört)
+
+En månad, en programmerare på heltid och design på halvtid, bara grålådor och rudimentär
+lokal co-op. Ett rum, salvage/carry/slam/break, shove och drop, en vägg som går sönder,
+ett stöd som går att kapa. Ingen art, ingen netcode, inga bottar, inga menyer.
+
+**1,5 manmånader = 180 000 SEK, cash 126 000.**
+
+Det här är den viktigaste strukturändringen i hela upplägget. Första pengagrinden flyttar
+från 600 000 (butikssidan) till 180 000, och frågan som besvaras är den enda som spelar
+roll och som varken marknadsdata eller ett deck kan svara på. Robert har rätt: att bygga en
+Steam-sida för ett spel vi inte vet är roligt är fel ordning.
+
+Steg 2 månad 1 krymper från 2,75 till 2,0 manmånader eftersom designfrågan redan är besvarad.
+
+### Omräknade tal (ersätter avsnitt 10)
+
+| Steg | Manmånader | Totalt | Cash (70 %) | Deferred (30 %) |
+|---|---|---|---|---|
+| 0, grålådeprototyp (1 mån) | 1,5 | 180 000 | 126 000 | 54 000 |
+| 1, butikssidan (3 mån) | 5,0 | 600 000 | 420 000 | 180 000 |
+| 2, bygge till beta (6 mån) | 17,0 | 2 040 000 | 1 428 000 | 612 000 |
+| **Totalt (10 mån)** | **23,5** | **2 820 000** | **1 974 000** | **846 000** |
+
+Recoup 2,5x på 846 000 = 2 115 000. Helt återbetalt vid 1 974 000 + 2 115 000 = 4 089 000,
+alltså **cirka 117 000 exemplar** (var 114 000).
+
+Totalen går upp 90 000 mot förra versionen. Det är rätt pris för att flytta första
+åtagandet från 600 000 till 126 000 i cash. Säg det så i rummet: de binder sig aldrig till
+totalen, de tar tre beslut med allt bättre information.
+
+Stopp-raden i KPI-tabellen säger nu 780 000 (steg 0 + steg 1), inte 600 000.
 
 ---
 
