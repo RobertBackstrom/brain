@@ -7,6 +7,101 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-17 — "Har vi täckning för Voyage?" är två frågor, och kortet är den som brinner [RAG / czp]
+
+**Source project:** RAG / Death Board + CZP Pleo | **Category:** cost, billing, monitoring, rag
+
+Robert frågade om Voyage AI "har funding för våra behov". Två helt skilda frågor gömmer sig i den
+formuleringen och de har motsatta svar:
+
+1. **Leverantören** — Voyage AI är MongoDB-dotterbolag (avsändaradressen är `team@voyage.mongodb.com`,
+   fakturamail går via `finance@aurorapunks.com`). Ingen runway-risk att bevaka. Icke-fråga.
+2. **Vårt konto** — Pleo-kortet bakom Voyage **nekades två gånger i september** (9 sep 00:26 och
+   14 sep 06:26), båda med "inte tillräckligt med medel på företagets Pleo-konto". CZP:s wallet
+   fylldes på med 5 000 SEK den 15 sep. Samma wallet nekade ANTHROPIC 3 sep, ATLASSIAN 9 + 17 juli,
+   GOOGLE*WORKSPACE 2 juli. Det är ett kroniskt mönster, inte en engångshändelse.
+
+**Nyckelinsikt för framtida "är X betalt?"-frågor: avslagen landar i PERSONLIGA brevlådan**
+(`johanrobert.backstrom+creationzero@gmail.com`), inte i jobbmailen. Sök alltid
+`mcp__gmail-personal__gmail_search from:pleo (nekades OR "Avvisad transaktion")` — en sökning i
+jobbmailen ser bara Pleos kvitto-påminnelser och ser därför "allt lugnt" ut. Det finns ingen
+Death Board-larm på declines; `logs/weekly-pleo-sanity.log` bevakar **kvittoflödet**, inte saldot.
+
+**Hur man verifierar att nyckeln faktiskt lever** (billigast möjliga prov, 1 token):
+`curl -s -o /dev/null -w "%{http_code}" https://api.voyageai.com/v1/embeddings -H "Authorization: Bearer $VOYAGE_API_KEY" -H "Content-Type: application/json" -d '{"input":["ping"],"model":"voyage-3-large"}'`
+200 = kontot har kvar krediter. Voyage exponerar **ingen** saldo- eller usage-endpoint och svarar
+inte med några quota-headers (bara `x-request-id` + tom `x-api-warning`), så *kvarvarande* kredit
+går inte att läsa programmatiskt — bara "fungerar / fungerar inte". Dashboarden är login-only.
+
+**Storleksordningen gör problemet löjligt:** 772,3M tokens sedan 2026-04-25 ≈ $139 golv
+(lokal räknare underskattar ~1,6x → verkligt ~$220 totalt). Senaste 30 dygnen: 161,1M ≈ $29 golv
+/ ~$46 verkligt = **~440 SEK/mån**, och taket `maxEmbedTokensPerDay=10M` ger absolut värsta fall
+$54/mån ≈ 510 SEK. En enda 5 000-påfyllning täcker Voyage i tio månader. Kortet nekas alltså inte
+för att Voyage är dyrt, utan för att wallet:en delas med allt annat och körs till noll.
+
+**Blind fläck:** `kv_state` mäter bara `embed_tokens:<datum>`. Rerank (`rerank-2.5`) har **ingen**
+mätare alls — den spenderingen är osynlig lokalt. Liten i absoluta tal (bara sökfrågor, $0,05/1M),
+men "ledgern visar allt vi spenderar" är fel påstående.
+
+**Generaliserar:** när en tjänst betalas via ett delat förbetalt kort är tjänstens egen kostnad
+irrelevant för uppetiden — grannarnas kostnad avgör. Leta efter nekandet, inte fakturan.
+
+## 2026-09-17 — Räkna där trafiken redan passerar, och testa larmvägen i båda riktningarna [db-358, db-359, db-360]
+
+**Den billigaste mätpunkten är den som redan ser trafiken.** Instinkten för "hur många har öppnat
+pitchen" är en beacon i sidan. Men `pitches-server.js` ser varje request ändå, så
+öppningsräkningen blev tio rader där i stället: noll ändringar i de 27 befintliga pitcharna, inget
+att glömma i nästa pitch, och den räknar läsare med JS av eller blockerare på. Generellt: innan du
+instrumenterar klienten, fråga vilken server som redan har svaret.
+
+**Tre uteslutningar som var och en hade förstört siffran, och som ingen av dem är uppenbar.**
+(1) *401 får inte räknas som misslyckat försök.* En webbläsare skickar alltid en oautentiserad
+request innan den visar lösenordsrutan, så "logga nekade försök" hade gett ett falskt misslyckande
+på varje giltig visning. (2) *Bara den kanoniska URL:en får räknas.* `/slug` 301:ar till `/slug/`
+och kommer tillbaka, så att räkna båda dubblar varenda öppning. (3) *Länkförhandsvisningar är inte
+läsningar.* Slack, LinkedIn, WhatsApp och Discord hämtar alla länken för att unfurla den — utan
+UA-filter ser varje delad länk öppnad ut i samma sekund den skickas, vilket är exakt den signal
+man försökte mäta. Min egen övervakning var en fjärde: länkträdets HEAD-probe mot alla 27 slugs
+hade annars lagt på 27 visningar var femte minut.
+
+**Testa ett larm i båda riktningarna innan du litar på det.** Jag införde en artificiell varning
+(la en `.gated`-markör på en publik pitch lokalt, utan att synka), körde, tog bort den, körde igen.
+Det bevisade tre saker som inget av dem syns i en lyckad tyst körning: att larmet går fram (HTTP <
+300, nu loggat — tyst fel i en larmväg är värre än inget larm), att övergången ny→löst rapporteras,
+och att oförändrat läge är tyst. Den sista är den som avgör om larmet fortfarande läses om en
+månad; ett larm som fyrar var 30:e minut på samma kända problem slutar läsas efter andra dagen.
+
+**Fråga vad premissen bygger på innan du bygger det som beställdes.** Robert bad om en cron som
+"håller länkträdet uppdaterat när nya pitchar skapas". Trädet är inte en lagrad lista — det läser
+katalogen vid varje sidladdning, så en ny pitch syns direkt och cronen hade inte gjort någonting.
+Behovet fanns åt andra hållet: varningarna såg ingen förrän någon råkade öppna sidan. Rätt svar var
+alltså en cron, men en som larmar i stället för uppdaterar. Hade jag byggt det som stod i
+beställningen hade han fått en timer som mätte noll.
+
+**En "död länk" kan vara en funktion som aldrig byggdes.** `INGEST` på RAG-dashboarden renderades
+som `<span class="pill attn">`. Ingen regression, ingen trasig href — bara en etikett som såg
+klickbar ut. Värt att kolla elementtypen innan man börjar felsöka en länk som "slutat fungera".
+Fixen återanvände `/api/followups` + `/:id/activity` i stället för ny API-yta, vilket gav
+duplikathanteringen på köpet: två klick på samma lucka landar i samma ärende. Notera att
+`appendActivity` plattar radbrytningar till en rad — komponera för en rad, inte markdown-block.
+
+**ssh som datakälla i en webbrequest går bra om den är cachad och får ge upp.** Länkträdet hämtar
+öppningsstatistiken från edgen över den ssh-väg som redan fanns, i stället för att öppna ny
+nätverksyta. Kall laddning 1,3 s (ssh + 27 HEAD parallellt), cachad 2 ms. Hård timeout på 8 s och
+degradering till tom statistik, så en hängande edge aldrig hänger sidan. Att aggregera på edgen i
+stället för att hämta hem loggen håller dessutom IP-raderna (personuppgifter) på en maskin och gör
+överföringen platt när loggen växer.
+
+**Ärendenummer är inte dina förrän filen finns.** Jag skrev `db-356` i kodkommentarer och
+commit-meddelanden innan ärendet fanns — och en parallell session tog db-356 till något helt annat
+under tiden. Allokera via POST `/api/followups` (den gör create-med-`wx` och räknar upp vid EEXIST)
+och skriv in numret i koden **efter** att API:t svarat. Samma maskin kör flera sessioner; ingenting
+i git eller followups-katalogen är ensamt ditt medan du jobbar.
+
+**Projekt:** db · **Kategori:** mätning, larm, kravgranskning, samtidighet ·
+**Taggar:** view-tracking, unfurl-bots, 401-false-negative, kanonisk-URL, larm-transitioner,
+appendActivity, ticket-kollision, ssh-som-datakälla
+
 ## 2026-09-16 — En stängd listning ska flyttas bakom auth, inte återuppstå; och gating som inte reser med sidan [db-355]
 
 Robert ville ha länkträdet över pitcharna på internal. Rotlistningen på `pitch.aurorapunks.com/`
