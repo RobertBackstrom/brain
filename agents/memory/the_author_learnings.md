@@ -9,6 +9,45 @@ correction he made, or an example he pasted. Simulated-context passes are flagge
 
 ---
 
+## 2026-09-17 - En ardd layout bar ett retoriskt slot, och att fylla det ar hur en maxim tar sig in i ett faktadokument [Bandit Island, bi-001]
+
+Robert pekade pa forsta raden i Bandit Island-pitchen, "Six SKUs. Twelve calendar months. The
+cost sits in the input layer, not in the port.", och sa: *"AI slop. Ta bort och lar Author att
+vi inte skriver sant har. Vad forsoker du uppna med det."*
+
+Tva saker att lara sig, och den andra ar den nya.
+
+**Ett: The Author hade aldrig sett sidan.** Voice-passet kordes pa foljemailet, som regeln
+kraver, och aldrig pa dokumentet som mailet lankade till. Korpusen hade redan svaret:
+`skills/voice/anti_selling.md` listar maxims som en cut-kategori och sager rakt ut att
+quotability ar en varningsflagga, och `register_documents.md` finns specifikt for pitchsidor.
+**Ett kundvant dokument med kommersiella siffror gar genom samma grind som ett mail.** Att
+mailet ar godkant sager ingenting om sidan.
+
+**Tva: raden kom fran ett layoutslot, inte fran en formulering.** Sidan byggdes pa
+`pitches/project-irons-2-v3/` som strukturmall, och den mallen har ett `.hook`-element mellan
+H1 och siffrorna: stort, amberfargat, 40 tecken brett. Sloten ar byggd for att landa en replik.
+Ombyggnaden dopte om den till `.subline`, beholl den och fyllde den. Ingen bestamde sig for att
+skriva en maxim; mallen bad om en och fick en.
+
+Tva till av samma art lag i samma dokument och kom ut med den: "The port is the smaller half.
+The input layer is the larger half" (samma parallell, direkt ovanfor ett stycke som redan sa
+saken rakt ut, alltsa ren dubblering) och "The project as a whole, both sides stated" som
+SWOT-ingress, vilket ar skribenten som annonserar sin egen arlighet.
+
+**How to apply.** Ar du en layout ar du dess retoriska slots. Innan du fyller ett element som ar
+storre, fargat eller mer framtradande an brodtext: fraga vad sloten ar till for. Ar svaret "att
+landa en replik", **radera elementet, skriv inte i det.** Omslaget pa ett faktadokument ar
+logga, titel, siffror och vad estimatet vilar pa.
+
+Svepet som hittar alla tre pa en gang: `grep` ut varje `.lede`, `.hook`, `.subline` och
+underrubrik och las dem som en platt lista utan styling. Allt som overlever som en mening du
+skulle satta pa en slide men inte i ett stycke ska bort. Kolla sedan varje rad mot stycket
+under den.
+
+Se [[feedback_pitch_pages_get_the_voice_gate]] och det nya avsnittet i
+`skills/voice/anti_selling.md`.
+
 ## 2026-08-28 - Rubrikregeln bekräftad en andra gång samma dag, nu på engelska och mot en publisher [k2c / Pharaoh Lands, mail register]
 
 Andra oberoende bekräftelsen på **samma dygn** av regeln i Curveball-entryn längre ned: *rubriken är
@@ -798,3 +837,16 @@ mot mitt pass innan nästa mailpass.
 ## 2026-09-16 - Bandit Island team (Stephen Jarrett, Woody et al.), Jeopardy port estimate cover note: team register seeded from the thread, cover-note cuts [bandit-island / pitches, mail register, my edits unverified]
 - **Register to the Bandit Island *team* is mail-evidenced from two sends, both to the group address list (thread `198d17a101e3f36b` Aug 2025 "Artists", thread `1a0a9cb279aa62e5` 16 Sep 2026):** opener "Hello," even though Stephen is personal-friend tier (39 LinkedIn DMs, emoji, dinner planning on Södermalm). The DM register does not carry into a six-person work thread with people he has not met; the friend tier shows only as zero ceremony, not as smileys. Close is lowercase **"best"** alone, sig block carries the name. Plain contracted English, one-line paragraphs, "But in the meantime," as his own bridge phrase. Woody (Robert Woodburn) writes "Hey All," + ":)" + "All the best, Woody", which licenses the warm-reply form ("Hey,") on the reply but not a smiley from our side. No `voice/people/` profile; this entry is the seed. Category: person/team register (mail-evidenced).
 - **Cover-note pass ([[feedback_first_mail_is_a_cover_note]]) cuts, all existing taxonomy:** "Fair warning," (announced-honesty label, 2026-09-07 family) deleted, the caveat behind it kept as a flat status fact; "so you have something to chew on while that lands" (helpfulness narration) replaced by his own "In the meantime,"; "we know how those approvals go" (knowing-nod credential claim) replaced by the flexibility offer from the warm-reply corpus ("take the time it needs", cf. "Ingen stress, när du får en lucka"); "The short version is that" (meta-signposting) deleted; "and there's a section in there on why and what we'd do about it" (page-feature sentence, the "Everything is on one page" cut, Tuut 2026-09-08) deleted, the two-clause hook stands on its own. Kept "Two weeks with the source and we can turn it into a real number" as plan-acting (it is our turnaround, not a term). Close rebuilt on his own "Shout if you want to walk through any of it live." Diff against what he sends. Category: register (my edits, unverified).
+
+## 2026-09-17 (b) - House Siege pitch, first full pass after three same-day rebuilds: the hook slot stays when it holds the logline, and a cut pull leaves dangling references [hsg / Markus Mansson + Oscar Nordqvist, document register, my edits unverified except the hook direction, which is his]
+- **Robert's own direction for the `.hook` slot, verbatim:** "Andra wording, not i stil med: One house Two teams, one tearing the house down from the outside, one trying to keep it supported from the inside. All in a physics based chaos". So the Bandit Island rule (delete an inherited hook slot) has its boundary: **the slot stays when its payload is the game's premise stated cold**, because a logline is content a reader with no games background needs, not a maxim about our value. What he replaced was the paradox form ("You tear the house down to hold it up"), which is the maxim shape wearing a logline's clothes. Test for a hook: could a stranger draw the game from it? His version passes; the paradox does not. Category: register rule (his words, pitch documents).
+- **The same maxim sat in the hook AND as a `.pull` two sections down, verbatim.** A line that is both the cover and a pull quote has failed the vanity test twice. When a pitch page carries `.pull` elements, grep the hook text against them first. Category: process.
+- **All six `.pull` quotes went.** Five were X-not-Y or paradox maxims ("Scaling down is not lowering the ambition. It is putting the evidence in front of the money", "The best player in the room should win because they knew the house, not because they clicked faster", "The art should look like a person made it quickly, not like a machine made it perfectly"); one was an escalating triple with a punchline ("Nobody carries a weapon. Nobody dies. You never kill anyone, you inconvenience them spectacularly"), whose two spec fragments folded into the lede above it; one was a conditional maxim ("If carrying a bathtub ... is not funny in grey boxes, no amount of art will save it") that the gate paragraph already stated as a decision rule. On a `.pull` the mechanical rule from the DC pass holds: the paragraph beneath already says it, so delete the element, do not shorten it. Category: register (pitch documents).
+- **A cut pull can leave a dangling cross-reference.** The art section's closing note said "for the reason in the pull quote". After cutting pulls, ledes or hooks, grep the page for "pull quote", "above", "below", "previous page" and "next section" and re-read each hit; the document referring to its own cut element is both a broken reference and the self-referential shape from the 2026-09-07 specimen. Category: process.
+- **Where the drift sat, as [[feedback_author_scope_is_a_floor]] predicted:** sections 01 to 09 (who we are, market, scale, loop, combat, skill, risks, art, step zero) carried about forty hits; the three milestone card sets, the deal table, the money table and the gate table came through with three cells to touch ("More houses are content, not evidence", "the single biggest cost decision in the whole project", "The industry's own signing threshold" overreaching from one publisher's number) and one closing paragraph. Recurring tells on this drafter: "actually" as an intensifier (five times), "the entire / the whole / the single / the only" before a noun, "for three reasons" and "three things follow" signposts, "which is good and something we work with often" grading the counterpart, and two "honest" labels. Category: register (my edits, unverified).
+
+## 2026-09-17 - K2C team Discord (Fredrik Laurent et al.), follow-up after his Jira-bot complaint: developer-to-developer changelog register [k2c / Pharaoh Lands, Discord channel, English, simulation, my edits unverified]
+- **Corpus for this exact context = his one real line: "Ok bra feedback fixar det."** Zero self-justification, zero ceremony. The follow-up inherits that: open on the subject ("Quick update on the Jira bot after Fredrik's note yesterday."), concede in three words ("You were right."), then facts. No "Tja!", he is mid-thread in a channel, and no sign-off. Category: channel register (Discord, k2c team, simulation).
+- **Bullets kept, against the no-lists-in-messages rule, on the same ground as the Rift 2026-09-08 "more bullet point list" instruction:** the body is a changelog (three bugs / what changed / known gaps), each line a fact a developer scans. A bug list as prose in Discord is worse Robert than a bug list as bullets. Sequential-paragraph conversion (Amer 2026-07-17, Elias 2026-09-08) stays the default for DMs with instructions, not for changelogs to a dev team. Category: channel register (Discord).
+- **Cuts under the anti-selling test:** "The wording on the board is yours." (a maxim tailing a fact, keep the clause up to the full stop) and "That beats it swallowing real work." (self-justifying kicker; the preceding "err towards filing" sentence already says it). Everything factual, including the self-deprecating "happily filed", the 06:45 pass, the guardrail conditions and the four KAN pairs, passed through untouched.
+- **Practical constraint no earlier pass recorded: Discord caps a message at 2000 characters.** Count with `wc -m` before returning a channel post; this one landed at 1661. Longer content has to be split or moved to a page. Category: tooling (Discord).
