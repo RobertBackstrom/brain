@@ -23,20 +23,27 @@ expects to know more early in the week of 21 Sep.
 
 ## The estimate as delivered
 
-Scope is six SKUs: PS5, PS4, Xbox Series X/S, Xbox One, Switch, Switch 2. Steam is theirs, their
-PC version lands Feb 2027. Four roles, 28,5 FTE-months, **3 420 000 SEK** at the 120 000 SEK per
+Scope is six SKUs: PS5, PS4, Xbox Series X/S, Xbox One, Switch, Switch 2. Steam is theirs.
+Five roles, 30,7 FTE-months, **3 684 000 SEK** at the 120 000 SEK per
 FTE-month rate Robert gave them in the office on 11 Sep.
+
+Confirmed by Robert 17 Sep: engine is **Unity**; the title is **unreleased** with a target
+release of February 2027, not shipping as first assumed; and Robert bills **EP at 20 %**
+allocation rather than giving it away, which is the fifth role and the 264 000 SEK difference
+from the 16 Sep figure of 3 420 000.
 
 | Phase | Window | FTE-mo |
 |---|---|---|
-| Architecture + companion prototype | Dec 2026 to Feb 2027 | 7,5 |
-| Main port, six SKUs | Mar to Aug 2027 | 18,0 |
-| Certification | Sep to Oct 2027 | 3,0 |
+| Architecture + companion prototype | Dec 2026 to Feb 2027 | 8,1 |
+| Main port, six SKUs | Mar to Aug 2027 | 19,2 |
+| Certification | Sep to Oct 2027 | 3,4 |
 
-Release-ready Nov 2027. The pre-phase deliberately runs while they finish the PC version, so the
-riskiest unknown is settled before the expensive months start.
+Release-ready Nov 2027. The pre-phase deliberately runs while they finish the game, so the
+riskiest unknown is settled before the expensive months start. Because the title is unreleased,
+the pre-phase works against a build that is still moving, which is now stated as a weakness in
+the SWOT rather than glossed.
 
-Alternates priced in the pitch: the second quiz title on the same codebase, roughly 1,1 MSEK;
+Alternates priced in the pitch: the second quiz title on the same codebase, 8 to 10 FTE-months;
 gamepad-only with no phone and no voice, roughly 1,1 MSEK and explicitly not recommended.
 QA and release management are excluded on the stated assumption that Amazon covers them, with
 roughly 600 000 SEK named as the add if that turns out to be wrong.
@@ -62,7 +69,7 @@ reliably in the room.
 ## Open items
 
 - [ ] Source-code access. Blocked on Amazon. Everything else is downstream of it, and the estimate is worth materially more once we have had two weeks with the code.
-- [ ] Engine unconfirmed. The estimate assumes one engine across both titles and a separable input layer. If input handling is woven through game logic the port side grows.
+- [ ] How separable the Luna input layer is from game logic. Engine confirmed Unity, so that half is closed; if input handling is woven through game logic the port side still grows.
 - [ ] How coupled the game is to Luna identity, entitlement, session and storage services beyond input and voice.
 - [ ] Jeopardy! rights for console distribution. Not our work, on our critical path. Cheaper to start in parallel with Gate 1 than to find at submission.
 - [ ] Who publishes and who holds the platform accounts, Amazon or Bandit Island.

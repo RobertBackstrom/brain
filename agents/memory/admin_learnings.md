@@ -12,6 +12,42 @@
 <!-- Append new learnings with: learning, source project, date, category -->
 
 
+## 2026-09-17 — Två register, en pollare, fel box: arkiveringen var död i tre veckor och registreringen var oskyldig (k2c / apb / db-361)
+
+**Rätta gårdagens slutsats innan du bygger på den.** Jag skrev att rotorsaken var att "skicka" och
+"registrera" är två kommandon. Det är sant men **inte hela orsaken, och den mindre halvan.** Den
+större: `opensign-watch.js poll` (08:15) ligger kvar i crontabben på **Hetzner-edgen**
+(`ubuntu-8gb-hel1-1`), medan allt arbete sker på **Nitro**. Edge-boxen har sin **egen**
+`opensign-watch.json` med **10 poster, orörd sedan 2026-08-20 08:15**, och sin egen opatchade
+`opensign.js`. Nitros registry har 30. Alltså: **varje registrering från en session går till en
+fil som ingen pollar, och den enda pollaren läser en fil som ingen skriver till.** Att registrera
+dokumentet fixar därför ingenting i sig, och min auto-register-patch på Nitro fixar det inte
+heller. **Regel: innan du kallar ett schemalagt jobb "trasigt" eller "fixat", slå upp vilken
+maskin cronraden ligger på och läs DEN boxens state-fil.** `crontab -l` på fel box är ett tomt
+svar som ser ut som ett svar. Sedan bare-metal-flytten 2026-08-24 har inget arkiverats av
+schemat; det som ändå blev filat (Simon Jakobsson 2026-09-05) gjordes av nattsvepet för hand.
+
+**Mekanismen som gömde det: en känd varning parkerad bakom ett villkor utan utgångsdatum.**
+[[project_baremetal_migration]] dokumenterade exakt det här under KNOWN CAVEATS — "move it to
+Nitro before relying on it again" — men kvalificerat med **"no contract is out right now"**. Det
+villkoret var **redan falskt när det skrevs** (Amendment No. 1 hade varit signerad sedan
+2026-07-22) och ingen satte ett datum på det. **En parkerad varning som lutar sig mot ett
+föränderligt tillstånd måste bära både tillståndet och när det ska kontrolleras igen** ("inget
+avtal ute per 24 aug, kontrollera vid nästa utskick"), annars läser nästa agent villkoret som
+permanent. Exakt samma felform som anmärkningsfristen 2026-08-11 (se noten 2026-08-…, "en negativ
+statuskontroll är färskvara").
+
+**Tredje gången samma bugg misstogs för en engångshändelse.** `process-log.json` visar att
+**4am-svepet 2026-09-05** träffade precis det här på Simon Jakobssons avtal, filade det dokumentet
+och skrev orsaken som "dokumentet var aldrig registrerat". En instans lagad, mönstret missat.
+Jag gjorde om samma sak 2026-09-16 på Amendment No. 1. **När du hittar ett dokument som inte
+arkiverats: räkna alltid ALLA dokument på servern mot registret innan du åtgärdar det enskilda.**
+`parseQuery("contracts_Document", {limit:500})` tar ett anrop och hade avslöjat mönstret vid
+första tillfället, tre veckor och tolv avtal tidigare.
+
+**Tags:** fel-box, två-register-en-pollare, crontab-på-annan-maskin, parkerad-varning-utan-utgång,
+engångsdiagnos-missar-mönstret, db-361, baremetal-24-aug
+
 ## 2026-09-16 — Ett verktyg som skickar men inte registrerar bygger ett arkiv som ser komplett ut och är till 60 % tomt (k2c / apb / czp)
 
 **Registret var aldrig sanningen om vad som signerats — servern var det.** `opensign-watch.json`
@@ -24,6 +60,11 @@ larmade, för inget gick sönder — registret rapporterade glatt om de få doku
 på registret.** `opensign.js` saknar en list-funktion, men `parseQuery("contracts_Document",
 {limit:500, order:"-createdAt"})` är exporterad och tar masterkey — det är den auktoritativa
 inventeringen och den tar ett anrop.
+
+**RÄTTELSE 2026-09-17: det nedan är halva orsaken, inte hela.** Den större är att pollaren kör på
+Hetzner-edgen mot ett eget, stale register, så registrering ger inte arkivering oavsett hur den
+sker. Patchen nedan är riktig men löser INTE arkiveringen på egen hand. Se noten 2026-09-17
+högst upp och db-361 innan du litar på att flödet är helt.
 
 **Rotorsaken är formen "skicka" och "registrera" som två kommandon.** `opensign.js send` skapade
 dokumentet och slutade där; arkiveringen hängde på att någon separat körde `opensign-watch.js

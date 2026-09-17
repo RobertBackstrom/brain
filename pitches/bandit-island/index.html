@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#05061a; --gold:#e8b63c; --amber:#ffd86b; --teal:#4cc6bf; --steel:#9aa0b4;
+  --bg:#05061a; --accent:#e8b63c; --gold:#e8b63c; --amber:#ffd86b; --teal:#4cc6bf; --steel:#9aa0b4;
   --panel:#101334; --panel-2:#14183f; --line:#242a55; --line-2:#333a6b;
   --text:#ffffff; --muted:#b9bdd4; --muted-2:#7d84a4;
   --ok:#5fd39a; --warn:#ffd86b; --bad:#ff8b7a;
@@ -28,19 +28,19 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
 
 .deck{position:relative;z-index:1}
 .slide{padding:68px 56px 72px;max-width:1280px;margin:0 auto;border-bottom:1px solid var(--line)}
-.slide.cover{min-height:88vh;display:flex;flex-direction:column;justify-content:center}
+.slide.cover{padding-top:80px}
 .slide:last-child{border-bottom:0}
 @media(max-width:820px){.slide{padding:48px 22px 54px}}
 
 .eyebrow{font-family:var(--disp);font-weight:700;letter-spacing:.24em;text-transform:uppercase;font-size:21px;color:var(--gold);margin-bottom:16px}
 .eyebrow .n{color:var(--amber);margin-right:10px}
-h1,h2,h3,h4{font-family:var(--disp);line-height:1.08;margin:0 0 16px}
+h1,h2,h3,h4{font-family:var(--disp);line-height:1.08;margin:0 0 16px;text-wrap:balance}
 h1{font-size:clamp(34px,5.2vw,64px);font-weight:800;letter-spacing:-.01em;text-transform:uppercase}
 h2{font-size:clamp(26px,3.4vw,42px);font-weight:800;text-transform:uppercase}
 h3{font-size:18px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gold)}
 h4{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
-p{margin:0 0 14px;max-width:78ch}
-.lede{font-size:17px;color:#e7e9f8;max-width:78ch}
+p{margin:0 0 14px;max-width:78ch;text-wrap:pretty}
+.lede{font-size:17px;color:#e7e9f8;max-width:66ch;text-wrap:pretty}
 .muted{color:var(--muted)}
 strong{color:#fff;font-weight:700}
 ul{margin:0 0 14px;padding-left:19px}
@@ -52,7 +52,6 @@ li::marker{color:var(--gold)}
 .lockup img{height:52px;width:auto;display:block}
 .lockup .rule{height:32px;width:1px;background:var(--line-2)}
 .lockup .co{font-family:var(--disp);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:13px;color:var(--muted-2)}
-.subline{font-family:var(--disp);font-weight:600;font-size:clamp(18px,2vw,24px);line-height:1.25;color:var(--amber);max-width:52ch;margin:14px 0 26px}
 .statrow{display:flex;gap:40px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--line)}
 .stat .k{font-family:var(--disp);font-size:clamp(24px,2.8vw,34px);font-weight:800;line-height:1;color:#fff}
 .stat .k.gold{color:var(--gold)}
@@ -107,6 +106,23 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
 .tag.lo{background:rgba(154,160,180,.13);color:var(--steel)}
 .tag.rec{background:rgba(95,211,154,.14);color:var(--ok)}
 
+.skumap{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:32px 0 16px}
+@media(max-width:820px){.skumap{grid-template-columns:1fr}}
+.fam{border-top:2px solid var(--line-2);padding-top:12px}
+.fam.ps{border-top-color:#4a7fd4}.fam.xb{border-top-color:#6fbf73}.fam.nt{border-top-color:#d4706e}
+.fam h4{margin-bottom:10px;letter-spacing:.18em}
+.fam.ps h4{color:#7ea6e8}.fam.xb h4{color:#8fd192}.fam.nt h4{color:#e59492}
+.sku{border:1px solid var(--line);border-left:2px solid var(--line-2);border-radius:2px;padding:9px 12px;margin-bottom:8px;background:rgba(255,255,255,.015)}
+.fam.ps .sku{border-left-color:#4a7fd4}.fam.xb .sku{border-left-color:#6fbf73}.fam.nt .sku{border-left-color:#d4706e}
+.sku .nm{font-family:var(--disp);font-weight:700;font-size:16px;letter-spacing:.03em;display:block}
+.sku .hw{font-size:12.5px;color:var(--muted-2);display:block;margin-top:2px}
+.sku.warn{border-left-color:var(--bad)!important}
+.sku.warn .hw{color:var(--bad)}
+.famnote{font-size:12.5px;color:var(--muted-2);margin:6px 0 0;max-width:none}
+.qrow{display:grid;grid-template-columns:34px 1fr;gap:14px;border-top:1px solid var(--line);padding:14px 0}
+.qrow .qn{font-family:var(--disp);font-weight:800;font-size:22px;color:var(--gold);line-height:1}
+.qrow .qq{font-weight:600;color:#fff;margin:0 0 5px;max-width:none}
+.qrow .qw{font-size:14.5px;color:var(--muted);margin:0;max-width:none}
 .bignum{font-family:var(--disp);font-weight:800;font-size:clamp(40px,6.4vw,80px);line-height:.95;color:var(--gold);letter-spacing:-.015em}
 .bignum .cur{font-size:.34em;color:var(--muted);letter-spacing:.06em;margin-left:11px;vertical-align:super}
 
@@ -152,14 +168,35 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
     <span class="co">Initial port estimate · Bandit Island</span>
   </div>
   <h1>Jeopardy!<br>Luna to console</h1>
-  <p class="subline">Six SKUs. Twelve calendar months. The cost sits in the input layer, not in the port.</p>
+  <p class="lede" style="margin:18px 0 26px">Five roles over twelve calendar months. Architecture and prototype run from December; the main port starts in March, after your February release.</p>
   <div class="statrow">
-    <div class="stat"><div class="k gold">6 SKUs</div><div class="l">PS5 · PS4 · Series · One · Switch 2 · Switch</div></div>
-    <div class="stat"><div class="k">28,5</div><div class="l">FTE-months, 4 roles</div></div>
+    <div class="stat"><div class="k gold">6 SKUs</div><div class="l">Seven hardware targets</div></div>
+    <div class="stat"><div class="k">30,7</div><div class="l">FTE-months, 5 roles</div></div>
     <div class="stat"><div class="k">Dec 2026 to Nov 2027</div><div class="l">Start to release-ready</div></div>
-    <div class="stat"><div class="k neon">3,42 MSEK</div><div class="l">Ex. VAT</div></div>
+    <div class="stat"><div class="k neon">3,68 MSEK</div><div class="l">Ex. VAT</div></div>
   </div>
-  <p class="muted" style="font-size:13.5px;margin-top:24px">Basis: the build shown on 11 September 2026 and the meeting at your office. No source-code access. Section 08 states what this is standing on and what would change it.</p>
+  <div class="skumap">
+    <div class="fam ps">
+      <h4>PlayStation</h4>
+      <div class="sku"><span class="nm">PlayStation 5</span><span class="hw">Microphone in the DualSense pad</span></div>
+      <div class="sku"><span class="nm">PlayStation 4</span><span class="hw">8 GB shared, older CPU</span></div>
+      <p class="famnote">Submitted per territory. SIEA, SIEE and SIEJA run their own certification, ratings and store pages.</p>
+    </div>
+    <div class="fam xb">
+      <h4>Xbox</h4>
+      <div class="sku"><span class="nm">Xbox Series X and Series S</span><span class="hw">One product, two hardware targets. Series S has the smaller memory budget and is the binding one.</span></div>
+      <div class="sku"><span class="nm">Xbox One</span><span class="hw">8 GB shared</span></div>
+      <p class="famnote">One submission per generation.</p>
+    </div>
+    <div class="fam nt">
+      <h4>Nintendo</h4>
+      <div class="sku"><span class="nm">Switch 2</span><span class="hw">System microphone, 12 GB</span></div>
+      <div class="sku warn"><span class="nm">Switch</span><span class="hw">4 GB shared, and no microphone anywhere in the system. This SKU sets the architecture.</span></div>
+      <p class="famnote">Separate lotcheck per platform.</p>
+    </div>
+  </div>
+  <p class="muted" style="font-size:13.5px">Submission packages are a different count again, and depend on how many PlayStation territories are in scope: six in one territory, up to ten across all three. Question 1 in section 08.</p>
+  <p class="muted" style="font-size:13.5px">Basis: the build shown on 11 September 2026 and the meeting at your office. No source-code access. Section 08 states what this is standing on and what would change it.</p>
 </section>
 
 <!-- 2 SCOPE -->
@@ -168,20 +205,19 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
   <h2>What is being quoted</h2>
 
   <div class="kv" style="margin-top:18px">
-    <div class="k">Title</div><div class="v">Jeopardy!, built for Amazon Luna GameNight. Second quiz title indicated separately in section 06.</div>
-    <div class="k">Platforms in</div><div class="v"><strong>PlayStation 5, PlayStation 4, Xbox Series X/S, Xbox One, Nintendo Switch, Nintendo Switch 2.</strong></div>
-    <div class="k">Platforms out</div><div class="v">Steam. Your PC version completes February 2027 and is yours.</div>
-    <div class="k">Work in</div><div class="v">Platform bring-up on six SKUs. Save data, achievements and trophies, store and entitlement hooks, suspend and resume, profile handling. Memory and load-time optimisation. Companion web client and relay service. Phone UI and UX. Platform requirement checklists run internally. Bug fixing on defects traceable to our work, through release or 60 days after Gate 6, whichever comes first.</div>
-    <div class="k">Work out</div><div class="v">QA and release management (assumed covered by Amazon). Certification fees and developer accounts. Relay hosting after launch. Jeopardy! rights clearance for console. Localisation, additional question content, marketing and store assets.</div>
+    <div class="k">Title</div><div class="v">Jeopardy!, in development for Amazon Luna GameNight, target release February 2027. Second quiz title indicated separately in section 06.</div>
+    <div class="k">Platforms Included in Offer</div><div class="v"><strong>PlayStation 5, PlayStation 4, Xbox Series X and Series S, Xbox One, Nintendo Switch, Nintendo Switch 2.</strong> Six SKUs, seven hardware targets. Submission count depends on PlayStation territory scope, see question 1.</div>
+    <div class="k">Platforms Not in Offer</div><div class="v">Steam. Your PC version completes February 2027 and is yours.</div>
+    <div class="k">Work Included</div><div class="v">Platform bring-up on six SKUs. Save data, achievements and trophies, store and entitlement hooks, suspend and resume, profile handling. Memory and load-time optimisation. Companion web client and relay service. Phone UI and UX. Platform requirement checklists run internally. Bug fixing on defects traceable to our work, through release or 60 days after Gate 6, whichever comes first.</div>
+    <div class="k">Not Included in Offer</div><div class="v">QA and release management (assumed covered by Amazon). Certification fees and developer accounts. Relay hosting after launch. Jeopardy! rights clearance for console. Localisation, additional question content, marketing and store assets.</div>
     <div class="k">Team</div><div class="v">Porting engineer, UI engineer, UX designer, producer at half time. Porting lead is Oskar Hansen, present at the 11 September meeting.</div>
     <div class="k">Rate</div><div class="v"><strong>120 000 SEK per FTE-month</strong>, flat across all roles, as discussed at your office. Ex. VAT.</div>
-    <div class="k">Dependency</div><div class="v">Main port cannot start before your PC version completes. Input architecture work does not depend on it and runs December to February.</div>
+    <div class="k">Dependency</div><div class="v">The title is unreleased. The main port starts in March, after your February target, so we are not porting a moving codebase. Input architecture work does not depend on that date and runs December to February.</div>
   </div>
 
-  <h3 style="margin-top:34px">The finding that sets the cost</h3>
-  <p class="lede">The port is the smaller half. The input layer is the larger half, because on Luna it is not part of your game.</p>
+  <h3 style="margin-top:34px">The input layer is not part of your game today</h3>
   <p class="muted">On Luna the phone-as-controller pairing, the input relay and the speech recognition are <strong>Amazon platform services</strong>, running in Amazon's data centre alongside the game instance. The game receives clean events and never handles audio. On a console none of those services exist. Room-code join, companion client, relay and speech recognition all become part of the product.</p>
-  <p class="muted">The estimate assumes Unity or a comparable engine, and a codebase where the Luna input layer is separable from game logic. Both are unconfirmed until we see the code. Section 08 states what moves if either is wrong.</p>
+  <p class="muted">The engine is Unity, confirmed at the meeting, which is the stack our porting lead ships on. What is still unknown is how separable the Luna input layer is from game logic. Section 08 states what moves if it is woven through.</p>
 </section>
 
 <!-- 3 WHAT DOES NOT PORT -->
@@ -234,7 +270,7 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
       <thead><tr><th>SKU</th><th>Built-in microphone</th><th>Memory</th><th>Effort</th><th>Note</th></tr></thead>
       <tbody>
         <tr><td><strong>PlayStation 5</strong></td><td>Yes, DualSense mic array</td><td>16 GB GDDR6</td><td><span class="tag md">Baseline</span></td><td>Vertical slice target. A pad-microphone path for single player is possible but is not in this estimate; option A routes all audio via the phone.</td></tr>
-        <tr><td><strong>Xbox Series X/S</strong></td><td>No, headset only</td><td>16 / 10 GB</td><td><span class="tag lo">Low on top</span></td><td>Shares most of the PS5 work.</td></tr>
+        <tr><td><strong>Xbox Series X and Series S</strong></td><td>No, headset only</td><td>16 GB / 10 GB</td><td><span class="tag lo">Low on top</span></td><td>One product, two hardware targets, one submission. Series S is the binding target and is tested as its own configuration.</td></tr>
         <tr><td><strong>Nintendo Switch 2</strong></td><td>Yes, system microphone</td><td>12 GB, roughly 9 GB to games</td><td><span class="tag lo">Low on top</span></td><td>Near free once Switch 1 is done.</td></tr>
         <tr class="hl"><td><strong>Nintendo Switch</strong></td><td><strong>None in the console or the Joy-Con.</strong> Only via a headset or a licensed USB microphone the player has to own.</td><td>4 GB shared, roughly 3,2 GB to games</td><td><span class="tag hi">Sets the design</span></td><td>Needs an addressables and texture-budget pass regardless of where speech runs.</td></tr>
         <tr><td><strong>PlayStation 4</strong></td><td>No, headset only</td><td>8 GB shared</td><td><span class="tag lo">Low on top</span></td><td>Shares PS5 work. Older CPU is a second argument against on-device ASR.</td></tr>
@@ -243,8 +279,11 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
     </table>
   </div>
 
+  <h3 style="margin-top:28px">Submissions are not the same count as SKUs</h3>
+  <p class="muted" style="font-size:14.5px">Sony runs SIEA, SIEE and SIEJA as separate companies. Certification, age ratings, pricing and store pages are handled per territory. A primary build normally clears global FQA once and is then submitted to each regional facility, but each territory is still its own submission with its own pass and its own failure mode. Microsoft and Nintendo do not work this way. <strong>In one territory the six SKUs are six submission packages. Across all three they are ten.</strong> This estimate assumes one territory; the variation is priced in section 06 and it is question 1 in section 08.</p>
+
   <div class="grid g2" style="margin-top:20px">
-    <div class="card ap"><h3>Consequence</h3><p class="muted">For four players answering aloud in one room across all six SKUs, the phone microphone is the only one reliably present. The phone path is a requirement, not an option, and the relay has to carry audio rather than button events alone.</p></div>
+    <div class="card ap"><h3>Consequence</h3><p class="muted">For four players answering aloud in one room across all six SKUs, the phone microphone is the only one reliably present. The relay therefore has to carry audio, not button events alone.</p></div>
     <div class="card"><h3>Old-gen</h3><p class="muted">PS4 and Xbox One are included and ride on the next-gen work. Removing both takes roughly two months off the porting engineer and is the one line in this estimate that separates cleanly.</p></div>
   </div>
 </section>
@@ -261,12 +300,13 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
         <tr><td><strong>Porting engineer</strong></td><td class="num">1,5</td><td class="num">6,0</td><td class="num">1,0</td><td class="num">8,5</td><td>Six-SKU bring-up, platform services, memory and load times, cert checklists. Lead: Oskar Hansen.</td></tr>
         <tr><td><strong>UI engineer</strong></td><td class="num">1,5</td><td class="num">6,0</td><td class="num">1,0</td><td class="num">8,5</td><td>Companion web client, relay integration, console-side UI.</td></tr>
         <tr><td><strong>UX designer</strong></td><td class="num">3,0</td><td class="num">3,0</td><td class="num">0</td><td class="num">6,0</td><td>Phone surface: buzzer, answer entry, wager entry, board, join and rejoin flows. Front-loaded into the pre-phase.</td></tr>
-        <tr><td><strong>Producer, 50%</strong></td><td class="num">1,5</td><td class="num">3,0</td><td class="num">1,0</td><td class="num">5,5</td><td>Delivery, submissions, single point of contact and escalation.</td></tr>
-        <tr class="tot"><td>Total FTE-months</td><td class="num">7,5</td><td class="num">18,0</td><td class="num">3,0</td><td class="num">28,5</td><td></td></tr>
+        <tr><td><strong>Producer, 50%</strong></td><td class="num">1,5</td><td class="num">3,0</td><td class="num">1,0</td><td class="num">5,5</td><td>Delivery, submissions, day-to-day contact.</td></tr>
+        <tr><td><strong>Executive producer, 20%</strong></td><td class="num">0,6</td><td class="num">1,2</td><td class="num">0,4</td><td class="num">2,2</td><td>Robert Bäckström. Accountability for the delivery, escalation point, and the commercial and platform-holder relationships.</td></tr>
+        <tr class="tot"><td>Total FTE-months</td><td class="num">8,1</td><td class="num">19,2</td><td class="num">3,4</td><td class="num">30,7</td><td></td></tr>
       </tbody>
     </table>
   </div>
-  <p class="muted" style="margin-top:14px;font-size:14.5px">UI and UX are full roles rather than support because the phone is a second game surface with its own layout, input model and failure states. Robert Bäckström is executive producer and your escalation point, not billed beyond the producer line.</p>
+  <p class="muted" style="margin-top:14px;font-size:14.5px">UI and UX are full roles rather than support because the phone is a second game surface with its own layout, input model and failure states.</p>
 </section>
 
 <!-- 6 TIMELINE -->
@@ -279,11 +319,11 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
     <div>
       <div class="gatecard"><div class="gh"><span class="gn">Gate 0 · Signature</span><span class="gm">Nov 2026</span></div>
         <ul><li>Design documentation and access to the Luna build</li><li>Source, build and asset access, needed by Gate 3 rather than at signature</li><li>Platform developer accounts confirmed, and who holds them</li><li>Named decision owner each side</li></ul></div>
-      <div class="gatecard"><div class="gh"><span class="gn">Gate 1 · Architecture locked</span><span class="gm">Dec 2026</span><span class="gs">2,5 people</span></div>
+      <div class="gatecard"><div class="gh"><span class="gn">Gate 1 · Architecture locked</span><span class="gm">Dec 2026</span><span class="gs">2,7 people</span></div>
         <ul><li>Written decision on speech backend, relay and hosting</li><li>Privacy and data position drafted for all three platform holders</li><li>Switch memory budget measured against the real project</li><li>Deliverable is a technical design document</li></ul></div>
       <div class="gatecard"><div class="gh"><span class="gn">Gate 2 · Companion prototype</span><span class="gm">Feb 2027</span><span class="gs">De-risking gate</span></div>
         <ul><li>Phone joins a console build by room code, buzzes, answers by voice, end to end</li><li>Vertical slice on PS5 hardware, against a stand-in console harness we build, so this gate does not wait on source access</li><li>Latency and wifi-dropout behaviour measured</li><li>Lands before the main port starts, so the estimate corrects while it is cheap</li></ul></div>
-      <div class="gatecard"><div class="gh"><span class="gn">Gate 3 · First platform playable</span><span class="gm">Apr 2027</span><span class="gs">3 people · source required</span></div>
+      <div class="gatecard"><div class="gh"><span class="gn">Gate 3 · First platform playable</span><span class="gm">Apr 2027</span><span class="gs">3,2 people · source required</span></div>
         <ul><li>Full game on PS5 with companion layer, four players, start to finish</li><li>Phone UI feature complete, first iteration</li><li>Save data, trophies, store hooks in</li></ul></div>
     </div>
     <div>
@@ -291,7 +331,7 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
         <ul><li>PS4, Xbox Series, Xbox One, Switch and Switch 2 booting and playable</li><li>Switch memory and load-time pass done and measured</li><li>First internal run of all three requirement checklists</li></ul></div>
       <div class="gatecard"><div class="gh"><span class="gn">Gate 5 · Cert candidate</span><span class="gm">Aug 2027</span><span class="gs">Content complete</span></div>
         <ul><li>Feature complete on six SKUs</li><li>Sony, Microsoft and Nintendo checklists passing internally</li><li>Submission builds ready</li></ul></div>
-      <div class="gatecard"><div class="gh"><span class="gn">Gate 6 · Certification</span><span class="gm">Sep to Oct 2027</span><span class="gs">1,5 people</span></div>
+      <div class="gatecard"><div class="gh"><span class="gn">Gate 6 · Certification</span><span class="gm">Sep to Oct 2027</span><span class="gs">1,7 people</span></div>
         <ul><li>Submissions, fixes and re-submissions across three platform holders</li><li>Staffing drops but does not stop</li></ul></div>
       <div class="gatecard sup"><div class="gh"><span class="gn">Release-ready</span><span class="gm">Nov 2027</span></div>
         <ul><li>Date is yours and Amazon's to set</li><li>Bug fixing on defects traceable to our work, through release or 60 days after Gate 6, whichever comes first</li><li>New features and content passes are out of scope and re-quoted</li></ul></div>
@@ -302,24 +342,24 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
 <!-- 7 BUDGET -->
 <section class="slide" id="s7">
   <div class="eyebrow"><span class="n">06</span>Budget</div>
-  <h2>3 420 000 SEK</h2>
+  <h2>3 684 000 SEK</h2>
 
-  <div class="bignum">3,42M<span class="cur">SEK</span></div>
-  <p class="muted" style="margin-top:14px">28,5 FTE-months at 120 000 SEK. Ex. VAT. Gate invoicing shown; monthly invoicing works equally well.</p>
+  <div class="bignum">3,68M<span class="cur">SEK</span></div>
+  <p class="muted" style="margin-top:14px">30,7 FTE-months at 120 000 SEK. Ex. VAT. Gate invoicing shown; monthly invoicing works equally well.</p>
 
   <div class="grid g2" style="margin-top:18px">
     <div class="tw">
       <table>
         <thead><tr><th>Payment</th><th>When</th><th class="num">FTE-mo</th><th class="num">Gate value</th><th class="num">Invoiced</th></tr></thead>
         <tbody>
-          <tr><td>Advance on signature, 10%</td><td>Nov 2026</td><td class="num">-</td><td class="num">-</td><td class="num">342 000</td></tr>
-          <tr><td>Gate 1 · Architecture locked</td><td>Dec 2026</td><td class="num">2,5</td><td class="num">300 000</td><td class="num">270 000</td></tr>
-          <tr><td>Gate 2 · Companion prototype</td><td>Feb 2027</td><td class="num">5,0</td><td class="num">600 000</td><td class="num">540 000</td></tr>
-          <tr><td>Gate 3 · First platform playable</td><td>Apr 2027</td><td class="num">6,0</td><td class="num">720 000</td><td class="num">648 000</td></tr>
-          <tr><td>Gate 4 · All platforms running</td><td>Jun 2027</td><td class="num">6,0</td><td class="num">720 000</td><td class="num">648 000</td></tr>
-          <tr><td>Gate 5 · Cert candidate</td><td>Aug 2027</td><td class="num">6,0</td><td class="num">720 000</td><td class="num">648 000</td></tr>
-          <tr><td>Gate 6 · Certification</td><td>Oct 2027</td><td class="num">3,0</td><td class="num">360 000</td><td class="num">324 000</td></tr>
-          <tr class="tot"><td>Total</td><td></td><td class="num">28,5</td><td class="num">3 420 000</td><td class="num">3 420 000</td></tr>
+          <tr><td>Advance on signature, 10%</td><td>Nov 2026</td><td class="num">-</td><td class="num">-</td><td class="num">368 400</td></tr>
+          <tr><td>Gate 1 · Architecture locked</td><td>Dec 2026</td><td class="num">2,7</td><td class="num">324 000</td><td class="num">291 600</td></tr>
+          <tr><td>Gate 2 · Companion prototype</td><td>Feb 2027</td><td class="num">5,4</td><td class="num">648 000</td><td class="num">583 200</td></tr>
+          <tr><td>Gate 3 · First platform playable</td><td>Apr 2027</td><td class="num">6,4</td><td class="num">768 000</td><td class="num">691 200</td></tr>
+          <tr><td>Gate 4 · All platforms running</td><td>Jun 2027</td><td class="num">6,4</td><td class="num">768 000</td><td class="num">691 200</td></tr>
+          <tr><td>Gate 5 · Cert candidate</td><td>Aug 2027</td><td class="num">6,4</td><td class="num">768 000</td><td class="num">691 200</td></tr>
+          <tr><td>Gate 6 · Certification</td><td>Oct 2027</td><td class="num">3,4</td><td class="num">408 000</td><td class="num">367 200</td></tr>
+          <tr class="tot"><td>Total</td><td></td><td class="num">30,7</td><td class="num">3 684 000</td><td class="num">3 684 000</td></tr>
         </tbody>
       </table>
       <p class="muted" style="font-size:12.5px;margin-top:7px">Gate value is FTE-months at the rate. Invoiced is that value less the 10 % advance drawn down against it, so the Invoiced column sums to the total. The advance is not additional.</p>
@@ -331,6 +371,7 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
         <tbody>
           <tr><td><strong>Second quiz title</strong></td><td class="num">8 to 10 FTE-mo</td><td>Same engine and codebase, built while the team is together. Relay, companion client, platform integration and six-SKU bring-up already exist. Three to four months. We have not seen the title, so this is a range to plan against, not a price. Priced properly after Gate 2 on the first title.</td></tr>
           <tr><td><strong>Gamepad only</strong></td><td class="num">~1 100 000</td><td>No phone, no voice. Five to six months. A conventional port. Not recommended: it removes the format the Luna version is built on.</td></tr>
+          <tr><td><strong>Additional PlayStation territories</strong></td><td class="num">+60 to 120k each</td><td>Per territory beyond the first, covering both PlayStation SKUs. Release management, a certification pass and an age-rating submission, not new development. Sized properly once you tell us which territories are in scope.</td></tr>
           <tr><td><strong>Drop PS4 + Xbox One</strong></td><td class="num">-240 000</td><td>Roughly two months of the porting engineer. Next-gen and Switch only.</td></tr>
           <tr><td><strong>QA + release management</strong></td><td class="num">+600 000</td><td>Only if Amazon does not cover them. Release manager across the cert window plus a QA pass per platform.</td></tr>
         </tbody>
@@ -343,7 +384,6 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
 <section class="slide" id="s8">
   <div class="eyebrow"><span class="n">07</span>Assessment</div>
   <h2>SWOT</h2>
-  <p class="lede">The project as a whole, both sides stated.</p>
 
   <div class="swot" style="margin-top:22px">
     <div class="qd s">
@@ -353,7 +393,7 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
         <li><strong>The port half is routine and predictably priced.</strong> Platform bring-up, save data, trophies, store hooks and cert checklists are work we do continuously.</li>
         <li><strong>Relay-side speech gives one code path across six SKUs.</strong> No per-platform microphone handling, and no speech model in any console's memory budget.</li>
         <li><strong>Room code plus phone browser is a proven console pattern.</strong> Over a decade of shipped precedent, so platform-holder acceptance is not an open question.</li>
-        <li><strong>The pre-phase does not need your source.</strong> Gate 1 runs on your design and the Luna build; Gate 2 proves the companion path against a stand-in console harness we build. Source is first required at Gate 3 in March, which buys roughly three months of slack against the Amazon approvals.</li>
+        <li><strong>The pre-phase does not need your source.</strong> Gate 1 runs on your design and the current build; Gate 2 proves the companion path against a stand-in console harness we build. Source is first required at Gate 3 in March, which buys roughly three months of slack against the Amazon approvals.</li>
         <li><strong>The expensive layer is paid for once.</strong> Second title reuses relay, companion client and all platform integration.</li>
       </ul>
     </div>
@@ -365,7 +405,8 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
         <li><strong>The relay is a service, not a deliverable that ends.</strong> Hosting, uptime and running cost need an owner after launch. Currently unassigned.</li>
         <li><strong>Voice play requires a network connection.</strong> A living-room party game that needs the internet to work fully is a support surface and a review-score surface.</li>
         <li><strong>Switch 1 still needs a memory pass.</strong> Moving speech off-device removes the largest risk, not the work.</li>
-        <li><strong>Four people, no redundancy.</strong> One porting engineer across six SKUs is a single point of failure for twelve months.</li>
+        <li><strong>Four delivery roles, no redundancy.</strong> One porting engineer across six SKUs is a single point of failure for twelve months.</li>
+        <li><strong>The title is not finished.</strong> The pre-phase works against a build that is still changing, so some of what we design in December and prototype in February gets revisited in March. Priced in, but it is why Gate 2 is a decision gate and not a deliverable we bank.</li>
       </ul>
     </div>
     <div class="qd o">
@@ -387,7 +428,8 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
         <li><strong>Three platform holders, six SKUs, independent failure.</strong> A failed submission costs weeks, not days, and they do not fail together.</li>
         <li><strong>Publishing ownership unsettled.</strong> Amazon versus Bandit Island changes who submits, who holds accounts and who is liable at cert. Must be settled before Gate 5.</li>
         <li><strong>If Amazon does not cover QA and release management</strong>, roughly 600 000 SEK appears late in the project rather than at the start.</li>
-        <li><strong>Luna-side changes between now and Feb 2027</strong> that we do not see land as rework on the port.</li>
+        <li><strong>Feature and content changes before the February launch</strong> land as rework on the companion layer, which is the part we build first. A shipped title would not carry this; an unreleased one does.</li>
+        <li><strong>A slip in your February target moves our March start.</strong> The pre-phase absorbs a delay to source access; it does not absorb a delay to the game being finished.</li>
         <li><strong>Privacy review on audio leaving the device</strong> is a per-platform question on a family title, with GDPR art. 8 and, for a US release, COPPA behind it. Answerable, but we do not control that calendar and the publisher, not us, is data controller.</li>
         <li><strong>Licensor approval cycles, not just rights.</strong> A licensed Jeopardy! already shipped on PS4 and Xbox One in November 2017 under Ubisoft, so a prior console licence exists and may still carry exclusivity. Beyond clearance, a licensor typically approves builds and store assets at each milestone, which sits directly on the Gate 5 to 6 calendar.</li>
         <li><strong>September to October is the most congested certification window of the year.</strong> Six submissions across three platform holders all land in it.</li>
@@ -401,30 +443,32 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
 <section class="slide" id="s9">
   <div class="eyebrow"><span class="n">08</span>Open items</div>
   <h2>What would change this number</h2>
+  <h3 style="margin-top:4px">Unknowns on our side</h3>
 
   <div class="tw" style="margin-top:16px">
     <table>
       <thead><tr><th>Item</th><th>Status</th><th>Effect if resolved differently</th></tr></thead>
       <tbody>
-        <tr><td>Source-code access</td><td>Blocked on Amazon approval tiers</td><td>Two weeks with the code turns the estimate into a quote. Largest single unknown.</td></tr>
-        <tr><td>Engine and input coupling</td><td>Unconfirmed. Estimate assumes Unity or comparable</td><td>A different engine changes the port side. Input woven through game logic rather than isolated grows it materially.</td></tr>
+        <tr><td>Source-code access</td><td>Blocked on Amazon approval tiers</td><td>Two weeks with the code turns the estimate into a quote. Largest single unknown. Asked as question 7.</td></tr>
+        <tr><td>Input coupling</td><td>Unknown. Engine is confirmed Unity</td><td>Input isolated behind an interface is the assumption. Woven through game logic grows the port side materially.</td></tr>
         <tr><td>Other Luna service dependencies</td><td>Unknown beyond input and voice</td><td>Identity, entitlement, session and storage each need a console equivalent if used.</td></tr>
-        <tr><td>Jeopardy! console distribution rights</td><td>Unknown, possibly Luna-scoped</td><td>Not our work. Long lead time. Blocks submission, not development.</td></tr>
-        <tr><td>Publisher and platform accounts</td><td>Unsettled</td><td>Changes who submits and who is liable at cert. No engineering effect.</td></tr>
-        <tr><td>Amazon covering QA and release management</td><td>Assumed, unconfirmed</td><td>+600 000 SEK if not.</td></tr>
-        <tr><td>Old-gen in scope</td><td>Assumed in</td><td>-240 000 SEK if out.</td></tr>
-        <tr><td>Relay hosting ownership after launch</td><td>Unassigned</td><td>Small but ongoing. Needs a named owner and a budget line.</td></tr>
+        <tr><td>PlayStation territory scope</td><td>Assumed one territory</td><td>Each additional territory is its own submission, certification pass and age rating. Question 1.</td></tr>
+        <tr><td>Relay hosting ownership after launch</td><td>Unassigned</td><td>Small but ongoing. Needs a named owner and a budget line before launch.</td></tr>
       </tbody>
     </table>
   </div>
 
-  <h3 style="margin-top:32px">What we need from you</h3>
-  <ul class="lede" style="font-size:16px">
-    <li>Source and build access when Amazon clears it</li>
-    <li>Half an hour with whoever built the Luna input and voice layer</li>
-    <li>A yes or no on old-gen</li>
-    <li>Confirmation of who publishes on console</li>
-  </ul>
+  <h3 style="margin-top:32px">Questions for you</h3>
+  <p class="muted" style="font-size:14.5px">Answering these turns assumptions into scope. The first one moves the certification effort more than anything else on the page.</p>
+  <div style="margin-top:6px">
+    <div class="qrow"><div class="qn">1</div><div><p class="qq">Which PlayStation territories are in scope: SIEA, SIEE, SIEJA, or a subset?</p><p class="qw">Each is a separate submission, certification pass, age rating and store page. One territory means six submission packages; all three means ten. Priced in section 06 at 60 000 to 120 000 SEK per additional territory.</p></div></div>
+    <div class="qrow"><div class="qn">2</div><div><p class="qq">Are PS4 and Xbox One in or out?</p><p class="qw">They ride on the next-gen work and are currently in. Out removes roughly two months of the porting engineer, 240 000 SEK. It is the one line that separates cleanly.</p></div></div>
+    <div class="qrow"><div class="qn">3</div><div><p class="qq">Do you want a native Switch 2 SKU, or is Switch back-compat enough at launch?</p><p class="qw">Back-compat runs the Switch 1 build on Switch 2 with no extra submission. A native SKU needs its own devkit, SDK and lotcheck, and it is the only one of the six with a system microphone.</p></div></div>
+    <div class="qrow"><div class="qn">4</div><div><p class="qq">Who publishes on console, and who holds the platform accounts?</p><p class="qw">Amazon or Bandit Island. It does not change the engineering, but it decides who submits, who owns the store pages and who is liable at certification. Needs settling before Gate 5, not during it.</p></div></div>
+    <div class="qrow"><div class="qn">5</div><div><p class="qq">Is Amazon covering QA and release management, confirmed rather than assumed?</p><p class="qw">The estimate excludes both on that basis. If it turns out otherwise, add roughly 600 000 SEK for a release manager across the certification window and a QA pass per platform.</p></div></div>
+    <div class="qrow"><div class="qn">6</div><div><p class="qq">Does the Jeopardy! licence already extend to console distribution?</p><p class="qw">Not our work, but it is on our critical path. A licensed Jeopardy! shipped on PS4 and Xbox One in 2017, so a prior console licence exists and may carry terms that matter here. Worth starting in parallel with Gate 1 rather than discovering at submission.</p></div></div>
+    <div class="qrow"><div class="qn">7</div><div><p class="qq">Source and build access, and half an hour with whoever built the Luna input and voice layer.</p><p class="qw">The access is gated by Amazon and we are not pushing. The half hour is not, and it would sharpen Gate 1 considerably.</p></div></div>
+  </div>
 </section>
 
 </div>

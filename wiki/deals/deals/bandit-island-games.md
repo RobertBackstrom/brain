@@ -18,8 +18,8 @@ updated: 2026-09-16
 Stockholm studio, ~22 employees, founded 2022, office on Österlånggatan 43. Self-described as
 "high-quality, IP-driven titles and original games for couch co-op, family fun, and next-gen
 parties". Founded by ex-Bullfrog/King/Disney/Namco people. They build for **Amazon Luna
-GameNight**, Amazon's phone-controlled party-game tier, and have two quiz titles there including
-a **Jeopardy!** game. Robert has a personal-friend tier relationship with Stephen Jarrett.
+GameNight**, Amazon's phone-controlled party-game tier, where they have two quiz titles in
+development including a **Jeopardy!** game. Target release February 2027; nothing is public yet. Robert has a personal-friend tier relationship with Stephen Jarrett.
 
 **Live opportunity as of Sep 2026: console porting.** Inbound from Stephen 2026-09-10 asking
 either for help estimating developer-months or for AP to take the porting job. This is now the
@@ -38,8 +38,8 @@ mutual NDA signed the same day, estimate delivered Wed 16 Sep. Six days from fir
 costed proposal.
 
 ## What They Bring / What We Bring
-**They bring:** two quiz titles already shipping on Amazon Luna, an Amazon relationship that
-covers publishing support, and a Steam/PC version landing Feb 2027. A second title that runs on
+**They bring:** two quiz titles in development for Amazon Luna, an Amazon relationship that
+covers publishing support, and a February 2027 release target. A second title that runs on
 the same codebase, so the expensive engineering is paid for once.
 
 **We bring:** the porting capability they say is new to them, a porting lead who has taken Unity
@@ -48,9 +48,9 @@ that they had not made themselves. The relationship is the way in; the technical
 makes us the vendor rather than a quote to compare.
 
 ## The Deal on the Table
-Six SKUs (PS5, PS4, Xbox Series X/S, Xbox One, Switch, Switch 2). **3 420 000 SEK**, 28,5
-FTE-months across four roles, at the 120 000 SEK per FTE-month rate Robert gave them in the
-office. Dec 2026 start, cert-ready Aug 2027, release-ready Nov 2027. Steam is theirs.
+Six SKUs (PS5, PS4, Xbox Series X/S, Xbox One, Switch, Switch 2). **3 684 000 SEK**, 30,7
+FTE-months across five roles (Robert bills EP at 20 %), at the 120 000 SEK per FTE-month rate
+he gave them in the office. Engine is Unity, confirmed at the meeting. Dec 2026 start, cert-ready Aug 2027, release-ready Nov 2027. Steam is theirs.
 
 Pitch: https://pitch.aurorapunks.com/bandit-island/ (gated, creds in `assistant/pitch-auth.json`).
 Full breakdown and the technical argument: [[../../../followups/bi-001-jeopardy-console-port-estimate]].
@@ -60,8 +60,8 @@ Project folder: [[../../../bandit_island/CLAUDE]].
 answering are Amazon *platform services* running beside the game in Amazon's data centre. On a
 console none of that exists, so the job is a port plus a feature build: room-code join, a
 companion web client, a relay service and speech recognition, all from nothing. Alternates were
-priced openly in the pitch rather than hidden: second title ~1,1 MSEK, gamepad-only ~1,1 MSEK
-and explicitly not recommended.
+priced openly in the pitch rather than hidden: second title 8 to 10 FTE-months, gamepad-only
+~1,1 MSEK and explicitly not recommended.
 
 ## Activity Log
 - 2026-09-16 - Estimate delivered as a gated web pitch; cover mail drafted on thread `1a0a9cb279aa62e5`. Woody replies 16:14 that Amazon talks are mid-flight, positive signals but nothing decided, and source access needs an approval tier cleared first. He expects news early w/c 21 Sep. Source: gmail thread `1a0a9cb279aa62e5`.
@@ -72,7 +72,7 @@ and explicitly not recommended.
 
 ## Open Questions / Next Actions
 - [ ] Source-code access, blocked on Amazon approval tiers. Everything downstream of it.
-- [ ] Engine unconfirmed. The estimate assumes one engine across both titles and a separable input layer.
+- [ ] How separable the Luna input layer is from game logic. Engine itself is confirmed Unity.
 - [ ] Jeopardy! rights for console distribution, possibly scoped to Luna only. Not our work, on our critical path.
 - [ ] Who publishes on console, Amazon or Bandit Island, and who holds the platform accounts.
 - [ ] Confirm Amazon really covers QA and release management.

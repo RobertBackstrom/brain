@@ -14,6 +14,45 @@ agent: bizdev
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-17 - En ardd layout bar ett retoriskt slot, och att fylla det ar hur en maxim tar sig in i ett faktadokument [Bandit Island, bi-001]
+
+Robert pekade pa forsta raden i Bandit Island-pitchen, "Six SKUs. Twelve calendar months. The
+cost sits in the input layer, not in the port.", och sa: *"AI slop. Ta bort och lar Author att
+vi inte skriver sant har. Vad forsoker du uppna med det."*
+
+Tva saker att lara sig, och den andra ar den nya.
+
+**Ett: The Author hade aldrig sett sidan.** Voice-passet kordes pa foljemailet, som regeln
+kraver, och aldrig pa dokumentet som mailet lankade till. Korpusen hade redan svaret:
+`skills/voice/anti_selling.md` listar maxims som en cut-kategori och sager rakt ut att
+quotability ar en varningsflagga, och `register_documents.md` finns specifikt for pitchsidor.
+**Ett kundvant dokument med kommersiella siffror gar genom samma grind som ett mail.** Att
+mailet ar godkant sager ingenting om sidan.
+
+**Tva: raden kom fran ett layoutslot, inte fran en formulering.** Sidan byggdes pa
+`pitches/project-irons-2-v3/` som strukturmall, och den mallen har ett `.hook`-element mellan
+H1 och siffrorna: stort, amberfargat, 40 tecken brett. Sloten ar byggd for att landa en replik.
+Ombyggnaden dopte om den till `.subline`, beholl den och fyllde den. Ingen bestamde sig for att
+skriva en maxim; mallen bad om en och fick en.
+
+Tva till av samma art lag i samma dokument och kom ut med den: "The port is the smaller half.
+The input layer is the larger half" (samma parallell, direkt ovanfor ett stycke som redan sa
+saken rakt ut, alltsa ren dubblering) och "The project as a whole, both sides stated" som
+SWOT-ingress, vilket ar skribenten som annonserar sin egen arlighet.
+
+**How to apply.** Ar du en layout ar du dess retoriska slots. Innan du fyller ett element som ar
+storre, fargat eller mer framtradande an brodtext: fraga vad sloten ar till for. Ar svaret "att
+landa en replik", **radera elementet, skriv inte i det.** Omslaget pa ett faktadokument ar
+logga, titel, siffror och vad estimatet vilar pa.
+
+Svepet som hittar alla tre pa en gang: `grep` ut varje `.lede`, `.hook`, `.subline` och
+underrubrik och las dem som en platt lista utan styling. Allt som overlever som en mening du
+skulle satta pa en slide men inte i ett stycke ska bort. Kolla sedan varje rad mot stycket
+under den.
+
+Se [[feedback_pitch_pages_get_the_voice_gate]] och det nya avsnittet i
+`skills/voice/anti_selling.md`.
+
 ## 2026-09-17 - Ett innovationsbidrag kan inte betala for en licens plus en underleverantor, och startstodet ar kopplat till cap table [Cold Response, cr-009]
 
 Tva regler i svenska innovationsbidrag som slar direkt mot den affarsform vi bygger oftast, alltsa
