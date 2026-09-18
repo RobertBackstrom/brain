@@ -105,3 +105,63 @@ Cover note with the gated pitch link sent 2026-09-15 16:51 CEST, thread `1a0a555
 `cr-005`: whether an investor would come in before year end at a level that covers two salaries
 through 2027, because the Vinnova budget rules make NewCo staffing a first-call topic rather than a
 post-term-sheet one.
+
+## Grant landscape corrected and extended (2026-09-18)
+Vinnova's **open funded-projects database** (`data.vinnova.se/api/projekt`, 4 869 records) was read
+in full rather than the call texts alone. Source:
+`cold_response/motpartslage_och_bidragsvagar_2026-09-18.md`.
+
+1. **Correction to the section above.** The accelerator place is **not** a second selection. Step 1
+   (round 2025-00980) has 30 companies and step 2, the 150 000 SEK accelerator (round 2025-04031),
+   has **the same 30**. (The database does not name the host, so "10 to LEAD" may hold if the programme is split across several hosts; what is disproved is that the accelerator is a second filter.) The Forsvarshogskolan place comes with the grant, which makes the
+   third-party-validation argument for `cr-008` stronger, not weaker.
+2. **Correction to the framing claim.** Simulation does not disqualify. **Vimotek AB took
+   1 000 000 SEK for "Simulering av forsvarscenarion"** in the same round. Lead with autonomous
+   systems because that matches the EDT list, but the simulation precedent exists and has a
+   diarienummer.
+3. **Actual awards** run 829 200 to 1 000 000 SEK with 1 000 000 the modal outcome. Budget to the
+   ceiling.
+4. **No collision.** Eternal Minds, Monowo, Cold Pixel and Hofstrom appear in **no** funded Vinnova
+   project. The database covers granted projects, not pending applications, so it cannot rule out
+   an application to this same round, but the broader worry is dead.
+5. **New route: a second instrument attached to FMV Battle Week.** Round **2026-00496**, *Stod till
+   sma och medelstora foretag for test och evaluering*, **17 grants in 2026** at 220 000 to
+   500 000 SEK, two of them naming FMV Battle Week outright. **De minimis, up to 100 per cent**,
+   eligible cost is **only bought-in access to test infrastructure**, and the application requires
+   **a quote from the chosen test facility**. Closed 2026-05-20; expect a spring 2027 edition.
+   Because the basis is de minimis, neither the five-year nor the group condition applies, so a CZP
+   subsidiary could use this one without penalty. **Action that needs no vehicle and no decision
+   from Robert: establish contact with a test infrastructure this autumn**, since the quote is an
+   application requirement in May.
+6. **Neither instrument pays the licence fee to Eternal Minds.** The acceleration call caps external
+   cost at 20 per cent; the test call funds only infrastructure access. The cash component of the
+   licence has to come from the investor or a first order. Feeds `cr-001`.
+
+## Counterparty verified against primary source (2026-09-18)
+Eternal Minds AB 559527-5719, per allabolag today: turnover 2025 **1 258 tkr**, result **-37 tkr**,
+share capital 25 000, **three employees** (our record said two), registered for VAT, F-skatt and
+**employer contributions**, address moved from Bibbi's Bondegatan 31 in Stockholm to **c/o Hofstrom,
+Roslagsgatan 20 b, Norrtalje**. **Robert is still on the public register as suppleant**, so the
+ABL 8:23 point in `cr-002` is a current, publicly checkable fact. Monowo AB 559207-4933: turnover 0,
+profit 989 tkr, i.e. a holding profile.
+
+Two consequences for `cr-001`. The counterparty's thin finances make **source-code escrow a
+reasonable mutual protection rather than an insult**, and it should be framed that way. And
+**Eternal Minds holds a claim in the WLBS bankruptcy estate** (Robert to Bibbi 2026-07-31, thread
+`19f22114e38fd395`) which says nothing about assets having moved but makes the source-tree question
+in `cr-007` a concrete diligence item.
+
+**Unresolved and not resolvable from the desk:** our own sources disagree on whether the majority
+shareholder is **Bibbi personally** or **Monowo AB**. The share register is not public.
+
+## Relationship note: the path to the majority shareholder is warm
+Robert did a free investment assessment for Cold Pixel this summer (`cpx-001`) and is currently
+running the bankruptcy-claim question for her companies, with a written "I'll come back when I hear"
+from July that appears unfulfilled. **Open the ownership question with that reply, not with a request
+for licence consent.** And do not run it through Robin alone: he holds signing authority and can bind
+the company, but an exclusive licence over its only asset is not something the majority holder should
+hear about afterwards.
+
+## Ralph Strandberg, status 2026-09-18
+Still **no reply**, verified live in Gmail the same turn: thread `1a0a5554a33a00d7`, a single message,
+sent 2026-09-15 16:51 CEST. Three days. `cr-005` is due 2026-09-22.

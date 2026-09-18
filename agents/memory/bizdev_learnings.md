@@ -14,6 +14,79 @@ agent: bizdev
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+
+
+## 2026-09-18 - Las finansiarens utfallsdatabas, inte bara utlysningstexten; den svarar pa fragor texten inte kan och avslojar instrument ingen lankat till [Cold Response, cr-008/cr-009]
+
+Tva svep i rad hade last Vinnovas **utlysningstexter** och byggt hela bolagsvalet pa dem. I natt
+hamtades i stallet **hela den oppna bidragsdatabasen**, `https://data.vinnova.se/api/projekt/<datum>`,
+4 869 beviljade projekt som ren JSON utan nyckel. Den gav fyra saker som ingen utlysningstext kan ge,
+och ett av dem var en hel finansieringsvag som ingen kande till.
+
+**Vad utfallsdata svarar pa som utlysningstexten inte kan.**
+1. **Ar ett andra steg ett verkligt nalsoga?** Var anteckning sa "30 beviljade, varav 10 till
+   acceleratorn". Databasen: steg 1 (omgang 2025-00980) har 30 bolag, steg 2 (omgang 2025-04031) har
+   **samma 30**. Acceleratorn foljer med bidraget. Hela argumentet for att bidraget ar vart mer an
+   pengarna vilade pa den platsen, sa skillnaden var inte kosmetisk.
+2. **Vad delas faktiskt ut, mot takbeloppet?** 829 200 till 1 000 000, med 1 000 000 som normalfall.
+   Budgetera mot taket, inte mot en forsiktig delsumma.
+3. **Finns det prejudikat for min inramning?** Vi hade avfardat simulering for att det inte ar ett av
+   de nio EDT-omradena. I samma omgang tog **Vimotek AB 1 000 000 kr for "Simulering av
+   forsvarscenarion"**. Ett namngivet prejudikat med diarienummer slar en gissning om vad som
+   "borde" ga igenom.
+4. **Konkurrerar motparten om samma pengar?** Fritextsokning over alla poster pa motpartens namn,
+   agarbolag och grundare gav noll traffar. Fragan till motparten krympte fran "har ni nagot pa gang"
+   till en mening. **Varning:** databasen innehaller *beviljade* projekt, inte inlamnade ansokningar,
+   sa den kan avfarda en pagaende bidragsrelation men aldrig en obeslutad ansokan. Sag det rakt ut.
+
+**Det storsta fyndet kom av att filtrera pa programnumret i stallet for pa utlysningen.** Alla poster
+bar `DiarienummerUtlysning` (program) och `DiarienummerAnsokningsomgang` (delomgang). Filtrerar man pa
+**programmet** ser man **alla systerinstrument**, aven de som den utlysningssida man last inte lankar
+till. Sa hittades en helt separat omgang som betalar foretag for att delta i **FMV Battle Week** - den
+dorr vi redan hade utpekad som ratt vag men trodde saknade pengar. **Generellt: nar du hittat en
+utlysning, hamta programmets hela utfallslista och las syskonen.** Utlysningssidor lankar salla i sidled.
+
+**Och en varning om kostnadsregler mellan syskoninstrument.** De tva omgangarna under samma program
+hade **rakt motsatta** regler: accelerationsutlysningen tar hogst 20 procent externa kostnader
+(loneinstrument), test- och evalueringsomgangen tar **bara** externa kostnader men enbart for inkopt
+testinfrastruktur. **Ingendera betalade det vi faktiskt behovde, namligen licensavgiften till
+teknikagaren.** I en licensaffar ar det den forhoppningen som maste dodas tidigast, innan nagon bygger
+in den i en budget. Stodgrunden skiljer sig ocksa mellan syskonen: den ena gar pa startstod
+(GBER art. 22, med femars- och **koncernvillkor**), den andra pa **de minimis** (inget aldersvillkor,
+inget koncernvillkor, bara 300 000 EUR-taket delat med modern). **Bolagsvalet ar darfor inte en fraga
+utan en fraga per instrument** - ett dotterbolag kan vara diskvalificerat i det ena och helt fritt i
+det andra.
+
+Kalla: `cold_response/motpartslage_och_bidragsvagar_2026-09-18.md`.
+
+## 2026-09-18 - Den vars godkannande du behover kan vara nagon du redan ar skyldig ett svar; kolla relationsloggen innan du planerar en "approach" [Cold Response, cr-001]
+
+`cr-001` listade "etablera agarpositionen med Robin och Bibbi" som en villkorspunkt, formulerad som om
+majoritetsagaren vore en okand motpart som ska kontaktas kallt. Tva sokningar i det egna materialet
+visade motsatsen: Robert hade i somras gjort en **gratis investeringsbedomning** at hennes bolag
+([[project_cold_pixel_dig_in]]) och drev just nu en **bevakningsfraga i ett konkursbo** at samma bolag,
+med ett skriftligt "aterkommer nar jag fatt svar" fran juli som inte sag ut att ha infriats.
+
+**Ordningsfoljden foljer direkt av det, och den ar inte forhandlingsbar.** Aterkoppla pa det du redan
+ar skyldig **forst**, ta din egen fraga i samma kontakt. Att oppna med en begaran om godkannande nar
+man har en obesvarad utfastelse liggande sedan tva manader ar att spendera relationen i fel ande, och
+det ar dessutom det billigaste satt som finns att gora en varm relation kall.
+
+**How to apply.** Innan du skriver en approach-plan mot en namngiven person, sok igenom bade mailen
+och projektminnena pa personen **och hennes bolag**, och leta specifikt efter (1) tjanster vi gjort
+gratis och (2) utfastelser vi lamnat som inte infriats. Ticketen ar skriven av nagon som kande dealen,
+inte relationen, sa den vet sallan det har. Sidoregeln som ocksa foll ut: nar den som har
+firmateckningen och den som har rosterna ar olika personer, ska inte det tyngsta beslutet ga via
+firmatecknaren ensam. Han **kan** binda bolaget, men en exklusiv licens pa bolagets enda tillgang vill
+man inte att majoritetsagaren far hora om i efterhand. Samma mekanik som
+[[reference_ap_mnda_single_signatory]] fast at andra hallet: formell behorighet loser inte
+agarforankring.
+
+En tredje, mindre: **motpartens registrerade ekonomi avgor vilka klausuler som gar att be om utan att
+forolampa.** Licensgivaren visade sig omsatta 1 258 tkr med -37 tkr i resultat. Med den siffran pa
+bordet ar **kallkodsescrow inte ett misstroende utan ett uppenbart omsesidigt skydd**, och kan
+formuleras sa. Utan siffran later samma klausul ut som en anklagelse. Hamta alltid bokslutet fran
+allabolag innan du satter de hardaste villkoren i ett term sheet, se [[reference_allabolag]].
 ## 2026-09-17 - En ardd layout bar ett retoriskt slot, och att fylla det ar hur en maxim tar sig in i ett faktadokument [Bandit Island, bi-001]
 
 Robert pekade pa forsta raden i Bandit Island-pitchen, "Six SKUs. Twelve calendar months. The

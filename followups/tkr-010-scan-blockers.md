@@ -2,7 +2,7 @@
 project: tkr
 status: open
 priority: high
-updated: 2026-09-09
+updated: 2026-09-18
 created: 2026-08-07
 type: blocker
 owner: Robert
@@ -89,6 +89,32 @@ otherwise. The re-mint above is what settles this. Until then the true equity an
 are both unconfirmed.
 
 **Activity:**
+- [2026-09-18] **Ticker**: Daily scan, zero cards (5th consecutive), **setup-limited with all 4 slots
+  free** - 0 `awaiting_confirm`, `tkr-013`/`tkr-014` expired, `tkr-003` cancelled. Macro is clear for
+  the first time since 09-11 (FOMC resolved 09-16 hawkish, next meeting late October), so nothing
+  external gated the board; a broad relief rally did, 18 of 25 names green with the US megacaps
+  closing straight into the supply that rejected them a day earlier. **ERIC-B is the closest any name
+  has come in two weeks and it is worth flagging here, not just in memory:** it broke the 100.00-100.25
+  ceiling that had capped it since the 07-14 earnings gap, closing 101.25 (+2.31%, day range
+  99.48-102.20), and it clears the ceiling test with margin (3.70% to 105.00 against 2.63% required on
+  a 0.70% daily sigma). It dies on stop placement alone - the best structurally valid stop, 99.20 under
+  today's low, yields 1.83R, and the only stop that reaches 2.5R sits eight ore under the day's low
+  inside the breakout bar itself. Carried forward as a trigger: on a retest of 99.00-99.50 that holds,
+  entry 99.00 / stop 96.60 / target 105.00 = 2.50R.
+- [2026-09-18] **Blocker D re-verified, day 76, and this is the escalation the last three runs owed
+  this card.** `assistant/fx.js` is byte-for-byte the same Playwright Fortnox navigator
+  (`FX_COMPANY || 'Creation Zero Point'`, `.fortnox-profile`, mtime 2026-08-27 17:00); `saxo.js:53`
+  still `require('./fx')`; `saxo.js:692` still calls `fx.getRateToSek(ccy)` with **no try/catch and no
+  `ccy === 'SEK'` short-circuit**. The order path has therefore been 100% fail-closed for 76 days,
+  SEK included. Stated plainly: **had any card cleared the gate on any of those 76 days, and had Robert
+  confirmed it, it could not have executed.** That is a larger problem than the empty board, and it is
+  a DevOps fix, not a Robert fix - restore the Yahoo rate module under a non-colliding name
+  (`assistant/fxrate.js`), repoint `saxo.js:53`, guard `ccy === 'SEK'` at line 692, and remove the
+  `fxRate = 1` swallow at line 416 that would otherwise understate SIM equity ~11x once auth returns.
+  **Blocker A** unchanged alongside it: `.saxo_tokens_sim.json` still 0 bytes, mtime Jul 5 01:06,
+  **day 76**; `positions` failed on auth again today (one call, budget respected) and no `suggest-size`
+  was run - there was nothing to size, and the call would open a credentialed Fortnox session as a
+  side effect.
 - [2026-09-08] **Ticker**: Daily scan, zero cards (8th consecutive zero-card scan). **Setup-limited
   again, but Blocker D is now the binding one and it is new to this card.** US markets were closed
   Monday 09-07 (Labor Day), so the whole US board carries Friday's bars unchanged and nothing there
