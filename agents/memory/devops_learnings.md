@@ -7,6 +7,41 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+## 2026-09-18 — Leta efter regeln som säger motsatsen, inte bara efter koden som gör fel [k2c / Death Board]
+
+**Source project:** K2C (KAN) | **Category:** process, prompt governance, root cause
+
+Dagen efter att jag byggt dedup-gaten sa Robert vad triggern för att skapa tickets faktiskt är:
+en explicit fras ("create a ticket", "Deathbot - do this"), inget annat. När jag letade upp var
+det skulle in hittade jag den verkliga huvudkällan till Fredriks flöde — och den låg **inte i
+koden jag hade granskat dagen innan**.
+
+1. **Instruktionsfiler är exekverbar logik. Sök i dem som i kod.** `skills/pm_daily_routine.md`
+   innehöll raden "Create genuinely-missing tickets that Discord/WhatsApp confirm are real,
+   active work" och, ett stycke ovanför, "for every new workstream a note IMPLIES". Det är en
+   instruktion till en LLM-agent att fylla boarden på inferens, och den producerade förmodligen
+   fler tickets än hela Discord-boten. Jag hade grepat `.js` efter skrivvägar och missat den.
+   **Nästa gång: grep:a `skills/`, `agents/` och promptsträngar med samma allvar som `*.js` när
+   ett system beter sig fel. Beslutet fattas ofta i prosa, inte i en funktion.**
+
+2. **En regel som upprepas på fyra ställen blir fyra regler.** Frasslistan ligger nu i
+   `jira-triggers.js` och exporteras som `RULE_TEXT`, som interpoleras in i klassificerarprompten
+   i discord-bot.js och citeras i pm.md, pm_daily_routine.md och CLAUDE.md. Kontrollera att
+   inklistringspunkten ligger inuti en template literal (`awk` mot närmaste `= \`` före raden) —
+   annars står `${RULE_TEXT}` kvar som text i prompten och ingen märker det.
+
+3. **Matcha bokstavligt när hela poängen är att slippa tolkning.** Frestelsen var att matcha
+   "i andemening". Det återinför precis det omdöme regeln finns för att ta bort. Däremot behövs
+   en explicit *negativ* lista: "I already created a ticket for that" innehåller triggerorden och
+   betyder motsatsen. Dåtid och redan-gjort-rapporter är aldrig triggers.
+
+4. **Versionskontrollen har ett hål: `CLAUDE.md` spåras av INGET repo.** Root-repots .gitignore är
+   en allowlist (`/*` + `!`-rader) och CLAUDE.md finns inte med, `skills/` har eget remote,
+   `assistant/` har eget. Brain-backupen bygger sin tarball på `git ls-files` i root-repot, så
+   CLAUDE.md ligger utanför båda backup-benen. Redigerar du den: det finns ingen historik och
+   ingen kopia. Eget ticket värt att lägga upp.
+
+
 ## 2026-09-17 — En gate som sitter i EN av två skrivvägar är ingen gate [k2c / Death Board]
 
 **Source project:** K2C (KAN) | **Category:** tooling, integration design, calibration
