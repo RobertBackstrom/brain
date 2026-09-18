@@ -566,3 +566,45 @@ hängde inte på apb-051. Kedjedokumentationen bor i [[project_apds_czp_rights_c
 `aurora_punks/legal/apds_entity_transfer_master_2026-08-26.md`. apb-051 satt till `closed` /
 `close_reason: completed`. **Flaggat: apb-015 (PlayStation) är stale**, due 2026-05-28 och rörd
 senast 2026-08-27, medan Nintendo- och Xbox-spåren rörde sig 2026-09-14.
+
+## 2026-09-18 — Nr89: avtalskedjan framtagen och delad med Amer (AP ÅR 2025)
+
+Amer Alsalek (Book It) bad på Discord om "avtalet för No89", sista posten innan AP:s ÅR 2025 är
+klar. Nr89 = **Nr89 Studios AB, 559432-5275**, och AP:s innehav var **teckningsoptioner via ett
+WISE-avtal**, inte aktier. Hela kedjan finns och är signerad.
+
+**Kedjan:**
+1. **Förvärvet, september 2024** — `WISE Agreement Nr89 - AP (v2).pdf` (`1DMRBb18xfPB1AUHvXSyk4wUTXtHjlc51`)
+   + `Appendix 1 WISE Terms Nr89.pdf` (`1obSwFQWAsWLyXmuiZAEK43qxpJLVbrpi`). 517 teckningsoptioner
+   för 999 226,58 kr. DocuSign-kuvert `016F2653-78E2-4D17-8C43-075B9D5E08D9`, signerat av Robert
+   2024-09-25 och Andrée Wallin 2024-09-26. Optionerna registrerade hos Bolagsverket 2024-12-13.
+   Golv 20 MSEK, tak 50 MSEK, rabatt 20 %.
+2. **Lånet, 2025-04-24** — `Laneavtal AWA - AP 350 000 kr signerat 2025-04-24.pdf`
+   (`1Gt4xRbU3HIF1jk0ghHyrdmmpfPwvOHl6`, uppladdad i denna session). Andrée Wallin Art AB
+   (556919-3161) lånar ut 350 000 kr till AP mot pant i de 517 optionerna, återbetalning eller
+   kvittning inom 14 dagar. Adobe Sign, transaktion `CBJCHBCAABAAsUTXE48x2oRzLcKsVepiOr8X7X7OYBoY`.
+3. **Avyttringen, 2025-04-27** — `AW-Sign-Överlåtelseavtal och reverser AP - NC Signed (1).pdf`
+   (`1EpXDaSlCDlDj-XYBcknPK7wWBRun0c7c`). AP säljer samtliga 517 optioner för 500 000 kr till AWA
+   (259 st, 250 484 kr) och Noah Clason Diop 870415-0252 (258 st, 249 516 kr). 350 000 kvittas mot
+   lånet, 150 000 ligger i två räntefria reverser (bilaga 1: AWA 75 484 kr, bilaga 2: NCD
+   74 516 kr). Signerat av alla tre.
+
+**Åtgärdat:** signerade låneavtalet hämtat ur Adobe Sign-mailet och filat i Nr89-mappen (låg
+tidigare bara i inkorgen; `Lån AWA AP.docx` på Drive är den osignerade källan i Roberts My Drive).
+Nr89-mappen `14Al5gzAqKCKcDvb-HeKwpG8fvGGEoA0d` (Portfolio-drivan) item-delad som **reader** med
+amer@book-it.se. Före det hade bara Robert access, så länkarna hade varit döda.
+
+**Flaggat till Amer:**
+- **40-kronorsglappet.** Septemberavtalet säger 999 226,58 kr; majversionen, avräkningen
+  (`1Eqqs3CyGKABT_zx7VJA-0fL6EbaR1yjqZWFS7b6LbmM`) och 1350-liggaren säger 999 266,58 kr.
+  Septemberavtalet ersätter majversionen i sin helhet, så formellt gäller septembersiffran medan
+  bokföringen följer maj. Reaförlust ca 499 267 kr oavsett.
+- **Datumfel i överlåtelseavtalet.** Rubriken står på 2027-04-27 och bilaga 2 på 2024-04-27.
+  Bilaga 1 har rätt datum. Affärsdatum är **2025-04-27**.
+- **Reverserna är villkorade.** Förfaller först när köparna fått ekonomisk avsättning för
+  optionerna eller aktierna. Ingen säker fordran per 2025-12-31.
+- **Ansvarsförbindelse.** Punkt 4: AP håller Nr89 skadeslöst för WLBS konkursbos omtvistade
+  faktura på 90 000 kr inkl moms om förvaltaren driver kravet.
+
+**Kvarstår:** avstämningsglappet i 1350-liggaren (saldo 2025-12-31 satt till 0 kr trots att
+2 972 945 − 999 267 ger 1 973 678) är fortfarande öppet och är en separat fråga till Amer.

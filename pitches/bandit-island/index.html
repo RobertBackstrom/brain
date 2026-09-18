@@ -106,6 +106,10 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
 .tag.lo{background:rgba(154,160,180,.13);color:var(--steel)}
 .tag.rec{background:rgba(95,211,154,.14);color:var(--ok)}
 
+.cols{columns:2;column-gap:44px;column-rule:1px solid var(--line)}
+.cols p{max-width:none;break-inside:avoid}
+.cols p:first-child{margin-top:0}
+@media(max-width:900px){.cols{columns:1;column-rule:0}}
 .skumap{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:32px 0 16px}
 @media(max-width:820px){.skumap{grid-template-columns:1fr}}
 .fam{border-top:2px solid var(--line-2);padding-top:12px}
@@ -215,9 +219,13 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
     <div class="k">Dependency</div><div class="v">The title is unreleased. The main port starts in March, after your February target, so we are not porting a moving codebase. Input architecture work does not depend on that date and runs December to February.</div>
   </div>
 
-  <h3 style="margin-top:34px">The input layer is not part of your game today</h3>
-  <p class="muted">On Luna the phone-as-controller pairing, the input relay and the speech recognition are <strong>Amazon platform services</strong>, running in Amazon's data centre alongside the game instance. The game receives clean events and never handles audio. On a console none of those services exist. Room-code join, companion client, relay and speech recognition all become part of the product.</p>
+  <h3 style="margin-top:34px">What the Luna platform carries today, and what a console does not</h3>
+  <div class="cols">
+  <p class="muted">On Luna the game runs in Amazon's data centre and the phone reaches it through the platform. Players scan a QR code on the TV and the phone becomes a controller carrying touch and voice, with no app install and no pairing, and the same flow works identically across the GameNight library. <strong>Pairing and transport are therefore Luna's, not your game's.</strong></p>
+  <p class="muted">A console has none of that. The box sits in a living room with no QR-join service, no relay, and no system speech recognition exposed to games on any of the three platforms. Room-code join, the companion client and the relay all become part of the product.</p>
+  <p class="muted"><strong>One thing we have deliberately not assumed:</strong> where your speech recognition actually runs, and whose it is. If it is a platform service, it does not travel and we rebuild it. If it is your own model running inside your instance, it travels but it then has to fit inside a console memory budget, and on Switch that is the binding constraint. The recommendation in the next section is the same either way; the cost is not. It is question 2.</p>
   <p class="muted">The engine is Unity, confirmed at the meeting, which is the stack our porting lead ships on. What is still unknown is how separable the Luna input layer is from game logic. Section 08 states what moves if it is woven through.</p>
+  </div>
 </section>
 
 <!-- 3 WHAT DOES NOT PORT -->
@@ -229,10 +237,11 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
     <table>
       <thead><tr><th>Function</th><th>On Luna today</th><th>On console</th><th>Replacement</th></tr></thead>
       <tbody>
-        <tr><td><strong>Player join</strong></td><td>QR scan, no install, no pairing. Amazon service.</td><td>Does not exist.</td><td>Room code on screen, phone opens a URL in the browser. Shipped console pattern for over a decade, so platform-holder acceptance is settled.</td></tr>
+        <tr><td><strong>Player join</strong></td><td>QR scan, no install, no pairing. Platform flow.</td><td>Does not exist.</td><td>Room code on screen, phone opens a URL in the browser. Shipped on console since <strong>The Jackbox Party Pack</strong> on PS4 and Xbox One in November 2014 and on every generation since, so platform-holder acceptance is not an open question.</td></tr>
         <tr><td><strong>Input transport</strong></td><td>Phone to Amazon servers, same data centre as the game.</td><td>Does not exist.</td><td>Hosted relay pairing each phone session to the console session. Carries buzzer, typed answers, wagers.</td></tr>
         <tr><td><strong>Phone UI</strong></td><td>Built for Luna's controller surface.</td><td>Not portable.</td><td>Web client, mobile Safari and Chrome, all handset sizes, including reconnect after screen lock or wifi drop.</td></tr>
-        <tr><td><strong>Speech recognition</strong></td><td>Amazon service call.</td><td>No system ASR on any of the three platforms.</td><td>See the three options below.</td></tr>
+        <tr><td><strong>The format itself</strong></td><td>Native to the platform.</td><td>Has precedent.</td><td>Sony shipped its own phone-controlled quiz game, <strong>Knowledge is Power</strong>, under the PlayLink line on PS4 in October 2017. The living-room format is not new to console; the question is only who builds the plumbing.</td></tr>
+        <tr><td><strong>Speech recognition</strong></td><td>Reaches the game as voice input through the phone. Owner and location to confirm.</td><td>No system ASR exposed to games on any of the three platforms.</td><td>See the three options below. <strong>Let's Sing</strong> streams a phone microphone into a console game on Switch, PS4, PS5, Xbox One and Xbox Series, across a decade of annual releases, so the transport half is proven on every SKU we are quoting.</td></tr>
         <tr><td><strong>Identity, entitlement, session, storage</strong></td><td>Luna services.</td><td>Per-platform equivalents.</td><td>Standard platform work. Priced for the known cases. Unknown cases need source access.</td></tr>
       </tbody>
     </table>
@@ -243,7 +252,7 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
     <div class="card ap">
       <h3 style="display:flex;gap:9px;align-items:baseline">A. On the relay <span class="tag rec">Recommended</span></h3>
       <p class="muted">Phone captures audio and sends it to the relay. Relay returns text. The console receives words and button events, never audio, and loads no speech model.</p>
-      <p class="muted"><strong>Effect:</strong> no speech model in any console memory budget, which is what makes Switch 1 tractable. One identical code path on all six SKUs.</p>
+      <p class="muted"><strong>Effect:</strong> keeps any speech model out of the console memory budget, which is what makes Switch 1 tractable whether or not one exists in the build today. One identical code path on all six SKUs.</p>
       <p class="muted"><strong>Cost:</strong> voice play requires a network connection, and a per-session ASR cost we size at Gate 1 once a vendor is chosen. Audio leaving the device is a data-protection question on a family title: the publisher is data controller, not us, and we host the relay only during Gates 2 to 6. Long-term hosting and controllership need an owner before launch.</p>
     </div>
     <div class="card">
@@ -392,7 +401,7 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
         <li><strong>Rendering load is low.</strong> A quiz title is not GPU or frame-budget constrained on any SKU, including Switch 1. The usual reason ports get expensive does not apply.</li>
         <li><strong>The port half is routine and predictably priced.</strong> Platform bring-up, save data, trophies, store hooks and cert checklists are work we do continuously.</li>
         <li><strong>Relay-side speech gives one code path across six SKUs.</strong> No per-platform microphone handling, and no speech model in any console's memory budget.</li>
-        <li><strong>Room code plus phone browser is a proven console pattern.</strong> Over a decade of shipped precedent, so platform-holder acceptance is not an open question.</li>
+        <li><strong>Every part of the companion layer has shipped on console before.</strong> Room-code join in a phone browser since The Jackbox Party Pack on PS4 and Xbox One in 2014. A phone-controlled quiz game published by Sony itself, Knowledge is Power, on PS4 in 2017. A phone microphone streamed into a console game on all six of our SKUs, in the Let's Sing series, annually for years. None of this is a first.</li>
         <li><strong>The pre-phase does not need your source.</strong> Gate 1 runs on your design and the current build; Gate 2 proves the companion path against a stand-in console harness we build. Source is first required at Gate 3 in March, which buys roughly three months of slack against the Amazon approvals.</li>
         <li><strong>The expensive layer is paid for once.</strong> Second title reuses relay, companion client and all platform integration.</li>
       </ul>
@@ -401,6 +410,7 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
       <h3><span class="tagq">W</span>Weaknesses</h3>
       <ul>
         <li><strong>No source access yet.</strong> An estimate made without code typically moves by around twenty per cent in either direction once it is read. This is the weakest part of the number, and there is no contingency line in it.</li>
+        <li><strong>We do not know where your speech recognition runs.</strong> Everything we can see is the platform carrying voice in from the phone. Whether the recognition itself is a service you call or a model you ship decides whether it lands in a console memory budget, and on Switch that is the difference between routine and hard. We have priced the architecture that avoids the question rather than a resolution of it.</li>
         <li><strong>Engine and coupling unconfirmed.</strong> If Luna input handling is woven through game logic rather than isolated behind an interface, the port side grows.</li>
         <li><strong>The relay is a service, not a deliverable that ends.</strong> Hosting, uptime and running cost need an owner after launch. Currently unassigned.</li>
         <li><strong>Voice play requires a network connection.</strong> A living-room party game that needs the internet to work fully is a support surface and a review-score surface.</li>
@@ -449,7 +459,8 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
     <table>
       <thead><tr><th>Item</th><th>Status</th><th>Effect if resolved differently</th></tr></thead>
       <tbody>
-        <tr><td>Source-code access</td><td>Blocked on Amazon approval tiers</td><td>Two weeks with the code turns the estimate into a quote. Largest single unknown. Asked as question 7.</td></tr>
+        <tr><td>Source-code access</td><td>Blocked on Amazon approval tiers</td><td>Two weeks with the code turns the estimate into a quote. Largest single unknown. Asked as question 8.</td></tr>
+        <tr><td>Speech recognition ownership</td><td>Unknown. Platform service, third-party API, or your own model</td><td>Decides whether that layer ports at all, and if it does, whether it fits in 4 GB shared on Switch. Question 2.</td></tr>
         <tr><td>Input coupling</td><td>Unknown. Engine is confirmed Unity</td><td>Input isolated behind an interface is the assumption. Woven through game logic grows the port side materially.</td></tr>
         <tr><td>Other Luna service dependencies</td><td>Unknown beyond input and voice</td><td>Identity, entitlement, session and storage each need a console equivalent if used.</td></tr>
         <tr><td>PlayStation territory scope</td><td>Assumed one territory</td><td>Each additional territory is its own submission, certification pass and age rating. Question 1.</td></tr>
@@ -462,12 +473,13 @@ tbody tr:hover td{background:rgba(255,255,255,.02)}
   <p class="muted" style="font-size:14.5px">Answering these turns assumptions into scope. The first one moves the certification effort more than anything else on the page.</p>
   <div style="margin-top:6px">
     <div class="qrow"><div class="qn">1</div><div><p class="qq">Which PlayStation territories are in scope: SIEA, SIEE, SIEJA, or a subset?</p><p class="qw">Each is a separate submission, certification pass, age rating and store page. One territory means six submission packages; all three means ten. Priced in section 06 at 60 000 to 120 000 SEK per additional territory.</p></div></div>
-    <div class="qrow"><div class="qn">2</div><div><p class="qq">Are PS4 and Xbox One in or out?</p><p class="qw">They ride on the next-gen work and are currently in. Out removes roughly two months of the porting engineer, 240 000 SEK. It is the one line that separates cleanly.</p></div></div>
-    <div class="qrow"><div class="qn">3</div><div><p class="qq">Do you want a native Switch 2 SKU, or is Switch back-compat enough at launch?</p><p class="qw">Back-compat runs the Switch 1 build on Switch 2 with no extra submission. A native SKU needs its own devkit, SDK and lotcheck, and it is the only one of the six with a system microphone.</p></div></div>
-    <div class="qrow"><div class="qn">4</div><div><p class="qq">Who publishes on console, and who holds the platform accounts?</p><p class="qw">Amazon or Bandit Island. It does not change the engineering, but it decides who submits, who owns the store pages and who is liable at certification. Needs settling before Gate 5, not during it.</p></div></div>
-    <div class="qrow"><div class="qn">5</div><div><p class="qq">Is Amazon covering QA and release management, confirmed rather than assumed?</p><p class="qw">The estimate excludes both on that basis. If it turns out otherwise, add roughly 600 000 SEK for a release manager across the certification window and a QA pass per platform.</p></div></div>
-    <div class="qrow"><div class="qn">6</div><div><p class="qq">Does the Jeopardy! licence already extend to console distribution?</p><p class="qw">Not our work, but it is on our critical path. A licensed Jeopardy! shipped on PS4 and Xbox One in 2017, so a prior console licence exists and may carry terms that matter here. Worth starting in parallel with Gate 1 rather than discovering at submission.</p></div></div>
-    <div class="qrow"><div class="qn">7</div><div><p class="qq">Source and build access, and half an hour with whoever built the Luna input and voice layer.</p><p class="qw">The access is gated by Amazon and we are not pushing. The half hour is not, and it would sharpen Gate 1 considerably.</p></div></div>
+    <div class="qrow"><div class="qn">2</div><div><p class="qq">Where does the speech recognition run today, and whose is it?</p><p class="qw">Platform service, a third-party cloud API you call, or your own model inside your instance. It decides whether that layer travels to console at all, and if it travels, whether it fits in 4 GB shared on Switch. The single largest technical unknown after source access, and half an hour with the engineer who built it would settle it.</p></div></div>
+    <div class="qrow"><div class="qn">3</div><div><p class="qq">Are PS4 and Xbox One in or out?</p><p class="qw">They ride on the next-gen work and are currently in. Out removes roughly two months of the porting engineer, 240 000 SEK. It is the one line that separates cleanly.</p></div></div>
+    <div class="qrow"><div class="qn">4</div><div><p class="qq">Do you want a native Switch 2 SKU, or is Switch back-compat enough at launch?</p><p class="qw">Back-compat runs the Switch 1 build on Switch 2 with no extra submission. A native SKU needs its own devkit, SDK and lotcheck, and it is the only one of the six with a system microphone.</p></div></div>
+    <div class="qrow"><div class="qn">5</div><div><p class="qq">Who publishes on console, and who holds the platform accounts?</p><p class="qw">Amazon or Bandit Island. It does not change the engineering, but it decides who submits, who owns the store pages and who is liable at certification. Needs settling before Gate 5, not during it.</p></div></div>
+    <div class="qrow"><div class="qn">6</div><div><p class="qq">Is Amazon covering QA and release management, confirmed rather than assumed?</p><p class="qw">The estimate excludes both on that basis. If it turns out otherwise, add roughly 600 000 SEK for a release manager across the certification window and a QA pass per platform.</p></div></div>
+    <div class="qrow"><div class="qn">7</div><div><p class="qq">Does the Jeopardy! licence already extend to console distribution?</p><p class="qw">Not our work, but it is on our critical path. A licensed Jeopardy! shipped on PS4 and Xbox One in 2017, so a prior console licence exists and may carry terms that matter here. Worth starting in parallel with Gate 1 rather than discovering at submission.</p></div></div>
+    <div class="qrow"><div class="qn">8</div><div><p class="qq">Source and build access, and half an hour with whoever built the Luna input and voice layer.</p><p class="qw">The access is gated by Amazon and we are not pushing. The half hour is not, and it would sharpen Gate 1 considerably.</p></div></div>
   </div>
 </section>
 

@@ -56,10 +56,16 @@ Pitch: https://pitch.aurorapunks.com/bandit-island/ (gated, creds in `assistant/
 Full breakdown and the technical argument: [[../../../followups/bi-001-jeopardy-console-port-estimate]].
 Project folder: [[../../../bandit_island/CLAUDE]].
 
-**Why the number is not a normal porting number.** On Luna, phone-as-controller and voice
-answering are Amazon *platform services* running beside the game in Amazon's data centre. On a
-console none of that exists, so the job is a port plus a feature build: room-code join, a
-companion web client, a relay service and speech recognition, all from nothing. Alternates were
+**Why the number is not a normal porting number.** On Luna the game runs in Amazon's data
+centre and the phone reaches it through the platform: QR scan, no app, no pairing, identical
+across the GameNight library. Pairing and transport are Luna's, not the game's. On console none
+of that exists, so the job is a port plus a feature build: room-code join, a companion web
+client and a relay service, from nothing.
+
+**Do not claim the speech recognition is Amazon's.** Corrected 2026-09-17 after Robert
+challenged the provenance. We can evidence that voice arrives via the phone through the
+platform; we cannot evidence who owns the recognition. It is now question 2 to the client and
+an open item, not an assertion. Alternates were
 priced openly in the pitch rather than hidden: second title 8 to 10 FTE-months, gamepad-only
 ~1,1 MSEK and explicitly not recommended.
 

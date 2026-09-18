@@ -12,6 +12,66 @@
 <!-- Append new learnings with: learning, source project, date, category -->
 
 
+## 2026-09-18 — "Avtalet för X" från en redovisningskonsult betyder kedjan, inte dokumentet, och en Drive-länk utan permissionskoll är en död länk (apb / Nr89)
+
+**Amer bad om "avtalet för No89". Det fanns inget avtal, det fanns fyra dokument i en kedja:**
+WISE-avtalet + Appendix 1 (förvärvet sept 2024, 517 teckningsoptioner), låneavtalet (AWA lånar
+350 000 till AP mot pant i optionerna, 2025-04-24) och överlåtelseavtalet med två reverser
+(avyttringen 2025-04-27). Varför frågan över huvud taget kom tillbaka: Robert hade 2025-05-22
+skickat exakt **ett** dokument till förra konsulten under ämnet "Underlag Nr89", nämligen
+överlåtelseavtalet. Utan förvärvet går anskaffningsvärdet inte att styrka, och utan låneavtalet
+hänger 350 000-kvittningen i luften. **Regel: när en redovisningskonsult ber om "avtalet" för en
+avyttrad post, leverera förvärv + eventuell mellanliggande finansiering + avyttring, inte det
+dokument som råkar bära ordet avtal i filnamnet.** Genvägen till vad som redan levererats en gång:
+Gmail-sök på ämnet `Underlag <projekt>` eller `from:me` mot förra konsulten, plus
+`gmail_list_attachments` på träffen. Det visade på ett anrop att paketet var ofullständigt.
+
+**Innehavets namn i liggaren säger inget om instrumentet.** 1350-liggaren skriver "No89 (sålt
+2025-04-24)", AP:s IP-assetlista skriver "Nr89-konvertibler" och avtalet säger **teckningsoptioner
+(warrants) via ett WISE-avtal**, registrerade hos Bolagsverket 2024-12-13. Tre namn på samma sak,
+och skillnaden är inte kosmetisk för en ÅR-klassificering. **Läs alltid instrumentet i avtalet
+innan du beskriver en post för revisorn.**
+
+**Två DocuSign-kuvert med samma titel: leta efter ersättningsmeningen, gissa inte på datum.**
+`WISE Agreement Nr89 - AP (v2).pdf` (kuvert 016F2653, sept 2024) och
+`... - revised.docx.pdf` (kuvert F5A734E7, maj 2024) ser förväxlingsbart lika ut. Septemberversionen
+bär meningen *"It shall replace in its entirety the previously executed agreement on the same
+subject matter"* på signatursidan. Den meningen, inte moddate, avgör vilken som gäller. Bonus:
+versionerna skiljer sig i **beloppet** (999 226,58 vs 999 266,58) och i hur stor den totala
+emissionen är (1 138 vs 880 optioner). **När samma affär finns i två versioner, diffa siffrorna,
+inte bara datumen** — här följer bokföringen den ersatta versionens belopp, ett 40-kronorsglapp
+som ingen hade sett.
+
+**Skannade avtal går att läsa utan OCR-paket.** `pdftotext` gav noll på det signerade
+överlåtelseavtalet (CCITT-fax-bilder) och boxen har ingen tesseract. **Rättelse samma dag: det
+är inte ett medvetet val utan ett haveri** — tesseract saknas på Nitro sedan bare-metal-flytten,
+vilket gör ALL OCR tyst död i både RAG-indexeraren och bildintaget. Det betyder att ett tomt
+`rag_search` på ett skannat avtal inte bevisar att avtalet saknas. Orsak, bevis och åtgärd ligger
+i db-362 och i devops-lärdomen 2026-09-18; se även [[reference_rag_content_coverage]]. Lösningen
+nedan är därför inte en genväg utan **den enda vägen** tills ticketen stänger:
+`pdftoppm -r 110 -png fil.pdf pg` och sedan **Read-verktyget på PNG-sidorna** — modellen läser
+bilden direkt. Det tog fram parter, org.nr, belopp, fördelning och signaturer på fyra sidor.
+Samma trick verifierade DocuSign-signatursidan (namn + datum ligger som grafik, inte i textlagret,
+så `pdftotext` visar tomma City/Date-rader på ett fullt signerat avtal — **tolka aldrig tomma
+signaturrader i textlagret som osignerat**).
+
+**Och det som nästan blev en tyst leverans av döda länkar:** Portfolio-drivan
+(`0AF1ubBnsLIXNUk9PVA`) och innehavsmappen Nr89 hade **bara Robert** som behörig. Hade jag lämnat
+ifrån mig länklistan utan att kolla hade Amer fått fem 404:or i Discord och frågan hade kommit
+tillbaka en tredje gång. **Regel: innan en Drive-länk lämnar huset till en extern part, läs
+`files/<id>/permissions`.** Per-innehav-kontakter får item-shares, inte drivmedlemskap
+([[reference_drive_folders]]), så rätt åtgärd var `gdrive-upload.js --share <mappid> <mail> reader`
+på mappen och inget mer.
+
+**Sidofynd, filningshål:** det signerade låneavtalet fanns bara som Adobe Sign-bilaga i inkorgen,
+aldrig på Drive. Samma mönster som OpenSign-luckan 2026-09-16, men för det *andra*
+signeringsverktyget. **Adobe Sign-eran (före OpenSign) har ingen bevakare alls** — allt signerat
+den vägen ligger enbart i mail. Värt ett svep: `from:adobesign@adobesign.com` med "signerade och
+arkiverade" i ämnet, matchat mot `_legals`-mapparna.
+
+*Kategori: contracts/accounting/tooling · Projekt: Aurora Punks ÅR 2025 (apb) · 2026-09-18*
+
+
 ## 2026-09-17 — Två register, en pollare, fel box: arkiveringen var död i tre veckor och registreringen var oskyldig (k2c / apb / db-361)
 
 **Rätta gårdagens slutsats innan du bygger på den.** Jag skrev att rotorsaken var att "skicka" och

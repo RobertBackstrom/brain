@@ -55,7 +55,11 @@ Amazon's data centre beside the game. None of it survives the move to a console 
 The replacement is a room-code join into a phone browser with a small hosted relay, which is the
 model party games have shipped on console for a decade.
 
-The load-bearing decision: **speech recognition runs on the relay, not on the console.** The phone
+Corrected 2026-09-17: the page no longer claims the speech recognition is Amazon's. Evidenced:
+voice arrives via the phone through the platform. Not evidenced: who owns the recognition. It is
+question 2 to the client.
+
+The load-bearing recommendation: **speech recognition runs on the relay, not on the console.** The phone
 captures audio and sends it to the relay, the relay returns text, the console never sees audio and
 never loads a speech model. That removes the Switch 1 memory problem Robert was worried about and
 gives one identical code path across all six SKUs.
