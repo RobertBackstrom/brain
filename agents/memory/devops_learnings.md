@@ -7,6 +7,133 @@
 >
 > **Still append new learnings to the TOP of this file** — rotation moves the tail out on its own.
 
+
+## 2026-09-18 — Fyra avbrott, en felform: verktyget körde, rapporterade framgång och producerade ingenting [project: db]
+
+Sex ticketar i en session (db-362, db-354, db-361, db-316, db-335, db-357). Tre av dem var samma
+bugg i olika kläder, och det är den lärdomen som är värd att bära vidare.
+
+**Felformen: tyst frånvaro.** OCR:en, memory-watchern och OpenSign-pollern hade alla varit döda i
+veckor (25–26 dygn) utan ett enda larm. Ingen av dem *kraschade*. Maskineriet snurrade, loggade
+framgång och levererade noll. Det som gör den här klassen farlig är att **utfallet är
+oskiljbart från ett korrekt negativt svar**: en skannad PDF utan OCR indexeras som tom, och ett
+`rag_search` på ett signerat avtal ger noll träffar som ser exakt ut som "avtalet finns inte".
+En agent går då och frågar Robert om något som står skrivet, eller värre, påstår att det inte
+finns. Alla tre uppstod i bare-metal-flytten 24 aug.
+
+**Konsekvens för hur man kontrollerar hälsa:** varje räknande hälsokoll är strukturellt blind för
+det här, eftersom raderna finns och är ihåliga. `rag-coverage-check.js` rapporterade perfekt
+täckning under hela OCR-avbrottet, och hade rätt — filerna var indexerade, de var bara tomma.
+Därför måste en probe göra ett **riktigt anrop och hävda på resultatet**. `--version`, en
+`ready`-flagga, en PID, en `active` unit — alla fyra var sanna under avbrott vi faktiskt har haft.
+tesseract svarade korrekt på `--version` på edgen medan varje OCR på Nitro gav noll tecken.
+
+**Den konkreta fällan som nästan tog mig, och som generaliserar:** jag installerade tesseract
+vendorat i `~/.local/bin`, verifierade i skalet, och det hade varit fel svar. **systemd user-units
+ärver user-managerns PATH, inte ett inloggningsskals.** `~/.local/bin` fanns inte i den, så
+tjänsterna hade fortsatt vara trasiga medan min verifiering sa grönt. Rätt test är
+`systemd-run --user --wait --pipe --quiet sh -c 'command -v tesseract'`, alltså från samma
+processkontext som tjänsten. Persistens: `~/.config/environment.d/10-local-bin.conf`, plus
+`systemctl --user set-environment` för den redan körande managern. **Generellt: verifiera i
+processkontexten som är trasig, inte i den du råkar sitta i.**
+
+**`assistant`-användarens sudo är en smal vitlista** (systemctl för gdm/teamcity, `ufw status`).
+Inget `apt install`. Vägen runt utan root, som fungerade: `apt-get download <pkg>` + `dpkg -x` till
+`~/.local/opt/<namn>` och en wrapper i `~/.local/bin` som sätter `LD_LIBRARY_PATH` och
+`TESSDATA_PREFIX`. Kolla beroendena med `dpkg-deb -f <deb> Depends` och `ldconfig -p` först — för
+tesseract saknades bara `liblept5`, allt annat fanns redan. Priset är att apt aldrig uppgraderar
+den; skriv det i wrappern.
+
+**Två sanningskällor blir alltid osynkade, och den tysta halvan är den dyra.** `OCR_DRIVE_NAMES`
+låg hårdkodad i `rag-external-indexer.js` med kommentaren "kept in sync with the config comment".
+Jag lade till Portfolio-drivan i `rag-config.js`, körde backfillen, och den **hoppade tyst över
+exakt de skannade avtal drivan lades till för** — och skrev ut `done, 0 errors`. Kommentaren som
+påstår att två listor hålls synkade är en varningsflagga, inte en försäkran. Slå ihop dem.
+
+**chokidars `ignored` måste testa relativ sökväg, aldrig absolut.** `/(^|\/)\.|node_modules/` mot
+den absoluta sökvägen ignorerade **själva roten** för `MEMORY_DIR`
+(`/home/assistant/.claude/.../memory`), eftersom `.claude` matchar. Fem av sex rötter låg under
+`/home/assistant/projects/` och klarade sig, så felet såg ut som ett minnes-specifikt mysterium.
+Inget loggades: "ignored" är inte ett fel, och raden `[rag] watching memory: ...` skrevs ut vid
+varje start ändå. **En startlogg som säger att något bevakas är inget bevis på att det bevakas.**
+Verifiera med en kanariefil och se om ett event faller ut.
+
+**`--backfill` lägger bara till — raderingar kommer in som unlink-events.** Så när en watcher är
+död missas inte bara skrivningar utan även **borttagningar**. rag.db serverade 14 minnesfiler som
+Robert medvetet raderat, bland dem en återkallad behörighetsregel (`feedback_bash_preapproved`).
+Ett inaktuellt minne är värre än ett saknat: en agent agerar på det, säkert. Nytt `--prune` städar,
+**begränsat till lokala bevakade källor** — gmail/gdrive/discord har ingen fil på disk, så ett
+`existsSync`-test hade raderat hela den externa korpusen. Den spärren är bärande.
+
+**Skriv inte en larmväg utan att kontrollera att någon läser den.** `rag-coverage-check.js` säger i
+sin egen header att larmloggen är "tailed by healthz-monitor.sh". Det gör den inte;
+`healthz-monitor.sh` curlar bara URL:er. Larmen har landat i en fil utan läsare, inklusive en 403
+som avbröt hela täckningskörningen 18 sep. Hittades först när db-316-kontraktet läste filen.
+`grep` efter konsumenten innan du litar på en kommentar som påstår att det finns en.
+
+**Testet fångade att jag byggde in den rapporterade buggen igen.** db-316 klagar på att linkedin-sd
+larmade var fjärde timme i 361 timmar. Min första implementation hade fast 4-timmarspåminnelse,
+alltså **91 meddelanden på 361 timmar** — samma tal. Exponentiell backoff (4h, 8h, 16h…) med tak
+på 24h ger 17, och taket gör att ett allvarligt fel ändå nämns dagligen. Skriv testet mot den
+faktiska incidentens siffra, inte mot "färre än en per tick"; det var den formuleringen som
+avslöjade det.
+
+**Crontab tar inte en godtyckligt lång sökväg.** `crontab /tmp/claude-.../scratchpad/fil` föll på
+`No such file or directory` med sökvägen avhuggen. Ofarligt (crontabben rördes inte), men kopiera
+till en kort sökväg. Kolla `crontab -l | wc -l` direkt efteråt oavsett.
+
+**Nitro har ingen cloudflared.** Connectorn kör på Hetzner-edgen och når Nitro över tailnet, så
+en ingress som läser `http://localhost:3777` pekar på fel låda. Dessutom är tunneln dashboard-styrd,
+så `~/.cloudflared/config.yml` på edgen **är inte det som kör** — den har kvar pre-migrations-
+värden. `systemctl is-active cloudflared` säger `inactive` på *båda* lådorna; använd
+`pgrep -af cloudflared` på edgen. Skrivet som skill: `skills/platform_reachability.md`.
+
+**Projekt:** db · **Kategori:** tyst frånvaro, hälsokontrakt, systemd-PATH, vendorade beroenden,
+chokidar, två-sanningskällor · **Taggar:** db-362, db-354, db-361, db-316, db-335, db-357,
+tesseract, ocr-runtime, systemd-user-PATH, environment.d, dpkg-x, chokidar-relativ-ignore,
+rag-prune, tool-contracts, exponentiell-backoff, larmlogg-utan-läsare, cloudflared-på-edgen
+
+## 2026-09-18 — Ett saknat systemberoende som ser ut som ett tomt dokument: OCR har varit död sedan flytten [apb / Death Board, db-362]
+
+**Source project:** Aurora Punks ÅR (apb), hittat under /close | **Category:** infra, migration, silent failure
+
+**`tesseract` finns inte på Nitro, och all OCR har därför varit tyst död sedan bare-metal-flytten.**
+`command -v tesseract` är tomt, inget dpkg-paket, `execFileSync('tesseract', ...)` ger ENOENT i
+samma processkontext som `rag-external-sync.service` kör i. `pdftoppm` finns, så halva kedjan
+fungerar och maskerar den andra halvan. Träffar tre ställen: `rag-external-indexer.js:610` och
+`:642`, samt `image-intake.js:188`.
+
+**Felformen är det som gör det farligt, inte felet.** Anropet ligger i
+`catch { /* page produced no text */ }`. En skannad PDF renderas till PNG, OCR:en faller,
+`pagesDone++` körs ändå, och funktionen returnerar `{ text: '', pages: N }`. Utfallet är
+**oskiljbart från ett dokument som saknar text**, och kommentaren i koden pekar dessutom ut fel
+orsak för den som läser den senare. **Regel: en catch som sväljer ett externt processanrop måste
+skilja `ENOENT` från ett tomt resultat.** "Binären finns inte" och "sidan var tom" är olika
+händelser och bara den ena ska vara tyst. Samma mönster lurar i varje `execFileSync` vi wrappar.
+
+**Konsekvensen är epistemisk, inte bara teknisk.** Nedströms betyder det att ett tomt
+`rag_search` på ett signerat avtal inte bevisar någonting, vilket är exakt den slutsats agenter
+drar fel. `reference_rag_content_coverage` påstod i klartext att skannade PDF:er OCR:as på
+admin/legal-drivarna. Den har påstått det, osant, i tre veckor. **När ett minne beskriver en
+förmåga, beskriver det designen, inte maskinen. Verifiera förmågan mot boxen innan du litar på
+minnet** — här räckte `command -v`.
+
+**Loggen såg frisk ut för att två vägar delade en etikett.** `logs/image-intake.log` blandar
+`OCR 0 tecken` (trasig tesseract) med rader på flera tusen tecken som i själva verket kommer från
+**poppler-textlagret** i PDF:er med riktig text. Samma ordval för två helt olika kodvägar gör en
+total dödsstöt osynlig i en loggskumning. **Etikettera loggraden med vilken extraktor som gav
+träffen**, annars går det inte att läsa ut hälsa ur volymen.
+
+**Tredje migrationsartefakten på en månad.** db-361 (cron på Hetzner-edgen mot eget stale register)
+och den här är samma familj: bare-metal-flytten 2026-08-24 flyttade arbetet men inte
+förutsättningarna. **Ta fram en beroendeinventering för Nitro** och kör den som startkontroll,
+i stället för att upptäcka ett saknat paket i taget via symptom som inte ser ut som fel.
+
+**Workaround tills db-362 stänger:** `pdftoppm -r 110 -png fil.pdf pg` och läs PNG-sidorna med
+Read-verktyget, modellen läser bilden direkt. Fungerade på ett fyrsidigt skannat avtal i dag, och
+tog samtidigt fram en DocuSign-signatursida vars namn och datum ligger som grafik utanför
+textlagret. Följ upp i db-362.
+
 ## 2026-09-18 — Leta efter regeln som säger motsatsen, inte bara efter koden som gör fel [k2c / Death Board]
 
 **Source project:** K2C (KAN) | **Category:** process, prompt governance, root cause
