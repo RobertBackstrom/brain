@@ -165,3 +165,59 @@ hear about afterwards.
 ## Ralph Strandberg, status 2026-09-18
 Still **no reply**, verified live in Gmail the same turn: thread `1a0a5554a33a00d7`, a single message,
 sent 2026-09-15 16:51 CEST. Three days. `cr-005` is due 2026-09-22.
+
+## The route to market has a price tag (2026-09-19)
+Primary sources read in full: the Vinnova call text for round 2026-00496 (PDF via the file API),
+the full register of application rounds under the programme, and **FMV's own map of the Swedish
+defence development landscape**. Detail in `cold_response/testinfrastruktur_och_dorrar_2026-09-19.md`.
+
+**FMV Battle Week costs 500 000 to 1 000 000 SEK excl. VAT per submitted solution**, set by FMV
+after they have assessed the proposals. The Vinnova grant covers "a subset of the registration fee",
+capped at 500 000 SEK, and FMV themselves call it an infrastructure voucher. **The door is never
+free, even with a full voucher.** Odds on the first challenge: 32 applicants, 11 selected. The
+sequence is inverted: you get the place first, the fee is set then, and only then can the place be
+evidenced in a grant application. Figures come from a search index rendering of fmv.se, which
+returns 403 to machine fetch, and need a human with a browser before they go into a budget.
+
+**Correction to `cr-010`.** The call gives two alternative formal requirements: a quote from a
+technical infrastructure **or** notice of a place at Battle Week. And "technical infrastructure"
+explicitly includes **support services** with a "broad approach" - two of the 17 grants bought no
+range time at all (Scailab bought advisory from Knightec, Synclair Vision bought a security
+evaluation of software). **A pure software evaluation has already been funded under this call**,
+though 15 of 17 tested hardware and both software projects bought a bounded security or robustness
+evaluation rather than functional assessment. Foreign infrastructure qualifies (two bought testing
+at Millog in Finland).
+
+**The simulator matches none of the six priority areas directly.** All six are capability areas and
+training is not one of them. The two framings that carry: counter-UAS operator training under
+"air and missile defence, including protection against drones", and sensor-operator training under
+"improved and sustained situational awareness".
+
+**Candidate infrastructures, from FMV's own map:** FOI is the strongest counterparty for the quote
+(state agency, commissioned research, Battle Week co-organiser, holds the specific competence in
+evaluating simulation-based training). Drone Center Sweden / Testbädd UAV Västervik (RISE, 2 400 km²
+approved test area, commercial operation) is second, for comparative flight of the same manoeuvre
+real and simulated, which ties to `cr-007`. FM UAS-centrum Karlsborg is the sharpest counterparty
+for military relevance but is a need-owner and cannot issue the quote.
+
+**FOI already described the gap, for the Armed Forces.** FOI-R--3957--SE surveyed 15 Swedish
+simulator facilities: many have no stated pedagogical model, assessment is qualitative, the
+quantitative measures the simulator logs "cannot be used" for resource reasons, and group behaviour
+is not measured for lack of tools. That is the operator layer in `cr-003` almost verbatim. **The
+report is from 2014** - use it as the origin of a question, never as a statement about today.
+
+## ISP screens the investment, not only the product (2026-09-19)
+Act (2023:560) on the screening of foreign direct investments, in force 1 December 2023 with ISP as
+the screening authority: an investment in protected activity that gives the investor a certain
+influence must be notified, and can be prohibited or made conditional. FMV lists "you receive
+external financing or investment for your innovations" as an ISP matter. **If the capital behind
+Ralph's contact is ultimately foreign, the investment in the NewCo may be notifiable regardless of
+whether the simulator is classified as war materiel.** Another reason to ask where the capital
+ultimately comes from before a term sheet. Logged on `cr-006`; layman's reading, needs a specialist.
+
+FMV's own glossary also names **military software** as an example of war materiel, turning on
+"designed or modified for military use" - which argues directly for the forked codebase in `cr-006`.
+
+## Ralph Strandberg, status 2026-09-19
+Still **no reply**, verified live in Gmail the same turn: thread `1a0a5554a33a00d7`, a single
+message, sent 2026-09-15 16:51 CEST. Four days. `cr-005` is due 2026-09-22.

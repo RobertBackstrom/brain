@@ -16,6 +16,65 @@ agent: bizdev
 
 
 
+## 2026-09-19 - Ett bidrag som betalar en "avgift" har en prislapp nagon annanstans; hamta den innan du kallar dorren finansierad [Cold Response, cr-008/cr-010]
+
+Tre svep i rad hade behandlat FMV Battle Week som **en ansokan**: ratt dorr, sok nar den oppnar,
+och sedan hittades ett Vinnova-instrument som "betalar deltagande". Ingen hade fragat vad
+deltagandet kostar. Utlysningstexten, last i sin helhet, sa det i forbigaende: stod ges for **"en
+delmangd av anmalningsavgiften"**. Den formuleringen ar skriven av nagon som vet att avgiften ar
+storre an taket. Avgiften visade sig vara **500 000 till 1 000 000 kr exklusive moms per inlamnad
+losning**, mot ett bidragstak pa 500 000 kr. **Dorren ar aldrig gratis, ens med full voucher.**
+
+**How to apply.** Nar ett bidrag beskrivs som att det betalar en avgift, en licens, en plats eller
+en medlemskapskostnad, sluta inte vid bidragets takbelopp. Leta upp vad den underliggande saken
+kostar hos den som tar betalt. Tva ord i utlysningstexten avgor hela kalkylen: **"upp till"** och
+**"en delmangd av"**. Ett bidrag som betalar "upp till 500 000" mot en avgift pa "500 000 till
+1 000 000" ar i praktiken en 50-procentig subvention i det samre fallet, inte en finansiering.
+
+**Tva foljdfynd av samma slag.**
+
+1. **Ordningen mellan platsen och pengarna var omvand mot intuitionen.** Man far forst platsen, DA
+   sattes avgiften, och forst darefter kan platstilldelningen bestyrkas i bidragsansokan. Den som
+   vantar pa bidragsbeskedet innan han soker platsen kommer aldrig in. Nar tva ansokningar hanger
+   ihop, kartlagg vilken som ar den andras **bilaga** - det avgor sekvensen, inte deadlinedatumen.
+2. **Utlysningstexten hade ett andra, alternativt formellt krav som vi hade missat helt.**
+   Ticketen var byggd pa att en offert fran en testanlaggning ar den bindande restriktionen.
+   Texten sa "offert ... **Alternativ** ska foretaget erhallit en plats pa [Battle Week]".
+   Sammanfattningssidor och utfallsdata visar aldrig alternativa krav. Bara den fullstandiga
+   texten gor det, och det ar ett av de starkaste skalen att hamta PDF:en i stallet for att lasa
+   webbsidan.
+
+En metodnotering som gav resten: **Vinnovas fil-API ger utlysningstexten och alla mallar som
+direkta nedladdningar** utan att man behover ta sig forbi webbsidan. Omgangsposten i
+`https://data.vinnova.se/api/ansokningsomgangar/<datum>` bar en `DokumentLista` med `fileURL` per
+bilaga. Det betyder att man kan lasa ansokningsmallen, CV-mallen och bedomningskriterierna manader
+fore en deadline, och att arbetet med en 10-sidig projektbeskrivning kan borja utan att nagot
+beslut fattats.
+
+## 2026-09-19 - Motpartens egen myndighetskarta ar en battre kandidatlista an din research, och den ligger som PDF nar HTML:en ger 403 [Cold Response, cr-010]
+
+Uppgiften var "identifiera vilken testinfrastruktur som passar". Jag holl pa att bygga listan fran
+webbsokningar, tills en sokning returnerade **FMV:s egen kartbilaga over forsvarets
+utvecklingslandskap**. Den namnger testcentra, provplatser, skolor och forskningsinstitut med
+vad var och en gor, plus de fyra vagarna in i systemet, ISP:s tillstandsfall och de
+internationella samarbetena. **En myndighets egen orienteringskarta slar varje lista jag kan
+satta ihop**, eftersom den ocksa visar vad de sjalva tycker ar viktigt och vad de kallar saker.
+
+Tva saker gjorde den hamtbar och det ar den tekniskt anvandbara delen:
+1. **Myndighetens HTML gav 403 pa maskinell hamtning, men PDF:en pa `/globalassets/` gick igenom**
+   med en vanlig user agent. Nar en myndighetssajt blockerar, sok efter deras **dokument** i
+   stallet for deras sidor. PDF:er ligger ofta pa en annan path utan samma skydd.
+2. `pdftotext -layout` pa en tva-sidig grafisk bilaga ger ostadad kolumnsallad. `re.sub(r'[ \t]{2,}','\n',text)`
+   och sedan lasa raderna gor den lasbar. Vart att ha, for det ar just den sortens dokument
+   (infografik, kartor, oversiktsbilagor) som barer mest namngiven struktur per sida.
+
+Samma svep gav ett tredje mojligt fynd av samma art: en **statlig forskningsrapport bestalld av
+kunden** (FOI-R--3957--SE, kund Forsvarsmakten) som beskriver exakt det gap var produkt fyller,
+i kundens egna ord. Det ar starkare an varje konkurrentanalys vi kan gora sjalva. **Varningen hor
+till lardomen:** rapporten var tolv ar gammal. Ett citat ur statens eget material ar ett utmarkt
+ursprung till en **fraga** ("galler det har fortfarande?") och ett uselt pastaende om nulaget.
+Datera alltid en sadan kalla i samma mening som du citerar den.
+
 ## 2026-09-18 - Las finansiarens utfallsdatabas, inte bara utlysningstexten; den svarar pa fragor texten inte kan och avslojar instrument ingen lankat till [Cold Response, cr-008/cr-009]
 
 Tva svep i rad hade last Vinnovas **utlysningstexter** och byggt hela bolagsvalet pa dem. I natt
